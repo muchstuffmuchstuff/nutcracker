@@ -1099,7 +1099,7 @@ BuilderGroup {
 ####
 
 BuilderGroup {
-    BuilderGroupName = 'NCT2Shields',
+    BuilderGroupName = 'NCT2Shieldsturtle',
     BuildersType = 'EngineerBuilder',
     Builder {
         BuilderName = 'NC T2 Shield D Engineer Near Energy Productionnutcracker',
@@ -1892,7 +1892,7 @@ BuilderGroup {
 ####
 
 BuilderGroup {
-    BuilderGroupName = 'NCEconomicExperimentalEngineers',
+    BuilderGroupName = 'NCEconomicExperimentalEngineersturtle',
     BuildersType = 'EngineerBuilder',
     Builder {
         BuilderName = 'NC Econ Exper Engineer nutcracker',
