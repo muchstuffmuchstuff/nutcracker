@@ -6,12 +6,63 @@
         The keys for these builders are included AI/AIBaseTemplates/nut_cracker.lua.
 ]]
 
+local ExBaseTmpl = 'ExpansionBaseTemplates'
 local UCBC = '/lua/editor/UnitCountBuildConditions.lua'
 local EBC = '/lua/editor/EconomyBuildConditions.lua'
 local IBC = '/lua/editor/InstantBuildConditions.lua'
 local TBC = '/lua/editor/ThreatBuildConditions.lua'
 local SAI = '/lua/ScenarioPlatoonAI.lua'
 local SBC = '/lua/editor/SorianBuildConditions.lua'
+local SIBC = '/lua/editor/SorianInstantBuildConditions.lua'
+local MIBC = '/lua/editor/MiscBuildConditions.lua'
+local SUtils = import('/lua/AI/sorianutilities.lua')
+
+function AirAttackCondition(aiBrain, locationType, targetNumber)
+    local pool = aiBrain:GetPlatoonUniquelyNamed('ArmyPool')
+
+    local engineerManager = aiBrain.BuilderManagers[locationType].EngineerManager
+
+    local position = engineerManager:GetLocationCoords()
+    local radius = engineerManager.Radius
+
+    local surfaceThreat = pool:GetPlatoonThreat('AntiSurface', categories.MOBILE * categories.AIR - categories.SCOUT - categories.INTELLIGENCE, position, radius)
+    local airThreat = pool:GetPlatoonThreat('AntiAir', categories.MOBILE * categories.AIR - categories.SCOUT - categories.INTELLIGENCE, position, radius)
+    if (surfaceThreat + airThreat) > targetNumber then
+        return true
+    end
+    return false
+end
+
+function T4AirAttackCondition(aiBrain, locationType, targetNumber)
+    local UC = import('/lua/editor/UnitCountBuildConditions.lua')
+    local SInBC = import('/lua/editor/SorianInstantBuildConditions.lua')
+    local pool = aiBrain:GetPlatoonUniquelyNamed('ArmyPool')
+    local engineerManager = aiBrain.BuilderManagers[locationType].EngineerManager
+    if not engineerManager then
+        return true
+    end
+    if aiBrain:GetCurrentEnemy() then
+        local estartX, estartZ = aiBrain:GetCurrentEnemy():GetArmyStartPos()
+        local enemyIndex = aiBrain:GetCurrentEnemy():GetArmyIndex()
+        targetNumber = SUtils.GetThreatAtPosition(aiBrain, {estartX, 0, estartZ}, 1, 'AntiAir', {'Air'}, enemyIndex)
+        #targetNumber = aiBrain:GetThreatAtPosition({estartX, 0, estartZ}, 1, true, 'AntiAir')
+    end
+
+    local position = engineerManager:GetLocationCoords()
+    local radius = engineerManager.Radius
+
+    local surThreat = pool:GetPlatoonThreat('AntiSurface', categories.MOBILE * categories.AIR * categories.EXPERIMENTAL, position, radius * 2.5)
+    if surThreat > targetNumber * .6 then
+        return true
+    --elseif UC.UnitCapCheckGreater(aiBrain, .99) then
+    --	return true
+    elseif SUtils.ThreatBugcheck(aiBrain) then -- added to combat buggy inflated threat
+        return true
+    elseif SInBC.PoolGreaterAtLocationExp(aiBrain, locationType, 4, categories.MOBILE * categories.AIR * categories.EXPERIMENTAL) then
+        return true
+    end
+    return false
+end
 
 
 
