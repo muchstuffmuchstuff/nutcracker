@@ -15,6 +15,7 @@ local SAI = '/lua/ScenarioPlatoonAI.lua'
 local SBC = '/lua/editor/SorianBuildConditions.lua'
 local SIBC = '/lua/editor/SorianInstantBuildConditions.lua'
 local MIBC = '/lua/editor/MiscBuildConditions.lua'
+local SUtils = import('/lua/AI/sorianutilities.lua')
 
 function AirAttackCondition(aiBrain, locationType, targetNumber)
     local pool = aiBrain:GetPlatoonUniquelyNamed('ArmyPool')
@@ -61,7 +62,7 @@ function T4AirAttackCondition(aiBrain, locationType, targetNumber)
         return true
     end
     return false
-end4
+end
 
 
 

@@ -10,7 +10,7 @@ PlatoonTemplate {
     Plan = 'ExperimentalAIHubSorian', 
     GlobalSquads = {
         { categories.AIR * categories.EXPERIMENTAL * categories.MOBILE - categories.SATELLITE, 7, 10, 'attack', 'GrowthFormation' },
-    },
+    }
 }
 
 PlatoonTemplate {
