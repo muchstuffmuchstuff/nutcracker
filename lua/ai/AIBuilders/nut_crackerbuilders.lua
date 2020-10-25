@@ -65,6 +65,41 @@ function T4AirAttackCondition(aiBrain, locationType, targetNumber)
 end
 
 
+#### initial building group
+
+BuilderGroup {
+    BuilderGroupName = 'NC Initial ACU Builders',
+    BuildersType = 'EngineerBuilder',
+
+    # Initial builder
+    Builder {
+        BuilderName = 'NC Start',
+        PlatoonAddBehaviors = { 'CommanderBehaviorSorian', },
+        PlatoonTemplate = 'CommanderBuilderSorian',
+        Priority = 1000,
+        BuilderConditions = {
+                { IBC, 'NotPreBuilt', {}},
+            },
+        InstantCheck = true,
+        BuilderType = 'Any',
+        PlatoonAddFunctions = { {SAI, 'BuildOnce'}, },
+        BuilderData = {
+            Construction = {
+                BuildStructures = {
+                    'T1LandFactory',
+                    'T1EnergyProduction',
+                    'T1EnergyProduction',
+                    #'T1Resource',
+                    'T1EnergyProduction',
+                    'T1EnergyProduction',
+                    'T1EnergyProduction',
+                    'T1EnergyProduction',
+                    'T1AirFactory',
+                }
+            }
+        }
+    },
+ }
 
 
 BuilderGroup {
