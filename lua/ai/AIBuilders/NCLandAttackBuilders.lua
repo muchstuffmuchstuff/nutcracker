@@ -80,7 +80,7 @@ BuilderGroup {
         Priority = 1500,
      
         BuilderConditions = {        
-        
+            { MIBC, 'GreaterThanGameTime', { 360} },
 				{ SBC, 'NoRushTimeCheck', { 0 }},
 		
 				
@@ -118,6 +118,7 @@ BuilderGroup {
 		PlatoonAddBehaviors = { 'AirLandToggleSorian' },
         Priority = 1500,
         BuilderConditions = { 
+            { MIBC, 'GreaterThanGameTime', { 360} },
                         { UCBC, 'PoolGreaterAtLocation', { 'LocationType', 0, categories.MOBILE * categories.LAND - categories.ENGINEER } },
 			{ SBC, 'NoRushTimeCheck', { 0 }},
         },
@@ -151,6 +152,7 @@ BuilderGroup {
 		PlatoonAddBehaviors = { 'AirLandToggleSorian' },
         Priority = 1500,
         BuilderConditions = { 
+            { MIBC, 'GreaterThanGameTime', { 360} },
                         { UCBC, 'PoolGreaterAtLocation', { 'LocationType', 0, categories.MOBILE * categories.LAND - categories.ENGINEER } },
 			{ SBC, 'NoRushTimeCheck', { 0 }},
         },
