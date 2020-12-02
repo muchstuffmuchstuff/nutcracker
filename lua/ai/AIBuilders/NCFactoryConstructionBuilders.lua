@@ -25,7 +25,7 @@ local PlatoonFile = '/lua/platoon.lua'
 local SIBC = '/lua/editor/SorianInstantBuildConditions.lua'
 local SBC = '/lua/editor/SorianBuildConditions.lua'
 
-local ExtractorToFactoryRatio = 2.2
+local ExtractorToFactoryRatio = 3.2
 
 
 BuilderGroup {
