@@ -161,7 +161,7 @@ Builder {
         InstanceCount = 5,
         BuilderConditions = {
           
-         { SBC, 'LessThanGameTime', { 840 } },
+       
          { SBC, 'GreaterThanEnemyUnitsAroundBase', { 'LocationType', 5, categories.MOBILE * categories.LAND - categories.SCOUT, 250 } },
   
        

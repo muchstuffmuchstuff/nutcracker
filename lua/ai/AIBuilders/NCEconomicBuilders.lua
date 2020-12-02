@@ -1485,8 +1485,8 @@ BuilderGroup {
                         { SIBC, 'HaveLessThanUnitsWithCategory', { 1, 'ENERGYPRODUCTION TECH3'}},
                       
                         { SIBC, 'HaveLessThanUnitsInCategoryBeingBuilt', { 1, 'ENERGYPRODUCTION TECH2, ENERGYPRODUCTION TECH3' } },
-                        { SIBC, 'HaveLessThanUnitsWithCategory', { 12, 'ENERGYPRODUCTION TECH2'}},
-                      { SIBC, 'LessThanEconEfficiencyOverTime', { 2.0, 1.3 }},
+                        { SIBC, 'HaveLessThanUnitsWithCategory', { 8, 'ENERGYPRODUCTION TECH2'}},
+                      { SIBC, 'LessThanEconEfficiencyOverTime', { 2.0, 1.6 }},
                      
          
 			
@@ -1509,7 +1509,7 @@ BuilderGroup {
         BuilderConditions = {
                       
                         { SIBC, 'HaveLessThanUnitsInCategoryBeingBuilt', { 1, 'ENERGYPRODUCTION TECH2, ENERGYPRODUCTION TECH3' } },
-	{ SIBC, 'LessThanEconEfficiencyOverTime', { 2.0, 1.3 }},
+	{ SIBC, 'LessThanEconEfficiencyOverTime', { 2.0, 1.6 }},
                      
 			
         },

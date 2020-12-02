@@ -849,7 +849,7 @@ BuilderGroup {
 			{ SBC, 'NoRushTimeCheck', { 600 }},
 			
             { SIBC, 'GreaterThanEconEfficiencyOverTime', { 0.85, 1.20 }},
-			{ UCBC, 'HaveLessThanUnitsWithCategory', { 2, 'FACTORY TECH3' }},
+			{ UCBC, 'HaveLessThanUnitsWithCategory', { 2, 'AIR FACTORY TECH3' }},
 			
         },
         BuilderType = 'Air',
@@ -883,7 +883,7 @@ Builder {
 			{ UCBC, 'HaveUnitsWithCategoryAndAlliance', { true, 5, categories.MOBILE * categories.AIR - categories.SCOUT, 'Enemy'}},
  { UCBC, 'LocationFactoriesBuildingLess', { 'LocationType', 3, categories.ANTIAIR * categories.AIR - categories.BOMBER } },
             
-			
+ { UCBC, 'HaveLessThanUnitsWithCategory', { 2, 'AIR FACTORY TECH3' }},
             { IBC, 'BrainNotLowPowerMode', {} },
 			{ SBC, 'NoRushTimeCheck', { 600 }},
 		
@@ -905,7 +905,7 @@ Builder {
            
             { IBC, 'BrainNotLowPowerMode', {} },
 			{ SBC, 'NoRushTimeCheck', { 600 }},
-			
+			{ UCBC, 'HaveLessThanUnitsWithCategory', { 2, 'AIR FACTORY TECH3' }},
             #{ SIBC, 'GreaterThanEconEfficiencyOverTime', { 0.85, 1.20 }},
 			
 			
@@ -955,7 +955,7 @@ InstanceCount = 20,
         BuilderName = 'NC T3AntiAirPlanes - Enemy Air',
         PlatoonTemplate = 'T3AirFighter',
         Priority = 792,
-        InstanceCount = 10,
+        InstanceCount = 20,
         BuilderConditions = {
             { IBC, 'BrainNotLowPowerMode', {} },
 			{ SBC, 'NoRushTimeCheck', { 600 }},
@@ -973,7 +973,7 @@ InstanceCount = 20,
         BuilderName = 'NC T3AntiAirPlanes - Enemy Air Extra',
         PlatoonTemplate = 'T3AirFighter',
         Priority = 793,
-        InstanceCount = 10,
+        InstanceCount = 20,
         BuilderConditions = {
             { IBC, 'BrainNotLowPowerMode', {} },
 			{ SBC, 'NoRushTimeCheck', { 600 }},
@@ -990,7 +990,7 @@ InstanceCount = 20,
         BuilderName = 'NC T3AntiAirPlanes - Enemy Air Extra huge',
         PlatoonTemplate = 'T3AirFighter',
         Priority = 794,
-        InstanceCount = 10,
+        InstanceCount = 20,
         BuilderConditions = {
             { IBC, 'BrainNotLowPowerMode', {} },
 			{ SBC, 'NoRushTimeCheck', { 600 }},

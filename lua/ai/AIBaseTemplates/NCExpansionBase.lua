@@ -63,6 +63,7 @@ BaseBuilderTemplate {
         # ==== LAND UNIT BUILDERS ==== #
         'NCUpgradeBuildersLand',
         'NCT1LandFactoryBuildersemergency',
+        'NCattackexpansionbehavior',
         'NCengihuntlandbehavior',
         'NCmasshuntlandbehavior',
         'NCT1LandFactoryBuilders',
