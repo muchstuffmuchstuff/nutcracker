@@ -27,7 +27,7 @@ local SIBC = '/lua/editor/SorianInstantBuildConditions.lua'
 
 
 
-uilderGroup {
+BuilderGroup {
     BuilderGroupName = 'NCAirScoutFactoryBuilders',
     BuildersType = 'FactoryBuilder',
     Builder {
