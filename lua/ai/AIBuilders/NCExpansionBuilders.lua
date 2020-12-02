@@ -197,52 +197,7 @@ BuilderGroup {
             NeedGuard = true,
         }
     },
-      Builder {
-        BuilderName = 'NC close enough for factories',
-        PlatoonTemplate = 'T3EngineerBuilderSorian',
-        Priority = 1000,
-        InstanceCount = 1,
-        BuilderConditions = {
-            { UCBC, 'StartLocationNeedsEngineer', { 'LocationType', 1000, -1000, 0, 2, 'StructuresNotMex' } },
-         { SBC, 'EnemyInFactoryRange', { 'LocationType', true } },
-			
-			{ SBC, 'NoRushTimeCheck', { 0 }},
-			{ SIBC, 'HaveGreaterThanUnitsWithCategory', { 1, categories.ENERGYPRODUCTION * categories.TECH3 } },
-            
-           
-        },
-        BuilderType = 'Any',
-        BuilderData = {
-			RequireTransport = true,
-            Construction = {
-                BuildClose = false,
-                BaseTemplate = ExBaseTmpl,
-                ExpansionBase = true,
-                NearMarkerType = 'Start Location',
-                LocationRadius = 1000,
-                LocationType = 'LocationType',
-                ThreatMin = -1000,
-                ThreatMax = 0,
-                ThreatRings = 2,
-                ThreatType = 'StructuresNotMex',
-                BuildStructures = {
-                    'T2GroundDefense',                    
-                    'T1LandFactory',
-					'T3AADefense',
-					'T2Radar',
-                                        'T1LandFactory',
-'T1LandFactory',
-'T1LandFactory',
-'T1LandFactory',
-'T1LandFactory',
-'T1LandFactory',
-'T1LandFactory',
-'T1LandFactory',				
-                }
-            },
-            NeedGuard = true,
-        }
-    },
+      
 }
 
 
