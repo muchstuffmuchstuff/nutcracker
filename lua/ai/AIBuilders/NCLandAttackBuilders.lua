@@ -69,33 +69,7 @@ function LandAttackCondition(aiBrain, locationType, targetNumber)
 end
 
 
-BuilderGroup {
-    BuilderGroupName = 'NCdefendbaseland',
-    BuildersType = 'PlatoonFormBuilder',
-  Builder {
-        BuilderName = 'NCbasedefence',
-        PlatoonTemplate = 'defendbase',
-		PlatoonAddPlans = {'PlatoonCallForHelpAISorian', 'DistressResponseAISorian'},
-		PlatoonAddBehaviors = { 'AirLandToggleSorian' },
-        Priority = 1501,
-        BuilderConditions = { 
-                        { UCBC, 'PoolGreaterAtLocation', { 'LocationType', 0, categories.MOBILE * categories.LAND - categories.ENGINEER } },
-			{ SBC, 'NoRushTimeCheck', { 0 }},
-        },
-        BuilderData = {
-                        SearchRadius = 1000,
-			ThreatSupport = 40,
-            PrioritizedCategories = {
-             
-                'EXPERIMENTAL',
-                'ALLUNITS',
-            },
-        },    
-        InstanceCount = 1,
-        BuilderType = 'Any',
-    },
- 
-}
+
 
 BuilderGroup {
     BuilderGroupName = 'NCengihuntlandbehavior',
@@ -172,7 +146,7 @@ BuilderGroup {
         Priority = 825,
         InstanceCount = 30,
         BuilderConditions = {
-          { UCBC, 'HaveLessThanUnitsWithCategory', { 3, 'FACTORY TECH3' }},
+          { UCBC, 'HaveLessThanUnitsWithCategory', { 2, 'FACTORY TECH3' }},
 	{ UCBC, 'HaveUnitsWithCategoryAndAlliance', { true, 20, categories.LAND * categories.MOBILE - categories.ENGINEER,  'Enemy' }},	
  { SBC, 'LessThanGameTime', { 1200 } },	
 			
@@ -209,12 +183,11 @@ BuilderGroup {
         },
         BuilderType = 'Land',
     },
-    # Priority of tanks at tech 1
-    # Won't build if economy is hurting
+  
     Builder {
         BuilderName = 'NC T1 Light Tank - Tech 1',
         PlatoonTemplate = 'T1LandDFTank',
-        Priority = 825,
+        Priority = 725,
         #Priority = 950,
         BuilderConditions = {
             { UCBC, 'FactoryLessAtLocation', { 'LocationType', 1, 'FACTORY TECH2, FACTORY TECH3' }},
@@ -264,7 +237,7 @@ BuilderGroup {
     Builder {
         BuilderName = 'NC T1 Mortar',
         PlatoonTemplate = 'T1LandArtillery',
-        Priority = 830,
+        Priority = 730,
         BuilderConditions = {
             #{ UCBC, 'LocationFactoriesBuildingLess', { 'LocationType', 1, 'INDIRECTFIRE LAND MOBILE' } },
             { UCBC, 'HaveUnitRatio', { 0.3, categories.LAND * categories.INDIRECTFIRE * categories.MOBILE, '<=', categories.LAND * categories.DIRECTFIRE * categories.MOBILE}},
@@ -376,7 +349,7 @@ BuilderGroup {
 			{ SBC, 'NoRushTimeCheck', { 600 }},
         },
     },
-    # MML's, built in a ratio to directfire units
+   
     Builder {
         BuilderName = 'NC T2 MML',
         PlatoonTemplate = 'T2LandArtillery',
@@ -735,13 +708,14 @@ BuilderGroup {
         PlatoonTemplate = 'StartLocationAttack2Sorian',
 		PlatoonAddPlans = {'PlatoonCallForHelpAISorian', 'DistressResponseAISorian'},
 		PlatoonAddBehaviors = { 'AirLandToggleSorian' },
-        Priority = 925,
+        Priority = 1500,
+        InstanceCount = 
         BuilderConditions = {        
-        		{ SBC, 'LessThanGameTime', { 300 } },
+        
 				{ SBC, 'NoRushTimeCheck', { 0 }},
-				{ SBC, 'MapLessThan', {1000, 1000}},
-				{ SBC, 'MapGreaterThan', {500, 500}},
-                #{ UCBC, 'HaveLessThanUnitsWithCategory', { 1, categories.TECH2 * categories.MOBILE * categories.LAND - categories.ENGINEER } },
+		
+				
+                
             },
         BuilderData = {
 			ThreatSupport = 75,
@@ -753,13 +727,13 @@ BuilderGroup {
             #SelfThreat = '',
             #FindHighestThreat ='',
             #ThreatThreshold = '',
-            AvoidBases = true,
-            AvoidBasesRadius = 75,
+           
+            AvoidBases = false,
 			UseFormation = 'AttackFormation',
 			AggressiveMove = false,
-            AvoidClosestRadius = 50,  
+            
         },    
-        InstanceCount = 1,
+        InstanceCount = 10,
         BuilderType = 'Any',
     },
     

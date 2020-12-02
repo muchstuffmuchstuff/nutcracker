@@ -476,9 +476,9 @@ Builder {
             BuilderName = 'NC T1 Interceptors build once',
             PlatoonTemplate = 'T1AirFighter',
             Priority = 988,
-    InstanceCount = 2,
+   
             BuilderConditions = {
-                { UCBC, 'HaveLessThanUnitsWithCategory', { 4, categories.AIR * categories.ANTIAIR * categories.TECH1 } },
+                { UCBC, 'HaveLessThanUnitsWithCategory', { 2, categories.AIR * categories.ANTIAIR * categories.TECH1 } },
         
              
             
@@ -504,7 +504,7 @@ Builder {
             PlatoonAddBehaviors = { 'AirUnitRefitSorian' },
             PlatoonAddPlans = { 'AirIntelToggle','DistressResponseAISorian'},
             Priority = 5000,
-            InstanceCount = 10,
+            InstanceCount = 5,
             BuilderType = 'Any',
             BuilderData = {
                 LocationType = 'LocationType',
@@ -550,7 +550,7 @@ BuilderGroup {
     Builder {
         BuilderName = 'NC T1 Air Transport',
         PlatoonTemplate = 'T1AirTransport',
-        Priority = 658,
+        Priority = 758,
         BuilderConditions = {
             { MIBC, 'ArmyNeedsTransports', {} },
             { UCBC, 'LocationFactoriesBuildingLess', { 'LocationType', 1, 'TRANSPORTFOCUS' } },
@@ -569,7 +569,7 @@ BuilderGroup {
       Builder {
         BuilderName = 'NC T1 buildonce',
         PlatoonTemplate = 'T1AirTransport',
-        Priority = 750,
+        Priority = 700,
        
         BuilderConditions = {
             { MIBC, 'ArmyNeedsTransports', {} },
@@ -877,7 +877,7 @@ Builder {
         BuilderName = 'NC T1 Interceptors - Enemy Air',
         PlatoonTemplate = 'T1AirFighter',
         Priority = 730,
-        InstanceCount = 10,
+        InstanceCount = 30,
         BuilderConditions = {
             { UCBC, 'HaveLessThanUnitsWithCategory', { 40, categories.AIR * categories.ANTIAIR  - categories.BOMBER - categories.GROUNDATTACK } },
 			{ UCBC, 'HaveUnitsWithCategoryAndAlliance', { true, 5, categories.MOBILE * categories.AIR - categories.SCOUT, 'Enemy'}},
@@ -897,7 +897,7 @@ Builder {
         BuilderName = 'NC T1 Interceptors - Enemy Air Extra',
         PlatoonTemplate = 'T1AirFighter',
         Priority = 731,
-        InstanceCount = 10,
+        InstanceCount = 30,
         BuilderConditions = {
            { UCBC, 'HaveLessThanUnitsWithCategory', { 40, categories.AIR * categories.ANTIAIR  - categories.BOMBER - categories.GROUNDATTACK } },
             { UCBC, 'LocationFactoriesBuildingLess', { 'LocationType', 3, categories.ANTIAIR * categories.AIR - categories.BOMBER - categories.GROUNDATTACK } },
