@@ -260,6 +260,7 @@ Builder {
             },
         },
     },
+}
 
     BuilderGroup {
         BuilderGroupName = 'NCt4airsnipebehavior',
