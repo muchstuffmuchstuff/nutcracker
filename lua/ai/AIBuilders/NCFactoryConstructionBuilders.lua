@@ -73,7 +73,7 @@ Builder {
             { UCBC, 'FactoryCapCheck', { 'LocationType', 'Land' } },
             { SIBC, 'GreaterThanEconEfficiencyOverTime', { 0.9, 1.20} },
             { SBC, 'MapLessThan', { 2000, 2000 }},
-            { SBC, 'IsIsland', { false } },
+            { SBC, 'IsIslandMap', { false } },
           
             
 			{ UCBC, 'HaveLessThanUnitsInCategoryBeingBuilt', { 1, 'LAND FACTORY', 'LocationType', }},
@@ -98,7 +98,7 @@ Builder {
             { UCBC, 'FactoryCapCheck', { 'LocationType', 'Land' } },
             { SIBC, 'GreaterThanEconEfficiencyOverTime', { 0.90, 1.0} },
             { SBC, 'MapLessThan', { 2000, 2000 }},
-            { SBC, 'IsIsland', { false } },
+            { SBC, 'IsIslandMap', { false } },
           
             { UCBC, 'HaveUnitsWithCategoryAndAlliance', { true, 30, categories.MOBILE * categories.LAND - categories.ENGINEER, 'Enemy'}},
           

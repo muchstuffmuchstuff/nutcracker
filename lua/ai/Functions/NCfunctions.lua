@@ -295,21 +295,3 @@ NavalHuntNC = function(self)
     end
 end,
 
-function IsIsland(aiBrain, check)
-
-    if not aiBrain.islandCheck then
-        local startX, startZ = aiBrain:GetArmyStartPos()
-        aiBrain.isIsland = false
-        aiBrain.islandMarker = AIUtils.AIGetClosestMarkerLocation(aiBrain, 'Island', startX, startZ)
-        aiBrain.islandCheck = true
-        if aiBrain.islandMarker then
-            aiBrain.isIsland = true
-        end
-    end
-
-    if check == aiBrain.isIsland then
-        return true
-    else
-        return false
-    end
-end

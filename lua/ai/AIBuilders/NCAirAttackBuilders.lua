@@ -862,7 +862,7 @@ Builder {
         BuilderConditions = {
         { UCBC, 'HaveLessThanUnitsWithCategory', { 50, categories.AIR * categories.ANTIAIR  - categories.BOMBER - categories.GROUNDATTACK } },
             
-            { SBC, 'IsIsland', { true } },
+            { SBC, 'IsIslandMap', { true } },
 			
             { IBC, 'BrainNotLowPowerMode', {} },
 			{ SBC, 'NoRushTimeCheck', { 600 }},
@@ -945,7 +945,7 @@ InstanceCount = 20,
             { SIBC, 'GreaterThanEconEfficiencyOverTime', { 0.85, 1.20 }},
 
             { UCBC, 'HaveLessThanUnitsWithCategory', { 30, categories.AIR * categories.ANTIAIR * categories.TECH3 - categories.BOMBER - categories.GROUNDATTACK } },
-		{ SBC, 'IsIsland', { true } },
+		{ SBC, 'IsIslandMap', { true } },
 	
             
         },
