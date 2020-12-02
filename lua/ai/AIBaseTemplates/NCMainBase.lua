@@ -180,8 +180,8 @@ BaseBuilderTemplate {
             SCU = 40,
         },
         FactoryCount = {
-            Land = 8,
-            Air = 12,
+            Land = 5,
+            Air = 6,
             Sea = 4,
             Gate = 5,
         },
