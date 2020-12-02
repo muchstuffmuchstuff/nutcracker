@@ -1,3 +1,6 @@
+NCAIPlatoon = Platoon
+Platoon = Class(NCAIPlatoon) {
+    
 
 
 TacticalAINC = function(self)
@@ -295,3 +298,4 @@ NavalHuntNC = function(self)
     end
 end,
 
+}

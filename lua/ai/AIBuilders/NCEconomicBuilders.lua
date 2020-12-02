@@ -610,13 +610,14 @@ BuilderGroup {
         PlatoonAIPlan = 'ManagerEngineerFindUnfinished',
         Priority = 1800,
         InstanceCount = 1,
-        AssisteeType = 'Structure',
+       
         BuilderConditions = {
                 { SBC, 'UnfinishedUnits', { 'LocationType', categories.STRUCTURE}},
             },
         BuilderData = {
             Assist = {
                 AssistLocation = 'LocationType',
+                AssisteeType = 'Structure',
                 BeingBuiltCategories = {'STRUCTURE STRATEGIC, STRUCTURE ECONOMIC, STRUCTURE'},
                 Time = 20,
             },
