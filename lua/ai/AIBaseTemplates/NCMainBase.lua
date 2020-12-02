@@ -196,12 +196,15 @@ BaseBuilderTemplate {
     end,
     FirstBaseFunction = function(aiBrain)
         local per = ScenarioInfo.ArmySetup[aiBrain.Name].AIPersonality
+        LOG('Personality is '..per)
         if not per then 
-            return 1, 'sorian'
+            LOG('No Per')
+            return -1
         end
         
-        if per != 'sorian' and per != 'sorianadaptive' and per != '' then
-            return 1, 'sorian'
+        if per != 'nut_cracker' or per != 'nut_crackercheat' then
+            LOG('Not NutCracker')
+            return 1
         end
 
         local mapSizeX, mapSizeZ = GetMapSize()
@@ -209,22 +212,23 @@ BaseBuilderTemplate {
         local startX, startZ = aiBrain:GetArmyStartPos()
         local isIsland = import('/lua/editor/SorianBuildConditions.lua').IsIslandMap(aiBrain)
         
-        if per == 'sorian' then
-            return 1000, 'sorian'
+        if per == 'nut_cracker' or per == 'nut_crackercheat' then
+            LOG('Returning NutCracker')
+            return 1000, 'nut_cracker'
         end
         
         #If we're playing on an island map, do not use this plan often
         if isIsland then
-            return Random(25, 50), 'sorian'
+            return Random(25, 50), 'nut_cracker'
 
         elseif mapSizeX > 256 and mapSizeZ > 256 and mapSizeX <= 512 and mapSizeZ <= 512 then
-            return Random(75, 100), 'sorian'
+            return Random(75, 100), 'nut_cracker'
 
         elseif mapSizeX >= 512 and mapSizeZ >= 512 and mapSizeX <= 1024 and mapSizeZ <= 1024 then
-            return Random(50, 100), 'sorian'
+            return Random(50, 100), 'nut_cracker'
 
         else
-            return Random(25, 75), 'sorian'
+            return Random(25, 75), 'nut_cracker'
         end
     end,
 }
