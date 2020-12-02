@@ -202,9 +202,9 @@ BaseBuilderTemplate {
             return -1
         end
         
-        if per != 'nut_cracker' or per != 'nut_crackercheat' then
+        if per != 'nut_cracker' and per != 'nut_crackercheat' then
             LOG('Not NutCracker')
-            return 1
+            return -1
         end
 
         local mapSizeX, mapSizeZ = GetMapSize()
