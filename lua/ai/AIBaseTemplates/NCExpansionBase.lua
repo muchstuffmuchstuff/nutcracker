@@ -162,7 +162,7 @@ BaseBuilderTemplate {
         end
         
         local personality = ScenarioInfo.ArmySetup[aiBrain.Name].AIPersonality
-        if not (personality == 'sorian' or personality == 'sorianadaptive') then
+        if not (personality == 'nut_cracker' or personality == 'nut_crackercheat') then
             return 0
         end
 		

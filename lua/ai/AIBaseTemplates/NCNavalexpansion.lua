@@ -91,7 +91,7 @@ BaseBuilderTemplate {
         local personality = ScenarioInfo.ArmySetup[aiBrain.Name].AIPersonality
 		local base = ScenarioInfo.ArmySetup[aiBrain.Name].AIBase
 		
-		if personality == 'sorian' and base == 'SorianMainBalanced' then
+		if personality == 'nut_cracker' and base == 'nut_crackercheat' then
 			return 250
 		end
 	
