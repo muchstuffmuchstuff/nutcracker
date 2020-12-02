@@ -962,7 +962,7 @@ InstanceCount = 20,
 			{ UCBC, 'HaveUnitsWithCategoryAndAlliance', { true, 9, categories.MOBILE * categories.AIR - categories.SCOUT, 'Enemy'}},
     
             { SIBC, 'GreaterThanEconEfficiencyOverTime', { 0.8, 1.20 }},
-       { UCBC, 'HaveLessThanUnitsWithCategory', { 30, categories.AIR * categories.ANTIAIR * categories.TECH3 - categories.BOMBER - categories.GROUNDATTACK } },
+     
 			
 		
             
@@ -980,7 +980,7 @@ InstanceCount = 20,
 			{ UCBC, 'HaveUnitsWithCategoryAndAlliance', { true, 15, categories.MOBILE * categories.AIR - categories.SCOUT, 'Enemy'}},
     
             { SIBC, 'GreaterThanEconEfficiencyOverTime', { 0.8, 1.20 }},
-            { UCBC, 'HaveLessThanUnitsWithCategory', { 50, categories.AIR * categories.ANTIAIR * categories.TECH3 - categories.BOMBER - categories.GROUNDATTACK } },
+          
 			
             
         },
@@ -994,10 +994,10 @@ InstanceCount = 20,
         BuilderConditions = {
             { IBC, 'BrainNotLowPowerMode', {} },
 			{ SBC, 'NoRushTimeCheck', { 600 }},
-			{ UCBC, 'HaveUnitsWithCategoryAndAlliance', { true, 30, categories.MOBILE * categories.AIR - categories.SCOUT, 'Enemy'}},
+			{ UCBC, 'HaveUnitsWithCategoryAndAlliance', { true, 20, categories.MOBILE * categories.AIR - categories.SCOUT, 'Enemy'}},
      
             { SIBC, 'GreaterThanEconEfficiencyOverTime', { 0.8, 1.20 }},
-             { UCBC, 'HaveLessThanUnitsWithCategory', { 60, categories.AIR * categories.ANTIAIR * categories.TECH3 - categories.BOMBER - categories.GROUNDATTACK } },
+          
 			
            
         },
