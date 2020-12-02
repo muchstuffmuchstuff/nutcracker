@@ -35,7 +35,7 @@ PlatoonTemplate {
 
 PlatoonTemplate {
     Name = 'NCfighterhunter',
-    Plan = 'FighterHuntAI', 
+    Plan = 'FighterHuntNC', 
     GlobalSquads = {
          { categories.AIR * categories.MOBILE * categories.ANTIAIR - categories.BOMBER - categories.GROUNDATTACK - categories.EXPERIMENTAL - categories.TRANSPORTFOCUS - categories.SCOUT, 1, 5, 'attack', 'none' },
     },
@@ -43,7 +43,7 @@ PlatoonTemplate {
 
 PlatoonTemplate {
     Name = 'NCfighterhunterlate',
-    Plan = 'FighterHuntAI', 
+    Plan = 'FighterHuntNC', 
     GlobalSquads = {
          { categories.AIR * categories.MOBILE * categories.ANTIAIR - categories.BOMBER - categories.GROUNDATTACK - categories.EXPERIMENTAL - categories.TRANSPORTFOCUS - categories.SCOUT, 3, 5, 'attack', 'none' },
     },
