@@ -38,7 +38,7 @@ BuilderGroup {
          
 			{ SIBC, 'GreaterThanEconEfficiencyOverTime', { 0.90, 1.2 }},
             { UCBC, 'HaveLessThanUnitsInCategoryBeingBuilt', { 1, 'MASSEXTRACTION TECH2'} },
-            { UCBC, 'HaveGreaterThanUnitsWithCategory', { 7, 'MASSEXTRACTION' }},
+            { UCBC, 'HaveGreaterThanUnitsWithCategory', { 8, 'MASSEXTRACTION' }},
 		
          
             
@@ -55,6 +55,7 @@ BuilderGroup {
             { IBC, 'BrainNotLowPowerMode', {} },
           { UCBC, 'HaveGreaterThanUnitsWithCategory', { 12, 'MASSEXTRACTION TECH2, MASSEXTRACTION TECH3' }},
 			{ SIBC, 'GreaterThanEconEfficiencyOverTime', { 0.90, 1.2 }},
+       { UCBC, 'HaveLessThanUnitsInCategoryBeingBuilt', { 2, 'MASSEXTRACTION TECH2'} },
         
 		
          
@@ -71,9 +72,9 @@ BuilderGroup {
         Priority = 300,
         BuilderConditions = {
             { IBC, 'BrainNotLowPowerMode', {} },
-           
-			{ SIBC, 'GreaterThanEconEfficiencyOverTime', { 0.5, 1.2 }},
-                        { UCBC, 'HaveLessThanUnitsInCategoryBeingBuilt', { 1, 'MASSEXTRACTION TECH3' } },
+            { UCBC, 'HaveGreaterThanUnitsWithCategory', { 20, 'MASSEXTRACTION TECH2, MASSEXTRACTION TECH3' }},
+			{ SIBC, 'GreaterThanEconEfficiencyOverTime', { 0.9, 1.2 }},
+                        { UCBC, 'HaveLessThanUnitsInCategoryBeingBuilt', { 3, 'MASSEXTRACTION TECH3' } },
 	
        
         },
@@ -88,7 +89,7 @@ Builder {
         BuilderConditions = {
             { IBC, 'BrainNotLowPowerMode', {} },
         { UCBC, 'HaveGreaterThanUnitsWithCategory', { 14, 'MASSEXTRACTION TECH3' }},
-        { UCBC, 'HaveLessThanUnitsInCategoryBeingBuilt', { 2, 'MASSEXTRACTION TECH3' } },
+        { UCBC, 'HaveLessThanUnitsInCategoryBeingBuilt', { 4, 'MASSEXTRACTION TECH3' } },
 			{ SIBC, 'GreaterThanEconEfficiencyOverTime', { 0.90, 1.2 }},
                      
 	
@@ -98,6 +99,72 @@ Builder {
         BuilderType = 'Any',
     },
 }
+
+BuilderGroup {
+    BuilderGroupName = 'NCUpgradeBuilders_mainbase',
+    BuildersType = 'PlatoonFormBuilder',
+    Builder {
+        BuilderName = 'NC Air t1 to t2mainbase',
+        PlatoonTemplate = 'T1AirFactoryUpgrade',
+        Priority = 999,
+        InstanceCount = 1,
+        BuilderConditions = {
+                { SIBC, 'GreaterThanEconEfficiencyOverTime', { 0.8, 1.20 } },
+                { UCBC, 'HaveLessThanUnitsInCategoryBeingBuilt', { 1, 'FACTORY TECH2' } },
+              { UCBC, 'HaveGreaterThanUnitsWithCategory', { 3, 'AIR FACTORY'}},
+           
+           
+                { IBC, 'BrainNotLowPowerMode', {} },
+            },
+        BuilderType = 'Any',
+    },
+Builder {
+        BuilderName = 'NC Air t1 to t2mainbase',
+        PlatoonTemplate = 'T2AirFactoryUpgrade',
+        Priority = 999,
+        InstanceCount = 1,
+        BuilderConditions = {
+                { SIBC, 'GreaterThanEconEfficiencyOverTime', { 0.8, 1.20 } },
+                { UCBC, 'HaveLessThanUnitsInCategoryBeingBuilt', { 1, 'AIR FACTORY TECH3' } },
+                { UCBC, 'HaveGreaterThanUnitsWithCategory', { 4, 'AIR FACTORY'}},
+           
+           
+                { IBC, 'BrainNotLowPowerMode', {} },
+            },
+        BuilderType = 'Any',
+    },
+Builder {
+        BuilderName = 'NC land t1 to t2mainbase',
+        PlatoonTemplate = 'T1LandFactoryUpgrade',
+        Priority = 999,
+        InstanceCount = 1,
+        BuilderConditions = {
+                { SIBC, 'GreaterThanEconEfficiencyOverTime', { 0.8, 1.20 } },
+                { UCBC, 'HaveLessThanUnitsInCategoryBeingBuilt', { 1, 'FACTORY LAND TECH2' } },
+             { UCBC, 'HaveGreaterThanUnitsWithCategory', { 3, 'FACTORY LAND'}},
+           
+           
+                { IBC, 'BrainNotLowPowerMode', {} },
+            },
+        BuilderType = 'Any',
+    },
+Builder {
+        BuilderName = 'NC land t2 to t3mainbase',
+        PlatoonTemplate = 'T2LandFactoryUpgrade',
+        Priority = 999,
+        InstanceCount = 1,
+        BuilderConditions = {
+                { SIBC, 'GreaterThanEconEfficiencyOverTime', { 0.8, 1.20 } },
+                { UCBC, 'HaveLessThanUnitsInCategoryBeingBuilt', { 1, 'FACTORY TECH3' } },
+                { UCBC, 'FactoryGreaterAtLocation', { 'LocationType', 1, 'FACTORY LAND TECH2' }},
+           
+           
+                { IBC, 'BrainNotLowPowerMode', {} },
+            },
+        BuilderType = 'Any',
+    },
+}
+
 
 BuilderGroup {
     BuilderGroupName = 'NCUpgradeBuildersLand',

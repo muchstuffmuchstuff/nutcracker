@@ -19,7 +19,7 @@ BaseBuilderTemplate {
         'NCMassFabPause',
         'NCmassupgrade',
         'NCt1masscontinuation',
-       
+       'NCUpgradeBuilders_mainbase',
         'NCmorequantumgate',
         
         # Factory upgrades
@@ -120,7 +120,7 @@ BaseBuilderTemplate {
         'NCt1buildonce',
         'NCexcessairunitsbehavior',
         'NCT2AirFactoryBuilders',
-        'NCBaseGuardonebuildbehavior',
+     
         'NCguardt4airbehavior',
         'NCt3emergencybuilders',
         'NCmasshuntairbehavior',

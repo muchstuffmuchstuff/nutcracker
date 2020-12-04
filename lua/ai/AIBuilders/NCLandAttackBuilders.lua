@@ -96,10 +96,11 @@ BuilderGroup {
             #SelfThreat = '',
             #FindHighestThreat ='',
             #ThreatThreshold = '',
-           
             AvoidBases = false,
+         
 			UseFormation = 'AttackFormation',
 			AggressiveMove = false,
+        
             
         },    
         InstanceCount = 100,
@@ -183,11 +184,12 @@ BuilderGroup {
         BuilderName = 'NC T1 Light Tank - Tech 1 - EMERGENCY',
         PlatoonTemplate = 'T1LandDFTank',
         Priority = 825,
-        InstanceCount = 30,
+        InstanceCount = 100,
         BuilderConditions = {
           { UCBC, 'HaveLessThanUnitsWithCategory', { 2, 'FACTORY TECH3' }},
 	{ UCBC, 'HaveUnitsWithCategoryAndAlliance', { true, 20, categories.LAND * categories.MOBILE - categories.ENGINEER,  'Enemy' }},	
  { SBC, 'LessThanGameTime', { 1200 } },	
+{ UCBC, 'HaveLessThanUnitsInCategoryBeingBuilt', { 1, categories.LAND * categories.MOBILE - categories.ENGINEER } },
 			
       
             { SIBC, 'GreaterThanEconEfficiencyOverTime', { 0.65, 1.05 }},
@@ -205,18 +207,19 @@ BuilderGroup {
 BuilderGroup {
     BuilderGroupName = 'NCT1LandFactoryBuilders',
     BuildersType = 'FactoryBuilder',
-    # Initial bots, built during early game for harrassment
+ 
     Builder {
         BuilderName = 'NC T1 Bot - Early Game',
         PlatoonTemplate = 'T1LandDFBot',
         Priority = 825,
-		#Priority = 0,
+		
         BuilderConditions = {
-            { UCBC, 'FactoryLessAtLocation', { 'LocationType', 4, 'FACTORY TECH2, FACTORY TECH3' }},
-			{ UCBC, 'FactoryGreaterAtLocation', { 'LocationType', 0, categories.LAND * categories.FACTORY * categories.TECH1 } },
-            { SBC, 'LessThanGameTime', { 300 } },
+            { UCBC, 'FactoryLessAtLocation', { 'LocationType', 4, 'LAND FACTORY TECH2, LAND FACTORY TECH3' }},
+            { UCBC, 'FactoryGreaterAtLocation', { 'LocationType', 0, categories.LAND * categories.FACTORY * categories.TECH1 } },
+            { SBC, 'LessThanGameTime', { 1200 } },	
+          
 			{ SBC, 'NoRushTimeCheck', { 600 }},
-            #{ UCBC, 'FactoryLessAtLocation', { 'LocationType', 2, 'MOBILE LAND DIRECTFIRE' } },
+       
             #{ SIBC, 'GreaterThanEconEfficiencyOverTime', { 0.65, 1.05 }},
             { IBC, 'BrainNotLowPowerMode', {} },
         },
@@ -227,44 +230,28 @@ BuilderGroup {
         BuilderName = 'NC T1 Light Tank - Tech 1',
         PlatoonTemplate = 'T1LandDFTank',
         Priority = 725,
-        #Priority = 950,
         BuilderConditions = {
-            { UCBC, 'FactoryLessAtLocation', { 'LocationType', 1, 'FACTORY TECH2, FACTORY TECH3' }},
-			{ UCBC, 'HaveLessThanUnitsWithCategory', { 3, 'FACTORY TECH3' }},
+           
+			{ UCBC, 'HaveLessThanUnitsWithCategory', { 3, 'LAND FACTORY TECH3' }},
 			{ UCBC, 'FactoryGreaterAtLocation', { 'LocationType', 0, categories.LAND * categories.FACTORY * categories.TECH1 } },
-            #{ UCBC, 'UnitsLessAtLocation', { 'LocationType', 2, 'MOBILE LAND DIRECTFIRE' } },
+      
             { SIBC, 'GreaterThanEconEfficiencyOverTime', { 0.65, 1.05 }},
 			{ SBC, 'NoRushTimeCheck', { 600 }},
             { IBC, 'BrainNotLowPowerMode', {} },
         },
         BuilderType = 'Land',
     },
-    # Priority of tanks at tech 2
-    # Won't build if economy is hurting
-    Builder {
-        BuilderName = 'NC T1 Light Tank - Tech 2',
-        PlatoonTemplate = 'T1LandDFTank',
-        Priority = 500,
-        BuilderConditions = {
-            { UCBC, 'FactoryLessAtLocation', { 'LocationType', 3, 'FACTORY TECH3' }},
-			{ UCBC, 'HaveLessThanUnitsWithCategory', { 3, 'FACTORY TECH3' }},
-			{ UCBC, 'FactoryGreaterAtLocation', { 'LocationType', 0, categories.LAND * categories.FACTORY - categories.TECH1 } },
-            { IBC, 'BrainNotLowPowerMode', {} },
-			{ SBC, 'NoRushTimeCheck', { 600 }},
-            { SIBC, 'GreaterThanEconEfficiencyOverTime', { 0.65, 1.05 }},
-        },
-        BuilderType = 'Land',
-    },
-    # Priority of tanks at tech 3
-    # Won't build if economy is hurting
+
+
+ 
     Builder {
         BuilderName = 'NC T1 Light Tank - Tech 3',
         PlatoonTemplate = 'T1LandDFTank',
-        Priority = 0,
+        Priority = 600,
         BuilderConditions = {
-            { UCBC, 'FactoryGreaterAtLocation', { 'LocationType', 2, 'FACTORY TECH3' }},
-			{ UCBC, 'HaveLessThanUnitsWithCategory', { 2, 'FACTORY TECH3' }},
-			{ UCBC, 'FactoryGreaterAtLocation', { 'LocationType', 0, categories.LAND * categories.FACTORY * categories.TECH3 } },
+          
+			{ UCBC, 'HaveLessThanUnitsWithCategory', { 2, 'LAND FACTORY TECH3' }},
+		
             { IBC, 'BrainNotLowPowerMode', {} },
 			{ SBC, 'NoRushTimeCheck', { 600 }},
 			{ UCBC, 'UnitCapCheckLess', { .8 } },
@@ -272,33 +259,16 @@ BuilderGroup {
         },
         BuilderType = 'Land',
     },    
-    # T1 Artillery, built in a ratio to tanks before tech 3
-    Builder {
-        BuilderName = 'NC T1 Mortar',
-        PlatoonTemplate = 'T1LandArtillery',
-        Priority = 730,
-        BuilderConditions = {
-            #{ UCBC, 'LocationFactoriesBuildingLess', { 'LocationType', 1, 'INDIRECTFIRE LAND MOBILE' } },
-            { UCBC, 'HaveUnitRatio', { 0.3, categories.LAND * categories.INDIRECTFIRE * categories.MOBILE, '<=', categories.LAND * categories.DIRECTFIRE * categories.MOBILE}},
-            { UCBC, 'FactoryLessAtLocation', { 'LocationType', 1, 'FACTORY TECH2, FACTORY TECH3' }},
-			{ UCBC, 'HaveLessThanUnitsWithCategory', { 3, 'FACTORY TECH3' }},
-			{ UCBC, 'FactoryGreaterAtLocation', { 'LocationType', 0, categories.LAND * categories.FACTORY * categories.TECH1 } },
-            { IBC, 'BrainNotLowPowerMode', {} },
-			{ SBC, 'NoRushTimeCheck', { 600 }},
-			{ UCBC, 'UnitCapCheckLess', { .8 } },
-            { SIBC, 'GreaterThanEconEfficiencyOverTime', { 0.65, 1.05 }},
-        },
-        BuilderType = 'Land',
-    },
+
     Builder {
         BuilderName = 'NC T1 Mortar - Not T1',
         PlatoonTemplate = 'T1LandArtillery',
-        Priority = 500, #600,
+        Priority = 600,
         BuilderConditions = {
-            #{ UCBC, 'LocationFactoriesBuildingLess', { 'LocationType', 1, 'INDIRECTFIRE LAND MOBILE' } },
+        
             { UCBC, 'HaveUnitRatio', { 0.3, categories.LAND * categories.INDIRECTFIRE * categories.MOBILE, '<=', categories.LAND * categories.DIRECTFIRE * categories.MOBILE}},
-            { UCBC, 'FactoryLessAtLocation', { 'LocationType', 3, 'FACTORY TECH3' }},
-			{ UCBC, 'HaveLessThanUnitsWithCategory', { 3, 'FACTORY TECH3' }},
+           
+			{ UCBC, 'HaveLessThanUnitsWithCategory', { 3, 'LAND FACTORY TECH3' }},
 			{ UCBC, 'FactoryGreaterAtLocation', { 'LocationType', 0, categories.LAND * categories.FACTORY - categories.TECH1 } },
             { IBC, 'BrainNotLowPowerMode', {} },
 			{ SBC, 'NoRushTimeCheck', { 600 }},
@@ -307,24 +277,7 @@ BuilderGroup {
         },
         BuilderType = 'Land',
     },
-    Builder {
-        BuilderName = 'NC T1 Mortar - tough def',
-        PlatoonTemplate = 'T1LandArtillery',
-        Priority = 0, #835,
-        BuilderConditions = {
-            #{ UCBC, 'LocationFactoriesBuildingLess', { 'LocationType', 1, 'INDIRECTFIRE LAND MOBILE' } },
-			{ SBC, 'GreaterThanThreatAtEnemyBase', { 'AntiSurface', 53}},
-            { UCBC, 'HaveUnitRatio', { 0.5, categories.LAND * categories.INDIRECTFIRE * categories.MOBILE, '<=', categories.LAND * categories.DIRECTFIRE * categories.MOBILE}},
-            { UCBC, 'FactoryLessAtLocation', { 'LocationType', 2, 'FACTORY TECH3' }},
-			{ UCBC, 'HaveLessThanUnitsWithCategory', { 3, 'FACTORY TECH3' }},
-			{ UCBC, 'FactoryGreaterAtLocation', { 'LocationType', 0, categories.LAND * categories.FACTORY - categories.TECH1 } },
-            { IBC, 'BrainNotLowPowerMode', {} },
-			{ SBC, 'NoRushTimeCheck', { 600 }},
-			{ UCBC, 'UnitCapCheckLess', { .8 } },
-            { SIBC, 'GreaterThanEconEfficiencyOverTime', { 0.65, 1.05 }},
-        },
-        BuilderType = 'Land',
-    },
+ 
 }
 
 
@@ -340,15 +293,16 @@ BuilderGroup {
         BuilderName = 'NC T1 Tank Enemy Nearby',
         PlatoonTemplate = 'T1LandDFTank',
         Priority = 900,
+InstanceCount = 30,
         BuilderConditions = {
-            { TBC, 'EnemyThreatGreaterThanValueAtBase', { 'LocationType', 0, 'Land', 1 } },
+            { TBC, 'EnemyThreatGreaterThanValueAtBase', { 'LocationType', 0, 'Land', 3 } },
 			{ UCBC, 'FactoryGreaterAtLocation', { 'LocationType', 0, categories.LAND * categories.FACTORY * categories.TECH1 } },
             { IBC, 'BrainNotLowPowerMode', {} },
-			{ UCBC, 'FactoryLessAtLocation', { 'LocationType', 2, 'FACTORY TECH2, FACTORY TECH3' }},
-			{ UCBC, 'HaveLessThanUnitsWithCategory', { 2, 'FACTORY TECH3' }},
+			
+			{ UCBC, 'HaveLessThanUnitsWithCategory', { 2, 'LAND FACTORY TECH3' }},
             { SIBC, 'GreaterThanEconEfficiencyOverTime', { 0.7, 1.05 }},
 			{ SBC, 'NoRushTimeCheck', { 600 }},
-            { UCBC, 'LocationFactoriesBuildingLess', { 'LocationType', 2, categories.DIRECTFIRE * categories.LAND * categories.MOBILE * categories.TECH1 } },
+          
         },
         BuilderType = 'Land',
     },
@@ -369,26 +323,12 @@ BuilderGroup {
         BuilderConditions = {
             { IBC, 'BrainNotLowPowerMode', {} },
 			{ UCBC, 'FactoryGreaterAtLocation', { 'LocationType', 0, categories.LAND * categories.FACTORY * categories.TECH2 } },
-            { UCBC, 'FactoryLessAtLocation', { 'LocationType', 4, 'FACTORY TECH3' }},
+            { UCBC, 'FactoryLessAtLocation', { 'LocationType', 4, 'LAND FACTORY TECH3' }},
             { SIBC, 'GreaterThanEconEfficiencyOverTime', { 0.65, 1.05 }},
 			{ SBC, 'NoRushTimeCheck', { 600 }},
         },
     },
-    # Tech 3 Priority
-    Builder {
-        BuilderName = 'NC T2 Tank 2 - Tech 3',
-        PlatoonTemplate = 'T2LandDFTank',
-        Priority = 550,
-        BuilderType = 'Land',
-        BuilderConditions = {
-            { IBC, 'BrainNotLowPowerMode', {} },
-			{ UCBC, 'FactoryGreaterAtLocation', { 'LocationType', 0, categories.LAND * categories.FACTORY - categories.TECH1 } },
-            { UCBC, 'FactoryGreaterAtLocation', { 'LocationType', 3, 'FACTORY TECH3' }},
-            { SIBC, 'GreaterThanEconEfficiencyOverTime', { 0.65, 1.05 }},
-			{ SBC, 'NoRushTimeCheck', { 600 }},
-        },
-    },
-   
+  
     Builder {
         BuilderName = 'NC T2 MML',
         PlatoonTemplate = 'T2LandArtillery',
@@ -396,12 +336,12 @@ BuilderGroup {
         BuilderType = 'Land',
         BuilderConditions = {
             { IBC, 'BrainNotLowPowerMode', {} },
-			{ UCBC, 'FactoryLessAtLocation', { 'LocationType', 4, 'FACTORY TECH3' }},
+			{ UCBC, 'FactoryLessAtLocation', { 'LocationType', 4, 'LAND FACTORY TECH3' }},
 			{ UCBC, 'FactoryGreaterAtLocation', { 'LocationType', 0, categories.LAND * categories.FACTORY * categories.TECH2 } },
             { SIBC, 'GreaterThanEconEfficiencyOverTime', { 0.65, 1.05 }},
 			{ SBC, 'NoRushTimeCheck', { 600 }},
             { UCBC, 'HaveUnitRatio', { 0.35, categories.LAND * categories.INDIRECTFIRE * categories.MOBILE, '<=', categories.LAND * categories.DIRECTFIRE * categories.MOBILE}},
-            { UCBC, 'LocationFactoriesBuildingLess', { 'LocationType', 1, categories.INDIRECTFIRE * categories.LAND * categories.TECH2 * categories.MOBILE } },            
+                    
         },
     },
     # Tech 2 priority
@@ -413,35 +353,24 @@ BuilderGroup {
         BuilderConditions = {
             { IBC, 'BrainNotLowPowerMode', {} },
 			{ UCBC, 'FactoryGreaterAtLocation', { 'LocationType', 0, categories.LAND * categories.FACTORY * categories.TECH2 } },
-            { UCBC, 'FactoryLessAtLocation', { 'LocationType', 4, 'FACTORY TECH3' }},
+            { UCBC, 'FactoryLessAtLocation', { 'LocationType', 4, 'LAND FACTORY TECH3' }},
             { SIBC, 'GreaterThanEconEfficiencyOverTime', { 0.65, 1.05 }},
 			{ SBC, 'NoRushTimeCheck', { 600 }},
         },
     },
-    # Tech 3 priority
-    Builder {
-        BuilderName = 'NC T2AttackTank2 - Tech 3',
-        PlatoonTemplate = 'T2AttackTankSorian',
-        Priority = 550,
-        BuilderType = 'Land',
-        BuilderConditions = {
-            { IBC, 'BrainNotLowPowerMode', {} },
-			{ UCBC, 'FactoryGreaterAtLocation', { 'LocationType', 0, categories.LAND * categories.FACTORY - categories.TECH1 } },
-            { UCBC, 'FactoryGreaterAtLocation', { 'LocationType', 3, 'FACTORY TECH3' }},
-            { SIBC, 'GreaterThanEconEfficiencyOverTime', { 0.65, 1.05 }},
-			{ SBC, 'NoRushTimeCheck', { 600 }},
-        },
-    },
-    # Tech 2 priority
+  
+  
     Builder {
         BuilderName = 'NC T2 Amphibious Tank - Tech 2',
         PlatoonTemplate = 'T2LandAmphibious',
         Priority = 600,
+InstanceCount = 100,
         BuilderType = 'Land',
         BuilderConditions = {
             { IBC, 'BrainNotLowPowerMode', {} },
+           
 			{ UCBC, 'FactoryGreaterAtLocation', { 'LocationType', 0, categories.LAND * categories.FACTORY * categories.TECH2 } },
-            { UCBC, 'FactoryLessAtLocation', { 'LocationType', 4, 'FACTORY TECH3' }},
+            { UCBC, 'FactoryLessAtLocation', { 'LocationType', 4, 'LAND FACTORY TECH3' }},
             { SIBC, 'GreaterThanEconEfficiencyOverTime', { 0.65, 1.05 }},
 			{ SBC, 'NoRushTimeCheck', { 600 }},
 			{ SBC, 'IsWaterMap', { true } },
@@ -457,7 +386,7 @@ BuilderGroup {
         BuilderConditions = {
             { IBC, 'BrainNotLowPowerMode', {} },
 			{ UCBC, 'FactoryGreaterAtLocation', { 'LocationType', 0, categories.LAND * categories.FACTORY - categories.TECH1 } },
-            { UCBC, 'FactoryGreaterAtLocation', { 'LocationType', 3, 'FACTORY TECH3' }},
+         
             { SIBC, 'GreaterThanEconEfficiencyOverTime', { 0.7, 1.05 }},
 			{ SBC, 'NoRushTimeCheck', { 600 }},
 			{ SBC, 'IsWaterMap', { true } },
@@ -469,11 +398,13 @@ BuilderGroup {
         BuilderName = 'NC T2 Amphibious Tank - Tech 2 Cybran',
         PlatoonTemplate = 'T2LandAmphibious',
         Priority = 600,
+InstanceCount = 100,
         BuilderType = 'Land',
         BuilderConditions = {
             { IBC, 'BrainNotLowPowerMode', {} },
+            { SBC, 'IsIslandMap', { true } },
 			{ UCBC, 'FactoryGreaterAtLocation', { 'LocationType', 0, categories.LAND * categories.FACTORY * categories.TECH2 } },
-            { UCBC, 'FactoryLessAtLocation', { 'LocationType', 4, 'FACTORY TECH3' }},
+            { UCBC, 'FactoryLessAtLocation', { 'LocationType', 4, 'LAND FACTORY TECH3' }},
             { SIBC, 'GreaterThanEconEfficiencyOverTime', { 0.65, 1.05 }},
 			{ SBC, 'NoRushTimeCheck', { 600 }},
 			{ MIBC, 'FactionIndex', {3}},
@@ -488,7 +419,7 @@ BuilderGroup {
         BuilderConditions = {
             { IBC, 'BrainNotLowPowerMode', {} },
 			{ UCBC, 'FactoryGreaterAtLocation', { 'LocationType', 0, categories.LAND * categories.FACTORY - categories.TECH1 } },
-            { UCBC, 'FactoryGreaterAtLocation', { 'LocationType', 3, 'FACTORY TECH3' }},
+       
             { SIBC, 'GreaterThanEconEfficiencyOverTime', { 0.7, 1.05 }},
 			{ SBC, 'NoRushTimeCheck', { 600 }},
 			{ MIBC, 'FactionIndex', {3}},
@@ -508,31 +439,7 @@ BuilderGroup {
             { UCBC, 'HaveUnitRatio', { 0.15, categories.LAND * categories.MOBILE * ( categories.COUNTERINTELLIGENCE + (categories.SHIELD * categories.DEFENSE) ) - categories.DIRECTFIRE, '<=', categories.LAND * categories.DIRECTFIRE * categories.MOBILE - categories.TECH1}},
         },
     },
-    Builder {
-        BuilderName = 'NC T2MobileShields - T3 Factories',
-        PlatoonTemplate = 'T2MobileShields',
-        Priority = 0,
-        BuilderType = 'Land',
-        BuilderConditions = {
-            { IBC, 'BrainNotLowPowerMode', {} },
-			{ UCBC, 'FactoryGreaterAtLocation', { 'LocationType', 0, categories.LAND * categories.FACTORY - categories.TECH1 } },
-            { UCBC, 'FactoryGreaterAtLocation', { 'LocationType', 3, 'FACTORY TECH3' }},
-            { SIBC, 'GreaterThanEconEfficiencyOverTime', { 0.7, 1.05 }},
-			{ SBC, 'NoRushTimeCheck', { 600 }},
-            { UCBC, 'HaveUnitRatio', { 0.05, categories.LAND * categories.MOBILE * ( categories.COUNTERINTELLIGENCE + (categories.SHIELD * categories.DEFENSE) ) - categories.DIRECTFIRE, '<=', categories.LAND * categories.DIRECTFIRE * categories.MOBILE}},
-        },
-    },
-    Builder {
-        BuilderName = 'NC T2MobileBombs',
-        PlatoonTemplate = 'T2MobileBombs',
-        Priority = 0,
-        BuilderType = 'Land',
-        BuilderConditions = {
-            { IBC, 'BrainNotLowPowerMode', {} },
-            { SIBC, 'GreaterThanEconEfficiencyOverTime', { 0.9, 1.05 }},
-            { UCBC, 'HaveUnitRatio', { 0.2, categories.LAND * categories.INDIRECTFIRE * categories.MOBILE, '<=', categories.LAND * categories.DIRECTFIRE * categories.MOBILE}},
-        },
-    },
+ 
 }
 
 #----------------------------------------
@@ -546,9 +453,10 @@ BuilderGroup {
         BuilderName = 'NC T2 Tank Enemy Nearby',
         PlatoonTemplate = 'T2AttackTankSorian',
         Priority = 925,
+InstanceCount = 20,
         BuilderConditions = {
             { TBC, 'EnemyThreatGreaterThanValueAtBase', { 'LocationType', 0, 'Land', 1 } },
-			{ UCBC, 'FactoryLessAtLocation', { 'LocationType', 1, 'FACTORY TECH3' }},
+			{ UCBC, 'FactoryLessAtLocation', { 'LocationType', 3, 'LAND FACTORY TECH3' }},
 			{ UCBC, 'FactoryGreaterAtLocation', { 'LocationType', 0, categories.LAND * categories.FACTORY * categories.TECH2 } },
             { IBC, 'BrainNotLowPowerMode', {} },
 			{ SBC, 'NoRushTimeCheck', { 600 }},
@@ -587,7 +495,7 @@ BuilderGroup {
         Priority = 700,
         BuilderType = 'Land',
         BuilderConditions = {
-            #{ TBC, 'EnemyThreatGreaterThanValueAtBase', { 'LocationType', 5, 'AntiSurface' } },
+          
 			{ UCBC, 'FactoryGreaterAtLocation', { 'LocationType', 0, categories.LAND * categories.FACTORY * categories.TECH3 } },
             { UCBC, 'HaveUnitRatio', { 0.3, categories.LAND * categories.INDIRECTFIRE * categories.MOBILE, '<=', categories.LAND * categories.DIRECTFIRE * categories.MOBILE}},
             { IBC, 'BrainNotLowPowerMode', {} },
@@ -601,7 +509,7 @@ BuilderGroup {
         Priority = 725,
         BuilderType = 'Land',
         BuilderConditions = {
-            #{ TBC, 'EnemyThreatGreaterThanValueAtBase', { 'LocationType', 5, 'AntiSurface' } },
+    
 			{ SBC, 'GreaterThanThreatAtEnemyBase', { 'AntiSurface', 53}},
 			{ UCBC, 'FactoryGreaterAtLocation', { 'LocationType', 0, categories.LAND * categories.FACTORY * categories.TECH3 } },
             { UCBC, 'HaveUnitRatio', { 0.5, categories.LAND * categories.INDIRECTFIRE * categories.MOBILE, '<=', categories.LAND * categories.DIRECTFIRE * categories.MOBILE}},
@@ -660,7 +568,7 @@ BuilderGroup {
             { SIBC, 'GreaterThanEconEfficiencyOverTime', { 0.65, 1.05 }},
 			{ SBC, 'NoRushTimeCheck', { 600 }},
             { UCBC, 'HaveUnitRatio', { 0.15, categories.LAND * categories.INDIRECTFIRE * categories.MOBILE, '<=', categories.LAND * categories.DIRECTFIRE * categories.MOBILE}},
-            #{ TBC, 'EnemyThreatGreaterThanValueAtBase', { 'LocationType', 5, 'AntiSurface' } },
+          
         },
     },
     Builder {
@@ -716,7 +624,7 @@ BuilderGroup {
             { IBC, 'BrainNotLowPowerMode', {} },
 			{ SBC, 'NoRushTimeCheck', { 600 }},
             { SIBC, 'GreaterThanEconEfficiencyOverTime', { 0.7, 1.05 }},
-            { UCBC, 'LocationFactoriesBuildingLess', { 'LocationType', 2, categories.DIRECTFIRE * categories.LAND * categories.MOBILE * categories.TECH3 } },
+         
         },
         BuilderType = 'Land',
     },
@@ -730,7 +638,7 @@ BuilderGroup {
             { IBC, 'BrainNotLowPowerMode', {} },
 			{ SBC, 'NoRushTimeCheck', { 600 }},
             { SIBC, 'GreaterThanEconEfficiencyOverTime', { 0.7, 1.05 }},
-            { UCBC, 'LocationFactoriesBuildingLess', { 'LocationType', 2, categories.DIRECTFIRE * categories.LAND * categories.MOBILE * categories.TECH3 } },
+     
         },
         BuilderType = 'Land',
     },

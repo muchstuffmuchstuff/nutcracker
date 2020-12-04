@@ -1478,6 +1478,7 @@ BuilderGroup {
         BuilderName = 'NC T2 Power Engineer emergency',
         PlatoonTemplate = 'T2EngineerBuilder',
         Priority = 4999,
+       
 
         BuilderType = 'Any',
         BuilderConditions = {
@@ -1529,12 +1530,43 @@ BuilderGroup {
     
     BuilderGroupName = 'NCemergencyenergymain',
     BuildersType = 'EngineerBuilder',
+
+    Builder {
+        BuilderName = 'NC T2 Power Engineer emergency main',
+        PlatoonTemplate = 'T2EngineerBuilder',
+        Priority = 5001,
+       
+
+        BuilderType = 'Any',
+        BuilderConditions = {
+
+                        { SIBC, 'HaveLessThanUnitsWithCategory', { 1, 'ENERGYPRODUCTION TECH3'}},
+                      
+                        { SIBC, 'HaveLessThanUnitsInCategoryBeingBuilt', { 1, 'ENERGYPRODUCTION TECH2, ENERGYPRODUCTION TECH3' } },
+                        { SIBC, 'HaveLessThanUnitsWithCategory', { 8, 'ENERGYPRODUCTION TECH2'}},
+                      { SIBC, 'LessThanEconEfficiencyOverTime', { 2.0, 1.6 }},
+                     
+         
+			
+        },
+        BuilderData = {
+            Construction = {
+                BuildStructures = {
+                    'T2EnergyProduction',
+'T2EnergyProduction',
+'T2EnergyProduction',
+'T2EnergyProduction',
+'T2EnergyProduction',
+                },
+            }
+        }
+    },
       
 
     Builder {
         BuilderName = 'NC T3 emergency t3 energy build emergency main',
         PlatoonTemplate = 'T3EngineerBuilder',
-        Priority = 5001,
+        Priority = 5002,
         BuilderType = 'Any',
         BuilderConditions = {
                       
@@ -1546,6 +1578,7 @@ BuilderGroup {
         BuilderData = {
             Construction = {
                 BuildStructures = {
+                    'T3EnergyProduction',
                     'T3EnergyProduction',
 
                 },
