@@ -7,6 +7,8 @@ BaseBuilderTemplate {
 
 
         # ==== ECONOMY ==== #
+        'NCEngineerMassBuildersLowerPri',
+        'NCEngineerEnergyBuildersExpansions',
         'NCemergencyenergy',
         'NCT1EngineerBuilders',
         'NCT2EngineerBuilders',
@@ -28,7 +30,7 @@ BaseBuilderTemplate {
         # Engineer Builders
         'NCEngineerFactoryBuilders',
     
-        'NCEngineerFactoryConstruction Balance',
+    
         'NCEngineerFactoryConstruction',
 		
 	        
@@ -61,23 +63,25 @@ BaseBuilderTemplate {
 	      
             
         # ==== LAND UNIT BUILDERS ==== #
+        'NCT1_expansionprotect',
+        'NClandbehavior_expansion',
+        'NC scu tele',
         'NCUpgradeBuildersLand',
         'NCT1LandFactoryBuildersemergency',
-        'NCattackexpansionbehavior',
-        'NCengihuntlandbehavior',
-        'NCmasshuntlandbehavior',
+     
         'NCT1LandFactoryBuilders',
         'NCT2LandFactoryBuilders',
         'NCT3LandFactoryBuilders',
         'NCExtraLandFactory',
-        'NCattackexpansionbehavior',
+      
         'NCT3LandResponseBuilders',
         'NCAntiLandQuickBuild',
         'NCT3ReactionDF',
         'NCT2Shields',
         'NCShieldUpgrades',
         'NCT3Shields',
-		'NCEngineeringUpgrades',
+        'NCEngineeringUpgrades',
+        'NClandbehavior',
 
         # ==== AIR UNIT BUILDERS ==== #
         'NCstopfactoryrushwithbombersbehavior',
@@ -89,13 +93,13 @@ BaseBuilderTemplate {
         'NCAntiNavyQuickBuild',
         'NCAntiNavyAirbehavior',
         'NCfindenemyfightersbehavior',
-        'NCt4airsnipebehavior',
+      
         'NCTransportFactoryBuilders',
-        'NCt1buildonce',
+       
         'NCexcessairunitsbehavior',
         'NCT2AirFactoryBuilders',
-        'NCBaseGuardonebuildbehavior',
-        'NCguardt4airbehavior',
+        
+        
         'NCt3emergencybuilders',
         'NCmasshuntairbehavior',
         'NCexcessresourcest1bomberbuild',
@@ -121,6 +125,7 @@ BaseBuilderTemplate {
     
       'NCNukebehavior',
       'ncNukeBuildersEngineerBuilders',
+      'NCartyinrange',
         
   
         

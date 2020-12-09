@@ -8,6 +8,8 @@ BaseBuilderTemplate {
 
 
         # ==== ECONOMY ==== #
+        'NCEngineerMassBuildersLowerPri',
+        'NCEngineerEnergyBuilders',
         'NCemergencyenergy',
         'NCemergencyenergymain',
         'NC Initial ACU Builders',
@@ -31,7 +33,7 @@ BaseBuilderTemplate {
         # Engineer Builders
         'NCEngineerFactoryBuilders',
     
-        'NCEngineerFactoryConstruction Balance',
+       
         'NCEngineerFactoryConstruction',
 		
 		# SCU Upgrades
@@ -60,6 +62,7 @@ BaseBuilderTemplate {
         
         # ==== EXPANSION ==== #
         'NCEngineerExpansionBuildersFull',
+        'NCEngineerExpansionBuildersSmall',
         'NCbuildmissileclose',
       
 		
@@ -88,22 +91,22 @@ BaseBuilderTemplate {
 
         
         # ==== LAND UNIT BUILDERS ==== #
+        'NC scu tele',
         'NCUpgradeBuildersLand',
         'NCT1LandFactoryBuildersemergency',
-        'NCengihuntlandbehavior',
-        'NCmasshuntlandbehavior',
         'NCT1LandFactoryBuilders',
         'NCT2LandFactoryBuilders',
         'NCT3LandFactoryBuilders',
         'NCExtraLandFactory',
-        'NCattackexpansionbehavior',
+     
         'NCT3LandResponseBuilders',
         'NCAntiLandQuickBuild',
         'NCT3ReactionDF',
         'NCT2Shields',
         'NCShieldUpgrades',
         'NCT3Shields',
-		'NCEngineeringUpgrades',
+        'NCEngineeringUpgrades',
+        'NClandbehavior',
 
         # ==== AIR UNIT BUILDERS ==== #
         'NCstopfactoryrushwithbombersbehavior',
@@ -117,11 +120,11 @@ BaseBuilderTemplate {
         'NCfindenemyfightersbehavior',
         'NCt4airsnipebehavior',
         'NCTransportFactoryBuilders',
-        'NCt1buildonce',
+       
         'NCexcessairunitsbehavior',
         'NCT2AirFactoryBuilders',
      
-        'NCguardt4airbehavior',
+       
         'NCt3emergencybuilders',
         'NCmasshuntairbehavior',
         'NCexcessresourcest1bomberbuild',
@@ -147,6 +150,7 @@ BaseBuilderTemplate {
     
       'NCNukebehavior',
       'ncNukeBuildersEngineerBuilders',
+      'NCartyinrange',
         
   
         
@@ -181,7 +185,7 @@ BaseBuilderTemplate {
         },
         FactoryCount = {
             Land = 5,
-            Air = 6,
+            Air = 10,
             Sea = 4,
             Gate = 5,
         },

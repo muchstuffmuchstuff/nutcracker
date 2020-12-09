@@ -117,8 +117,9 @@ BuilderGroup {
         SearchRadius = 80000,
         BuilderType = 'Any',
         BuilderConditions = {
-            { UCBC, 'PoolGreaterAtLocation', { 'LocationType', 0, 'EXPERIMENTAL MOBILE AIR' } },
-			
+            { MIBC, 'LessThanGameTime', { 2100} },
+            { UCBC, 'PoolGreaterAtLocation', { 'LocationType', 0, 'EXPERIMENTAL AIR' } },
+			{ MIBC, 'FactionIndex', {2, 3, 4}},
 			
 			{ SBC, 'NoRushTimeCheck', { 0 }},
         },
@@ -128,7 +129,65 @@ BuilderGroup {
                 TargetThreatType = 'Commander',
             },
             UseMoveOrder = true,
-            PrioritizedCategories = { 'COMMAND', 'ALLUNITS' }, 
+            PrioritizedCategories = { 'COMMAND' }, 
+        },
+    },
+    Builder {
+        BuilderName = 'nc T4 Exp Air attack midgame',
+        PlatoonAddPlans = {'PlatoonCallForHelpAISorian'},
+        PlatoonTemplate = 'NCairexperimentalattack2',
+    
+        Priority = 1500,
+        InstanceCount = 1,
+        FormRadius = 2000,
+        AggressiveMove = true,
+        SearchRadius = 80000,
+        BuilderType = 'Any',
+        BuilderConditions = {
+
+            { MIBC, 'GreaterThanGameTime', { 2101} },
+            { MIBC, 'LessThanGameTime', { 3599} },
+            { UCBC, 'PoolGreaterAtLocation', { 'LocationType', 0, 'EXPERIMENTAL AIR' } },
+			{ MIBC, 'FactionIndex', {2, 3, 4}},
+			
+			{ SBC, 'NoRushTimeCheck', { 0 }},
+        },
+        BuilderData = {
+			
+            ThreatWeights = {
+                TargetThreatType = 'Commander',
+            },
+            UseMoveOrder = true,
+            PrioritizedCategories = { 'COMMAND' }, 
+        },
+    },
+    Builder {
+        BuilderName = 'nc T4 Exp Air attack lategame',
+        PlatoonAddPlans = {'PlatoonCallForHelpAISorian'},
+        PlatoonTemplate = 'NCairexperimentalattack3',
+    
+        Priority = 1500,
+        InstanceCount = 1,
+        FormRadius = 2000,
+        AggressiveMove = true,
+        SearchRadius = 80000,
+        BuilderType = 'Any',
+        BuilderConditions = {
+
+            { MIBC, 'GreaterThanGameTime', { 3600} },
+        
+            { UCBC, 'PoolGreaterAtLocation', { 'LocationType', 0, 'EXPERIMENTAL AIR' } },
+			{ MIBC, 'FactionIndex', {2, 3, 4}},
+			
+			{ SBC, 'NoRushTimeCheck', { 0 }},
+        },
+        BuilderData = {
+			
+            ThreatWeights = {
+                TargetThreatType = 'Commander',
+            },
+            UseMoveOrder = true,
+            PrioritizedCategories = { 'COMMAND' }, 
         },
     },
 
@@ -141,9 +200,11 @@ BuilderGroup {
     Builder {
         BuilderName = 'nc T3 Air Exp1 Engineer 1',
         PlatoonTemplate = 'T3EngineerBuilderSorian',
-        Priority = 970,
+        Priority = 985,
         BuilderConditions = {
- 
+            { MIBC, 'FactionIndex', {2, 3, 4}},
+            { SIBC, 'GreaterThanEconEfficiencyOverTime', { 1.05, 1.15} },
+           
             { SIBC, 'HaveLessThanUnitsInCategoryBeingBuilt', { 1, categories.EXPERIMENTAL * categories.AIR }},
             { SIBC, 'HaveGreaterThanUnitsWithCategory', { 1, categories.ENERGYPRODUCTION * categories.TECH3}},
             { SIBC, 'HaveLessThanUnitsInCategoryBeingBuilt', { 1, categories.ARTILLERY * categories.TECH3 }},
@@ -173,14 +234,15 @@ BuilderGroup {
         }
     },
  Builder {
-        BuilderName = 'nc T2 help czar',
+        BuilderName = 'nc T2 help airt4',
         PlatoonTemplate = 'T2EngineerAssistSorian',
         Priority = 999,
         InstanceCount = 5,
         BuilderConditions = {
 
             { IBC, 'BrainNotLowPowerMode', {} },
-            { SIBC, 'GreaterThanEconEfficiencyOverTime', { 0.9, 1.1} },
+            { SIBC, 'GreaterThanEconEfficiencyOverTime', { 1.05, 1.15} },
+            
  { UCBC, 'LocationEngineersBuildingGreater', { 'LocationType', 0, categories.EXPERIMENTAL * categories.AIR * categories.MOBILE}},
 
         },
@@ -196,14 +258,15 @@ BuilderGroup {
         }
     },
     Builder {
-        BuilderName = 'nc t3 help czar ',
+        BuilderName = 'nc t3 help airt4 ',
         PlatoonTemplate = 'T3EngineerAssistSorian',
         Priority = 999,
         InstanceCount = 5,
         BuilderConditions = {
     { UCBC, 'LocationEngineersBuildingGreater', { 'LocationType', 0, categories.EXPERIMENTAL * categories.AIR * categories.MOBILE}},
             { IBC, 'BrainNotLowPowerMode', {} },
-            { SIBC, 'GreaterThanEconEfficiencyOverTime', { 0.9, 1.1} },
+            { SIBC, 'GreaterThanEconEfficiencyOverTime', { 1.05, 1.15} },
+            
         },
         BuilderType = 'Any',
         BuilderData = {
@@ -238,7 +301,8 @@ BuilderGroup {
             { UCBC, 'HaveLessThanUnitsInCategoryBeingBuilt', { 1, categories.EXPERIMENTAL * categories.ECONOMIC }},
             { UCBC, 'HaveLessThanUnitsWithCategory', { 1, categories.EXPERIMENTAL * categories.ECONOMIC}},
 			{ UCBC, 'HaveGreaterThanUnitsWithCategory', { 0, categories.EXPERIMENTAL}},
-            { SIBC, 'GreaterThanEconEfficiencyOverTime', { 0.9, 1.2}},
+            { SIBC, 'GreaterThanEconEfficiencyOverTime', { 1.05, 1.15}},
+            
 			{ SIBC, 'EngineerNeedsAssistance', { false, 'LocationType', {'EXPERIMENTAL', 'NUKE STRUCTURE', 'TECH3 ARTILLERY STRUCTURE'} }},
 			{ IBC, 'BrainNotLowPowerMode', {} },
 			#{ SIBC, 'T4BuildingCheck', {} },
@@ -265,7 +329,8 @@ BuilderGroup {
         InstanceCount = 5,
         BuilderConditions = {
             { UCBC, 'LocationEngineersBuildingGreater', { 'LocationType', 0, categories.EXPERIMENTAL * categories.ECONOMIC}},
-            { SIBC, 'GreaterThanEconEfficiencyOverTime', { 0.9, 1.1} },
+            { SIBC, 'GreaterThanEconEfficiencyOverTime', { 1.05, 1.15} },
+            
         },
         BuilderType = 'Any',
         BuilderData = {
@@ -285,7 +350,8 @@ BuilderGroup {
         InstanceCount = 5,
         BuilderConditions = {
             { UCBC, 'LocationEngineersBuildingGreater', { 'LocationType', 0, categories.EXPERIMENTAL * categories.ECONOMIC }},
-            { SIBC, 'GreaterThanEconEfficiencyOverTime', { 0.9, 1.2} },
+            { SIBC, 'GreaterThanEconEfficiencyOverTime', { 1.05, 1.15} },
+            
         },
         BuilderType = 'Any',
         BuilderData = {

@@ -30,35 +30,21 @@ local SIBC = '/lua/editor/SorianInstantBuildConditions.lua'
 BuilderGroup {
     BuilderGroupName = 'NCAirScoutFactoryBuilders',
     BuildersType = 'FactoryBuilder',
-    Builder {
-        BuilderName = 'NC T1 AirScout initial',
-        PlatoonTemplate = 'T1AirScout',
-        Priority = 500, #600,
-        BuilderConditions = {
-            { UCBC, 'HaveLessThanUnitsWithCategory', { 2, categories.SCOUT * categories.AIR}},
-			{ SBC, 'LessThanGameTime', { 300 } },
-			{ SBC, 'MapGreaterThan', { 1000, 1000 }},
-            #{ UCBC, 'HaveLessThanUnitsWithCategory', { 3, categories.FACTORY }},
-            #{ UCBC, 'HaveLessThanUnitsWithCategory', { 1, categories.TECH2 * categories.FACTORY * categories.AIR } },
-            { UCBC, 'FactoryGreaterAtLocation', { 'LocationType', 0, categories.AIR * categories.FACTORY * categories.TECH1 } },
-            { UCBC, 'LocationFactoriesBuildingLess', { 'LocationType', 1, categories.SCOUT * categories.AIR } },
-            #{ SIBC, 'GreaterThanEconEfficiencyOverTime', { 0.90, 1.05 }},
-			{ SBC, 'NoRushTimeCheck', { 600 }},
-        },
-        BuilderType = 'Air',
-    },
+   
+     
     Builder {
         BuilderName = 'NC T1 AirScout',
         PlatoonTemplate = 'T1AirScout',
-        Priority = 600, #600,
+        Priority = 400,
         BuilderConditions = {
-            #{ UCBC, 'HaveLessThanUnitsWithCategory', { 2, categories.SCOUT * categories.AIR}}, #1
+            { MIBC, 'GreaterThanGameTime', { 360 } },
 			{ SIBC, 'HaveLessThanUnitsForMapSize', { {[256] = 2, [512] = 3, [1024] = 3, [2048] = 4, [4096] = 8}, categories.SCOUT * categories.AIR}},
-			{ UCBC, 'HaveLessThanUnitsWithCategory', { 2, categories.TECH3 * categories.FACTORY * categories.AIR } },
+		
             { UCBC, 'FactoryGreaterAtLocation', { 'LocationType', 0, categories.AIR * categories.FACTORY * categories.TECH1 } },
-			{ UCBC, 'FactoryLessAtLocation', { 'LocationType', 2, categories.AIR * categories.FACTORY * categories.TECH2 } },
+	
             { UCBC, 'LocationFactoriesBuildingLess', { 'LocationType', 1, categories.SCOUT * categories.AIR } },
-            { SIBC, 'GreaterThanEconEfficiencyOverTime', { 0.90, 1.05 }},
+            { SIBC, 'GreaterThanEconEfficiencyOverTime', { 0.95, 1.05 }},
+            
 			{ SBC, 'NoRushTimeCheck', { 600 }},
         },
         BuilderType = 'Air',
@@ -67,15 +53,17 @@ BuilderGroup {
     Builder {
         BuilderName = 'NC T2 AirScout',
         PlatoonTemplate = 'T2AirScout',
-        Priority = 700, #501,
+        Priority = 700, 
         BuilderConditions = {
-            #{ UCBC, 'HaveLessThanUnitsWithCategory', { 2, categories.SCOUT * categories.AIR}}, #1
+
+      
 			{ SIBC, 'HaveLessThanUnitsForMapSize', { {[256] = 2, [512] = 3, [1024] = 3, [2048] = 3, [4096] = 8}, categories.SCOUT * categories.AIR}},
             { UCBC, 'HaveLessThanUnitsWithCategory', { 2, categories.TECH3 * categories.FACTORY * categories.AIR } },
             { UCBC, 'FactoryGreaterAtLocation', { 'LocationType', 1, categories.AIR * categories.FACTORY * categories.TECH2 } },
 			{ UCBC, 'FactoryLessAtLocation', { 'LocationType', 2, categories.AIR * categories.FACTORY * categories.TECH3 } },
             { UCBC, 'LocationFactoriesBuildingLess', { 'LocationType', 1, categories.SCOUT * categories.AIR } },
-            { SIBC, 'GreaterThanEconEfficiencyOverTime', { 0.90, 1.05 }},
+            { SIBC, 'GreaterThanEconEfficiencyOverTime', { 0.95, 1.05 }},
+            
 			{ SBC, 'NoRushTimeCheck', { 600 }},
         },
         BuilderType = 'Air',
@@ -84,13 +72,14 @@ BuilderGroup {
     Builder {
         BuilderName = 'NC T3 airscout',
         PlatoonTemplate = 'T3AirScout',
-        Priority = 900, #701,
+        Priority = 900, 
         BuilderConditions = {
             #{ UCBC, 'HaveLessThanUnitsWithCategory', { 2, categories.INTELLIGENCE * categories.AIR * categories.TECH3 }}, #1
 			{ SIBC, 'HaveLessThanUnitsForMapSize', { {[256] = 2, [512] = 4, [1024] = 6, [2048] = 8, [4096] = 8}, categories.INTELLIGENCE * categories.AIR * categories.TECH3}},
 			{ UCBC, 'FactoryGreaterAtLocation', { 'LocationType', 1, categories.AIR * categories.FACTORY * categories.TECH3 } },
             { UCBC, 'LocationFactoriesBuildingLess', { 'LocationType', 1, categories.INTELLIGENCE * categories.AIR * categories.TECH3 } },
-            { SIBC, 'GreaterThanEconEfficiencyOverTime', { 0.90, 1.05 }},
+            { SIBC, 'GreaterThanEconEfficiencyOverTime', { 0.95, 1.05 }},
+            
 			{ SBC, 'NoRushTimeCheck', { 600 }},
         },
         BuilderType = 'Air',
@@ -105,7 +94,8 @@ BuilderGroup {
 			{ SBC, 'MapGreaterThan', { 500, 500 }},
 			{ UCBC, 'FactoryGreaterAtLocation', { 'LocationType', 1, categories.AIR * categories.FACTORY * categories.TECH3 } },
             { UCBC, 'LocationFactoriesBuildingLess', { 'LocationType', 1, categories.INTELLIGENCE * categories.AIR * categories.TECH3 } },
-            { SIBC, 'GreaterThanEconEfficiencyOverTime', { 0.90, 1.05 }},
+            { SIBC, 'GreaterThanEconEfficiencyOverTime', { 0.95, 1.05 }},
+            
 			{ SBC, 'NoRushTimeCheck', { 600 }},
         },
         BuilderType = 'Air',
@@ -125,7 +115,8 @@ BuilderGroup {
 			{ SIBC, 'HaveLessThanUnitsForMapSize', { {[256] = 2, [512] = 4, [1024] = 8, [2048] = 10, [4096] = 12}, categories.INTELLIGENCE * categories.AIR * categories.TECH3}},
 			{ UCBC, 'FactoryGreaterAtLocation', { 'LocationType', 1, categories.AIR * categories.FACTORY * categories.TECH3 } },
             { UCBC, 'LocationFactoriesBuildingLess', { 'LocationType', 1, categories.INTELLIGENCE * categories.AIR * categories.TECH3 } },
-            { SIBC, 'GreaterThanEconEfficiencyOverTime', { 0.7, 1.05 }},
+            { SIBC, 'GreaterThanEconEfficiencyOverTime', { 0.95, 1.05 }},
+            
 			{ SBC, 'NoRushTimeCheck', { 600 }},
            
         },
@@ -145,7 +136,8 @@ BuilderGroup {
             { UCBC, 'UnitsLessAtLocation', { 'LocationType', 1, ( categories.RADAR + categories.OMNI ) * categories.STRUCTURE}},
             { SIBC, 'GreaterThanEconIncome',  { 0.5, 10 } },
             { IBC, 'BrainNotLowPowerMode', {} },
-            { SIBC, 'GreaterThanEconEfficiencyOverTime', { 0.8, 1.0 }},
+            { SIBC, 'GreaterThanEconEfficiencyOverTime', { 0.95, 1.0 }},
+            
         },
         BuilderType = 'Any',
         BuilderData = {
@@ -167,7 +159,8 @@ BuilderGroup {
             { UCBC, 'UnitsLessAtLocation', { 'LocationType', 1, ( categories.RADAR + categories.OMNI ) * categories.STRUCTURE}},
          
             { IBC, 'BrainNotLowPowerMode', {} },
-            { SIBC, 'GreaterThanEconEfficiencyOverTime', { 0.8, 1.1 }},
+            { SIBC, 'GreaterThanEconEfficiencyOverTime', { 0.95, 1.1 }},
+            
         },
         BuilderType = 'Any',
         BuilderData = {
@@ -188,7 +181,8 @@ BuilderGroup {
             { UCBC, 'UnitsLessAtLocation', { 'LocationType', 1, ( categories.RADAR + categories.OMNI ) * categories.STRUCTURE}},
         
             { IBC, 'BrainNotLowPowerMode', {} },
-            { SIBC, 'GreaterThanEconEfficiencyOverTime', { 0.8, 1.1 }},
+            { SIBC, 'GreaterThanEconEfficiencyOverTime', { 0.95, 1.1 }},
+            
         },
         BuilderType = 'Any',
         BuilderData = {
@@ -210,7 +204,8 @@ BuilderGroup {
             { UCBC, 'UnitsLessAtLocation', { 'LocationType', 1, ( categories.RADAR + categories.OMNI ) * categories.STRUCTURE}},
             
             { IBC, 'BrainNotLowPowerMode', {} },
-            { SIBC, 'GreaterThanEconEfficiencyOverTime', { 0.9, 1.1 }},
+            { SIBC, 'GreaterThanEconEfficiencyOverTime', { 0.95, 1.1 }},
+            
         },
         BuilderType = 'Any',
         BuilderData = {
@@ -231,7 +226,8 @@ BuilderGroup {
 			{ SIBC, 'HaveGreaterThanUnitsWithCategory', { 0, categories.ENERGYPRODUCTION * categories.TECH3 } },
           
             { IBC, 'BrainNotLowPowerMode', {} },
-            { SIBC, 'GreaterThanEconEfficiencyOverTime', { 0.9, 1.1 }},
+            { SIBC, 'GreaterThanEconEfficiencyOverTime', { 0.95, 1.1 }},
+            
             { UCBC, 'HaveLessThanUnitsInCategoryBeingBuilt', { 1, categories.OMNI * categories.STRUCTURE, 'RADAR STRUCTURE' } },
         },
         BuilderType = 'Any',
@@ -310,7 +306,8 @@ BuilderGroup {
         
 			{ SIBC, 'HaveGreaterThanUnitsWithCategory', { 1, categories.ENERGYPRODUCTION * categories.TECH2 } },
 			{ UCBC, 'HaveLessThanUnitsInCategoryBeingBuilt', { 1, categories.RADAR * categories.STRUCTURE * categories.TECH2, 'RADAR STRUCTURE' }},
-            { SIBC, 'GreaterThanEconEfficiencyOverTime', { 0.9, 1.25 }},
+            { SIBC, 'GreaterThanEconEfficiencyOverTime', { 0.95, 1.25 }},
+            
 			{ UCBC, 'UnitsLessAtLocation', { 'LocationType', 1, categories.RADAR * categories.STRUCTURE * categories.TECH2 } },
             { IBC, 'BrainNotLowPowerMode', {} },
         },
@@ -327,7 +324,8 @@ BuilderGroup {
             { SIBC, 'GreaterThanEconIncome',  { 9, 500}},
 		
 			{ UCBC, 'HaveLessThanUnitsWithCategory', { 1, categories.OMNI * categories.STRUCTURE } },
-            { SIBC, 'GreaterThanEconEfficiencyOverTime', { 0.9, 1.25 }},
+            { SIBC, 'GreaterThanEconEfficiencyOverTime', { 0.95, 1.25 }},
+            
             { IBC, 'BrainNotLowPowerMode', {} },
 			{ UCBC, 'UnitsLessAtLocation', { 'LocationType', 1, categories.OMNI * categories.STRUCTURE } },
             { UCBC, 'HaveLessThanUnitsInCategoryBeingBuilt', { 1, categories.OMNI * categories.STRUCTURE, 'RADAR STRUCTURE' } },
@@ -349,7 +347,8 @@ BuilderGroup {
             { SIBC, 'GreaterThanEconIncome',  { 2, 100 }},
 			{ SIBC, 'HaveGreaterThanUnitsWithCategory', { 1, categories.ENERGYPRODUCTION * categories.TECH2 } },
 			{ UCBC, 'HaveLessThanUnitsInCategoryBeingBuilt', { 1, categories.RADAR * categories.STRUCTURE * categories.TECH2, 'RADAR STRUCTURE' }},
-            { SIBC, 'GreaterThanEconEfficiencyOverTime', { 0.9, 1.25 }},
+            { SIBC, 'GreaterThanEconEfficiencyOverTime', { 0.95, 1.25 }},
+            
 			{ UCBC, 'UnitsLessAtLocation', { 'LocationType', 1, categories.RADAR * categories.STRUCTURE * categories.TECH2 } },
             { IBC, 'BrainNotLowPowerMode', {} },
         },
@@ -366,7 +365,8 @@ BuilderGroup {
             { SIBC, 'GreaterThanEconIncome',  { 9, 500}},
 			{ SIBC, 'HaveGreaterThanUnitsWithCategory', { 1, categories.ENERGYPRODUCTION * categories.TECH3 } },
 			{ UCBC, 'HaveLessThanUnitsWithCategory', { 1, categories.OMNI * categories.STRUCTURE } },
-            { SIBC, 'GreaterThanEconEfficiencyOverTime', { 0.9, 1.25 }},
+            { SIBC, 'GreaterThanEconEfficiencyOverTime', { 0.95, 1.25 }},
+            
             { IBC, 'BrainNotLowPowerMode', {} },
 			{ UCBC, 'UnitsLessAtLocation', { 'LocationType', 1, categories.OMNI * categories.STRUCTURE } },
             { UCBC, 'HaveLessThanUnitsInCategoryBeingBuilt', { 1, categories.OMNI * categories.STRUCTURE, 'RADAR STRUCTURE' } },
@@ -387,7 +387,8 @@ BuilderGroup {
         BuilderConditions = {
             { UCBC, 'HaveGreaterThanUnitsWithCategory', { 0, categories.ENGINEER * categories.TECH2}},
             { UCBC, 'HaveLessThanUnitsWithCategory', { 3, categories.COUNTERINTELLIGENCE * categories.TECH2}},
-            { SIBC, 'GreaterThanEconEfficiencyOverTime', { 0.9, 1.1 }},
+            { SIBC, 'GreaterThanEconEfficiencyOverTime', { 0.95, 1.1 }},
+            
             { IBC, 'BrainNotLowPowerMode', {} },
         },
         BuilderType = 'Any',

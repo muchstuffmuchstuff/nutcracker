@@ -24,6 +24,10 @@ local IBC = '/lua/editor/InstantBuildConditions.lua'
 local PlatoonFile = '/lua/platoon.lua'
 local SIBC = '/lua/editor/SorianInstantBuildConditions.lua'
 local SBC = '/lua/editor/SorianBuildConditions.lua'
+local BCF = '/lua/ncbuilderconditionfunctions.lua'
+
+local EnemyInT3ArtilleryRangeNC = import('/lua/ncbuilderconditionfunctions.lua')
+local EnemyInT3RapidArtilleryRangeNC = import('/lua/ncbuilderconditionfunctions.lua')
 
 
 BuilderGroup {
@@ -44,7 +48,7 @@ BuilderGroup {
 		
 		
           
-            { SIBC, 'GreaterThanEconEfficiency', { 0.9, 1.2}},
+            { SIBC, 'GreaterThanEconEfficiency', { 0.95, 1.1}},
 			{ SBC, 'MapGreaterThan', { 1000, 1000 }},
             { IBC, 'BrainNotLowPowerMode', {} },
 			#{ SIBC, 'T4BuildingCheck', {} },
@@ -76,7 +80,7 @@ BuilderGroup {
         InstanceCount = 8,
         BuilderConditions = {
             { UCBC, 'LocationEngineersBuildingGreater', { 'LocationType', 0, categories.ARTILLERY * categories.TECH3 * categories.STRUCTURE}},
-            { SIBC, 'GreaterThanEconEfficiency', { 0.9, 1.2}},
+            { SIBC, 'GreaterThanEconEfficiency', { 0.95, 1.1}},
             { IBC, 'BrainNotLowPowerMode', {} },
         },
         BuilderType = 'Any',
@@ -107,7 +111,38 @@ BuilderGroup {
          
 		{ MIBC, 'FactionIndex', {1,2, 3}},
           
-            { SIBC, 'GreaterThanEconEfficiencyOverTime', { 0.8, 1.2}},
+            { SIBC, 'GreaterThanEconEfficiencyOverTime', { 0.95, 1.1}},
+            
+			
+            { IBC, 'BrainNotLowPowerMode', {} },
+        },
+        BuilderType = 'Any',
+        BuilderData = {
+			MinNumAssistees = 2,
+            Construction = {
+                BuildClose = true,
+				AdjacencyCategory = 'SHIELD STRUCTURE',
+                BuildStructures = {
+                    'T3StrategicMissile',
+                },
+                Location = 'LocationType',
+            }
+        }
+    },
+    Builder {
+        BuilderName = 'nc T3 Nuke lots of cash',
+        PlatoonTemplate = 'T3EngineerBuilderSorian',
+        Priority = 950,
+		InstanceCount = 1,
+        BuilderConditions = {
+			
+            { SIBC, 'HaveLessThanUnitsInCategoryBeingBuilt', { 3, categories.NUKE * categories.STRUCTURE}},
+            { SIBC, 'HaveGreaterThanUnitsWithCategory', { 5, categories.ENERGYPRODUCTION * categories.TECH3 } },
+         
+		{ MIBC, 'FactionIndex', {1,2, 3}},
+          
+            { SIBC, 'GreaterThanEconEfficiencyOverTime', { 1.1, 1.1}},
+            
 			
             { IBC, 'BrainNotLowPowerMode', {} },
         },
@@ -141,7 +176,8 @@ BuilderGroup {
 			
           
 			{ SBC, 'MapGreaterThan', { 1000, 1000 }},
-            { SIBC, 'GreaterThanEconEfficiencyOverTime', { 0.8, 1.2}},
+            { SIBC, 'GreaterThanEconEfficiencyOverTime', { 0.95, 1.1}},
+            
             { IBC, 'BrainNotLowPowerMode', {} },
 			#{ SIBC, 'T4BuildingCheck', {} },
         },
@@ -166,7 +202,8 @@ BuilderGroup {
         InstanceCount = 4,
         BuilderConditions = {
             { UCBC, 'LocationEngineersBuildingGreater', { 'LocationType', 0, categories.STRUCTURE * categories.NUKE}},
-            { SIBC, 'GreaterThanEconEfficiencyOverTime', { 0.9, 1.4}},
+            { SIBC, 'GreaterThanEconEfficiencyOverTime', { 0.95, 1.4}},
+            
             { IBC, 'BrainNotLowPowerMode', {} },
         },
         BuilderType = 'Any',
@@ -191,15 +228,15 @@ BuilderGroup {
         Priority = 1200,
         BuilderConditions = {
 		
-     { SIBC, 'HaveLessThanUnitsInCategoryBeingBuilt', { 1, categories.TECH3 * categories.ARTILLERY * categories.STRUCTURE}},
+     { SIBC, 'HaveLessThanUnitsInCategoryBeingBuilt', { 1, categories.TECH3 * categories.ARTILLERY * categories.STRUCTURE * categories.xab2307}},
 			{ SIBC, 'HaveGreaterThanUnitsWithCategory', { 4, categories.ENERGYPRODUCTION * categories.TECH3 } },
-			
+			{ BFC, 'EnemyInT3ArtilleryRangeNC', { 'LocationType', true } },
            
             { SIBC, 'GreaterThanEconEfficiency', { 1.0, 1.3}},
 			{ SBC, 'MapLessThan', { 2000, 2000 }},
             { IBC, 'BrainNotLowPowerMode', {} },
-            { UCBC, 'CheckUnitRange', { 'LocationType', 'T3Artillery', categories.STRUCTURE } },
-			{ SBC, 'EnemyInT3ArtilleryRange', { 'LocationType', true } },
+          
+			
         },
         BuilderType = 'Any',
         BuilderData = {
@@ -214,28 +251,23 @@ BuilderGroup {
             }
         }
     },
-}
-
-   
-
-BuilderGroup {
-    BuilderGroupName = 'NCrapidfireartyinrange',
-    BuildersType = 'EngineerBuilder',
+ 
     Builder {
         BuilderName = 'NC Rapid T3 Artillery in range',
         PlatoonTemplate = 'AeonT3EngineerBuilderSorian',
         Priority = 1201,
         BuilderConditions = {
 	{ SIBC, 'HaveLessThanUnitsInCategoryBeingBuilt', { 1, categories.TECH3 * categories.ARTILLERY * categories.STRUCTURE * categories.xab2307 }},
-                 
+    
 			{ SIBC, 'HaveGreaterThanUnitsWithCategory', { 4, categories.ENERGYPRODUCTION * categories.TECH3 } },
-		
+            { BFC, 'EnemyInT3RapidArtilleryRangeNC', { 'LocationType', true } },
 	
-            { SIBC, 'GreaterThanEconEfficiency', { 0.9, 1.2}},
-			{ SBC, 'MapGreaterThan', { 2000, 2000 }},
+            { SIBC, 'GreaterThanEconEfficiency', { 0.95, 1.1}},
+			{ SBC, 'MapGreaterThan', { 1000, 1000 }},
             { IBC, 'BrainNotLowPowerMode', {} },
-			#{ SIBC, 'T4BuildingCheck', {} },
-            { UCBC, 'CheckUnitRange', { 'LocationType', 'T3RapidArtillery', categories.STRUCTURE, 2 } },
+            #{ SIBC, 'T4BuildingCheck', {} },
+            
+           
         },
         BuilderType = 'Any',
         BuilderData = {
@@ -263,7 +295,7 @@ BuilderGroup {
         InstanceCount = 4,
         BuilderConditions = {
             { UCBC, 'LocationEngineersBuildingGreater', { 'LocationType', 0, categories.ARTILLERY * categories.TECH3 * categories.STRUCTURE}},
-            { SIBC, 'GreaterThanEconEfficiency', { 0.9, 1.2}},
+            { SIBC, 'GreaterThanEconEfficiency', { 0.95, 1.1}},
             { IBC, 'BrainNotLowPowerMode', {} },
         },
         BuilderType = 'Any',

@@ -297,5 +297,6 @@ NavalHuntNC = function(self)
         WaitSeconds(17)
     end
 end,
+    
 
 }

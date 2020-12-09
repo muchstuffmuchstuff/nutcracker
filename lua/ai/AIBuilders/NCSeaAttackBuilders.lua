@@ -49,7 +49,7 @@ function SeaAttackCondition(aiBrain, locationType, targetNumber)
     local subThreat = pool:GetPlatoonThreat( 'AntiSub', categories.MOBILE * categories.NAVAL)
     if ( surfaceThreat + subThreat ) >= targetNumber then
         return true
-	elseif UC.UnitCapCheckGreater(aiBrain, .95) then
+	elseif UC.UnitCapCheckGreater(aiBrain, 0.955) then
 		return true
 	elseif SUtils.ThreatBugcheck(aiBrain) then -- added to combat buggy inflated threat
 		return true
@@ -113,8 +113,9 @@ BuilderGroup {
 
 			{ SBC, 'NoRushTimeCheck', { 600 }},
 			
-			{ UCBC, 'HaveLessThanUnitsWithCategory', { 10, categories.NAVAL * categories.MOBILE } },
-            { SIBC, 'GreaterThanEconEfficiencyOverTime', { 0.8, 1.1 }},
+			{ UCBC, 'HaveLessThanUnitsWithCategory', { 3, categories.NAVAL * categories.MOBILE } },
+            { SIBC, 'GreaterThanEconEfficiencyOverTime', { 0.95, 1.1 }},
+            
         },
         BuilderType = 'Sea',
              },
@@ -125,11 +126,12 @@ BuilderGroup {
         Priority = 600,
         BuilderConditions = {
             { IBC, 'BrainNotLowPowerMode', {} },
-{ UCBC, 'HaveUnitsWithCategoryAndAlliance', { true, 10, categories.NAVAL * categories.MOBILE,  'Enemy' }},
+{ UCBC, 'HaveUnitsWithCategoryAndAlliance', { true, 1, categories.NAVAL * categories.FACTORY,  'Enemy' }},
 			{ SBC, 'NoRushTimeCheck', { 600 }},
 			
 			
-            { SIBC, 'GreaterThanEconEfficiencyOverTime', { 0.90, 1.1 }},
+            { SIBC, 'GreaterThanEconEfficiencyOverTime', { 0.95, 1.1 }},
+            
         },
         BuilderType = 'Sea',
              },
@@ -148,9 +150,10 @@ BuilderGroup {
         BuilderConditions = {
             { IBC, 'BrainNotLowPowerMode', {} },
 			{ SBC, 'NoRushTimeCheck', { 600 }},
-{ UCBC, 'HaveUnitsWithCategoryAndAlliance', { true, 5, categories.NAVAL * categories.MOBILE,  'Enemy' }},
+{ UCBC, 'HaveUnitsWithCategoryAndAlliance', { true, 1, categories.NAVAL * categories.FACTORY,  'Enemy' }},
 			{ UCBC, 'FactoryGreaterAtLocation', { 'LocationType', 0, categories.NAVAL * categories.FACTORY * categories.TECH2 } },
-            { SIBC, 'GreaterThanEconEfficiencyOverTime', { 0.9, 1.1 }},
+            { SIBC, 'GreaterThanEconEfficiencyOverTime', { 0.95, 1.1 }},
+            
         },
     },
 }
@@ -172,7 +175,8 @@ BuilderGroup {
 			{ SBC, 'NoRushTimeCheck', { 600 }},
 			{ UCBC, 'FactoryGreaterAtLocation', { 'LocationType', 0, categories.NAVAL * categories.FACTORY * categories.TECH2 } },
 			{ UCBC, 'HaveUnitsWithCategoryAndAlliance', { true, 1, categories.STRUCTURE * categories.DEFENSE * categories.ANTINAVY, 'Enemy'}},
-            { SIBC, 'GreaterThanEconEfficiencyOverTime', { 0.9, 1.1 }},
+            { SIBC, 'GreaterThanEconEfficiencyOverTime', { 0.95, 1.1 }},
+            
         },
     },
     Builder {
@@ -185,7 +189,8 @@ BuilderGroup {
 			{ SBC, 'NoRushTimeCheck', { 600 }},
 			{ UCBC, 'FactoryGreaterAtLocation', { 'LocationType', 0, categories.NAVAL * categories.FACTORY * categories.TECH2 } },
 			{ UCBC, 'HaveUnitsWithCategoryAndAlliance', { true, 1, categories.STRUCTURE * categories.DEFENSE * categories.ANTINAVY, 'Enemy'}},
-            { SIBC, 'GreaterThanEconEfficiencyOverTime', { 0.9, 1.1 }},
+            { SIBC, 'GreaterThanEconEfficiencyOverTime', { 0.95, 1.1 }},
+            
         },
         BuilderType = 'Sea',
     },

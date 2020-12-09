@@ -32,15 +32,15 @@ BuilderGroup {
     Builder {
         BuilderName = 'NC T1 Naval Builder Fast - initial',
         PlatoonTemplate = 'EngineerBuilderSorian',
-        Priority = 985,
+        Priority = 905,
         InstanceCount = 1,
         BuilderConditions = {
            
             { UCBC, 'NavalAreaNeedsEngineer', { 'LocationType', 600, -1000, 10, 1, 'AntiSurface' } },
             
-            
+            { UCBC, 'HaveUnitsWithCategoryAndAlliance', { true, 0, categories.FACTORY * categories.NAVAL, 'Enemy'}},
 			{ SIBC, 'LessThanNavalBases', { } },
-            { UCBC, 'UnitCapCheckLess', { .8 } },
+            { UCBC, 'UnitCapCheckLess', { 0.95 } },
         },
         BuilderType = 'Any',
         BuilderData = {
@@ -77,12 +77,12 @@ BuilderGroup {
         BuilderConditions = {
 
             { UCBC, 'NavalAreaNeedsEngineer', { 'LocationType', 600, -1000, 10, 1, 'AntiSurface' } },
-		
+            { UCBC, 'HaveUnitsWithCategoryAndAlliance', { true, 0, categories.FACTORY * categories.NAVAL, 'Enemy'}},
 			
         
             { EBC, 'MassToFactoryRatioBaseCheck', { 'LocationType' } },
 			{ SIBC, 'LessThanNavalBases', { } },
-            { UCBC, 'UnitCapCheckLess', { .8 } },
+            { UCBC, 'UnitCapCheckLess', { 0.95 } },
         },
         BuilderType = 'Any',
         BuilderData = {
@@ -116,13 +116,14 @@ BuilderGroup {
         InstanceCount = 1,
         BuilderConditions = {
 
-
+            { UCBC, 'HaveUnitsWithCategoryAndAlliance', { true, 0, categories.FACTORY * categories.NAVAL, 'Enemy'}},
             { UCBC, 'NavalAreaNeedsEngineer', { 'LocationType', 600, -1000, 10, 1, 'AntiSurface' } },
 		
-            { SIBC, 'GreaterThanEconEfficiencyOverTime', { 0.8, 1.1 }},
+            { SIBC, 'GreaterThanEconEfficiencyOverTime', { 0.95, 1.1 }},
+            
             { EBC, 'MassToFactoryRatioBaseCheck', { 'LocationType' } },
 			{ SIBC, 'LessThanNavalBases', { } },
-            { UCBC, 'UnitCapCheckLess', { .8 } },
+            { UCBC, 'UnitCapCheckLess', { 0.95 } },
         },
         BuilderType = 'Any',
         BuilderData = {
@@ -155,13 +156,14 @@ BuilderGroup {
         Priority = 922,
         InstanceCount = 1,
         BuilderConditions = {
-
+            { UCBC, 'HaveUnitsWithCategoryAndAlliance', { true, 0, categories.FACTORY * categories.NAVAL, 'Enemy'}},
             { UCBC, 'NavalAreaNeedsEngineer', { 'LocationType', 600, -1000, 10, 1, 'AntiSurface' } },
 			
-            { SIBC, 'GreaterThanEconEfficiencyOverTime', { 0.8, 1.1 }},
+            { SIBC, 'GreaterThanEconEfficiencyOverTime', { 0.95, 1.1 }},
+            
             { EBC, 'MassToFactoryRatioBaseCheck', { 'LocationType' } },
 			{ SIBC, 'LessThanNavalBases', { } },
-            { UCBC, 'UnitCapCheckLess', { .8 } },
+            { UCBC, 'UnitCapCheckLess', { 0.95 } },
         },
         BuilderType = 'Any',
         BuilderData = {
@@ -200,7 +202,8 @@ BuilderGroup {
         BuilderConditions = {
             { UCBC, 'EngineerLessAtLocation', { 'LocationType', 1, 'ENGINEER TECH2, ENGINEER TECH3' } },
             { UCBC, 'FactoryCapCheck', { 'LocationType', 'Sea' } },
-            { SIBC, 'GreaterThanEconEfficiencyOverTime', { 0.8, 1.1 }},
+            { SIBC, 'GreaterThanEconEfficiencyOverTime', { 0.95, 1.1 }},
+            { UCBC, 'HaveUnitsWithCategoryAndAlliance', { true, 0, categories.FACTORY * categories.NAVAL, 'Enemy'}},
             { EBC, 'MassToFactoryRatioBaseCheck', { 'LocationType' } },
         },
         BuilderType = 'Any',
@@ -222,7 +225,8 @@ BuilderGroup {
         BuilderConditions = {
             { UCBC, 'EngineerLessAtLocation', { 'LocationType', 1, 'ENGINEER TECH3' } },
             { UCBC, 'FactoryCapCheck', { 'LocationType', 'Sea' } },
-            { SIBC, 'GreaterThanEconEfficiencyOverTime', { 0.8, 1.1 }},
+            { SIBC, 'GreaterThanEconEfficiencyOverTime', { 0.95, 1.1 }},
+            { UCBC, 'HaveUnitsWithCategoryAndAlliance', { true, 0, categories.FACTORY * categories.NAVAL, 'Enemy'}},
             { EBC, 'MassToFactoryRatioBaseCheck', { 'LocationType' } },
         },
         BuilderType = 'Any',
@@ -243,7 +247,8 @@ BuilderGroup {
         Priority = 905,
         BuilderConditions = {
             { UCBC, 'FactoryCapCheck', { 'LocationType', 'Sea' } },
-            { SIBC, 'GreaterThanEconEfficiencyOverTime', { 0.8, 1.1 }},
+            { SIBC, 'GreaterThanEconEfficiencyOverTime', { 0.95, 1.1 }},
+            { UCBC, 'HaveUnitsWithCategoryAndAlliance', { true, 0, categories.FACTORY * categories.NAVAL, 'Enemy'}},
             { EBC, 'MassToFactoryRatioBaseCheck', { 'LocationType' } },
         },
         BuilderType = 'Any',

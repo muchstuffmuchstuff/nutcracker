@@ -29,7 +29,6 @@ local SBC = '/lua/editor/SorianBuildConditions.lua'
 
 
 
-
 BuilderGroup {
     BuilderGroupName = 'NCACUUpgrades',
     BuildersType = 'EngineerBuilder', #'PlatoonFormBuilder',
@@ -132,7 +131,7 @@ BuilderGroup {
     BuildersType = 'EngineerBuilder',
     Builder {
         BuilderName = 'NC mass continuation',
-        PlatoonTemplate = 'EngineerBuilderSorian',
+        PlatoonTemplate = 'AnyEngineerBuilderNC',
         Priority = 1001,
         InstanceCount = 1,
         BuilderConditions = {
@@ -159,18 +158,17 @@ BuilderGroup {
 
     Builder {
         BuilderName = 'NC T1 Power Engineer',
-        PlatoonTemplate = 'EngineerBuilderSorian',
+        PlatoonTemplate = 'AnyEngineerBuilderNC',
         Priority = 1000,
+        
         BuilderConditions = {
-            #{ UCBC, 'EngineerLessAtLocation', { 'LocationType', 3, 'ENGINEER TECH2, ENGINEER TECH3' } },
+      
 			{ SIBC, 'HaveLessThanUnitsWithCategory', { 1, 'ENERGYPRODUCTION TECH2, ENERGYPRODUCTION TECH3'}},
-            { SIBC, 'GreaterThanEconEfficiencyOverTime', { 0.8, 0.5 }},
-            { SIBC, 'LessThanEconEfficiencyOverTime', { 2.0, 1.3 }},
-			{ SIBC, 'LessThanEconEfficiency', { 2.0, 1.3 }},
-			{ SBC, 'AIType', {'sorianrush', false }},
-			#{ SIBC, 'HaveGreaterThanUnitsWithCategory', { 0, 'HYDROCARBON'}},
+        
+		
+			
         },
-        #InstanceCount = 2,
+ 
         BuilderType = 'Any',
         BuilderData = {
             Construction = {
@@ -181,59 +179,11 @@ BuilderGroup {
             }
         }
     },
-    Builder {
-        BuilderName = 'NC T1 Power Engineer - Rush Early',
-        PlatoonTemplate = 'EngineerBuilderSorian',
-        Priority = 1000,
-        BuilderConditions = {
-            #{ UCBC, 'EngineerLessAtLocation', { 'LocationType', 3, 'ENGINEER TECH2, ENGINEER TECH3' } },
-			{ SIBC, 'HaveLessThanUnitsWithCategory', { 1, 'ENERGYPRODUCTION TECH2, ENERGYPRODUCTION TECH3'}},
-            { SIBC, 'GreaterThanEconEfficiencyOverTime', { 0.8, 0.5 }},
-            { SIBC, 'LessThanEconEfficiencyOverTime', { 2.0, 1.3 }},
-			{ SIBC, 'LessThanEconEfficiency', { 2.0, 1.3 }},
-			{ SBC, 'LessThanGameTime', { 165 } },
-			{ SBC, 'AIType', {'sorianrush', true }},
-			#{ SIBC, 'HaveGreaterThanUnitsWithCategory', { 0, 'HYDROCARBON'}},
-        },
-        #InstanceCount = 2,
-        BuilderType = 'Any',
-        BuilderData = {
-            Construction = {
-                AdjacencyCategory = 'FACTORY',
-                BuildStructures = {
-                    'T1EnergyProduction',
-                },
-            }
-        }
-    },
-    Builder {
-        BuilderName = 'NC T1 Power Engineer - Rush',
-        PlatoonTemplate = 'EngineerBuilderSorian',
-        Priority = 1000,
-        BuilderConditions = {
-            #{ UCBC, 'EngineerLessAtLocation', { 'LocationType', 3, 'ENGINEER TECH2, ENGINEER TECH3' } },
-			{ SIBC, 'HaveLessThanUnitsWithCategory', { 1, 'ENERGYPRODUCTION TECH2, ENERGYPRODUCTION TECH3'}},
-            { SIBC, 'GreaterThanEconEfficiencyOverTime', { 0.5, 0.1 }},
-            { SIBC, 'LessThanEconEfficiencyOverTime', { 2.0, 1.3 }},
-			{ SIBC, 'LessThanEconEfficiency', { 2.0, 1.3 }},
-			{ SBC, 'GreaterThanGameTime', { 165 } },
-			{ SBC, 'AIType', {'sorianrush', true }},
-			#{ SIBC, 'HaveGreaterThanUnitsWithCategory', { 0, 'HYDROCARBON'}},
-        },
-        InstanceCount = 2,
-        BuilderType = 'Any',
-        BuilderData = {
-            Construction = {
-                AdjacencyCategory = 'FACTORY',
-                BuildStructures = {
-                    'T1EnergyProduction',
-                },
-            }
-        }
-    },
+ 
+ 
     Builder {
         BuilderName = 'NC T2 Power Engineer',
-        PlatoonTemplate = 'T2EngineerBuilderSorian',
+        PlatoonTemplate = 'T2T3EngineerBuilderNC',
         Priority = 950,
         BuilderConditions = {
             #{ UCBC, 'EngineerLessAtLocation', { 'LocationType', 3, 'TECH3 ENGINEER' }},
@@ -260,7 +210,7 @@ BuilderGroup {
     },
     Builder {
         BuilderName = 'NC T3 Power Engineer',
-        PlatoonTemplate = 'T3EngineerBuilderSorian',
+        PlatoonTemplate = 'T3_plus_EngineerBuilderNC',
         Priority = 1000,
         BuilderType = 'Any',
         BuilderConditions = {
@@ -286,7 +236,7 @@ BuilderGroup {
     },
     Builder {
         BuilderName = 'NC T2 Power Engineer - Emergency',
-        PlatoonTemplate = 'T2EngineerBuilderSorian',
+        PlatoonTemplate = 'T2T3EngineerBuilderNC',
         Priority = 1050,
         BuilderConditions = {
            
@@ -313,7 +263,7 @@ BuilderGroup {
     },
     Builder {
         BuilderName = 'NC T3 Power Engineer - Emergency',
-        PlatoonTemplate = 'T3EngineerBuilderSorian',
+        PlatoonTemplate = 'T3_plus_EngineerBuilderNC',
         Priority = 2000,
         BuilderType = 'Any',
         BuilderConditions = {
@@ -338,7 +288,7 @@ BuilderGroup {
     },
     Builder {
         BuilderName = 'NC T2 Power Engineer - init',
-        PlatoonTemplate = 'T2EngineerBuilderSorian',
+        PlatoonTemplate = 'T2T3EngineerBuilderNC',
         Priority = 1500,
         BuilderConditions = {
 			{ SIBC, 'HaveLessThanUnitsWithCategory', { 1, 'ENERGYPRODUCTION TECH2'}},
@@ -356,7 +306,9 @@ BuilderGroup {
     },
     Builder {
         BuilderName = 'NC T3 Power Engineer - init',
-        PlatoonTemplate = 'T3EngineerBuilderSorian',
+               
+  
+    PlatoonTemplate = 'T3_plus_EngineerBuilderNC',
         Priority = 1500,
         BuilderType = 'Any',
         BuilderConditions = {
@@ -379,7 +331,7 @@ BuilderGroup {
     BuildersType = 'EngineerBuilder',
     Builder {
         BuilderName = 'NC T1 Power Engineer Expansions',
-        PlatoonTemplate = 'EngineerBuilderSorian',
+        PlatoonTemplate = 'AnyEngineerBuilderNC',
         Priority = 950,
         BuilderConditions = {
                 { UCBC, 'UnitsLessAtLocation', { 'LocationType', 10, 'ENERGYPRODUCTION' } },
@@ -406,7 +358,7 @@ BuilderGroup {
     },
     Builder {
         BuilderName = 'NC T2 Power Engineer Expansions',
-        PlatoonTemplate = 'T2EngineerBuilderSorian',
+        PlatoonTemplate = 'T2T3EngineerBuilderNC',
         Priority = 950,
         BuilderConditions = {
                 { UCBC, 'UnitsLessAtLocation', { 'LocationType', 4, 'ENERGYPRODUCTION TECH2' } },
@@ -430,7 +382,7 @@ BuilderGroup {
     },
     Builder {
         BuilderName = 'NC T3 Power Engineer Expansions',
-        PlatoonTemplate = 'T3EngineerBuilderSorian',
+        PlatoonTemplate = 'T3_plus_EngineerBuilderNC',
         Priority = 1000,
         BuilderType = 'Any',
         BuilderConditions = {
@@ -533,7 +485,7 @@ BuilderGroup {
     # =====================================
     Builder {
         BuilderName = 'NC T1 Hydrocarbon Engineer - init',
-        PlatoonTemplate = 'EngineerBuilderSorian',
+        PlatoonTemplate = 'AnyEngineerBuilderNC',
         Priority = 0, #1002, #980
         BuilderConditions = {
                 { UCBC, 'HaveLessThanUnitsWithCategory', { 1, categories.ENGINEER * ( categories.TECH2 + categories.TECH3 ) } },
@@ -553,7 +505,7 @@ BuilderGroup {
     },
     Builder {
         BuilderName = 'NC T1 Hydrocarbon Engineer',
-        PlatoonTemplate = 'EngineerBuilderSorian',
+        PlatoonTemplate = 'AnyEngineerBuilderNC',
         Priority = 980,
         BuilderConditions = {
                 { UCBC, 'HaveLessThanUnitsWithCategory', { 1, categories.ENGINEER * ( categories.TECH2 + categories.TECH3 ) } },
@@ -573,7 +525,7 @@ BuilderGroup {
     },
     Builder {
         BuilderName = 'NC T1 Engineer Reclaim',
-        PlatoonTemplate = 'EngineerBuilderSorian',
+        PlatoonTemplate = 'AnyEngineerBuilderNC',
         PlatoonAIPlan = 'ReclaimAISorian',
         Priority = 900,
         InstanceCount = 3,
@@ -590,7 +542,7 @@ BuilderGroup {
     },
     Builder {
         BuilderName = 'NC T1 Engineer Reclaim Old Pgens',
-        PlatoonTemplate = 'EngineerBuilderSorian',
+        PlatoonTemplate = 'AnyEngineerBuilderNC',
         PlatoonAIPlan = 'ReclaimStructuresAI',
         Priority = 900,
         InstanceCount = 1,
@@ -606,7 +558,7 @@ BuilderGroup {
     },
     Builder {
         BuilderName = 'NC T1 Engineer Find Unfinished',
-        PlatoonTemplate = 'EngineerBuilderSorian',
+        PlatoonTemplate = 'AnyEngineerBuilderNC',
         PlatoonAIPlan = 'ManagerEngineerFindUnfinished',
         Priority = 1800,
         InstanceCount = 1,
@@ -626,7 +578,7 @@ BuilderGroup {
     },
     Builder {
         BuilderName = 'NC T1 Engineer Find Low Shield',
-        PlatoonTemplate = 'EngineerBuilderSorian',
+        PlatoonTemplate = 'AnyEngineerBuilderNC',
         PlatoonAIPlan = 'ManagerEngineerFindLowShield',
         Priority = 1801,
         InstanceCount = 3,
@@ -658,7 +610,7 @@ BuilderGroup {
     },
     Builder {
         BuilderName = 'NC T1 Engineer Reclaim Excess',
-        PlatoonTemplate = 'EngineerBuilderSorian',
+        PlatoonTemplate = 'AnyEngineerBuilderNC',
         PlatoonAIPlan = 'ReclaimAISorian',
         Priority = 1,
         InstanceCount = 50,
@@ -676,7 +628,7 @@ BuilderGroup {
     },
     Builder {
         BuilderName = 'NC T1 Mass Adjacency Engineer',
-        PlatoonTemplate = 'EngineerBuilderSorian',
+        PlatoonTemplate = 'AnyEngineerBuilderNC',
         Priority = 945,
         InstanceCount = 2,
         BuilderConditions = {
@@ -703,7 +655,7 @@ BuilderGroup {
     },
     Builder {
         BuilderName = 'NC T1 Energy Storage Engineer',
-        PlatoonTemplate = 'EngineerBuilderSorian',
+        PlatoonTemplate = 'AnyEngineerBuilderNC',
         Priority = 525,
         BuilderConditions = {
             { UCBC, 'UnitsGreaterAtLocation', { 'LocationType', 0, 'ENERGYPRODUCTION TECH1' }},
@@ -924,7 +876,7 @@ BuilderGroup {
     # =====================================
     Builder {
         BuilderName = 'NC T2 Mass Adjacency Engineer',
-        PlatoonTemplate = 'T2EngineerBuilderSorian',
+        PlatoonTemplate = 'AnyEngineerBuilderNC',
         Priority = 875,
         BuilderConditions = {
 			#{ UCBC, 'EngineerLessAtLocation', { 'LocationType', 1, 'ENGINEER TECH1' }},
@@ -950,7 +902,7 @@ BuilderGroup {
     },
     Builder {
         BuilderName = 'NC T2 Energy Storage Engineer',
-        PlatoonTemplate = 'T2EngineerBuilderSorian',
+        PlatoonTemplate = 'AnyEngineerBuilderNC',
         Priority = 550,
         BuilderConditions = {
             { UCBC, 'UnitsGreaterAtLocation', { 'LocationType', 0, 'ENERGYPRODUCTION TECH2' }},
@@ -971,7 +923,7 @@ BuilderGroup {
     },
     Builder {
         BuilderName = 'NC T2 Engineer Reclaim',
-        PlatoonTemplate = 'T2EngineerBuilderSorian',
+        PlatoonTemplate = 'AnyEngineerBuilderNC',
         PlatoonAIPlan = 'ReclaimAISorian',
         Priority = 750,
         InstanceCount = 3,
@@ -989,7 +941,7 @@ BuilderGroup {
     },
     Builder {
         BuilderName = 'NC T2 Engineer Reclaim Old Pgens',
-        PlatoonTemplate = 'T2EngineerBuilderSorian',
+        PlatoonTemplate = 'AnyEngineerBuilderNC',
         PlatoonAIPlan = 'ReclaimStructuresAI',
         Priority = 900,
         InstanceCount = 1,
@@ -1005,7 +957,7 @@ BuilderGroup {
     },
     Builder {
         BuilderName = 'NC T2 Engineer Find Unfinished',
-        PlatoonTemplate = 'T2EngineerBuilderSorian',
+        PlatoonTemplate = 'AnyEngineerBuilderNC',
         PlatoonAIPlan = 'ManagerEngineerFindUnfinished',
         Priority = 1800,
         InstanceCount = 1,
@@ -1017,13 +969,14 @@ BuilderGroup {
                 AssistLocation = 'LocationType',
                 BeingBuiltCategories = {'STRUCTURE STRATEGIC, STRUCTURE ECONOMIC, STRUCTURE'},
                 Time = 20,
+                AssisteeType = 'Engineer',
             },
         },
         BuilderType = 'Any',
     },
     Builder {
         BuilderName = 'NC T2 Engineer Find Low Shield',
-        PlatoonTemplate = 'T2EngineerBuilderSorian',
+        PlatoonTemplate = 'AnyEngineerBuilderNC',
         PlatoonAIPlan = 'ManagerEngineerFindLowShield',
         Priority = 1801,
         InstanceCount = 3,
@@ -1055,7 +1008,7 @@ BuilderGroup {
     },
     Builder {
         BuilderName = 'NC T2 Engineer Reclaim Excess',
-        PlatoonTemplate = 'T2EngineerBuilderSorian',
+        PlatoonTemplate = 'AnyEngineerBuilderNC',
         PlatoonAIPlan = 'ReclaimAISorian',
         Priority = 1,
         InstanceCount = 50,
@@ -1191,7 +1144,7 @@ BuilderGroup {
     # =========================
     Builder {
         BuilderName = 'NC T3 Energy Storage Engineer',
-        PlatoonTemplate = 'T3EngineerBuilderSorian',
+        PlatoonTemplate = 'AnyEngineerBuilderNC',
         Priority = 550,
         BuilderConditions = {
             { UCBC, 'UnitsGreaterAtLocation', { 'LocationType', 0, 'ENERGYPRODUCTION TECH3' }},
@@ -1230,7 +1183,7 @@ BuilderGroup {
     },
     Builder {
         BuilderName = 'NC T3 Engineer Find Unfinished',
-        PlatoonTemplate = 'T3EngineerBuilderSorian',
+        PlatoonTemplate = 'AnyEngineerBuilderNC',
         PlatoonAIPlan = 'ManagerEngineerFindUnfinished',
         Priority = 1800,
         InstanceCount = 1,
@@ -1242,6 +1195,7 @@ BuilderGroup {
                 AssistLocation = 'LocationType',
                 BeingBuiltCategories = {'EXPERIMENTAL, STRUCTURE STRATEGIC, STRUCTURE ECONOMIC, STRUCTURE'},
                 Time = 20,
+                AssisteeType = 'Engineer',
             },
         },
         BuilderType = 'Any',
@@ -1504,7 +1458,7 @@ BuilderGroup {
 
     Builder {
         BuilderName = 'NC T3 emergency t3 energy build emergency',
-        PlatoonTemplate = 'T3EngineerBuilder',
+        PlatoonTemplate = 'T3_plus_EngineerBuilderNC',
         Priority = 5000,
         BuilderType = 'Any',
         BuilderConditions = {
@@ -1533,7 +1487,7 @@ BuilderGroup {
 
     Builder {
         BuilderName = 'NC T2 Power Engineer emergency main',
-        PlatoonTemplate = 'T2EngineerBuilder',
+        PlatoonTemplate = 'T2T3EngineerBuilderNC',
         Priority = 5001,
        
 
@@ -1565,7 +1519,7 @@ BuilderGroup {
 
     Builder {
         BuilderName = 'NC T3 emergency t3 energy build emergency main',
-        PlatoonTemplate = 'T3EngineerBuilder',
+        PlatoonTemplate = 'T3_plus_EngineerBuilderNC',
         Priority = 5002,
         BuilderType = 'Any',
         BuilderConditions = {
@@ -1703,7 +1657,7 @@ BuilderGroup {
     Builder {
         BuilderName = 'NC T3 Engineer Disband - Filler',
         PlatoonTemplate = 'T3BuildEngineer',
-        Priority = 925,
+        Priority = 725,
         BuilderConditions = {
             { UCBC, 'EngineerLessAtLocation', { 'LocationType', 9, 'ENGINEER TECH3' }},
 			{ UCBC, 'HaveGreaterThanUnitsWithCategory', { 15, categories.MOBILE - categories.ENGINEER}},
@@ -1716,7 +1670,7 @@ BuilderGroup {
     Builder {
         BuilderName = 'NC T3 Engineer Disband - Filler 2',
         PlatoonTemplate = 'T3BuildEngineer',
-        Priority = 900,
+        Priority = 700,
         BuilderConditions = {
             { UCBC, 'EngineerLessAtLocation', { 'LocationType', 12, 'ENGINEER TECH3' }},
 			{ UCBC, 'HaveGreaterThanUnitsWithCategory', { 30, categories.MOBILE - categories.ENGINEER}},
@@ -1732,7 +1686,7 @@ BuilderGroup {
     Builder {
         BuilderName = 'NC T3 Engineer Disband - Filler 3',
         PlatoonTemplate = 'T3BuildEngineer',
-        Priority = 900,
+        Priority = 700,
         BuilderConditions = {
             { SIBC, 'GreaterThanEconEfficiencyOverTime', { 0.9, 1.2 } },
 			{ SBC, 'NoRushTimeCheck', { 600 }},
@@ -1748,11 +1702,12 @@ BuilderGroup {
         BuilderName = 'NC T3 Engineer Disband - Filler 3 Econ',
         PlatoonTemplate = 'T3BuildEngineer',
         Priority = 960,
+        InstanceCount = 5,
         BuilderConditions = {
             { EBC, 'GreaterThanEconStorageRatio', { 0.85, 0.85 } },
 			{ SIBC, 'GreaterThanEconEfficiencyOverTime', { 1.0, 1.2 } },
 			{ SBC, 'NoRushTimeCheck', { 600 }},
-            { UCBC, 'LocationFactoriesBuildingLess', { 'LocationType', 1, categories.ENGINEER * categories.TECH3 - categories.SUBCOMMANDER } },
+            { UCBC, 'LocationFactoriesBuildingLess', { 'LocationType', 3, categories.ENGINEER * categories.TECH3 - categories.SUBCOMMANDER } },
             { UCBC, 'EngineerCapCheck', { 'LocationType', 'Tech3' } },
             #{ UCBC, 'UnitCapCheckLess', { .8 } },
         },
@@ -2250,7 +2205,7 @@ BuilderGroup {
     BuildersType = 'EngineerBuilder',
     Builder {
         BuilderName = 'NC T1ResourceEngineer 150', #150
-        PlatoonTemplate = 'EngineerBuilderSorian',
+        PlatoonTemplate = 'AnyEngineerBuilderNC',
         Priority = 1000,
         InstanceCount = 4,
         BuilderConditions = {
@@ -2270,7 +2225,7 @@ BuilderGroup {
     },
     Builder {
         BuilderName = 'NC T1ResourceEngineer 250',
-        PlatoonTemplate = 'EngineerBuilderSorian',
+        PlatoonTemplate = 'AnyEngineerBuilderNC',
         Priority = 970,
         InstanceCount = 4,
         BuilderConditions = {
@@ -2290,7 +2245,7 @@ BuilderGroup {
     },  
     Builder {
         BuilderName = 'NC T1ResourceEngineer 450',
-        PlatoonTemplate = 'EngineerBuilderSorian',
+        PlatoonTemplate = 'AnyEngineerBuilderNC',
         Priority = 910,
         InstanceCount = 4,
         BuilderConditions = {
@@ -2310,7 +2265,7 @@ BuilderGroup {
     },       
     Builder {
         BuilderName = 'NC T1ResourceEngineer 1500',
-        PlatoonTemplate = 'EngineerBuilderSorian',
+        PlatoonTemplate = 'AnyEngineerBuilderNC',
         Priority = 850,
         InstanceCount = 1,
         BuilderConditions = {
@@ -2330,7 +2285,7 @@ BuilderGroup {
     },
     Builder {
         BuilderName = 'NC T2 T2Resource Engineer 250',
-        PlatoonTemplate = 'T2EngineerBuilderSorian',
+        PlatoonTemplate = 'AnyEngineerBuilderNC',
         Priority = 975,
         InstanceCount = 1,
         BuilderConditions = {
@@ -2349,7 +2304,7 @@ BuilderGroup {
     },
     Builder {
         BuilderName = 'NC T2 T2Resource Engineer 1500',
-        PlatoonTemplate = 'T2EngineerBuilderSorian',
+        PlatoonTemplate = 'AnyEngineerBuilderNC',
         Priority = 0, #875,
         InstanceCount = 1,
         BuilderConditions = {
@@ -2368,7 +2323,7 @@ BuilderGroup {
     },
     Builder {
         BuilderName = 'NC T3 T3Resource Engineer 250 range',
-        PlatoonTemplate = 'T3EngineerBuilderSorian',
+        PlatoonTemplate = 'AnyEngineerBuilderNC',
         Priority = 975,
         BuilderConditions = {
                 { MABC, 'CanBuildOnMassLessThanDistance', { 'LocationType', 250, -500, 0, 0, 'AntiSurface', 1 }},
@@ -2385,7 +2340,7 @@ BuilderGroup {
     },
     Builder {
         BuilderName = 'NC T3 T3Resource Engineer 1500 range',
-        PlatoonTemplate = 'T3EngineerBuilderSorian',
+        PlatoonTemplate = 'AnyEngineerBuilderNC',
         Priority = 0, #850,
         BuilderConditions = {
                 { MABC, 'CanBuildOnMassLessThanDistance', { 'LocationType', 1500, -500, 0, 0, 'AntiSurface', 1 }},
@@ -2402,7 +2357,7 @@ BuilderGroup {
     },
     Builder {
         BuilderName = 'NC T3 Mass Fab Engineer',
-        PlatoonTemplate = 'T3EngineerBuilderSorian',
+        PlatoonTemplate = 'AnyEngineerBuilderNC',
         Priority = 1200,
         BuilderConditions = {
                 { UCBC, 'HaveLessThanUnitsInCategoryBeingBuilt', { 1, 'MASSFABRICATION' } },
@@ -2432,7 +2387,7 @@ BuilderGroup {
     BuildersType = 'EngineerBuilder',
     Builder {
         BuilderName = 'NC T1ResourceEngineer 150 Low',
-        PlatoonTemplate = 'EngineerBuilderSorian',
+        PlatoonTemplate = 'AnyEngineerBuilderNC',
         Priority = 1000,
         InstanceCount = 2,
         BuilderConditions = {
@@ -2452,7 +2407,7 @@ BuilderGroup {
     },
     Builder {
         BuilderName = 'NC T1ResourceEngineer 350 Low',
-        PlatoonTemplate = 'EngineerBuilderSorian',
+        PlatoonTemplate = 'AnyEngineerBuilderNC',
         Priority = 700,
         InstanceCount = 2,
         BuilderConditions = {
@@ -2472,7 +2427,7 @@ BuilderGroup {
     },
     Builder {
         BuilderName = 'NC T1ResourceEngineer 1500 Low',
-        PlatoonTemplate = 'EngineerBuilderSorian',
+        PlatoonTemplate = 'AnyEngineerBuilderNC',
         Priority = 650,
         InstanceCount = 2,
         BuilderConditions = {
@@ -2492,7 +2447,7 @@ BuilderGroup {
     },
     Builder {
         BuilderName = 'NC T2ResourceEngineer 150 Low',
-        PlatoonTemplate = 'T2EngineerBuilderSorian',
+        PlatoonTemplate = 'AnyEngineerBuilderNC',
         Priority = 1000,
         InstanceCount = 2,
         BuilderConditions = {
@@ -2512,7 +2467,7 @@ BuilderGroup {
     },    
     Builder {
         BuilderName = 'NC T2 T2Resource Engineer 350 Low',
-        PlatoonTemplate = 'T2EngineerBuilderSorian',
+        PlatoonTemplate = 'AnyEngineerBuilderNC',
         Priority = 850,
         InstanceCount = 1,
         BuilderConditions = {
@@ -2531,7 +2486,7 @@ BuilderGroup {
     },
     Builder {
         BuilderName = 'NC T2 T2Resource Engineer 1500 Low',
-        PlatoonTemplate = 'T2EngineerBuilderSorian',
+        PlatoonTemplate = 'AnyEngineerBuilderNC',
         Priority = 750,
         InstanceCount = 1,
         BuilderConditions = {
@@ -2550,7 +2505,7 @@ BuilderGroup {
     },
     Builder {
         BuilderName = 'NC T3 T3Resource Engineer 350 range Low',
-        PlatoonTemplate = 'T3EngineerBuilderSorian',
+        PlatoonTemplate = 'AnyEngineerBuilderNC',
         Priority = 850,
         BuilderConditions = {
                 { MABC, 'CanBuildOnMassLessThanDistance', { 'LocationType', 350, -500, 0, 0, 'AntiSurface', 1 }},
@@ -2567,7 +2522,7 @@ BuilderGroup {
     },
     Builder {
         BuilderName = 'NC T3 T3Resource Engineer 1500 range Low',
-        PlatoonTemplate = 'T3EngineerBuilderSorian',
+        PlatoonTemplate = 'AnyEngineerBuilderNC',
         Priority = 750,
         BuilderConditions = {
                 { MABC, 'CanBuildOnMassLessThanDistance', { 'LocationType', 1500, -500, 0, 0, 'AntiSurface', 1 }},
@@ -2750,3 +2705,5 @@ BuilderGroup {
 		FormRadius = 10000,
     },
 }
+
+
