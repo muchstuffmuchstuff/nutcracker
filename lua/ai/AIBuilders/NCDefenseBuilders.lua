@@ -26,8 +26,7 @@ local SBC = '/lua/editor/SorianBuildConditions.lua'
 local SIBC = '/lua/editor/SorianInstantBuildConditions.lua'
 local BCF = '/lua/ncbuilderconditionfunctions.lua'
 
-local EnemyInT3ArtilleryRangeNC = import('/lua/ncbuilderconditionfunctions.lua')
-local EnemyInT3RapidArtilleryRangeNC = import('/lua/ncbuilderconditionfunctions.lua')
+
 local AIAddBuilderTable = import('/lua/ai/AIAddBuilderTable.lua')
 
 

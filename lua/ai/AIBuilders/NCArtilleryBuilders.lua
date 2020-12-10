@@ -26,8 +26,7 @@ local SIBC = '/lua/editor/SorianInstantBuildConditions.lua'
 local SBC = '/lua/editor/SorianBuildConditions.lua'
 local BCF = '/lua/ncbuilderconditionfunctions.lua'
 
-local EnemyInT3ArtilleryRangeNC = import('/lua/ncbuilderconditionfunctions.lua')
-local EnemyInT3RapidArtilleryRangeNC = import('/lua/ncbuilderconditionfunctions.lua')
+
 
 
 BuilderGroup {
@@ -41,7 +40,7 @@ BuilderGroup {
 		InstanceCount = 1,
         BuilderConditions = {
 		
-			
+            { BCF, 'CheckUnitRangeNC', { 'LocationType', 'T4Artillery', categories.STRUCTURE } },
             { UCBC, 'HaveLessThanUnitsInCategoryBeingBuilt', { 1, categories.EXPERIMENTAL * categories.STRUCTURE}},
 			{ UCBC, 'HaveLessThanUnitsWithCategory', { 5, categories.EXPERIMENTAL * categories.STRUCTURE * categories.ARTILLERY}},
 			{ SIBC, 'HaveGreaterThanUnitsWithCategory', { 11, categories.ENERGYPRODUCTION * categories.TECH3 } },
@@ -227,13 +226,13 @@ BuilderGroup {
         PlatoonTemplate = 'T3EngineerBuilderSorian',
         Priority = 1200,
         BuilderConditions = {
-		
+            { BCF, 'CheckUnitRangeNC', { 'LocationType', 'T3Artillery', categories.STRUCTURE } },
      { SIBC, 'HaveLessThanUnitsInCategoryBeingBuilt', { 1, categories.TECH3 * categories.ARTILLERY * categories.STRUCTURE * categories.xab2307}},
 			{ SIBC, 'HaveGreaterThanUnitsWithCategory', { 4, categories.ENERGYPRODUCTION * categories.TECH3 } },
-			{ BFC, 'EnemyInT3ArtilleryRangeNC', { 'LocationType', true } },
+		
            
             { SIBC, 'GreaterThanEconEfficiency', { 1.0, 1.3}},
-			{ SBC, 'MapLessThan', { 2000, 2000 }},
+		
             { IBC, 'BrainNotLowPowerMode', {} },
           
 			
@@ -258,9 +257,9 @@ BuilderGroup {
         Priority = 1201,
         BuilderConditions = {
 	{ SIBC, 'HaveLessThanUnitsInCategoryBeingBuilt', { 1, categories.TECH3 * categories.ARTILLERY * categories.STRUCTURE * categories.xab2307 }},
-    
+    { BCF, 'CheckUnitRangeNC', { 'LocationType', 'T3RapidArtillery', categories.STRUCTURE, 2 } },
 			{ SIBC, 'HaveGreaterThanUnitsWithCategory', { 4, categories.ENERGYPRODUCTION * categories.TECH3 } },
-            { BFC, 'EnemyInT3RapidArtilleryRangeNC', { 'LocationType', true } },
+           
 	
             { SIBC, 'GreaterThanEconEfficiency', { 0.95, 1.1}},
 			{ SBC, 'MapGreaterThan', { 1000, 1000 }},
