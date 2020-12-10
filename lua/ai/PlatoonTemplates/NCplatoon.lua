@@ -137,7 +137,7 @@ PlatoonTemplate {
     Name = 'StrikeForceMediumNC',
     Plan = 'AttackForceAISorian',
     GlobalSquads = {
-        { categories.MOBILE * categories.LAND - categories.EXPERIMENTAL - categories.ENGINEER - categories.xsl0402, 3, 10, 'Attack', 'GrowthFormation' }
+        { categories.MOBILE * categories.LAND - categories.EXPERIMENTAL - categories.ENGINEER - categories.xsl0402, 5, 10, 'Attack', 'GrowthFormation' }
     },
 }
 

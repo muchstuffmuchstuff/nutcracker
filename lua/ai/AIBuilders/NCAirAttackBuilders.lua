@@ -826,7 +826,8 @@ BuilderGroup {
         InstanceCount = 15,
         BuilderType = 'Air',
         BuilderConditions = {
-        { UCBC, 'HaveLessThanUnitsWithCategory', { 10, categories.AIR * categories.MOBILE * categories.ANTIAIR  - categories.BOMBER - categories.GROUNDATTACK } },
+            { MIBC, 'GreaterThanGameTime', { 240 } },
+        { UCBC, 'HaveLessThanUnitsWithCategory', { 30, categories.AIR * categories.MOBILE * categories.ANTIAIR  - categories.BOMBER - categories.GROUNDATTACK } },
          
             
 			
@@ -836,7 +837,7 @@ BuilderGroup {
             { SIBC, 'GreaterThanEconEfficiencyOverTime', { 0.75, 1.05 }},
             
          
-            { UCBC, 'HaveLessThanUnitsWithCategory', { 3, 'AIR FACTORY TECH3' }},
+            
 			
         },
         
@@ -858,8 +859,7 @@ Builder {
 			
             { SIBC, 'GreaterThanEconEfficiencyOverTime', { 0.75, 1.05 }},
             
-            { UCBC, 'HaveLessThanUnitsWithCategory', { 3, 'AIR FACTORY TECH3' }},
-			
+          
         },
         
     },
@@ -870,12 +870,12 @@ Builder {
         BuilderType = 'Air',
         InstanceCount = 30,
         BuilderConditions = {
-            { UCBC, 'HaveLessThanUnitsWithCategory', { 30, categories.AIR * categories.MOBILE * categories.ANTIAIR  - categories.BOMBER - categories.GROUNDATTACK } },
+            { UCBC, 'HaveLessThanUnitsWithCategory', { 35, categories.AIR * categories.MOBILE * categories.ANTIAIR  - categories.BOMBER - categories.GROUNDATTACK } },
 			{ UCBC, 'HaveUnitsWithCategoryAndAlliance', { true, 9, categories.MOBILE * categories.AIR - categories.SCOUT, 'Enemy'}},
  
             
  
- { UCBC, 'HaveLessThanUnitsWithCategory', { 3, 'AIR FACTORY TECH3' }},
+
             { IBC, 'BrainNotLowPowerMode', {} },
 			{ SBC, 'NoRushTimeCheck', { 600 }},
             { SIBC, 'GreaterThanEconEfficiencyOverTime', { 0.75, 1.05 }},

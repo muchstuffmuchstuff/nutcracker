@@ -27,7 +27,7 @@ BaseBuilderTemplate {
         # Factory upgrades
         'NCEmergencyUpgrade_airfactories',
         'NCUpgradeBuilders_airfactories',
-        'NCEmergencyUpgradeBuilders_landfactories',
+       
 
 
         # Engineer Builders
@@ -129,7 +129,7 @@ BaseBuilderTemplate {
         'NCmasshuntairbehavior',
         'NCexcessresourcest1bomberbuild',
         'NCacusnipebehavior',
-        'NCT2AntiAirBuilders',
+     
         'NCacusnipe',
         'NCengihuntairbehavior',
     

@@ -24,7 +24,7 @@ local TBC = '/lua/editor/ThreatBuildConditions.lua'
 local PlatoonFile = '/lua/platoon.lua'
 local SBC = '/lua/editor/SorianBuildConditions.lua'
 local SIBC = '/lua/editor/SorianInstantBuildConditions.lua'
-local BCF = '/lua/ncbuilderconditionfunctions.lua'
+
 
 
 local AIAddBuilderTable = import('/lua/ai/AIAddBuilderTable.lua')

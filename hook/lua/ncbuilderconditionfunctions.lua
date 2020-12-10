@@ -1,3 +1,8 @@
+
+
+local AIUtils = import('/lua/ai/aiutilities.lua')
+
+
 function CheckUnitRangeNC(aiBrain, locationType, unitType, category, factionIndex)
 
     # Find the unit's blueprint
@@ -14,7 +19,7 @@ function CheckUnitRangeNC(aiBrain, locationType, unitType, category, factionInde
         return false
     end
 
-    local bp = __blueprints(buildingId)
+    local bp = __blueprints[buildingId]
     if not bp.Economy.BuildTime or not bp.Economy.BuildCostMass then
         WARN('*AI ERROR: Unit for EconomyCheckStructure is missing blueprint values - ' .. unitType)
         return false

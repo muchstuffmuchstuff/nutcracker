@@ -24,10 +24,54 @@ local IBC = '/lua/editor/InstantBuildConditions.lua'
 local PlatoonFile = '/lua/platoon.lua'
 local SIBC = '/lua/editor/SorianInstantBuildConditions.lua'
 local SBC = '/lua/editor/SorianBuildConditions.lua'
-local BCF = '/lua/ncbuilderconditionfunctions.lua'
 
 
+local AIUtils = import('/lua/ai/aiutilities.lua')
 
+
+function CheckUnitRangeNC(aiBrain, locationType, unitType, category, factionIndex)
+
+    # Find the unit's blueprint
+    local template = import('/lua/BuildingTemplates.lua').BuildingTemplates[factionIndex or aiBrain:GetFactionIndex()]
+    local buildingId = false
+    for k,v in template do
+        if v[1] == unitType then
+            buildingId = v[2]
+            break
+        end
+    end
+    if not buildingId then
+        WARN('*AI ERROR: Invalid building type - ' .. unitType)
+        return false
+    end
+
+    local bp = __blueprints[buildingId]
+    if not bp.Economy.BuildTime or not bp.Economy.BuildCostMass then
+        WARN('*AI ERROR: Unit for EconomyCheckStructure is missing blueprint values - ' .. unitType)
+        return false
+    end
+
+    local range = false
+    for k,v in bp.Weapon do
+        if not range or v.MaxRadius > range then
+            range = v.MaxRadius
+        end
+    end
+    if not range then
+        WARN('*AI ERROR: No MaxRadius for unit type - ' .. unitType)
+        return false
+    end
+
+    local basePosition = aiBrain:GetLocationPosition(locationType)
+
+    # Check around basePosition for StructureThreat
+    local unit = AIUtils.AIFindBrainTargetAroundPoint(aiBrain, basePosition, range, category)
+
+    if unit then
+        return true
+    end
+    return false
+end
 
 BuilderGroup {
     BuilderGroupName = 'NCExperimentalArtillery',
@@ -40,7 +84,7 @@ BuilderGroup {
 		InstanceCount = 1,
         BuilderConditions = {
 		
-            { BCF, 'CheckUnitRangeNC', { 'LocationType', 'T4Artillery', categories.STRUCTURE } },
+            { CheckUnitRangeNC, { 'LocationType', 'T4Artillery', categories.STRUCTURE } },
             { UCBC, 'HaveLessThanUnitsInCategoryBeingBuilt', { 1, categories.EXPERIMENTAL * categories.STRUCTURE}},
 			{ UCBC, 'HaveLessThanUnitsWithCategory', { 5, categories.EXPERIMENTAL * categories.STRUCTURE * categories.ARTILLERY}},
 			{ SIBC, 'HaveGreaterThanUnitsWithCategory', { 11, categories.ENERGYPRODUCTION * categories.TECH3 } },
@@ -226,7 +270,7 @@ BuilderGroup {
         PlatoonTemplate = 'T3EngineerBuilderSorian',
         Priority = 1200,
         BuilderConditions = {
-            { BCF, 'CheckUnitRangeNC', { 'LocationType', 'T3Artillery', categories.STRUCTURE } },
+            {CheckUnitRangeNC, { 'LocationType', 'T3Artillery', categories.STRUCTURE } },
      { SIBC, 'HaveLessThanUnitsInCategoryBeingBuilt', { 1, categories.TECH3 * categories.ARTILLERY * categories.STRUCTURE * categories.xab2307}},
 			{ SIBC, 'HaveGreaterThanUnitsWithCategory', { 4, categories.ENERGYPRODUCTION * categories.TECH3 } },
 		
@@ -257,7 +301,7 @@ BuilderGroup {
         Priority = 1201,
         BuilderConditions = {
 	{ SIBC, 'HaveLessThanUnitsInCategoryBeingBuilt', { 1, categories.TECH3 * categories.ARTILLERY * categories.STRUCTURE * categories.xab2307 }},
-    { BCF, 'CheckUnitRangeNC', { 'LocationType', 'T3RapidArtillery', categories.STRUCTURE, 2 } },
+    { CheckUnitRangeNC, { 'LocationType', 'T3RapidArtillery', categories.STRUCTURE, 2 } },
 			{ SIBC, 'HaveGreaterThanUnitsWithCategory', { 4, categories.ENERGYPRODUCTION * categories.TECH3 } },
            
 	

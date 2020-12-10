@@ -25,104 +25,11 @@ local PlatoonFile = '/lua/platoon.lua'
 local SIBC = '/lua/editor/SorianInstantBuildConditions.lua'
 local SBC = '/lua/editor/SorianBuildConditions.lua'
 
-#NC
 
 
 
-BuilderGroup {
-    BuilderGroupName = 'NCACUUpgrades',
-    BuildersType = 'EngineerBuilder', #'PlatoonFormBuilder',
-    # UEF
-    Builder {
-        BuilderName = 'NC UEF CDR Upgrade AdvEng - Pods',
-        PlatoonTemplate = 'CommanderEnhanceSorian',
-        BuilderConditions = {
-                { SIBC, 'HaveGreaterThanUnitsWithCategory', { 4, 'FACTORY' }},
-                { SIBC, 'HaveGreaterThanUnitsWithCategory', { 3, 'MASSEXTRACTION TECH2, MASSEXTRACTION TECH3' }},
-               
-             
-				{ SIBC, 'GreaterThanEconEfficiencyOverTime', { 0.8, 1.1 }},
-				{ SBC, 'CmdrHasUpgrade', { 'T3Engineering', false }},
-				{ SBC, 'CmdrHasUpgrade', { 'Shield', false }},
-                { MIBC, 'FactionIndex', {1, 1}},
-            },
-        Priority = 900,
-        BuilderType = 'Any',
-		PlatoonAddFunctions = { {SAI, 'BuildOnce'}, },
-        BuilderData = {
-            Enhancement = { 'LeftPod', 'RightPod', 'AdvancedEngineering', 'T3Engineering' },
-        },
-    },
-   
-    # Aeon
-    Builder {
-        BuilderName = 'NC Aeon CDR Upgrade AdvEng - Resource - Crysalis',
-        PlatoonTemplate = 'CommanderEnhanceSorian',
-        BuilderConditions = {
-                { SIBC, 'HaveGreaterThanUnitsWithCategory', { 4, 'FACTORY'}},
-                { SIBC, 'HaveGreaterThanUnitsWithCategory', { 3, 'MASSEXTRACTION TECH2, MASSEXTRACTION TECH3' }},
-        
-           
-				{ SIBC, 'GreaterThanEconEfficiencyOverTime', { 0.8, 1.1}},
-				{ SBC, 'CmdrHasUpgrade', { 'HeatSink', false }},
-				{ SBC, 'CmdrHasUpgrade', { 'T3Engineering', false }},
-                { MIBC, 'FactionIndex', {2, 2}},
-            },
-        Priority = 900,
-        BuilderType = 'Any',
-		PlatoonAddFunctions = { {SAI, 'BuildOnce'}, },
-        BuilderData = {
-            Enhancement = { 'AdvancedEngineering', 'T3Engineering' },
-        },
-    },
-   
-    
-    # Cybran
-    Builder {
-        BuilderName = 'NC Cybran CDR Upgrade AdvEng - Laser Gen',
-        PlatoonTemplate = 'CommanderEnhanceSorian',
-        BuilderConditions = {
-                { SIBC, 'HaveGreaterThanUnitsWithCategory', { 1, 'FACTORY'}},
-                { SIBC, 'HaveGreaterThanUnitsWithCategory', { 3, 'MASSEXTRACTION TECH2, MASSEXTRACTION TECH3' }},
-              
-               
-				{ SIBC, 'GreaterThanEconEfficiencyOverTime', { 0.8, 1.1 }},
-				{ SBC, 'CmdrHasUpgrade', { 'T3Engineering', false }},
-				{ SBC, 'CmdrHasUpgrade', { 'MicrowaveLaserGenerator', false }},
-                { MIBC, 'FactionIndex', {3, 3}},
-            },
-        Priority = 900,
-        BuilderType = 'Any',
-		PlatoonAddFunctions = { {SAI, 'BuildOnce'}, },
-        BuilderData = {
-            Enhancement = { 'StealthGenerator', 'AdvancedEngineering', 'T3Engineering' },
-        },
-    },
- 
-	
-    # Seraphim
-    Builder {
-        BuilderName = 'NC Seraphim CDR Upgrade AdvEng - Resource - Crysalis',
-        PlatoonTemplate = 'CommanderEnhanceSorian',
-        BuilderConditions = {
-                { SIBC, 'HaveGreaterThanUnitsWithCategory', { 1, 'FACTORY'}},
-                { SIBC, 'HaveGreaterThanUnitsWithCategory', { 3, 'MASSEXTRACTION TECH2, MASSEXTRACTION TECH3' }},
-             
-             
-				{ SIBC, 'GreaterThanEconEfficiencyOverTime', { 0.8, 1.1 }},
-				{ SBC, 'CmdrHasUpgrade', { 'AdvancedRegenAura', false }},
-				{ SBC, 'CmdrHasUpgrade', { 'T3Engineering', false }},
-                { MIBC, 'FactionIndex', {4, 4}},
-            },
-        Priority = 900,
-        BuilderType = 'Any',
-		PlatoonAddFunctions = { {SAI, 'BuildOnce'}, },
-        BuilderData = {
-            Enhancement = { 'AdvancedEngineering', 'RegenAura', 'T3Engineering' },
-        },
-    },
-  
-}
+
+
 
 
 
@@ -210,11 +117,11 @@ BuilderGroup {
     },
     Builder {
         BuilderName = 'NC T3 Power Engineer',
-        PlatoonTemplate = 'T3_plus_EngineerBuilderNC',
+        PlatoonTemplate = 'T3EngineerBuilderSorian',
         Priority = 1000,
         BuilderType = 'Any',
         BuilderConditions = {
-		{ SIBC, 'HaveGreaterThanUnitsWithCategory', { 0, 'ENERGYPRODUCTION TECH3' } },
+	
 { SIBC, 'HaveLessThanUnitsInCategoryBeingBuilt', { 1, 'ENERGYPRODUCTION TECH2, ENERGYPRODUCTION TECH3' } },
             { SIBC, 'GreaterThanEconEfficiencyOverTime', { 0.5, 0.1 }},
 			{ SIBC, 'LessThanEconEfficiencyOverTime', { 2.0, 1.3 }},
@@ -263,11 +170,11 @@ BuilderGroup {
     },
     Builder {
         BuilderName = 'NC T3 Power Engineer - Emergency',
-        PlatoonTemplate = 'T3_plus_EngineerBuilderNC',
+        PlatoonTemplate = 'T3EngineerBuilderSorian',
         Priority = 2000,
         BuilderType = 'Any',
         BuilderConditions = {
-		{ SIBC, 'HaveGreaterThanUnitsWithCategory', { 0, 'ENERGYPRODUCTION TECH3' } },
+	
 { SIBC, 'HaveLessThanUnitsInCategoryBeingBuilt', { 1, 'ENERGYPRODUCTION TECH2, ENERGYPRODUCTION TECH3' } },
             
 			{ SIBC, 'LessThanEconEfficiency', { 2.0, 1.0 }},
@@ -308,7 +215,7 @@ BuilderGroup {
         BuilderName = 'NC T3 Power Engineer - init',
                
   
-    PlatoonTemplate = 'T3_plus_EngineerBuilderNC',
+    PlatoonTemplate = 'T3EngineerBuilderSorian',
         Priority = 1500,
         BuilderType = 'Any',
         BuilderConditions = {
@@ -382,7 +289,7 @@ BuilderGroup {
     },
     Builder {
         BuilderName = 'NC T3 Power Engineer Expansions',
-        PlatoonTemplate = 'T3_plus_EngineerBuilderNC',
+        PlatoonTemplate = 'T3EngineerBuilderSorian',
         Priority = 1000,
         BuilderType = 'Any',
         BuilderConditions = {
@@ -581,7 +488,7 @@ BuilderGroup {
         PlatoonTemplate = 'AnyEngineerBuilderNC',
         PlatoonAIPlan = 'ManagerEngineerFindLowShield',
         Priority = 1801,
-        InstanceCount = 3,
+      
         BuilderConditions = {
                 { SBC, 'ShieldDamaged', { 'LocationType'}},
             },
@@ -955,25 +862,7 @@ BuilderGroup {
         },
         BuilderType = 'Any',
     },
-    Builder {
-        BuilderName = 'NC T2 Engineer Find Unfinished',
-        PlatoonTemplate = 'AnyEngineerBuilderNC',
-        PlatoonAIPlan = 'ManagerEngineerFindUnfinished',
-        Priority = 1800,
-        InstanceCount = 1,
-        BuilderConditions = {
-                { SBC, 'UnfinishedUnits', { 'LocationType', categories.STRUCTURE}},
-            },
-        BuilderData = {
-            Assist = {
-                AssistLocation = 'LocationType',
-                BeingBuiltCategories = {'STRUCTURE STRATEGIC, STRUCTURE ECONOMIC, STRUCTURE'},
-                Time = 20,
-                AssisteeType = 'Engineer',
-            },
-        },
-        BuilderType = 'Any',
-    },
+   
     Builder {
         BuilderName = 'NC T2 Engineer Find Low Shield',
         PlatoonTemplate = 'AnyEngineerBuilderNC',
@@ -1142,27 +1031,7 @@ BuilderGroup {
     # =========================
     #     T3 ENGINEER BUILD
     # =========================
-    Builder {
-        BuilderName = 'NC T3 Energy Storage Engineer',
-        PlatoonTemplate = 'AnyEngineerBuilderNC',
-        Priority = 550,
-        BuilderConditions = {
-            { UCBC, 'UnitsGreaterAtLocation', { 'LocationType', 0, 'ENERGYPRODUCTION TECH3' }},
-            { UCBC, 'UnitCapCheckLess', { .05 } },
-            { UCBC, 'AdjacencyCheck', { 'LocationType', 'ENERGYPRODUCTION TECH3', 100, 'ueb1105' } },
-        },
-        BuilderType = 'Any',
-        BuilderData = {
-            Construction = {
-                AdjacencyCategory = 'ENERGYPRODUCTION TECH3',
-                AdjacencyDistance = 100,
-                BuildClose = false,
-                BuildStructures = {
-                    'EnergyStorage',
-                },
-            }
-        }
-    },
+  
     Builder {
         BuilderName = 'NC T3 Engineer Reclaim',
         PlatoonTemplate = 'T3EngineerBuilderOnlySorian',
@@ -1181,25 +1050,7 @@ BuilderGroup {
         },
         BuilderType = 'Any',
     },
-    Builder {
-        BuilderName = 'NC T3 Engineer Find Unfinished',
-        PlatoonTemplate = 'AnyEngineerBuilderNC',
-        PlatoonAIPlan = 'ManagerEngineerFindUnfinished',
-        Priority = 1800,
-        InstanceCount = 1,
-        BuilderConditions = {
-                { SBC, 'UnfinishedUnits', { 'LocationType', categories.STRUCTURE + categories.EXPERIMENTAL}},
-            },
-        BuilderData = {
-            Assist = {
-                AssistLocation = 'LocationType',
-                BeingBuiltCategories = {'EXPERIMENTAL, STRUCTURE STRATEGIC, STRUCTURE ECONOMIC, STRUCTURE'},
-                Time = 20,
-                AssisteeType = 'Engineer',
-            },
-        },
-        BuilderType = 'Any',
-    },
+  
     Builder {
         BuilderName = 'NC T3 Engineer Find Low Shield',
         PlatoonTemplate = 'T3EngineerBuilderOnlySorian',
@@ -1458,7 +1309,7 @@ BuilderGroup {
 
     Builder {
         BuilderName = 'NC T3 emergency t3 energy build emergency',
-        PlatoonTemplate = 'T3_plus_EngineerBuilderNC',
+        PlatoonTemplate = 'T3EngineerBuilderSorian',
         Priority = 5000,
         BuilderType = 'Any',
         BuilderConditions = {
@@ -1519,7 +1370,7 @@ BuilderGroup {
 
     Builder {
         BuilderName = 'NC T3 emergency t3 energy build emergency main',
-        PlatoonTemplate = 'T3_plus_EngineerBuilderNC',
+        PlatoonTemplate = 'T3EngineerBuilderSorian',
         Priority = 5002,
         BuilderType = 'Any',
         BuilderConditions = {
