@@ -389,7 +389,7 @@ BuilderGroup {
     BuildersType = 'PlatoonFormBuilder',
     Builder {
         BuilderName = 'NC T3 Nuke Silo',
-        PlatoonTemplate = 'T3NukeSorian',
+        PlatoonTemplate = 'T3NukeNC',
         Priority = 1,
         InstanceCount = 10,
         BuilderType = 'Any',

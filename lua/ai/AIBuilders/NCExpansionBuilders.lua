@@ -395,7 +395,7 @@ BuilderGroup {
 
 
       Builder {
-        BuilderName = 'NC`nsion Area Engineer(Full Base)',
+        BuilderName = 'NC expansion Area Engineer(Full Base)',
         PlatoonTemplate = 'EngineerBuilderSorian',
         Priority = 722,
        
@@ -558,30 +558,32 @@ BuilderGroup {
     BuildersType = 'EngineerBuilder',
 Builder {
         BuilderName = 'NCgetinclosewithmissile',
-        PlatoonTemplate = 'T3EngineerBuilderSorian',
-        Priority = 950,
-        InstanceCount = 3,
+        PlatoonTemplate = 'T2T3EngineerBuilderNC',
+        Priority = 980,
+        InstanceCount = 4,
         NeedGuard = true,
         BuilderConditions = {
-         { SBC, 'CanBuildFirebase', { 'LocationType', 280, 'Defensive Point', -10000, 5, 1, 'AntiSurface', 1, 'STRUCTURE ARTILLERY TECH3', 20} },
-     
+           
+         { SBC, 'CanBuildFirebase', { 'LocationType', 260, 'Defensive Point', -10000, 5, 1, 'AntiSurface', 1, 'STRUCTURE ARTILLERY TECH3', 20} },
+         
 		
 		
 			
             { SIBC, 'GreaterThanEconEfficiencyOverTime', { 0.95, 1.1 }},
             
-			{ SBC, 'MapGreaterThan', { 500, 500 }},
+	
 			{ SBC, 'NoRushTimeCheck', { 0 }},
         },
         BuilderType = 'Any',
         BuilderData = {
           RequireTransport = true,
+          DesiresAssist = true,
 			
             Construction = {
                 BuildClose = true,
                 BaseTemplate = ExBaseTmpl,
                 FireBase = true,
-                FireBaseRange = 280,
+                FireBaseRange = 260,
                 NearMarkerType = 'Expansion Area',
                 LocationType = 'LocationType',
                 ThreatMin = -10000,
@@ -592,27 +594,36 @@ Builder {
                 MarkerRadius = 20,
                 BuildStructures = {
 					
-'T2GroundDefense',
-'T3AADefense',                 
-'T2MissileDefense',
-'T2StrategicMissile',
-'T2MissileDefense',
-'T2StrategicMissile',
-'T2MissileDefense',
-'T2StrategicMissile',
-'T2MissileDefense',
-'T2StrategicMissile',
-'T2StrategicMissile',
-'T2StrategicMissile',
-'T2StrategicMissile',
-'T2StrategicMissile',
-'T2StrategicMissile',
+                    'T2GroundDefense',
+                    'T2AADefense',
+                    'T2AADefense',                 
+                    'T2MissileDefense',
+                    'T2StrategicMissile',
+                    'T2MissileDefense',
+                    'T2GroundDefense',
+                    'T2StrategicMissile',
+                    'T2MissileDefense',
+                    'T2StrategicMissile',
+                    'T2AADefense',
+                    'T2AADefense', 
+                    'T2MissileDefense',
+                    'T2GroundDefense',
+                    'T2StrategicMissile',
+                    'T2ShieldDefense',
+                    'T2StrategicMissile',
+                    'T2StrategicMissile',
+                    'T2AADefense',
+                    'T2AADefense', 
+                    'T2StrategicMissile',
+                    'T2StrategicMissile',
+                    'T2StrategicMissile',
 
                 }
             }
         }
     },
 }
+    
 
 
 

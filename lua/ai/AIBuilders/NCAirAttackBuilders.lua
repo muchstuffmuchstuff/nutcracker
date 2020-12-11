@@ -163,6 +163,50 @@ BuilderGroup {
         },
         
     },
+    Builder {
+        BuilderName = 'NC t3bomber air dominance',
+        PlatoonTemplate = 'T3AirBomber',
+        Priority = 600,
+        BuilderType = 'Air',
+        InstanceCount = 3,
+        BuilderConditions = {
+			
+                        { MIBC, 'GreaterThanGameTime', { 1200} },
+                        { UCBC, 'HaveGreaterThanUnitsWithCategory', { 30, categories.AIR * categories.ANTIAIR * categories.MOBILE - categories.GROUNDATTACK - categories.SCOUT } },
+			
+			
+            { IBC, 'BrainNotLowPowerMode', {} },
+			{ SBC, 'NoRushTimeCheck', { 600 }},
+			
+           { SIBC, 'GreaterThanEconEfficiencyOverTime', { 0.85, 1.10 }},
+           
+           
+			
+        },
+        
+    },
+    Builder {
+        BuilderName = 'NC t1bomber early game for defense',
+        PlatoonTemplate = 'T1AirBomber',
+        Priority = 500,
+        BuilderType = 'Air',
+        InstanceCount = 2,
+        BuilderConditions = {
+			
+                        { MIBC, 'GreaterThanGameTime', { 360 } },
+                        { UCBC, 'HaveLessThanUnitsWithCategory', { 10, categories.AIR * categories.GROUNDATTACK * categories.BOMBER * categories.MOBILE - categories.ANTIAIR } },
+			
+			
+            { IBC, 'BrainNotLowPowerMode', {} },
+			{ SBC, 'NoRushTimeCheck', { 600 }},
+			
+           { SIBC, 'GreaterThanEconEfficiencyOverTime', { 0.85, 1.10 }},
+           
+           
+			
+        },
+        
+    },
 }
 
 
@@ -290,7 +334,7 @@ Builder {
         },
     },
     Builder {
-        BuilderName = 'NC guard the base',
+        BuilderName = 'NC guard the base fighters',
         PlatoonTemplate = 'ncguardbaseair',
 		PlatoonAddBehaviors = { 'AirUnitRefitSorian' },
 		PlatoonAddPlans = { 'AirIntelToggle','DistressResponseAISorian'},
@@ -303,6 +347,36 @@ Builder {
                        
                        
                         { UCBC, 'PoolGreaterAtLocation', { 'LocationType', 0, categories.MOBILE * categories.AIR * categories.ANTIAIR - categories.BOMBER - categories.GROUNDATTACK - categories.EXPERIMENTAL - categories.TRANSPORTFOCUS - categories.SCOUT } },
+			{ SBC, 'NoRushTimeCheck', { 0 }},
+        },
+        BuilderData = {
+			
+			
+            PrioritizedCategories = {    
+
+                                'EXPERIMENTAL AIR',
+                                'TRANSPORTFOCUS',
+                                'AIR',
+                                
+				
+				
+            },
+        },
+    },
+    Builder {
+        BuilderName = 'NC guard the base bombers',
+        PlatoonTemplate = 'ncguardbasegroundattack',
+		PlatoonAddBehaviors = { 'AirUnitRefitSorian' },
+		PlatoonAddPlans = { 'AirIntelToggle','DistressResponseAISorian'},
+        Priority = 500,
+        
+        InstanceCount = 1,
+       
+        BuilderType = 'Any',
+        BuilderConditions = {
+                       
+                       
+                        { UCBC, 'PoolGreaterAtLocation', { 'LocationType', 0, categories.MOBILE * categories.AIR * categories.BOMBER *categories.GROUNDATTACK - categories.ANTIAIR - categories.EXPERIMENTAL - categories.TRANSPORTFOCUS - categories.SCOUT } },
 			{ SBC, 'NoRushTimeCheck', { 0 }},
         },
         BuilderData = {
@@ -362,7 +436,7 @@ Builder {
             PlatoonTemplate = 'NCCommanderSnipe',
             PlatoonAddBehaviors = { 'AirUnitRefitSorian' },
             PlatoonAddPlans = { 'AirIntelToggle','PlatoonCallForHelpAISorian'},
-            Priority = 1200,
+            Priority = 500,
             InstanceCount = 10,
             BuilderType = 'Any',
             BuilderConditions = {
@@ -498,7 +572,7 @@ Builder {
             PlatoonTemplate = 'ncairengihunt',
             PlatoonAddBehaviors = { 'AirUnitRefitSorian' },
             PlatoonAddPlans = { 'AirIntelToggle','DistressResponseAISorian'   },
-            Priority = 1200,
+            Priority = 500,
             InstanceCount = 10,
             BuilderType = 'Any',
             BuilderConditions = {
@@ -526,7 +600,7 @@ Builder {
             PlatoonTemplate = 'ncairengihunt',
             PlatoonAddBehaviors = { 'AirUnitRefitSorian' },
             PlatoonAddPlans = { 'AirIntelToggle', 'DistressResponseAISorian'  },
-            Priority = 1200,
+            Priority = 500,
             InstanceCount = 10,
             BuilderType = 'Any',
             BuilderConditions = {
@@ -791,7 +865,7 @@ BuilderGroup {
         PlatoonTemplate = 'navalhunters',
 		PlatoonAddBehaviors = { 'AirUnitRefitSorian' },
 		PlatoonAddPlans = { 'AirIntelToggle' },
-        Priority = 1200,
+        Priority = 500,
         FormRadius = 1000,
         InstanceCount = 20,
         BuilderType = 'Any',

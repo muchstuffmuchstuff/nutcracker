@@ -251,6 +251,36 @@ Builder {
             }
         }
     },
+    Builder {
+        BuilderName = 'NC T2 land exp spotted',
+        PlatoonTemplate = 'T2T3EngineerBuilderNC',
+        Priority = 995,
+        InstanceCount = 2,
+        BuilderConditions = {
+            { UCBC, 'HaveUnitsWithCategoryAndAlliance', { true, 0, 'EXPERIMENTAL LAND', 'Enemy'}},
+            { UCBC, 'UnitsLessAtLocation', { 'LocationType', 10, categories.TECH2 * categories.ARTILLERY }},
+            { UCBC, 'HaveGreaterThanUnitsWithCategory', { 0, 'ENERGYPRODUCTION TECH2' }},
+          
+            { IBC, 'BrainNotLowPowerMode', {} },
+            { SIBC, 'GreaterThanEconEfficiencyOverTime', { 0.95, 1.2 }},
+            
+            { UCBC, 'UnitCapCheckLess', { 0.95 } },
+        },
+        BuilderType = 'Any',
+        BuilderData = {
+            NumAssistees = 1,
+            Construction = {
+                BuildClose = false,
+                BuildStructures = {
+                    'T2Artillery',
+                    'T2Artillery',
+                    'T2Artillery',
+					
+                },
+                Location = 'LocationType',
+            }
+        }
+    },
 
 
 }
@@ -786,11 +816,11 @@ BuilderGroup {
             { UCBC, 'UnitsLessAtLocation', { 'LocationType', 30, 'DEFENSE TECH3 ANTIAIR STRUCTURE'}},
 			{ SIBC, 'HaveGreaterThanUnitsWithCategory', { 0, categories.ENERGYPRODUCTION * categories.TECH3 } },
             { IBC, 'BrainNotLowPowerMode', {} },
-            #{ SIBC, 'GreaterThanEconEfficiencyOverTime', { 0.95, 1.2 }},
+            { SIBC, 'GreaterThanEconEfficiencyOverTime', { 0.95, 1.2 }},
             
             { UCBC, 'UnitCapCheckLess', { 0.95 } },
 
-			#{ UCBC, 'HaveUnitsWithCategoryAndAlliance', { true, 0, 'EXPERIMENTAL AIR', 'Enemy'}},
+			{ UCBC, 'HaveUnitsWithCategoryAndAlliance', { true, 0, 'EXPERIMENTAL AIR', 'Enemy'}},
 			{ SBC, 'T4ThreatExists', {{'Air'}, categories.AIR}},
         },
         BuilderType = 'Any',
@@ -805,35 +835,7 @@ BuilderGroup {
             }
         }
     },
-    Builder {
-        BuilderName = 'NC T2TMLEngineer t4landspotted',
-        PlatoonTemplate = 'T3EngineerBuilderSorian',
-        Priority = 1300,
-        InstanceCount = 2,
-        BuilderConditions = {
-            { UCBC, 'UnitsLessAtLocation', { 'LocationType', 20, categories.TACTICALMISSILEPLATFORM * categories.STRUCTURE}},
-		
-            #{ SIBC, 'GreaterThanEconEfficiencyOverTime', { 0.95, 1.2 }},
-            { IBC, 'BrainNotLowPowerMode', {} },
-			#{ UCBC, 'HaveUnitsWithCategoryAndAlliance', { true, 0, 'EXPERIMENTAL LAND', 'Enemy'}},
-			{ SBC, 'T4ThreatExists', {{'Land'}, categories.LAND}},
-            
-        },
-        BuilderType = 'Any',
-        BuilderData = {
-            Construction = {
-                BuildClose = false,
-                BuildStructures = {
-                    'T2StrategicMissile',
-                    'T2StrategicMissile',
-                    'T2StrategicMissile',
-                    'T2StrategicMissile',
-                    'T2StrategicMissile',
-                },
-                Location = 'LocationType',
-            }
-        }
-    },
+  
     Builder {
         BuilderName = 'NC T3 Base D Engineer PD - Exp Response',
         PlatoonTemplate = 'UEFT3EngineerBuilderSorian',
@@ -1129,7 +1131,7 @@ BuilderGroup {
             { UCBC, 'UnitsLessAtLocation', { 'LocationType', 10, categories.SHIELD * categories.TECH3 * categories.STRUCTURE} },
             { MIBC, 'FactionIndex', {1, 2, 4}},
 			{ UCBC, 'LocationEngineersBuildingLess', { 'LocationType', 1, 'SHIELD STRUCTURE TECH3' } },
-            { SIBC, 'GreaterThanEconEfficiencyOverTime', { 0.95, 1.2 }},
+            { SIBC, 'GreaterThanEconEfficiencyOverTime', { 0.85, 1.1 }},
             
             { IBC, 'BrainNotLowPowerMode', {} },
             { UCBC, 'UnitCapCheckLess', { 0.95 } },

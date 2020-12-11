@@ -41,7 +41,7 @@ BuilderGroup {
             { SIBC, 'HaveGreaterThanUnitsWithCategory', { 8, 'ENERGYPRODUCTION TECH3' }},
 		
          
-            { SIBC, 'GreaterThanEconEfficiencyOverTime', { 1.20, 1.20} },
+            { SIBC, 'GreaterThanEconEfficiencyOverTime', { 1.20, 1.05} },
             
             { UCBC, 'FactoryCapCheck', { 'LocationType', 'Gate' } },
             { IBC, 'BrainNotLowPowerMode', {} },
@@ -72,13 +72,13 @@ Builder {
         BuilderConditions = {
             { IBC, 'BrainNotLowPowerMode', {} },
             { UCBC, 'FactoryCapCheck', { 'LocationType', 'Land' } },
-            { SIBC, 'GreaterThanEconEfficiencyOverTime', { 0.75, 1.20} },
+            { SIBC, 'GreaterThanEconEfficiencyOverTime', { 0.80, 1.20} },
             
-            { SBC, 'MapLessThan', { 2000, 2000 }},
+        
             { SBC, 'IsIslandMap', { false } },
           
             
-			{ UCBC, 'HaveLessThanUnitsInCategoryBeingBuilt', { 1, 'LAND FACTORY', 'LocationType', }},
+			{ UCBC, 'HaveLessThanUnitsInCategoryBeingBuilt', { 3, 'LAND FACTORY' }},
         },
         BuilderType = 'Any',
         BuilderData = {
@@ -98,14 +98,14 @@ Builder {
         BuilderConditions = {
             { IBC, 'BrainNotLowPowerMode', {} },
             { UCBC, 'FactoryCapCheck', { 'LocationType', 'Land' } },
-            { SIBC, 'GreaterThanEconEfficiencyOverTime', { 0.75, 1.1} },
+            { SIBC, 'GreaterThanEconEfficiencyOverTime', { 0.80, 1.1} },
             
-            { SBC, 'MapLessThan', { 2000, 2000 }},
+          
             { SBC, 'IsIslandMap', { false } },
           
             { UCBC, 'HaveUnitsWithCategoryAndAlliance', { true, 30, categories.MOBILE * categories.LAND - categories.ENGINEER, 'Enemy'}},
           
-			{ UCBC, 'HaveLessThanUnitsInCategoryBeingBuilt', { 1, 'LAND FACTORY', 'LocationType', }},
+			{ UCBC, 'HaveLessThanUnitsInCategoryBeingBuilt', { 3, 'LAND FACTORY'}},
         },
         BuilderType = 'Any',
         BuilderData = {
@@ -130,11 +130,11 @@ Builder {
         BuilderConditions = {
             { IBC, 'BrainNotLowPowerMode', {} },
             { UCBC, 'FactoryCapCheck', { 'LocationType', 'Air' } },
-            { SIBC, 'GreaterThanEconEfficiencyOverTime', { 0.70, 1.1} },
+            { SIBC, 'GreaterThanEconEfficiencyOverTime', { 0.80, 1.1} },
             
           
             { EBC, 'MassToFactoryRatioBaseCheck', { 'LocationType' } },
-			{ UCBC, 'HaveLessThanUnitsInCategoryBeingBuilt', { 2, 'AIR FACTORY', 'LocationType', }},
+			{ UCBC, 'HaveLessThanUnitsInCategoryBeingBuilt', { 3, 'AIR FACTORY' }},
         },
         BuilderType = 'Any',
         BuilderData = {
@@ -154,12 +154,12 @@ Builder {
         BuilderConditions = {
             { IBC, 'BrainNotLowPowerMode', {} },
             { UCBC, 'FactoryCapCheck', { 'LocationType', 'Air' } },
-            { SIBC, 'GreaterThanEconEfficiencyOverTime', { 0.70, 1.1} },
+            { SIBC, 'GreaterThanEconEfficiencyOverTime', { 0.80, 1.1} },
             
           
-            { UCBC, 'HaveUnitsWithCategoryAndAlliance', { true, 20, categories.MOBILE * categories.AIR - categories.SCOUT, 'Enemy'}},
+            { UCBC, 'HaveUnitsWithCategoryAndAlliance', { true, 12, categories.MOBILE * categories.AIR - categories.SCOUT, 'Enemy'}},
             { EBC, 'MassToFactoryRatioBaseCheck', { 'LocationType' } },
-			{ UCBC, 'HaveLessThanUnitsInCategoryBeingBuilt', { 2, 'AIR FACTORY', 'LocationType', }},
+			{ UCBC, 'HaveLessThanUnitsInCategoryBeingBuilt', { 3, 'AIR FACTORY', 'LocationType', }},
         },
         BuilderType = 'Any',
         BuilderData = {

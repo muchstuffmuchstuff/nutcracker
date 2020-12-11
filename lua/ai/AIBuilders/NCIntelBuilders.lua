@@ -301,7 +301,7 @@ BuilderGroup {
     Builder {
         BuilderName = 'NC T1 Radar Upgrade',
         PlatoonTemplate = 'T1RadarUpgrade',
-        Priority = 300,
+        Priority = 500,
         BuilderConditions = {
         
 			{ SIBC, 'HaveGreaterThanUnitsWithCategory', { 1, categories.ENERGYPRODUCTION * categories.TECH2 } },
@@ -319,7 +319,7 @@ BuilderGroup {
     Builder {
         BuilderName = 'NC T2 Radar Upgrade',
         PlatoonTemplate = 'T2RadarUpgrade',
-        Priority = 400,
+        Priority = 700,
         BuilderConditions = {
             { SIBC, 'GreaterThanEconIncome',  { 9, 500}},
 		
@@ -336,44 +336,7 @@ BuilderGroup {
 
 
 
-BuilderGroup {
-    BuilderGroupName = 'NCRadarUpgradeBuildersMain',
-    BuildersType = 'PlatoonFormBuilder',
-    Builder {
-        BuilderName = 'NC T1 Radar Upgrade',
-        PlatoonTemplate = 'T1RadarUpgrade',
-        Priority = 200,
-        BuilderConditions = {
-            { SIBC, 'GreaterThanEconIncome',  { 2, 100 }},
-			{ SIBC, 'HaveGreaterThanUnitsWithCategory', { 1, categories.ENERGYPRODUCTION * categories.TECH2 } },
-			{ UCBC, 'HaveLessThanUnitsInCategoryBeingBuilt', { 1, categories.RADAR * categories.STRUCTURE * categories.TECH2, 'RADAR STRUCTURE' }},
-            { SIBC, 'GreaterThanEconEfficiencyOverTime', { 0.95, 1.25 }},
-            
-			{ UCBC, 'UnitsLessAtLocation', { 'LocationType', 1, categories.RADAR * categories.STRUCTURE * categories.TECH2 } },
-            { IBC, 'BrainNotLowPowerMode', {} },
-        },
-        BuilderType = 'Any',
-        FormDebugFunction = function()
-            local test = false
-        end,
-    },
-    Builder {
-        BuilderName = 'NC T2 Radar Upgrade',
-        PlatoonTemplate = 'T2RadarUpgrade',
-        Priority = 300,
-        BuilderConditions = {
-            { SIBC, 'GreaterThanEconIncome',  { 9, 500}},
-			{ SIBC, 'HaveGreaterThanUnitsWithCategory', { 1, categories.ENERGYPRODUCTION * categories.TECH3 } },
-			{ UCBC, 'HaveLessThanUnitsWithCategory', { 1, categories.OMNI * categories.STRUCTURE } },
-            { SIBC, 'GreaterThanEconEfficiencyOverTime', { 0.95, 1.25 }},
-            
-            { IBC, 'BrainNotLowPowerMode', {} },
-			{ UCBC, 'UnitsLessAtLocation', { 'LocationType', 1, categories.OMNI * categories.STRUCTURE } },
-            { UCBC, 'HaveLessThanUnitsInCategoryBeingBuilt', { 1, categories.OMNI * categories.STRUCTURE, 'RADAR STRUCTURE' } },
-        },
-        BuilderType = 'Any',
-    },
-}
+
 
 
 

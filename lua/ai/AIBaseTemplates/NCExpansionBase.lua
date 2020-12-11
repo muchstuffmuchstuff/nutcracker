@@ -35,7 +35,7 @@ BaseBuilderTemplate {
 		
 	        
         # Engineer Support buildings
-        'NCEngineeringSupportBuilder',
+        
         
            
         # Build Mass high pri at this base
@@ -80,7 +80,7 @@ BaseBuilderTemplate {
         'NCT2Shields',
         'NCShieldUpgrades',
         'NCT3Shields',
-        'NCEngineeringUpgrades',
+      
         'NClandbehavior',
 
         # ==== AIR UNIT BUILDERS ==== #
@@ -151,8 +151,8 @@ BaseBuilderTemplate {
             SCU = 10,
         },
         FactoryCount = {
-            Land = 5,
-            Air = 6,
+            Land = 8,
+            Air = 10,
             Sea = 6,
             Gate = 0, #1,
         },

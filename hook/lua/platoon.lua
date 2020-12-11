@@ -297,6 +297,45 @@ NavalHuntNC = function(self)
         WaitSeconds(17)
     end
 end,
+
+NukeNC = function(self)
+    self:Stop()
+    local aiBrain = self:GetBrain()
+    local platoonUnits = self:GetPlatoonUnits()
+    local unit
+    --GET THE Launcher OUT OF THIS PLATOON
+    for k, v in platoonUnits do
+        if EntityCategoryContains(categories.SILO * categories.NUKE, v) then
+            unit = v
+            break
+        end
+    end
+
+    if unit then
+        local bp = unit:GetBlueprint()
+        local weapon = bp.Weapon[1]
+        local maxRadius = weapon.MaxRadius
+        local nukePos, oldTargetLocation
+        unit:SetAutoMode(true)
+        while aiBrain:PlatoonExists(self) do
+            while unit:GetNukeSiloAmmoCount() < 1 do
+                WaitSeconds(11)
+                if not  aiBrain:PlatoonExists(self) then
+                    return
+                end
+            end
+
+            nukePos = import('/lua/ai/aibehaviors.lua').GetHighestThreatClusterLocation(aiBrain, unit)
+            if nukePos then
+                IssueNuke({unit}, nukePos)
+                WaitSeconds(12)
+                IssueClearCommands({unit})
+            end
+            WaitSeconds(1)
+        end
+    end
+    self:PlatoonDisband()
+end,
     
 
 }
