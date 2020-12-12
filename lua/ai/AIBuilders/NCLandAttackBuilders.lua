@@ -263,7 +263,7 @@ BuilderGroup {
             PrioritizedCategories = {
 
 
-            
+            'LAND EXPERIMENTAL',
                 'ALLUNITS',
             },
         },    
@@ -271,7 +271,39 @@ BuilderGroup {
         BuilderType = 'Any',
     },
 
-  
+    Builder {
+        BuilderName = 'NCengihuntlandunits',
+        PlatoonTemplate = 'StrikeForceSmallNC',
+		PlatoonAddPlans = {'PlatoonCallForHelpAISorian', 'DistressResponseAISorian'},
+		PlatoonAddBehaviors = { 'AirLandToggleSorian' },
+        Priority = 100,
+        
+        BuilderConditions = { 
+            { MIBC, 'GreaterThanGameTime', { 360} },
+            { SBC, 'LessThanGameTime', { 2399 } },
+                        { UCBC, 'PoolGreaterAtLocation', { 'LocationType', 0, categories.MOBILE * categories.LAND - categories.ENGINEER } },
+			{ SBC, 'NoRushTimeCheck', { 0 }},
+        },
+        BuilderData = {
+        
+          
+                        SearchRadius = 6000,
+			ThreatSupport = 5,
+            PrioritizedCategories = {
+
+ 'MOBILE LAND',
+
+               
+                
+                'COMMAND',
+            
+                'ALLUNITS',
+            },
+        },    
+        InstanceCount = 10,
+        BuilderType = 'Any',
+    },
+
     Builder {
         BuilderName = 'NCengihuntlandunits',
         PlatoonTemplate = 'StrikeForceMediumNC',
@@ -292,8 +324,8 @@ BuilderGroup {
 			ThreatSupport = 5,
             PrioritizedCategories = {
 
- 'ENGINEER',
-'MASSEXTRACTION',
+ 'MOBILE LAND',
+
                
                 
                 'COMMAND',
@@ -308,35 +340,7 @@ BuilderGroup {
 
 
  
-  Builder {
-        BuilderName = 'NCmasshuntlandunits',
-        PlatoonTemplate = 'StrikeForceMediumNC',
-		PlatoonAddPlans = {'PlatoonCallForHelpAISorian', 'DistressResponseAISorian'},
-		PlatoonAddBehaviors = { 'AirLandToggleSorian' },
-        Priority = 100,
-        BuilderConditions = { 
-   
-            { MIBC, 'GreaterThanGameTime', { 360} },
-            { SBC, 'LessThanGameTime', { 2399 } },
-                        { UCBC, 'PoolGreaterAtLocation', { 'LocationType', 0, categories.MOBILE * categories.LAND - categories.ENGINEER } },
-			{ SBC, 'NoRushTimeCheck', { 0 }},
-        },
-        BuilderData = {
-           
-                        SearchRadius = 6000,
-			ThreatSupport = 5,
-            PrioritizedCategories = {
-'MASSEXTRACTION',
-                'ENGINEER',
-                
-                'COMMAND',
-            
-                'ALLUNITS',
-            },
-        },    
-        InstanceCount = 10,
-        BuilderType = 'Any',
-    },
+  
     Builder {
         BuilderName = 'NCmasshuntlandunits_lategame',
         PlatoonTemplate = 'StrikeForceLargeNC',
@@ -354,8 +358,8 @@ BuilderGroup {
                         SearchRadius = 6000,
 			ThreatSupport = 40,
             PrioritizedCategories = {
-'MASSEXTRACTION',
-                'ENGINEER',
+'MOBILE LAND',
+          
                 
                 'COMMAND',
             

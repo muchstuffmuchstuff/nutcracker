@@ -150,11 +150,11 @@ BuilderGroup {
         BuilderConditions = {
 			
             { SIBC, 'HaveLessThanUnitsInCategoryBeingBuilt', { 1, categories.NUKE * categories.STRUCTURE}},
-            { SIBC, 'HaveGreaterThanUnitsWithCategory', { 1, categories.ENERGYPRODUCTION * categories.TECH3 } },
+            { SIBC, 'HaveGreaterThanUnitsWithCategory', { 2, categories.ENERGYPRODUCTION * categories.TECH3 } },
          
 		{ MIBC, 'FactionIndex', {1,2, 3}},
           
-            { SIBC, 'GreaterThanEconEfficiencyOverTime', { 0.95, 1.1}},
+            { SIBC, 'GreaterThanEconEfficiencyOverTime', { 1.0, 1.1}},
             
 			
             { IBC, 'BrainNotLowPowerMode', {} },
@@ -219,7 +219,7 @@ BuilderGroup {
 			
           
 			{ SBC, 'MapGreaterThan', { 1000, 1000 }},
-            { SIBC, 'GreaterThanEconEfficiencyOverTime', { 0.95, 1.1}},
+            { SIBC, 'GreaterThanEconEfficiencyOverTime', { 1.0, 1.2}},
             
             { IBC, 'BrainNotLowPowerMode', {} },
 			#{ SIBC, 'T4BuildingCheck', {} },
@@ -271,7 +271,7 @@ BuilderGroup {
         Priority = 1200,
         BuilderConditions = {
             {CheckUnitRangeNC, { 'LocationType', 'T3Artillery', categories.STRUCTURE } },
-     { SIBC, 'HaveLessThanUnitsInCategoryBeingBuilt', { 1, categories.TECH3 * categories.ARTILLERY * categories.STRUCTURE * categories.xab2307}},
+            { SIBC, 'HaveLessThanUnitsInCategoryBeingBuilt', { 1, categories.TECH3 *  (categories.xab2307 + categories.ARTILLERY ) * categories.STRUCTURE}},
 			{ SIBC, 'HaveGreaterThanUnitsWithCategory', { 4, categories.ENERGYPRODUCTION * categories.TECH3 } },
 		
            
@@ -300,7 +300,7 @@ BuilderGroup {
         PlatoonTemplate = 'AeonT3EngineerBuilderSorian',
         Priority = 1201,
         BuilderConditions = {
-	{ SIBC, 'HaveLessThanUnitsInCategoryBeingBuilt', { 1, categories.TECH3 * categories.ARTILLERY * categories.STRUCTURE * categories.xab2307 }},
+            { SIBC, 'HaveLessThanUnitsInCategoryBeingBuilt', { 1, categories.TECH3 *  (categories.xab2307 + categories.ARTILLERY ) * categories.STRUCTURE}},
     { CheckUnitRangeNC, { 'LocationType', 'T3RapidArtillery', categories.STRUCTURE, 2 } },
 			{ SIBC, 'HaveGreaterThanUnitsWithCategory', { 4, categories.ENERGYPRODUCTION * categories.TECH3 } },
            

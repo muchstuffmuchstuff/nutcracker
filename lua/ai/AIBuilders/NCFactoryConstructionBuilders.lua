@@ -72,7 +72,7 @@ Builder {
         BuilderConditions = {
             { IBC, 'BrainNotLowPowerMode', {} },
             { UCBC, 'FactoryCapCheck', { 'LocationType', 'Land' } },
-            { SIBC, 'GreaterThanEconEfficiencyOverTime', { 0.80, 1.20} },
+            { SIBC, 'GreaterThanEconEfficiencyOverTime', { 0.90, 1.20} },
             
         
             { SBC, 'IsIslandMap', { false } },
@@ -98,7 +98,7 @@ Builder {
         BuilderConditions = {
             { IBC, 'BrainNotLowPowerMode', {} },
             { UCBC, 'FactoryCapCheck', { 'LocationType', 'Land' } },
-            { SIBC, 'GreaterThanEconEfficiencyOverTime', { 0.80, 1.1} },
+            { SIBC, 'GreaterThanEconEfficiencyOverTime', { 0.90, 1.1} },
             
           
             { SBC, 'IsIslandMap', { false } },
@@ -130,7 +130,7 @@ Builder {
         BuilderConditions = {
             { IBC, 'BrainNotLowPowerMode', {} },
             { UCBC, 'FactoryCapCheck', { 'LocationType', 'Air' } },
-            { SIBC, 'GreaterThanEconEfficiencyOverTime', { 0.80, 1.1} },
+            { SIBC, 'GreaterThanEconEfficiencyOverTime', { 0.90, 1.1} },
             
           
             { EBC, 'MassToFactoryRatioBaseCheck', { 'LocationType' } },
@@ -154,7 +154,7 @@ Builder {
         BuilderConditions = {
             { IBC, 'BrainNotLowPowerMode', {} },
             { UCBC, 'FactoryCapCheck', { 'LocationType', 'Air' } },
-            { SIBC, 'GreaterThanEconEfficiencyOverTime', { 0.80, 1.1} },
+            { SIBC, 'GreaterThanEconEfficiencyOverTime', { 0.90, 1.1} },
             
           
             { UCBC, 'HaveUnitsWithCategoryAndAlliance', { true, 12, categories.MOBILE * categories.AIR - categories.SCOUT, 'Enemy'}},
@@ -264,7 +264,7 @@ BuilderGroup {
         BuilderConditions = {
             { IBC, 'BrainNotLowPowerMode', {} },
             { UCBC, 'FactoryCapCheck', { 'LocationType', 'Air' } },
-            { SIBC, 'GreaterThanEconEfficiencyOverTime', { 0.70, 1.1} },
+            { SIBC, 'GreaterThanEconEfficiencyOverTime', { 0.90, 1.1} },
             
             { UCBC, 'UnitCapCheckLess', { 0.95 } },
             { EBC, 'MassToFactoryRatioBaseCheck', { 'LocationType' } },
@@ -287,7 +287,7 @@ BuilderGroup {
         PlatoonTemplate = 'CommanderBuilderSorian',
         Priority = 900,
         BuilderConditions = {
-            { SIBC, 'GreaterThanEconEfficiencyOverTime', { 0.70, 1.1} },
+            { SIBC, 'GreaterThanEconEfficiencyOverTime', { 0.90, 1.1} },
             
             { UCBC, 'FactoryCapCheck', { 'LocationType', 'Air' } },
             { UCBC, 'UnitCapCheckLess', { 0.95 } },

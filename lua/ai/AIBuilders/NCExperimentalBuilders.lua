@@ -200,7 +200,7 @@ BuilderGroup {
     Builder {
         BuilderName = 'nc T3 Air Exp1 Engineer 1',
         PlatoonTemplate = 'T3EngineerBuilderSorian',
-        Priority = 985,
+        Priority = 995,
         BuilderConditions = {
             { MIBC, 'FactionIndex', {2, 3, 4}},
             { SIBC, 'GreaterThanEconEfficiencyOverTime', { 1.05, 1.15} },

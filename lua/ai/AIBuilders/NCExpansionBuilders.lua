@@ -558,7 +558,7 @@ BuilderGroup {
     BuildersType = 'EngineerBuilder',
 Builder {
         BuilderName = 'NCgetinclosewithmissile',
-        PlatoonTemplate = 'T2T3EngineerBuilderNC',
+        PlatoonTemplate = 'T2T3EngineerBuilderNC_FIREBASE',
         Priority = 980,
         InstanceCount = 4,
         NeedGuard = true,

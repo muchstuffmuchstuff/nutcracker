@@ -168,7 +168,7 @@ Builder {
         InstanceCount = 5,
         BuilderConditions = {
           
-       
+            { UCBC, 'UnitsLessAtLocation', { 'LocationType', 10, categories.TECH2 * categories.DIRECTFIRE * categories.DEFENSE }},
          { SBC, 'GreaterThanEnemyUnitsAroundBase', { 'LocationType', 5, categories.MOBILE * categories.LAND - categories.SCOUT, 250 } },
   
        
@@ -1131,7 +1131,7 @@ BuilderGroup {
             { UCBC, 'UnitsLessAtLocation', { 'LocationType', 10, categories.SHIELD * categories.TECH3 * categories.STRUCTURE} },
             { MIBC, 'FactionIndex', {1, 2, 4}},
 			{ UCBC, 'LocationEngineersBuildingLess', { 'LocationType', 1, 'SHIELD STRUCTURE TECH3' } },
-            { SIBC, 'GreaterThanEconEfficiencyOverTime', { 0.85, 1.1 }},
+            { SIBC, 'GreaterThanEconEfficiencyOverTime', { 0.95, 1.1 }},
             
             { IBC, 'BrainNotLowPowerMode', {} },
             { UCBC, 'UnitCapCheckLess', { 0.95 } },
@@ -1329,10 +1329,43 @@ BuilderGroup {
             { UCBC, 'BuildingLessAtLocation', { 'LocationType', 1, 'ANTIMISSILE TECH3 STRUCTURE' } },
 			{ UCBC, 'UnitsGreaterAtLocation', { 'LocationType', 0, categories.ANTIMISSILE * categories.TECH3 * categories.STRUCTURE}},
             { UCBC, 'UnitsLessAtLocation', { 'LocationType', 3, categories.ANTIMISSILE * categories.TECH3 * categories.STRUCTURE}},
-            #{ SIBC, 'GreaterThanEconIncome', { 2.5, 100}},
+        
             { IBC, 'BrainNotLowPowerMode', {} },
             { SIBC, 'GreaterThanEconEfficiencyOverTime', { 0.95, 1.2 }},
-            
+            { UCBC, 'HaveUnitsWithCategoryAndAlliance', { true, 0, 'NUKE SILO STRUCTURE', 'Enemy'}},
+			{ SIBC, 'EngineerNeedsAssistance', { false, 'LocationType', {'ANTIMISSILE TECH3 STRUCTURE'} }},
+            { UCBC, 'UnitCapCheckLess', { .95 } },
+        },
+        BuilderType = 'Any',
+        BuilderData = {
+            NumAssistees = 2,
+            Construction = {
+                BuildClose = false,
+                AdjacencyCategory = 'FACTORY -NAVAL',
+                AdjacencyDistance = 100,
+                BuildStructures = {
+                    'T3StrategicMissileDefense',
+                },
+                Location = 'LocationType',
+            }
+        }
+    },
+    Builder {
+        BuilderName = 'NC T3 Anti-Nuke Engineer lots of nukes',
+        PlatoonTemplate = 'T3EngineerBuilderSorian',
+        Priority = 966,
+		InstanceCount = 1,
+        BuilderConditions = {
+           
+			{ SIBC, 'HaveGreaterThanUnitsWithCategory', { 0, categories.ENERGYPRODUCTION * categories.TECH3 } },
+			{ SIBC, 'HaveGreaterThanUnitsWithCategory', { 0, categories.MASSPRODUCTION * categories.TECH3 } },
+            { UCBC, 'BuildingLessAtLocation', { 'LocationType', 1, 'ANTIMISSILE TECH3 STRUCTURE' } },
+			{ UCBC, 'UnitsGreaterAtLocation', { 'LocationType', 0, categories.ANTIMISSILE * categories.TECH3 * categories.STRUCTURE}},
+            { UCBC, 'UnitsLessAtLocation', { 'LocationType', 4, categories.ANTIMISSILE * categories.TECH3 * categories.STRUCTURE}},
+        
+            { IBC, 'BrainNotLowPowerMode', {} },
+            { SIBC, 'GreaterThanEconEfficiencyOverTime', { 0.95, 1.2 }},
+            { UCBC, 'HaveUnitsWithCategoryAndAlliance', { true, 3, 'NUKE SILO STRUCTURE', 'Enemy'}},
 			{ SIBC, 'EngineerNeedsAssistance', { false, 'LocationType', {'ANTIMISSILE TECH3 STRUCTURE'} }},
             { UCBC, 'UnitCapCheckLess', { .95 } },
         },

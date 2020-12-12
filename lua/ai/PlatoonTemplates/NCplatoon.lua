@@ -152,6 +152,14 @@ PlatoonTemplate {
 ####Land
 
 PlatoonTemplate {
+    Name = 'StrikeForceSmallNC',
+    Plan = 'AttackForceAISorian',
+    GlobalSquads = {
+        { categories.MOBILE * categories.LAND - categories.EXPERIMENTAL - categories.ENGINEER - categories.xsl0402, 1, 5, 'Attack', 'GrowthFormation' }
+    },
+}
+
+PlatoonTemplate {
     Name = 'StrikeForceMediumNC',
     Plan = 'AttackForceAISorian',
     GlobalSquads = {
@@ -212,6 +220,14 @@ PlatoonTemplate {
     Plan = 'EngineerBuildAISorian',
     GlobalSquads = {
         { categories.ENGINEER * (categories.TECH2 + categories.TECH3) - categories.ENGINEERSTATION , 1, 1, 'support', 'None' }
+    },
+}
+
+PlatoonTemplate {
+    Name = 'T2T3EngineerBuilderNC_FIREBASE',
+    Plan = 'EngineerBuildAISorian',
+    GlobalSquads = {
+        { categories.ENGINEER * (categories.TECH2 + categories.TECH3) - categories.ENGINEERSTATION - categories.SUBCOMMANDER - categories.COMMAND , 1, 1, 'support', 'None' }
     },
 }
 
