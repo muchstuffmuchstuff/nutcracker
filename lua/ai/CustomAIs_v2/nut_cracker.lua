@@ -8,7 +8,7 @@
 
 AI = {
 	Name = 'Nut Cracker',
-	Version = '1',
+	Version = '2',
 	AIList = {
 		{
 			key = 'nut_cracker',
