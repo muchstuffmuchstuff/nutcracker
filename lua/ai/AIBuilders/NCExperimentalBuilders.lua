@@ -203,6 +203,7 @@ BuilderGroup {
         Priority = 995,
         BuilderConditions = {
             { MIBC, 'FactionIndex', {2, 3, 4}},
+            { SIBC, 'HaveLessThanUnitsInCategoryBeingBuilt', { 1, categories.ANTIMISSILE * categories.STRUCTURE }},
             { SIBC, 'GreaterThanEconEfficiencyOverTime', { 1.05, 1.15} },
            
             { SIBC, 'HaveLessThanUnitsInCategoryBeingBuilt', { 1, categories.EXPERIMENTAL * categories.AIR }},

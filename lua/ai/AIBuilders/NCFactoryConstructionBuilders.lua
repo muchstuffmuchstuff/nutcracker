@@ -38,7 +38,7 @@ BuilderGroup {
         PlatoonTemplate = 'T3EngineerBuilderSorian',
         Priority = 940,
         BuilderConditions = {
-            { SIBC, 'HaveGreaterThanUnitsWithCategory', { 8, 'ENERGYPRODUCTION TECH3' }},
+            { SIBC, 'HaveGreaterThanUnitsWithCategory', { 10, 'ENERGYPRODUCTION TECH3' }},
 		
          
             { SIBC, 'GreaterThanEconEfficiencyOverTime', { 1.20, 1.05} },
@@ -369,10 +369,10 @@ BuilderGroup {
         PlatoonTemplate = 'T3EngineerBuilderSorian',
         Priority = 950, #850,
         BuilderConditions = {
-            { SIBC, 'HaveGreaterThanUnitsWithCategory', { 1, 'ENERGYPRODUCTION TECH3' }},
-			{ SIBC, 'HaveGreaterThanUnitsWithCategory', { 2, 'MASSPRODUCTION TECH3' }},
+            { SIBC, 'HaveGreaterThanUnitsWithCategory', { 4, 'ENERGYPRODUCTION TECH3' }},
+			{ SIBC, 'HaveGreaterThanUnitsWithCategory', { 6, 'MASSPRODUCTION TECH3' }},
             { UCBC, 'FactoryLessAtLocation', { 'LocationType', 1, 'GATE TECH3 STRUCTURE' }},
-            { SIBC, 'GreaterThanEconEfficiencyOverTime', { 0.95, 1.1} },
+            { SIBC, 'GreaterThanEconEfficiencyOverTime', { 0.99, 1.1} },
             
             { UCBC, 'FactoryCapCheck', { 'LocationType', 'Gate' } },
             { IBC, 'BrainNotLowPowerMode', {} },

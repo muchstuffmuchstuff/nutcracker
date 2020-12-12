@@ -1244,42 +1244,7 @@ BuilderGroup {
     },
 }
 
-# Anti nuke defenses
-BuilderGroup {
-    BuilderGroupName = 'NCT3NukeDefensesExp',
-    BuildersType = 'EngineerBuilder',
-    Builder {
-        BuilderName = 'NC T3 Anti-Nuke Engineer Near Factory Expansion',
-        PlatoonTemplate = 'T3EngineerBuilderSorian',
-        Priority = 935,
-        BuilderConditions = {
-            #{ UCBC, 'HaveGreaterThanUnitsWithCategory', { 5, categories.ENGINEER * categories.TECH3}},
-			{ SIBC, 'HaveGreaterThanUnitsWithCategory', { 0, categories.ENERGYPRODUCTION * categories.TECH3 } },
-			{ SIBC, 'HaveGreaterThanUnitsWithCategory', { 0, categories.MASSPRODUCTION * categories.TECH3 } },
-            { UCBC, 'BuildingLessAtLocation', { 'LocationType', 1, 'ANTIMISSILE TECH3 STRUCTURE' } },
-            { UCBC, 'UnitsLessAtLocation', { 'LocationType', 1, categories.ANTIMISSILE * categories.TECH3 * categories.STRUCTURE}},
-            #{ SIBC, 'GreaterThanEconIncome', { 2.5, 100}},
-            { IBC, 'BrainNotLowPowerMode', {} },
-            { SIBC, 'GreaterThanEconEfficiencyOverTime', { 0.95, 1.2 }},
-            
-			{ SIBC, 'EngineerNeedsAssistance', { false, 'LocationType', {'ANTIMISSILE TECH3 STRUCTURE'} }},
-            { UCBC, 'UnitCapCheckLess', { .95 } },
-        },
-        BuilderType = 'Any',
-        BuilderData = {
-            NumAssistees = 2,
-            Construction = {
-                BuildClose = false,
-                AdjacencyCategory = 'FACTORY -NAVAL',
-                AdjacencyDistance = 100,
-                BuildStructures = {
-                    'T3StrategicMissileDefense',
-                },
-                Location = 'LocationType',
-            }
-        }
-    },
-}
+
 
 # Anti nuke defenses
 BuilderGroup {
@@ -1298,7 +1263,7 @@ BuilderGroup {
             { UCBC, 'UnitsLessAtLocation', { 'LocationType', 1, categories.ANTIMISSILE * categories.TECH3 * categories.STRUCTURE}},
             #{ SIBC, 'GreaterThanEconIncome', { 2.5, 100}},
             { IBC, 'BrainNotLowPowerMode', {} },
-            { SIBC, 'GreaterThanEconEfficiencyOverTime', { 0.95, 1.2 }},
+            { SIBC, 'GreaterThanEconEfficiencyOverTime', { 0.90, 1.2 }},
             
 			{ SIBC, 'EngineerNeedsAssistance', { false, 'LocationType', {'ANTIMISSILE TECH3 STRUCTURE'} }},
             { UCBC, 'UnitCapCheckLess', { .95 } },
