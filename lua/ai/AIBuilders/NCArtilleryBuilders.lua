@@ -148,7 +148,7 @@ BuilderGroup {
         Priority = 950,
 		InstanceCount = 1,
         BuilderConditions = {
-            { SIBC, 'HaveLessThanUnitsInCategoryBeingBuilt', { 1, categories.ANTIMISSILE * categories.STRUCTURE }},
+            { SIBC, 'HaveLessThanUnitsInCategoryBeingBuilt', { 1, categories.ANTIMISSILE * categories.STRUCTURE * categories.TECH3 }},
             { SIBC, 'HaveLessThanUnitsInCategoryBeingBuilt', { 1, categories.NUKE * categories.STRUCTURE}},
             { SIBC, 'HaveGreaterThanUnitsWithCategory', { 2, categories.ENERGYPRODUCTION * categories.TECH3 } },
          
@@ -172,19 +172,21 @@ BuilderGroup {
             }
         }
     },
+
     Builder {
-        BuilderName = 'nc T3 Nuke lots of cash',
+        BuilderName = 'nc T3 Nuke Engineer lots of juice',
         PlatoonTemplate = 'T3EngineerBuilderSorian',
         Priority = 950,
 		InstanceCount = 1,
         BuilderConditions = {
-      
+          
             { SIBC, 'HaveLessThanUnitsInCategoryBeingBuilt', { 3, categories.NUKE * categories.STRUCTURE}},
-            { SIBC, 'HaveGreaterThanUnitsWithCategory', { 5, categories.ENERGYPRODUCTION * categories.TECH3 } },
+            { SIBC, 'HaveGreaterThanUnitsWithCategory', { 10, categories.ENERGYPRODUCTION * categories.TECH3 } },
+            { SIBC, 'HaveGreaterThanUnitsWithCategory', { 10, categories.MASSEXTRACTION * categories.TECH3 } },
          
 		{ MIBC, 'FactionIndex', {1,2, 3}},
           
-            { SIBC, 'GreaterThanEconEfficiencyOverTime', { 1.1, 1.1}},
+            { SIBC, 'GreaterThanEconEfficiencyOverTime', { 1.05, 1.15}},
             
 			
             { IBC, 'BrainNotLowPowerMode', {} },
@@ -202,6 +204,7 @@ BuilderGroup {
             }
         }
     },
+ 
 
       Builder {
         BuilderName = 'NC Seraphim Exp Nuke Engineer',
@@ -214,7 +217,7 @@ BuilderGroup {
 			
 			
             { SIBC, 'HaveLessThanUnitsInCategoryBeingBuilt', { 1, categories.NUKE * categories.STRUCTURE}},
-            { SIBC, 'HaveGreaterThanUnitsWithCategory', { 4, categories.ENERGYPRODUCTION * categories.TECH3 } },
+            { SIBC, 'HaveGreaterThanUnitsWithCategory', { 8, categories.ENERGYPRODUCTION * categories.TECH3 } },
 			
 			
           
@@ -245,7 +248,7 @@ BuilderGroup {
         InstanceCount = 4,
         BuilderConditions = {
             { UCBC, 'LocationEngineersBuildingGreater', { 'LocationType', 0, categories.STRUCTURE * categories.NUKE}},
-            { SIBC, 'GreaterThanEconEfficiencyOverTime', { 0.95, 1.4}},
+            { SIBC, 'GreaterThanEconEfficiencyOverTime', { 1.1, 1.4}},
             
             { IBC, 'BrainNotLowPowerMode', {} },
         },
@@ -275,7 +278,7 @@ BuilderGroup {
 			{ SIBC, 'HaveGreaterThanUnitsWithCategory', { 4, categories.ENERGYPRODUCTION * categories.TECH3 } },
 		
            
-            { SIBC, 'GreaterThanEconEfficiency', { 1.0, 1.3}},
+            { SIBC, 'GreaterThanEconEfficiency', { 1.05, 1.15}},
 		
             { IBC, 'BrainNotLowPowerMode', {} },
           
@@ -305,7 +308,7 @@ BuilderGroup {
 			{ SIBC, 'HaveGreaterThanUnitsWithCategory', { 4, categories.ENERGYPRODUCTION * categories.TECH3 } },
            
 	
-            { SIBC, 'GreaterThanEconEfficiency', { 0.95, 1.1}},
+            { SIBC, 'GreaterThanEconEfficiency', { 1.05, 1.15}},
 			{ SBC, 'MapGreaterThan', { 1000, 1000 }},
             { IBC, 'BrainNotLowPowerMode', {} },
             #{ SIBC, 'T4BuildingCheck', {} },
@@ -321,11 +324,7 @@ BuilderGroup {
 			
                 BuildStructures = {
                     'T3RapidArtillery',
-'T3ShieldDefense',
-'T3ShieldDefense',
-'T3ShieldDefense',
-'T3ShieldDefense',
-'T3ShieldDefense',
+
                 },
                 Location = 'LocationType',
             }
@@ -338,7 +337,7 @@ BuilderGroup {
         InstanceCount = 4,
         BuilderConditions = {
             { UCBC, 'LocationEngineersBuildingGreater', { 'LocationType', 0, categories.ARTILLERY * categories.TECH3 * categories.STRUCTURE}},
-            { SIBC, 'GreaterThanEconEfficiency', { 0.95, 1.1}},
+            { SIBC, 'GreaterThanEconEfficiency', { 1.05, 1.15}},
             { IBC, 'BrainNotLowPowerMode', {} },
         },
         BuilderType = 'Any',

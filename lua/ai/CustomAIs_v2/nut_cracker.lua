@@ -8,17 +8,17 @@
 
 AI = {
 	Name = 'Nut Cracker',
-	Version = '2',
+	Version = '3',
 	AIList = {
 		{
 			key = 'nut_cracker',
-			name = '<LOC Nut_Cracker_0001>AI: Nut Cracker v1.0',
+			name = '<LOC Nut_Cracker_0001>AI: Nut Cracker v1.1',
 		},
 	},
 	CheatAIList = {
 		{
 			key = 'nut_crackercheat',
-			name = '<LOC Nut_Cracker_0003>AIx: Nut Cracker v1.0',
+			name = '<LOC Nut_Cracker_0003>AIx: Nut Cracker v1.1',
 		},
 	},
 }

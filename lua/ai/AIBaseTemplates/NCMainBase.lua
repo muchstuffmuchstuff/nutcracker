@@ -63,7 +63,7 @@ BaseBuilderTemplate {
         # ==== EXPANSION ==== #
         'NCEngineerExpansionBuildersFull',
         'NCEngineerExpansionBuildersSmall',
-        'NCbuildmissileclose',
+       
       
 		
         
@@ -166,13 +166,13 @@ BaseBuilderTemplate {
         
         'NCextrat3scout',
         'NCAirScoutbehavior',
-        'NCRadarUpgradeBuildersMain',
+        'NCRadarUpgradeBuilders',
         'NCRadarEngineerBuilders',
       
       
         
         
-        'NCRadarUpgradeBuildersMain',
+      
         
         'NCCounterIntelBuilders',
     },

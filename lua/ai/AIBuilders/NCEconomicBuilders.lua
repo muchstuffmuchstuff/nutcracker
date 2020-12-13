@@ -196,6 +196,7 @@ BuilderGroup {
 				maxRadius = 20,
                 BuildStructures = {
                     'T3EnergyProduction',
+                    'T3EnergyProduction',
                 },
             }
         }
@@ -551,11 +552,13 @@ BuilderGroup {
     },
     Builder {
         BuilderName = 'NC T1 Energy Storage Engineer',
-        PlatoonTemplate = 'EngineerBuilderSorian',
-        Priority = 525,
+        PlatoonTemplate = 'T2T3EngineerBuilderNC_FIREBASE',
+        Priority = 725,
         BuilderConditions = {
+            { MIBC, 'GreaterThanGameTime', { 1200 } },
+            { UCBC, 'HaveLessThanUnitsWithCategory', { 4, 'ENERGYSTORAGE' } },
             { UCBC, 'UnitsGreaterAtLocation', { 'LocationType', 0, 'ENERGYPRODUCTION TECH1' }},
-            { UCBC, 'UnitCapCheckLess', { .05 } },
+        
             { UCBC, 'AdjacencyCheck', { 'LocationType', 'ENERGYPRODUCTION TECH1', 100, 'ueb1105' } },
         },
         BuilderType = 'Any',
@@ -1102,7 +1105,7 @@ BuilderGroup {
         BuilderConditions = {
             { MIBC, 'GreaterThanGameTime', { 1200 } },
            { UCBC, 'HaveGreaterThanUnitsWithCategory', { 15, 'MASSEXTRACTION TECH2, MASSEXTRACTION TECH3' }},
-            { SIBC, 'GreaterThanEconEfficiencyOverTime', { 1.05, 1.1 } },
+            { SIBC, 'GreaterThanEconEfficiencyOverTime', { 1.05, 1.05 } },
         },
         BuilderType = 'Any',
         BuilderData = {
@@ -1268,7 +1271,7 @@ BuilderGroup {
 			
         },
         BuilderData = {
-            DesiresAssist = true,
+         
             Construction = {
                 BuildStructures = {
                     'T2EnergyProduction',
@@ -1287,14 +1290,15 @@ BuilderGroup {
         BuilderConditions = {
                       
             { SIBC, 'HaveLessThanUnitsInCategoryBeingBuilt', { 1, categories.STRUCTURE * categories.TECH3 * categories.ENERGYPRODUCTION } },
-	{ SIBC, 'LessThanEconEfficiencyOverTime', { 2.0, 1.3 }},
+	{ SIBC, 'LessThanEconEfficiencyOverTime', { 2.0, 1.4 }},
                      
 			
         },
         BuilderData = {
-            DesiresAssist = true,
+         
             Construction = {
                 BuildStructures = {
+                    'T3EnergyProduction',
                     'T3EnergyProduction',
 
                 },
@@ -1329,7 +1333,7 @@ BuilderGroup {
 			
         },
         BuilderData = {
-            DesiresAssist = true,
+          
             Construction = {
                 BuildStructures = {
                     'T2EnergyProduction',
@@ -1354,7 +1358,7 @@ BuilderGroup {
 			
         },
         BuilderData = {
-            DesiresAssist = true,
+          
             Construction = {
                 BuildStructures = {
                     'T3EnergyProduction',

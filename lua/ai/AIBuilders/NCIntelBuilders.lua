@@ -218,17 +218,18 @@ BuilderGroup {
         }
     },
     Builder {
-        BuilderName = 'NC T3 Omni Engineer',
+        BuilderName = 'NC T3 Radar Engineer',
         PlatoonTemplate = 'T3EngineerBuilderSorian',
         Priority = 950,
         BuilderConditions = {
-            { UCBC, 'HaveLessThanUnitsWithCategory', { 1, categories.OMNI * categories.STRUCTURE } },
-			{ SIBC, 'HaveGreaterThanUnitsWithCategory', { 0, categories.ENERGYPRODUCTION * categories.TECH3 } },
-          
-            { IBC, 'BrainNotLowPowerMode', {} },
-            { SIBC, 'GreaterThanEconEfficiencyOverTime', { 0.95, 1.1 }},
-            
+    
+			{ SIBC, 'HaveGreaterThanUnitsWithCategory', { 3, categories.ENERGYPRODUCTION * categories.TECH3 } },
+        	{ UCBC, 'UnitsLessAtLocation', { 'LocationType', 1, categories.OMNI * categories.STRUCTURE } },
             { UCBC, 'HaveLessThanUnitsInCategoryBeingBuilt', { 1, categories.OMNI * categories.STRUCTURE, 'RADAR STRUCTURE' } },
+            
+            { IBC, 'BrainNotLowPowerMode', {} },
+            { SIBC, 'GreaterThanEconEfficiencyOverTime', { 0.95, 1.25 }},
+            
         },
         BuilderType = 'Any',
         BuilderData = {
@@ -240,6 +241,7 @@ BuilderGroup {
             }
         }
     },
+    
 }
 
 
@@ -296,12 +298,12 @@ Builder {
 }
 
 BuilderGroup {
-    BuilderGroupName = 'NCRadarUpgradeBuildersMain',
+    BuilderGroupName = 'NCRadarUpgradeBuilders',
     BuildersType = 'PlatoonFormBuilder',
     Builder {
         BuilderName = 'NC T1 Radar Upgrade',
         PlatoonTemplate = 'T1RadarUpgrade',
-        Priority = 500,
+        Priority = 700,
         BuilderConditions = {
         
 			{ SIBC, 'HaveGreaterThanUnitsWithCategory', { 1, categories.ENERGYPRODUCTION * categories.TECH2 } },
@@ -319,10 +321,10 @@ BuilderGroup {
     Builder {
         BuilderName = 'NC T2 Radar Upgrade',
         PlatoonTemplate = 'T2RadarUpgrade',
-        Priority = 700,
+        Priority = 900,
         BuilderConditions = {
-            { SIBC, 'GreaterThanEconIncome',  { 9, 500}},
-		
+           
+            { SIBC, 'HaveGreaterThanUnitsWithCategory', { 3, categories.ENERGYPRODUCTION * categories.TECH3 } },
 			{ UCBC, 'HaveLessThanUnitsWithCategory', { 1, categories.OMNI * categories.STRUCTURE } },
             { SIBC, 'GreaterThanEconEfficiencyOverTime', { 0.95, 1.25 }},
             
@@ -333,6 +335,7 @@ BuilderGroup {
         BuilderType = 'Any',
     },
 }
+
 
 
 

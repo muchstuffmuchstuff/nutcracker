@@ -117,7 +117,7 @@ BuilderGroup {
         SearchRadius = 80000,
         BuilderType = 'Any',
         BuilderConditions = {
-            { MIBC, 'LessThanGameTime', { 2100} },
+            { MIBC, 'LessThanGameTime', { 2700} },
             { UCBC, 'PoolGreaterAtLocation', { 'LocationType', 0, 'EXPERIMENTAL AIR' } },
 			{ MIBC, 'FactionIndex', {2, 3, 4}},
 			
@@ -129,7 +129,7 @@ BuilderGroup {
                 TargetThreatType = 'Commander',
             },
             UseMoveOrder = true,
-            PrioritizedCategories = { 'COMMAND' }, 
+            PrioritizedCategories = { 'COMMAND', 'ANTIMISSILE STRUCTURE TECH3' }, 
         },
     },
     Builder {
@@ -145,8 +145,8 @@ BuilderGroup {
         BuilderType = 'Any',
         BuilderConditions = {
 
-            { MIBC, 'GreaterThanGameTime', { 2101} },
-            { MIBC, 'LessThanGameTime', { 3599} },
+            { MIBC, 'GreaterThanGameTime', { 2701} },
+            { MIBC, 'LessThanGameTime', { 4899} },
             { UCBC, 'PoolGreaterAtLocation', { 'LocationType', 0, 'EXPERIMENTAL AIR' } },
 			{ MIBC, 'FactionIndex', {2, 3, 4}},
 			
@@ -158,7 +158,7 @@ BuilderGroup {
                 TargetThreatType = 'Commander',
             },
             UseMoveOrder = true,
-            PrioritizedCategories = { 'COMMAND' }, 
+            PrioritizedCategories = { 'COMMAND','ANTIMISSILE STRUCTURE TECH3' }, 
         },
     },
     Builder {
@@ -174,7 +174,7 @@ BuilderGroup {
         BuilderType = 'Any',
         BuilderConditions = {
 
-            { MIBC, 'GreaterThanGameTime', { 3600} },
+            { MIBC, 'GreaterThanGameTime', { 4900} },
         
             { UCBC, 'PoolGreaterAtLocation', { 'LocationType', 0, 'EXPERIMENTAL AIR' } },
 			{ MIBC, 'FactionIndex', {2, 3, 4}},
@@ -187,7 +187,7 @@ BuilderGroup {
                 TargetThreatType = 'Commander',
             },
             UseMoveOrder = true,
-            PrioritizedCategories = { 'COMMAND' }, 
+            PrioritizedCategories = { 'COMMAND','ANTIMISSILE STRUCTURE TECH3' }, 
         },
     },
 
@@ -203,8 +203,8 @@ BuilderGroup {
         Priority = 995,
         BuilderConditions = {
             { MIBC, 'FactionIndex', {2, 3, 4}},
-            { SIBC, 'HaveLessThanUnitsInCategoryBeingBuilt', { 1, categories.ANTIMISSILE * categories.STRUCTURE }},
-            { SIBC, 'GreaterThanEconEfficiencyOverTime', { 1.05, 1.15} },
+            { SIBC, 'HaveLessThanUnitsInCategoryBeingBuilt', { 1, categories.ANTIMISSILE * categories.STRUCTURE *categories.TECH3 }},
+            { SIBC, 'GreaterThanEconEfficiencyOverTime', { 1.0, 1.05} },
            
             { SIBC, 'HaveLessThanUnitsInCategoryBeingBuilt', { 1, categories.EXPERIMENTAL * categories.AIR }},
             { SIBC, 'HaveGreaterThanUnitsWithCategory', { 1, categories.ENERGYPRODUCTION * categories.TECH3}},

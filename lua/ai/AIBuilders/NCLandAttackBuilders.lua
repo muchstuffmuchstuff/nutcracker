@@ -196,7 +196,7 @@ BuilderGroup {
         BuilderConditions = {
             { SBC, 'NoRushTimeCheck', { 600 }},
             { MIBC, 'FactionIndex', {2, 4}},
-            { UCBC, 'HaveGreaterThanUnitsWithCategory', { 10, 'SUBCOMMANDER' }},
+            { UCBC, 'HaveGreaterThanUnitsWithCategory', { 1, 'SUBCOMMANDER' }},
             { SIBC, 'GreaterThanEconEfficiencyOverTime', { 0.9, 1.3}},
             
         },
