@@ -117,7 +117,7 @@ BuilderGroup {
         SearchRadius = 80000,
         BuilderType = 'Any',
         BuilderConditions = {
-            { MIBC, 'LessThanGameTime', { 2100} },
+            { MIBC, 'LessThanGameTime', { 2900} },
             { UCBC, 'PoolGreaterAtLocation', { 'LocationType', 0, 'EXPERIMENTAL AIR' } },
 			{ MIBC, 'FactionIndex', {2, 3, 4}},
 			
@@ -145,8 +145,8 @@ BuilderGroup {
         BuilderType = 'Any',
         BuilderConditions = {
 
-            { MIBC, 'GreaterThanGameTime', { 2101} },
-            { MIBC, 'LessThanGameTime', { 3599} },
+            { MIBC, 'GreaterThanGameTime', { 2901} },
+            { MIBC, 'LessThanGameTime', { 4799} },
             { UCBC, 'PoolGreaterAtLocation', { 'LocationType', 0, 'EXPERIMENTAL AIR' } },
 			{ MIBC, 'FactionIndex', {2, 3, 4}},
 			
@@ -174,7 +174,7 @@ BuilderGroup {
         BuilderType = 'Any',
         BuilderConditions = {
 
-            { MIBC, 'GreaterThanGameTime', { 3600} },
+            { MIBC, 'GreaterThanGameTime', { 4800} },
         
             { UCBC, 'PoolGreaterAtLocation', { 'LocationType', 0, 'EXPERIMENTAL AIR' } },
 			{ MIBC, 'FactionIndex', {2, 3, 4}},
