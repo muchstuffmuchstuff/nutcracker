@@ -22,7 +22,7 @@ BaseBuilderTemplate {
         'NCmassupgrade',
         'NCt1masscontinuation',
        'NCUpgradeBuilders_mainbase',
-        'NCmorequantumgate',
+    
         
         # Factory upgrades
         'NCEmergencyUpgrade_airfactories',
@@ -63,7 +63,7 @@ BaseBuilderTemplate {
         # ==== EXPANSION ==== #
         'NCEngineerExpansionBuildersFull',
         'NCEngineerExpansionBuildersSmall',
-       
+   
       
 		
         
@@ -166,13 +166,13 @@ BaseBuilderTemplate {
         
         'NCextrat3scout',
         'NCAirScoutbehavior',
-        'NCRadarUpgradeBuilders',
+        'NCRadarUpgradeBuildersMain',
         'NCRadarEngineerBuilders',
       
       
         
         
-      
+        'NCRadarUpgradeBuildersMain',
         
         'NCCounterIntelBuilders',
     },

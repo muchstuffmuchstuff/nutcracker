@@ -73,9 +73,8 @@ BuilderGroup {
             PlatoonAddBehaviors = { 'AirUnitRefitSorian' },
             PlatoonAddPlans = { 'AirIntelToggle', 'DistressResponseAISorian'  },
             Priority = 10,
-            FormRadius = 500,
-            InstanceCount = 5,
-            AggressiveMove = true,
+            FormRadius = 1000,
+            InstanceCount = 50,
             BuilderType = 'Any',
             BuilderConditions = {
                          { UCBC, 'PoolGreaterAtLocation', { 'LocationType', 5, categories.AIR  * categories.MOBILE - categories.TRANSPORTFOCUS - categories.ANTINAVY - categories.SCOUT - categories.ANTIAIR} },
@@ -88,11 +87,8 @@ BuilderGroup {
     
                                     'LAND EXPERIMENTAL',
                                     'ENERGYPRODUCTION TECH3',
-                                    'ANTIMISSILE STRUCTURE TECH3',
-                                    'COMMAND',
+                                    'ANTIMISSLE STRUCTURE TECH3',
                                     'MASSEXTRACTION',
-                                    'ENGINEER',
-                                    
                                    
     
                     
@@ -103,7 +99,7 @@ BuilderGroup {
     }
 
 
-
+   
 
 
 BuilderGroup {
@@ -116,7 +112,6 @@ BuilderGroup {
 		PlatoonAddPlans = { 'AirIntelToggle','DistressResponseAISorian'},
         Priority = 5000,
         InstanceCount = 100,
-        AggressiveMove = true,
        
         BuilderType = 'Any',
         BuilderConditions = {
@@ -132,12 +127,10 @@ BuilderGroup {
 			
             PrioritizedCategories = {    
 
-                'LAND EXPERIMENTAL',
-                'COMMAND',
-                'ANTIMISSILE STRUCTURE TECH3',
-                'MASSEXTRACTION',
-                'ENGINEER',
-                
+                              'ENGINEER',
+                        
+                              'FACTORY LAND',
+                              'ALLUNITS',
                                 
 				
 				
@@ -178,8 +171,8 @@ BuilderGroup {
         InstanceCount = 3,
         BuilderConditions = {
 			
-                        { MIBC, 'GreaterThanGameTime', { 1200} },
-                        { UCBC, 'HaveGreaterThanUnitsWithCategory', { 30, categories.AIR * categories.ANTIAIR*(categories.TECH3 + categories.TECH3) * categories.MOBILE - categories.GROUNDATTACK - categories.SCOUT } },
+                        { MIBC, 'GreaterThanGameTime', { 1800} },
+                        { UCBC, 'HaveGreaterThanUnitsWithCategory', { 25, categories.MOBILE * categories.AIR * categories.TECH3 * categories.ANTIAIR - categories.GROUNDATTACK - categories.BOMBER} },
 			
 			
             { IBC, 'BrainNotLowPowerMode', {} },
@@ -214,7 +207,30 @@ BuilderGroup {
         },
         
     },
+    Builder {
+        BuilderName = 'NC t1bomber protect expansion',
+        PlatoonTemplate = 'T1AirBomber',
+        Priority = 1000,
+        BuilderType = 'Air',
+        InstanceCount = 2,
+        BuilderConditions = {
+			
+            { SBC, 'GreaterThanEnemyUnitsAroundBase', { 'LocationType', 0, categories.ENGINEER, 40 } },
+                        { UCBC, 'HaveLessThanUnitsWithCategory', { 10, categories.AIR * categories.GROUNDATTACK * categories.BOMBER * categories.MOBILE - categories.ANTIAIR } },
+			
+			
+            { IBC, 'BrainNotLowPowerMode', {} },
+			{ SBC, 'NoRushTimeCheck', { 600 }},
+			
+           { SIBC, 'GreaterThanEconEfficiencyOverTime', { 0.85, 1.10 }},
+           
+           
+			
+        },
+        
+    },
 }
+
 
 
 BuilderGroup {
@@ -254,8 +270,7 @@ BuilderGroup {
 		PlatoonAddBehaviors = { 'AirUnitRefitSorian' },
 		PlatoonAddPlans = { 'AirIntelToggle','DistressResponseAISorian'},
         Priority = 300,
-        FormRadius = 300,
-        AggressiveMove = true,
+        FormRadius = 1000,
         InstanceCount = 50,
        
         BuilderType = 'Any',
@@ -286,7 +301,7 @@ Builder {
 		PlatoonAddBehaviors = { 'AirUnitRefitSorian' },
 		PlatoonAddPlans = { 'AirIntelToggle','DistressResponseAISorian'},
         Priority = 300,
-        FormRadius = 300,
+        FormRadius = 1000,
         InstanceCount = 10,
        
         BuilderType = 'Any',
@@ -384,7 +399,7 @@ Builder {
         BuilderConditions = {
                        
                        
-                        { UCBC, 'PoolGreaterAtLocation', { 'LocationType', 0, categories.MOBILE * categories.AIR * categories.BOMBER *categories.GROUNDATTACK - categories.ANTIAIR - categories.EXPERIMENTAL - categories.TRANSPORTFOCUS - categories.SCOUT } },
+                        { UCBC, 'PoolGreaterAtLocation', { 'LocationType', 0, categories.MOBILE * categories.AIR * categories.BOMBER * categories.GROUNDATTACK - categories.ANTIAIR - categories.EXPERIMENTAL - categories.TRANSPORTFOCUS - categories.SCOUT } },
 			{ SBC, 'NoRushTimeCheck', { 0 }},
         },
         BuilderData = {
@@ -394,7 +409,7 @@ Builder {
 
                                 'EXPERIMENTAL LAND',
                                 'MOBILE LAND',
-                           
+                                
                                 
 				
 				
@@ -414,7 +429,6 @@ Builder {
             Priority = 5000,
             InstanceCount = 20,
             FormRadius = 500,
-            AggressiveMove = true,
             BuilderType = 'Any',
             BuilderConditions = {
                            
@@ -447,7 +461,6 @@ Builder {
             PlatoonAddPlans = { 'AirIntelToggle','PlatoonCallForHelpAISorian'},
             Priority = 500,
             InstanceCount = 10,
-            AggressiveMove = true,
             BuilderType = 'Any',
             BuilderConditions = {
                             { MIBC, 'GreaterThanGameTime', { 1800 } },
@@ -459,13 +472,10 @@ Builder {
                 SearchRadius = 5000,
                 
                 PrioritizedCategories = {    
-    
                     'LAND EXPERIMENTAL',
                     'ENERGYPRODUCTION TECH3',
-                    'ANTIMISSILE STRUCTURE TECH3',
-                    'COMMAND',
+                    'ANTIMISSLE STRUCTURE TECH3',
                     'MASSEXTRACTION',
-                    'ENGINEER',
                     
                     
                 },
@@ -481,13 +491,12 @@ Builder {
             PlatoonTemplate = 'T3AirGunship',
             Priority = 750,
             InstanceCount = 2,
-      
             BuilderType = 'Air',
             BuilderConditions = {
                 { IBC, 'BrainNotLowPowerMode', {} },
                 { SBC, 'NoRushTimeCheck', { 600 }},
-                { UCBC, 'HaveGreaterThanUnitsWithCategory', { 20, categories.MOBILE * categories.AIR * (categories.TECH2 + categories.TECH3)*categories.ANTIAIR} },
-                { SIBC, 'GreaterThanEconEfficiencyOverTime', { 0.95, 1.20 }},
+                { UCBC, 'HaveGreaterThanUnitsWithCategory', { 25, categories.MOBILE * categories.AIR * categories.TECH3 * categories.ANTIAIR - categories.GROUNDATTACK - categories.BOMBER} },
+                { SIBC, 'GreaterThanEconEfficiencyOverTime', { 0.95, 1.10 }},
                 
                 { MIBC, 'GreaterThanGameTime', { 1800 } },
                
@@ -502,8 +511,8 @@ Builder {
             BuilderConditions = {
                 { IBC, 'BrainNotLowPowerMode', {} },
                 { SBC, 'NoRushTimeCheck', { 600 }},
-                { UCBC, 'HaveGreaterThanUnitsWithCategory', { 20, categories.MOBILE * categories.AIR * (categories.TECH2 + categories.TECH3)*categories.ANTIAIR} },
-                { SIBC, 'GreaterThanEconEfficiencyOverTime', { 0.95, 1.20 }},
+                { UCBC, 'HaveGreaterThanUnitsWithCategory', { 25, categories.MOBILE * categories.AIR * categories.TECH3 * categories.ANTIAIR - categories.GROUNDATTACK - categories.BOMBER} },
+                { SIBC, 'GreaterThanEconEfficiencyOverTime', { 0.95, 1.10 }},
                 
                 { MIBC, 'GreaterThanGameTime', { 1800 } },
                 
@@ -518,8 +527,8 @@ Builder {
             BuilderConditions = {
                 { IBC, 'BrainNotLowPowerMode', {} },
                 { SBC, 'NoRushTimeCheck', { 600 }},
-                { UCBC, 'HaveGreaterThanUnitsWithCategory', { 20, categories.MOBILE * categories.AIR * (categories.TECH2 + categories.TECH3)*categories.ANTIAIR} },
-                { SIBC, 'GreaterThanEconEfficiencyOverTime', { 0.95, 1.20 }},
+                { UCBC, 'HaveGreaterThanUnitsWithCategory', { 25, categories.MOBILE * categories.AIR * categories.TECH3 * categories.ANTIAIR - categories.GROUNDATTACK - categories.BOMBER} },
+                { SIBC, 'GreaterThanEconEfficiencyOverTime', { 0.95, 1.10 }},
                 
                 { MIBC, 'GreaterThanGameTime', { 1800 } },
                
@@ -541,7 +550,7 @@ Builder {
                 { IBC, 'BrainNotLowPowerMode', {} },
                 { SBC, 'NoRushTimeCheck', { 600 }},
                 { UCBC, 'HaveUnitsWithCategoryAndAlliance', { true, 40, categories.LAND * categories.MOBILE - categories.ENGINEER,  'Enemy' }},
-                { SIBC, 'GreaterThanEconEfficiencyOverTime', { 0.95, 1.20 }},
+                { SIBC, 'GreaterThanEconEfficiencyOverTime', { 0.95, 1.10 }},
                 
                 { UCBC, 'HaveLessThanUnitsWithCategory', { 100, categories.AIR * categories.MOBILE *  categories.GROUNDATTACK * categories.TECH3 } },
             },
@@ -555,7 +564,7 @@ Builder {
                 { IBC, 'BrainNotLowPowerMode', {} },
                 { SBC, 'NoRushTimeCheck', { 600 }},
                 { UCBC, 'HaveUnitsWithCategoryAndAlliance', { true, 40, categories.LAND * categories.MOBILE - categories.ENGINEER,  'Enemy' }},
-                { SIBC, 'GreaterThanEconEfficiencyOverTime', { 0.95, 1.20 }},
+                { SIBC, 'GreaterThanEconEfficiencyOverTime', { 0.95, 1.10 }},
                 
                 { UCBC, 'HaveLessThanUnitsWithCategory', { 100, categories.AIR * categories.MOBILE * categories.GROUNDATTACK * categories.TECH3 } },
             },
@@ -589,7 +598,6 @@ Builder {
             PlatoonAddBehaviors = { 'AirUnitRefitSorian' },
             PlatoonAddPlans = { 'AirIntelToggle','DistressResponseAISorian'   },
             Priority = 500,
-            AggressiveMove = true,
             InstanceCount = 10,
             BuilderType = 'Any',
             BuilderConditions = {
@@ -602,10 +610,8 @@ Builder {
                 PrioritizedCategories = {    
                     'LAND EXPERIMENTAL',
                     'ENERGYPRODUCTION TECH3',
-                    'ANTIMISSILE STRUCTURE TECH3',
-                    'COMMAND',
+                    'ANTIMISSLE STRUCTURE TECH3',
                     'MASSEXTRACTION',
-                    'ENGINEER',
                     
                     
                 },
@@ -622,7 +628,6 @@ Builder {
             PlatoonAddBehaviors = { 'AirUnitRefitSorian' },
             PlatoonAddPlans = { 'AirIntelToggle', 'DistressResponseAISorian'  },
             Priority = 500,
-            AggressiveMove = true,
             InstanceCount = 10,
             BuilderType = 'Any',
             BuilderConditions = {
@@ -632,13 +637,13 @@ Builder {
             BuilderData = {
                 SearchRadius = 5000,
                 
-                PrioritizedCategories = {   
+                PrioritizedCategories = {    
                     'LAND EXPERIMENTAL',
                     'ENERGYPRODUCTION TECH3',
-                    'ANTIMISSILE STRUCTURE TECH3',
-                    'COMMAND',
+                    'ANTIMISSLE STRUCTURE TECH3',
                     'MASSEXTRACTION',
-                    'ENGINEER',
+                                 
+   
                     
                     
                 },
@@ -686,10 +691,10 @@ BuilderGroup {
         BuilderConditions = {
        
            
-            { MIBC, 'LessThanGameTime', { 300 } },
+            { MIBC, 'LessThanGameTime', { 330 } },
             { UCBC, 'HaveLessThanUnitsWithCategory', { 2, 'TRANSPORTFOCUS' } },
-            { UCBC, 'HaveLessThanUnitsWithCategory', { 1, 'TRANSPORTFOCUS' } },
-            { UCBC, 'HaveLessThanUnitsInCategoryBeingBuilt', { 1, 'TRANSPORTFOCUS' } },
+         
+         
             { IBC, 'BrainNotLowPowerMode', {} },
 			{ UCBC, 'FactoryGreaterAtLocation', { 'LocationType', 0, categories.FACTORY * categories.AIR * categories.TECH1 } },
 		
@@ -790,7 +795,7 @@ BuilderGroup {
             { IBC, 'BrainNotLowPowerMode', {} },
 			{ UCBC, 'FactoryGreaterAtLocation', { 'LocationType', 0, categories.FACTORY * categories.AIR * categories.TECH3 } },
 			#{ UCBC, 'FactoryGreaterAtLocation', { 'LocationType', 1, categories.FACTORY * categories.AIR } },
-            { SIBC, 'GreaterThanEconEfficiencyOverTime', { 0.95, 1.20 }},
+            { SIBC, 'GreaterThanEconEfficiencyOverTime', { 0.95, 1.10 }},
             
         },
         BuilderType = 'Air',
@@ -806,7 +811,7 @@ BuilderGroup {
            
             { UCBC, 'LocationFactoriesBuildingLess', { 'LocationType', 1, 'TRANSPORTFOCUS' } },
             { IBC, 'BrainNotLowPowerMode', {} },
-            { SIBC, 'GreaterThanEconEfficiencyOverTime', { 0.95, 1.20 }},
+            { SIBC, 'GreaterThanEconEfficiencyOverTime', { 0.95, 1.10 }},
             
         },
         BuilderType = 'Air',
@@ -824,7 +829,7 @@ BuilderGroup {
 			{ UCBC, 'HaveLessThanUnitsWithCategory', { 4, 'TRANSPORTFOCUS' } },
             { IBC, 'BrainNotLowPowerMode', {} },
 			{ UCBC, 'FactoryGreaterAtLocation', { 'LocationType', 0, categories.FACTORY * categories.AIR * categories.TECH3 } },
-            { SIBC, 'GreaterThanEconEfficiencyOverTime', { 0.95, 1.20 }},
+            { SIBC, 'GreaterThanEconEfficiencyOverTime', { 0.95, 1.10 }},
             
   { UCBC, 'HaveGreaterThanUnitsWithCategory', { 12, categories.FACTORY * categories.AIR } },
             { UCBC, 'HaveLessThanUnitsInCategoryBeingBuilt', { 3, 'TRANSPORTFOCUS' } },
@@ -846,7 +851,7 @@ BuilderGroup {
             { IBC, 'BrainNotLowPowerMode', {} },
 			{ SBC, 'NoRushTimeCheck', { 600 }},
 			{ UCBC, 'HaveUnitsWithCategoryAndAlliance', { true, 1, categories.NAVAL * categories.FACTORY,  'Enemy' }},
-            { SIBC, 'GreaterThanEconEfficiencyOverTime', { 0.95, 1.20 }},
+            { SIBC, 'GreaterThanEconEfficiencyOverTime', { 0.95, 1.10 }},
             
             { UCBC, 'HaveLessThanUnitsWithCategory', { 100, categories.AIR * categories.GROUNDATTACK * categories.TECH3 } },
         },
@@ -860,7 +865,7 @@ BuilderGroup {
             { IBC, 'BrainNotLowPowerMode', {} },
 			{ SBC, 'NoRushTimeCheck', { 600 }},
 			{ UCBC, 'HaveUnitsWithCategoryAndAlliance', { true, 1, categories.NAVAL * categories.FACTORY,  'Enemy' }},
-            { SIBC, 'GreaterThanEconEfficiencyOverTime', { 0.95, 1.20 }},
+            { SIBC, 'GreaterThanEconEfficiencyOverTime', { 0.95, 1.10 }},
             
             { UCBC, 'HaveLessThanUnitsWithCategory', { 80, categories.AIR * categories.ANTINAVY * categories.TECH3 } },
         },
@@ -874,7 +879,7 @@ BuilderGroup {
             { IBC, 'BrainNotLowPowerMode', {} },
 			{ SBC, 'NoRushTimeCheck', { 600 }},
 			{ UCBC, 'HaveUnitsWithCategoryAndAlliance', { true, 1, categories.NAVAL * categories.FACTORY,  'Enemy' }},
-            { SIBC, 'GreaterThanEconEfficiencyOverTime', { 0.95, 1.20 }},
+            { SIBC, 'GreaterThanEconEfficiencyOverTime', { 0.95, 1.10 }},
             
             { UCBC, 'HaveLessThanUnitsWithCategory', { 40, categories.AIR * categories.ANTINAVY * categories.TECH3 } },
         },
@@ -900,7 +905,6 @@ BuilderGroup {
                                 'MOBILE NAVAL',
 				'STRUCTURE NAVAL',
                 'STRUCTURE DEFENSE ANTINAVY',
-                'ANTIMISSILE STRUCTURE TECH3',
                 'ALLUNITS',
                                  
 				
@@ -926,7 +930,7 @@ BuilderGroup {
         InstanceCount = 15,
         BuilderType = 'Air',
         BuilderConditions = {
-            { MIBC, 'GreaterThanGameTime', { 240 } },
+            { MIBC, 'GreaterThanGameTime', { 280 } },
         { UCBC, 'HaveLessThanUnitsWithCategory', { 30, categories.AIR * categories.MOBILE * categories.ANTIAIR  - categories.BOMBER - categories.GROUNDATTACK } },
          
             
@@ -947,9 +951,9 @@ Builder {
         PlatoonTemplate = 'T1AirFighter',
         Priority = 760,
         BuilderType = 'Air',
-        InstanceCount = 20,
+        InstanceCount = 30,
         BuilderConditions = {
-            { MIBC, 'GreaterThanGameTime', { 240 } },
+            { MIBC, 'GreaterThanGameTime', { 280 } },
         { UCBC, 'HaveLessThanUnitsWithCategory', { 20, categories.AIR * categories.MOBILE* categories.ANTIAIR  - categories.BOMBER - categories.GROUNDATTACK } },
             
             { SBC, 'IsIslandMap', { true } },
@@ -1051,31 +1055,6 @@ InstanceCount = 20,
         },
         
     },
-    Builder {
-        BuilderName = 'NC T3AntiAirPlanes - Enemy timed',
-        PlatoonTemplate = 'T3AirFighter',
-        Priority = 792,
-        InstanceCount = 20,
-        BuilderType = 'Air',
-        BuilderConditions = {
-            { MIBC, 'GreaterThanGameTime', { 2100 } },
-            { UCBC, 'HaveLessThanUnitsWithCategory', { 50, categories.AIR * categories.MOBILE * categories.ANTIAIR * categories.TECH3 - categories.BOMBER - categories.GROUNDATTACK} },
-            { IBC, 'BrainNotLowPowerMode', {} },
-			{ SBC, 'NoRushTimeCheck', { 600 }},
-			{ UCBC, 'HaveUnitsWithCategoryAndAlliance', { true, 10, categories.MOBILE * categories.AIR - categories.SCOUT, 'Enemy'}},
-            { UCBC, 'FactoryGreaterAtLocation', { 'LocationType', 0, categories.FACTORY * categories.AIR * categories.TECH3 } },
-            { SIBC, 'GreaterThanEconEfficiencyOverTime', { 0.85, 1.05 }},
-            
-     
-			
-		
-            
-        },
-        
-    },
-
- 
-
     Builder {
         BuilderName = 'NC T3AntiAirPlanes - Enemy Air Extra',
         PlatoonTemplate = 'T3AirFighter',

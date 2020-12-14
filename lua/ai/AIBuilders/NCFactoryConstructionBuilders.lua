@@ -361,35 +361,6 @@ BuilderGroup {
         }
     },
 
-    # =============================
-    #     Quantum Gate Builders
-    # =============================
-    Builder {
-        BuilderName = 'NC T3 Gate Engineer',
-        PlatoonTemplate = 'T3EngineerBuilderSorian',
-        Priority = 950, #850,
-        BuilderConditions = {
-            { SIBC, 'HaveGreaterThanUnitsWithCategory', { 4, 'ENERGYPRODUCTION TECH3' }},
-			{ SIBC, 'HaveGreaterThanUnitsWithCategory', { 6, 'MASSPRODUCTION TECH3' }},
-            { UCBC, 'FactoryLessAtLocation', { 'LocationType', 1, 'GATE TECH3 STRUCTURE' }},
-            { SIBC, 'GreaterThanEconEfficiencyOverTime', { 0.99, 1.1} },
-            
-            { UCBC, 'FactoryCapCheck', { 'LocationType', 'Gate' } },
-            { IBC, 'BrainNotLowPowerMode', {} },
-            { UCBC, 'UnitCapCheckLess', { .95 } },
-            { EBC, 'MassToFactoryRatioBaseCheck', { 'LocationType' } },
-        },
-        BuilderType = 'Any',
-        BuilderData = {
-            Construction = {
-                BuildStructures = {
-                    'T3QuantumGate',
-                },
-                Location = 'LocationType',
-                #AdjacencyCategory = 'ENERGYPRODUCTION',
-            }
-        }
-    },
 }
 
 

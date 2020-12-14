@@ -40,8 +40,9 @@ BuilderGroup {
         
        
         BuilderConditions = {
-            { UCBC, 'StartLocationNeedsEngineer', { 'LocationType', 1000, -1000, 5, 0, 'StructuresNotMex' } },
             { SBC, 'IsIslandMap', { true } },
+            { UCBC, 'StartLocationNeedsEngineer', { 'LocationType', 1000, -1000, 5, 0, 'StructuresNotMex' } },
+         
             { SBC, 'LessThanGameTime', { 600 } },
 			{ SIBC, 'LessThanExpansionBases', { } },
 			{ SBC, 'NoRushTimeCheck', { 0 }},
@@ -60,12 +61,13 @@ BuilderGroup {
                 LocationRadius = 1000,
                 LocationType = 'LocationType',
                 ThreatMin = -1000,
-                ThreatMax = 5,
+                ThreatMax = 30,
                 ThreatRings = 0,
                 ThreatType = 'StructuresNotMex',
                 BuildStructures = {                    
                     'T1GroundDefense',
                     'T1AirFactory',
+                    'T1GroundDefense',
                     'T1LandFactory',
                     'T1AirFactory',
                     'T1AirFactory',
@@ -84,6 +86,7 @@ BuilderGroup {
         BuilderName = 'NC T1VacantStartingAreaEngineer_islandmap',
         PlatoonTemplate = 'EngineerBuilderSorian',
         Priority = 980,
+        InstanceCount = 2,
        
         BuilderConditions = {
             { SBC, 'IsIslandMap', { true } },
@@ -113,6 +116,7 @@ BuilderGroup {
                 BuildStructures = {                    
                     'T1GroundDefense',
                     'T1AirFactory',
+                    'T1GroundDefense',
                     'T1LandFactory',
                     'T1AirFactory',
                     'T1AirFactory',
@@ -127,11 +131,13 @@ BuilderGroup {
     Builder {
         BuilderName = 'NC T2VacantStartingAreaEngineer_islandmap',
         PlatoonTemplate = 'T2EngineerBuilderSorian',
-        Priority = 982,
+        Priority = 915,
+        InstanceCount = 2,
        
         BuilderConditions = {
-            { UCBC, 'StartLocationNeedsEngineer', { 'LocationType', 1000, -1000, 0, 2, 'StructuresNotMex' } },
             { SBC, 'IsIslandMap', { true } },
+            { UCBC, 'StartLocationNeedsEngineer', { 'LocationType', 1000, -1000, 0, 2, 'StructuresNotMex' } },
+      
 			{ SIBC, 'LessThanExpansionBases', { } },
 			
 			{ SBC, 'NoRushTimeCheck', { 0 }},
@@ -150,12 +156,13 @@ BuilderGroup {
                 LocationRadius = 1000,
                 LocationType = 'LocationType',
                 ThreatMin = -1000,
-                ThreatMax = 0,
+                ThreatMax = 25,
                 ThreatRings = 2,
                 ThreatType = 'StructuresNotMex',
                 BuildStructures = {                    
                     'T1GroundDefense',
                     'T1AirFactory',
+                    'T1GroundDefense',
                     'T1LandFactory',
                     'T1AirFactory',
                     'T1AirFactory',
@@ -170,7 +177,8 @@ BuilderGroup {
     Builder {
         BuilderName = 'NC T3VacantStartingAreaEngineer_islandmap',
         PlatoonTemplate = 'T3EngineerBuilderSorian',
-        Priority = 982,
+        Priority = 912,
+        InstanceCount = 2,
       
         BuilderConditions = {
             { SBC, 'IsIslandMap', { true } },
@@ -193,12 +201,13 @@ BuilderGroup {
                 LocationRadius = 1000,
                 LocationType = 'LocationType',
                 ThreatMin = -1000,
-                ThreatMax = 0,
+                ThreatMax = 25,
                 ThreatRings = 2,
                 ThreatType = 'StructuresNotMex',
                 BuildStructures = {
                     'T1GroundDefense',
                     'T1AirFactory',
+                    'T1GroundDefense',
                     'T1LandFactory',
                     'T1AirFactory',
                     'T1AirFactory',
@@ -216,6 +225,7 @@ BuilderGroup {
         BuilderName = 'NC T1rushVacantStartingAreaEngineer',
         PlatoonTemplate = 'EngineerBuilderSorian',
         Priority = 985,
+        InstanceCount = 2,
        
        
         BuilderConditions = {
@@ -239,7 +249,7 @@ BuilderGroup {
                 LocationRadius = 1000,
                 LocationType = 'LocationType',
                 ThreatMin = -1000,
-                ThreatMax = 5,
+                ThreatMax = 25,
                 ThreatRings = 0,
                 ThreatType = 'StructuresNotMex',
                 BuildStructures = {                    
@@ -247,7 +257,8 @@ BuilderGroup {
                  
                
                 
-					'T1AirFactory',
+                    'T1AirFactory',
+                    'T1GroundDefense',
 					'T1LandFactory',
 					'T1AADefense',
 					'T1Radar',
@@ -262,6 +273,7 @@ BuilderGroup {
         BuilderName = 'NC T1VacantStartingAreaEngineer',
         PlatoonTemplate = 'EngineerBuilderSorian',
         Priority = 980,
+        InstanceCount = 2,
        
         BuilderConditions = {
             { UCBC, 'StartLocationNeedsEngineer', { 'LocationType', 1000, -1000, 100, 0, 'StructuresNotMex' } },
@@ -285,14 +297,15 @@ BuilderGroup {
                 LocationType = 'LocationType',
                 ThreatMin = -1000,
                 ThreatMax = 100,
-                ThreatRings = 0,
+                ThreatRings = 2,
                 ThreatType = 'StructuresNotMex',
                 BuildStructures = {                    
                     'T1GroundDefense',
                  
                
                 
-					'T1AirFactory',
+                    'T1AirFactory',
+                    'T1GroundDefense',
 					'T1LandFactory',
 					'T1AADefense',
 					'T1Radar',
@@ -327,7 +340,7 @@ BuilderGroup {
                 LocationRadius = 1000,
                 LocationType = 'LocationType',
                 ThreatMin = -1000,
-                ThreatMax = 0,
+                ThreatMax = 25,
                 ThreatRings = 2,
                 ThreatType = 'StructuresNotMex',
                 BuildStructures = {                    
@@ -369,7 +382,7 @@ BuilderGroup {
                 LocationRadius = 1000,
                 LocationType = 'LocationType',
                 ThreatMin = -1000,
-                ThreatMax = 0,
+                ThreatMax = 25,
                 ThreatRings = 2,
                 ThreatType = 'StructuresNotMex',
                 BuildStructures = {
@@ -400,6 +413,7 @@ BuilderGroup {
         Priority = 722,
        
         BuilderConditions = {
+            { MIBC, 'GreaterThanGameTime', { 600 } },
             { UCBC, 'ExpansionAreaNeedsEngineer', { 'LocationType', 1000, -1000, 100, 2, 'StructuresNotMex' } },
             { UCBC, 'StartLocationsFull', { 'LocationType', 1000, -1000, 100, 2, 'StructuresNotMex' } },
             { UCBC, 'UnitCapCheckLess', { .8 } },
@@ -427,9 +441,13 @@ BuilderGroup {
                 ThreatType = 'StructuresNotMex',
                 BuildStructures = {
                     'T1GroundDefense',
+                    'T1AirFactory',
                     'T1LandFactory',
-                    'T1AADefense',
-                    'T1Radar',
+                    'T1AirFactory',
+                    'T1AirFactory',
+               
+
+					'T1Radar',
                 }
             },
             NeedGuard = true,
@@ -441,6 +459,7 @@ BuilderGroup {
         Priority = 722,
       
         BuilderConditions = {
+            { MIBC, 'GreaterThanGameTime', { 600 } },
             { SIBC, 'ExpansionPointNeedsStructure', { 'LocationType', 1000, 'DEFENSE TECH1 STRUCTURE', 20, 3, 0, 1, 2, 'StructuresNotMex' } },
             #{ UCBC, 'StartLocationsFull', { 'LocationType', 1000, -1000, 0, 2, 'StructuresNotMex' } },
             { UCBC, 'UnitCapCheckLess', { .7 } },
@@ -463,9 +482,13 @@ BuilderGroup {
                 MarkerUnitCategory = 'DEFENSE TECH1 STRUCTURE',
                 BuildStructures = {
                     'T1GroundDefense',
-                    'T1GroundDefense',
-                    'T1AADefense',
-                    'T1AADefense',
+                    'T1AirFactory',
+                    'T1LandFactory',
+                    'T1AirFactory',
+                    'T1AirFactory',
+               
+
+					'T1Radar',
                 }
             },
             NeedGuard = true,
@@ -477,6 +500,7 @@ BuilderGroup {
         Priority = 722,
     
         BuilderConditions = {
+            { MIBC, 'GreaterThanGameTime', { 600 } },
             { UCBC, 'ExpansionAreaNeedsEngineer', { 'LocationType', 1000, -1000, 0, 2, 'StructuresNotMex' } },
             { UCBC, 'StartLocationsFull', { 'LocationType', 1000, -1000, 0, 2, 'StructuresNotMex' } },
             { UCBC, 'UnitCapCheckLess', { .7 } },
@@ -502,9 +526,13 @@ BuilderGroup {
                 ThreatType = 'StructuresNotMex',
                 BuildStructures = {
                     'T2GroundDefense',
+                    'T1AirFactory',
                     'T1LandFactory',
-                    'T2AADefense',
-                    'T2Radar',
+                    'T1AirFactory',
+                    'T1AirFactory',
+               
+
+					'T1Radar',
                 }
             },
             NeedGuard = true,
@@ -516,6 +544,7 @@ BuilderGroup {
         Priority = 722,
       
         BuilderConditions = {
+            { MIBC, 'GreaterThanGameTime', { 600 } },
             { UCBC, 'ExpansionAreaNeedsEngineer', { 'LocationType', 1000, -1000, 0, 2, 'StructuresNotMex' } },
             { UCBC, 'StartLocationsFull', { 'LocationType', 1000, -1000, 0, 2, 'StructuresNotMex' } },
             { UCBC, 'UnitCapCheckLess', { .7 } },

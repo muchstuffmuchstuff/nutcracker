@@ -36,6 +36,7 @@ BuilderGroup {
         BuilderName = 'NC T1 AirScout',
         PlatoonTemplate = 'T1AirScout',
         Priority = 400,
+        DelayEqualBuildPlattons = {'Scouts', 30},
         BuilderConditions = {
             { MIBC, 'GreaterThanGameTime', { 360 } },
 			{ SIBC, 'HaveLessThanUnitsForMapSize', { {[256] = 2, [512] = 3, [1024] = 3, [2048] = 4, [4096] = 8}, categories.SCOUT * categories.AIR}},
@@ -54,6 +55,7 @@ BuilderGroup {
         BuilderName = 'NC T2 AirScout',
         PlatoonTemplate = 'T2AirScout',
         Priority = 700, 
+        DelayEqualBuildPlattons = {'Scouts', 30},
         BuilderConditions = {
 
       
@@ -73,6 +75,7 @@ BuilderGroup {
         BuilderName = 'NC T3 airscout',
         PlatoonTemplate = 'T3AirScout',
         Priority = 900, 
+        DelayEqualBuildPlattons = {'Scouts', 15},
         BuilderConditions = {
             #{ UCBC, 'HaveLessThanUnitsWithCategory', { 2, categories.INTELLIGENCE * categories.AIR * categories.TECH3 }}, #1
 			{ SIBC, 'HaveLessThanUnitsForMapSize', { {[256] = 2, [512] = 4, [1024] = 6, [2048] = 8, [4096] = 8}, categories.INTELLIGENCE * categories.AIR * categories.TECH3}},
@@ -88,6 +91,7 @@ BuilderGroup {
         BuilderName = 'NC T3 Air Scout - Lower Pri',
         PlatoonTemplate = 'T3AirScout',
         Priority = 701, #700,
+        DelayEqualBuildPlattons = {'Scouts', 15},
         BuilderConditions = {
             { UCBC, 'HaveLessThanUnitsWithCategory', { 5, categories.INTELLIGENCE * categories.AIR * categories.TECH3 }}, #3
 			{ SIBC, 'HaveLessThanUnitsForMapSize', { {[256] = 4, [512] = 6, [1024] = 8, [2048] = 10, [4096] = 12}, categories.INTELLIGENCE * categories.AIR * categories.TECH3}},
@@ -110,6 +114,7 @@ BuilderGroup {
         BuilderName = 'NC T3 Air Scout extra',
         PlatoonTemplate = 'T3AirScout',
         Priority = 844, 
+        DelayEqualBuildPlattons = {'Scouts', 15},
         BuilderConditions = {
 
 			{ SIBC, 'HaveLessThanUnitsForMapSize', { {[256] = 2, [512] = 4, [1024] = 8, [2048] = 10, [4096] = 12}, categories.INTELLIGENCE * categories.AIR * categories.TECH3}},
@@ -178,7 +183,7 @@ BuilderGroup {
         Priority = 960,
         BuilderConditions = {
 			{ SIBC, 'HaveGreaterThanUnitsWithCategory', { 0, categories.ENERGYPRODUCTION * categories.TECH3 } },
-            { UCBC, 'UnitsLessAtLocation', { 'LocationType', 1, ( categories.RADAR + categories.OMNI ) * categories.STRUCTURE}},
+            { UCBC, 'UnitsLessAtLocation', { 'LocationType', 1, ( categories.RADAR + categories.OMNI + categories.TECH2 ) * categories.STRUCTURE}},
         
             { IBC, 'BrainNotLowPowerMode', {} },
             { SIBC, 'GreaterThanEconEfficiencyOverTime', { 0.95, 1.1 }},
@@ -218,18 +223,17 @@ BuilderGroup {
         }
     },
     Builder {
-        BuilderName = 'NC T3 Radar Engineer',
+        BuilderName = 'NC T3 Omni Engineer',
         PlatoonTemplate = 'T3EngineerBuilderSorian',
         Priority = 950,
         BuilderConditions = {
-    
-			{ SIBC, 'HaveGreaterThanUnitsWithCategory', { 3, categories.ENERGYPRODUCTION * categories.TECH3 } },
-        	{ UCBC, 'UnitsLessAtLocation', { 'LocationType', 1, categories.OMNI * categories.STRUCTURE } },
-            { UCBC, 'HaveLessThanUnitsInCategoryBeingBuilt', { 1, categories.OMNI * categories.STRUCTURE, 'RADAR STRUCTURE' } },
-            
+            { UCBC, 'HaveLessThanUnitsWithCategory', { 1, categories.OMNI * categories.STRUCTURE } },
+			{ SIBC, 'HaveGreaterThanUnitsWithCategory', { 0, categories.ENERGYPRODUCTION * categories.TECH3 } },
+            { UCBC, 'UnitsLessAtLocation', { 'LocationType', 1, ( categories.RADAR + categories.OMNI + categories.TECH2 ) * categories.STRUCTURE}},
             { IBC, 'BrainNotLowPowerMode', {} },
-            { SIBC, 'GreaterThanEconEfficiencyOverTime', { 0.95, 1.25 }},
+            { SIBC, 'GreaterThanEconEfficiencyOverTime', { 0.95, 1.1 }},
             
+            { UCBC, 'HaveLessThanUnitsInCategoryBeingBuilt', { 1, categories.OMNI * categories.STRUCTURE, 'RADAR STRUCTURE' } },
         },
         BuilderType = 'Any',
         BuilderData = {
@@ -241,7 +245,6 @@ BuilderGroup {
             }
         }
     },
-    
 }
 
 
@@ -298,12 +301,12 @@ Builder {
 }
 
 BuilderGroup {
-    BuilderGroupName = 'NCRadarUpgradeBuilders',
+    BuilderGroupName = 'NCRadarUpgradeBuildersMain',
     BuildersType = 'PlatoonFormBuilder',
     Builder {
         BuilderName = 'NC T1 Radar Upgrade',
         PlatoonTemplate = 'T1RadarUpgrade',
-        Priority = 700,
+        Priority = 500,
         BuilderConditions = {
         
 			{ SIBC, 'HaveGreaterThanUnitsWithCategory', { 1, categories.ENERGYPRODUCTION * categories.TECH2 } },
@@ -321,10 +324,10 @@ BuilderGroup {
     Builder {
         BuilderName = 'NC T2 Radar Upgrade',
         PlatoonTemplate = 'T2RadarUpgrade',
-        Priority = 900,
+        Priority = 700,
         BuilderConditions = {
-           
-            { SIBC, 'HaveGreaterThanUnitsWithCategory', { 3, categories.ENERGYPRODUCTION * categories.TECH3 } },
+            { SIBC, 'GreaterThanEconIncome',  { 9, 500}},
+		
 			{ UCBC, 'HaveLessThanUnitsWithCategory', { 1, categories.OMNI * categories.STRUCTURE } },
             { SIBC, 'GreaterThanEconEfficiencyOverTime', { 0.95, 1.25 }},
             
@@ -335,7 +338,6 @@ BuilderGroup {
         BuilderType = 'Any',
     },
 }
-
 
 
 

@@ -196,7 +196,7 @@ BuilderGroup {
         BuilderConditions = {
             { SBC, 'NoRushTimeCheck', { 600 }},
             { MIBC, 'FactionIndex', {2, 4}},
-            { UCBC, 'HaveGreaterThanUnitsWithCategory', { 1, 'SUBCOMMANDER' }},
+            { UCBC, 'HaveGreaterThanUnitsWithCategory', { 10, 'SUBCOMMANDER' }},
             { SIBC, 'GreaterThanEconEfficiencyOverTime', { 0.9, 1.3}},
             
         },
@@ -267,16 +267,43 @@ BuilderGroup {
                 'ALLUNITS',
             },
         },    
-        InstanceCount = 1,
+      
         BuilderType = 'Any',
     },
-
     Builder {
-        BuilderName = 'NCengihuntlandunits',
+        BuilderName = 'NClandexcesspool',
+        PlatoonTemplate = 'StrikeForceSmallNC',
+		PlatoonAddPlans = {'PlatoonCallForHelpAISorian', 'DistressResponseAISorian'},
+        PlatoonAddBehaviors = { 'AirLandToggleSorian' },
+        Priority = 10,
+        InstanceCount = 50,
+        BuilderConditions = { 
+        
+                        { UCBC, 'PoolGreaterAtLocation', { 'LocationType', 5, categories.MOBILE * categories.LAND - categories.ENGINEER - categories.EXPERIMENTAL } },
+			{ SBC, 'NoRushTimeCheck', { 0 }},
+        },
+        BuilderData = {
+        
+          
+                       
+			ThreatSupport = 40,
+            PrioritizedCategories = {
+
+
+            'LAND EXPERIMENTAL',
+                'ALLUNITS',
+            },
+        },    
+     
+        BuilderType = 'Any',
+    },
+    Builder {
+        BuilderName = 'NCengihuntlandunits_SMALL',
         PlatoonTemplate = 'StrikeForceSmallNC',
 		PlatoonAddPlans = {'PlatoonCallForHelpAISorian', 'DistressResponseAISorian'},
 		PlatoonAddBehaviors = { 'AirLandToggleSorian' },
         Priority = 100,
+        InstanceCount = 10,
         
         BuilderConditions = { 
             { MIBC, 'GreaterThanGameTime', { 360} },
@@ -300,17 +327,17 @@ BuilderGroup {
                 'ALLUNITS',
             },
         },    
-        InstanceCount = 10,
+       
         BuilderType = 'Any',
     },
 
     Builder {
-        BuilderName = 'NCengihuntlandunits',
+        BuilderName = 'NCengihuntlandunits_MEDIUM',
         PlatoonTemplate = 'StrikeForceMediumNC',
 		PlatoonAddPlans = {'PlatoonCallForHelpAISorian', 'DistressResponseAISorian'},
 		PlatoonAddBehaviors = { 'AirLandToggleSorian' },
         Priority = 100,
-        
+        InstanceCount = 10,
         BuilderConditions = { 
             { MIBC, 'GreaterThanGameTime', { 360} },
             { SBC, 'LessThanGameTime', { 2399 } },
@@ -333,7 +360,7 @@ BuilderGroup {
                 'ALLUNITS',
             },
         },    
-        InstanceCount = 10,
+    
         BuilderType = 'Any',
     },
 
@@ -347,6 +374,7 @@ BuilderGroup {
 		PlatoonAddPlans = {'PlatoonCallForHelpAISorian', 'DistressResponseAISorian'},
 		PlatoonAddBehaviors = { 'AirLandToggleSorian' },
         Priority = 101,
+        InstanceCount = 10,
         BuilderConditions = { 
    
             { MIBC, 'GreaterThanGameTime', { 2400} },
@@ -366,7 +394,7 @@ BuilderGroup {
                 'ALLUNITS',
             },
         },    
-        InstanceCount = 10,
+      
         BuilderType = 'Any',
     },
     
@@ -596,26 +624,26 @@ BuilderGroup {
   
   
     Builder {
-        BuilderName = 'NC T2 Amphibious Tank - Tech 2',
+        BuilderName = 'NC T2 Amphibious Tank island',
         PlatoonTemplate = 'T2LandAmphibious',
-        Priority = 600,
+        Priority = 690,
 InstanceCount = 100,
         BuilderType = 'Land',
         BuilderConditions = {
             { IBC, 'BrainNotLowPowerMode', {} },
-           
+            { SBC, 'IsIslandMap', { true } },
 			{ UCBC, 'FactoryGreaterAtLocation', { 'LocationType', 0, categories.LAND * categories.FACTORY * categories.TECH2 } },
-            { UCBC, 'HaveLessThanUnitsWithCategory', { 100, categories.LAND * categories.MOBILE * categories.TECH2 - categories.ENGINEER }},
+         
             { SIBC, 'GreaterThanEconEfficiencyOverTime', { 0.70, 1.05 }},
             
 			{ SBC, 'NoRushTimeCheck', { 600 }},
-			{ SBC, 'IsWaterMap', { true } },
+		
 			{ MIBC, 'FactionIndex', {1, 2, 4}},
         },
     },
-    # Tech 3 priority
+  
     Builder {
-        BuilderName = 'NC T2 Amphibious Tank - Tech 3',
+        BuilderName = 'NC T2 Amphibious Tank island',
         PlatoonTemplate = 'T2LandAmphibious',
         Priority = 550,
         BuilderType = 'Land',
@@ -624,9 +652,9 @@ InstanceCount = 100,
 			{ UCBC, 'FactoryGreaterAtLocation', { 'LocationType', 0, categories.LAND * categories.FACTORY - categories.TECH1 } },
             { UCBC, 'HaveLessThanUnitsWithCategory', { 100, categories.LAND * categories.MOBILE * categories.TECH2 - categories.ENGINEER }},
             { SIBC, 'GreaterThanEconEfficiencyOverTime', { 0.70, 1.05 }},
-            
+          
 			{ SBC, 'NoRushTimeCheck', { 600 }},
-			{ SBC, 'IsWaterMap', { true } },
+		
 			{ MIBC, 'FactionIndex', {1, 2, 4}},
         },
     },

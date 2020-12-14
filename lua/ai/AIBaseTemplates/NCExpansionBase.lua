@@ -4,7 +4,7 @@
 BaseBuilderTemplate {
     BaseTemplateName = 'NutCrackerExpansionBase',
     Builders = {
-      
+
 
         # ==== ECONOMY ==== #
         'NCEngineerMassBuildersLowerPri',
@@ -137,8 +137,7 @@ BaseBuilderTemplate {
 		
     },
     NonCheatBuilders = {
-        'NCRadarUpgradeBuilders',
-        'NCRadarEngineerBuilders',
+     
         
     
         
@@ -146,9 +145,9 @@ BaseBuilderTemplate {
     },
     BaseSettings = {
         EngineerCount = {
-            Tech1 = 15,
-            Tech2 = 10,
-            Tech3 = 45,
+            Tech1 = 10,
+            Tech2 = 15,
+            Tech3 = 20,
             SCU = 10,
         },
         FactoryCount = {

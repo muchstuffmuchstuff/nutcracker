@@ -38,7 +38,7 @@ BuilderGroup {
          
             { SIBC, 'GreaterThanEconEfficiencyOverTime', { 0.95, 1.35 }},
             
-            { UCBC, 'HaveLessThanUnitsInCategoryBeingBuilt', { 1, 'MASSEXTRACTION TECH2'} },
+            { UCBC, 'HaveLessThanUnitsInCategoryBeingBuilt', { 1, 'MASSEXTRACTION TECH2, MASSEXTRACTION TECH3'} },
             { UCBC, 'HaveGreaterThanUnitsWithCategory', { 12, 'MASSEXTRACTION' }},
 		
          

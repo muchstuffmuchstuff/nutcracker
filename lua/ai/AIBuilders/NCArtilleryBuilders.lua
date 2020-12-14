@@ -85,12 +85,13 @@ BuilderGroup {
         BuilderConditions = {
 		
             { CheckUnitRangeNC, { 'LocationType', 'T4Artillery', categories.STRUCTURE } },
+        
             { UCBC, 'HaveLessThanUnitsInCategoryBeingBuilt', { 1, categories.EXPERIMENTAL * categories.STRUCTURE}},
 			{ UCBC, 'HaveLessThanUnitsWithCategory', { 5, categories.EXPERIMENTAL * categories.STRUCTURE * categories.ARTILLERY}},
 			{ SIBC, 'HaveGreaterThanUnitsWithCategory', { 11, categories.ENERGYPRODUCTION * categories.TECH3 } },
 		
 		
-          
+      
             { SIBC, 'GreaterThanEconEfficiency', { 0.95, 1.1}},
 			{ SBC, 'MapGreaterThan', { 1000, 1000 }},
             { IBC, 'BrainNotLowPowerMode', {} },
@@ -148,7 +149,8 @@ BuilderGroup {
         Priority = 950,
 		InstanceCount = 1,
         BuilderConditions = {
-            { SIBC, 'HaveLessThanUnitsInCategoryBeingBuilt', { 1, categories.ANTIMISSILE * categories.STRUCTURE * categories.TECH3 }},
+         
+            { SIBC, 'HaveLessThanUnitsInCategoryBeingBuilt', { 1, categories.ANTIMISSILE * categories.STRUCTURE }},
             { SIBC, 'HaveLessThanUnitsInCategoryBeingBuilt', { 1, categories.NUKE * categories.STRUCTURE}},
             { SIBC, 'HaveGreaterThanUnitsWithCategory', { 2, categories.ENERGYPRODUCTION * categories.TECH3 } },
          
@@ -172,21 +174,19 @@ BuilderGroup {
             }
         }
     },
-
     Builder {
-        BuilderName = 'nc T3 Nuke Engineer lots of juice',
+        BuilderName = 'nc T3 Nuke lots of cash',
         PlatoonTemplate = 'T3EngineerBuilderSorian',
         Priority = 950,
 		InstanceCount = 1,
         BuilderConditions = {
-          
+      
             { SIBC, 'HaveLessThanUnitsInCategoryBeingBuilt', { 3, categories.NUKE * categories.STRUCTURE}},
-            { SIBC, 'HaveGreaterThanUnitsWithCategory', { 10, categories.ENERGYPRODUCTION * categories.TECH3 } },
-            { SIBC, 'HaveGreaterThanUnitsWithCategory', { 10, categories.MASSEXTRACTION * categories.TECH3 } },
-         
+            { SIBC, 'HaveGreaterThanUnitsWithCategory', { 5, categories.ENERGYPRODUCTION * categories.TECH3 } },
+        
 		{ MIBC, 'FactionIndex', {1,2, 3}},
           
-            { SIBC, 'GreaterThanEconEfficiencyOverTime', { 1.05, 1.15}},
+            { SIBC, 'GreaterThanEconEfficiencyOverTime', { 1.1, 1.1}},
             
 			
             { IBC, 'BrainNotLowPowerMode', {} },
@@ -204,7 +204,6 @@ BuilderGroup {
             }
         }
     },
- 
 
       Builder {
         BuilderName = 'NC Seraphim Exp Nuke Engineer',
@@ -217,9 +216,9 @@ BuilderGroup {
 			
 			
             { SIBC, 'HaveLessThanUnitsInCategoryBeingBuilt', { 1, categories.NUKE * categories.STRUCTURE}},
-            { SIBC, 'HaveGreaterThanUnitsWithCategory', { 8, categories.ENERGYPRODUCTION * categories.TECH3 } },
+            { SIBC, 'HaveGreaterThanUnitsWithCategory', { 4, categories.ENERGYPRODUCTION * categories.TECH3 } },
 			
-			
+        
           
 			{ SBC, 'MapGreaterThan', { 1000, 1000 }},
             { SIBC, 'GreaterThanEconEfficiencyOverTime', { 1.0, 1.2}},
@@ -248,7 +247,7 @@ BuilderGroup {
         InstanceCount = 4,
         BuilderConditions = {
             { UCBC, 'LocationEngineersBuildingGreater', { 'LocationType', 0, categories.STRUCTURE * categories.NUKE}},
-            { SIBC, 'GreaterThanEconEfficiencyOverTime', { 1.1, 1.4}},
+            { SIBC, 'GreaterThanEconEfficiencyOverTime', { 0.95, 1.2}},
             
             { IBC, 'BrainNotLowPowerMode', {} },
         },
@@ -276,9 +275,9 @@ BuilderGroup {
             {CheckUnitRangeNC, { 'LocationType', 'T3Artillery', categories.STRUCTURE } },
             { SIBC, 'HaveLessThanUnitsInCategoryBeingBuilt', { 1, categories.TECH3 *  (categories.xab2307 + categories.ARTILLERY ) * categories.STRUCTURE}},
 			{ SIBC, 'HaveGreaterThanUnitsWithCategory', { 4, categories.ENERGYPRODUCTION * categories.TECH3 } },
-		
+       
            
-            { SIBC, 'GreaterThanEconEfficiency', { 1.05, 1.15}},
+            { SIBC, 'GreaterThanEconEfficiency', { 1.0, 1.2}},
 		
             { IBC, 'BrainNotLowPowerMode', {} },
           
@@ -307,8 +306,8 @@ BuilderGroup {
     { CheckUnitRangeNC, { 'LocationType', 'T3RapidArtillery', categories.STRUCTURE, 2 } },
 			{ SIBC, 'HaveGreaterThanUnitsWithCategory', { 4, categories.ENERGYPRODUCTION * categories.TECH3 } },
            
-	
-            { SIBC, 'GreaterThanEconEfficiency', { 1.05, 1.15}},
+         
+            { SIBC, 'GreaterThanEconEfficiency', { 0.95, 1.1}},
 			{ SBC, 'MapGreaterThan', { 1000, 1000 }},
             { IBC, 'BrainNotLowPowerMode', {} },
             #{ SIBC, 'T4BuildingCheck', {} },
@@ -324,7 +323,11 @@ BuilderGroup {
 			
                 BuildStructures = {
                     'T3RapidArtillery',
-
+'T3ShieldDefense',
+'T3ShieldDefense',
+'T3ShieldDefense',
+'T3ShieldDefense',
+'T3ShieldDefense',
                 },
                 Location = 'LocationType',
             }
@@ -337,7 +340,7 @@ BuilderGroup {
         InstanceCount = 4,
         BuilderConditions = {
             { UCBC, 'LocationEngineersBuildingGreater', { 'LocationType', 0, categories.ARTILLERY * categories.TECH3 * categories.STRUCTURE}},
-            { SIBC, 'GreaterThanEconEfficiency', { 1.05, 1.15}},
+            { SIBC, 'GreaterThanEconEfficiency', { 0.95, 1.1}},
             { IBC, 'BrainNotLowPowerMode', {} },
         },
         BuilderType = 'Any',

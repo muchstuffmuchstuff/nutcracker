@@ -20,7 +20,7 @@ PlatoonTemplate {
     Name = 'clenseNC',
     Plan = 'StrikeForceAISorian',
     GlobalSquads = {
-        { categories.MOBILE * categories.AIR  - categories.TRANSPORTFOCUS - categories.ANTINAVY - categories.SCOUT - categories.ANTIAIR - categories.INSIGNIFICANTUNIT - categories.POD, 10, 20, 'Attack', 'GrowthFormation' },
+        { categories.MOBILE * categories.AIR  - categories.TRANSPORTFOCUS - categories.ANTINAVY - categories.SCOUT - categories.ANTIAIR - categories.INSIGNIFICANTUNIT - categories.POD, 1, 2, 'Attack', 'GrowthFormation' },
         
     },
 }
@@ -124,7 +124,7 @@ PlatoonTemplate {
     Name = 'ncairengihunt',
     Plan = 'StrikeForceAISorian',
     GlobalSquads = {
-        { categories.MOBILE * categories.AIR * (categories.GROUNDATTACK + categories.BOMBER) - categories.TRANSPORTFOCUS - categories.ANTINAVY - categories.EXPERIMENTAL - categories.INSIGNIFICANTUNIT - categories.POD, 1, 6, 'Attack', 'GrowthFormation' },
+        { categories.MOBILE * categories.AIR * (categories.GROUNDATTACK + categories.BOMBER) - categories.TRANSPORTFOCUS - categories.ANTINAVY - categories.EXPERIMENTAL - categories.INSIGNIFICANTUNIT - categories.POD, 1, 4, 'Attack', 'GrowthFormation' },
         
     },
 }
