@@ -77,7 +77,7 @@ BuilderGroup {
             InstanceCount = 50,
             BuilderType = 'Any',
             BuilderConditions = {
-                         { UCBC, 'PoolGreaterAtLocation', { 'LocationType', 5, categories.AIR  * categories.MOBILE - categories.TRANSPORTFOCUS - categories.ANTINAVY - categories.SCOUT - categories.ANTIAIR} },
+                         { UCBC, 'PoolGreaterAtLocation', { 'LocationType', 5, categories.AIR  * categories.MOBILE - categories.TRANSPORTFOCUS - categories.ANTINAVY - categories.SCOUT } },
                 { SBC, 'NoRushTimeCheck', { 0 }},
             },
             BuilderData = {
