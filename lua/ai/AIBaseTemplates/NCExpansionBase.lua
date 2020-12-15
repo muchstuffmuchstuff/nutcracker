@@ -63,9 +63,10 @@ BaseBuilderTemplate {
 	      
             
         # ==== LAND UNIT BUILDERS ==== #
+        'NC Tele SCU Strategy',
         'NCT1_expansionprotect',
         'NClandbehavior_expansion',
-        'NC scu tele',
+     
         'NCUpgradeBuildersLand',
         'NCT1LandFactoryBuildersemergency',
      

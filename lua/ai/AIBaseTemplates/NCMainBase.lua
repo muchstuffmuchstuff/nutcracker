@@ -91,7 +91,7 @@ BaseBuilderTemplate {
 
         
         # ==== LAND UNIT BUILDERS ==== #
-        'NC scu tele',
+        'NC Tele SCU Strategy',
         'NCUpgradeBuildersLand',
         'NCT1LandFactoryBuildersemergency',
         'NCT1LandFactoryBuilders',

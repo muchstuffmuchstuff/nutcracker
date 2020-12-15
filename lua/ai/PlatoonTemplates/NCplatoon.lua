@@ -20,7 +20,7 @@ PlatoonTemplate {
     Name = 'clenseNC',
     Plan = 'StrikeForceAISorian',
     GlobalSquads = {
-        { categories.MOBILE * categories.AIR  - categories.TRANSPORTFOCUS - categories.ANTINAVY - categories.SCOUT - categories.ANTIAIR - categories.INSIGNIFICANTUNIT - categories.POD, 1, 2, 'Attack', 'GrowthFormation' },
+        { categories.MOBILE * categories.AIR  - categories.TRANSPORTFOCUS - categories.ANTINAVY - categories.SCOUT - categories.ANTIAIR - categories.INSIGNIFICANTUNIT - categories.POD, 1, 1, 'Attack', 'GrowthFormation' },
         
     },
 }

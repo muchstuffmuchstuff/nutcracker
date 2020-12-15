@@ -72,146 +72,14 @@ end
 
 
 
-BuilderGroup {
-    BuilderGroupName = 'NC scu tele',
-    BuildersType = 'StrategyBuilder',
-    Builder {
-        BuilderName = 'NC Tele SCU Strategy',
-        Priority = 700,
-        InstanceCount = 10,
-     
-        InterruptStrategy = true,
-        OnStrategyActivate = function(self, aiBrain)
-            Builders[self.BuilderName].Running = true
-            local x,z = aiBrain:GetArmyStartPos()
-            local faction = aiBrain:GetFactionIndex()
-            local upgrades
-            local removes
-            if faction == 2 then
-                upgrades = {'StabilitySuppressant', 'Teleporter'}
-            elseif faction == 4 then
-                upgrades = {'Shield', 'Teleporter'}
-            end
-            local SCUs = {}
-            local possSCUs = AIUtils.GetOwnUnitsAroundPoint(aiBrain, categories.SUBCOMMANDER, {x,0,z}, 200)
-            for k,v in possSCUs do
-                table.insert(SCUs, v)
-                if table.getn(SCUs) > 10 then
-                    break
-                end
-            end
-            for k,v in SCUs do
-                if v.PlatoonHandle and aiBrain:PlatoonExists(v.PlatoonHandle) then
-                    v.PlatoonHandle:RemoveEngineerCallbacksSorian()
-                    v.PlatoonHandle:Stop()
-                    v.PlatoonHandle:PlatoonDisbandNoAssign()
-                end
-                if v.NotBuildingThread then
-                    KillThread(v.NotBuildingThread)
-                    v.NotBuildingThread = nil
-                end
-                if v.ProcessBuild then
-                    KillThread(v.ProcessBuild)
-                    v.ProcessBuild = nil
-                end
-                v.BuilderManagerData.EngineerManager:RemoveUnit(v)
-                IssueStop({v})
-                IssueClearCommands({v})
-                if v:HasEnhancement('Overcharge') then
-                    local order = {
-                        TaskName = "EnhanceTask",
-                        Enhancement = "OverchargeRemove"
-                    }
-                    IssueScript({v}, order)
-                elseif v:HasEnhancement('ResourceAllocation') then
-                    local order = {
-                        TaskName = "EnhanceTask",
-                        Enhancement = "ResourceAllocationRemove"
-                    }
-                    IssueScript({v}, order)
-                end
-            end
-            local plat = aiBrain:MakePlatoon('', '')
-            aiBrain:AssignUnitsToPlatoon(plat, SCUs, 'attack', 'None')
-            for k,v in SCUs do
-                for x,z in upgrades do
-                    if not v:HasEnhancement(z) then
-                        local order = {
-                            TaskName = "EnhanceTask",
-                            Enhancement = z
-                        }
-                        IssueScript({v}, order)
-                    end
-                end
-            end
-            local allDead
-            local upgradesFinished
-            repeat
-                WaitSeconds(5)
-                allDead = true
-                upgradesFinished = true
-                if not aiBrain:PlatoonExists(plat) then
-                    Builders[self.BuilderName].Running = false
-                    return
-                end
-                for k,v in plat:GetPlatoonUnits() do
-                    if not v.Dead then
-                        allDead = false
-                    end
-                    if not v:HasEnhancement(upgrades[2]) then
-                        upgradesFinished = false
-                    end
-                end
-            until allDead or upgradesFinished
 
-            if allDead then return end
-
-            local targetLocation = Behaviors.GetHighestThreatClusterLocationSorian(aiBrain, plat)
-            for k,v in SCUs do
-                local telePos = AIUtils.RandomLocation(targetLocation[1],targetLocation[3])
-                IssueTeleport({v}, telePos)
-            end
-            WaitSeconds(45)
-            plat:HuntAISorian()
-            Builders[self.BuilderName].Running = false
-        end,
-        PriorityFunction = function(self, aiBrain)
-            if Builders[self.BuilderName].Running then
-                return 100
-            end
-            local enemyIndex
-            local returnval = 1
-            if aiBrain:GetCurrentEnemy() then
-                enemyIndex = aiBrain:GetCurrentEnemy():GetArmyIndex()
-            else
-                return returnval
-            end
-
-            if Random(1,10) == 7 then
-                returnval = 100
-            end
-
-            return returnval
-        end,
-        BuilderConditions = {
-            { SBC, 'NoRushTimeCheck', { 600 }},
-            { MIBC, 'FactionIndex', {2, 4}},
-            { UCBC, 'HaveGreaterThanUnitsWithCategory', { 10, 'SUBCOMMANDER' }},
-            { SIBC, 'GreaterThanEconEfficiencyOverTime', { 0.9, 1.3}},
-            
-        },
-        BuilderType = 'Any',
-        RemoveBuilders = {},
-        AddBuilders = {}
-    },
-}
 
 BuilderGroup {
     BuilderGroupName = 'NClandbehavior_expansion',
     BuildersType = 'PlatoonFormBuilder',
 
     Builder {
-        BuilderName = 'NClandbaseguard_expansion',
+        BuilderName = 'NClandbaseguard_expansionunits',
         PlatoonTemplate = 'landbaseguardNC',
 		PlatoonAddPlans = {'PlatoonCallForHelpAISorian', 'DistressResponseAISorian'},
         PlatoonAddBehaviors = { 'AirLandToggleSorian' },
@@ -234,7 +102,7 @@ BuilderGroup {
                 'ALLUNITS',
             },
         },    
-        InstanceCount = 1,
+
         BuilderType = 'Any',
     },
 }
@@ -263,7 +131,7 @@ BuilderGroup {
             PrioritizedCategories = {
 
 
-            'LAND EXPERIMENTAL',
+            'EXPERIMENTAL LAND',
                 'ALLUNITS',
             },
         },    
@@ -278,19 +146,19 @@ BuilderGroup {
         Priority = 10,
         InstanceCount = 50,
         BuilderConditions = { 
-        
+            { MIBC, 'GreaterThanGameTime', { 600} },
                         { UCBC, 'PoolGreaterAtLocation', { 'LocationType', 5, categories.MOBILE * categories.LAND - categories.ENGINEER - categories.EXPERIMENTAL } },
 			{ SBC, 'NoRushTimeCheck', { 0 }},
         },
         BuilderData = {
         
           
-                       
+            SearchRadius = 6000,
 			ThreatSupport = 40,
             PrioritizedCategories = {
 
 
-            'LAND EXPERIMENTAL',
+            'EXPERIMENTAL LAND',
                 'ALLUNITS',
             },
         },    
@@ -306,7 +174,7 @@ BuilderGroup {
         InstanceCount = 10,
         
         BuilderConditions = { 
-            { MIBC, 'GreaterThanGameTime', { 360} },
+            { MIBC, 'GreaterThanGameTime', { 600} },
             { SBC, 'LessThanGameTime', { 2399 } },
                         { UCBC, 'PoolGreaterAtLocation', { 'LocationType', 0, categories.MOBILE * categories.LAND - categories.ENGINEER } },
 			{ SBC, 'NoRushTimeCheck', { 0 }},
@@ -339,7 +207,7 @@ BuilderGroup {
         Priority = 100,
         InstanceCount = 10,
         BuilderConditions = { 
-            { MIBC, 'GreaterThanGameTime', { 360} },
+            { MIBC, 'GreaterThanGameTime', { 600} },
             { SBC, 'LessThanGameTime', { 2399 } },
                         { UCBC, 'PoolGreaterAtLocation', { 'LocationType', 0, categories.MOBILE * categories.LAND - categories.ENGINEER } },
 			{ SBC, 'NoRushTimeCheck', { 0 }},
@@ -407,15 +275,15 @@ BuilderGroup {
     BuildersType = 'FactoryBuilder',
     
  Builder {
-        BuilderName = 'NC T1 Light Tank - Tech 1 - EMERGENCY',
+        BuilderName = 'NC T1 Light Tank  Tech 1 EMERGENCY',
         PlatoonTemplate = 'T1LandDFTank',
         Priority = 825,
         InstanceCount = 100,
         BuilderConditions = {
-          { UCBC, 'HaveLessThanUnitsWithCategory', { 2, 'FACTORY TECH3' }},
-	{ UCBC, 'HaveUnitsWithCategoryAndAlliance', { true, 20, categories.LAND * categories.MOBILE - categories.ENGINEER,  'Enemy' }},	
- { SBC, 'LessThanGameTime', { 600 } },	
-{ UCBC, 'HaveLessThanUnitsInCategoryBeingBuilt', { 1, categories.LAND * categories.MOBILE - categories.ENGINEER } },
+     
+	      { UCBC, 'HaveUnitsWithCategoryAndAlliance', { true, 20, categories.LAND * categories.MOBILE - categories.ENGINEER,  'Enemy' }},	
+          { SBC, 'LessThanGameTime', { 600 } },	
+          { UCBC, 'HaveLessThanUnitsInCategoryBeingBuilt', { 1, categories.LAND * categories.MOBILE - categories.ENGINEER } },
 			
       
             { SIBC, 'GreaterThanEconEfficiencyOverTime', { 0.70, 1.05 }},
@@ -478,12 +346,13 @@ BuilderGroup {
     
   
     Builder {
-        BuilderName = 'NC T1 Light Tank - Tech 1',
+        BuilderName = 'NC T1 Light Tank  Tech 1',
         PlatoonTemplate = 'T1LandDFTank',
         Priority = 725,
         BuilderConditions = {
            
-            { UCBC, 'HaveLessThanUnitsWithCategory', { 50, categories.LAND * categories.MOBILE * categories.TECH1 - categories.ENGINEER }},
+            { UCBC, 'HaveLessThanUnitsWithCategory', { 3, categories.FACTORY * categories.TECH3 * categories.LAND }},
+            { UCBC, 'HaveLessThanUnitsWithCategory', { 200, categories.LAND * categories.MOBILE * categories.TECH1 - categories.ENGINEER }},
 			{ UCBC, 'FactoryGreaterAtLocation', { 'LocationType', 0, categories.LAND * categories.FACTORY * categories.TECH1 } },
            
             { SIBC, 'GreaterThanEconEfficiencyOverTime', { 0.70, 1.05 }},
@@ -496,15 +365,15 @@ BuilderGroup {
 
     
     Builder {
-        BuilderName = 'NC T1 Mortar - Not T1',
+        BuilderName = 'NC T1 Mortar  Not T1',
         PlatoonTemplate = 'T1LandArtillery',
         Priority = 600,
         InstanceCount = 3,
         BuilderConditions = {
         
          
-        
-            { UCBC, 'HaveLessThanUnitsWithCategory', { 100, categories.LAND * categories.MOBILE * categories.TECH1 - categories.ENGINEER }},
+            { UCBC, 'HaveLessThanUnitsWithCategory', { 3, categories.FACTORY * categories.TECH3 * categories.LAND }},
+            { UCBC, 'HaveLessThanUnitsWithCategory', { 200, categories.LAND * categories.MOBILE * categories.TECH1 - categories.ENGINEER }},
 			{ UCBC, 'FactoryGreaterAtLocation', { 'LocationType', 0, categories.LAND * categories.FACTORY - categories.TECH1 } },
             { IBC, 'BrainNotLowPowerMode', {} },
 			{ SBC, 'NoRushTimeCheck', { 600 }},
@@ -532,12 +401,13 @@ BuilderGroup {
         Priority = 900,
 InstanceCount = 5,
         BuilderConditions = {
+            { UCBC, 'HaveLessThanUnitsWithCategory', { 3, categories.FACTORY * categories.TECH3 * categories.LAND }},
             { TBC, 'EnemyThreatGreaterThanValueAtBase', { 'LocationType', 0, 'Land', 3 } },
 			{ UCBC, 'FactoryGreaterAtLocation', { 'LocationType', 0, categories.LAND * categories.FACTORY * categories.TECH1 } },
             { IBC, 'BrainNotLowPowerMode', {} },
 			
-			{ UCBC, 'HaveLessThanUnitsWithCategory', { 2, 'LAND FACTORY TECH3' }},
-            { SIBC, 'GreaterThanEconEfficiencyOverTime', { 0.9, 1.05 }},
+		
+            { SIBC, 'GreaterThanEconEfficiencyOverTime', { 0.7, 1.05 }},
             
 			{ SBC, 'NoRushTimeCheck', { 600 }},
           
@@ -545,19 +415,19 @@ InstanceCount = 5,
         BuilderType = 'Land',
     },
     Builder {
-        BuilderName = 'NC T1 Mortar - Not T1',
+        BuilderName = 'NC T1 Mortar  rapidattack',
         PlatoonTemplate = 'T1LandArtillery',
         Priority = 900,
         InstanceCount = 5,
         BuilderConditions = {
         
-         
+            { UCBC, 'HaveLessThanUnitsWithCategory', { 3, categories.FACTORY * categories.TECH3 * categories.LAND }},
             { TBC, 'EnemyThreatGreaterThanValueAtBase', { 'LocationType', 0, 'Land', 3 } },
 			{ UCBC, 'FactoryGreaterAtLocation', { 'LocationType', 0, categories.LAND * categories.FACTORY * categories.TECH1 } },
             { IBC, 'BrainNotLowPowerMode', {} },
 			
-			{ UCBC, 'HaveLessThanUnitsWithCategory', { 2, 'LAND FACTORY TECH3' }},
-            { SIBC, 'GreaterThanEconEfficiencyOverTime', { 0.9, 1.05 }},
+			
+            { SIBC, 'GreaterThanEconEfficiencyOverTime', { 0.7, 1.05 }},
             
 			{ SBC, 'NoRushTimeCheck', { 600 }},
        
@@ -580,9 +450,10 @@ BuilderGroup {
         Priority = 600,
         BuilderType = 'Land',
         BuilderConditions = {
+            { UCBC, 'HaveLessThanUnitsWithCategory', { 4, categories.FACTORY * categories.TECH3 * categories.LAND }},
             { IBC, 'BrainNotLowPowerMode', {} },
 			{ UCBC, 'FactoryGreaterAtLocation', { 'LocationType', 0, categories.LAND * categories.FACTORY * categories.TECH2 } },
-            { UCBC, 'HaveLessThanUnitsWithCategory', { 100, categories.LAND * categories.MOBILE * categories.TECH2 - categories.ENGINEER }},
+            { UCBC, 'HaveLessThanUnitsWithCategory', { 200, categories.LAND * categories.MOBILE * categories.TECH2 - categories.ENGINEER }},
             { SIBC, 'GreaterThanEconEfficiencyOverTime', { 0.70, 1.05 }},
             
 			{ SBC, 'NoRushTimeCheck', { 600 }},
@@ -596,11 +467,12 @@ BuilderGroup {
         InstanceCount = 3,
         BuilderType = 'Land',
         BuilderConditions = {
+            { UCBC, 'HaveLessThanUnitsWithCategory', { 4, categories.FACTORY * categories.TECH3 * categories.LAND }},
             { IBC, 'BrainNotLowPowerMode', {} },
 		
 			{ UCBC, 'FactoryGreaterAtLocation', { 'LocationType', 0, categories.LAND * categories.FACTORY * categories.TECH2 } },
             { SIBC, 'GreaterThanEconEfficiencyOverTime', { 0.70, 1.05 }},
-            { UCBC, 'HaveLessThanUnitsWithCategory', { 100, categories.LAND * categories.MOBILE * categories.TECH2 - categories.ENGINEER }},
+            { UCBC, 'HaveLessThanUnitsWithCategory', { 200, categories.LAND * categories.MOBILE * categories.TECH2 - categories.ENGINEER }},
 			{ SBC, 'NoRushTimeCheck', { 600 }},
             { UCBC, 'HaveUnitRatio', { 0.35, categories.LAND * categories.INDIRECTFIRE * categories.MOBILE, '<=', categories.LAND * categories.DIRECTFIRE * categories.MOBILE}},
                     
@@ -613,9 +485,10 @@ BuilderGroup {
         Priority = 600,
         BuilderType = 'Land',
         BuilderConditions = {
+            { UCBC, 'HaveLessThanUnitsWithCategory', { 4, categories.FACTORY * categories.TECH3 * categories.LAND }},
             { IBC, 'BrainNotLowPowerMode', {} },
 			{ UCBC, 'FactoryGreaterAtLocation', { 'LocationType', 0, categories.LAND * categories.FACTORY * categories.TECH2 } },
-            { UCBC, 'HaveLessThanUnitsWithCategory', { 100, categories.LAND * categories.MOBILE * categories.TECH2 - categories.ENGINEER }},
+            { UCBC, 'HaveLessThanUnitsWithCategory', { 200, categories.LAND * categories.MOBILE * categories.TECH2 - categories.ENGINEER }},
             { SIBC, 'GreaterThanEconEfficiencyOverTime', { 0.70, 1.05 }},
             
 			{ SBC, 'NoRushTimeCheck', { 600 }},
@@ -630,6 +503,7 @@ BuilderGroup {
 InstanceCount = 100,
         BuilderType = 'Land',
         BuilderConditions = {
+            { UCBC, 'HaveLessThanUnitsWithCategory', { 4, categories.FACTORY * categories.TECH3 * categories.LAND }},
             { IBC, 'BrainNotLowPowerMode', {} },
             { SBC, 'IsIslandMap', { true } },
 			{ UCBC, 'FactoryGreaterAtLocation', { 'LocationType', 0, categories.LAND * categories.FACTORY * categories.TECH2 } },
@@ -643,14 +517,15 @@ InstanceCount = 100,
     },
   
     Builder {
-        BuilderName = 'NC T2 Amphibious Tank island',
+        BuilderName = 'NC T2 Amphibious Tank notisland',
         PlatoonTemplate = 'T2LandAmphibious',
         Priority = 550,
         BuilderType = 'Land',
         BuilderConditions = {
+            { UCBC, 'HaveLessThanUnitsWithCategory', { 4, categories.FACTORY * categories.TECH3 * categories.LAND }},
             { IBC, 'BrainNotLowPowerMode', {} },
 			{ UCBC, 'FactoryGreaterAtLocation', { 'LocationType', 0, categories.LAND * categories.FACTORY - categories.TECH1 } },
-            { UCBC, 'HaveLessThanUnitsWithCategory', { 100, categories.LAND * categories.MOBILE * categories.TECH2 - categories.ENGINEER }},
+            { UCBC, 'HaveLessThanUnitsWithCategory', { 200, categories.LAND * categories.MOBILE * categories.TECH2 - categories.ENGINEER }},
             { SIBC, 'GreaterThanEconEfficiencyOverTime', { 0.70, 1.05 }},
           
 			{ SBC, 'NoRushTimeCheck', { 600 }},
@@ -660,16 +535,17 @@ InstanceCount = 100,
     },
     # Tech 2 priority
     Builder {
-        BuilderName = 'NC T2 Amphibious Tank - Tech 2 Cybran',
+        BuilderName = 'NC T2 Amphibious Tank Tech 2 Cybran',
         PlatoonTemplate = 'T2LandAmphibious',
         Priority = 600,
-InstanceCount = 100,
+InstanceCount = 10,
         BuilderType = 'Land',
         BuilderConditions = {
+            { UCBC, 'HaveLessThanUnitsWithCategory', { 4, categories.FACTORY * categories.TECH3 * categories.LAND }},
             { IBC, 'BrainNotLowPowerMode', {} },
             { SBC, 'IsIslandMap', { true } },
 			{ UCBC, 'FactoryGreaterAtLocation', { 'LocationType', 0, categories.LAND * categories.FACTORY * categories.TECH2 } },
-            { UCBC, 'HaveLessThanUnitsWithCategory', { 100, categories.LAND * categories.MOBILE * categories.TECH2 - categories.ENGINEER }},
+            { UCBC, 'HaveLessThanUnitsWithCategory', { 200, categories.LAND * categories.MOBILE * categories.TECH2 - categories.ENGINEER }},
             { SIBC, 'GreaterThanEconEfficiencyOverTime', { 0.70, 1.05 }},
             
 			{ SBC, 'NoRushTimeCheck', { 600 }},
@@ -678,14 +554,15 @@ InstanceCount = 100,
     },
     # Tech 3 priority
     Builder {
-        BuilderName = 'NC T2 Amphibious Tank - Tech 3 Cybran',
+        BuilderName = 'NC T2 Amphibious Tank  Tech 3 Cybran',
         PlatoonTemplate = 'T2LandAmphibious',
         Priority = 550,
         BuilderType = 'Land',
         BuilderConditions = {
+            { UCBC, 'HaveLessThanUnitsWithCategory', { 4, categories.FACTORY * categories.LAND * categories.TECH3}},
             { IBC, 'BrainNotLowPowerMode', {} },
 			{ UCBC, 'FactoryGreaterAtLocation', { 'LocationType', 0, categories.LAND * categories.FACTORY - categories.TECH1 } },
-            { UCBC, 'HaveLessThanUnitsWithCategory', { 100, categories.LAND * categories.MOBILE * categories.TECH2 - categories.ENGINEER }},
+            { UCBC, 'HaveLessThanUnitsWithCategory', { 200, categories.LAND * categories.MOBILE * categories.TECH2 - categories.ENGINEER }},
             { SIBC, 'GreaterThanEconEfficiencyOverTime', { 0.70, 1.05 }},
             
 			{ SBC, 'NoRushTimeCheck', { 600 }},
@@ -709,6 +586,7 @@ BuilderGroup {
         Priority = 925,
 InstanceCount = 20,
         BuilderConditions = {
+            { UCBC, 'HaveLessThanUnitsWithCategory', { 4, categories.FACTORY * categories.LAND * categories.TECH3}},
             { TBC, 'EnemyThreatGreaterThanValueAtBase', { 'LocationType', 0, 'Land', 1 } },
 		
 			{ UCBC, 'FactoryGreaterAtLocation', { 'LocationType', 0, categories.LAND * categories.FACTORY * categories.TECH2 } },
