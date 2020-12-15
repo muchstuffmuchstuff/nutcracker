@@ -1237,78 +1237,7 @@ BuilderGroup {
 
 
 
-BuilderGroup {
-    BuilderGroupName = 'NCT2AirFactoryBuilders',
-    BuildersType = 'FactoryBuilder',
-    Builder {
-        BuilderName = 'NC T2 Air Gunship',
-        PlatoonTemplate = 'T2AirGunship',
-        Priority = 600,
-        BuilderType = 'Air',
-        BuilderConditions = {
-            { UCBC, 'HaveLessThanUnitsWithCategory', { 4, categories.FACTORY * categories.AIR * categories.TECH3}},
-            { IBC, 'BrainNotLowPowerMode', {} },
-			{ UCBC, 'FactoryGreaterAtLocation', { 'LocationType', 0, categories.FACTORY * categories.AIR * categories.TECH2 } },
-            { SIBC, 'GreaterThanEconEfficiencyOverTime', { 0.95, 1.05 }},
-            
-			{ SBC, 'NoRushTimeCheck', { 600 }},
-			{ UCBC, 'FactoryLessAtLocation', { 'LocationType', 5, 'FACTORY TECH3' }},
-        },
-    },
-    Builder {
-        BuilderName = 'NC T2 Air Gunship - Anti Navy',
-        PlatoonTemplate = 'T2AirGunship',
-        Priority = 605,
-        BuilderType = 'Air',
-        BuilderConditions = {
-            { UCBC, 'HaveLessThanUnitsWithCategory', { 4, categories.FACTORY * categories.AIR * categories.TECH3}},
-            { IBC, 'BrainNotLowPowerMode', {} },
-			{ UCBC, 'FactoryGreaterAtLocation', { 'LocationType', 0, categories.FACTORY * categories.AIR * categories.TECH2 } },
-            { SIBC, 'GreaterThanEconEfficiencyOverTime', { 0.95, 1.05 }},
-            
-			{ SBC, 'NoRushTimeCheck', { 600 }},
-			{ UCBC, 'FactoryLessAtLocation', { 'LocationType', 5, 'FACTORY TECH3' }},
-			{ UCBC, 'HaveUnitsWithCategoryAndAlliance', { true, 1, categories.STRUCTURE * categories.DEFENSE * categories.ANTINAVY, 'Enemy'}},
-        },
-    },
-    Builder {
-        BuilderName = 'NC T2 Air Gunship - Stomp Enemy',
-        PlatoonTemplate = 'T2BomberSorian',
-        Priority = 649,
-        BuilderType = 'Air',
-        BuilderConditions = {
-            { UCBC, 'HaveLessThanUnitsWithCategory', { 4, categories.FACTORY * categories.AIR * categories.TECH3}},
-            { IBC, 'BrainNotLowPowerMode', {} },
-			{ SBC, 'LessThanThreatAtEnemyBase', { 'AntiAir', 18 }},
-			{ SBC, 'NoRushTimeCheck', { 600 }},
-			{ UCBC, 'FactoryGreaterAtLocation', { 'LocationType', 0, categories.FACTORY * categories.AIR * categories.TECH2 } },
-            { SIBC, 'GreaterThanEconEfficiencyOverTime', { 0.95, 1.05 }},
-            
-			{ UCBC, 'FactoryLessAtLocation', { 'LocationType', 5, 'FACTORY TECH3' }},
-        },
-    },
-  
- 
-    Builder {
-        BuilderName = 'NC T2 Air Gunship2',
-        PlatoonTemplate = 'T2AirGunship',
-        Priority = 600,
-        BuilderType = 'Air',
-        BuilderConditions = {
-            { UCBC, 'HaveLessThanUnitsWithCategory', { 4, categories.FACTORY * categories.AIR * categories.TECH3}},
-            { IBC, 'BrainNotLowPowerMode', {} },
-			{ UCBC, 'FactoryGreaterAtLocation', { 'LocationType', 0, categories.FACTORY * categories.AIR * categories.TECH2 } },
-            { SIBC, 'GreaterThanEconEfficiencyOverTime', { 0.95, 1.05 }},
-            
-			{ SBC, 'NoRushTimeCheck', { 600 }},
-			{ UCBC, 'FactoryLessAtLocation', { 'LocationType', 5, 'FACTORY TECH3' }},
-        },
-    },
 
-
-   
-
-}
 
 
   
