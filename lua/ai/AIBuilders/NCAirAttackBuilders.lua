@@ -490,7 +490,7 @@ Builder {
         BuilderGroupName = 'NCacusnipe',
         BuildersType = 'FactoryBuilder',
         Builder {
-            BuilderName = 'NC T3 Air Gunship air control',
+            BuilderName = 'NC T3 Air Gunship air control snipe',
             PlatoonTemplate = 'T3AirGunship',
             Priority = 750,
    
