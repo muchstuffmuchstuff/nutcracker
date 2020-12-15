@@ -196,7 +196,7 @@ BuilderGroup {
     BuilderGroupName = 'NCEngineerNavalFactoryBuilder',
     BuildersType = 'EngineerBuilder',
     Builder {
-        BuilderName = 'Sorian T1 Naval Factory Builder',
+        BuilderName = 'NC T1 Naval Factory Builder',
         PlatoonTemplate = 'EngineerBuilderSorian',
         Priority = 905,
         BuilderConditions = {

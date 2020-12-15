@@ -1188,7 +1188,7 @@ BuilderGroup {
       
 
     Builder {
-        BuilderName = 'NC T2 Power Engineer emergency',
+        BuilderName = 'NC T2 Power Engineer low power',
         PlatoonTemplate = 'T2EngineerBuilderSorian',
         Priority = 4999,
         DelayEqualBuildPlattons = {'Energy', 3},

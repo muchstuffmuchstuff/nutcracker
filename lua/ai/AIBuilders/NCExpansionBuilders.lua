@@ -82,7 +82,7 @@ BuilderGroup {
         }
     }, 
     Builder {
-        BuilderName = 'NC T1rushVacantStartingAreaEngineer_islandmap_TIMED ',
+        BuilderName = 'NC T1VacantStartingAreaEngineer_islandmap_TIMED ',
         PlatoonTemplate = 'EngineerBuilderSorian',
         Priority = 985,
         InstanceCount = 2,

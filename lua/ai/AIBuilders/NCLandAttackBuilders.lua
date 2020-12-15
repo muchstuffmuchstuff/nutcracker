@@ -474,7 +474,7 @@ BuilderGroup {
             { SIBC, 'GreaterThanEconEfficiencyOverTime', { 0.70, 1.05 }},
             { UCBC, 'HaveLessThanUnitsWithCategory', { 200, categories.LAND * categories.MOBILE * categories.TECH2 - categories.ENGINEER }},
 			{ SBC, 'NoRushTimeCheck', { 600 }},
-            { UCBC, 'HaveUnitRatio', { 0.35, categories.LAND * categories.INDIRECTFIRE * categories.MOBILE, '<=', categories.LAND * categories.DIRECTFIRE * categories.MOBILE}},
+            
                     
         },
     },
@@ -592,7 +592,7 @@ InstanceCount = 20,
 			{ UCBC, 'FactoryGreaterAtLocation', { 'LocationType', 0, categories.LAND * categories.FACTORY * categories.TECH2 } },
             { IBC, 'BrainNotLowPowerMode', {} },
 			{ SBC, 'NoRushTimeCheck', { 600 }},
-            { SIBC, 'GreaterThanEconEfficiencyOverTime', { 0.9, 1.05 }},
+            { SIBC, 'GreaterThanEconEfficiencyOverTime', { 0.7, 1.05 }},
             
            
         },
@@ -694,7 +694,7 @@ BuilderGroup {
             { SIBC, 'GreaterThanEconEfficiencyOverTime', { 0.70, 1.05 }},
             
 			{ SBC, 'NoRushTimeCheck', { 600 }},
-            { UCBC, 'HaveUnitRatio', { 0.15, categories.LAND * categories.INDIRECTFIRE * categories.MOBILE, '<=', categories.LAND * categories.DIRECTFIRE * categories.MOBILE}},
+           
           
         },
     },

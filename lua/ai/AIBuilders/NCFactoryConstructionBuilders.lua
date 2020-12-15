@@ -258,7 +258,7 @@ BuilderGroup {
     #     Air Factory Builders
     # ============================
     Builder {        
-        BuilderName = 'NC T1 Air Factory Builder',
+        BuilderName = 'NC T1 Air Factory Builder regular',
         PlatoonTemplate = 'EngineerBuilderSorian',
         Priority = 900,
         BuilderConditions = {
