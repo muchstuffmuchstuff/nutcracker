@@ -7,6 +7,8 @@ BaseBuilderTemplate {
 
 
         # ==== ECONOMY ==== #
+
+        'NCsubcommander_ras',
         'NCEngineerMassBuildersLowerPri',
         'NCEngineerEnergyBuildersExpansions',
         'NCemergencyenergy',
@@ -18,6 +20,7 @@ BaseBuilderTemplate {
         'NCMassFabPause',
         'NCmassupgrade',
         'NCt1masscontinuation',
+        
        
       
         
@@ -46,6 +49,7 @@ BaseBuilderTemplate {
                      
        	        
         # ==== DEFENSES ==== #
+        'NCT3DefensivePoints High Pri',
 		'NCT1BaseDefenses',
 		'NCT2BaseDefenses',
 		'NCT3BaseDefenses',
@@ -63,9 +67,10 @@ BaseBuilderTemplate {
 	      
             
         # ==== LAND UNIT BUILDERS ==== #
-        'NC Tele SCU Strategy',
-        'NCT1_expansionprotect',
-        'NClandbehavior_expansion',
+    
+        
+        'NCT1expansionprotect',
+        'NClandbehaviorexpansion',
      
         'NCUpgradeBuildersLand',
         'NCT1LandFactoryBuildersemergency',
@@ -85,14 +90,15 @@ BaseBuilderTemplate {
         'NClandbehavior',
 
         # ==== AIR UNIT BUILDERS ==== #
-        'NCstopfactoryrushwithbombersbehavior',
+        'NCt4airsnipebehavior',
+      
         'NCairstaging',
         'NCT1AntiAirBuilders',
         'NCT3AntiAirBuilders',
         'NCT3AirFactoryBuilders',
         'NCExtraAirFactory',
         'NCAntiNavyQuickBuild',
-        'NCAntiNavyAirbehavior',
+       
         'NCfindenemyfightersbehavior',
       
         'NCTransportFactoryBuilders',
@@ -102,12 +108,12 @@ BaseBuilderTemplate {
         
         
         'NCt3emergencybuilders',
-        'NCmasshuntairbehavior',
+      
         'NCexcessresourcest1bomberbuild',
-        'NCacusnipebehavior',
+      
         
         'NCacusnipe',
-        'NCengihuntairbehavior',
+       
     
     
 
@@ -139,7 +145,8 @@ BaseBuilderTemplate {
     },
     NonCheatBuilders = {
      
-        
+        'NCRadarUpgradeBuildersMain',
+        'NCRadarEngineerBuilders',
     
         
         
@@ -149,7 +156,7 @@ BaseBuilderTemplate {
             Tech1 = 10,
             Tech2 = 15,
             Tech3 = 20,
-            SCU = 10,
+            SCU = 40,
         },
         FactoryCount = {
             Land = 8,

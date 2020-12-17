@@ -43,12 +43,12 @@ BuilderGroup {
             { SBC, 'IsIslandMap', { true } },
             { UCBC, 'StartLocationNeedsEngineer', { 'LocationType', 1000, -1000, 5, 0, 'StructuresNotMex' } },
          
-            { SBC, 'LessThanGameTime', { 600 } },
+           
 			{ SIBC, 'LessThanExpansionBases', { } },
 			{ SBC, 'NoRushTimeCheck', { 0 }},
        
   
-            #{ EBC, 'MassToFactoryRatioBaseCheck', { 'LocationType' } },
+           
         },
         BuilderType = 'Any',
         BuilderData = {
@@ -92,12 +92,12 @@ BuilderGroup {
             { SBC, 'IsIslandMap', { true } },
             { UCBC, 'StartLocationNeedsEngineer', { 'LocationType', 1000, -1000, 5, 0, 'StructuresNotMex' } },
          
-            { SBC, 'GreaterThanGameTime', { 330 } },
+            { SBC, 'GreaterThanGameTime', { 250 } },
 			{ SIBC, 'LessThanExpansionBases', { } },
 			{ SBC, 'NoRushTimeCheck', { 0 }},
        
   
-            #{ EBC, 'MassToFactoryRatioBaseCheck', { 'LocationType' } },
+           
         },
         BuilderType = 'Any',
         BuilderData = {
@@ -280,12 +280,12 @@ BuilderGroup {
         BuilderConditions = {
             { UCBC, 'StartLocationNeedsEngineer', { 'LocationType', 1000, -1000, 5, 0, 'StructuresNotMex' } },
        
-            { SBC, 'LessThanGameTime', { 600 } },
+            
 			{ SIBC, 'LessThanExpansionBases', { } },
 			{ SBC, 'NoRushTimeCheck', { 0 }},
        
   
-            #{ EBC, 'MassToFactoryRatioBaseCheck', { 'LocationType' } },
+            
         },
         BuilderType = 'Any',
         BuilderData = {
@@ -328,12 +328,12 @@ BuilderGroup {
         BuilderConditions = {
             { UCBC, 'StartLocationNeedsEngineer', { 'LocationType', 1000, -1000, 5, 0, 'StructuresNotMex' } },
        
-            { SBC, 'GreaterThanGameTime', { 330 } },
+            { SBC, 'GreaterThanGameTime', { 250 } },
 			{ SIBC, 'LessThanExpansionBases', { } },
 			{ SBC, 'NoRushTimeCheck', { 0 }},
        
   
-            #{ EBC, 'MassToFactoryRatioBaseCheck', { 'LocationType' } },
+            
         },
         BuilderType = 'Any',
         BuilderData = {
@@ -380,7 +380,7 @@ BuilderGroup {
           
       
           
-            { EBC, 'MassToFactoryRatioBaseCheck', { 'LocationType' } },
+           
         },
         BuilderType = 'Any',
         BuilderData = {
@@ -424,7 +424,7 @@ BuilderGroup {
 			{ SBC, 'NoRushTimeCheck', { 0 }},
           
          
-            { EBC, 'MassToFactoryRatioBaseCheck', { 'LocationType' } },
+            
         },
         BuilderType = 'Any',
         BuilderData = {
@@ -461,12 +461,12 @@ BuilderGroup {
       
         BuilderConditions = {
             { UCBC, 'StartLocationNeedsEngineer', { 'LocationType', 1000, -1000, 0, 2, 'StructuresNotMex' } },
-            { UCBC, 'UnitCapCheckLess', { 0.95 } },
+      
 			{ SIBC, 'LessThanExpansionBases', { } },
 			{ SBC, 'NoRushTimeCheck', { 0 }},
 	
         
-            { EBC, 'MassToFactoryRatioBaseCheck', { 'LocationType' } },
+            
         },
         BuilderType = 'Any',
         BuilderData = {
@@ -516,11 +516,9 @@ BuilderGroup {
             { UCBC, 'UnitCapCheckLess', { .8 } },
             { SIBC, 'LessThanExpansionBases', { } },
             { SBC, 'NoRushTimeCheck', { 0 }},
-            #{ EBC, 'MassIncomeToUnitRatio', { 10, '>=', 'FACTORY TECH1 STRUCTURE' } },
-            #{ EBC, 'MassIncomeToUnitRatio', { 20, '>=', 'FACTORY TECH2 STRUCTURE' } },
-            #{ EBC, 'MassIncomeToUnitRatio', { 30, '>=', 'FACTORY TECH3 STRUCTURE' } },
-            #{ UCBC, 'HaveUnitRatio', { ExtractorToFactoryRatio, 'MASSEXTRACTION', '>=','FACTORY' } },
-            { EBC, 'MassToFactoryRatioBaseCheck', { 'LocationType' } },
+       
+         
+            
         },
         BuilderType = 'Any',
         BuilderData = {
@@ -604,8 +602,8 @@ BuilderGroup {
             { SIBC, 'LessThanExpansionBases', { } },
             { SBC, 'NoRushTimeCheck', { 0 }},
             { SIBC, 'HaveGreaterThanUnitsWithCategory', { 0, categories.ENERGYPRODUCTION * categories.TECH2 } },
-            { UCBC, 'HaveUnitRatio', { ExtractorToFactoryRatio, 'MASSEXTRACTION', '>=','FACTORY' } },
-            { EBC, 'MassToFactoryRatioBaseCheck', { 'LocationType' } },
+           
+            
         },
         BuilderType = 'Any',
         BuilderData = {
@@ -648,8 +646,8 @@ BuilderGroup {
             { SIBC, 'LessThanExpansionBases', { } },
             { SBC, 'NoRushTimeCheck', { 0 }},
             { SIBC, 'HaveGreaterThanUnitsWithCategory', { 0, categories.ENERGYPRODUCTION * categories.TECH3 } },
-            { UCBC, 'HaveUnitRatio', { ExtractorToFactoryRatio, 'MASSEXTRACTION', '>=','FACTORY' } },
-            { EBC, 'MassToFactoryRatioBaseCheck', { 'LocationType' } },
+         
+            
         },
         BuilderType = 'Any',
         BuilderData = {
@@ -679,76 +677,7 @@ BuilderGroup {
 
 
 
-BuilderGroup {
-    BuilderGroupName = 'NCbuildmissileclose',
-    BuildersType = 'EngineerBuilder',
-Builder {
-        BuilderName = 'NCgetinclosewithmissile',
-        PlatoonTemplate = 'T2T3EngineerBuilderNC_FIREBASE',
-        Priority = 980,
-        InstanceCount = 4,
-        NeedGuard = true,
-        BuilderConditions = {
-           
-         { SBC, 'CanBuildFirebase', { 'LocationType', 260, 'Defensive Point', -10000, 5, 1, 'AntiSurface', 1, 'STRUCTURE ARTILLERY TECH3', 20} },
-         
-		
-		
-			
-            { SIBC, 'GreaterThanEconEfficiencyOverTime', { 0.95, 1.1 }},
-            
-	
-			{ SBC, 'NoRushTimeCheck', { 0 }},
-        },
-        BuilderType = 'Any',
-        BuilderData = {
-          RequireTransport = true,
-          DesiresAssist = true,
-			
-            Construction = {
-                BuildClose = true,
-                BaseTemplate = ExBaseTmpl,
-                FireBase = true,
-                FireBaseRange = 260,
-                NearMarkerType = 'Expansion Area',
-                LocationType = 'LocationType',
-                ThreatMin = -10000,
-                ThreatMax = 5,
-                ThreatRings = 1,
-                MarkerUnitCount = 1,
-                MarkerUnitCategory = 'STRUCTURE ARTILLERY TECH3',
-                MarkerRadius = 20,
-                BuildStructures = {
-					
-                    'T2GroundDefense',
-                    'T2AADefense',
-                    'T2AADefense',                 
-                    'T2MissileDefense',
-                    'T2StrategicMissile',
-                    'T2MissileDefense',
-                    'T2GroundDefense',
-                    'T2StrategicMissile',
-                    'T2MissileDefense',
-                    'T2StrategicMissile',
-                    'T2AADefense',
-                    'T2AADefense', 
-                    'T2MissileDefense',
-                    'T2GroundDefense',
-                    'T2StrategicMissile',
-                    'T2ShieldDefense',
-                    'T2StrategicMissile',
-                    'T2StrategicMissile',
-                    'T2AADefense',
-                    'T2AADefense', 
-                    'T2StrategicMissile',
-                    'T2StrategicMissile',
-                    'T2StrategicMissile',
 
-                }
-            }
-        }
-    },
-}
     
 
 

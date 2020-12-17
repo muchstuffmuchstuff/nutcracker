@@ -1,4 +1,4 @@
-#####Structure
+---Structure
 
 PlatoonTemplate {
     Name = 'T3NukeNC',
@@ -15,15 +15,52 @@ PlatoonTemplate {
         { categories.STRUCTURE * categories.TACTICALMISSILEPLATFORM, 1, 1, 'attack', 'none' },
     }
 }
-#####Air
+---Air
+
 PlatoonTemplate {
-    Name = 'clenseNC',
+    Name = 'navalhunters',
     Plan = 'StrikeForceAISorian',
     GlobalSquads = {
-        { categories.MOBILE * categories.AIR  - categories.TRANSPORTFOCUS - categories.ANTINAVY - categories.SCOUT - categories.ANTIAIR - categories.INSIGNIFICANTUNIT - categories.POD, 1, 1, 'Attack', 'GrowthFormation' },
+        { categories.MOBILE * categories.AIR * categories.ANTINAVY - categories.ANTIAIR - categories.BOMBER - categories.GROUNDATTACK - categories.TRANSPORTFOCUS - categories.SCOUT , 1, 100, 'Attack', 'GrowthFormation' },
+       
+    }
+}
+
+PlatoonTemplate {
+    Name = 'clenseNCt1t2',
+    Plan = 'StrikeForceAISorian',
+    GlobalSquads = {
+        { categories.MOBILE * (categories.TECH1 + categories.TECH2) * categories.AIR  * categories.BOMBER - categories.TRANSPORTFOCUS - categories.ANTINAVY -categories.GROUNDATTACK - categories.SCOUT - categories.INSIGNIFICANTUNIT - categories.POD , 1, 2, 'Attack', 'GrowthFormation' },
         
     },
 }
+PlatoonTemplate {
+    Name = 'clenseNCt3',
+    Plan = 'StrikeForceAISorian',
+    GlobalSquads = {
+        { categories.MOBILE * categories.TECH3 * categories.AIR  * categories.BOMBER - categories.TRANSPORTFOCUS - categories.ANTINAVY -categories.GROUNDATTACK - categories.SCOUT - categories.INSIGNIFICANTUNIT - categories.POD , 1, 2, 'Attack', 'GrowthFormation' },
+        
+    },
+}
+
+PlatoonTemplate {
+    Name = 'clensegunshipsNCt1t2',
+    Plan = 'StrikeForceAISorian',
+    GlobalSquads = {
+        { categories.MOBILE * categories.AIR * (categories.TECH1 + categories.TECH2)  * categories.GROUNDATTACK  - categories.ANTINAVY - categories.BOMBER - categories.SCOUT - categories.INSIGNIFICANTUNIT - categories.POD, 1, 10, 'Attack', 'GrowthFormation' },
+        
+    },
+}
+
+PlatoonTemplate {
+    Name = 'clensegunshipsNCt3',
+    Plan = 'StrikeForceAISorian',
+    GlobalSquads = {
+        { categories.MOBILE * categories.AIR * categories.TECH3  * categories.GROUNDATTACK - categories.TRANSPORTFOCUS - categories.ANTINAVY - categories.BOMBER - categories.SCOUT - categories.INSIGNIFICANTUNIT - categories.POD, 1, 10, 'Attack', 'GrowthFormation' },
+        
+    },
+}
+
 
 
 PlatoonTemplate {
@@ -81,10 +118,18 @@ PlatoonTemplate {
 
 
 PlatoonTemplate {
-    Name = 'ncguardbasegroundattack',
+    Name = 'ncguardbasegroundgunship',
     Plan = 'GuardBaseSorian2',
     GlobalSquads = {
-        { categories.AIR * categories.MOBILE * categories.BOMBER - categories.ANTIAIR - categories.EXPERIMENTAL - categories.SCOUT - categories.INSIGNIFICANTUNIT - categories.POD, 1, 5, 'attack', 'none' },
+        { categories.AIR * categories.MOBILE * categories.TECH3 - categories.GROUNDATTACK - categories.ANTIAIR - categories.EXPERIMENTAL - categories.SCOUT - categories.INSIGNIFICANTUNIT - categories.POD, 1, 5, 'attack', 'none' },
+    }
+}
+
+PlatoonTemplate {
+    Name = 'ncguardbasegroundbomber',
+    Plan = 'GuardBaseSorian2',
+    GlobalSquads = {
+        { categories.AIR * categories.MOBILE * categories.BOMBER * categories.TECH3 - categories.ANTIAIR - categories.EXPERIMENTAL - categories.SCOUT - categories.INSIGNIFICANTUNIT - categories.POD, 1, 5, 'attack', 'none' },
     }
 }
 
@@ -149,7 +194,7 @@ PlatoonTemplate {
     }
 }
 
-####Land
+--Land
 
 PlatoonTemplate {
     Name = 'StrikeForceSmallNC',
@@ -178,7 +223,7 @@ PlatoonTemplate {
 
 PlatoonTemplate {
     Name = 'landbaseguardNC',
-    Plan = 'GuardBaseSorian',
+    Plan = 'GuardBaseNC270',
     GlobalSquads = {
         { categories.MOBILE * categories.LAND - categories.SUBCOMMANDER - categories.EXPERIMENTAL - categories.ENGINEER - categories.xsl0402, 1, 10, 'Attack', 'none' }
     },
@@ -186,7 +231,7 @@ PlatoonTemplate {
 
 
 
-####Naval
+---Naval
 PlatoonTemplate {
     Name = 'SeaHuntNC',
     Plan = 'NavalHuntNC',
@@ -195,18 +240,11 @@ PlatoonTemplate {
     },
 }
 
-PlatoonTemplate {
-    Name = 'navalhunters',
-    Plan = 'NavalHuntAI',
-    GlobalSquads = {
-        { categories.MOBILE * categories.AIR - categories.ANTIAIR - categories.SCOUT - categories.TRANSPORTFOCUS - categories.EXPERIMENTAL, 1, 100, 'Attack', 'GrowthFormation' },
-       
-    }
-}
 
 
 
-###ENGINEER
+
+---ENGINEER
 PlatoonTemplate {
     Name = 'AnyEngineerBuilderNC',
     Plan = 'EngineerBuildAISorian',
@@ -237,4 +275,21 @@ PlatoonTemplate {
     GlobalSquads = {
         { categories.ENGINEER * categories.TECH3 * categories.SUBCOMMANDER * categories.COMMAND - categories.ENGINEERSTATION , 1, 1, 'support', 'None' }
     },
+}
+
+
+PlatoonTemplate {
+    Name = 'NC RAS',
+    FactionSquads = {
+        UEF = {
+            { 'uel0301_RAS', 1, 1, 'Attack', 'None' }
+        },
+        Aeon = {
+            { 'ual0301_RAS', 1, 1, 'Attack', 'None' }
+        },
+        Cybran = {
+            { 'url0301_RAS', 1, 1, 'Attack', 'None' }
+        },
+      
+    }
 }

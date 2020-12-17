@@ -237,6 +237,58 @@ GuardBaseSorian2 = function(self)
     end
 end,
 
+GuardBaseNC270 = function(self)
+    self:Stop()
+    local aiBrain = self:GetBrain()
+    local armyIndex = aiBrain:GetArmyIndex()
+    local target = false
+    local basePosition = false
+    local radius = self.PlatoonData.Radius or 200
+    local patrolling = false
+
+    if self.PlatoonData.LocationType and self.PlatoonData.LocationType != 'NOTMAIN' then
+        basePosition = aiBrain.BuilderManagers[self.PlatoonData.LocationType].Position
+    else
+        basePosition = aiBrain:FindClosestBuilderManagerPosition(self:GetPlatoonPosition())
+    end
+    
+    local guardRadius = self.PlatoonData.GuardRadius or 270
+    local mapSizeX, mapSizeZ = GetMapSize()
+    local T4Radius = math.sqrt((mapSizeX * mapSizeX) + (mapSizeZ * mapSizeZ)) / 2
+    
+    while aiBrain:PlatoonExists(self) do
+        if self:IsOpponentAIRunning() then
+            target = self:FindClosestUnit('Attack', 'Enemy', true, categories.ALLUNITS - categories.WALL)
+            local newtarget = false
+            if aiBrain.T4ThreatFound['Air'] then
+                newtarget = self:FindClosestUnit('Attack', 'Enemy', true, categories.EXPERIMENTAL * categories.AIR)
+                if newtarget then
+                    target = newtarget
+                end
+            end
+            if target and newtarget and not target:IsDead() and target:GetFractionComplete() == 1
+            and SUtils.XZDistanceTwoVectorsSq( target:GetPosition(), basePosition ) < T4Radius * T4Radius then
+                blip = target:GetBlip(armyIndex)
+                self:Stop()
+                self:AttackTarget( target )
+                patrolling = false
+            elseif target and not target:IsDead() and SUtils.XZDistanceTwoVectorsSq( target:GetPosition(), basePosition ) < guardRadius * guardRadius then
+                self:Stop()
+                self:AggressiveMoveToLocation( target:GetPosition() )
+                patrolling = false
+            elseif not patrolling then
+                local position = AIUtils.RandomLocation(basePosition[1],basePosition[3])
+                self:MoveToLocation( position, false )
+                for k,v in AIUtils.GetBasePatrolPoints(aiBrain, basePosition, radius, 'Air') do
+                    self:Patrol(v)
+                end
+                patrolling = true
+            end
+        end
+        WaitSeconds(5)
+    end
+end,
+
 NavalHuntNC = function(self)
     self:Stop()
     local aiBrain = self:GetBrain()

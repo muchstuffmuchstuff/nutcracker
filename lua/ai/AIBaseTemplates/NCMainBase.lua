@@ -11,7 +11,7 @@ BaseBuilderTemplate {
         'NCEngineerMassBuildersLowerPri',
         'NCEngineerEnergyBuilders',
         'NCemergencyenergy',
-        'NCemergencyenergymain',
+      
         'NC Initial ACU Builders',
         'NCT1EngineerBuilders',
         'NCT2EngineerBuilders',
@@ -23,6 +23,7 @@ BaseBuilderTemplate {
         'NCt1masscontinuation',
        'NCUpgradeBuilders_mainbase',
     
+    'NCsubcommander_ras',
         
         # Factory upgrades
         'NCEmergencyUpgrade_airfactories',
@@ -68,6 +69,7 @@ BaseBuilderTemplate {
 		
         
         # ==== DEFENSES ==== #
+        'NCT3DefensivePoints High Pri',
 		'NCT1BaseDefenses',
 		'NCT2BaseDefenses',
 		'NCT3BaseDefenses',
@@ -91,7 +93,7 @@ BaseBuilderTemplate {
 
         
         # ==== LAND UNIT BUILDERS ==== #
-        'NC Tele SCU Strategy',
+  
         'NCUpgradeBuildersLand',
         'NCT1LandFactoryBuildersemergency',
         'NCT1LandFactoryBuilders',
@@ -103,20 +105,20 @@ BaseBuilderTemplate {
         'NCAntiLandQuickBuild',
         'NCT3ReactionDF',
         'NCT2Shields',
-        'NCShieldUpgrades',
+        'NCT2ShieldsExpansion',
         'NCT3Shields',
     
         'NClandbehavior',
 
         # ==== AIR UNIT BUILDERS ==== #
-        'NCstopfactoryrushwithbombersbehavior',
+      
         'NCairstaging',
         'NCT1AntiAirBuilders',
         'NCT3AntiAirBuilders',
         'NCT3AirFactoryBuilders',
         'NCExtraAirFactory',
         'NCAntiNavyQuickBuild',
-        'NCAntiNavyAirbehavior',
+      
         'NCfindenemyfightersbehavior',
         'NCt4airsnipebehavior',
         'NCTransportFactoryBuilders',
@@ -126,12 +128,12 @@ BaseBuilderTemplate {
      
        
         'NCt3emergencybuilders',
-        'NCmasshuntairbehavior',
+        
         'NCexcessresourcest1bomberbuild',
-        'NCacusnipebehavior',
+  
      
         'NCacusnipe',
-        'NCengihuntairbehavior',
+      
     
     
 
@@ -172,7 +174,7 @@ BaseBuilderTemplate {
       
         
         
-        'NCRadarUpgradeBuildersMain',
+       
         
         'NCCounterIntelBuilders',
     },

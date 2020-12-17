@@ -38,6 +38,7 @@ BuilderGroup {
         Priority = 400,
         DelayEqualBuildPlattons = {'Scouts', 30},
         BuilderConditions = {
+
             { MIBC, 'GreaterThanGameTime', { 360 } },
 			{ SIBC, 'HaveLessThanUnitsForMapSize', { {[256] = 2, [512] = 3, [1024] = 3, [2048] = 4, [4096] = 8}, categories.SCOUT * categories.AIR}},
 		
@@ -77,6 +78,7 @@ BuilderGroup {
         Priority = 900, 
         DelayEqualBuildPlattons = {'Scouts', 15},
         BuilderConditions = {
+            { UCBC, 'HaveGreaterThanUnitsWithCategory', { 20, categories.AIR * categories.MOBILE * categories.ANTIAIR * categories.TECH3 - categories.BOMBER - categories.GROUNDATTACK - categories.SCOUT } },
             #{ UCBC, 'HaveLessThanUnitsWithCategory', { 2, categories.INTELLIGENCE * categories.AIR * categories.TECH3 }}, #1
 			{ SIBC, 'HaveLessThanUnitsForMapSize', { {[256] = 2, [512] = 4, [1024] = 6, [2048] = 8, [4096] = 8}, categories.INTELLIGENCE * categories.AIR * categories.TECH3}},
 			{ UCBC, 'FactoryGreaterAtLocation', { 'LocationType', 1, categories.AIR * categories.FACTORY * categories.TECH3 } },
@@ -93,6 +95,7 @@ BuilderGroup {
         Priority = 701, #700,
         DelayEqualBuildPlattons = {'Scouts', 15},
         BuilderConditions = {
+            { UCBC, 'HaveGreaterThanUnitsWithCategory', { 20, categories.AIR * categories.MOBILE * categories.ANTIAIR * categories.TECH3 - categories.BOMBER - categories.GROUNDATTACK - categories.SCOUT } },
             { UCBC, 'HaveLessThanUnitsWithCategory', { 5, categories.INTELLIGENCE * categories.AIR * categories.TECH3 }}, #3
 			{ SIBC, 'HaveLessThanUnitsForMapSize', { {[256] = 4, [512] = 6, [1024] = 8, [2048] = 10, [4096] = 12}, categories.INTELLIGENCE * categories.AIR * categories.TECH3}},
 			{ SBC, 'MapGreaterThan', { 500, 500 }},
@@ -116,6 +119,7 @@ BuilderGroup {
         Priority = 844, 
         DelayEqualBuildPlattons = {'Scouts', 15},
         BuilderConditions = {
+            { UCBC, 'HaveGreaterThanUnitsWithCategory', { 20, categories.AIR * categories.MOBILE * categories.ANTIAIR * categories.TECH3 - categories.BOMBER - categories.GROUNDATTACK - categories.SCOUT } },
 
 			{ SIBC, 'HaveLessThanUnitsForMapSize', { {[256] = 2, [512] = 4, [1024] = 8, [2048] = 10, [4096] = 12}, categories.INTELLIGENCE * categories.AIR * categories.TECH3}},
 			{ UCBC, 'FactoryGreaterAtLocation', { 'LocationType', 1, categories.AIR * categories.FACTORY * categories.TECH3 } },
@@ -204,7 +208,8 @@ BuilderGroup {
         PlatoonTemplate = 'T2EngineerBuilderSorian',
         Priority = 950,
         BuilderConditions = {
-            { UCBC, 'EngineerLessAtLocation', { 'LocationType', 1, categories.ENGINEER - categories.TECH3 } },
+
+            { UCBC, 'EngineerLessAtLocation', { 'LocationType', 3, categories.ENGINEER - categories.TECH3 } },
 			{ SIBC, 'HaveGreaterThanUnitsWithCategory', { 0, categories.ENERGYPRODUCTION * categories.TECH2 } },
             { UCBC, 'UnitsLessAtLocation', { 'LocationType', 1, ( categories.RADAR + categories.OMNI ) * categories.STRUCTURE}},
             
@@ -227,8 +232,9 @@ BuilderGroup {
         PlatoonTemplate = 'T3EngineerBuilderSorian',
         Priority = 950,
         BuilderConditions = {
+            { UCBC, 'HaveGreaterThanUnitsWithCategory', { 3, categories.TECH3 * categories.ENERGYPRODUCTION } },
             { UCBC, 'HaveLessThanUnitsWithCategory', { 1, categories.OMNI * categories.STRUCTURE } },
-			{ SIBC, 'HaveGreaterThanUnitsWithCategory', { 0, categories.ENERGYPRODUCTION * categories.TECH3 } },
+		
             { UCBC, 'UnitsLessAtLocation', { 'LocationType', 1, ( categories.RADAR + categories.OMNI + categories.TECH2 ) * categories.STRUCTURE}},
             { IBC, 'BrainNotLowPowerMode', {} },
             { SIBC, 'GreaterThanEconEfficiencyOverTime', { 0.95, 1.1 }},
@@ -327,7 +333,7 @@ BuilderGroup {
         Priority = 700,
         BuilderConditions = {
             { SIBC, 'GreaterThanEconIncome',  { 9, 500}},
-		
+            { UCBC, 'HaveGreaterThanUnitsWithCategory', { 3, categories.TECH3 * categories.ENERGYPRODUCTION } },
 			{ UCBC, 'HaveLessThanUnitsWithCategory', { 1, categories.OMNI * categories.STRUCTURE } },
             { SIBC, 'GreaterThanEconEfficiencyOverTime', { 0.95, 1.25 }},
             

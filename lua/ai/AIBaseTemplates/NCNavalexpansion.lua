@@ -14,14 +14,14 @@ BaseBuilderTemplate {
     
 		
         # Pass engineers to main as needed
-        #'Engineer Transfers',
+    
         
         # Engineer Builders
         'NCEngineerFactoryBuilders',
         'NCT1EngineerBuilders',
         'NCT2EngineerBuilders',
         'NCT3EngineerBuilders',
-        'SorianEngineerNavalFactoryBuilder',
+  
         
         # Mass
      
@@ -54,8 +54,7 @@ BaseBuilderTemplate {
     
     },
     NonCheatBuilders = {
-        'SorianSonarEngineerBuilders',
-        'SorianSonarUpgradeBuilders',
+    
     },
     BaseSettings = {
         EngineerCount = {

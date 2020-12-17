@@ -117,7 +117,7 @@ BuilderGroup {
         SearchRadius = 80000,
         BuilderType = 'Any',
         BuilderConditions = {
-            { MIBC, 'LessThanGameTime', { 2900} },
+            { MIBC, 'LessThanGameTime', { 3000} },
             { UCBC, 'PoolGreaterAtLocation', { 'LocationType', 0, 'EXPERIMENTAL AIR' } },
 			{ MIBC, 'FactionIndex', {2, 3, 4}},
 			
@@ -145,7 +145,7 @@ BuilderGroup {
         BuilderType = 'Any',
         BuilderConditions = {
 
-            { MIBC, 'GreaterThanGameTime', { 2901} },
+            { MIBC, 'GreaterThanGameTime', { 3001} },
             { MIBC, 'LessThanGameTime', { 4799} },
             { UCBC, 'PoolGreaterAtLocation', { 'LocationType', 0, 'EXPERIMENTAL AIR' } },
 			{ MIBC, 'FactionIndex', {2, 3, 4}},
@@ -203,10 +203,11 @@ BuilderGroup {
         Priority = 995,
         DelayEqualBuildPlattons = {'MobileExperimental', 10},
         BuilderConditions = {
+            { UCBC, 'HaveGreaterThanUnitsWithCategory', { 20, categories.AIR * categories.MOBILE * categories.ANTIAIR  - categories.BOMBER - categories.GROUNDATTACK - categories.SCOUT } },
             { MIBC, 'FactionIndex', {2, 3, 4}},
             { SIBC, 'HaveLessThanUnitsInCategoryBeingBuilt', { 1, categories.STRUCTURE  * (categories.ANTIMISSILE + categories.NUKE + categories.ARTILLERY) * categories.TECH3 }},
           
-            { SIBC, 'GreaterThanEconEfficiencyOverTime', { 1.05, 1.15} },
+            { SIBC, 'GreaterThanEconEfficiencyOverTime', { 1.05, 1.1} },
            
             { SIBC, 'HaveLessThanUnitsInCategoryBeingBuilt', { 1, categories.EXPERIMENTAL * categories.AIR }},
             { SIBC, 'HaveGreaterThanUnitsWithCategory', { 1, categories.ENERGYPRODUCTION * categories.TECH3}},
@@ -236,53 +237,52 @@ BuilderGroup {
             }
         }
     },
- Builder {
-        BuilderName = 'nc T2 help airt4',
-        PlatoonTemplate = 'T2EngineerAssistSorian',
-        Priority = 999,
+    Builder {
+        BuilderName = ' NC T2 Assist Experimental Mobile Air',
+        PlatoonTemplate = 'T2EngineerAssist',
+        Priority = 800,
         InstanceCount = 5,
         BuilderConditions = {
-
+            { UCBC, 'LocationEngineersBuildingGreater', { 'LocationType', 0, categories.EXPERIMENTAL * categories.AIR * categories.MOBILE}},
+            { UCBC, 'HaveGreaterThanUnitsWithCategory', { 1, categories.ENERGYPRODUCTION * categories.TECH3}},
             { IBC, 'BrainNotLowPowerMode', {} },
-            { SIBC, 'GreaterThanEconEfficiencyOverTime', { 1.05, 1.15} },
-            
- { UCBC, 'LocationEngineersBuildingGreater', { 'LocationType', 0, categories.EXPERIMENTAL * categories.AIR * categories.MOBILE}},
-
+            { EBC, 'GreaterThanEconEfficiencyOverTime', { 0.9, 1.1} },
+            { EBC, 'GreaterThanEconStorageCurrent', { 15000, 10000 } },
         },
         BuilderType = 'Any',
         BuilderData = {
             Assist = {
                 AssistLocation = 'LocationType',
                 AssisteeType = 'Engineer',
-                AssistRange = 350,
+                AssistRange = 80,
                 BeingBuiltCategories = {'EXPERIMENTAL MOBILE AIR'},
-             
+                Time = 60,
             },
         }
     },
     Builder {
-        BuilderName = 'nc t3 help airt4 ',
-        PlatoonTemplate = 'T3EngineerAssistSorian',
-        Priority = 999,
+        BuilderName = 'NC T3  Assist Experimental Mobile Air',
+        PlatoonTemplate = 'T3EngineerAssist',
+        Priority = 750,
         InstanceCount = 5,
         BuilderConditions = {
-    { UCBC, 'LocationEngineersBuildingGreater', { 'LocationType', 0, categories.EXPERIMENTAL * categories.AIR * categories.MOBILE}},
+            { UCBC, 'LocationEngineersBuildingGreater', { 'LocationType', 0, categories.EXPERIMENTAL * categories.AIR * categories.MOBILE}},
             { IBC, 'BrainNotLowPowerMode', {} },
-            { SIBC, 'GreaterThanEconEfficiencyOverTime', { 1.05, 1.15} },
-            
+            { EBC, 'GreaterThanEconEfficiencyOverTime', { 0.9, 1.1} },
+            { EBC, 'GreaterThanEconStorageCurrent', { 15000, 10000 } },
         },
         BuilderType = 'Any',
         BuilderData = {
             Assist = {
                 AssistLocation = 'LocationType',
                 AssisteeType = 'Engineer',
-				AssistUntilFinished = true,
-                AssistRange = 350,
+                AssistRange = 80,
                 BeingBuiltCategories = {'EXPERIMENTAL MOBILE AIR'},
-                
+                Time = 60,
             },
         }
     },
+ 
 }
 
 
@@ -300,8 +300,8 @@ BuilderGroup {
 		InstanceCount = 1,
         BuilderConditions = {
             { SIBC, 'HaveLessThanUnitsInCategoryBeingBuilt', { 1, categories.STRUCTURE  * (categories.ANTIMISSILE + categories.NUKE + categories.ARTILLERY) * categories.TECH3 }},
-		{ SIBC, 'HaveGreaterThanUnitsWithCategory', { 0, categories.ENERGYPRODUCTION * categories.TECH3}},
-		#{ SIBC, 'HaveGreaterThanUnitsWithCategory', { 0, categories.MASSPRODUCTION * categories.TECH3}},
+		{ SIBC, 'HaveGreaterThanUnitsWithCategory', { 8, categories.ENERGYPRODUCTION * categories.TECH3}},
+		#{ SIBC, 'HaveGreaterThanUnitsWithCategory', { 6, categories.MASSPRODUCTION * categories.TECH3}},
             { UCBC, 'HaveLessThanUnitsInCategoryBeingBuilt', { 1, categories.EXPERIMENTAL * categories.ECONOMIC }},
             { UCBC, 'HaveLessThanUnitsWithCategory', { 1, categories.EXPERIMENTAL * categories.ECONOMIC}},
 		
@@ -330,7 +330,7 @@ BuilderGroup {
         BuilderName = 'NC T2 Engineer Assist Experimental Economic',
         PlatoonTemplate = 'T2EngineerAssistSorian',
         Priority = 800,
-        InstanceCount = 5,
+        InstanceCount = 2,
         BuilderConditions = {
             { UCBC, 'LocationEngineersBuildingGreater', { 'LocationType', 0, categories.EXPERIMENTAL * categories.ECONOMIC}},
             { SIBC, 'GreaterThanEconEfficiencyOverTime', { 1.05, 1.15} },
@@ -351,7 +351,7 @@ BuilderGroup {
         BuilderName = 'NC T3 Engineer Assist Experimental Economic',
         PlatoonTemplate = 'T3EngineerAssistSorian',
         Priority = 951,
-        InstanceCount = 5,
+        InstanceCount = 2,
         BuilderConditions = {
             { UCBC, 'LocationEngineersBuildingGreater', { 'LocationType', 0, categories.EXPERIMENTAL * categories.ECONOMIC }},
             { SIBC, 'GreaterThanEconEfficiencyOverTime', { 1.05, 1.15} },
