@@ -613,7 +613,7 @@ Builder {
             BuilderConditions = {
                 { IBC, 'BrainNotLowPowerMode', {} },
                 { SBC, 'NoRushTimeCheck', { 600 }},
-                { UCBC, 'HaveGreaterThanUnitsWithCategory', { 30, categories.MOBILE * categories.AIR * categories.TECH3 * categories.ANTIAIR - categories.GROUNDATTACK - categories.BOMBER} },
+                { UCBC, 'HaveGreaterThanUnitsWithCategory', { 25, categories.MOBILE * categories.AIR * categories.TECH3 * categories.ANTIAIR - categories.GROUNDATTACK - categories.BOMBER} },
                 { SIBC, 'GreaterThanEconEfficiencyOverTime', { 0.95, 1.10 }},
                 
                 { MIBC, 'GreaterThanGameTime', { 1800 } },
