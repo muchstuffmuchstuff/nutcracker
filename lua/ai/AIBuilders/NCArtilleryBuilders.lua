@@ -164,7 +164,7 @@ BuilderGroup {
             
             { SIBC, 'HaveLessThanUnitsInCategoryBeingBuilt', { 5, categories.STRUCTURE  * (categories.ANTIMISSILE + categories.NUKE + categories.ARTILLERY) * categories.TECH3 }},
             { EBC, 'GreaterThanEconStorageCurrent', { 20000, 15000 } },
-            { SIBC, 'HaveGreaterThanUnitsWithCategory', { 10, categories.ENERGYPRODUCTION * categories.TECH3 } },
+            { SIBC, 'HaveGreaterThanUnitsWithCategory', { 9, categories.ENERGYPRODUCTION * categories.TECH3 } },
       
 			
             { IBC, 'BrainNotLowPowerMode', {} },
@@ -274,8 +274,7 @@ BuilderGroup {
             { IBC, 'BrainNotLowPowerMode', {} },
             #{ SIBC, 'T4BuildingCheck', {} },
             { EBC, 'GreaterThanEconStorageCurrent', { 15000, 20000 } },
-            { UCBC, 'UnitsGreaterAtLocation', { 'LocationType', 5, categories.DIRECTFIRE * categories.DEFENSE }},
-            { UCBC, 'UnitsGreaterAtLocation', { 'LocationType', 10, categories.LAND * categories.MOBILE - categories.ENGINEER }},
+          
 			{ UCBC, 'HaveGreaterThanUnitsWithCategory', { 20, categories.AIR * categories.MOBILE * categories.ANTIAIR  - categories.BOMBER - categories.GROUNDATTACK - categories.SCOUT } },
 			{ SIBC, 'HaveLessThanUnitsInCategoryBeingBuilt', { 1, categories.STRUCTURE  * (categories.ANTIMISSILE + categories.NUKE + categories.ARTILLERY) * categories.TECH3 }},
             { SIBC, 'HaveGreaterThanUnitsWithCategory', { 10, categories.ENERGYPRODUCTION * categories.TECH3 } },
@@ -485,7 +484,7 @@ BuilderGroup {
             { UCBC, 'HaveGreaterThanUnitsWithCategory', { 20, categories.AIR * categories.MOBILE * categories.ANTIAIR  - categories.BOMBER - categories.GROUNDATTACK - categories.SCOUT } },
             { SIBC, 'HaveLessThanUnitsInCategoryBeingBuilt', { 3, categories.TECH3 *  (categories.xab2307 + categories.ARTILLERY ) * categories.STRUCTURE}},
             { WRC,'CheckUnitRangeNC', { 'LocationType', 'T3RapidArtillery', categories.STRUCTURE, 2 } },
-    { UCBC, 'HaveGreaterThanUnitsWithCategory', { 7, categories.STRUCTURE * categories.NUKE} },
+    { UCBC, 'HaveGreaterThanUnitsWithCategory', { 6, categories.STRUCTURE * categories.NUKE} },
             { SIBC, 'HaveLessThanUnitsInCategoryBeingBuilt', { 5, categories.STRUCTURE  * (categories.ANTIMISSILE + categories.NUKE + categories.ARTILLERY) * categories.TECH3 }},
            
          
