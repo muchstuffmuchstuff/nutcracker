@@ -223,12 +223,35 @@ PlatoonTemplate {
 
 PlatoonTemplate {
     Name = 'landbaseguardNC',
-    Plan = 'GuardBaseNC270',
+    Plan = 'GuardBaseSorian',
     GlobalSquads = {
         { categories.MOBILE * categories.LAND - categories.SUBCOMMANDER - categories.EXPERIMENTAL - categories.ENGINEER - categories.xsl0402, 1, 10, 'Attack', 'none' }
     },
 }
 
+PlatoonTemplate {
+    Name = 'NClandexperimentalattack',
+    Plan = 'ExperimentalAIHubSorian', 
+    GlobalSquads = {
+        { categories.EXPERIMENTAL * categories.LAND * categories.MOBILE - categories.url0401, 1, 1, 'attack', 'none' }
+    }
+}
+
+PlatoonTemplate {
+    Name = 'NClandexperimentalattack2',
+    Plan = 'ExperimentalAIHubSorian', 
+    GlobalSquads = {
+        { categories.EXPERIMENTAL * categories.LAND * categories.MOBILE - categories.url0401, 2,2 , 'attack', 'none' }
+    }
+}
+
+PlatoonTemplate {
+    Name = 'NClandexperimentalattack3',
+    Plan = 'ExperimentalAIHubSorian', 
+    GlobalSquads = {
+        { categories.EXPERIMENTAL * categories.LAND * categories.MOBILE - categories.url0401, 3, 3, 'attack', 'none' }
+    }
+}
 
 
 ---Naval

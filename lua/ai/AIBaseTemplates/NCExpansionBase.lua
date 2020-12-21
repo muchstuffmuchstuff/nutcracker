@@ -7,7 +7,7 @@ BaseBuilderTemplate {
 
 
         # ==== ECONOMY ==== #
-
+       
         'NCsubcommander_ras',
         'NCEngineerMassBuildersLowerPri',
         'NCEngineerEnergyBuildersExpansions',
@@ -45,11 +45,11 @@ BaseBuilderTemplate {
         'NCEngineerMassBuildersHighPri',
         
         # Extractors
-        'NCTime Exempt Extractor Upgrades',
+     
                      
        	        
         # ==== DEFENSES ==== #
-        'NCT3DefensivePoints High Pri',
+       
 		'NCT1BaseDefenses',
 		'NCT2BaseDefenses',
 		'NCT3BaseDefenses',
@@ -80,7 +80,7 @@ BaseBuilderTemplate {
         'NCT3LandFactoryBuilders',
         'NCExtraLandFactory',
       
-        'NCT3LandResponseBuilders',
+   
         'NCAntiLandQuickBuild',
         'NCT3ReactionDF',
         'NCT2Shields',
@@ -120,6 +120,8 @@ BaseBuilderTemplate {
         # ==== EXPERIMENTALS ==== #
         'NCMobileAirExperimentalEngineers',
         'ncMobileAirExperimentalbehavior',
+        'ncMobileLandExperimentalbehavior',
+        'NCMobileLandExperimental',
       
     
 		

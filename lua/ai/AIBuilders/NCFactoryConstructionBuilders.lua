@@ -38,18 +38,19 @@ Builder {
         Priority = 901,
         DelayEqualBuildPlattons = {'Factories', 5},
         BuilderConditions = {
-            { SIBC, 'HaveLessThanUnitsInCategoryBeingBuilt', { 1, categories.STRUCTURE * categories.TECH1 * categories.FACTORY } },
-            { SIBC, 'HaveLessThanUnitsInCategoryBeingBuilt', { 1, categories.STRUCTURE * (categories.TECH2 + categories.TECH3)  * categories.ENERGYPRODUCTION } },
+            { SBC, 'MapLessThan', { 1000, 1000 }},
+            { SIBC, 'HaveLessThanUnitsInCategoryBeingBuilt', { 2, categories.STRUCTURE * categories.TECH1 * categories.FACTORY } },
+            { SIBC, 'HaveLessThanUnitsInCategoryBeingBuilt', { 2, categories.STRUCTURE * (categories.TECH2 + categories.TECH3)  * categories.ENERGYPRODUCTION } },
             { IBC, 'BrainNotLowPowerMode', {} },
             { UCBC, 'FactoryCapCheck', { 'LocationType', 'Land' } },
-            { SIBC, 'GreaterThanEconEfficiencyOverTime', { 0.99, 1.10} },
+            { SIBC, 'GreaterThanEconEfficiencyOverTime', { 0.79, 1.05} },
          
             
         
             { SBC, 'IsIslandMap', { false } },
           
             
-			{ UCBC, 'HaveLessThanUnitsInCategoryBeingBuilt', { 3, 'LAND FACTORY' }},
+			
         },
         BuilderType = 'Any',
         BuilderData = {
@@ -68,6 +69,70 @@ Builder {
         Priority = 961,
         DelayEqualBuildPlattons = {'Factories', 5},
         BuilderConditions = {
+            { SBC, 'MapLessThan', { 1000, 1000 }},
+            { SIBC, 'HaveLessThanUnitsInCategoryBeingBuilt', { 2, categories.STRUCTURE * categories.TECH1 * categories.FACTORY } },
+            { SIBC, 'HaveLessThanUnitsInCategoryBeingBuilt', { 2, categories.STRUCTURE * (categories.TECH2 + categories.TECH3)  * categories.ENERGYPRODUCTION } },
+            { IBC, 'BrainNotLowPowerMode', {} },
+            { UCBC, 'FactoryCapCheck', { 'LocationType', 'Land' } },
+            { SIBC, 'GreaterThanEconEfficiencyOverTime', { 0.79, 1.1} },
+          
+            
+          
+            { SBC, 'IsIslandMap', { false } },
+          
+            { UCBC, 'HaveUnitsWithCategoryAndAlliance', { true, 30, categories.MOBILE * categories.LAND - categories.ENGINEER, 'Enemy'}},
+          
+			
+        },
+        BuilderType = 'Any',
+        BuilderData = {
+            Construction = {
+                BuildStructures = {
+                    'T1LandFactory',
+                },
+                Location = 'LocationType',
+                
+            }
+        }
+    },
+    Builder {        
+        BuilderName = 'NC T1 Land Factory Builder extra big',
+        PlatoonTemplate = 'EngineerBuilderSorian',
+        Priority = 901,
+        DelayEqualBuildPlattons = {'Factories', 5},
+        BuilderConditions = {
+            { SBC, 'MapGreaterThan', { 1000, 1000 }},
+            { SIBC, 'HaveLessThanUnitsInCategoryBeingBuilt', { 1, categories.STRUCTURE * categories.TECH1 * categories.FACTORY } },
+            { SIBC, 'HaveLessThanUnitsInCategoryBeingBuilt', { 1, categories.STRUCTURE * (categories.TECH2 + categories.TECH3)  * categories.ENERGYPRODUCTION } },
+            { IBC, 'BrainNotLowPowerMode', {} },
+            { UCBC, 'FactoryCapCheck', { 'LocationType', 'Land' } },
+            { SIBC, 'GreaterThanEconEfficiencyOverTime', { 0.99, 1.05} },
+         
+            
+        
+            { SBC, 'IsIslandMap', { false } },
+          
+            
+			
+        },
+        BuilderType = 'Any',
+        BuilderData = {
+            Construction = {
+                BuildStructures = {
+                    'T1LandFactory',
+                },
+                Location = 'LocationType',
+                #AdjacencyCategory = 'ENERGYPRODUCTION',
+            }
+        }
+    },
+  Builder {        
+        BuilderName = 'NC T1 Land Factory Builder emergency big',
+        PlatoonTemplate = 'EngineerBuilderSorian',
+        Priority = 961,
+        DelayEqualBuildPlattons = {'Factories', 5},
+        BuilderConditions = {
+            { SBC, 'MapGreaterThan', { 1000, 1000 }},
             { SIBC, 'HaveLessThanUnitsInCategoryBeingBuilt', { 1, categories.STRUCTURE * categories.TECH1 * categories.FACTORY } },
             { SIBC, 'HaveLessThanUnitsInCategoryBeingBuilt', { 1, categories.STRUCTURE * (categories.TECH2 + categories.TECH3)  * categories.ENERGYPRODUCTION } },
             { IBC, 'BrainNotLowPowerMode', {} },
@@ -80,7 +145,7 @@ Builder {
           
             { UCBC, 'HaveUnitsWithCategoryAndAlliance', { true, 30, categories.MOBILE * categories.LAND - categories.ENGINEER, 'Enemy'}},
           
-			{ UCBC, 'HaveLessThanUnitsInCategoryBeingBuilt', { 3, 'LAND FACTORY'}},
+			
         },
         BuilderType = 'Any',
         BuilderData = {
@@ -112,7 +177,7 @@ Builder {
             
           
             { EBC, 'MassToFactoryRatioBaseCheck', { 'LocationType' } },
-			{ UCBC, 'HaveLessThanUnitsInCategoryBeingBuilt', { 3, 'AIR FACTORY' }},
+			
         },
         BuilderType = 'Any',
         BuilderData = {
@@ -140,6 +205,62 @@ Builder {
           
             { UCBC, 'HaveUnitsWithCategoryAndAlliance', { true, 12, categories.MOBILE * categories.AIR - categories.SCOUT, 'Enemy'}},
             { EBC, 'MassToFactoryRatioBaseCheck', { 'LocationType' } },
+			
+        },
+        BuilderType = 'Any',
+        BuilderData = {
+            Construction = {
+                BuildStructures = {
+                    'T1AirFactory',
+                },
+                Location = 'LocationType',
+                
+            }
+        }
+    },
+    Builder {        
+        BuilderName = 'NC T1 Air Factory Builder big map',
+        PlatoonTemplate = 'EngineerBuilderSorian',
+        Priority = 901,
+        DelayEqualBuildPlattons = {'Factories', 5},
+        BuilderConditions = {
+            { SBC, 'MapGreaterThan', { 3000, 3000 }},
+            { UCBC, 'UnitsLessAtLocation', { 'LocationType', 15, categories.AIR * categories.FACTORY }},
+            { IBC, 'BrainNotLowPowerMode', {} },
+         
+            { SIBC, 'GreaterThanEconEfficiencyOverTime', { 0.99, 1.1} },
+            
+          
+           
+			{ UCBC, 'HaveLessThanUnitsInCategoryBeingBuilt', { 3, 'AIR FACTORY' }},
+        },
+        BuilderType = 'Any',
+        BuilderData = {
+            Construction = {
+                BuildStructures = {
+                    'T1AirFactory',
+                },
+                Location = 'LocationType',
+                AdjacencyCategory = 'ENERGYPRODUCTION',
+            }
+        }
+    },
+  Builder {        
+        BuilderName = 'NC T1 Air Factory Builder emergency big map',
+        PlatoonTemplate = 'EngineerBuilderSorian',
+        Priority = 961,
+        DelayEqualBuildPlattons = {'Factories', 5},
+        BuilderConditions = {
+            { SBC, 'MapGreaterThan', { 3000, 3000 }},
+     
+            { UCBC, 'UnitsLessAtLocation', { 'LocationType', 15, categories.AIR * categories.FACTORY }},
+            { IBC, 'BrainNotLowPowerMode', {} },
+          
+            { SIBC, 'GreaterThanEconEfficiencyOverTime', { 0.99, 1.1} },
+            
+          
+            { UCBC, 'HaveUnitsWithCategoryAndAlliance', { true, 12, categories.MOBILE * categories.AIR - categories.SCOUT, 'Enemy'}},
+      
 			{ UCBC, 'HaveLessThanUnitsInCategoryBeingBuilt', { 3, 'AIR FACTORY', 'LocationType', }},
         },
         BuilderType = 'Any',
@@ -174,7 +295,7 @@ BuilderGroup {
             { UCBC, 'FactoryCapCheck', { 'LocationType', 'Land' } },
             { SIBC, 'GreaterThanEconEfficiencyOverTime', { 0.99, 1.1} },
             
-            { UCBC, 'UnitCapCheckLess', { 0.95 } },
+           
             { EBC, 'MassToFactoryRatioBaseCheck', { 'LocationType' } },
             { UCBC, 'HaveLessThanUnitsInCategoryBeingBuilt', { 1, 'LAND FACTORY', 'LocationType', }},
             
@@ -371,7 +492,7 @@ BuilderGroup {
         BuilderConditions = {
             { SIBC, 'HaveLessThanUnitsInCategoryBeingBuilt', { 1, categories.STRUCTURE * (categories.TECH2 + categories.TECH3)  * categories.ENERGYPRODUCTION } },
             { UCBC, 'HaveLessThanUnitsInCategoryBeingBuilt', { 1, 'GATE TECH3 STRUCTURE'}},
-
+            { SIBC, 'GreaterThanEconEfficiencyOverTime', { 1.0, 1.1} },
             { EBC, 'GreaterThanEconStorageCurrent', { 5000, 15000 } },
             { UCBC, 'FactoryLessAtLocation', { 'LocationType', 3, 'GATE TECH3 STRUCTURE' }},
          

@@ -388,6 +388,7 @@ NukeNC = function(self)
     end
     self:PlatoonDisband()
 end,
-    
+
+   
 
 }

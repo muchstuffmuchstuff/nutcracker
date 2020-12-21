@@ -115,11 +115,11 @@ BuilderGroup {
         Priority = 922,
         InstanceCount = 1,
         BuilderConditions = {
-
+            { MIBC, 'GreaterThanGameTime', { 1000 } },
             { UCBC, 'HaveUnitsWithCategoryAndAlliance', { true, 0, categories.FACTORY * categories.NAVAL, 'Enemy'}},
             { UCBC, 'NavalAreaNeedsEngineer', { 'LocationType', 600, -1000, 10, 1, 'AntiSurface' } },
 		
-            { SIBC, 'GreaterThanEconEfficiencyOverTime', { 0.95, 1.1 }},
+            { SIBC, 'GreaterThanEconEfficiencyOverTime', { 0.95, 1.05 }},
             
             { EBC, 'MassToFactoryRatioBaseCheck', { 'LocationType' } },
 			{ SIBC, 'LessThanNavalBases', { } },
@@ -156,10 +156,11 @@ BuilderGroup {
         Priority = 922,
         InstanceCount = 1,
         BuilderConditions = {
+            { MIBC, 'GreaterThanGameTime', { 1200 } },
             { UCBC, 'HaveUnitsWithCategoryAndAlliance', { true, 0, categories.FACTORY * categories.NAVAL, 'Enemy'}},
             { UCBC, 'NavalAreaNeedsEngineer', { 'LocationType', 600, -1000, 10, 1, 'AntiSurface' } },
 			
-            { SIBC, 'GreaterThanEconEfficiencyOverTime', { 0.95, 1.1 }},
+            { SIBC, 'GreaterThanEconEfficiencyOverTime', { 0.95, 1.05 }},
             
             { EBC, 'MassToFactoryRatioBaseCheck', { 'LocationType' } },
 			{ SIBC, 'LessThanNavalBases', { } },
@@ -202,7 +203,7 @@ BuilderGroup {
         BuilderConditions = {
             { UCBC, 'EngineerLessAtLocation', { 'LocationType', 1, 'ENGINEER TECH2, ENGINEER TECH3' } },
             { UCBC, 'FactoryCapCheck', { 'LocationType', 'Sea' } },
-            { SIBC, 'GreaterThanEconEfficiencyOverTime', { 0.95, 1.1 }},
+            { SIBC, 'GreaterThanEconEfficiencyOverTime', { 0.95, 1.05 }},
             { UCBC, 'HaveUnitsWithCategoryAndAlliance', { true, 0, categories.FACTORY * categories.NAVAL, 'Enemy'}},
             { EBC, 'MassToFactoryRatioBaseCheck', { 'LocationType' } },
         },
@@ -223,9 +224,10 @@ BuilderGroup {
         PlatoonTemplate = 'T2EngineerBuilderSorian',
         Priority = 905,
         BuilderConditions = {
+            { MIBC, 'GreaterThanGameTime', { 1000 } },
             { UCBC, 'EngineerLessAtLocation', { 'LocationType', 1, 'ENGINEER TECH3' } },
             { UCBC, 'FactoryCapCheck', { 'LocationType', 'Sea' } },
-            { SIBC, 'GreaterThanEconEfficiencyOverTime', { 0.95, 1.1 }},
+            { SIBC, 'GreaterThanEconEfficiencyOverTime', { 0.95, 1.05 }},
             { UCBC, 'HaveUnitsWithCategoryAndAlliance', { true, 0, categories.FACTORY * categories.NAVAL, 'Enemy'}},
             { EBC, 'MassToFactoryRatioBaseCheck', { 'LocationType' } },
         },
@@ -246,8 +248,9 @@ BuilderGroup {
         PlatoonTemplate = 'T3EngineerBuilderSorian',
         Priority = 905,
         BuilderConditions = {
+            { MIBC, 'GreaterThanGameTime', { 1200 } },
             { UCBC, 'FactoryCapCheck', { 'LocationType', 'Sea' } },
-            { SIBC, 'GreaterThanEconEfficiencyOverTime', { 0.95, 1.1 }},
+            { SIBC, 'GreaterThanEconEfficiencyOverTime', { 0.95, 1.05 }},
             { UCBC, 'HaveUnitsWithCategoryAndAlliance', { true, 0, categories.FACTORY * categories.NAVAL, 'Enemy'}},
             { EBC, 'MassToFactoryRatioBaseCheck', { 'LocationType' } },
         },

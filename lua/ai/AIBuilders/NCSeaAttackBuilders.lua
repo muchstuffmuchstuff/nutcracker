@@ -114,7 +114,7 @@ BuilderGroup {
 			{ SBC, 'NoRushTimeCheck', { 600 }},
 			
 			{ UCBC, 'HaveLessThanUnitsWithCategory', { 3, categories.NAVAL * categories.MOBILE } },
-            { SIBC, 'GreaterThanEconEfficiencyOverTime', { 0.95, 1.1 }},
+            { SIBC, 'GreaterThanEconEfficiencyOverTime', { 0.95, 1.05 }},
             
         },
         BuilderType = 'Sea',
@@ -130,7 +130,7 @@ BuilderGroup {
 			{ SBC, 'NoRushTimeCheck', { 600 }},
 			
 			
-            { SIBC, 'GreaterThanEconEfficiencyOverTime', { 0.95, 1.1 }},
+            { SIBC, 'GreaterThanEconEfficiencyOverTime', { 0.95, 1.05 }},
             
         },
         BuilderType = 'Sea',
@@ -148,11 +148,12 @@ BuilderGroup {
         InstanceCount = 50,
         BuilderType = 'Sea',
         BuilderConditions = {
+            { MIBC, 'GreaterThanGameTime', { 1000} },
             { IBC, 'BrainNotLowPowerMode', {} },
 			{ SBC, 'NoRushTimeCheck', { 600 }},
 { UCBC, 'HaveUnitsWithCategoryAndAlliance', { true, 1, categories.NAVAL * categories.FACTORY,  'Enemy' }},
-			{ UCBC, 'FactoryGreaterAtLocation', { 'LocationType', 0, categories.NAVAL * categories.FACTORY * categories.TECH2 } },
-            { SIBC, 'GreaterThanEconEfficiencyOverTime', { 0.95, 1.1 }},
+			{ UCBC, 'FactoryGreaterAtLocation', { 'LocationType', 0, categories.NAVAL * categories.FACTORY } },
+            { SIBC, 'GreaterThanEconEfficiencyOverTime', { 0.95, 1.05 }},
             
         },
     },
@@ -171,11 +172,13 @@ BuilderGroup {
         Priority = 705,
         BuilderType = 'Sea',
         BuilderConditions = {
+            { MIBC, 'GreaterThanGameTime', { 1000} },
             { IBC, 'BrainNotLowPowerMode', {} },
-			{ SBC, 'NoRushTimeCheck', { 600 }},
-			{ UCBC, 'FactoryGreaterAtLocation', { 'LocationType', 0, categories.NAVAL * categories.FACTORY * categories.TECH2 } },
-			{ UCBC, 'HaveUnitsWithCategoryAndAlliance', { true, 1, categories.STRUCTURE * categories.DEFENSE * categories.ANTINAVY, 'Enemy'}},
-            { SIBC, 'GreaterThanEconEfficiencyOverTime', { 0.95, 1.1 }},
+            { SBC, 'NoRushTimeCheck', { 600 }},
+            { UCBC, 'HaveUnitsWithCategoryAndAlliance', { true, 1, categories.NAVAL * categories.FACTORY,  'Enemy' }},
+			{ UCBC, 'FactoryGreaterAtLocation', { 'LocationType', 0, categories.NAVAL * categories.FACTORY * categories.TECH2} },
+		
+            { SIBC, 'GreaterThanEconEfficiencyOverTime', { 0.95, 1.05 }},
             
         },
     },
@@ -185,11 +188,13 @@ BuilderGroup {
         PlatoonAddBehaviors = { 'AirLandToggleSorian' },
         Priority = 705,
         BuilderConditions = {
+            { MIBC, 'GreaterThanGameTime', { 1000} },
             { IBC, 'BrainNotLowPowerMode', {} },
-			{ SBC, 'NoRushTimeCheck', { 600 }},
+            { SBC, 'NoRushTimeCheck', { 600 }},
+            { UCBC, 'HaveUnitsWithCategoryAndAlliance', { true, 1, categories.NAVAL * categories.FACTORY,  'Enemy' }},
 			{ UCBC, 'FactoryGreaterAtLocation', { 'LocationType', 0, categories.NAVAL * categories.FACTORY * categories.TECH2 } },
-			{ UCBC, 'HaveUnitsWithCategoryAndAlliance', { true, 1, categories.STRUCTURE * categories.DEFENSE * categories.ANTINAVY, 'Enemy'}},
-            { SIBC, 'GreaterThanEconEfficiencyOverTime', { 0.95, 1.1 }},
+		
+            { SIBC, 'GreaterThanEconEfficiencyOverTime', { 0.95, 1.05 }},
             
         },
         BuilderType = 'Sea',

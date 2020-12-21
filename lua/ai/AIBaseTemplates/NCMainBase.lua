@@ -50,7 +50,7 @@ BaseBuilderTemplate {
         'NCEngineerMassBuildersHighPri',
         
         # Extractors
-        'NCTime Exempt Extractor Upgrades',
+      
         
         # ACU Builders
       
@@ -69,7 +69,7 @@ BaseBuilderTemplate {
 		
         
         # ==== DEFENSES ==== #
-        'NCT3DefensivePoints High Pri',
+      
 		'NCT1BaseDefenses',
 		'NCT2BaseDefenses',
 		'NCT3BaseDefenses',
@@ -101,7 +101,7 @@ BaseBuilderTemplate {
         'NCT3LandFactoryBuilders',
         'NCExtraLandFactory',
      
-        'NCT3LandResponseBuilders',
+       
         'NCAntiLandQuickBuild',
         'NCT3ReactionDF',
         'NCT2Shields',
@@ -141,6 +141,8 @@ BaseBuilderTemplate {
         'NCMobileAirExperimentalEngineers',
         'ncMobileAirExperimentalbehavior',
         'NCExperimentalArtillery',
+        'ncMobileLandExperimentalbehavior',
+        'NCMobileLandExperimental',
     
 		
       
@@ -149,6 +151,7 @@ BaseBuilderTemplate {
 		
 		
         # ==== ARTILLERY BUILDERS ==== #
+       
     
       'NCNukebehavior',
       'ncNukeBuildersEngineerBuilders',
@@ -176,7 +179,7 @@ BaseBuilderTemplate {
         
        
         
-        'NCCounterIntelBuilders',
+        
     },
     BaseSettings = {
         EngineerCount = {

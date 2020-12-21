@@ -24,6 +24,9 @@ local TBC = '/lua/editor/ThreatBuildConditions.lua'
 local PlatoonFile = '/lua/platoon.lua'
 local SIBC = '/lua/editor/SorianInstantBuildConditions.lua'
 local SBC = '/lua/editor/SorianBuildConditions.lua'
+local CF = '/mods/nutcracker/hook/lua/coinflip.lua'
+local WRC = '/mods/nutcracker/hook/lua/weaponsrangeconditions.lua'
+local EN = '/mods/nutcracker/hook/lua/economicnumbers.lua'
 
 
 
@@ -288,6 +291,13 @@ BuilderGroup {
 'T1EnergyProduction',
 'T1EnergyProduction',
 'T1AirFactory',
+'T1EnergyProduction',
+'T1EnergyProduction',
+'T1EnergyProduction',
+'T1EnergyProduction',
+'T1EnergyProduction',
+'T1EnergyProduction',
+'T1LandFactory',
 
 					
                 }
@@ -421,7 +431,7 @@ BuilderGroup {
                 AssistLocation = 'LocationType',
                 AssisteeType = 'Structure',
                 BeingBuiltCategories = {'STRUCTURE STRATEGIC', 'STRUCTURE ECONOMIC', 'STRUCTURE'},
-                Time = 20,
+                time = 60,
             },
         },
         BuilderType = 'Any',
@@ -440,7 +450,7 @@ BuilderGroup {
             Assist = {
                 AssistLocation = 'LocationType',
                 BeingBuiltCategories = {'STRUCTURE SHIELD TECH2, STRUCTURE SHIELD TECH3'},
-                Time = 20,
+                time = 60,
             },
         },
         BuilderType = 'Any',
@@ -472,7 +482,7 @@ BuilderGroup {
             },
         BuilderData = {
             LocationType = 'LocationType',
-            ReclaimTime = 120,
+            Reclaimtime = 60,
 			ThreatRings = 0,
 			ThreatType = 'AntiSurface',
 			ThreatValue = 0,
@@ -535,7 +545,7 @@ BuilderGroup {
     #Builder {
     #    BuilderName = 'NC T1 Engineer Assist Factory',
     #    PlatoonTemplate = 'EngineerAssistSorian',
-    #    Priority = 600,
+    #    Priority = 200,
     #    BuilderConditions = {
     #        { IBC, 'BrainNotLowPowerMode', {} },
     #        { UCBC, 'LocationFactoriesBuildingGreater', { 'LocationType', 0, 'MOBILE' } },
@@ -549,7 +559,7 @@ BuilderGroup {
     #            PermanentAssist = false,
                 
     #            AssisteeType = 'Factory',
-    #            Time = 30,
+    #            time = 60,
     #        },
     #    }
     #},
@@ -570,7 +580,7 @@ BuilderGroup {
     #            PermanentAssist = false,
              
     #            AssisteeType = 'Factory',
-    #            Time = 30,
+    #            time = 60,
     #        },
     #    }
     #},
@@ -591,7 +601,7 @@ BuilderGroup {
                 PermanentAssist = false,
               
                 AssisteeType = 'Engineer',
-                Time = 30,
+                time = 60,
             },
         }
     },
@@ -611,7 +621,7 @@ BuilderGroup {
     #            AssistLocation = 'LocationType',
     #            AssisteeType = 'Engineer',
     #            BeingBuiltCategories = {'SHIELD STRUCTURE'},
-    #            Time = 60,
+    #            time = 60,
     #        },
     #    }
     #},
@@ -633,7 +643,7 @@ BuilderGroup {
     #            AssisteeType = 'Structure',
     #            AssistLocation = 'LocationType',
     #            BeingBuiltCategories = {'MASSEXTRACTION TECH2'},
-    #            Time = 60,
+    #            time = 60,
     #        },
     #    }
     #},
@@ -654,7 +664,7 @@ BuilderGroup {
     #            PermanentAssist = false,
     #            BeingBuiltCategories = {'ENERGYPRODUCTION TECH3', 'ENERGYPRODUCTION TECH2', 'ENERGYPRODUCTION'},
     #            AssisteeType = 'Engineer',
-    #            Time = 60,
+    #            time = 60,
     #        },
     #    }
     #},
@@ -674,7 +684,7 @@ BuilderGroup {
     #            PermanentAssist = false,
     #            BeingBuiltCategories = {'TRANSPORTFOCUS'},
     #            AssisteeType = 'Factory',
-    #            Time = 60,
+    #            time = 60,
     #        },
     #    },
     #},
@@ -696,7 +706,7 @@ BuilderGroup {
     #            PermanentAssist = false,
     #            BeingBuiltCategories = {'FACTORY TECH2'},
     #            AssisteeType = 'Factory',
-    #            Time = 60,
+    #            time = 60,
     #        },
     #    }
     #},
@@ -719,7 +729,7 @@ BuilderGroup {
     #            PermanentAssist = false,
     #            BeingBuiltCategories = {'FACTORY TECH3'},
     #            AssisteeType = 'Factory',
-    #            Time = 60,
+    #            time = 60,
     #        },
     #    }
     #},    
@@ -819,7 +829,7 @@ BuilderGroup {
             },
         BuilderData = {
             LocationType = 'LocationType',
-            ReclaimTime = 120,
+            Reclaimtime = 60,
 			ThreatRings = 0,
 			ThreatType = 'AntiSurface',
 			ThreatValue = 0,
@@ -848,7 +858,7 @@ BuilderGroup {
                 PermanentAssist = false,
                 BeingBuiltCategories = { 'ENERGYPRODUCTION TECH3', 'ENERGYPRODUCTION TECH2' },
                 AssisteeType = 'Engineer',
-                Time = 60,
+                time = 60,
             },
         }
     },
@@ -869,7 +879,7 @@ BuilderGroup {
                 PermanentAssist = false,
                 #BeingBuiltCategories = { 'MOBILE'},
                 AssisteeType = 'Factory',
-                Time = 60,
+                time = 60,
             },
         }
     },
@@ -889,7 +899,7 @@ BuilderGroup {
                 PermanentAssist = false,
                 BeingBuiltCategories = {'TRANSPORTFOCUS'},
                 AssisteeType = 'Factory',
-                Time = 60,
+                time = 60,
             },
         },
     },
@@ -910,7 +920,7 @@ BuilderGroup {
                 PermanentAssist = false,
                 BeingBuiltCategories = { 'ALLUNITS' },
                 AssisteeType = 'Engineer',
-                Time = 60,
+                time = 60,
             },
         }
     },
@@ -932,7 +942,7 @@ BuilderGroup {
                 PermanentAssist = false,
                 BeingBuiltCategories = {'FACTORY TECH3'},
                 AssisteeType = 'Factory',
-                Time = 60,
+                time = 60,
             },
         }
     },
@@ -953,6 +963,7 @@ BuilderGroup {
         Priority = 750,
         InstanceCount = 3,
         BuilderConditions = {
+            { MIBC, 'GreaterThanGameTime', { 600} },
 				{ UCBC, 'HaveGreaterThanUnitsWithCategory', { 0, 'TECH3 ENERGYPRODUCTION'}},
                 { SBC, 'ReclaimablesInArea', { 'LocationType', 0, 'AntiSurface', 0 }},
             },
@@ -973,6 +984,7 @@ BuilderGroup {
         Priority = 925,
         InstanceCount = 1,
         BuilderConditions = {
+            { MIBC, 'GreaterThanGameTime', { 600} },
                 { SBC, 'DamagedStructuresInArea', { 'LocationType', }},
             },
         BuilderData = {
@@ -987,12 +999,12 @@ BuilderGroup {
         Priority = 1,
         InstanceCount = 50,
         BuilderConditions = {
-
+            { MIBC, 'GreaterThanGameTime', { 600} },
                 { SBC, 'ReclaimablesInArea', { 'LocationType', 0, 'AntiSurface', 0 }},
             },
         BuilderData = {
             LocationType = 'LocationType',
-            ReclaimTime = 120,
+            Reclaimtime = 60,
 			ThreatRings = 0,
 			ThreatType = 'AntiSurface',
 			ThreatValue = 0,
@@ -1009,6 +1021,7 @@ BuilderGroup {
         Priority = 947, #950,
         InstanceCount = 2,
         BuilderConditions = {
+            { MIBC, 'GreaterThanGameTime', { 600} },
             { SIBC, 'LessThanEconEfficiencyOverTime', { 2.0, 1.1 }},
             { UCBC, 'LocationEngineersBuildingAssistanceGreater', { 'LocationType', 0, 'ENERGYPRODUCTION TECH3' }},
            
@@ -1021,7 +1034,31 @@ BuilderGroup {
                 PermanentAssist = false,
                 BeingBuiltCategories = {'ENERGYPRODUCTION TECH3'},
                 AssisteeType = 'Engineer',
-                Time = 60,
+                time = 60,
+            },
+        }
+    },
+
+    Builder {
+        BuilderName = 'NC T3 Engineer Assist T3 Energy Production permanent',
+        PlatoonTemplate = 'T3EngineerAssistSorian',
+        Priority = 1047, 
+        
+        BuilderConditions = {
+            { UCBC, 'HaveGreaterThanUnitsWithCategory', { 3, categories.TECH3 * categories.ENERGYPRODUCTION}},
+            { SIBC, 'LessThanEconEfficiencyOverTime', { 2.0, 1.1 }},
+            { UCBC, 'LocationEngineersBuildingAssistanceGreater', { 'LocationType', 0, 'ENERGYPRODUCTION TECH3' }},
+           
+            
+        },
+        BuilderType = 'Any',
+        BuilderData = {
+            Assist = {
+                AssistLocation = 'LocationType',
+                PermanentAssist = true,
+                BeingBuiltCategories = {'ENERGYPRODUCTION TECH3'},
+                AssisteeType = 'Engineer',
+                time = 60,
             },
         }
     },
@@ -1033,6 +1070,7 @@ BuilderGroup {
         Priority = 800,
         InstanceCount = 1,
         BuilderConditions = {
+            { MIBC, 'GreaterThanGameTime', { 600} },
                 { UCBC, 'EngineerGreaterAtLocation', { 'LocationType', 1, 'ENGINEER TECH3' }},
                 { UCBC, 'LocationEngineersBuildingAssistanceGreater', { 'LocationType', 0, 'MASSPRODUCTION TECH3' }},
                 { SIBC, 'LessThanEconEfficiencyOverTime', { 0.9, 2.0}},
@@ -1045,7 +1083,7 @@ BuilderGroup {
                 AssistLocation = 'LocationType',
                 BeingBuiltCategories = { 'MASSPRODUCTION TECH3' },
                 AssisteeType = 'Engineer',
-                Time = 60,
+                time = 60,
             },
         }
     },
@@ -1055,6 +1093,7 @@ BuilderGroup {
         Priority = 750,
         InstanceCount = 1,
         BuilderConditions = {
+            { MIBC, 'GreaterThanGameTime', { 600} },
             { UCBC, 'EngineerGreaterAtLocation', { 'LocationType', 1, 'ENGINEER TECH3' }},
             { UCBC, 'LocationEngineersBuildingAssistanceGreater', { 'LocationType', 0, 'STRUCTURE DEFENSE' }},
             { IBC, 'BrainNotLowPowerMode', {} },
@@ -1066,7 +1105,7 @@ BuilderGroup {
                 AssistLocation = 'LocationType',
                 BeingBuiltCategories = { 'STRUCTURE DEFENSE', },
                 AssisteeType = 'Engineer',
-                Time = 60,
+                time = 60,
             },
         }
     },
@@ -1076,6 +1115,7 @@ BuilderGroup {
         Priority = 750,
         InstanceCount = 2,
         BuilderConditions = {
+            { MIBC, 'GreaterThanGameTime', { 600} },
             { UCBC, 'LocationEngineersBuildingAssistanceGreater', { 'LocationType', 0, 'STRUCTURE SHIELD' }},
             { IBC, 'BrainNotLowPowerMode', {} },
             { SIBC, 'GreaterThanEconEfficiencyOverTime', { 1.1, 1.1} },
@@ -1086,7 +1126,7 @@ BuilderGroup {
                 AssistLocation = 'LocationType',
                 BeingBuiltCategories = { 'STRUCTURE SHIELD', },
                 AssisteeType = 'Engineer',
-                Time = 60,
+                time = 60,
             },
         }
     },
@@ -1097,6 +1137,7 @@ BuilderGroup {
         Priority = 700,
         InstanceCount = 20,
         BuilderConditions = {
+            { MIBC, 'GreaterThanGameTime', { 600} },
             { UCBC, 'LocationEngineersBuildingAssistanceGreater', { 'LocationType', 0, 'STRUCTURE, EXPERIMENTAL' }},
             { IBC, 'BrainNotLowPowerMode', {} },
             { SIBC, 'GreaterThanEconEfficiencyOverTime', { 1.1, 1.05} },
@@ -1108,7 +1149,7 @@ BuilderGroup {
                 PermanentAssist = false,
                 BeingBuiltCategories = { 'STRUCTURE', 'EXPERIMENTAL' },
                 AssisteeType = 'Engineer',
-                Time = 60,
+                time = 60,
             },
         }
     },
@@ -1117,11 +1158,12 @@ BuilderGroup {
         PlatoonTemplate = 'T3EngineerAssistSorian',
         PlatoonAIPlan = 'ManagerEngineerFindUnfinished',
         Priority = 1000,
-        InstanceCount = 50,
+        InstanceCount = 20,
         
         BuilderType = 'Any',
         BuilderConditions = {
-            { EBC, 'GreaterThanEconIncome', { 450.0, 3000.0 }},  
+            { MIBC, 'GreaterThanGameTime', { 600} },
+            { SIBC, 'GreaterThanEconEfficiencyOverTime', { 1.1, 1.02} },
             { EBC, 'GreaterThanEconStorageRatio', { 0.75, 0.99 } },
                 
             },
@@ -1129,8 +1171,31 @@ BuilderGroup {
             Assist = {
                 AssistLocation = 'LocationType',
                 AssisteeType = 'Engineer',
-                BeingBuiltCategories = {'STRUCTURE STRATEGIC',' STRUCTURE ECONOMIC',' STRUCTURE'},
-                Time = 20,
+                BeingBuiltCategories = {'STRUCTURE STRATEGIC','EXPERIMENTAL'},
+                time = 60,
+            },
+        }
+    }, 
+    Builder {
+        BuilderName = 'NC T3 assit LOTS OF JUICE fast changeover',
+        PlatoonTemplate = 'T3EngineerAssistSorian',
+        PlatoonAIPlan = 'ManagerEngineerFindUnfinished',
+        Priority = 1000,
+        InstanceCount = 20,
+        
+        BuilderType = 'Any',
+        BuilderConditions = {
+            { MIBC, 'GreaterThanGameTime', { 600} },
+            { SIBC, 'GreaterThanEconEfficiencyOverTime', { 1.1, 1.02} },
+            { EBC, 'GreaterThanEconStorageRatio', { 0.75, 0.99 } },
+                
+            },
+        BuilderData = {
+            Assist = {
+                AssistLocation = 'LocationType',
+                AssisteeType = 'Engineer',
+                BeingBuiltCategories = {'STRUCTURE STRATEGIC','EXPERIMENTAL'},
+                time = 60,
             },
         }
     }, 
@@ -1153,7 +1218,7 @@ BuilderGroup {
 
         BuilderType = 'Any',
         BuilderConditions = {
-
+            
                         { SIBC, 'HaveLessThanUnitsWithCategory', { 1, 'ENERGYPRODUCTION TECH3'}},
                       
                         { SIBC, 'HaveLessThanUnitsInCategoryBeingBuilt', { 1, categories.STRUCTURE * (categories.TECH2 + categories.TECH3)  * categories.ENERGYPRODUCTION } },
@@ -1181,6 +1246,7 @@ BuilderGroup {
         DelayEqualBuildPlattons = {'Energy', 3},
         BuilderType = 'Any',
         BuilderConditions = {
+            { MIBC, 'GreaterThanGameTime', { 600} },
          -- relative income
             { SIBC, 'HaveLessThanUnitsInCategoryBeingBuilt', { 1, categories.STRUCTURE * categories.TECH3 * categories.ENERGYPRODUCTION } },
             { SIBC, 'LessThanEconEfficiencyOverTime', { 2.0, 1.2 }},
@@ -1217,6 +1283,7 @@ BuilderGroup {
         DelayEqualBuildPlattons = {'Energy', 3},
         BuilderType = 'Any',
         BuilderConditions = {
+            { MIBC, 'GreaterThanGameTime', { 600} },
             { SIBC, 'LessThanEconEfficiencyOverTime', { 2.0, 1.2 }}, -- relative income
             { SIBC, 'HaveLessThanUnitsInCategoryBeingBuilt', { 1, categories.STRUCTURE * categories.TECH3  * categories.ENERGYPRODUCTION } },
 	  { SIBC, 'HaveLessThanUnitsWithCategory', { 1, 'ENERGYPRODUCTION TECH3'}},
@@ -1228,6 +1295,67 @@ BuilderGroup {
        
             Construction = {
                 BuildStructures = {
+                    'T3EnergyProduction',
+              
+                   
+
+                },
+            }
+        }
+    },
+
+    Builder {
+        BuilderName = 'NC t3 energy lots of mass',
+        PlatoonTemplate = 'T3EngineerBuilderSorian',
+        Priority = 5002,
+        DelayEqualBuildPlattons = {'Energy', 3},
+        BuilderType = 'Any',
+        BuilderConditions = {
+            { MIBC, 'GreaterThanGameTime', { 600} },
+            { SIBC, 'LessThanEconEfficiencyOverTime', { 2.0, 1.2 }}, -- relative income
+            { SIBC, 'HaveLessThanUnitsInCategoryBeingBuilt', { 2, categories.STRUCTURE * categories.TECH3  * categories.ENERGYPRODUCTION } },
+      { SIBC, 'HaveGreaterThanUnitsWithCategory', { 6, 'ENERGYPRODUCTION TECH3'}},
+      { EBC, 'GreaterThanEconStorageRatio', { 1.0, 0.01 } },
+
+                     
+			
+        },
+        BuilderData = {
+            DesiresAssist = true,
+       
+            Construction = {
+                BuildStructures = {
+                    'T3EnergyProduction',
+                    'T3EnergyProduction',
+              
+                   
+
+                },
+            }
+        }
+    },
+    Builder {
+        BuilderName = 'NC t3 energy lots of mass still need help',
+        PlatoonTemplate = 'T3EngineerBuilderSorian',
+        Priority = 5002,
+        DelayEqualBuildPlattons = {'Energy', 3},
+        BuilderType = 'Any',
+        BuilderConditions = {
+            { MIBC, 'GreaterThanGameTime', { 600} },
+            { SIBC, 'LessThanEconEfficiencyOverTime', { 2.0, 1.2 }}, -- relative income
+            { SIBC, 'HaveLessThanUnitsInCategoryBeingBuilt', { 3, categories.STRUCTURE * categories.TECH3  * categories.ENERGYPRODUCTION } },
+      { SIBC, 'HaveGreaterThanUnitsWithCategory', { 12, 'ENERGYPRODUCTION TECH3'}},
+      { EBC, 'GreaterThanEconStorageRatio', { 1.0, 0.01 } },
+
+                     
+			
+        },
+        BuilderData = {
+            DesiresAssist = true,
+       
+            Construction = {
+                BuildStructures = {
+                    'T3EnergyProduction',
                     'T3EnergyProduction',
               
                    
@@ -1530,7 +1658,7 @@ BuilderGroup {
                 AssistLocation = 'LocationType',
 				AssistRange = 100,
                 BeingBuiltCategories = {'ENERGYPRODUCTION TECH3', 'ENERGYPRODUCTION TECH2'},
-                Time = 20,
+                time = 60,
             },
         }
     },
@@ -1549,7 +1677,7 @@ BuilderGroup {
                 AssistLocation = 'LocationType',
 				AssistRange = 100,
                 AssisteeType = 'Engineer',
-                Time = 30,
+                time = 60,
             },
         }
     },
@@ -1570,7 +1698,7 @@ BuilderGroup {
                 AssistLocation = 'LocationType',
 				AssistRange = 100,
                 BeingBuiltCategories = {'EXPERIMENTAL'},
-                Time = 60,
+                time = 60,
             },
         }
     },
@@ -1589,7 +1717,7 @@ BuilderGroup {
                 AssistLocation = 'LocationType',
                 AssisteeType = 'Factory',
 				AssistRange = 100,
-                Time = 30,
+                time = 60,
             },
         }
     },
@@ -1610,7 +1738,7 @@ BuilderGroup {
     #            AssisteeType = 'Factory',
     #            PermanentAssist = false,
     #            BeingBuiltCategories = {'FACTORY TECH2'},
-    #            Time = 40,
+    #            Time =20,
     #        },
     #    }
     #},
@@ -1631,7 +1759,7 @@ BuilderGroup {
     #            AssisteeType = 'Factory',
     #            PermanentAssist = false,
     #            BeingBuiltCategories = {'FACTORY TECH3',},
-    #            Time = 40,
+    #            time = 60,
     #        },
     #    }
     #},
@@ -1650,7 +1778,7 @@ BuilderGroup {
     #            AssisteeType = 'Structure',
     #            AssistLocation = 'LocationType',
     #            BeingBuiltCategories = {'MASSEXTRACTION'},
-    #            Time = 30,
+    #            time = 60,
     #        },
     #    }
     #},
@@ -2038,6 +2166,7 @@ BuilderGroup {
         PlatoonTemplate = 'T3EngineerBuilderSorian',
         Priority = 975,
         BuilderConditions = {
+            { MIBC, 'GreaterThanGameTime', { 600} },
                 { MABC, 'CanBuildOnMassLessThanDistance', { 'LocationType', 250, -500, 0, 0, 'AntiSurface', 1 }},
             },
         BuilderType = 'Any',
@@ -2081,6 +2210,7 @@ BuilderGroup {
         
        
         BuilderConditions = {
+            { MIBC, 'GreaterThanGameTime', { 600} },
                 { SBC, 'UnfinishedUnits', { 'LocationType', categories.STRUCTURE}},
             },
         BuilderData = {
@@ -2088,7 +2218,7 @@ BuilderGroup {
                 AssistLocation = 'LocationType',
                 AssisteeType = 'Structure',
                 BeingBuiltCategories = {'STRUCTURE STRATEGIC',' STRUCTURE ECONOMIC',' STRUCTURE'},
-                Time = 20,
+                time = 60,
             },
         },
         BuilderType = 'Any',
@@ -2099,6 +2229,7 @@ BuilderGroup {
         PlatoonTemplate = 'T3EngineerBuilderSorian',
         Priority = 1200,
         BuilderConditions = {
+            { MIBC, 'GreaterThanGameTime', { 600} },
                 { UCBC, 'HaveLessThanUnitsInCategoryBeingBuilt', { 1, 'MASSFABRICATION' } },
                 { SIBC, 'LessThanEconEfficiencyOverTime', { 0.91, 2.0}},
                 { SIBC, 'GreaterThanEconEfficiencyOverTime', { 0.4, 1.25}},
@@ -2251,6 +2382,7 @@ BuilderGroup {
         PlatoonTemplate = 'T3EngineerBuilderSorian',
         Priority = 850,
         BuilderConditions = {
+            { MIBC, 'GreaterThanGameTime', { 600} },
                 { MABC, 'CanBuildOnMassLessThanDistance', { 'LocationType', 350, -500, 0, 0, 'AntiSurface', 1 }},
             },
         BuilderType = 'Any',
@@ -2268,6 +2400,7 @@ BuilderGroup {
         PlatoonTemplate = 'T3EngineerBuilderSorian',
         Priority = 750,
         BuilderConditions = {
+        
             { MIBC, 'GreaterThanGameTime', { 600 } },
                 { MABC, 'CanBuildOnMassLessThanDistance', { 'LocationType', 1500, -500, 0, 0, 'AntiSurface', 1 }},
             },

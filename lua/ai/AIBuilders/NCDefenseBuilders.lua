@@ -30,6 +30,7 @@ local SIBC = '/lua/editor/SorianInstantBuildConditions.lua'
 local AIAddBuilderTable = import('/lua/ai/AIAddBuilderTable.lua')
 
 
+
 BuilderGroup {
     BuilderGroupName = 'NCemergencybuildersearlygame',
     BuildersType = 'EngineerBuilder',
@@ -66,7 +67,7 @@ BuilderGroup {
         PlatoonTemplate = 'T2EngineerBuilderSorian',
         Priority = 950,
         BuilderConditions = {
-           
+            { MIBC, 'GreaterThanGameTime', { 300 } },
             { UCBC, 'UnitsLessAtLocation', { 'LocationType', 10, 'DEFENSE STRUCTURE ANTIAIR' }},
             { UCBC, 'HaveLessThanUnitsWithCategory', { 10, categories.AIR * categories.ANTIAIR * categories.TECH1 } },
             { UCBC, 'HaveUnitsWithCategoryAndAlliance', { true, 7, categories.FACTORY * categories.AIR, 'Enemy'}},
@@ -129,6 +130,7 @@ Builder {
         Priority = 950,
         InstanceCount = 1,
         BuilderConditions = {
+            { MIBC, 'GreaterThanGameTime', { 300 } },
             { UCBC, 'LocationEngineersBuildingLess', { 'LocationType', 1, categories.DEFENSE * (categories.TECH2 + categories.TECH3) * categories.STRUCTURE - categories.SHIELD - categories.ANTIMISSILE } },
             { UCBC, 'UnitsLessAtLocation', { 'LocationType', 20, categories.TECH2 * categories.DIRECTFIRE * categories.DEFENSE }},
          { SBC, 'GreaterThanEnemyUnitsAroundBase', { 'LocationType', 5, categories.MOBILE * categories.LAND - categories.SCOUT, 250 } },
@@ -157,15 +159,92 @@ Builder {
             }
         }
     },
+    Builder {
+        BuilderName = 'NC uef land exp spotted',
+        PlatoonTemplate = 'T3EngineerBuilderSorian',
+        Priority = 950,
+        InstanceCount = 1,
+        BuilderConditions = {
+            { MIBC, 'GreaterThanGameTime', { 1200 } },
+            { UCBC, 'LocationEngineersBuildingLess', { 'LocationType', 2, categories.DEFENSE * (categories.TECH2 + categories.TECH3) * categories.STRUCTURE - categories.SHIELD - categories.ANTIMISSILE } },
+            { UCBC, 'UnitsLessAtLocation', { 'LocationType', 30, categories.DIRECTFIRE * (categories.TECH2 + categories.TECH3) * categories.DEFENSE }},
+            { UCBC, 'HaveUnitsWithCategoryAndAlliance', { true, 0, 'EXPERIMENTAL LAND', 'Enemy'}},
+         
+            { EBC, 'GreaterThanEconEfficiencyOverTime', { 0.9, 1.05 }},
+  
+            { IBC, 'BrainNotLowPowerMode', {} },
+            { UCBC, 'LocationEngineersBuildingLess', { 'LocationType', 2, 'DEFENSE' } },
+            
+      
+         
+        },
+        BuilderType = 'Any',
+        BuilderData = {
+            NumAssistees = 2,
+            Construction = {
+                NearBasePatrolPoints = true,
+                BuildClose = false,
+                BuildStructures = {
+                    'T3GroundDefense',
+                    'T2Artillery',
+                    'T3GroundDefense',
+                   
+
+                  
+                },
+                Location = 'LocationType',
+            }
+        }
+    },
+    Builder {
+        BuilderName = 'NC other land exp spotted',
+        PlatoonTemplate = 'T2T3EngineerBuilderNC',
+        Priority = 950,
+        InstanceCount = 1,
+        BuilderConditions = {
+            { MIBC, 'GreaterThanGameTime', { 1200 } },
+            { UCBC, 'LocationEngineersBuildingLess', { 'LocationType', 2, categories.DEFENSE * (categories.TECH2 + categories.TECH3) * categories.STRUCTURE - categories.SHIELD - categories.ANTIMISSILE } },
+            { UCBC, 'UnitsLessAtLocation', { 'LocationType', 30, categories.DIRECTFIRE * (categories.TECH2 + categories.TECH3) * categories.DEFENSE }},
+            { UCBC, 'HaveUnitsWithCategoryAndAlliance', { true, 0, 'EXPERIMENTAL LAND', 'Enemy'}},
+         
+            { EBC, 'GreaterThanEconEfficiencyOverTime', { 0.9, 1.05 }},
+       
+            { IBC, 'BrainNotLowPowerMode', {} },
+            { UCBC, 'LocationEngineersBuildingLess', { 'LocationType', 2, 'DEFENSE' } },
+            
+      
+         
+        },
+        BuilderType = 'Any',
+        BuilderData = {
+            NumAssistees = 2,
+            Construction = {
+                NearBasePatrolPoints = true,
+                BuildClose = false,
+                BuildStructures = {
+                    'T2GroundDefense',
+                    'T2Artillery',
+                    'T2GroundDefense',
+                   
+
+                  
+                },
+                Location = 'LocationType',
+            }
+        }
+    },
+    
+  
        Builder {
         BuilderName = 'NC T1 being factory rushed - building TML',
         PlatoonTemplate = 'T2EngineerBuilderSorian',
         Priority = 950,
         BuilderConditions = {
+            { SBC, 'LessThanGameTime', { 840 } },
             { UCBC, 'LocationEngineersBuildingLess', { 'LocationType', 1, categories.DEFENSE * (categories.TECH2 + categories.TECH3) * categories.STRUCTURE - categories.SHIELD - categories.ANTIMISSILE } },
-          { SBC, 'LessThanGameTime', { 840 } },
+          
          { SBC, 'GreaterThanEnemyUnitsAroundBase', { 'LocationType', 0, categories.FACTORY + categories.ENGINEER, 250 } },
-         { UCBC, 'UnitsLessAtLocation', { 'LocationType', 4, categories.TACTICALMISSILEPLATFORM * categories.STRUCTURE}},
+         { UCBC, 'UnitsLessAtLocation', { 'LocationType', 6, categories.TACTICALMISSILEPLATFORM * categories.STRUCTURE}},
        
             { IBC, 'BrainNotLowPowerMode', {} },
             { SIBC, 'GreaterThanEconEfficiencyOverTime', { 0.99, 1.0 }},
@@ -187,11 +266,44 @@ Builder {
             }
         }
     },
+    
+    Builder {
+        BuilderName = 'NC T1 TML standard build',
+        PlatoonTemplate = 'T2T3EngineerBuilderNC',
+        Priority = 950,
+        BuilderConditions = {
+            { MIBC, 'GreaterThanGameTime', { 1200 } },
+            { UCBC, 'LocationEngineersBuildingLess', { 'LocationType', 1, categories.DEFENSE * (categories.TECH2 + categories.TECH3) * categories.STRUCTURE - categories.SHIELD - categories.ANTIMISSILE } },
+          { SBC, 'LessThanGameTime', { 840 } },
+         
+         { UCBC, 'UnitsLessAtLocation', { 'LocationType', 6, categories.TACTICALMISSILEPLATFORM * categories.STRUCTURE}},
+       
+            { IBC, 'BrainNotLowPowerMode', {} },
+            { SIBC, 'GreaterThanEconEfficiencyOverTime', { 0.99, 1.0 }},
+            
+      
+         
+        },
+        BuilderType = 'Any',
+        BuilderData = {
+            NumAssistees = 2,
+            Construction = {
+                BuildClose = false,
+                BuildStructures = {
+                    'T2StrategicMissile',
+                   
+                  
+                },
+                Location = 'LocationType',
+            }
+        }
+    },
 Builder {
         BuilderName = 'NC T2 Base D Engineer - Light',
         PlatoonTemplate = 'T2EngineerBuilderSorian',
         Priority = 925,
         BuilderConditions = {
+            { MIBC, 'GreaterThanGameTime', { 1000 } },
             { UCBC, 'LocationEngineersBuildingLess', { 'LocationType', 1, categories.DEFENSE * (categories.TECH2 + categories.TECH3) * categories.STRUCTURE - categories.SHIELD - categories.ANTIMISSILE } },
             { UCBC, 'UnitsLessAtLocation', { 'LocationType', 5, 'DEFENSE TECH2 STRUCTURE' }},
             { UCBC, 'HaveGreaterThanUnitsWithCategory', { 0, 'ENERGYPRODUCTION TECH2' }},
@@ -219,89 +331,9 @@ Builder {
      
 }
 
-BuilderGroup {
-    BuilderGroupName = 'NCT3DefensivePoints High Pri',
-    BuildersType = 'EngineerBuilder',
-    Builder {
-        BuilderName = 'NCT3 UEF Defensive Point Engineer High Pri',
-        PlatoonTemplate = 'UEFT3EngineerBuilder',
-        Priority = 970,
-        InstanceCount = 5,
-        BuilderConditions = {
-            { UCBC, 'LocationEngineersBuildingLess', { 'LocationType', 2, categories.DEFENSE * (categories.TECH2 + categories.TECH3) * categories.STRUCTURE - categories.SHIELD - categories.ANTIMISSILE } },
-            { UCBC, 'UnitsLessAtLocation', { 'LocationType', 30, categories.DIRECTFIRE * (categories.TECH2 + categories.TECH3) * categories.DEFENSE }},
-            { UCBC, 'HaveUnitsWithCategoryAndAlliance', { true, 0, 'EXPERIMENTAL LAND', 'Enemy'}},
-         
-            { EBC, 'GreaterThanEconEfficiencyOverTime', { 0.9, 1.1 }},
-            { UCBC, 'DefensivePointNeedsStructure', { 'LocationType', 150, 'DEFENSE TECH3 DIRECTFIRE', 20, 2, 0, 1, 2, 'AntiSurface' } },
-            { IBC, 'BrainNotLowPowerMode', {} },
-            { UCBC, 'LocationEngineersBuildingLess', { 'LocationType', 2, 'DEFENSE' } },
-            
-        },
-        BuilderType = 'Any',
-        BuilderData = {
-            NumAssistees = 2,
-            Construction = {
-                BuildClose = false,
-                NearMarkerType = 'Defensive Point',
-                MarkerRadius = 20,
-                LocationRadius = 150,
-                LocationType = 'LocationType',
-                ThreatMin = 0,
-                ThreatMax = 1,
-                ThreatRings = 2,
-                ThreatType = 'AntiSurface',
-                MarkerUnitCount = 2,
-                MarkerUnitCategory = 'DEFENSE TECH3 DIRECTFIRE',
-                BuildStructures = {
-                    'T3GroundDefense',
-                    'T2Artillery',
-                    'T3GroundDefense',
-                }
-            }
-        }
-    },
-    Builder {
-        BuilderName = 'NCT3 Defensive Point Engineer High Pri',
-        PlatoonTemplate = 'T3EngineerBuilderSorian',
-        Priority = 970,
-        InstanceCount = 5,
-        BuilderConditions = {
-            { UCBC, 'LocationEngineersBuildingLess', { 'LocationType', 2, categories.DEFENSE * (categories.TECH2 + categories.TECH3) * categories.STRUCTURE - categories.SHIELD - categories.ANTIMISSILE } },
-            { UCBC, 'UnitsLessAtLocation', { 'LocationType', 30, categories.DIRECTFIRE * (categories.TECH2 + categories.TECH3) * categories.DEFENSE }},
-            { UCBC, 'HaveUnitsWithCategoryAndAlliance', { true, 0, 'EXPERIMENTAL LAND', 'Enemy'}},
-            
-            { EBC, 'GreaterThanEconEfficiencyOverTime', { 0.9, 1.1 }},
-          
-            { IBC, 'BrainNotLowPowerMode', {} },
-            { UCBC, 'LocationEngineersBuildingLess', { 'LocationType', 2, 'DEFENSE' } },
-            
-        },
-        BuilderType = 'Any',
-        BuilderData = {
-            NumAssistees = 2,
-            Construction = {
-                BuildClose = false,
-                NearMarkerType = 'Defensive Point',
-                MarkerRadius = 20,
-                LocationRadius = 150,
-                LocationType = 'LocationType',
-                ThreatMin = 0,
-                ThreatMax = 1,
-                ThreatRings = 2,
-                ThreatType = 'AntiSurface',
-                MarkerUnitCount = 2,
-                MarkerUnitCategory = 'DEFENSE TECH3 DIRECTFIRE',
-                BuildStructures = {
-                    'T2GroundDefense',
-                    'T2Artillery',
-                    'T2GroundDefense',
-                }
-            }
-        }
-    },
+
   
-}
+
 
 BuilderGroup {
     BuilderGroupName = 'NCt4airemergencyreaction',
@@ -312,10 +344,11 @@ BuilderGroup {
         Priority = 950,
 InstanceCount = 20,
         BuilderConditions = {
+            { MIBC, 'GreaterThanGameTime', { 1200 } },
             { UCBC, 'LocationEngineersBuildingLess', { 'LocationType', 1, categories.DEFENSE * (categories.TECH2 + categories.TECH3) * categories.STRUCTURE - categories.SHIELD - categories.ANTIMISSILE } },
         { UCBC, 'HaveUnitsWithCategoryAndAlliance', { true, 0, 'EXPERIMENTAL AIR', 'Enemy'}},
             { IBC, 'BrainNotLowPowerMode', {} },
-            { SIBC, 'GreaterThanEconEfficiencyOverTime', { 0.99, 1.1 }},
+            { SIBC, 'GreaterThanEconEfficiencyOverTime', { 0.99, 1.05 }},
             { UCBC, 'UnitsLessAtLocation', { 'LocationType', 20, categories.STRUCTURE *(categories.TECH2 + categories.TECH3) * categories.ANTIAIR * categories.DEFENSE} },
             { UCBC, 'LocationEngineersBuildingLess', { 'LocationType', 1, categories.DEFENSE * categories.TECH3 * categories.ANTIAIR} },
             
@@ -430,7 +463,7 @@ BuilderGroup {
             { UCBC, 'HaveUnitsWithCategoryAndAlliance', { true, 1, categories.NAVAL * categories.MOBILE,  'Enemy' }},
             { UCBC, 'UnitsLessAtLocation', { 'LocationType', 10, categories.TACTICALMISSILEPLATFORM}},
 			{ SIBC, 'HaveGreaterThanUnitsWithCategory', { 2, categories.ENERGYPRODUCTION * categories.TECH2 } },
-            { SIBC, 'GreaterThanEconEfficiencyOverTime', { 0.99, 1.1 }},
+            { SIBC, 'GreaterThanEconEfficiencyOverTime', { 0.99, 1.05 }},
             
             { IBC, 'BrainNotLowPowerMode', {} },
             
@@ -542,6 +575,7 @@ BuilderGroup {
         PlatoonTemplate = 'T2EngineerBuilderSorian',
         Priority = 920,
         BuilderConditions = {
+            { MIBC, 'GreaterThanGameTime', { 600 } },
             { UCBC, 'UnitsLessAtLocation', { 'LocationType', 40, 'DEFENSE TECH2 STRUCTURE' }},
             { SIBC, 'HaveLessThanUnitsInCategoryBeingBuilt', { 2, categories.STRUCTURE  * (categories.TECH2 + categories.TECH3) * categories.DIRECTFIRE }},
             { UCBC, 'HaveGreaterThanUnitsWithCategory', { 0, 'ENERGYPRODUCTION TECH2' }},
@@ -568,64 +602,17 @@ BuilderGroup {
             }
         }
     },
-    Builder {
-        BuilderName = 'NC T2 Base D Engineer PD - Response',
-        PlatoonTemplate = 'T2EngineerBuilderSorian',
-        Priority = 0, #925,
-        BuilderConditions = {
-            { UCBC, 'UnitsLessAtLocation', { 'LocationType', 20, 'DEFENSE TECH2 DIRECTFIRE STRUCTURE' }},
-            { UCBC, 'HaveGreaterThanUnitsWithCategory', { 0, 'ENERGYPRODUCTION TECH2'}},
-            { IBC, 'BrainNotLowPowerMode', {} },
-            { SIBC, 'GreaterThanEconEfficiencyOverTime', { 0.99, 1.2 }},
-            
-            { UCBC, 'LocationEngineersBuildingLess', { 'LocationType', 1, categories.DEFENSE * categories.TECH2 * categories.STRUCTURE - categories.SHIELD - categories.ANTIMISSILE } },
-            { UCBC, 'UnitCapCheckLess', { 0.95 } },
-        },
-        BuilderType = 'Any',
-        BuilderData = {
-            NumAssistees = 2,
-            Construction = {
-                BuildClose = false,
-                BuildStructures = {
-                    'T2GroundDefense',
-                },
-                Location = 'LocationType',
-            }
-        }
-    },
-    Builder {
-        BuilderName = 'NC T2 Base D Anti-TML Engineer - Response',
-        PlatoonTemplate = 'T2EngineerBuilderSorian',
-        Priority = 0, #925,
-        BuilderConditions = {
-            { UCBC, 'UnitsLessAtLocation', { 'LocationType', 10, 'ANTIMISSILE TECH2 STRUCTURE' }},
-            #{ TBC, 'EnemyThreatGreaterThanValueAtBase', { 'LocationType', 0, 'Artillery' } },
-            { IBC, 'BrainNotLowPowerMode', {} },
-            { SIBC, 'GreaterThanEconEfficiencyOverTime', { 0.99, 1.2 }},
-            
-            { UCBC, 'LocationEngineersBuildingLess', { 'LocationType', 1, categories.DEFENSE * categories.TECH2 * categories.STRUCTURE - categories.SHIELD - categories.ANTIMISSILE } },
-            { UCBC, 'UnitCapCheckLess', { 0.95 } },
-        },
-        BuilderType = 'Any',
-        BuilderData = {
-            NumAssistees = 2,
-            Construction = {
-                BuildClose = false,
-                BuildStructures = {
-                    'T2MissileDefense',
-                },
-                Location = 'LocationType',
-            }
-        }
-    },
+  
+   
     Builder {
         BuilderName = 'NC T2 Base D AA Engineer - Response',
         PlatoonTemplate = 'T2EngineerBuilderSorian',
         Priority = 925,
         BuilderConditions = {
+            { MIBC, 'GreaterThanGameTime', { 600 } },
             { UCBC, 'UnitsLessAtLocation', { 'LocationType', 20, 'DEFENSE TECH2 ANTIAIR STRUCTURE' }},
 			{ UCBC, 'UnitsLessAtLocation', { 'LocationType', 1, categories.DEFENSE * categories.TECH3 * categories.STRUCTURE - categories.SHIELD - categories.ANTIMISSILE}},
-            { TBC, 'EnemyThreatGreaterThanValueAtBase', { 'LocationType', 1, 'Air' } },
+            { TBC, 'EnemyThreatGreaterThanValueAtBase', { 'LocationType', 4, 'Air' } },
             { IBC, 'BrainNotLowPowerMode', {} },
             { SIBC, 'GreaterThanEconEfficiencyOverTime', { 0.99, 1.2 }},
             
@@ -669,29 +656,7 @@ BuilderGroup {
             }
         }
     },
-    Builder {
-        BuilderName = 'NC T2TMLEngineer',
-        PlatoonTemplate = 'T2EngineerBuilderSorian',
-        Priority = 0, #925,
-        BuilderConditions = {
-            { UCBC, 'UnitsLessAtLocation', { 'LocationType', 8, categories.TACTICALMISSILEPLATFORM * categories.STRUCTURE}},
-			{ SIBC, 'HaveGreaterThanUnitsWithCategory', { 0, categories.ENERGYPRODUCTION * categories.TECH2 } },
-            { SIBC, 'GreaterThanEconEfficiencyOverTime', { 0.99, 1.2 }},
-            
-            { IBC, 'BrainNotLowPowerMode', {} },
-           
-        },
-        BuilderType = 'Any',
-        BuilderData = {
-            Construction = {
-                BuildClose = false,
-                BuildStructures = {
-                    'T2StrategicMissile',
-                },
-                Location = 'LocationType',
-            }
-        }
-    },
+    
 }
 
 BuilderGroup {
@@ -723,6 +688,7 @@ BuilderGroup {
         PlatoonTemplate = 'T3EngineerBuilderSorian',
         Priority = 945,
         BuilderConditions = {
+            { MIBC, 'GreaterThanGameTime', { 1200 } },
             { UCBC, 'UnitsLessAtLocation', { 'LocationType', 40, 'DEFENSE TECH3 ANTIAIR STRUCTURE'}},
 			{ SIBC, 'HaveGreaterThanUnitsWithCategory', { 0, categories.ENERGYPRODUCTION * categories.TECH3 } },
 			{ SIBC, 'HaveGreaterThanUnitsWithCategory', { 0, categories.MASSPRODUCTION * categories.TECH3 } },
@@ -749,6 +715,7 @@ BuilderGroup {
         PlatoonTemplate = 'T3EngineerBuilderSorian',
         Priority = 948,
         BuilderConditions = {
+            { MIBC, 'GreaterThanGameTime', { 1200 } },
             { UCBC, 'UnitsLessAtLocation', { 'LocationType', 15, 'DEFENSE TECH3 ANTIAIR STRUCTURE' }},
             { TBC, 'EnemyThreatGreaterThanValueAtBase', { 'LocationType', 1, 'Air' } },
             { IBC, 'BrainNotLowPowerMode', {} },
@@ -774,6 +741,7 @@ BuilderGroup {
         PlatoonTemplate = 'T3EngineerBuilderSorian',
         Priority = 1300,
         BuilderConditions = {
+            { MIBC, 'GreaterThanGameTime', { 1200 } },
             { UCBC, 'UnitsLessAtLocation', { 'LocationType', 30, 'DEFENSE TECH3 ANTIAIR STRUCTURE'}},
 			{ SIBC, 'HaveGreaterThanUnitsWithCategory', { 0, categories.ENERGYPRODUCTION * categories.TECH3 } },
             { IBC, 'BrainNotLowPowerMode', {} },
@@ -802,6 +770,7 @@ BuilderGroup {
         PlatoonTemplate = 'UEFT3EngineerBuilderSorian',
         Priority = 1300,
         BuilderConditions = {
+            { MIBC, 'GreaterThanGameTime', { 1200 } },
             { UCBC, 'UnitsLessAtLocation', { 'LocationType', 10, 'DEFENSE TECH3 DIRECTFIRE STRUCTURE'}},
 			{ SIBC, 'HaveGreaterThanUnitsWithCategory', { 0, categories.ENERGYPRODUCTION * categories.TECH3 } },
 			{ SIBC, 'HaveGreaterThanUnitsWithCategory', { 0, categories.MASSPRODUCTION * categories.TECH3 } },
@@ -830,6 +799,7 @@ BuilderGroup {
         PlatoonTemplate = 'UEFT3EngineerBuilderSorian',
         Priority = 945,
         BuilderConditions = {
+            { MIBC, 'GreaterThanGameTime', { 1200 } },
             { UCBC, 'UnitsLessAtLocation', { 'LocationType', 15, 'DEFENSE TECH3 DIRECTFIRE STRUCTURE'}},
 			{ SIBC, 'HaveGreaterThanUnitsWithCategory', { 0, categories.ENERGYPRODUCTION * categories.TECH3 } },
 			{ SIBC, 'HaveGreaterThanUnitsWithCategory', { 0, categories.MASSPRODUCTION * categories.TECH3 } },
@@ -863,6 +833,7 @@ BuilderGroup {
         PlatoonTemplate = 'T2EngineerBuilderSorian',
         Priority = 930,
         BuilderConditions = {
+            { MIBC, 'GreaterThanGameTime', { 600 } },
             { SIBC, 'HaveLessThanUnitsInCategoryBeingBuilt', { 2, categories.STRUCTURE  * (categories.TECH2 + categories.TECH3) * categories.DIRECTFIRE }},
             { UCBC, 'UnitsLessAtLocation', { 'LocationType', 30, categories.DEFENSE * categories.TECH2 * categories.STRUCTURE}},
 			#{ UCBC, 'UnitsLessAtLocation', { 'LocationType', 3, 'ENGINEER TECH3'}},
@@ -902,6 +873,7 @@ BuilderGroup {
         PlatoonTemplate = 'T3EngineerBuilderSorian',
         Priority = 948, #945,
         BuilderConditions = {
+            { MIBC, 'GreaterThanGameTime', { 1000 } },
             { SIBC, 'HaveLessThanUnitsInCategoryBeingBuilt', { 2, categories.STRUCTURE  * (categories.TECH2 + categories.TECH3) * categories.DIRECTFIRE }},
             { UCBC, 'UnitsLessAtLocation', { 'LocationType', 30, categories.DEFENSE * categories.TECH3 * categories.STRUCTURE * (categories.ANTIAIR + categories.DIRECTFIRE)}},
 			{ SIBC, 'HaveGreaterThanUnitsWithCategory', { 0, categories.ENERGYPRODUCTION * categories.TECH3 } },
@@ -946,12 +918,15 @@ BuilderGroup {
         Priority = 930,
         DelayEqualBuildPlattons = {'Shield', 6},
         BuilderConditions = {
+           
+            { SBC, 'GreaterThanGameTime', { 1200 } },
+            { EBC, 'GreaterThanEconStorageRatio', { 0.05, 0.99 } },
             { SIBC, 'HaveLessThanUnitsInCategoryBeingBuilt', { 1, categories.STRUCTURE * (categories.TECH2 + categories.TECH3)  * categories.ENERGYPRODUCTION } },
             #{ UCBC, 'HaveLessThanUnitsWithCategory', { 10, categories.SHIELD * categories.TECH2 * categories.STRUCTURE}},
 			{ UCBC, 'UnitsLessAtLocation', { 'LocationType', 6, categories.SHIELD * categories.TECH2 * categories.STRUCTURE }},
 			{ SIBC, 'HaveGreaterThanUnitsWithCategory', { 0, categories.ENERGYPRODUCTION * categories.TECH2 } },
             { IBC, 'BrainNotLowPowerMode', {} },
-            { SIBC, 'GreaterThanEconEfficiency', { 0.99, 1.2 } },
+       
             { UCBC, 'LocationEngineersBuildingLess', { 'LocationType', 1, 'SHIELD STRUCTURE' } },
             { UCBC, 'UnitCapCheckLess', { 0.95 } },
         },
@@ -980,12 +955,15 @@ BuilderGroup {
         Priority = 925,
         DelayEqualBuildPlattons = {'Shield', 6},
         BuilderConditions = {
+            { SBC, 'GreaterThanGameTime', { 1200 } },
+            { EBC, 'GreaterThanEconStorageRatio', { 0.05, 0.99 } },
+           
             { SIBC, 'HaveLessThanUnitsInCategoryBeingBuilt', { 1, categories.STRUCTURE * (categories.TECH2 + categories.TECH3)  * categories.ENERGYPRODUCTION } },
             #{ UCBC, 'HaveLessThanUnitsWithCategory', { 2, categories.SHIELD * categories.TECH2 * categories.STRUCTURE}},
 			{ UCBC, 'UnitsLessAtLocation', { 'LocationType', 3, categories.SHIELD * categories.TECH2 * categories.STRUCTURE }},
 			{ SIBC, 'HaveGreaterThanUnitsWithCategory', { 0, categories.ENERGYPRODUCTION * categories.TECH2 } },
             { IBC, 'BrainNotLowPowerMode', {} },
-            { SIBC, 'GreaterThanEconEfficiency', { 0.99, 1.2 } },
+       
             { UCBC, 'LocationEngineersBuildingLess', { 'LocationType', 1, 'SHIELD STRUCTURE' } },
             { UCBC, 'UnitCapCheckLess', { 0.95 } },
         },
@@ -1014,11 +992,14 @@ BuilderGroup {
         Priority = 5,
         InstanceCount = 5,
         BuilderConditions = {
-            { SIBC, 'HaveLessThanUnitsInCategoryBeingBuilt', { 1, categories.STRUCTURE * (categories.TECH2 + categories.TECH3)  * categories.ENERGYPRODUCTION } },
-            { SIBC, 'GreaterThanEconIncome',  { 5, 150}},
             { MIBC, 'FactionIndex', {3, 3}},
+            { SBC, 'GreaterThanGameTime', { 1200 } },
+            { EBC, 'GreaterThanEconStorageRatio', { 0.05, 0.99 } },
+            { SIBC, 'HaveLessThanUnitsInCategoryBeingBuilt', { 1, categories.STRUCTURE * (categories.TECH2 + categories.TECH3)  * categories.ENERGYPRODUCTION } },
+         
+           
             { IBC, 'BrainNotLowPowerMode', {} },
-            { SIBC, 'GreaterThanEconEfficiencyOverTime', { 0.99, 1.2 }},
+           
             
 			{ SIBC, 'HaveGreaterThanUnitsWithCategory', { 0, categories.ENERGYPRODUCTION * categories.TECH2 } },
         },
@@ -1030,9 +1011,11 @@ BuilderGroup {
         Priority = 5,
         InstanceCount = 5,
         BuilderConditions = {
-            { SIBC, 'HaveLessThanUnitsInCategoryBeingBuilt', { 1, categories.STRUCTURE * (categories.TECH2 + categories.TECH3)  * categories.ENERGYPRODUCTION } },
-            { SIBC, 'GreaterThanEconIncome',  { 5, 200}},
             { MIBC, 'FactionIndex', {3, 3}},
+            { SBC, 'GreaterThanGameTime', { 1200 } },
+            { SIBC, 'HaveLessThanUnitsInCategoryBeingBuilt', { 1, categories.STRUCTURE * (categories.TECH2 + categories.TECH3)  * categories.ENERGYPRODUCTION } },
+          
+          
             { IBC, 'BrainNotLowPowerMode', {} },
             { SIBC, 'GreaterThanEconEfficiencyOverTime', { 0.99, 1.2 }},
             
@@ -1046,9 +1029,11 @@ BuilderGroup {
         Priority = 5,
         InstanceCount = 5,
         BuilderConditions = {
-            { SIBC, 'HaveLessThanUnitsInCategoryBeingBuilt', { 1, categories.STRUCTURE * (categories.TECH2 + categories.TECH3)  * categories.ENERGYPRODUCTION } },
-            { SIBC, 'GreaterThanEconIncome',  { 5, 300}},
             { MIBC, 'FactionIndex', {3, 3}},
+            { SBC, 'GreaterThanGameTime', { 1200 } },
+            { SIBC, 'HaveLessThanUnitsInCategoryBeingBuilt', { 1, categories.STRUCTURE * (categories.TECH2 + categories.TECH3)  * categories.ENERGYPRODUCTION } },
+           
+      
             { IBC, 'BrainNotLowPowerMode', {} },
             { SIBC, 'GreaterThanEconEfficiencyOverTime', { 0.99, 1.2 }},
             
@@ -1062,9 +1047,11 @@ BuilderGroup {
         Priority = 5,
         InstanceCount = 5,
         BuilderConditions = {
-            { SIBC, 'HaveLessThanUnitsInCategoryBeingBuilt', { 1, categories.STRUCTURE * (categories.TECH2 + categories.TECH3)  * categories.ENERGYPRODUCTION } },
-            { SIBC, 'GreaterThanEconIncome',  { 5, 400}},
             { MIBC, 'FactionIndex', {3, 3}},
+            { SBC, 'GreaterThanGameTime', { 1200 } },
+            { SIBC, 'HaveLessThanUnitsInCategoryBeingBuilt', { 1, categories.STRUCTURE * (categories.TECH2 + categories.TECH3)  * categories.ENERGYPRODUCTION } },
+          
+           
             { IBC, 'BrainNotLowPowerMode', {} },
             { SIBC, 'GreaterThanEconEfficiencyOverTime', { 0.99, 1.2 }},
             
@@ -1078,9 +1065,11 @@ BuilderGroup {
         Priority = 5,
         InstanceCount = 2,
         BuilderConditions = {
-            { SIBC, 'HaveLessThanUnitsInCategoryBeingBuilt', { 1, categories.STRUCTURE * (categories.TECH2 + categories.TECH3)  * categories.ENERGYPRODUCTION } },
-            { SIBC, 'GreaterThanEconIncome',  { 7, 350}},
             { MIBC, 'FactionIndex', {1, 4}},
+            { SBC, 'GreaterThanGameTime', { 1200 } },
+            { SIBC, 'HaveLessThanUnitsInCategoryBeingBuilt', { 1, categories.STRUCTURE * (categories.TECH2 + categories.TECH3)  * categories.ENERGYPRODUCTION } },
+   
+           
             { IBC, 'BrainNotLowPowerMode', {} },
             { SIBC, 'GreaterThanEconEfficiencyOverTime', { 0.99, 1.2 }},
             
@@ -1100,13 +1089,16 @@ BuilderGroup {
         Priority = 950,
         DelayEqualBuildPlattons = {'Shield', 6},
         BuilderConditions = {
+            { SBC, 'GreaterThanGameTime', { 1200 } },
+            { MIBC, 'FactionIndex', {1, 2, 4}},
+            { EBC, 'GreaterThanEconStorageRatio', { 0.05, 0.99 } },
             { SIBC, 'HaveLessThanUnitsInCategoryBeingBuilt', { 1, categories.STRUCTURE * (categories.TECH2 + categories.TECH3)  * categories.ENERGYPRODUCTION } },
             { UCBC, 'HaveGreaterThanUnitsWithCategory', { 5, categories.ENGINEER * categories.TECH3}},
 			{ SIBC, 'HaveGreaterThanUnitsWithCategory', { 0, categories.ENERGYPRODUCTION * categories.TECH3 } },
             { UCBC, 'UnitsLessAtLocation', { 'LocationType', 10, categories.SHIELD * categories.TECH3 * categories.STRUCTURE} },
-            { MIBC, 'FactionIndex', {1, 2, 4}},
+          
             { UCBC, 'LocationEngineersBuildingLess', { 'LocationType', 1, 'SHIELD STRUCTURE' } },
-            { SIBC, 'GreaterThanEconEfficiencyOverTime', { 0.99, 1.1 }},
+    
             
             { IBC, 'BrainNotLowPowerMode', {} },
             { UCBC, 'UnitCapCheckLess', { 0.95 } },
@@ -1131,12 +1123,15 @@ BuilderGroup {
         Priority = 950,
         DelayEqualBuildPlattons = {'Shield', 6},
         BuilderConditions = {
+            { SBC, 'GreaterThanGameTime', { 1200 } },
+            { MIBC, 'FactionIndex', {3}},
+            { EBC, 'GreaterThanEconStorageRatio', { 0.05, 0.99 } },
             { SIBC, 'HaveLessThanUnitsInCategoryBeingBuilt', { 1, categories.STRUCTURE * (categories.TECH2 + categories.TECH3)  * categories.ENERGYPRODUCTION } },
         
             { UCBC, 'HaveGreaterThanUnitsWithCategory', { 5, categories.ENGINEER * categories.TECH3}},
 			{ SIBC, 'HaveGreaterThanUnitsWithCategory', { 0, categories.ENERGYPRODUCTION * categories.TECH3 } },
             { UCBC, 'UnitsLessAtLocation', { 'LocationType', 16, categories.SHIELD * categories.TECH2 * categories.STRUCTURE} },
-            { MIBC, 'FactionIndex', {3}},
+            
             { UCBC, 'LocationEngineersBuildingLess', { 'LocationType', 1, 'SHIELD STRUCTURE' } },
             { SIBC, 'GreaterThanEconEfficiencyOverTime', { 0.99, 1.2 }},
             
@@ -1170,15 +1165,16 @@ BuilderGroup {
     Builder {
         BuilderName = 'NC T3 Anti-Nuke Engineer Near Factory - First',
         PlatoonTemplate = 'T3EngineerBuilderSorian',
-        Priority = 960,
+        Priority = 980,
 		InstanceCount = 1,
         BuilderConditions = {
+            { SBC, 'GreaterThanGameTime', { 1200 } },
             #{ UCBC, 'HaveGreaterThanUnitsWithCategory', { 5, categories.ENGINEER * categories.TECH3}},
 			{ SIBC, 'HaveGreaterThanUnitsWithCategory', { 0, categories.ENERGYPRODUCTION * categories.TECH3 } },
 			{ SIBC, 'HaveGreaterThanUnitsWithCategory', { 0, categories.MASSPRODUCTION * categories.TECH3 } },
             { UCBC, 'BuildingLessAtLocation', { 'LocationType', 1, 'ANTIMISSILE TECH3 STRUCTURE' } },
             { UCBC, 'UnitsLessAtLocation', { 'LocationType', 1, categories.ANTIMISSILE * categories.TECH3 * categories.STRUCTURE}},
-            #{ SIBC, 'GreaterThanEconIncome', { 2.5, 100}},
+       
             { IBC, 'BrainNotLowPowerMode', {} },
             { SIBC, 'GreaterThanEconEfficiencyOverTime', { 0.90, 1.2 }},
             
@@ -1205,6 +1201,7 @@ BuilderGroup {
         Priority = 0, #945,
 		InstanceCount = 1,
         BuilderConditions = {
+            { SBC, 'GreaterThanGameTime', { 1200 } },
             #{ UCBC, 'HaveGreaterThanUnitsWithCategory', { 5, categories.ENGINEER * categories.TECH3}},
 			
             { UCBC, 'BuildingLessAtLocation', { 'LocationType', 1, 'ANTIMISSILE TECH3 STRUCTURE' } },
@@ -1238,7 +1235,7 @@ BuilderGroup {
 		InstanceCount = 1,
         BuilderConditions = {
            
-		
+            { SBC, 'GreaterThanGameTime', { 1200 } },
             { UCBC, 'BuildingLessAtLocation', { 'LocationType', 1, 'ANTIMISSILE TECH3 STRUCTURE' } },
 			{ UCBC, 'UnitsGreaterAtLocation', { 'LocationType', 0, categories.ANTIMISSILE * categories.TECH3 * categories.STRUCTURE}},
             { UCBC, 'UnitsLessAtLocation', { 'LocationType', 4, categories.ANTIMISSILE * categories.TECH3 * categories.STRUCTURE}},
@@ -1269,11 +1266,12 @@ BuilderGroup {
         Priority = 1301,
 		InstanceCount = 1,
         BuilderConditions = {
-            #{ UCBC, 'HaveGreaterThanUnitsWithCategory', { 5, categories.ENGINEER * categories.TECH3}},
+            { SBC, 'GreaterThanGameTime', { 1200 } },
+           
 		
             { UCBC, 'BuildingLessAtLocation', { 'LocationType', 1, 'ANTIMISSILE TECH3 STRUCTURE' } },
             { UCBC, 'UnitsLessAtLocation', { 'LocationType', 1, categories.ANTIMISSILE * categories.TECH3 * categories.STRUCTURE}},
-            #{ SIBC, 'GreaterThanEconIncome', { 2.5, 100}},
+       
             { IBC, 'BrainNotLowPowerMode', {} },
             #{ SIBC, 'GreaterThanEconEfficiencyOverTime', { 0.95, 1.2 }},
             
@@ -1301,12 +1299,12 @@ BuilderGroup {
         Priority = 1301,
 		InstanceCount = 1,
         BuilderConditions = {
-            #{ UCBC, 'HaveGreaterThanUnitsWithCategory', { 5, categories.ENGINEER * categories.TECH3}},
-	
+           
+            { SBC, 'GreaterThanGameTime', { 1200 } },
 			{ SIBC, 'HaveGreaterThanUnitsWithCategory', { 0, 'ANTIMISSILE TECH3 STRUCTURE' } },
             { UCBC, 'BuildingLessAtLocation', { 'LocationType', 1, 'ANTIMISSILE TECH3 STRUCTURE' } },
 			{ SBC, 'HaveComparativeUnitsWithCategoryAndAllianceAtLocation', { 'LocationType', true, categories.ANTIMISSILE * categories.TECH3 * categories.STRUCTURE, categories.STRUCTURE * categories.NUKE * categories.TECH3, 'Enemy'}},
-            #{ SIBC, 'GreaterThanEconIncome', { 2.5, 100}},
+        
             { IBC, 'BrainNotLowPowerMode', {} },
             #{ SIBC, 'GreaterThanEconEfficiencyOverTime', { 0.95, 1.2 }},
             
@@ -1333,6 +1331,7 @@ BuilderGroup {
         Priority = 1302,
         InstanceCount = 8,
         BuilderConditions = {
+            { SBC, 'GreaterThanGameTime', { 1200 } },
             { UCBC, 'HaveUnitsWithCategoryAndAlliance', { true, 0, 'NUKE SILO STRUCTURE', 'Enemy'}},
             { UCBC, 'LocationEngineersBuildingGreater', { 'LocationType', 0, categories.ANTIMISSILE * categories.TECH3 * categories.STRUCTURE}},
 			{ UCBC, 'UnitsLessAtLocation', { 'LocationType', 1, categories.ANTIMISSILE * categories.TECH3 * categories.STRUCTURE}},
@@ -1360,6 +1359,7 @@ BuilderGroup {
         Priority = 1302,
         InstanceCount = 8,
         BuilderConditions = {
+            { SBC, 'GreaterThanGameTime', { 1200 } },
             { UCBC, 'LocationEngineersBuildingGreater', { 'LocationType', 0, categories.ANTIMISSILE * categories.TECH3 * categories.STRUCTURE}},
 			{ SIBC, 'HaveGreaterThanUnitsWithCategory', { 0, 'ANTIMISSILE TECH3 STRUCTURE' } },
 			

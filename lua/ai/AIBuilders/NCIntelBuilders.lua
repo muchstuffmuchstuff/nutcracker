@@ -78,6 +78,7 @@ BuilderGroup {
         Priority = 900, 
         DelayEqualBuildPlattons = {'Scouts', 15},
         BuilderConditions = {
+            { MIBC, 'GreaterThanGameTime', { 1220 } },
             { UCBC, 'HaveGreaterThanUnitsWithCategory', { 20, categories.AIR * categories.MOBILE * categories.ANTIAIR * categories.TECH3 - categories.BOMBER - categories.GROUNDATTACK - categories.SCOUT } },
             #{ UCBC, 'HaveLessThanUnitsWithCategory', { 2, categories.INTELLIGENCE * categories.AIR * categories.TECH3 }}, #1
 			{ SIBC, 'HaveLessThanUnitsForMapSize', { {[256] = 2, [512] = 4, [1024] = 6, [2048] = 8, [4096] = 8}, categories.INTELLIGENCE * categories.AIR * categories.TECH3}},
@@ -89,24 +90,7 @@ BuilderGroup {
         },
         BuilderType = 'Air',
     },
-    Builder {
-        BuilderName = 'NC T3 Air Scout - Lower Pri',
-        PlatoonTemplate = 'T3AirScout',
-        Priority = 701, #700,
-        DelayEqualBuildPlattons = {'Scouts', 15},
-        BuilderConditions = {
-            { UCBC, 'HaveGreaterThanUnitsWithCategory', { 20, categories.AIR * categories.MOBILE * categories.ANTIAIR * categories.TECH3 - categories.BOMBER - categories.GROUNDATTACK - categories.SCOUT } },
-            { UCBC, 'HaveLessThanUnitsWithCategory', { 5, categories.INTELLIGENCE * categories.AIR * categories.TECH3 }}, #3
-			{ SIBC, 'HaveLessThanUnitsForMapSize', { {[256] = 4, [512] = 6, [1024] = 8, [2048] = 10, [4096] = 12}, categories.INTELLIGENCE * categories.AIR * categories.TECH3}},
-			{ SBC, 'MapGreaterThan', { 500, 500 }},
-			{ UCBC, 'FactoryGreaterAtLocation', { 'LocationType', 1, categories.AIR * categories.FACTORY * categories.TECH3 } },
-            { UCBC, 'LocationFactoriesBuildingLess', { 'LocationType', 1, categories.INTELLIGENCE * categories.AIR * categories.TECH3 } },
-            { SIBC, 'GreaterThanEconEfficiencyOverTime', { 0.95, 1.05 }},
-            
-			{ SBC, 'NoRushTimeCheck', { 600 }},
-        },
-        BuilderType = 'Air',
-    },
+ 
 }
 
 
@@ -119,6 +103,7 @@ BuilderGroup {
         Priority = 844, 
         DelayEqualBuildPlattons = {'Scouts', 15},
         BuilderConditions = {
+            { MIBC, 'GreaterThanGameTime', { 1220 } },
             { UCBC, 'HaveGreaterThanUnitsWithCategory', { 20, categories.AIR * categories.MOBILE * categories.ANTIAIR * categories.TECH3 - categories.BOMBER - categories.GROUNDATTACK - categories.SCOUT } },
 
 			{ SIBC, 'HaveLessThanUnitsForMapSize', { {[256] = 2, [512] = 4, [1024] = 8, [2048] = 10, [4096] = 12}, categories.INTELLIGENCE * categories.AIR * categories.TECH3}},
@@ -186,6 +171,7 @@ BuilderGroup {
         PlatoonTemplate = 'T3EngineerBuilderSorian',
         Priority = 960,
         BuilderConditions = {
+            { MIBC, 'GreaterThanGameTime', { 1000 } },
 			{ SIBC, 'HaveGreaterThanUnitsWithCategory', { 0, categories.ENERGYPRODUCTION * categories.TECH3 } },
             { UCBC, 'UnitsLessAtLocation', { 'LocationType', 1, ( categories.RADAR + categories.OMNI + categories.TECH2 ) * categories.STRUCTURE}},
         
@@ -232,6 +218,7 @@ BuilderGroup {
         PlatoonTemplate = 'T3EngineerBuilderSorian',
         Priority = 950,
         BuilderConditions = {
+            { MIBC, 'GreaterThanGameTime', { 1000 } },
             { UCBC, 'HaveGreaterThanUnitsWithCategory', { 3, categories.TECH3 * categories.ENERGYPRODUCTION } },
             { UCBC, 'HaveLessThanUnitsWithCategory', { 1, categories.OMNI * categories.STRUCTURE } },
 		
@@ -285,6 +272,7 @@ Builder {
         PlatoonTemplate = 'T3AirScoutFormSorian',
         Priority = 750,
         BuilderConditions = {
+            { MIBC, 'GreaterThanGameTime', { 1200 } },
 			{ SBC, 'NoRushTimeCheck', { 0 }},
         },
         PlatoonAddPlans = { 'AirIntelToggle' },
@@ -297,6 +285,7 @@ Builder {
         PlatoonTemplate = 'T3AirScoutFormswarm',
         Priority = 751,
         BuilderConditions = {
+            { MIBC, 'GreaterThanGameTime', { 1200 } },
 			{ SBC, 'NoRushTimeCheck', { 0 }},
         },
         PlatoonAddPlans = { 'AirIntelToggle' },
@@ -351,32 +340,5 @@ BuilderGroup {
 
 
 
-BuilderGroup {
-    BuilderGroupName = 'NCCounterIntelBuilders',
-    BuildersType = 'EngineerBuilder',
-    Builder {
-        BuilderName = 'NC T2 Counter Intel Near Factory',
-        PlatoonTemplate = 'T2EngineerBuilderSorian',
-        Priority = 0,
-        BuilderConditions = {
-            { UCBC, 'HaveGreaterThanUnitsWithCategory', { 0, categories.ENGINEER * categories.TECH2}},
-            { UCBC, 'HaveLessThanUnitsWithCategory', { 3, categories.COUNTERINTELLIGENCE * categories.TECH2}},
-            { SIBC, 'GreaterThanEconEfficiencyOverTime', { 0.95, 1.1 }},
-            
-            { IBC, 'BrainNotLowPowerMode', {} },
-        },
-        BuilderType = 'Any',
-        BuilderData = {
-            Construction = {
-                AdjacencyCategory = 'FACTORY -NAVAL',
-                AdjacencyDistance = 100,
-                BuildClose = false,
-                BuildStructures = {
-                    'T2RadarJammer',
-                },
-                Location = 'LocationType',
-            }
-        }
-    },
-}
+
 
