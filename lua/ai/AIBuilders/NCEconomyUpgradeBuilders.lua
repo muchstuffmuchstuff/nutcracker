@@ -79,7 +79,7 @@ BuilderGroup {
         Priority = 300,
         BuilderConditions = {
             { IBC, 'BrainNotLowPowerMode', {} },
-          { UCBC, 'HaveGreaterThanUnitsWithCategory', { 12, 'MASSEXTRACTION TECH2, MASSEXTRACTION TECH3' }},
+          { UCBC, 'HaveGreaterThanUnitsWithCategory', { 20, 'MASSEXTRACTION TECH2, MASSEXTRACTION TECH3' }},
             { SIBC, 'GreaterThanEconEfficiencyOverTime', { 0.95, 1.20 }},
             
        { UCBC, 'HaveLessThanUnitsInCategoryBeingBuilt', { 1, 'MASSEXTRACTION TECH2'} },
@@ -101,9 +101,30 @@ BuilderGroup {
             { MIBC, 'GreaterThanGameTime', { 800 } },
             { SIBC, 'HaveLessThanUnitsInCategoryBeingBuilt', { 1, categories.STRUCTURE * (categories.TECH3 + categories.TECH2)  * categories.ENERGYPRODUCTION } },
             { IBC, 'BrainNotLowPowerMode', {} },
-            { UCBC, 'HaveGreaterThanUnitsWithCategory', { 20, 'MASSEXTRACTION TECH2, MASSEXTRACTION TECH3' }},
+            { UCBC, 'HaveGreaterThanUnitsWithCategory', { 12, categories.MASSEXTRACTION * (categories.TECH2 + categories.TECH3) }},
             { SIBC, 'GreaterThanEconEfficiencyOverTime', { 0.95, 1.20 }},
             { EBC, 'GreaterThanEconStorageCurrent', { 6000, 10000 } },
+            { SIBC, 'HaveLessThanUnitsInCategoryBeingBuilt', { 1, categories.STRUCTURE  * categories.ANTIMISSILE * categories.TECH3 }},
+            
+                        { UCBC, 'HaveLessThanUnitsInCategoryBeingBuilt', { 1, 'MASSEXTRACTION TECH3' } },
+	
+       
+        },
+        FormRadius = 10000,
+        BuilderType = 'Any',
+    },
+    Builder {
+        BuilderName = 'NC mass upgrades tech3 SURROUNDED',
+        PlatoonTemplate = 'T2MassExtractorUpgrade',
+        InstanceCount = 1,
+        Priority = 300,
+        BuilderConditions = {
+            { MIBC, 'GreaterThanGameTime', { 800 } },
+            { SIBC, 'HaveLessThanUnitsInCategoryBeingBuilt', { 1, categories.STRUCTURE * (categories.TECH3 + categories.TECH2)  * categories.ENERGYPRODUCTION } },
+            { IBC, 'BrainNotLowPowerMode', {} },
+            { UCBC, 'HaveGreaterThanUnitsWithCategory', { 6, categories.MASSEXTRACTION * (categories.TECH2 + categories.TECH3) }},
+            { SIBC, 'GreaterThanEconEfficiencyOverTime', { 0.95, 1.20 }},
+            { EBC, 'GreaterThanEconStorageCurrent', { 10000, 10000 } },
             { SIBC, 'HaveLessThanUnitsInCategoryBeingBuilt', { 1, categories.STRUCTURE  * categories.ANTIMISSILE * categories.TECH3 }},
             
                         { UCBC, 'HaveLessThanUnitsInCategoryBeingBuilt', { 1, 'MASSEXTRACTION TECH3' } },
