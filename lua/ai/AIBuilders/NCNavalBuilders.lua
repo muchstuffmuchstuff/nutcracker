@@ -25,22 +25,23 @@ local SBC = '/lua/editor/SorianBuildConditions.lua'
 local SIBC = '/lua/editor/SorianInstantBuildConditions.lua'
 
 
-
+-----island map intial builds
 BuilderGroup {
-    BuilderGroupName = 'NCNavalExpansionBuildersFast',
+    BuilderGroupName = 'NCNaval Factories',
     BuildersType = 'EngineerBuilder',
     Builder {
-        BuilderName = 'NC T1 Naval Builder Fast - initial',
+        BuilderName = 'NC T1 Naval factory island map',
         PlatoonTemplate = 'EngineerBuilderSorian',
         Priority = 905,
         InstanceCount = 1,
         BuilderConditions = {
-           
+            { SBC, 'IsIslandMap', { true } },
+            { UCBC, 'NavalBaseCheck', { } },
+
             { UCBC, 'NavalAreaNeedsEngineer', { 'LocationType', 600, -1000, 10, 1, 'AntiSurface' } },
+            { UCBC, 'FactoryCapCheck', { 'LocationType', 'Sea' } },
             
-            { UCBC, 'HaveUnitsWithCategoryAndAlliance', { true, 0, categories.FACTORY * categories.NAVAL, 'Enemy'}},
-			{ SIBC, 'LessThanNavalBases', { } },
-            { UCBC, 'UnitCapCheckLess', { 0.95 } },
+         
         },
         BuilderType = 'Any',
         BuilderData = {
@@ -69,61 +70,24 @@ BuilderGroup {
             }
         }
     },
+    
     Builder {
-        BuilderName = 'NC T1 Naval Builder Fast',
-        PlatoonTemplate = 'EngineerBuilderSorian',
-        Priority = 922,
-        InstanceCount = 1,
-        BuilderConditions = {
-
-            { UCBC, 'NavalAreaNeedsEngineer', { 'LocationType', 600, -1000, 10, 1, 'AntiSurface' } },
-            { UCBC, 'HaveUnitsWithCategoryAndAlliance', { true, 0, categories.FACTORY * categories.NAVAL, 'Enemy'}},
-			
-        
-            { EBC, 'MassToFactoryRatioBaseCheck', { 'LocationType' } },
-			{ SIBC, 'LessThanNavalBases', { } },
-            { UCBC, 'UnitCapCheckLess', { 0.95 } },
-        },
-        BuilderType = 'Any',
-        BuilderData = {
-            Construction = {
-                NearMarkerType = 'Naval Area',
-                LocationRadius = 600,
-                LocationType = 'LocationType',
-                ThreatMin = -1000,
-                ThreatMax = 10,
-                ThreatRings = 0,
-                ThreatType = 'AntiSurface',
-                BuildClose = false,
-                BaseTemplate = ExBaseTmpl,
-                ExpansionBase = true,
-                ExpansionRadius = 50,
-                BuildStructures = {
-                    'T1SeaFactory',
-'T1SeaFactory',
-'T1SeaFactory',
-				'T1NavalDefense',
-				'T1AADefense',
-				'T1Sonar',
-                }
-            }
-        }
-    },
-    Builder {
-        BuilderName = 'NC T2 Naval Builder Fast',
+        BuilderName = 'NC T2 Naval factory island map',
         PlatoonTemplate = 'T2EngineerBuilderSorian',
         Priority = 922,
         InstanceCount = 1,
         BuilderConditions = {
-            { MIBC, 'GreaterThanGameTime', { 1000 } },
-            { UCBC, 'HaveUnitsWithCategoryAndAlliance', { true, 0, categories.FACTORY * categories.NAVAL, 'Enemy'}},
+            { SBC, 'IsIslandMap', { true } },
+            { UCBC, 'NavalBaseCheck', { } },
+            { UCBC, 'FactoryCapCheck', { 'LocationType', 'Sea' } },
+        
             { UCBC, 'NavalAreaNeedsEngineer', { 'LocationType', 600, -1000, 10, 1, 'AntiSurface' } },
 		
             { SIBC, 'GreaterThanEconEfficiencyOverTime', { 0.95, 1.05 }},
             
-            { EBC, 'MassToFactoryRatioBaseCheck', { 'LocationType' } },
-			{ SIBC, 'LessThanNavalBases', { } },
-            { UCBC, 'UnitCapCheckLess', { 0.95 } },
+         
+		
+           
         },
         BuilderType = 'Any',
         BuilderData = {
@@ -151,20 +115,23 @@ BuilderGroup {
         }
     },
     Builder {
-        BuilderName = 'NC T3 Naval Builder Fast',
+        BuilderName = 'NC T3 Naval factory island map',
         PlatoonTemplate = 'T3EngineerBuilderSorian',
         Priority = 922,
         InstanceCount = 1,
         BuilderConditions = {
-            { MIBC, 'GreaterThanGameTime', { 1200 } },
-            { UCBC, 'HaveUnitsWithCategoryAndAlliance', { true, 0, categories.FACTORY * categories.NAVAL, 'Enemy'}},
+            { SBC, 'IsIslandMap', { true } },
+            { UCBC, 'NavalBaseCheck', { } },
+            { UCBC, 'FactoryCapCheck', { 'LocationType', 'Sea' } },
+        
+           
             { UCBC, 'NavalAreaNeedsEngineer', { 'LocationType', 600, -1000, 10, 1, 'AntiSurface' } },
 			
             { SIBC, 'GreaterThanEconEfficiencyOverTime', { 0.95, 1.05 }},
             
-            { EBC, 'MassToFactoryRatioBaseCheck', { 'LocationType' } },
-			{ SIBC, 'LessThanNavalBases', { } },
-            { UCBC, 'UnitCapCheckLess', { 0.95 } },
+           
+		
+            
         },
         BuilderType = 'Any',
         BuilderData = {
@@ -191,81 +158,138 @@ BuilderGroup {
             }
         }
     },
-}
-
-BuilderGroup {
-    BuilderGroupName = 'NCEngineerNavalFactoryBuilder',
-    BuildersType = 'EngineerBuilder',
     Builder {
-        BuilderName = 'NC T1 Naval Factory Builder',
+        BuilderName = 'NC T1 Naval factory non island map',
         PlatoonTemplate = 'EngineerBuilderSorian',
         Priority = 905,
+        InstanceCount = 1,
         BuilderConditions = {
-            { UCBC, 'EngineerLessAtLocation', { 'LocationType', 1, 'ENGINEER TECH2, ENGINEER TECH3' } },
+            { UCBC, 'NavalBaseCheck', { } },
+            { UCBC, 'HaveUnitsWithCategoryAndAlliance', { true, 0, categories.NAVAL * categories.FACTORY,  'Enemy' }},
+            { UCBC, 'NavalAreaNeedsEngineer', { 'LocationType', 600, -1000, 10, 1, 'AntiSurface' } },
             { UCBC, 'FactoryCapCheck', { 'LocationType', 'Sea' } },
-            { SIBC, 'GreaterThanEconEfficiencyOverTime', { 0.95, 1.05 }},
-            { UCBC, 'HaveUnitsWithCategoryAndAlliance', { true, 0, categories.FACTORY * categories.NAVAL, 'Enemy'}},
-            { EBC, 'MassToFactoryRatioBaseCheck', { 'LocationType' } },
+            
+         
+			
+            
         },
         BuilderType = 'Any',
         BuilderData = {
             Construction = {
-                Location = 'LocationType',
                 NearMarkerType = 'Naval Area',
-                BuildClose = true,
+                LocationRadius = 600,
+                LocationType = 'LocationType',
+                ThreatMin = -1000,
+                ThreatMax = 10,
+                ThreatRings = 0,
+                ThreatType = 'AntiSurface',
+                BuildClose = false,
+                BaseTemplate = ExBaseTmpl,
+                ExpansionBase = true,
+                ExpansionRadius = 50,
                 BuildStructures = {
-                    'T1SeaFactory',
-                },
-            },
-        },
+                'T1SeaFactory',
+'T1SeaFactory',
+'T1SeaFactory',
+				'T1NavalDefense',
+				'T1AADefense',
+				'T1Sonar',
+				'T1SeaFactory',
+				'T1SeaFactory',
+                }
+            }
+        }
     },
+    
     Builder {
-        BuilderName = 'NC T2 Naval Factory Builder',
+        BuilderName = 'NC T2 Naval factory non island map',
         PlatoonTemplate = 'T2EngineerBuilderSorian',
-        Priority = 905,
+        Priority = 922,
+        InstanceCount = 1,
         BuilderConditions = {
-            { MIBC, 'GreaterThanGameTime', { 1000 } },
-            { UCBC, 'EngineerLessAtLocation', { 'LocationType', 1, 'ENGINEER TECH3' } },
+            { UCBC, 'NavalBaseCheck', { } },
+            { UCBC, 'HaveUnitsWithCategoryAndAlliance', { true, 0, categories.NAVAL * categories.FACTORY,  'Enemy' }},
             { UCBC, 'FactoryCapCheck', { 'LocationType', 'Sea' } },
+        
+            { UCBC, 'NavalAreaNeedsEngineer', { 'LocationType', 600, -1000, 10, 1, 'AntiSurface' } },
+		
             { SIBC, 'GreaterThanEconEfficiencyOverTime', { 0.95, 1.05 }},
-            { UCBC, 'HaveUnitsWithCategoryAndAlliance', { true, 0, categories.FACTORY * categories.NAVAL, 'Enemy'}},
-            { EBC, 'MassToFactoryRatioBaseCheck', { 'LocationType' } },
+            
+     
+			
         },
         BuilderType = 'Any',
         BuilderData = {
             Construction = {
-                Location = 'LocationType',
                 NearMarkerType = 'Naval Area',
-                BuildClose = true,
+                LocationRadius = 600,
+                LocationType = 'LocationType',
+                ThreatMin = -1000,
+                ThreatMax = 10,
+                ThreatRings = 0,
+                ThreatType = 'AntiSurface',
+                BuildClose = false,
+                BaseTemplate = ExBaseTmpl,
+                ExpansionBase = true,
+                ExpansionRadius = 50,
                 BuildStructures = {
                     'T1SeaFactory',
-                },
-            },
-        },
+'T1SeaFactory',
+'T1SeaFactory',
+				'T2NavalDefense',
+				'T2AADefense',
+				'T2Sonar',
+                }
+            }
+        }
     },
     Builder {
-        BuilderName = 'NC T3 Naval Factory Builder',
+        BuilderName = 'NC T3 Naval factory non island map',
         PlatoonTemplate = 'T3EngineerBuilderSorian',
-        Priority = 905,
+        Priority = 922,
+        InstanceCount = 1,
         BuilderConditions = {
-            { MIBC, 'GreaterThanGameTime', { 1200 } },
+            { UCBC, 'NavalBaseCheck', { } },
+            { UCBC, 'HaveUnitsWithCategoryAndAlliance', { true, 0, categories.NAVAL * categories.FACTORY,  'Enemy' }},
             { UCBC, 'FactoryCapCheck', { 'LocationType', 'Sea' } },
+        
+           
+            { UCBC, 'NavalAreaNeedsEngineer', { 'LocationType', 600, -1000, 10, 1, 'AntiSurface' } },
+			
             { SIBC, 'GreaterThanEconEfficiencyOverTime', { 0.95, 1.05 }},
-            { UCBC, 'HaveUnitsWithCategoryAndAlliance', { true, 0, categories.FACTORY * categories.NAVAL, 'Enemy'}},
-            { EBC, 'MassToFactoryRatioBaseCheck', { 'LocationType' } },
+            
+           
+		
+            
         },
         BuilderType = 'Any',
         BuilderData = {
             Construction = {
-                Location = 'LocationType',
                 NearMarkerType = 'Naval Area',
-                BuildClose = true,
+                LocationRadius = 600,
+                LocationType = 'LocationType',
+                ThreatMin = -1000,
+                ThreatMax = 10,
+                ThreatRings = 0,
+                ThreatType = 'AntiSurface',
+                BuildClose = false,
+                BaseTemplate = ExBaseTmpl,
+                ExpansionBase = true,
+                ExpansionRadius = 50,
                 BuildStructures = {
                     'T1SeaFactory',
-                },
-            },
-        },
+'T1SeaFactory',
+'T1SeaFactory',
+				'T2NavalDefense',
+				'T3AADefense',
+				'T2Sonar',
+                }
+            }
+        }
     },
+    
 }
+
+
 
 

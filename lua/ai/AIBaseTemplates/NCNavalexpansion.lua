@@ -4,10 +4,11 @@ BaseBuilderTemplate {
     BaseTemplateName = 'NCNavalExpansionLarge',
     Builders = {
 
-'ncSeaHunterFormBuilders',
-'NCNavalExpansionBuildersFast',
-'NCT1SeaFactoryBuilders',
-'NCT2SeaFactoryBuilders',
+        'NCT2NavalDefenses',
+        'NCNaval Factories',
+        'NCT1SeaFactoryBuilders',
+        'NCSeaFactoryUpgrades',
+        'ncSeaHunterFormBuilders',
 
         # ==== ECONOMY ==== #
         # Factory upgrades
@@ -66,7 +67,7 @@ BaseBuilderTemplate {
         FactoryCount = {
             Land = 0,
             Air = 0,
-            Sea = 2,
+            Sea = 6,
             Gate = 0,
         },
         MassToFactoryValues = {
@@ -75,22 +76,17 @@ BaseBuilderTemplate {
             T3Value = 30, #22.5 
         },
     },
+    
+
     ExpansionFunction = function(aiBrain, location, markerType)
         if markerType != 'Naval Area' then
             return 0
         end
-		
-		local isIsland = false
-        local startX, startZ = aiBrain:GetArmyStartPos()
-        local islandMarker = import('/lua/AI/AIUtilities.lua').AIGetClosestMarkerLocation(aiBrain, 'Island', startX, startZ)
-        if islandMarker then
-            isIsland = true
-        end
-        
+		        
         local personality = ScenarioInfo.ArmySetup[aiBrain.Name].AIPersonality
-		local base = ScenarioInfo.ArmySetup[aiBrain.Name].AIBase
+	    local base = 'nut_cracker'
 		
-		if personality == 'nut_cracker' and base == 'nut_crackercheat' then
+		if personality == 'nut_cracker' and base == 'nut_cracker' then
 			return 250
 		end
 	

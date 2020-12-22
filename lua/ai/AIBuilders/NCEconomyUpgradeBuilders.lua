@@ -197,6 +197,25 @@ BuilderGroup {
         BuilderType = 'Any',
     },
     Builder {
+        BuilderName = 'NC Air t1 to t2mainbase ENEMY HAS T3',
+        PlatoonTemplate = 'T1AirFactoryUpgrade',
+        Priority = 1200,
+     
+        BuilderConditions = {
+            { MIBC, 'GreaterThanGameTime', { 800 } },
+           
+            { UCBC, 'HaveUnitsWithCategoryAndAlliance', { true, 0, categories.TECH3 * categories.AIR * categories.ANTIAIR, 'Enemy'}},
+                { SIBC, 'GreaterThanEconEfficiencyOverTime', { 0.85, 1.05 } },
+             
+                { UCBC, 'HaveLessThanUnitsInCategoryBeingBuilt', { 2, categories.AIR *(categories.TECH2 + categories.TECH3)*categories.FACTORY } },
+         
+           
+           
+                { IBC, 'BrainNotLowPowerMode', {} },
+            },
+        BuilderType = 'Any',
+    },
+    Builder {
         BuilderName = 'NC Air t1 to t2mainbase_incomesupported',
         PlatoonTemplate = 'T1AirFactoryUpgrade',
         Priority = 1000,
@@ -249,6 +268,26 @@ Builder {
        
                 { UCBC, 'HaveLessThanUnitsInCategoryBeingBuilt', { 1, categories.AIR * categories.TECH3 * categories.FACTORY } },
                 { UCBC, 'HaveGreaterThanUnitsWithCategory', { 4, 'AIR FACTORY'}},
+           
+           
+                { IBC, 'BrainNotLowPowerMode', {} },
+            },
+        BuilderType = 'Any',
+    },
+    Builder {
+        BuilderName = 'NC Air t2 to t3mainbase ENEMY HAS T3',
+        PlatoonTemplate = 'T2AirFactoryUpgrade',
+        Priority = 1201,
+        InstanceCount = 1,
+        BuilderConditions = {
+            { MIBC, 'GreaterThanGameTime', { 1001 } },
+        
+            { UCBC, 'HaveUnitsWithCategoryAndAlliance', { true, 0, categories.TECH3 * categories.AIR * categories.ANTIAIR, 'Enemy'}},
+            { UCBC, 'HaveGreaterThanUnitsWithCategory', { 2, categories.ENGINEER * categories.TECH2}},
+                { SIBC, 'GreaterThanEconEfficiencyOverTime', { 0.85, 1.00 } },
+       
+                { UCBC, 'HaveLessThanUnitsInCategoryBeingBuilt', { 2, categories.AIR * categories.TECH3 * categories.FACTORY } },
+              
            
            
                 { IBC, 'BrainNotLowPowerMode', {} },
@@ -650,32 +689,27 @@ BuilderGroup {
 
 
 BuilderGroup {
-    BuilderGroupName = 'NCT1BalancedUpgradeBuilders',
+    BuilderGroupName = 'NCSeaFactoryUpgrades',
     BuildersType = 'PlatoonFormBuilder',
     
     Builder {
         BuilderName = 'NC Balanced T1 Sea Factory Upgrade',
         PlatoonTemplate = 'T1SeaFactoryUpgrade',
-        Priority = 200,
+        Priority = 1000,
         InstanceCount = 1,
         BuilderConditions = {
-            { UCBC, 'HaveUnitsWithCategoryAndAlliance', { true, 0, 'NAVAL FACTORY', 'Enemy'}},
-                { UCBC, 'HaveLessThanUnitsInCategoryBeingBuilt', { 1, 'FACTORY TECH3, FACTORY TECH2' } },
+            { UCBC, 'HaveUnitsWithCategoryAndAlliance', { true, 0, categories.NAVAL * categories.MOBILE, 'Enemy'}},
+                { UCBC, 'HaveLessThanUnitsInCategoryBeingBuilt', { 2, 'FACTORY TECH3, FACTORY TECH2' } },
                 { SIBC, 'HaveGreaterThanUnitsWithCategory', { 4, 'MASSEXTRACTION TECH2, MASSEXTRACTION TECH3'}},
-                { UCBC, 'FactoryGreaterAtLocation', { 'LocationType', 1, 'NAVAL FACTORY' } },
-                { UCBC, 'LocationFactoriesBuildingLess', { 'LocationType', 1, 'FACTORY TECH3, FACTORY TECH2' } },
-                { SIBC, 'GreaterThanEconIncome',  { 3.5, 75}},
+               
+              
+                
                 { IBC, 'BrainNotLowPowerMode', {} },
                 { SIBC, 'GreaterThanEconEfficiencyOverTime', { 0.95, 1.25 } },
                 
             },
         BuilderType = 'Any',
     },
-}
-
-BuilderGroup {
-    BuilderGroupName = 'NCT2BalancedUpgradeBuilders',
-    BuildersType = 'PlatoonFormBuilder',
     
     Builder {
         BuilderName = 'NC Balanced T2 Sea Factory Upgrade',
@@ -683,13 +717,13 @@ BuilderGroup {
         Priority = 300,
         InstanceCount = 1,
         BuilderConditions = {
-            { UCBC, 'HaveUnitsWithCategoryAndAlliance', { true, 0, 'NAVAL FACTORY', 'Enemy'}},
+            { UCBC, 'HaveUnitsWithCategoryAndAlliance', { true, 0, categories.NAVAL * categories.MOBILE, 'Enemy'}},
                 { UCBC, 'FactoryGreaterAtLocation', { 'LocationType', 3, 'FACTORY TECH3, FACTORY TECH2' } },
 				#{ SIBC, 'HaveGreaterThanUnitsWithCategory', { 3, 'FACTORY TECH3, FACTORY TECH2'}},
                 { UCBC, 'HaveLessThanUnitsInCategoryBeingBuilt', { 1, 'FACTORY TECH3' } },
                 { SIBC, 'HaveGreaterThanUnitsWithCategory', { 0, 'MASSEXTRACTION TECH3'}},
-                { UCBC, 'LocationFactoriesBuildingLess', { 'LocationType', 1, 'FACTORY TECH3' } },
-                { SIBC, 'GreaterThanEconIncome',  { 7, 180}},
+          
+               
                 { IBC, 'BrainNotLowPowerMode', {} },
                 { SIBC, 'GreaterThanEconEfficiencyOverTime', { 0.95, 1.25 }},
                 

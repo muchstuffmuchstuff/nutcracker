@@ -126,11 +126,11 @@ BuilderGroup {
         Priority = 600,
         BuilderConditions = {
             { IBC, 'BrainNotLowPowerMode', {} },
-{ UCBC, 'HaveUnitsWithCategoryAndAlliance', { true, 1, categories.NAVAL * categories.FACTORY,  'Enemy' }},
+{ UCBC, 'HaveUnitsWithCategoryAndAlliance', { true, 1, categories.NAVAL * categories.MOBILE,  'Enemy' }},
 			{ SBC, 'NoRushTimeCheck', { 600 }},
 			
 			
-            { SIBC, 'GreaterThanEconEfficiencyOverTime', { 0.95, 1.05 }},
+            { SIBC, 'GreaterThanEconEfficiencyOverTime', { 0.75, 1.05 }},
             
         },
         BuilderType = 'Sea',
@@ -151,9 +151,9 @@ BuilderGroup {
             { MIBC, 'GreaterThanGameTime', { 1000} },
             { IBC, 'BrainNotLowPowerMode', {} },
 			{ SBC, 'NoRushTimeCheck', { 600 }},
-{ UCBC, 'HaveUnitsWithCategoryAndAlliance', { true, 1, categories.NAVAL * categories.FACTORY,  'Enemy' }},
+{ UCBC, 'HaveUnitsWithCategoryAndAlliance', { true, 1, categories.NAVAL * categories.MOBILE,  'Enemy' }},
 			{ UCBC, 'FactoryGreaterAtLocation', { 'LocationType', 0, categories.NAVAL * categories.FACTORY } },
-            { SIBC, 'GreaterThanEconEfficiencyOverTime', { 0.95, 1.05 }},
+            { SIBC, 'GreaterThanEconEfficiencyOverTime', { 0.75, 1.05 }},
             
         },
     },
@@ -175,10 +175,10 @@ BuilderGroup {
             { MIBC, 'GreaterThanGameTime', { 1000} },
             { IBC, 'BrainNotLowPowerMode', {} },
             { SBC, 'NoRushTimeCheck', { 600 }},
-            { UCBC, 'HaveUnitsWithCategoryAndAlliance', { true, 1, categories.NAVAL * categories.FACTORY,  'Enemy' }},
+            { UCBC, 'HaveUnitsWithCategoryAndAlliance', { true, 1, categories.NAVAL * categories.MOBILE,  'Enemy' }},
 			{ UCBC, 'FactoryGreaterAtLocation', { 'LocationType', 0, categories.NAVAL * categories.FACTORY * categories.TECH2} },
 		
-            { SIBC, 'GreaterThanEconEfficiencyOverTime', { 0.95, 1.05 }},
+            { SIBC, 'GreaterThanEconEfficiencyOverTime', { 0.75, 1.05 }},
             
         },
     },
@@ -191,10 +191,10 @@ BuilderGroup {
             { MIBC, 'GreaterThanGameTime', { 1000} },
             { IBC, 'BrainNotLowPowerMode', {} },
             { SBC, 'NoRushTimeCheck', { 600 }},
-            { UCBC, 'HaveUnitsWithCategoryAndAlliance', { true, 1, categories.NAVAL * categories.FACTORY,  'Enemy' }},
+            { UCBC, 'HaveUnitsWithCategoryAndAlliance', { true, 1, categories.NAVAL * categories.MOBILE,  'Enemy' }},
 			{ UCBC, 'FactoryGreaterAtLocation', { 'LocationType', 0, categories.NAVAL * categories.FACTORY * categories.TECH2 } },
 		
-            { SIBC, 'GreaterThanEconEfficiencyOverTime', { 0.95, 1.05 }},
+            { SIBC, 'GreaterThanEconEfficiencyOverTime', { 0.75, 1.05 }},
             
         },
         BuilderType = 'Sea',

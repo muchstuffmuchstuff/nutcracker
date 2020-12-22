@@ -24,7 +24,9 @@ local SAI = '/lua/ScenarioPlatoonAI.lua'
 local PlatoonFile = '/lua/platoon.lua'
 local SBC = '/lua/editor/SorianBuildConditions.lua'
 local SIBC = '/lua/editor/SorianInstantBuildConditions.lua'
-
+local CF = '/mods/nutcracker/hook/lua/coinflip.lua'
+local WRC = '/mods/nutcracker/hook/lua/weaponsrangeconditions.lua'
+local EN = '/mods/nutcracker/hook/lua/economicnumbers.lua'
 local SUtils = import('/lua/AI/sorianutilities.lua')
 
 function LandAttackCondition(aiBrain, locationType, targetNumber)
@@ -70,6 +72,8 @@ end
 
 
 
+
+
 BuilderGroup {
     BuilderGroupName = 'NCsubcommander_ras',
     BuildersType = 'FactoryBuilder',
@@ -104,7 +108,7 @@ BuilderGroup {
 		PlatoonAddPlans = {'PlatoonCallForHelpAISorian', 'DistressResponseAISorian'},
         PlatoonAddBehaviors = { 'AirLandToggleSorian' },
         Priority = 502,
-        InstanceCount = 3,
+        InstanceCount = 2,
         BuilderConditions = { 
         
                         { UCBC, 'PoolGreaterAtLocation', { 'LocationType', 0, categories.MOBILE * categories.LAND - categories.ENGINEER - categories.EXPERIMENTAL } },
@@ -137,7 +141,7 @@ BuilderGroup {
 		PlatoonAddPlans = {'PlatoonCallForHelpAISorian', 'DistressResponseAISorian'},
         PlatoonAddBehaviors = { 'AirLandToggleSorian' },
         Priority = 102,
-        InstanceCount = 10,
+        InstanceCount = 8,
         BuilderConditions = { 
         
                         { UCBC, 'PoolGreaterAtLocation', { 'LocationType', 0, categories.MOBILE * categories.LAND - categories.ENGINEER - categories.EXPERIMENTAL } },
@@ -164,7 +168,7 @@ BuilderGroup {
 		PlatoonAddPlans = {'PlatoonCallForHelpAISorian', 'DistressResponseAISorian'},
         PlatoonAddBehaviors = { 'AirLandToggleSorian' },
         Priority = 102,
-        InstanceCount = 10,
+        InstanceCount = 8,
         BuilderConditions = { 
         
                         { UCBC, 'PoolGreaterAtLocation', { 'LocationType', 0, categories.MOBILE * categories.LAND * categories.TECH3 - categories.ENGINEER - categories.EXPERIMENTAL } },
@@ -193,6 +197,7 @@ BuilderGroup {
         Priority = 10,
         InstanceCount = 50,
         BuilderConditions = { 
+        
             { MIBC, 'GreaterThanGameTime', { 600} },
                         { UCBC, 'PoolGreaterAtLocation', { 'LocationType', 5, categories.MOBILE * categories.LAND - categories.ENGINEER - categories.EXPERIMENTAL } },
 			{ SBC, 'NoRushTimeCheck', { 0 }},
@@ -398,6 +403,7 @@ BuilderGroup {
         InstanceCount = 5,
         BuilderConditions = {
             { SBC, 'MapLessThan', { 1000, 1000 }},
+            { WRC, 'CanPathToCurrentEnemyNC', { 'LocationType', true } },
          
             { UCBC, 'HaveLessThanUnitsWithCategory', { 3, categories.FACTORY * categories.TECH3 * categories.LAND }},
            
@@ -416,6 +422,7 @@ BuilderGroup {
         Priority = 625,
         BuilderConditions = {
             { SBC, 'MapGreaterThan', { 1000, 1000 }},
+            { WRC, 'CanPathToCurrentEnemyNC', { 'LocationType', true } },
       
             { UCBC, 'HaveLessThanUnitsWithCategory', { 3, categories.FACTORY * categories.TECH3 * categories.LAND }},
            
@@ -437,6 +444,7 @@ BuilderGroup {
         InstanceCount = 6,
         BuilderConditions = {
             { SBC, 'MapLessThan', { 1000, 1000 }},
+            { WRC, 'CanPathToCurrentEnemyNC', { 'LocationType', true } },
         
             { UCBC, 'HaveLessThanUnitsWithCategory', { 3, categories.FACTORY * categories.TECH3 * categories.LAND }},
           
@@ -456,6 +464,7 @@ BuilderGroup {
         InstanceCount = 3,
         BuilderConditions = {
             { SBC, 'MapGreaterThan', { 1000, 1000 }},
+            { WRC, 'CanPathToCurrentEnemyNC', { 'LocationType', true } },
           
             { UCBC, 'HaveLessThanUnitsWithCategory', { 3, categories.FACTORY * categories.TECH3 * categories.LAND }},
           
@@ -580,6 +589,7 @@ BuilderGroup {
         BuilderType = 'Land',
         BuilderConditions = {
             { SBC, 'MapLessThan', { 1000, 1000 }},
+            { WRC, 'CanPathToCurrentEnemyNC', { 'LocationType', true } },
          
             { UCBC, 'HaveLessThanUnitsWithCategory', { 4, categories.FACTORY * categories.TECH3 * categories.LAND }},
             { IBC, 'BrainNotLowPowerMode', {} },
@@ -599,6 +609,7 @@ BuilderGroup {
         BuilderType = 'Land',
         BuilderConditions = {
             { SBC, 'MapLessThan', { 1000, 1000 }},
+            { WRC, 'CanPathToCurrentEnemyNC', { 'LocationType', true } },
         
             { UCBC, 'HaveLessThanUnitsWithCategory', { 4, categories.FACTORY * categories.TECH3 * categories.LAND }},
             { IBC, 'BrainNotLowPowerMode', {} },
@@ -619,6 +630,7 @@ BuilderGroup {
         BuilderType = 'Land',
         BuilderConditions = {
             { SBC, 'MapLessThan', { 1000, 1000 }},
+            { WRC, 'CanPathToCurrentEnemyNC', { 'LocationType', true } },
         
             { UCBC, 'HaveLessThanUnitsWithCategory', { 4, categories.FACTORY * categories.TECH3 * categories.LAND }},
             { IBC, 'BrainNotLowPowerMode', {} },
@@ -631,94 +643,12 @@ BuilderGroup {
     },
   
   
-    Builder {
-        BuilderName = 'NC T2 Amphibious Tank island',
-        PlatoonTemplate = 'T2LandAmphibious',
-        Priority = 790,
-InstanceCount = 100,
-        BuilderType = 'Land',
-        BuilderConditions = {
-            { SBC, 'IsIslandMap', { true } },
-            { SBC, 'MapLessThan', { 1000, 1000 }},
-            { MIBC, 'FactionIndex', {1, 2, 4}},
-           
-            { UCBC, 'HaveLessThanUnitsWithCategory', { 4, categories.FACTORY * categories.TECH3 * categories.LAND }},
-            { IBC, 'BrainNotLowPowerMode', {} },
-            
-			{ UCBC, 'FactoryGreaterAtLocation', { 'LocationType', 0, categories.LAND * categories.FACTORY * categories.TECH2 } },
-         
-            { SIBC, 'GreaterThanEconEfficiencyOverTime', { 0.75, 1.01 }},
-            
-			{ SBC, 'NoRushTimeCheck', { 600 }},
-		
-			
-        },
-    },
-  
-    Builder {
-        BuilderName = 'NC T2 Amphibious Tank notisland',
-        PlatoonTemplate = 'T2LandAmphibious',
-        Priority = 650,
-        BuilderType = 'Land',
-        BuilderConditions = {
-            { SBC, 'MapLessThan', { 1000, 1000 }},
-            { MIBC, 'FactionIndex', {1, 2, 4}},
-          
-            { UCBC, 'HaveLessThanUnitsWithCategory', { 4, categories.FACTORY * categories.TECH3 * categories.LAND }},
-            { IBC, 'BrainNotLowPowerMode', {} },
-			{ UCBC, 'FactoryGreaterAtLocation', { 'LocationType', 0, categories.LAND * categories.FACTORY - categories.TECH1 } },
-          
-            { SIBC, 'GreaterThanEconEfficiencyOverTime', { 0.75, 1.01 }},
-          
-			{ SBC, 'NoRushTimeCheck', { 600 }},
-		
-			
-        },
-    },
-    
-    Builder {
-        BuilderName = 'NC T2 Amphibious Tank Tech 2 Cybran',
-        PlatoonTemplate = 'T2LandAmphibious',
-        Priority = 750,
-InstanceCount = 10,
-        BuilderType = 'Land',
-        BuilderConditions = {
-            { SBC, 'IsIslandMap', { true } },
-            { MIBC, 'FactionIndex', {3}},
-            { SBC, 'MapLessThan', { 1000, 1000 }},
-        
-            { UCBC, 'HaveLessThanUnitsWithCategory', { 4, categories.FACTORY * categories.TECH3 * categories.LAND }},
-            { IBC, 'BrainNotLowPowerMode', {} },
-           
-			{ UCBC, 'FactoryGreaterAtLocation', { 'LocationType', 0, categories.LAND * categories.FACTORY * categories.TECH2 } },
-          
-            { SIBC, 'GreaterThanEconEfficiencyOverTime', { 0.75, 1.01 }},
-            
-			{ SBC, 'NoRushTimeCheck', { 600 }},
-			
-        },
-    },
    
-    Builder {
-        BuilderName = 'NC T2 Amphibious Tank  Tech 3 Cybran',
-        PlatoonTemplate = 'T2LandAmphibious',
-        Priority = 650,
-        BuilderType = 'Land',
-        BuilderConditions = {
-            { MIBC, 'FactionIndex', {3}},
-            { SBC, 'MapLessThan', { 1000, 1000 }},
-            { SBC, 'NoRushTimeCheck', { 600 }},
-         
-            { UCBC, 'HaveLessThanUnitsWithCategory', { 4, categories.FACTORY * categories.LAND * categories.TECH3}},
-            { IBC, 'BrainNotLowPowerMode', {} },
-			{ UCBC, 'FactoryGreaterAtLocation', { 'LocationType', 0, categories.LAND * categories.FACTORY - categories.TECH1 } },
-       
-            { SIBC, 'GreaterThanEconEfficiencyOverTime', { 0.75, 1.01 }},
-            
-			
-			
-        },
-    },
+  
+    
+   
+   
+ 
     Builder {
         BuilderName = 'NC T2 Tank - Tech 2 big',
         PlatoonTemplate = 'T2LandDFTank',
@@ -726,6 +656,7 @@ InstanceCount = 10,
         BuilderType = 'Land',
         BuilderConditions = {
             { SBC, 'MapGreaterThan', { 1000, 1000 }},
+            { WRC, 'CanPathToCurrentEnemyNC', { 'LocationType', true } },
           
             { UCBC, 'HaveLessThanUnitsWithCategory', { 4, categories.FACTORY * categories.TECH3 * categories.LAND }},
             { IBC, 'BrainNotLowPowerMode', {} },
@@ -745,6 +676,7 @@ InstanceCount = 10,
         BuilderType = 'Land',
         BuilderConditions = {
             { SBC, 'MapGreaterThan', { 1000, 1000 }},
+            { WRC, 'CanPathToCurrentEnemyNC', { 'LocationType', true } },
           
             { UCBC, 'HaveLessThanUnitsWithCategory', { 4, categories.FACTORY * categories.TECH3 * categories.LAND }},
             { IBC, 'BrainNotLowPowerMode', {} },
@@ -765,6 +697,7 @@ InstanceCount = 10,
         BuilderType = 'Land',
         BuilderConditions = {
             { SBC, 'MapGreaterThan', { 1000, 1000 }},
+            { WRC, 'CanPathToCurrentEnemyNC', { 'LocationType', true } },
          
             { UCBC, 'HaveLessThanUnitsWithCategory', { 4, categories.FACTORY * categories.TECH3 * categories.LAND }},
             { IBC, 'BrainNotLowPowerMode', {} },
@@ -773,96 +706,6 @@ InstanceCount = 10,
             { SIBC, 'GreaterThanEconEfficiencyOverTime', { 0.80, 1.01 }},
             
 			{ SBC, 'NoRushTimeCheck', { 600 }},
-        },
-    },
-  
-  
-    Builder {
-        BuilderName = 'NC T2 Amphibious Tank island big',
-        PlatoonTemplate = 'T2LandAmphibious',
-        Priority = 790,
-InstanceCount = 100,
-        BuilderType = 'Land',
-        BuilderConditions = {
-            { SBC, 'MapGreaterThan', { 1000, 1000 }},
-            { MIBC, 'FactionIndex', {1, 2, 4}},
-            { SBC, 'IsIslandMap', { true } },
-         
-            { UCBC, 'HaveLessThanUnitsWithCategory', { 4, categories.FACTORY * categories.TECH3 * categories.LAND }},
-            { IBC, 'BrainNotLowPowerMode', {} },
-           
-			{ UCBC, 'FactoryGreaterAtLocation', { 'LocationType', 0, categories.LAND * categories.FACTORY * categories.TECH2 } },
-         
-            { SIBC, 'GreaterThanEconEfficiencyOverTime', { 0.80, 1.01 }},
-            
-			{ SBC, 'NoRushTimeCheck', { 600 }},
-		
-			
-        },
-    },
-  
-    Builder {
-        BuilderName = 'NC T2 Amphibious Tank notisland big',
-        PlatoonTemplate = 'T2LandAmphibious',
-        Priority = 750,
-        BuilderType = 'Land',
-        BuilderConditions = {
-            { SBC, 'MapGreaterThan', { 1000, 1000 }},
-            { MIBC, 'FactionIndex', {1, 2, 4}},
-         
-            { UCBC, 'HaveLessThanUnitsWithCategory', { 4, categories.FACTORY * categories.TECH3 * categories.LAND }},
-            { IBC, 'BrainNotLowPowerMode', {} },
-			{ UCBC, 'FactoryGreaterAtLocation', { 'LocationType', 0, categories.LAND * categories.FACTORY - categories.TECH1 } },
-          
-            { SIBC, 'GreaterThanEconEfficiencyOverTime', { 0.80, 1.01 }},
-          
-			{ SBC, 'NoRushTimeCheck', { 600 }},
-		
-			
-        },
-    },
-    
-    Builder {
-        BuilderName = 'NC T2 Amphibious Tank Tech 2 Cybran big',
-        PlatoonTemplate = 'T2LandAmphibious',
-        Priority = 750,
-InstanceCount = 10,
-        BuilderType = 'Land',
-        BuilderConditions = {
-            { SBC, 'IsIslandMap', { true } },
-            { MIBC, 'FactionIndex', {3}},
-            { SBC, 'MapGreaterThan', { 1000, 1000 }},
-         
-            { UCBC, 'HaveLessThanUnitsWithCategory', { 4, categories.FACTORY * categories.TECH3 * categories.LAND }},
-            { IBC, 'BrainNotLowPowerMode', {} },
-           
-			{ UCBC, 'FactoryGreaterAtLocation', { 'LocationType', 0, categories.LAND * categories.FACTORY * categories.TECH2 } },
-          
-            { SIBC, 'GreaterThanEconEfficiencyOverTime', { 0.80, 1.01 }},
-            
-			{ SBC, 'NoRushTimeCheck', { 600 }},
-            
-    
-        },
-    },
-    
-    Builder {
-        BuilderName = 'NC T2 Amphibious Tank  Tech 3 Cybran big',
-        PlatoonTemplate = 'T2LandAmphibious',
-        Priority = 750,
-        BuilderType = 'Land',
-        BuilderConditions = {
-            { MIBC, 'FactionIndex', {3}},
-            { SBC, 'MapGreaterThan', { 1000, 1000 }},
-           
-            { UCBC, 'HaveLessThanUnitsWithCategory', { 4, categories.FACTORY * categories.LAND * categories.TECH3}},
-            { IBC, 'BrainNotLowPowerMode', {} },
-			{ UCBC, 'FactoryGreaterAtLocation', { 'LocationType', 0, categories.LAND * categories.FACTORY - categories.TECH1 } },
-       
-            { SIBC, 'GreaterThanEconEfficiencyOverTime', { 0.80, 1.01 }},
-            
-			{ SBC, 'NoRushTimeCheck', { 600 }},
-			
         },
     },
 
@@ -935,6 +778,7 @@ BuilderGroup {
         BuilderConditions = {
             { MIBC, 'GreaterThanGameTime', { 1200 } },
             { SBC, 'MapLessThan', { 1000, 1000 }},
+            { WRC, 'CanPathToCurrentEnemyNC', { 'LocationType', true } },
          
             { IBC, 'BrainNotLowPowerMode', {} },
 			{ UCBC, 'FactoryGreaterAtLocation', { 'LocationType', 0, categories.LAND * categories.FACTORY * categories.TECH3 } },
@@ -953,6 +797,7 @@ BuilderGroup {
         BuilderConditions = {
             { MIBC, 'GreaterThanGameTime', { 1200 } },
             { SBC, 'MapLessThan', { 1000, 1000 }},
+            { WRC, 'CanPathToCurrentEnemyNC', { 'LocationType', true } },
           
 			{ UCBC, 'FactoryGreaterAtLocation', { 'LocationType', 0, categories.LAND * categories.FACTORY * categories.TECH3 } },
            
@@ -971,6 +816,7 @@ BuilderGroup {
         BuilderConditions = {
             { MIBC, 'GreaterThanGameTime', { 1200 } },
             { SBC, 'MapLessThan', { 1000, 1000 }},
+            { WRC, 'CanPathToCurrentEnemyNC', { 'LocationType', true } },
           
 			{ UCBC, 'FactoryGreaterAtLocation', { 'LocationType', 0, categories.LAND * categories.FACTORY * categories.TECH3 } },
         
@@ -989,6 +835,7 @@ BuilderGroup {
         BuilderConditions = {
             { MIBC, 'GreaterThanGameTime', { 1200 } },
             { SBC, 'MapLessThan', { 1000, 1000 }},
+            { WRC, 'CanPathToCurrentEnemyNC', { 'LocationType', true } },
           
             { IBC, 'BrainNotLowPowerMode', {} },
 			{ UCBC, 'FactoryGreaterAtLocation', { 'LocationType', 0, categories.LAND * categories.FACTORY * categories.TECH3 } },
@@ -1005,6 +852,7 @@ BuilderGroup {
         BuilderConditions = {
             { MIBC, 'GreaterThanGameTime', { 1200 } },
             { SBC, 'MapLessThan', { 1000, 1000 }},
+            { WRC, 'CanPathToCurrentEnemyNC', { 'LocationType', true } },
            
             { IBC, 'BrainNotLowPowerMode', {} },
 			{ UCBC, 'FactoryGreaterAtLocation', { 'LocationType', 0, categories.LAND * categories.FACTORY * categories.TECH3 } },
@@ -1021,6 +869,7 @@ BuilderGroup {
         BuilderConditions = {
             { MIBC, 'GreaterThanGameTime', { 1200 } },
             { SBC, 'MapLessThan', { 1000, 1000 }},
+            { WRC, 'CanPathToCurrentEnemyNC', { 'LocationType', true } },
          
             { IBC, 'BrainNotLowPowerMode', {} },
 			{ UCBC, 'FactoryGreaterAtLocation', { 'LocationType', 0, categories.LAND * categories.FACTORY * categories.TECH3 } },
@@ -1039,6 +888,7 @@ BuilderGroup {
         BuilderConditions = {
             { MIBC, 'GreaterThanGameTime', { 1200 } },
             { SBC, 'MapGreaterThan', { 1000, 1000 }},
+            { WRC, 'CanPathToCurrentEnemyNC', { 'LocationType', true } },
            
             { IBC, 'BrainNotLowPowerMode', {} },
 			{ UCBC, 'FactoryGreaterAtLocation', { 'LocationType', 0, categories.LAND * categories.FACTORY * categories.TECH3 } },
@@ -1057,6 +907,7 @@ BuilderGroup {
         BuilderConditions = {
             { MIBC, 'GreaterThanGameTime', { 1200 } },
             { SBC, 'MapGreaterThan', { 1000, 1000 }},
+            { WRC, 'CanPathToCurrentEnemyNC', { 'LocationType', true } },
            
 			{ UCBC, 'FactoryGreaterAtLocation', { 'LocationType', 0, categories.LAND * categories.FACTORY * categories.TECH3 } },
         
@@ -1076,6 +927,7 @@ BuilderGroup {
             { MIBC, 'GreaterThanGameTime', { 1200 } },
     
             { SBC, 'MapGreaterThan', { 1000, 1000 }},
+            { WRC, 'CanPathToCurrentEnemyNC', { 'LocationType', true } },
          
 			{ UCBC, 'FactoryGreaterAtLocation', { 'LocationType', 0, categories.LAND * categories.FACTORY * categories.TECH3 } },
         
@@ -1094,6 +946,7 @@ BuilderGroup {
         BuilderConditions = {
             { MIBC, 'GreaterThanGameTime', { 1200 } },
             { SBC, 'MapGreaterThan', { 1000, 1000 }},
+            { WRC, 'CanPathToCurrentEnemyNC', { 'LocationType', true } },
           
             { IBC, 'BrainNotLowPowerMode', {} },
 			{ UCBC, 'FactoryGreaterAtLocation', { 'LocationType', 0, categories.LAND * categories.FACTORY * categories.TECH3 } },
@@ -1110,6 +963,7 @@ BuilderGroup {
         BuilderConditions = {
             { MIBC, 'GreaterThanGameTime', { 1200 } },
             { SBC, 'MapGreaterThan', { 1000, 1000 }},
+            { WRC, 'CanPathToCurrentEnemyNC', { 'LocationType', true } },
         
             { IBC, 'BrainNotLowPowerMode', {} },
 			{ UCBC, 'FactoryGreaterAtLocation', { 'LocationType', 0, categories.LAND * categories.FACTORY * categories.TECH3 } },
@@ -1126,6 +980,7 @@ BuilderGroup {
         BuilderConditions = {
             { MIBC, 'GreaterThanGameTime', { 1200 } },
             { SBC, 'MapGreaterThan', { 1000, 1000 }},
+            { WRC, 'CanPathToCurrentEnemyNC', { 'LocationType', true } },
         
             { IBC, 'BrainNotLowPowerMode', {} },
 			{ UCBC, 'FactoryGreaterAtLocation', { 'LocationType', 0, categories.LAND * categories.FACTORY * categories.TECH3 } },
@@ -1188,6 +1043,71 @@ BuilderGroup {
     },
 }
 
+BuilderGroup {
+    BuilderGroupName = 'NCaphibbuilders',
+    BuildersType = 'FactoryBuilder',
+    Builder {
+        BuilderName = 'NC T1 land aphib',
+        PlatoonTemplate = 'T1aphib',
+        Priority = 755,
+        InstanceCount = 5,
+        BuilderConditions = {
+           
+       
+         
+            { UCBC, 'HaveLessThanUnitsWithCategory', { 3, categories.FACTORY * categories.TECH3 * categories.LAND }},
+           
+			{ UCBC, 'FactoryGreaterAtLocation', { 'LocationType', 0, categories.LAND * categories.FACTORY * categories.TECH1 } },
+           
+            { SIBC, 'GreaterThanEconEfficiencyOverTime', { 0.75, 1.01 }},
+            
+			{ SBC, 'NoRushTimeCheck', { 600 }},
+            { IBC, 'BrainNotLowPowerMode', {} },
+        },
+        BuilderType = 'Land',
+    },
+    Builder {
+        BuilderName = 'NC T2 land aphib',
+        PlatoonTemplate = 'T2aphib',
+        Priority = 756,
+        InstanceCount = 5,
+        BuilderConditions = {
+            
+        
+         
+           
+           
+			{ UCBC, 'FactoryGreaterAtLocation', { 'LocationType', 0, categories.LAND * categories.FACTORY * categories.TECH1 } },
+           
+            { SIBC, 'GreaterThanEconEfficiencyOverTime', { 0.75, 1.01 }},
+            
+			{ SBC, 'NoRushTimeCheck', { 600 }},
+            { IBC, 'BrainNotLowPowerMode', {} },
+        },
+        BuilderType = 'Land',
+    },
+    Builder {
+        BuilderName = 'NC T3 land aphib',
+        PlatoonTemplate = 'T3aphib',
+        Priority = 757,
+        InstanceCount = 5,
+        BuilderConditions = {
+    
+         
+         
+       
+           
+			{ UCBC, 'FactoryGreaterAtLocation', { 'LocationType', 0, categories.LAND * categories.FACTORY * categories.TECH1 } },
+           
+            { SIBC, 'GreaterThanEconEfficiencyOverTime', { 0.75, 1.01 }},
+            
+			{ SBC, 'NoRushTimeCheck', { 600 }},
+            { IBC, 'BrainNotLowPowerMode', {} },
+        },
+        BuilderType = 'Land',
+    },
+    
+}
 
             
 

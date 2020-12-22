@@ -5,7 +5,7 @@ BaseBuilderTemplate {
     BaseTemplateName = 'NutCrackerMainBase',
     Builders = {
 
-
+    
 
         # ==== ECONOMY ==== #
         'NCEngineerMassBuildersLowerPri',
@@ -16,8 +16,8 @@ BaseBuilderTemplate {
         'NCT1EngineerBuilders',
         'NCT2EngineerBuilders',
         'NCT3EngineerBuilders',
-        'NCT1BalancedUpgradeBuilders',
-        'NCT2BalancedUpgradeBuilders',
+      
+        
         'NCMassFabPause',
         'NCmassupgrade',
         'NCt1masscontinuation',
@@ -40,24 +40,20 @@ BaseBuilderTemplate {
 		# SCU Upgrades
 		'NCSCUUpgrades',
         
-        # Engineer Support buildings
-      
-        
-        # Build energy at this base
+     
        
         
         # Build Mass high pri at this base
         'NCEngineerMassBuildersHighPri',
         
-        # Extractors
+       
       
         
-        # ACU Builders
+      
       
         'NCACUBuilders',
         'NCACUUpgrades',
-        
-        # ACU Defense
+  
  
         
         
@@ -89,11 +85,17 @@ BaseBuilderTemplate {
         
         # ==== NAVAL EXPANSION ==== #
         'NCT2NavalDefenses',
-        'NCNavalExpansionBuildersFast',
+        'NCNaval Factories',
+        'NCT1SeaFactoryBuilders',
+        'NCSeaFactoryUpgrades',
+        'ncSeaHunterFormBuilders',
+     
 
         
         # ==== LAND UNIT BUILDERS ==== #
-  
+        'NCT1expansionprotect',
+        'NClandbehaviorexpansion',
+        'NCaphibbuilders',
         'NCUpgradeBuildersLand',
         'NCT1LandFactoryBuildersemergency',
         'NCT1LandFactoryBuilders',

@@ -648,6 +648,45 @@ BuilderGroup {
         }
     },
     Builder {
+        BuilderName = 'NC Land Exp1 water map',
+        PlatoonTemplate = 'T3EngineerBuilderSorian',
+        Priority = 990,
+        DelayEqualBuildPlattons = {'MobileExperimental', 30},
+
+        InstanceCount = 1,
+        BuilderConditions = {
+
+           
+            { MIBC, 'GreaterThanGameTime', { 1000} },
+           
+            { SBC, 'IsIslandMap', { true } },
+            { MIBC, 'FactionIndex', { 3}},
+            { UCBC, 'HaveGreaterThanUnitsWithCategory', { 20, categories.AIR * categories.MOBILE * categories.ANTIAIR  - categories.BOMBER - categories.GROUNDATTACK - categories.SCOUT } },
+         
+            { SIBC, 'HaveLessThanUnitsInCategoryBeingBuilt', { 1, categories.STRUCTURE  * (categories.ANTIMISSILE + categories.NUKE + categories.ARTILLERY) * categories.TECH3 }},
+          
+            { SIBC, 'GreaterThanEconEfficiencyOverTime', { 1.05, 1.05} },
+            { SIBC, 'HaveGreaterThanUnitsWithCategory', { 0, categories.ENERGYPRODUCTION * categories.TECH3}},
+           
+          
+          
+          
+            { SIBC, 'HaveLessThanUnitsInCategoryBeingBuilt', { 1, categories.EXPERIMENTAL}},
+         
+        },
+        BuilderType = 'Any',
+        BuilderData = {
+            Construction = {
+                BuildClose = true,
+            
+                BuildStructures = {
+                    'T4LandExperimental1',
+                },
+                Location = 'LocationType',
+            }
+        }
+    },
+    Builder {
         BuilderName = 'NC Land Exp1 coinflip',
         PlatoonTemplate = 'T3EngineerBuilderSorian',
         Priority = 950,

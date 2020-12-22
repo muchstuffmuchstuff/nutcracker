@@ -808,7 +808,7 @@ Builder {
         Builder {
             BuilderName = 'NC t3bomber anti factory rush',
             PlatoonTemplate = 'T3AirBomber',
-            Priority = 1000,
+            Priority = 750,
            
             BuilderType = 'Air',
             BuilderConditions = {
@@ -826,7 +826,7 @@ Builder {
         Builder {
             BuilderName = 'NC t3bomber anti factory rush small map',
             PlatoonTemplate = 'T3AirBomber',
-            Priority = 1000,
+            Priority = 750,
            
             BuilderType = 'Air',
             BuilderConditions = {

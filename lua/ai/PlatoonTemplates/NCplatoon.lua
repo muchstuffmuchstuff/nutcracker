@@ -225,7 +225,7 @@ PlatoonTemplate {
     Name = 'landbaseguardNC',
     Plan = 'GuardBaseSorian',
     GlobalSquads = {
-        { categories.MOBILE * categories.LAND - categories.SUBCOMMANDER - categories.EXPERIMENTAL - categories.ENGINEER - categories.xsl0402, 1, 10, 'Attack', 'none' }
+        { categories.MOBILE * categories.LAND - categories.SUBCOMMANDER - categories.EXPERIMENTAL - categories.ENGINEER - categories.xsl0402, 1, 8, 'Attack', 'none' }
     },
 }
 
@@ -314,5 +314,56 @@ PlatoonTemplate {
             { 'url0301_RAS', 1, 1, 'Attack', 'None' }
         },
       
+    }
+}
+
+----FACTION TEMPLATES
+
+PlatoonTemplate {
+    Name = 'T1aphib',
+    FactionSquads = {
+       
+        
+        Aeon = {
+            { 'ual0201', 1, 1, 'attack', 'none' }
+        },
+      
+        Seraphim = {
+            { 'xsl0103', 1, 1, 'attack', 'none' }
+        },
+    }
+}
+
+PlatoonTemplate {
+    Name = 'T2aphib',
+    FactionSquads = {
+        UEF = {
+            { 'uel0203', 1, 1, 'attack', 'none' }
+        },
+        Aeon = {
+            { 'xal0203', 1, 1, 'attack', 'none' }
+        },
+        Cybran = {
+            { 'url0203', 1, 1, 'attack', 'none' }
+        },
+        Seraphim = {
+            { 'xsl0203', 1, 1, 'attack', 'none' }
+        },
+    }
+}
+
+PlatoonTemplate {
+    Name = 'T3aphib',
+    FactionSquads = {
+        UEF = {
+            { 'xel0305', 1, 1, 'attack', 'none' }
+        },
+      
+        Cybran = {
+            { 'xrl0305', 1, 1, 'attack', 'none' }
+        },
+        Seraphim = {
+            { 'xsl0303', 1, 1, 'attack', 'none' }
+        },
     }
 }

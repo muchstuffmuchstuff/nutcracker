@@ -334,7 +334,7 @@ BuilderGroup {
             { MIBC, 'GreaterThanGameTime', { 1200 } },
             { UCBC, 'HaveGreaterThanUnitsWithCategory', { 20, categories.AIR * categories.MOBILE * categories.ANTIAIR  - categories.BOMBER - categories.GROUNDATTACK - categories.SCOUT } },
             {WRC, 'CheckUnitRangeNC', { 'LocationType', 'T3Artillery', categories.STRUCTURE } },
-            { SIBC, 'HaveLessThanUnitsInCategoryBeingBuilt', { 1, categories.TECH3 *  (categories.xab2307 + categories.ARTILLERY ) * categories.STRUCTURE}},
+            { SIBC, 'HaveLessThanUnitsInCategoryBeingBuilt', { 1, categories.xab2307}},
 			{ SIBC, 'HaveGreaterThanUnitsWithCategory', { 4, categories.ENERGYPRODUCTION * categories.TECH3 } },
             { SIBC, 'HaveLessThanUnitsInCategoryBeingBuilt', { 1, categories.STRUCTURE  * (categories.ANTIMISSILE + categories.NUKE + categories.ARTILLERY + categories.EXPERIMENTAL) * categories.TECH3 }},
             
@@ -401,9 +401,9 @@ BuilderGroup {
             { MIBC, 'GreaterThanGameTime', { 1500 } },
             { UCBC, 'HaveGreaterThanUnitsWithCategory', { 20, categories.AIR * categories.MOBILE * categories.ANTIAIR  - categories.BOMBER - categories.GROUNDATTACK - categories.SCOUT } },
             {WRC,'CheckUnitRangeNC', { 'LocationType', 'T3Artillery', categories.STRUCTURE } },
-            { SIBC, 'HaveLessThanUnitsInCategoryBeingBuilt', { 1, categories.TECH3 *  (categories.xab2307 + categories.ARTILLERY ) * categories.STRUCTURE}},
-			{ SIBC, 'HaveGreaterThanUnitsWithCategory', { 4, categories.ENERGYPRODUCTION * categories.TECH3 } },
-            { SIBC, 'HaveLessThanUnitsInCategoryBeingBuilt', { 1, categories.STRUCTURE  * (categories.ANTIMISSILE + categories.NUKE + categories.ARTILLERY) * categories.TECH3 }},
+            { SIBC, 'HaveLessThanUnitsInCategoryBeingBuilt', { 1, categories.xab2307 }},
+			{ SIBC, 'HaveGreaterThanUnitsWithCategory', { 7, categories.ENERGYPRODUCTION * categories.TECH3 } },
+            { SIBC, 'HaveLessThanUnitsInCategoryBeingBuilt', { 3, categories.STRUCTURE  * (categories.ANTIMISSILE + categories.NUKE + categories.ARTILLERY) * categories.TECH3 }},
             { EBC, 'GreaterThanEconStorageCurrent', { 23000, 15000 } },
          
             { EBC, 'GreaterThanEconStorageRatio', { 0.2, 1.0}},

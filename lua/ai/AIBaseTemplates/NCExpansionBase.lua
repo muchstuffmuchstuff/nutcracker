@@ -5,6 +5,7 @@ BaseBuilderTemplate {
     BaseTemplateName = 'NutCrackerExpansionBase',
     Builders = {
 
+  
 
         # ==== ECONOMY ==== #
        
@@ -15,8 +16,7 @@ BaseBuilderTemplate {
         'NCT1EngineerBuilders',
         'NCT2EngineerBuilders',
         'NCT3EngineerBuilders',
-        'NCT1BalancedUpgradeBuilders',
-        'NCT2BalancedUpgradeBuilders',
+    
         'NCMassFabPause',
         'NCmassupgrade',
         'NCt1masscontinuation',
@@ -65,10 +65,15 @@ BaseBuilderTemplate {
         'NCT3NukeDefenseBehaviors',
 		
 	      
-            
+        ---navy
+        'NCT2NavalDefenses',
+        'NCNaval Factories',
+        'NCT1SeaFactoryBuilders',
+        'NCSeaFactoryUpgrades',
+        'ncSeaHunterFormBuilders',  
         # ==== LAND UNIT BUILDERS ==== #
     
-        
+        'NCaphibbuilders',
         'NCT1expansionprotect',
         'NClandbehaviorexpansion',
      
