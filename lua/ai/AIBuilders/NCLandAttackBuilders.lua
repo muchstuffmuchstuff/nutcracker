@@ -394,7 +394,7 @@ BuilderGroup {
     Builder {
         BuilderName = 'NC T1 Light Tank  Tech 1',
         PlatoonTemplate = 'T1LandDFTank',
-        Priority = 755,
+        Priority = 655,
         InstanceCount = 5,
         BuilderConditions = {
             { SBC, 'MapLessThan', { 1000, 1000 }},
@@ -413,7 +413,7 @@ BuilderGroup {
     Builder {
         BuilderName = 'NC T1 Light Tank  Tech 1 big',
         PlatoonTemplate = 'T1LandDFTank',
-        Priority = 725,
+        Priority = 625,
         BuilderConditions = {
             { SBC, 'MapGreaterThan', { 1000, 1000 }},
       
@@ -433,7 +433,7 @@ BuilderGroup {
     Builder {
         BuilderName = 'NC T1 Mortar  Not T1',
         PlatoonTemplate = 'T1LandArtillery',
-        Priority = 700,
+        Priority = 600,
         InstanceCount = 6,
         BuilderConditions = {
             { SBC, 'MapLessThan', { 1000, 1000 }},
@@ -483,7 +483,7 @@ BuilderGroup {
     Builder {
         BuilderName = 'NC T1 Tank Enemy Nearby',
         PlatoonTemplate = 'T1LandDFTank',
-        Priority = 950,
+        Priority = 750,
 InstanceCount = 5,
         BuilderConditions = {
             { SBC, 'MapLessThan', { 1000, 1000 }},
@@ -504,7 +504,7 @@ InstanceCount = 5,
     Builder {
         BuilderName = 'NC T1 Mortar  rapidattack',
         PlatoonTemplate = 'T1LandArtillery',
-        Priority = 950,
+        Priority = 650,
         InstanceCount = 5,
         BuilderConditions = {
             { SBC, 'MapLessThan', { 1000, 1000 }},
@@ -526,7 +526,7 @@ InstanceCount = 5,
     Builder {
         BuilderName = 'NC T1 Tank Enemy Nearby big',
         PlatoonTemplate = 'T1LandDFTank',
-        Priority = 900,
+        Priority = 700,
 InstanceCount = 5,
         BuilderConditions = {
             { SBC, 'MapGreaterThan', { 1000, 1000 }},
@@ -576,7 +576,7 @@ BuilderGroup {
     Builder {
         BuilderName = 'NC T2 Tank - Tech 2',
         PlatoonTemplate = 'T2LandDFTank',
-        Priority = 600,
+        Priority = 720,
         BuilderType = 'Land',
         BuilderConditions = {
             { SBC, 'MapLessThan', { 1000, 1000 }},
@@ -594,7 +594,7 @@ BuilderGroup {
     Builder {
         BuilderName = 'NC T2 MML',
         PlatoonTemplate = 'T2LandArtillery',
-        Priority = 600,
+        Priority = 720,
         InstanceCount = 3,
         BuilderType = 'Land',
         BuilderConditions = {
@@ -615,7 +615,7 @@ BuilderGroup {
     Builder {
         BuilderName = 'NC T2AttackTank - Tech 2',
         PlatoonTemplate = 'T2AttackTankSorian',
-        Priority = 600,
+        Priority = 720,
         BuilderType = 'Land',
         BuilderConditions = {
             { SBC, 'MapLessThan', { 1000, 1000 }},
@@ -634,7 +634,7 @@ BuilderGroup {
     Builder {
         BuilderName = 'NC T2 Amphibious Tank island',
         PlatoonTemplate = 'T2LandAmphibious',
-        Priority = 690,
+        Priority = 790,
 InstanceCount = 100,
         BuilderType = 'Land',
         BuilderConditions = {
@@ -658,7 +658,7 @@ InstanceCount = 100,
     Builder {
         BuilderName = 'NC T2 Amphibious Tank notisland',
         PlatoonTemplate = 'T2LandAmphibious',
-        Priority = 550,
+        Priority = 650,
         BuilderType = 'Land',
         BuilderConditions = {
             { SBC, 'MapLessThan', { 1000, 1000 }},
@@ -679,7 +679,7 @@ InstanceCount = 100,
     Builder {
         BuilderName = 'NC T2 Amphibious Tank Tech 2 Cybran',
         PlatoonTemplate = 'T2LandAmphibious',
-        Priority = 600,
+        Priority = 750,
 InstanceCount = 10,
         BuilderType = 'Land',
         BuilderConditions = {
@@ -702,7 +702,7 @@ InstanceCount = 10,
     Builder {
         BuilderName = 'NC T2 Amphibious Tank  Tech 3 Cybran',
         PlatoonTemplate = 'T2LandAmphibious',
-        Priority = 550,
+        Priority = 650,
         BuilderType = 'Land',
         BuilderConditions = {
             { MIBC, 'FactionIndex', {3}},
@@ -722,7 +722,7 @@ InstanceCount = 10,
     Builder {
         BuilderName = 'NC T2 Tank - Tech 2 big',
         PlatoonTemplate = 'T2LandDFTank',
-        Priority = 600,
+        Priority = 750,
         BuilderType = 'Land',
         BuilderConditions = {
             { SBC, 'MapGreaterThan', { 1000, 1000 }},
@@ -740,7 +740,7 @@ InstanceCount = 10,
     Builder {
         BuilderName = 'NC T2 MML big',
         PlatoonTemplate = 'T2LandArtillery',
-        Priority = 600,
+        Priority = 750,
         InstanceCount = 3,
         BuilderType = 'Land',
         BuilderConditions = {
@@ -761,7 +761,7 @@ InstanceCount = 10,
     Builder {
         BuilderName = 'NC T2AttackTank - Tech 2 big',
         PlatoonTemplate = 'T2AttackTankSorian',
-        Priority = 600,
+        Priority = 750,
         BuilderType = 'Land',
         BuilderConditions = {
             { SBC, 'MapGreaterThan', { 1000, 1000 }},
@@ -780,7 +780,7 @@ InstanceCount = 10,
     Builder {
         BuilderName = 'NC T2 Amphibious Tank island big',
         PlatoonTemplate = 'T2LandAmphibious',
-        Priority = 690,
+        Priority = 790,
 InstanceCount = 100,
         BuilderType = 'Land',
         BuilderConditions = {
@@ -804,7 +804,7 @@ InstanceCount = 100,
     Builder {
         BuilderName = 'NC T2 Amphibious Tank notisland big',
         PlatoonTemplate = 'T2LandAmphibious',
-        Priority = 550,
+        Priority = 750,
         BuilderType = 'Land',
         BuilderConditions = {
             { SBC, 'MapGreaterThan', { 1000, 1000 }},
@@ -825,7 +825,7 @@ InstanceCount = 100,
     Builder {
         BuilderName = 'NC T2 Amphibious Tank Tech 2 Cybran big',
         PlatoonTemplate = 'T2LandAmphibious',
-        Priority = 600,
+        Priority = 750,
 InstanceCount = 10,
         BuilderType = 'Land',
         BuilderConditions = {
@@ -849,7 +849,7 @@ InstanceCount = 10,
     Builder {
         BuilderName = 'NC T2 Amphibious Tank  Tech 3 Cybran big',
         PlatoonTemplate = 'T2LandAmphibious',
-        Priority = 550,
+        Priority = 750,
         BuilderType = 'Land',
         BuilderConditions = {
             { MIBC, 'FactionIndex', {3}},

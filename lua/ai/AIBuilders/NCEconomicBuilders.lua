@@ -44,6 +44,7 @@ BuilderGroup {
     Builder {
         BuilderName = 'NC mass continuation 250',
         PlatoonTemplate = 'EngineerBuilderSorian',
+        
         Priority = 900,
         
         BuilderConditions = {
@@ -54,6 +55,7 @@ BuilderGroup {
         BuilderType = 'Any',
         BuilderData = {
             NeedGuard = true,
+            RequireTransport = false,
             DesiresAssist = false,
             Construction = {
                 BuildStructures = {
@@ -66,6 +68,7 @@ BuilderGroup {
         BuilderName = 'NC mass continuation 500',
         PlatoonTemplate = 'EngineerBuilderSorian',
         Priority = 900,
+      
         
         BuilderConditions = {
         
@@ -75,6 +78,7 @@ BuilderGroup {
         BuilderType = 'Any',
         BuilderData = {
             NeedGuard = true,
+            RequireTransport = false,
             DesiresAssist = false,
             Construction = {
                 BuildStructures = {
@@ -93,6 +97,7 @@ BuilderGroup {
         BuilderName = 'NC T1 Power Engineer',
         PlatoonTemplate = 'EngineerBuilderSorian',
         Priority = 950,
+      
         InstanceCount = 2,
         
         BuilderConditions = {
@@ -106,6 +111,7 @@ BuilderGroup {
  
         BuilderType = 'Any',
         BuilderData = {
+            RequireTransport = false,
             Construction = {
                 AdjacencyCategory = 'FACTORY',
                 BuildStructures = {
@@ -1140,7 +1146,7 @@ BuilderGroup {
             { MIBC, 'GreaterThanGameTime', { 600} },
             { UCBC, 'LocationEngineersBuildingAssistanceGreater', { 'LocationType', 0, 'STRUCTURE, EXPERIMENTAL' }},
             { IBC, 'BrainNotLowPowerMode', {} },
-            { SIBC, 'GreaterThanEconEfficiencyOverTime', { 1.1, 1.05} },
+            { SIBC, 'GreaterThanEconEfficiencyOverTime', { 0.01, 1.0}},
         },
         BuilderType = 'Any',
         BuilderData = {
@@ -1164,7 +1170,7 @@ BuilderGroup {
         BuilderConditions = {
             { MIBC, 'GreaterThanGameTime', { 600} },
             { SIBC, 'GreaterThanEconEfficiencyOverTime', { 1.1, 1.02} },
-            { EBC, 'GreaterThanEconStorageRatio', { 0.75, 0.99 } },
+            { EBC, 'GreaterThanEconStorageRatio', { 0.50, 0.99 } },
                 
             },
         BuilderData = {
@@ -1186,7 +1192,7 @@ BuilderGroup {
         BuilderType = 'Any',
         BuilderConditions = {
             { MIBC, 'GreaterThanGameTime', { 600} },
-            { SIBC, 'GreaterThanEconEfficiencyOverTime', { 1.1, 1.02} },
+          
             { EBC, 'GreaterThanEconStorageRatio', { 0.75, 0.99 } },
                 
             },
@@ -1195,7 +1201,7 @@ BuilderGroup {
                 AssistLocation = 'LocationType',
                 AssisteeType = 'Engineer',
                 BeingBuiltCategories = {'STRUCTURE STRATEGIC','EXPERIMENTAL'},
-                time = 60,
+                time = 20,
             },
         }
     }, 
@@ -1257,6 +1263,7 @@ BuilderGroup {
             DesiresAssist = true,
           
             Construction = {
+                BuildClose = true,
                 BuildStructures = {
                     'T3EnergyProduction',
                     'T3EnergyProduction',
@@ -1324,6 +1331,7 @@ BuilderGroup {
             DesiresAssist = true,
        
             Construction = {
+                BuildClose = true,
                 BuildStructures = {
                     'T3EnergyProduction',
                     'T3EnergyProduction',
@@ -1354,6 +1362,7 @@ BuilderGroup {
             DesiresAssist = true,
        
             Construction = {
+                BuildClose = true,
                 BuildStructures = {
                     'T3EnergyProduction',
                     'T3EnergyProduction',
@@ -1474,9 +1483,25 @@ BuilderGroup {
         PlatoonTemplate = 'T3BuildEngineer',
         Priority = 950,
         BuilderConditions = {
+            { MIBC, 'GreaterThanGameTime', { 600} },
             { UCBC,'EngineerLessAtLocation', { 'LocationType', 4, 'ENGINEER TECH3' }},
             { UCBC, 'LocationFactoriesBuildingLess', { 'LocationType', 1, categories.ENGINEER * categories.TECH3 - categories.SUBCOMMANDER } },
             { UCBC, 'EngineerCapCheck', { 'LocationType', 'Tech3' } },
+        },
+        BuilderType = 'All',
+    },
+    Builder {
+        BuilderName = 'NC T3 Engineer Disband - mild fighter cover',
+        PlatoonTemplate = 'T3BuildEngineer',
+        Priority = 825,
+        BuilderConditions = {
+            { MIBC, 'GreaterThanGameTime', { 600} },
+            { UCBC, 'HaveGreaterThanUnitsWithCategory', { 15, categories.AIR * categories.MOBILE * categories.ANTIAIR   - categories.BOMBER - categories.GROUNDATTACK - categories.SCOUT } },
+            { UCBC, 'EngineerLessAtLocation', { 'LocationType', 8, 'ENGINEER TECH3' }},
+			{ UCBC, 'HaveGreaterThanUnitsWithCategory', { 15, categories.MOBILE - categories.ENGINEER}},
+            { UCBC, 'LocationFactoriesBuildingLess', { 'LocationType', 1, categories.ENGINEER * categories.TECH3 - categories.SUBCOMMANDER } },
+            { UCBC, 'EngineerCapCheck', { 'LocationType', 'Tech3' } },
+            #{ UCBC, 'UnitCapCheckLess', { .8 } },
         },
         BuilderType = 'All',
     },
@@ -1485,9 +1510,10 @@ BuilderGroup {
         PlatoonTemplate = 'T3BuildEngineer',
         Priority = 725,
         BuilderConditions = {
+            { MIBC, 'GreaterThanGameTime', { 600} },
             { UCBC, 'HaveGreaterThanUnitsWithCategory', { 25, categories.AIR * categories.MOBILE * categories.ANTIAIR   - categories.BOMBER - categories.GROUNDATTACK - categories.SCOUT } },
-            { UCBC, 'EngineerLessAtLocation', { 'LocationType', 9, 'ENGINEER TECH3' }},
-			{ UCBC, 'HaveGreaterThanUnitsWithCategory', { 15, categories.MOBILE - categories.ENGINEER}},
+            { UCBC, 'EngineerLessAtLocation', { 'LocationType', 15, 'ENGINEER TECH3' }},
+			
             { UCBC, 'LocationFactoriesBuildingLess', { 'LocationType', 1, categories.ENGINEER * categories.TECH3 - categories.SUBCOMMANDER } },
             { UCBC, 'EngineerCapCheck', { 'LocationType', 'Tech3' } },
             #{ UCBC, 'UnitCapCheckLess', { .8 } },
@@ -1499,9 +1525,10 @@ BuilderGroup {
         PlatoonTemplate = 'T3BuildEngineer',
         Priority = 700,
         BuilderConditions = {
+            { MIBC, 'GreaterThanGameTime', { 600} },
             { UCBC, 'HaveGreaterThanUnitsWithCategory', { 25, categories.AIR * categories.MOBILE * categories.ANTIAIR  - categories.BOMBER - categories.GROUNDATTACK - categories.SCOUT } },
-            { UCBC, 'EngineerLessAtLocation', { 'LocationType', 12, 'ENGINEER TECH3' }},
-			{ UCBC, 'HaveGreaterThanUnitsWithCategory', { 30, categories.MOBILE - categories.ENGINEER}},
+            { UCBC, 'EngineerLessAtLocation', { 'LocationType', 20, 'ENGINEER TECH3' }},
+	
             { UCBC, 'LocationFactoriesBuildingLess', { 'LocationType', 1, categories.ENGINEER * categories.TECH3 - categories.SUBCOMMANDER } },
             { UCBC, 'EngineerCapCheck', { 'LocationType', 'Tech3' } },
             { SIBC, 'GreaterThanEconEfficiencyOverTime', { 0.9, 1.2 } },
@@ -1516,10 +1543,11 @@ BuilderGroup {
         PlatoonTemplate = 'T3BuildEngineer',
         Priority = 700,
         BuilderConditions = {
+            { MIBC, 'GreaterThanGameTime', { 1200} },
             { UCBC, 'HaveGreaterThanUnitsWithCategory', { 25, categories.AIR * categories.MOBILE * categories.ANTIAIR * categories.TECH3 - categories.BOMBER - categories.GROUNDATTACK - categories.SCOUT } },
-            { SIBC, 'GreaterThanEconEfficiencyOverTime', { 0.9, 1.2 } },
+            { SIBC, 'GreaterThanEconEfficiencyOverTime', { 1.1, 1.2 } },
 			{ SBC, 'NoRushTimeCheck', { 600 }},
-			{ UCBC, 'HaveGreaterThanUnitsWithCategory', { 45, categories.MOBILE - categories.ENGINEER}},
+			{ UCBC, 'HaveLessThanUnitsWithCategory', { 45, categories.MOBILE - categories.ENGINEER}},
             { UCBC, 'LocationFactoriesBuildingLess', { 'LocationType', 1, categories.ENGINEER * categories.TECH3 - categories.SUBCOMMANDER } },
             { UCBC, 'EngineerCapCheck', { 'LocationType', 'Tech3' } },
             #{ IBC, 'BrainNotLowMassMode', {} },
@@ -1533,6 +1561,7 @@ BuilderGroup {
         Priority = 960,
         InstanceCount = 5,
         BuilderConditions = {
+            { MIBC, 'GreaterThanGameTime', { 1200} },
             { UCBC, 'HaveGreaterThanUnitsWithCategory', { 20, categories.AIR * categories.MOBILE * categories.ANTIAIR * categories.TECH3 - categories.BOMBER - categories.GROUNDATTACK - categories.SCOUT } },
             { EBC, 'GreaterThanEconStorageRatio', { 0.85, 0.85 } },
 			{ SIBC, 'GreaterThanEconEfficiencyOverTime', { 1.0, 1.2 } },
@@ -1550,6 +1579,7 @@ BuilderGroup {
         InstanceCount = 5,
      
         BuilderConditions = {
+            { MIBC, 'GreaterThanGameTime', { 1500} },
             { UCBC, 'HaveGreaterThanUnitsWithCategory', { 20, categories.AIR * categories.MOBILE * categories.ANTIAIR * categories.TECH3 - categories.BOMBER - categories.GROUNDATTACK - categories.SCOUT } },
             { EBC, 'GreaterThanEconIncome', { 450.0, 3000.0 }},                  
             { EBC, 'GreaterThanEconStorageRatio', { 0.95, 0.85 } },
@@ -2045,6 +2075,7 @@ BuilderGroup {
         BuilderName = 'NC T1ResourceEngineer 150', #150
         PlatoonTemplate = 'EngineerBuilderSorian',
         Priority = 1000,
+     
         InstanceCount = 4,
         BuilderConditions = {
                 #{ UCBC, 'EngineerLessAtLocation', { 'LocationType', 3, 'ENGINEER TECH3' }},
@@ -2053,6 +2084,7 @@ BuilderGroup {
         BuilderType = 'Any',
         BuilderData = {
             NeedGuard = true,
+            RequireTransport = false,
             DesiresAssist = false,
             Construction = {
                 BuildStructures = {
@@ -2066,12 +2098,14 @@ BuilderGroup {
         PlatoonTemplate = 'EngineerBuilderSorian',
         Priority = 970,
         InstanceCount = 4,
+
         BuilderConditions = {
                 #{ UCBC, 'EngineerLessAtLocation', { 'LocationType', 3, 'ENGINEER TECH3' }},
                 { MABC, 'CanBuildOnMassLessThanDistance', { 'LocationType', 250, -500, 0, 0, 'AntiSurface', 1 }},
             },
         BuilderType = 'Any',
         BuilderData = {
+            RequireTransport = false,
             NeedGuard = true,
             DesiresAssist = false,
             Construction = {
@@ -2093,6 +2127,7 @@ BuilderGroup {
         BuilderType = 'Any',
         BuilderData = {
             NeedGuard = true,
+            RequireTransport = false,
             DesiresAssist = false,
             Construction = {
                 BuildStructures = {
@@ -2211,6 +2246,7 @@ BuilderGroup {
        
         BuilderConditions = {
             { MIBC, 'GreaterThanGameTime', { 600} },
+            { SIBC, 'GreaterThanEconEfficiencyOverTime', { 0.01, 1.0}},
                 { SBC, 'UnfinishedUnits', { 'LocationType', categories.STRUCTURE}},
             },
         BuilderData = {

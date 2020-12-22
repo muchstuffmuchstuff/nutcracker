@@ -267,37 +267,7 @@ Builder {
         }
     },
     
-    Builder {
-        BuilderName = 'NC T1 TML standard build',
-        PlatoonTemplate = 'T2T3EngineerBuilderNC',
-        Priority = 950,
-        BuilderConditions = {
-            { MIBC, 'GreaterThanGameTime', { 1200 } },
-            { UCBC, 'LocationEngineersBuildingLess', { 'LocationType', 1, categories.DEFENSE * (categories.TECH2 + categories.TECH3) * categories.STRUCTURE - categories.SHIELD - categories.ANTIMISSILE } },
-          { SBC, 'LessThanGameTime', { 840 } },
-         
-         { UCBC, 'UnitsLessAtLocation', { 'LocationType', 6, categories.TACTICALMISSILEPLATFORM * categories.STRUCTURE}},
-       
-            { IBC, 'BrainNotLowPowerMode', {} },
-            { SIBC, 'GreaterThanEconEfficiencyOverTime', { 0.99, 1.0 }},
-            
-      
-         
-        },
-        BuilderType = 'Any',
-        BuilderData = {
-            NumAssistees = 2,
-            Construction = {
-                BuildClose = false,
-                BuildStructures = {
-                    'T2StrategicMissile',
-                   
-                  
-                },
-                Location = 'LocationType',
-            }
-        }
-    },
+  
 Builder {
         BuilderName = 'NC T2 Base D Engineer - Light',
         PlatoonTemplate = 'T2EngineerBuilderSorian',
@@ -384,7 +354,7 @@ BuilderGroup {
         Priority = 925,
         InstanceCount = 5,
         BuilderConditions = {
-{ UCBC, 'HaveUnitsWithCategoryAndAlliance', { true, 1, categories.NAVAL * categories.MOBILE,  'Enemy' }},
+{ UCBC, 'HaveUnitsWithCategoryAndAlliance', { true, 0, categories.NAVAL * categories.MOBILE,  'Enemy' }},
             { UCBC, 'NavalDefensivePointNeedsStructure', { 'LocationType', 300, 'DEFENSE TECH2 ANTINAVY', 20, 3, 0, 1, 1, 'AntiSurface' } },
 			
             { IBC, 'BrainNotLowPowerMode', {} },
@@ -436,7 +406,7 @@ BuilderGroup {
         Priority = 799,
         BuilderConditions = {
             { UCBC, 'UnitsLessAtLocation', { 'LocationType', 10, 'ANTIMISSILE TECH2 STRUCTURE' }},
-            { UCBC, 'HaveUnitsWithCategoryAndAlliance', { true, 1, categories.NAVAL * categories.MOBILE,  'Enemy' }},
+            { UCBC, 'HaveUnitsWithCategoryAndAlliance', { true, 0, categories.NAVAL * categories.MOBILE,  'Enemy' }},
             { UCBC, 'HaveGreaterThanUnitsWithCategory', { 2, 'ENERGYPRODUCTION TECH2' }},
             { IBC, 'BrainNotLowPowerMode', {} },
            
@@ -576,7 +546,7 @@ BuilderGroup {
         Priority = 920,
         BuilderConditions = {
             { MIBC, 'GreaterThanGameTime', { 600 } },
-            { UCBC, 'UnitsLessAtLocation', { 'LocationType', 40, 'DEFENSE TECH2 STRUCTURE' }},
+            { UCBC, 'UnitsLessAtLocation', { 'LocationType', 40, 'DEFENSE STRUCTURE' }},
             { SIBC, 'HaveLessThanUnitsInCategoryBeingBuilt', { 2, categories.STRUCTURE  * (categories.TECH2 + categories.TECH3) * categories.DIRECTFIRE }},
             { UCBC, 'HaveGreaterThanUnitsWithCategory', { 0, 'ENERGYPRODUCTION TECH2' }},
             { IBC, 'BrainNotLowPowerMode', {} },
@@ -595,7 +565,7 @@ BuilderGroup {
                     'T2GroundDefense',
                     'T2MissileDefense',
 					'T2Artillery',
-					'T2StrategicMissile',
+				
 					'T2MissileDefense',
                 },
                 Location = 'LocationType',
@@ -855,7 +825,7 @@ BuilderGroup {
                     'T2AADefense',
                     'T2MissileDefense',
 					'T2Artillery',
-					'T2StrategicMissile',
+				
                     'T2GroundDefense',
                     'T2AADefense',
                 },
@@ -893,7 +863,7 @@ BuilderGroup {
 					'T2GroundDefense',
 					'T2MissileDefense',
                     'T2Artillery',
-					'T2StrategicMissile',
+				
 					'T2ShieldDefense',
                     'T3AADefense',
 					'T2GroundDefense',
@@ -1169,9 +1139,9 @@ BuilderGroup {
 		InstanceCount = 1,
         BuilderConditions = {
             { SBC, 'GreaterThanGameTime', { 1200 } },
-            #{ UCBC, 'HaveGreaterThanUnitsWithCategory', { 5, categories.ENGINEER * categories.TECH3}},
+    
 			{ SIBC, 'HaveGreaterThanUnitsWithCategory', { 0, categories.ENERGYPRODUCTION * categories.TECH3 } },
-			{ SIBC, 'HaveGreaterThanUnitsWithCategory', { 0, categories.MASSPRODUCTION * categories.TECH3 } },
+		
             { UCBC, 'BuildingLessAtLocation', { 'LocationType', 1, 'ANTIMISSILE TECH3 STRUCTURE' } },
             { UCBC, 'UnitsLessAtLocation', { 'LocationType', 1, categories.ANTIMISSILE * categories.TECH3 * categories.STRUCTURE}},
        

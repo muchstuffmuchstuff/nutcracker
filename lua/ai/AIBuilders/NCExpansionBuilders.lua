@@ -44,9 +44,12 @@ BuilderGroup {
         
        
         BuilderConditions = {
+          
             { SBC, 'IsIslandMap', { true } },
+            { MIBC, 'GreaterThanGameTime', { 240} },
+
             { UCBC, 'StartLocationNeedsEngineer', { 'LocationType', 1000, -1000, 5, 0, 'StructuresNotMex' } },
-         
+        
            
 			{ SIBC, 'LessThanExpansionBases', { } },
 			{ SBC, 'NoRushTimeCheck', { 0 }},
@@ -94,9 +97,11 @@ BuilderGroup {
        
         BuilderConditions = {
             { SBC, 'IsIslandMap', { true } },
+            { MIBC, 'GreaterThanGameTime', { 250} },
             { UCBC, 'StartLocationNeedsEngineer', { 'LocationType', 1000, -1000, 5, 0, 'StructuresNotMex' } },
          
-            { SBC, 'GreaterThanGameTime', { 250 } },
+         
+           
 			{ SIBC, 'LessThanExpansionBases', { } },
 			{ SBC, 'NoRushTimeCheck', { 0 }},
        
@@ -143,7 +148,9 @@ BuilderGroup {
        
         BuilderConditions = {
             { SBC, 'IsIslandMap', { true } },
+            { MIBC, 'GreaterThanGameTime', { 250} },
             { UCBC, 'StartLocationNeedsEngineer', { 'LocationType', 1000, -1000, 100, 0, 'StructuresNotMex' } },
+          
           
 			{ SIBC, 'LessThanExpansionBases', { } },
 			{ SBC, 'NoRushTimeCheck', { 0 }},
@@ -282,7 +289,9 @@ BuilderGroup {
        
        
         BuilderConditions = {
+            { MIBC, 'GreaterThanGameTime', { 240} },
             { UCBC, 'StartLocationNeedsEngineer', { 'LocationType', 1000, -1000, 5, 0, 'StructuresNotMex' } },
+           
        
             
 			{ SIBC, 'LessThanExpansionBases', { } },
@@ -330,9 +339,11 @@ BuilderGroup {
        
        
         BuilderConditions = {
+            { MIBC, 'GreaterThanGameTime', { 250} },
             { UCBC, 'StartLocationNeedsEngineer', { 'LocationType', 1000, -1000, 5, 0, 'StructuresNotMex' } },
+           
        
-            { SBC, 'GreaterThanGameTime', { 250 } },
+          
 			{ SIBC, 'LessThanExpansionBases', { } },
 			{ SBC, 'NoRushTimeCheck', { 0 }},
        
@@ -377,7 +388,9 @@ BuilderGroup {
         InstanceCount = 2,
        
         BuilderConditions = {
+            { MIBC, 'GreaterThanGameTime', { 255} },
             { UCBC, 'StartLocationNeedsEngineer', { 'LocationType', 1000, -1000, 100, 0, 'StructuresNotMex' } },
+   
           
 			{ SIBC, 'LessThanExpansionBases', { } },
 			{ SBC, 'NoRushTimeCheck', { 0 }},

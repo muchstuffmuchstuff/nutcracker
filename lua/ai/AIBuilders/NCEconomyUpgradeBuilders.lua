@@ -419,8 +419,8 @@ BuilderGroup {
             { UCBC, 'HaveGreaterThanUnitsWithCategory', { 20, categories.AIR * categories.MOBILE * categories.ANTIAIR - categories.BOMBER - categories.GROUNDATTACK - categories.SCOUT } },
                 { SIBC, 'GreaterThanEconEfficiencyOverTime', { 0.95, 1.20 } },
                
-                { UCBC, 'HaveLessThanUnitsInCategoryBeingBuilt', { 1, 'AIR FACTORY TECH2, AIR FACTORY TECH3' } },
-              { UCBC, 'HaveGreaterThanUnitsWithCategory', { 4, 'AIR FACTORY'}},
+                { UCBC, 'HaveLessThanUnitsInCategoryBeingBuilt', { 1, categories.AIR * (categories.TECH2 + categories.TECH3)* categories.FACTORY } },
+              { UCBC, 'HaveGreaterThanUnitsWithCategory', { 4, categories.AIR * categories.FACTORY}},
            
            
                 { IBC, 'BrainNotLowPowerMode', {} },
@@ -434,12 +434,12 @@ Builder {
         InstanceCount = 5,
         BuilderConditions = {
             { MIBC, 'GreaterThanGameTime', { 1200 } },
-            { EBC, 'GreaterThanEconStorageRatio', { 0.05, 1.0 } },
+            { EBC, 'GreaterThanEconStorageRatio', { 0.20, 1.0 } },
             { UCBC, 'HaveGreaterThanUnitsWithCategory', { 20, categories.AIR * categories.MOBILE * categories.ANTIAIR - categories.BOMBER - categories.GROUNDATTACK - categories.SCOUT } },
                 { SIBC, 'GreaterThanEconEfficiencyOverTime', { 0.95, 1.20 } },
               
-                { UCBC, 'HaveLessThanUnitsInCategoryBeingBuilt', { 5, 'AIR FACTORY TECH2, AIR FACTORY TECH3' } },
-                { UCBC, 'HaveGreaterThanUnitsWithCategory', { 12, 'AIR FACTORY'}},
+                { UCBC, 'HaveLessThanUnitsInCategoryBeingBuilt', { 5, categories.AIR * (categories.TECH2 + categories.TECH3)* categories.FACTORY } },
+                { UCBC, 'HaveGreaterThanUnitsWithCategory', { 4, categories.AIR * categories.FACTORY}},
            
            
                 { IBC, 'BrainNotLowPowerMode', {} },
@@ -457,9 +457,9 @@ Builder {
             { UCBC, 'HaveGreaterThanUnitsWithCategory', { 20, categories.AIR * categories.MOBILE * categories.ANTIAIR - categories.BOMBER - categories.GROUNDATTACK - categories.SCOUT } },
             { UCBC, 'HaveGreaterThanUnitsWithCategory', { 2, categories.ENGINEER * categories.TECH2}},
                 { SIBC, 'GreaterThanEconEfficiencyOverTime', { 0.95, 1.20 } },
-                
-                { UCBC, 'HaveLessThanUnitsInCategoryBeingBuilt', { 1, 'AIR FACTORY TECH2, AIR FACTORY TECH3' } },
-                { UCBC, 'FactoryGreaterAtLocation', { 'LocationType', 2, 'FACTORY AIR TECH2' }},
+                { UCBC, 'HaveLessThanUnitsInCategoryBeingBuilt', { 1, categories.AIR * (categories.TECH2 + categories.TECH3)* categories.FACTORY } },
+                { UCBC, 'HaveGreaterThanUnitsWithCategory', { 4, categories.AIR * categories.FACTORY}},
+             
            
            
                 { IBC, 'BrainNotLowPowerMode', {} },
@@ -473,7 +473,7 @@ Builder {
         InstanceCount = 5,
         BuilderConditions = {
             { MIBC, 'GreaterThanGameTime', { 1200 } },
-            { EBC, 'GreaterThanEconStorageRatio', { 0.05, 1.0 } },
+            { EBC, 'GreaterThanEconStorageRatio', { 0.15, 1.0 } },
             { UCBC, 'HaveGreaterThanUnitsWithCategory', { 20, categories.AIR * categories.MOBILE * categories.ANTIAIR - categories.BOMBER - categories.GROUNDATTACK - categories.SCOUT } },
             { UCBC, 'HaveGreaterThanUnitsWithCategory', { 2, categories.ENGINEER * categories.TECH2}},
                 { SIBC, 'GreaterThanEconEfficiencyOverTime', { 0.95, 1.20 } },
