@@ -144,7 +144,7 @@ BuilderGroup {
     Builder {
         BuilderName = 'NC T2 Naval Destroyer',
         PlatoonTemplate = 'T2SeaDestroyer',
-        Priority = 700,
+        Priority = 730,
         InstanceCount = 50,
         BuilderType = 'Sea',
         BuilderConditions = {
@@ -159,46 +159,5 @@ BuilderGroup {
     },
 }
 
-
-
-
-
-BuilderGroup {
-    BuilderGroupName = 'NCT2SeaStrikeForceBuilders',
-    BuildersType = 'FactoryBuilder',
-    Builder {
-        BuilderName = 'Sorian T2 Naval Destroyer - SF',
-        PlatoonTemplate = 'T2SeaDestroyer',
-        Priority = 705,
-        BuilderType = 'Sea',
-        BuilderConditions = {
-            { MIBC, 'GreaterThanGameTime', { 1000} },
-            { IBC, 'BrainNotLowPowerMode', {} },
-            { SBC, 'NoRushTimeCheck', { 600 }},
-            { UCBC, 'HaveUnitsWithCategoryAndAlliance', { true, 1, categories.NAVAL * categories.MOBILE,  'Enemy' }},
-			{ UCBC, 'FactoryGreaterAtLocation', { 'LocationType', 0, categories.NAVAL * categories.FACTORY * categories.TECH2} },
-		
-            { SIBC, 'GreaterThanEconEfficiencyOverTime', { 0.75, 1.05 }},
-            
-        },
-    },
-    Builder {
-        BuilderName = 'NC T2 Naval Cruiser - SF',
-        PlatoonTemplate = 'T2SeaCruiser',
-        PlatoonAddBehaviors = { 'AirLandToggleSorian' },
-        Priority = 705,
-        BuilderConditions = {
-            { MIBC, 'GreaterThanGameTime', { 1000} },
-            { IBC, 'BrainNotLowPowerMode', {} },
-            { SBC, 'NoRushTimeCheck', { 600 }},
-            { UCBC, 'HaveUnitsWithCategoryAndAlliance', { true, 1, categories.NAVAL * categories.MOBILE,  'Enemy' }},
-			{ UCBC, 'FactoryGreaterAtLocation', { 'LocationType', 0, categories.NAVAL * categories.FACTORY * categories.TECH2 } },
-		
-            { SIBC, 'GreaterThanEconEfficiencyOverTime', { 0.75, 1.05 }},
-            
-        },
-        BuilderType = 'Sea',
-    },
-}
 
 

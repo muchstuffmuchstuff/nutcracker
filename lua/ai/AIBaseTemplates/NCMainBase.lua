@@ -89,6 +89,7 @@ BaseBuilderTemplate {
         'NCT1SeaFactoryBuilders',
         'NCSeaFactoryUpgrades',
         'ncSeaHunterFormBuilders',
+        'NCT2SeaFactoryBuilders',
      
 
         

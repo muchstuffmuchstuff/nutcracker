@@ -71,6 +71,7 @@ BaseBuilderTemplate {
         'NCT1SeaFactoryBuilders',
         'NCSeaFactoryUpgrades',
         'ncSeaHunterFormBuilders',  
+        'NCT2SeaFactoryBuilders',
         # ==== LAND UNIT BUILDERS ==== #
     
         'NCaphibbuilders',
