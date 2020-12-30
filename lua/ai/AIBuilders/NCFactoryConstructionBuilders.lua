@@ -26,6 +26,7 @@ local SIBC = '/lua/editor/SorianInstantBuildConditions.lua'
 local SBC = '/lua/editor/SorianBuildConditions.lua'
 
 local ExtractorToFactoryRatio = 3.2
+local MaxCapFactoryNC = 0.02
 
 
 
@@ -172,11 +173,11 @@ Builder {
             { SIBC, 'HaveLessThanUnitsInCategoryBeingBuilt', { 1, categories.STRUCTURE * categories.TECH1 * categories.FACTORY } },
             { SIBC, 'HaveLessThanUnitsInCategoryBeingBuilt', { 1, categories.STRUCTURE * (categories.TECH2 + categories.TECH3)  * categories.ENERGYPRODUCTION } },
             { IBC, 'BrainNotLowPowerMode', {} },
-            { UCBC, 'FactoryCapCheck', { 'LocationType', 'Air' } },
+          
             { SIBC, 'GreaterThanEconEfficiencyOverTime', { 0.99, 1.1} },
             
           
-            { EBC, 'MassToFactoryRatioBaseCheck', { 'LocationType' } },
+         
 			
         },
         BuilderType = 'Any',
@@ -224,7 +225,7 @@ Builder {
         Priority = 901,
         DelayEqualBuildPlattons = {'Factories', 5},
         BuilderConditions = {
-            { SBC, 'MapGreaterThan', { 3000, 3000 }},
+            { SBC, 'MapGreaterThan', { 2000, 2000 }},
             { UCBC, 'UnitsLessAtLocation', { 'LocationType', 15, categories.AIR * categories.FACTORY }},
             { IBC, 'BrainNotLowPowerMode', {} },
          
@@ -251,7 +252,7 @@ Builder {
         Priority = 961,
         DelayEqualBuildPlattons = {'Factories', 5},
         BuilderConditions = {
-            { SBC, 'MapGreaterThan', { 3000, 3000 }},
+            { SBC, 'MapGreaterThan', { 2000, 2000 }},
      
             { UCBC, 'UnitsLessAtLocation', { 'LocationType', 15, categories.AIR * categories.FACTORY }},
             { IBC, 'BrainNotLowPowerMode', {} },
@@ -271,6 +272,35 @@ Builder {
                 },
                 Location = 'LocationType',
                 
+            }
+        }
+    },
+    Builder {        
+        BuilderName = 'NC income escalation air factory',
+        PlatoonTemplate = 'EngineerBuilderSorian',
+        Priority = 901,
+        DelayEqualBuildPlattons = {'Factories', 5},
+        BuilderConditions = {
+            { SIBC, 'HaveLessThanUnitsInCategoryBeingBuilt', { 1, categories.STRUCTURE * categories.TECH3 * categories.FACTORY * categories.AIR } },
+            { SIBC, 'HaveLessThanUnitsInCategoryBeingBuilt', { 3, categories.STRUCTURE * (categories.TECH2 + categories.TECH3)  * categories.ENERGYPRODUCTION } },
+            { IBC, 'BrainNotLowPowerMode', {} },
+          
+            { EBC, 'GreaterThanEconTrend', { 150, 3000 } }, 
+            { UCBC, 'HaveUnitRatioVersusCap', { MaxCapFactoryNC , '<', categories.STRUCTURE * categories.FACTORY * categories.AIR } },  
+          
+            
+          
+            
+			
+        },
+        BuilderType = 'Any',
+        BuilderData = {
+            Construction = {
+                BuildStructures = {
+                    'T1AirFactory',
+                },
+                Location = 'LocationType',
+                AdjacencyCategory = 'ENERGYPRODUCTION',
             }
         }
     },
@@ -485,15 +515,75 @@ BuilderGroup {
     },
     Builder {
        
-        BuilderName = 'NC Gate Engineer',
+        BuilderName = 'NC Gate Engineer first',
         PlatoonTemplate = 'T3EngineerBuilder',
-        Priority = 850,
+        Priority = 950,
         DelayEqualBuildPlattons = {'Factories', 5},
         BuilderConditions = {
+            { MIBC, 'FactionIndex', {1, 2, 3}},
             { SIBC, 'HaveLessThanUnitsInCategoryBeingBuilt', { 1, categories.STRUCTURE * (categories.TECH2 + categories.TECH3)  * categories.ENERGYPRODUCTION } },
             { UCBC, 'HaveLessThanUnitsInCategoryBeingBuilt', { 1, 'GATE TECH3 STRUCTURE'}},
             { SIBC, 'GreaterThanEconEfficiencyOverTime', { 1.0, 1.1} },
-            { EBC, 'GreaterThanEconStorageCurrent', { 5000, 15000 } },
+            { EBC, 'GreaterThanEconStorageCurrent', { 1000, 15000 } },
+            { UCBC, 'HaveLessThanUnitsWithCategory', { 1, categories.GATE * categories.TECH3 * categories.STRUCTURE}},
+         
+            { IBC, 'BrainNotLowPowerMode', {} },
+         
+            
+        },
+        BuilderType = 'Any',
+        BuilderData = {
+            Construction = {
+                BuildStructures = {
+                    'T3QuantumGate',
+                },
+                Location = 'LocationType',
+                AdjacencyCategory = 'ENERGYPRODUCTION',
+            }
+        }
+    },
+    Builder {
+       
+        BuilderName = 'NC Gate Engineer more',
+        PlatoonTemplate = 'T3EngineerBuilder',
+        Priority = 950,
+        DelayEqualBuildPlattons = {'Factories', 5},
+        BuilderConditions = {
+            { MIBC, 'FactionIndex', {1, 2, 3}},
+            { SIBC, 'HaveLessThanUnitsInCategoryBeingBuilt', { 1, categories.STRUCTURE * (categories.TECH2 + categories.TECH3)  * categories.ENERGYPRODUCTION } },
+            { UCBC, 'HaveLessThanUnitsInCategoryBeingBuilt', { 1, 'GATE TECH3 STRUCTURE'}},
+            { SIBC, 'GreaterThanEconEfficiencyOverTime', { 1.0, 1.1} },
+            { EBC, 'GreaterThanEconStorageCurrent', { 1000, 15000 } },
+            { UCBC, 'HaveGreaterThanUnitsWithCategory', { 0, categories.SUBCOMMANDER}},
+            { UCBC, 'FactoryLessAtLocation', { 'LocationType', 3, 'GATE TECH3 STRUCTURE' }},
+         
+            { IBC, 'BrainNotLowPowerMode', {} },
+         
+            
+        },
+        BuilderType = 'Any',
+        BuilderData = {
+            Construction = {
+                BuildStructures = {
+                    'T3QuantumGate',
+                },
+                Location = 'LocationType',
+                AdjacencyCategory = 'ENERGYPRODUCTION',
+            }
+        }
+    },
+    Builder {
+       
+        BuilderName = 'NC Gate lots of juice',
+        PlatoonTemplate = 'T3EngineerBuilder',
+        Priority = 950,
+        DelayEqualBuildPlattons = {'Factories', 5},
+        BuilderConditions = {
+            { MIBC, 'FactionIndex', {1, 2, 3}},
+            
+            { UCBC, 'HaveLessThanUnitsInCategoryBeingBuilt', { 1, 'GATE TECH3 STRUCTURE'}},
+            { SIBC, 'GreaterThanEconEfficiencyOverTime', { 0.90, 1.1} },
+            { EBC, 'GreaterThanEconStorageCurrent', { 5000, 10000 } },
             { UCBC, 'FactoryLessAtLocation', { 'LocationType', 3, 'GATE TECH3 STRUCTURE' }},
          
             { IBC, 'BrainNotLowPowerMode', {} },

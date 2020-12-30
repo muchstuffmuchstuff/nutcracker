@@ -89,9 +89,10 @@ BuilderGroup {
 			SearchRadius = 6000,
             PrioritizedCategories = {                
 				'STRUCTURE DEFENSE ANTINAVY TECH2',
-				'STRUCTURE DEFENSE ANTINAVY TECH1',
+                'STRUCTURE DEFENSE ANTINAVY TECH1',
+                'STRUCTURE NAVAL',
 				'MOBILE NAVAL',
-				'STRUCTURE NAVAL',
+				
             },
         },
     },
@@ -144,7 +145,7 @@ BuilderGroup {
     Builder {
         BuilderName = 'NC T2 Naval Destroyer',
         PlatoonTemplate = 'T2SeaDestroyer',
-        Priority = 730,
+        Priority = 790,
         InstanceCount = 50,
         BuilderType = 'Sea',
         BuilderConditions = {

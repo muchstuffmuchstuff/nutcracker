@@ -48,3 +48,10 @@ function HaveGreaterThanUnitsWithCategory(aiBrain, numReq, category, idleReq)
     end
     return false
 end
+
+function HaveUnitRatioVersusCapNC(aiBrain, ratio, compareType, categoryOwn)
+    local numOwnUnits = aiBrain:GetCurrentUnits(categoryOwn)
+    local cap = GetArmyUnitCap(aiBrain:GetArmyIndex())
+    --LOG(aiBrain:GetArmyIndex()..' CompareBody {World} ( '..numOwnUnits..' '..compareType..' '..cap..' ) -- ['..ratio..'] -- '..repr(DEBUG)..' :: '..(numOwnUnits / cap)..' '..compareType..' '..cap..' return '..repr(CompareBody(numOwnUnits / cap, ratio, compareType)))
+    return CompareBody(numOwnUnits / cap, ratio, compareType)
+end

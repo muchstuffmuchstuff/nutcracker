@@ -3,7 +3,7 @@
 BaseBuilderTemplate {
     BaseTemplateName = 'NCNavalExpansionLarge',
     Builders = {
-
+      
         'NCT2NavalDefenses',
         'NCNaval Factories',
         'NCT1SeaFactoryBuilders',
@@ -68,7 +68,7 @@ BaseBuilderTemplate {
         FactoryCount = {
             Land = 0,
             Air = 0,
-            Sea = 6,
+            Sea = 3,
             Gate = 0,
         },
         MassToFactoryValues = {

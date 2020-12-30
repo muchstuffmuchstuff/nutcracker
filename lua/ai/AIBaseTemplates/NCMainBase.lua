@@ -1,11 +1,52 @@
 #### Nut Cracker Main Base
 ---muchstuff
 
+ --randomizer numbers
+ --1 teleport
+ --2 land experimental
+ --3 nuke
+ --4 arty
+ --5 t1 bomber spam
+ --6 air experimental
+ --7 landrush
+
+
 BaseBuilderTemplate {
     BaseTemplateName = 'NutCrackerMainBase',
     Builders = {
 
-    
+        'NC rambo behavior',        
+
+--starting acu for coinflip
+'NC Ranzomizer Strategy Starting Build',
+
+        
+----landrush
+'NCTtankandartyspamcoinflip',
+'NClandfactoryrushcoinflip',
+
+---COINFLIP STRATEGIES MAIN BASE --- there are more in expansion
+'NCquantumgatecoinflip',
+'NCeconomicupgradesfortelecoinflip',
+'NCsubcommander_teleport_coinflip',
+'NC Tele SCU Strategy',
+
+
+
+'NCt1bombercoinflip',
+--
+'ncNukecoinflip',
+'NC nuke rush landupgrades',
+
+--
+'NCairexpcoinflipbehavior',
+'NCairexpcoinflip',
+--
+'NClandexpcoinflipbehavior',
+'NClandexpcoinflip',
+
+
+
 
         # ==== ECONOMY ==== #
         'NCEngineerMassBuildersLowerPri',
@@ -67,11 +108,11 @@ BaseBuilderTemplate {
         # ==== DEFENSES ==== #
       
 		'NCT1BaseDefenses',
-		'NCT2BaseDefenses',
+		
 		'NCT3BaseDefenses',
         'NCt4airemergencyreaction',
-		'NCT2PerimeterDefenses',
-		'NCT3PerimeterDefenses',
+		
+		
         'NCTMLandTMDantinavy',
         'NCemergencybuildersearlygame',
 		'NCT2Artillerybehavior',
@@ -90,6 +131,7 @@ BaseBuilderTemplate {
         'NCSeaFactoryUpgrades',
         'ncSeaHunterFormBuilders',
         'NCT2SeaFactoryBuilders',
+        
      
 
         
@@ -194,7 +236,7 @@ BaseBuilderTemplate {
         FactoryCount = {
             Land = 8,
             Air = 10,
-            Sea = 4,
+            Sea = 3,
             Gate = 5,
         },
         MassToFactoryValues = {

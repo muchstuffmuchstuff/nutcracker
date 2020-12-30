@@ -5,7 +5,23 @@ BaseBuilderTemplate {
     BaseTemplateName = 'NutCrackerExpansionBase',
     Builders = {
 
-  
+        'NC rambo behavior',
+  ----COIN FLIP STRATEGIES
+----landrush
+'NCTtankandartyspamcoinflip',
+'NClandfactoryrushcoinflip',
+
+---teleport sub commanders
+  'NCquantumgatecoinflip',
+  'NCeconomicupgradesfortelecoinflip',
+  'NCsubcommander_teleport_coinflip',
+  'NC Tele SCU Strategy',
+
+---arty rush
+  'NCartycoinflip',
+  ---t1 bomber rush
+  'NCt1bombercoinflip',
+
 
         # ==== ECONOMY ==== #
        
@@ -51,11 +67,11 @@ BaseBuilderTemplate {
         # ==== DEFENSES ==== #
        
 		'NCT1BaseDefenses',
-		'NCT2BaseDefenses',
+	
 		'NCT3BaseDefenses',
         'NCt4airemergencyreaction',
-		'NCT2PerimeterDefenses',
-		'NCT3PerimeterDefenses',
+		
+		
         'NCTMLandTMDantinavy',
         'NCemergencybuildersearlygame',
 		'NCT2Artillerybehavior',
@@ -72,6 +88,7 @@ BaseBuilderTemplate {
         'NCSeaFactoryUpgrades',
         'ncSeaHunterFormBuilders',  
         'NCT2SeaFactoryBuilders',
+      
         # ==== LAND UNIT BUILDERS ==== #
     
         'NCaphibbuilders',
@@ -169,7 +186,7 @@ BaseBuilderTemplate {
         FactoryCount = {
             Land = 8,
             Air = 10,
-            Sea = 6,
+            Sea = 3,
             Gate = 0, #1,
         },
         MassToFactoryValues = {

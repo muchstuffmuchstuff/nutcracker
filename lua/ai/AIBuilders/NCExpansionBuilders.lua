@@ -187,7 +187,107 @@ BuilderGroup {
             },
             NeedGuard = true,
         }
-    },       
+    }, 
+    Builder {
+        BuilderName = 'NC T1VacantStartingAreaEngineer_islandmap giant map',
+        PlatoonTemplate = 'EngineerBuilderSorian',
+        Priority = 999,
+        InstanceCount = 2,
+       
+        BuilderConditions = {
+            { SBC, 'IsIslandMap', { true } },
+
+            { MIBC, 'GreaterThanGameTime', { 250} },
+            { SBC, 'MapGreaterThan', { 2000, 2000 }},
+            { UCBC, 'StartLocationNeedsEngineer', { 'LocationType', 1000, -1000, 100, 0, 'StructuresNotMex' } },
+          
+          
+			{ SIBC, 'LessThanExpansionBases', { } },
+			{ SBC, 'NoRushTimeCheck', { 0 }},
+          
+      
+          
+            
+        },
+        BuilderType = 'Any',
+        BuilderData = {
+			RequireTransport = true,
+            Construction = {
+                BuildClose = false,
+                BaseTemplate = ExBaseTmpl,
+                ExpansionBase = true,
+                NearMarkerType = 'Start Location',
+                LocationRadius = 1000,
+                LocationType = 'LocationType',
+                ThreatMin = -1000,
+                ThreatMax = 100,
+                ThreatRings = 0,
+                ThreatType = 'StructuresNotMex',
+                BuildStructures = {                    
+                    'T1GroundDefense',
+                    'T1AirFactory',
+                    'T1GroundDefense',
+                    'T1LandFactory',
+                    'T1AirFactory',
+                    'T1AirFactory',
+                   
+
+					'T1Radar',
+                }
+            },
+            NeedGuard = true,
+        }
+    },  
+    Builder {
+        BuilderName = 'NC T1VacantStartingAreaEngineer_islandmap giant map 270 time',
+        PlatoonTemplate = 'EngineerBuilderSorian',
+        Priority = 999,
+        InstanceCount = 2,
+       
+        BuilderConditions = {
+            { SBC, 'IsIslandMap', { true } },
+
+            { MIBC, 'GreaterThanGameTime', { 270} },
+            { SBC, 'MapGreaterThan', { 2000, 2000 }},
+            { UCBC, 'StartLocationNeedsEngineer', { 'LocationType', 1000, -1000, 100, 0, 'StructuresNotMex' } },
+          
+          
+			{ SIBC, 'LessThanExpansionBases', { } },
+			{ SBC, 'NoRushTimeCheck', { 0 }},
+          
+      
+          
+            
+        },
+        BuilderType = 'Any',
+        BuilderData = {
+			RequireTransport = true,
+            Construction = {
+                BuildClose = false,
+                BaseTemplate = ExBaseTmpl,
+                ExpansionBase = true,
+                NearMarkerType = 'Start Location',
+                LocationRadius = 1000,
+                LocationType = 'LocationType',
+                ThreatMin = -1000,
+                ThreatMax = 100,
+                ThreatRings = 0,
+                ThreatType = 'StructuresNotMex',
+                BuildStructures = {                    
+                    'T1GroundDefense',
+                    'T1AirFactory',
+                    'T1GroundDefense',
+                    'T1LandFactory',
+                    'T1AirFactory',
+                    'T1AirFactory',
+                   
+
+					'T1Radar',
+                }
+            },
+            NeedGuard = true,
+        }
+    },          
     Builder {
         BuilderName = 'NC T2VacantStartingAreaEngineer_islandmap',
         PlatoonTemplate = 'T2EngineerBuilderSorian',

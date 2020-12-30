@@ -82,13 +82,32 @@ Builder {
     PlatoonTemplate = 'NC RAS',
     Priority = 950,
     BuilderConditions = {
+    
         { MIBC, 'GreaterThanGameTime', { 1200 } },
+        { EBC, 'GreaterThanEconStorageCurrent', { 500, 10000 } },
+       
+        { EBC, 'GreaterThanEconTrend', { 0.0, 0.0 } }, 
+       
+      
+        { UCBC, 'HaveLessThanUnitsWithCategory', { 60, categories.SUBCOMMANDER } },
+        { UCBC, 'HaveLessThanUnitsInCategoryBeingBuilt', { 1, categories.SUBCOMMANDER }},
+        
+    },
+    BuilderType = 'Gate',
+},
+Builder {
+    BuilderName = 'NC lots of RAS lots of juice',
+    PlatoonTemplate = 'NC RAS',
+    Priority = 951,
+    BuilderConditions = {
+    
+        { MIBC, 'GreaterThanGameTime', { 1500 } },
         { EBC, 'GreaterThanEconStorageCurrent', { 5000, 10000 } },
         { EBC, 'GreaterThanEconTrend', { 0.0, 0.0 } }, 
        
       
-        { UCBC, 'HaveLessThanUnitsWithCategory', { 60, categories.RASPRESET } },
-        { UCBC, 'HaveLessThanUnitsInCategoryBeingBuilt', { 1, categories.ENGINEERPRESET + categories.RASPRESET }},
+        { UCBC, 'HaveLessThanUnitsWithCategory', { 60, categories.SUBCOMMANDER } },
+        { UCBC, 'HaveLessThanUnitsInCategoryBeingBuilt', { 3, categories.SUBCOMMANDER }},
         
     },
     BuilderType = 'Gate',
@@ -141,7 +160,7 @@ BuilderGroup {
 		PlatoonAddPlans = {'PlatoonCallForHelpAISorian', 'DistressResponseAISorian'},
         PlatoonAddBehaviors = { 'AirLandToggleSorian' },
         Priority = 102,
-        InstanceCount = 8,
+        InstanceCount = 4,
         BuilderConditions = { 
         
                         { UCBC, 'PoolGreaterAtLocation', { 'LocationType', 0, categories.MOBILE * categories.LAND - categories.ENGINEER - categories.EXPERIMENTAL } },
@@ -168,7 +187,7 @@ BuilderGroup {
 		PlatoonAddPlans = {'PlatoonCallForHelpAISorian', 'DistressResponseAISorian'},
         PlatoonAddBehaviors = { 'AirLandToggleSorian' },
         Priority = 102,
-        InstanceCount = 8,
+        InstanceCount = 4,
         BuilderConditions = { 
         
                         { UCBC, 'PoolGreaterAtLocation', { 'LocationType', 0, categories.MOBILE * categories.LAND * categories.TECH3 - categories.ENGINEER - categories.EXPERIMENTAL } },
@@ -197,26 +216,26 @@ BuilderGroup {
         Priority = 10,
         InstanceCount = 50,
         BuilderConditions = { 
-        
+            
             { MIBC, 'GreaterThanGameTime', { 600} },
                         { UCBC, 'PoolGreaterAtLocation', { 'LocationType', 5, categories.MOBILE * categories.LAND - categories.ENGINEER - categories.EXPERIMENTAL } },
 			{ SBC, 'NoRushTimeCheck', { 0 }},
         },
         BuilderData = {
         
-          
+            TargetSearchCategory = categories.MOBILE * categories.LAND,
+            MoveToCategories = {                                               
+                categories.EXPERIMENTAL * categories.LAND,
+                categories.MOBILE * categories.LAND,
+            },
             SearchRadius = 6000,
 			ThreatSupport = 40,
-            PrioritizedCategories = {
-
-
-            'EXPERIMENTAL LAND',
-                'ALLUNITS',
-            },
+            
         },    
      
         BuilderType = 'Any',
     },
+    
     Builder {
         BuilderName = 'NCengihuntlandunits_SMALL',
         PlatoonTemplate = 'StrikeForceSmallNC',
@@ -232,20 +251,14 @@ BuilderGroup {
 			{ SBC, 'NoRushTimeCheck', { 0 }},
         },
         BuilderData = {
-        
-          
-                        SearchRadius = 6000,
-			ThreatSupport = 5,
-            PrioritizedCategories = {
-
- 'MOBILE LAND',
-
-               
-                
-                'COMMAND',
-            
-                'ALLUNITS',
+            TargetSearchCategory = categories.MOBILE * categories.LAND,
+            MoveToCategories = {                                               
+                categories.EXPERIMENTAL * categories.LAND,
+                categories.MOBILE * categories.LAND,
             },
+            SearchRadius = 6000,
+			ThreatSupport = 40,
+           
         },    
        
         BuilderType = 'Any',
@@ -265,20 +278,14 @@ BuilderGroup {
 			{ SBC, 'NoRushTimeCheck', { 0 }},
         },
         BuilderData = {
-        
-          
-                        SearchRadius = 6000,
-			ThreatSupport = 5,
-            PrioritizedCategories = {
-
- 'MOBILE LAND',
-
-               
-                
-                'COMMAND',
-            
-                'ALLUNITS',
+            TargetSearchCategory = categories.MOBILE * categories.LAND,
+            MoveToCategories = {                                               
+                categories.EXPERIMENTAL * categories.LAND,
+                categories.MOBILE * categories.LAND,
             },
+            SearchRadius = 6000,
+			ThreatSupport = 40,
+            
         },    
     
         BuilderType = 'Any',
@@ -302,17 +309,14 @@ BuilderGroup {
 			{ SBC, 'NoRushTimeCheck', { 0 }},
         },
         BuilderData = {
-            
-                        SearchRadius = 6000,
-			ThreatSupport = 40,
-            PrioritizedCategories = {
-'MOBILE LAND',
-          
-                
-                'COMMAND',
-            
-                'ALLUNITS',
+            TargetSearchCategory = categories.MOBILE * categories.LAND,
+            MoveToCategories = {                                               
+                categories.EXPERIMENTAL * categories.LAND,
+                categories.MOBILE * categories.LAND,
             },
+            SearchRadius = 6000,
+			ThreatSupport = 40,
+          
         },    
       
         BuilderType = 'Any',
@@ -492,7 +496,7 @@ BuilderGroup {
     Builder {
         BuilderName = 'NC T1 Tank Enemy Nearby',
         PlatoonTemplate = 'T1LandDFTank',
-        Priority = 750,
+        Priority = 710,
 InstanceCount = 5,
         BuilderConditions = {
             { SBC, 'MapLessThan', { 1000, 1000 }},
@@ -513,7 +517,7 @@ InstanceCount = 5,
     Builder {
         BuilderName = 'NC T1 Mortar  rapidattack',
         PlatoonTemplate = 'T1LandArtillery',
-        Priority = 650,
+        Priority = 710,
         InstanceCount = 5,
         BuilderConditions = {
             { SBC, 'MapLessThan', { 1000, 1000 }},
@@ -652,7 +656,7 @@ BuilderGroup {
     Builder {
         BuilderName = 'NC T2 Tank - Tech 2 big',
         PlatoonTemplate = 'T2LandDFTank',
-        Priority = 750,
+        Priority = 720,
         BuilderType = 'Land',
         BuilderConditions = {
             { SBC, 'MapGreaterThan', { 1000, 1000 }},
@@ -671,7 +675,7 @@ BuilderGroup {
     Builder {
         BuilderName = 'NC T2 MML big',
         PlatoonTemplate = 'T2LandArtillery',
-        Priority = 750,
+        Priority = 720,
         InstanceCount = 3,
         BuilderType = 'Land',
         BuilderConditions = {
@@ -693,7 +697,7 @@ BuilderGroup {
     Builder {
         BuilderName = 'NC T2AttackTank - Tech 2 big',
         PlatoonTemplate = 'T2AttackTankSorian',
-        Priority = 750,
+        Priority = 720,
         BuilderType = 'Land',
         BuilderConditions = {
             { SBC, 'MapGreaterThan', { 1000, 1000 }},
@@ -722,7 +726,7 @@ BuilderGroup {
     Builder {
         BuilderName = 'NC T2 Tank Enemy Nearby',
         PlatoonTemplate = 'T2AttackTankSorian',
-        Priority = 925,
+        Priority = 825,
 InstanceCount = 20,
         BuilderConditions = {
             { SBC, 'MapLessThan', { 1000, 1000 }},
@@ -742,7 +746,7 @@ InstanceCount = 20,
     Builder {
         BuilderName = 'NC T2 Tank Enemy Nearby big',
         PlatoonTemplate = 'T2AttackTankSorian',
-        Priority = 925,
+        Priority = 825,
 InstanceCount = 20,
         BuilderConditions = {
             { SBC, 'MapGreaterThan', { 1000, 1000 }},
@@ -773,7 +777,7 @@ BuilderGroup {
     Builder {
         BuilderName = 'NC T3 Siege Assault Bot',
         PlatoonTemplate = 'T3LandBot',
-        Priority = 701,
+        Priority = 740,
         BuilderType = 'Land',
         BuilderConditions = {
             { MIBC, 'GreaterThanGameTime', { 1200 } },
@@ -791,7 +795,7 @@ BuilderGroup {
     Builder {
         BuilderName = 'NC T3 Mobile Heavy Artillery',
         PlatoonTemplate = 'T3LandArtillery',
-        Priority = 701,
+        Priority = 740,
 
         BuilderType = 'Land',
         BuilderConditions = {
@@ -810,7 +814,7 @@ BuilderGroup {
     Builder {
         BuilderName = 'NC T3 Mobile Heavy Artillery - tough def',
         PlatoonTemplate = 'T3LandArtillery',
-        Priority = 701,
+        Priority = 740,
         
         BuilderType = 'Land',
         BuilderConditions = {
@@ -830,7 +834,7 @@ BuilderGroup {
     Builder {
         BuilderName = 'NC T3SniperBots',
         PlatoonTemplate = 'T3SniperBots',
-        Priority = 701,
+        Priority = 740,
         BuilderType = 'Land',
         BuilderConditions = {
             { MIBC, 'GreaterThanGameTime', { 1200 } },
@@ -847,7 +851,7 @@ BuilderGroup {
     Builder {
         BuilderName = 'NC T3ArmoredAssault',
         PlatoonTemplate = 'T3ArmoredAssaultSorian',
-        Priority = 701,
+        Priority = 740,
         BuilderType = 'Land',
         BuilderConditions = {
             { MIBC, 'GreaterThanGameTime', { 1200 } },
@@ -864,7 +868,7 @@ BuilderGroup {
     Builder {
         BuilderName = 'NC T3MobileMissile',
         PlatoonTemplate = 'T3MobileMissile',
-        Priority = 700,
+        Priority = 740,
         BuilderType = 'Land',
         BuilderConditions = {
             { MIBC, 'GreaterThanGameTime', { 1200 } },
@@ -883,7 +887,7 @@ BuilderGroup {
     Builder {
         BuilderName = 'NC T3 Siege Assault Bot big',
         PlatoonTemplate = 'T3LandBot',
-        Priority = 701,
+        Priority = 740,
         BuilderType = 'Land',
         BuilderConditions = {
             { MIBC, 'GreaterThanGameTime', { 1200 } },
@@ -901,7 +905,7 @@ BuilderGroup {
     Builder {
         BuilderName = 'NC T3 Mobile Heavy Artillery big',
         PlatoonTemplate = 'T3LandArtillery',
-        Priority = 701,
+        Priority = 740,
 
         BuilderType = 'Land',
         BuilderConditions = {
@@ -920,7 +924,7 @@ BuilderGroup {
     Builder {
         BuilderName = 'NC T3 Mobile Heavy Artillery - tough def big',
         PlatoonTemplate = 'T3LandArtillery',
-        Priority = 701,
+        Priority = 740,
         
         BuilderType = 'Land',
         BuilderConditions = {
@@ -941,7 +945,7 @@ BuilderGroup {
     Builder {
         BuilderName = 'NC T3SniperBots big',
         PlatoonTemplate = 'T3SniperBots',
-        Priority = 701,
+        Priority = 740,
         BuilderType = 'Land',
         BuilderConditions = {
             { MIBC, 'GreaterThanGameTime', { 1200 } },
@@ -958,7 +962,7 @@ BuilderGroup {
     Builder {
         BuilderName = 'NC T3ArmoredAssault big',
         PlatoonTemplate = 'T3ArmoredAssaultSorian',
-        Priority = 701,
+        Priority = 740,
         BuilderType = 'Land',
         BuilderConditions = {
             { MIBC, 'GreaterThanGameTime', { 1200 } },
@@ -975,7 +979,7 @@ BuilderGroup {
     Builder {
         BuilderName = 'NC T3MobileMissile big',
         PlatoonTemplate = 'T3MobileMissile',
-        Priority = 700,
+        Priority = 740,
         BuilderType = 'Land',
         BuilderConditions = {
             { MIBC, 'GreaterThanGameTime', { 1200 } },
@@ -1049,7 +1053,7 @@ BuilderGroup {
     Builder {
         BuilderName = 'NC T1 land aphib',
         PlatoonTemplate = 'T1aphib',
-        Priority = 755,
+        Priority = 700,
         InstanceCount = 5,
         BuilderConditions = {
            
@@ -1069,7 +1073,7 @@ BuilderGroup {
     Builder {
         BuilderName = 'NC T2 land aphib',
         PlatoonTemplate = 'T2aphib',
-        Priority = 756,
+        Priority = 720,
         InstanceCount = 5,
         BuilderConditions = {
             
@@ -1089,7 +1093,7 @@ BuilderGroup {
     Builder {
         BuilderName = 'NC T3 land aphib',
         PlatoonTemplate = 'T3aphib',
-        Priority = 757,
+        Priority = 750,
         InstanceCount = 5,
         BuilderConditions = {
     

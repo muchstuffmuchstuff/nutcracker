@@ -196,9 +196,17 @@ PlatoonTemplate {
 
 --Land
 
+PlatoonTemplate {  ----modified to fit subcommanders
+    Name = 'StrikeForceSmallmodifiedNC',
+    Plan = 'LandAttackNC',
+    GlobalSquads = {
+        { categories.MOBILE * categories.LAND + categories.SUBCOMMANDER  - categories.EXPERIMENTAL - categories.ENGINEER - categories.xsl0402, 1, 5, 'Attack', 'GrowthFormation' }
+    },
+}
+
 PlatoonTemplate {
     Name = 'StrikeForceSmallNC',
-    Plan = 'AttackForceAISorian',
+    Plan = 'LandAttackNC',
     GlobalSquads = {
         { categories.MOBILE * categories.LAND - categories.EXPERIMENTAL - categories.ENGINEER - categories.xsl0402, 1, 5, 'Attack', 'GrowthFormation' }
     },
@@ -206,7 +214,7 @@ PlatoonTemplate {
 
 PlatoonTemplate {
     Name = 'StrikeForceMediumNC',
-    Plan = 'AttackForceAISorian',
+    Plan = 'LandAttackNC',
     GlobalSquads = {
         { categories.MOBILE * categories.LAND - categories.EXPERIMENTAL - categories.ENGINEER - categories.xsl0402, 5, 10, 'Attack', 'GrowthFormation' }
     },
@@ -214,7 +222,7 @@ PlatoonTemplate {
 
 PlatoonTemplate {
     Name = 'StrikeForceLargeNC',
-    Plan = 'AttackForceAISorian',
+    Plan = 'LandAttackNC',
     GlobalSquads = {
         { categories.MOBILE * categories.LAND - categories.EXPERIMENTAL - categories.ENGINEER - categories.xsl0402, 10, 30, 'Attack', 'GrowthFormation' }
     },
@@ -300,7 +308,13 @@ PlatoonTemplate {
     },
 }
 
-
+PlatoonTemplate {
+    Name = 'NC ras global preset',
+    Plan = 'LandAttackNC',
+    GlobalSquads = {
+        { categories.RASPRESET , 1, 1, 'support', 'none' }
+    },
+}
 PlatoonTemplate {
     Name = 'NC RAS',
     FactionSquads = {
@@ -317,7 +331,64 @@ PlatoonTemplate {
     }
 }
 
-----FACTION TEMPLATES
+
+
+    PlatoonTemplate {
+        Name = 'NC subcommander huge teleport',
+        Plan = 'SACUTeleportAINC',
+        GlobalSquads = {
+            { categories.SUBCOMMANDER, 1, 1, 'Attack', 'None' }
+        },        
+    }
+PlatoonTemplate {
+    Name = 'NC tele ready',
+    FactionSquads = {
+     
+    
+        Aeon = {
+            { 'ual0301', 1, 1, 'Attack', 'None' }
+        },
+        Seraphim = {
+            { 'xsl0301', 1, 1, 'Attack', 'None' }
+        },
+        
+      
+    }
+}
+
+PlatoonTemplate {
+    Name = 'NC Rambo',
+    Plan = 'LandAttackNC',
+    GlobalSquads = {
+        { categories.SUBCOMMANDER, 1, 1, 'Attack', 'None' }
+    },        
+}
+
+---subcommander rambo attack
+
+PlatoonTemplate {
+    Name = 'NC rambo preset',
+    FactionSquads = {
+        UEF = {
+            { 'uel0301_RAMBO', 1, 1, 'Attack', 'None' }
+        },
+        Aeon = {
+            { 'ual0301_RAMBO', 1, 1, 'Attack', 'None' }
+        },
+        Cybran = {
+            { 'url0301_RAMBO', 1, 1, 'Attack', 'None' }
+        },
+        Seraphim = {
+            { 'xsl0301_RAMBO', 1, 1, 'Attack', 'none' }
+        },
+      
+    }
+}
+
+---subcommander template for tele
+
+
+----land FACTION TEMPLATES
 
 PlatoonTemplate {
     Name = 'T1aphib',
@@ -367,3 +438,4 @@ PlatoonTemplate {
         },
     }
 }
+
