@@ -23,6 +23,10 @@ local SAI = '/lua/ScenarioPlatoonAI.lua'
 local PlatoonFile = '/lua/platoon.lua'
 local SBC = '/lua/editor/SorianBuildConditions.lua'
 local SIBC = '/lua/editor/SorianInstantBuildConditions.lua'
+local CF = '/mods/nutcracker/hook/lua/coinflip.lua'
+local WRC = '/mods/nutcracker/hook/lua/weaponsrangeconditions.lua'
+local EN = '/mods/nutcracker/hook/lua/economicnumbers.lua'
+local AIUtils = import('/lua/ai/aiutilities.lua')
 
 
 -----island map intial builds

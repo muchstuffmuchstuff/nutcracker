@@ -23,14 +23,14 @@ local EN = '/mods/nutcracker/hook/lua/economicnumbers.lua'
 BuilderGroup {
     BuilderGroupName = 'NC Initial ACU Builders',
     BuildersType = 'EngineerBuilder',
-    
-   
     Builder {
-        BuilderName = 'NC No randomizer',
+        BuilderName = 'NC No randomizer cannot path T1 enabled uef',
         PlatoonAddBehaviors = { 'CommanderBehaviorSorian', },
         PlatoonTemplate = 'CommanderBuilderSorian',
         Priority = 1000,
         BuilderConditions = {
+            { MIBC, 'FactionIndex', {1} },
+            { WRC, 'CanPathToCurrentEnemyNC', { 'LocationType', false } }, 
             { SBC, 'MapGreaterThan', { 1000, 1000 }},
             { SBC, 'MapLessThan', { 2000, 2000 }},
         
@@ -55,10 +55,8 @@ BuilderGroup {
 'T1EnergyProduction',
 'T1LandFactory',
 'T1AADefense',
-'T1GroundDefense',
 'T1EnergyProduction',
 'T1EnergyProduction',
-'T1AirFactory',
 'T1EnergyProduction',
 'T1EnergyProduction',
 'T1EnergyProduction',
@@ -66,6 +64,136 @@ BuilderGroup {
 'T1EnergyProduction',
 'T1EnergyProduction',
 'T1LandFactory',
+'T1EnergyProduction',
+'T1EnergyProduction',
+'T1EnergyProduction',
+'T1EnergyProduction',
+'T1LandFactory',
+'T1EnergyProduction',
+'T1EnergyProduction',
+'T1EnergyProduction',
+'T1EnergyProduction',
+'T1AirFactory',
+
+
+
+					
+                }
+            }
+        }
+    },
+   
+    Builder {
+        BuilderName = 'NC No randomizer cannot path T1 enabled',
+        PlatoonAddBehaviors = { 'CommanderBehaviorSorian', },
+        PlatoonTemplate = 'CommanderBuilderSorian',
+        Priority = 1000,
+        BuilderConditions = {
+            { MIBC, 'FactionIndex', {2,3,4} },
+            { WRC, 'CanPathToCurrentEnemyNC', { 'LocationType', false } }, 
+            { SBC, 'MapGreaterThan', { 1000, 1000 }},
+            { SBC, 'MapLessThan', { 2000, 2000 }},
+        
+                { IBC, 'NotPreBuilt', {}},
+            },
+        InstantCheck = true,
+        BuilderType = 'Any',
+        PlatoonAddFunctions = { {SAI, 'BuildOnce'}, },
+        BuilderData = {
+            Construction = {
+                BuildStructures = {
+                    'T1LandFactory',
+					'T1EnergyProduction',
+                    'T1EnergyProduction',
+					#'T1Resource',
+                    'T1EnergyProduction',
+                    'T1EnergyProduction',
+					'T1EnergyProduction',
+					'T1EnergyProduction',
+                    'T1AirFactory',
+'T1AADefense',
+'T1EnergyProduction',
+'T1LandFactory',
+'T1AADefense',
+'T1EnergyProduction',
+'T1EnergyProduction',
+'T1EnergyProduction',
+'T1EnergyProduction',
+'T1EnergyProduction',
+'T1EnergyProduction',
+'T1EnergyProduction',
+'T1EnergyProduction',
+'T1LandFactory',
+'T1EnergyProduction',
+'T1EnergyProduction',
+'T1EnergyProduction',
+'T1EnergyProduction',
+'T1LandFactory',
+'T1EnergyProduction',
+'T1EnergyProduction',
+'T1EnergyProduction',
+'T1EnergyProduction',
+'T1AirFactory',
+
+
+
+					
+                }
+            }
+        }
+    },
+    Builder {
+        BuilderName = 'NC No randomizer can path',
+        PlatoonAddBehaviors = { 'CommanderBehaviorSorian', },
+        PlatoonTemplate = 'CommanderBuilderSorian',
+        Priority = 1000,
+        BuilderConditions = {
+            { WRC, 'CanPathToCurrentEnemyNC', { 'LocationType', true } }, 
+            { SBC, 'MapGreaterThan', { 1000, 1000 }},
+            { SBC, 'MapLessThan', { 2000, 2000 }},
+        
+                { IBC, 'NotPreBuilt', {}},
+            },
+        InstantCheck = true,
+        BuilderType = 'Any',
+        PlatoonAddFunctions = { {SAI, 'BuildOnce'}, },
+        BuilderData = {
+            Construction = {
+                BuildStructures = {
+                    'T1LandFactory',
+					'T1EnergyProduction',
+                    'T1EnergyProduction',
+					#'T1Resource',
+                    'T1EnergyProduction',
+                    'T1EnergyProduction',
+					'T1EnergyProduction',
+					'T1EnergyProduction',
+                    'T1AirFactory',
+'T1AADefense',
+'T1EnergyProduction',
+'T1LandFactory',
+'T1AADefense',
+'T1EnergyProduction',
+'T1EnergyProduction',
+'T1EnergyProduction',
+'T1EnergyProduction',
+'T1EnergyProduction',
+'T1EnergyProduction',
+'T1EnergyProduction',
+'T1EnergyProduction',
+'T1LandFactory',
+'T1EnergyProduction',
+'T1EnergyProduction',
+'T1EnergyProduction',
+'T1EnergyProduction',
+'T1LandFactory',
+'T1EnergyProduction',
+'T1EnergyProduction',
+'T1EnergyProduction',
+'T1EnergyProduction',
+'T1AirFactory',
+
+
 
 					
                 }
@@ -90,7 +218,8 @@ BuilderGroup {
         BuilderData = {
             Construction = {
                 BuildStructures = {
-                    'T1LandFactory',
+                    'T1AirFactory',
+                  
 					'T1EnergyProduction',
                     'T1EnergyProduction',
 					#'T1Resource',
@@ -98,7 +227,7 @@ BuilderGroup {
                     'T1EnergyProduction',
 					'T1EnergyProduction',
 					'T1EnergyProduction',
-                    'T1AirFactory',
+                   
 
 'T1EnergyProduction',
 
@@ -107,8 +236,10 @@ BuilderGroup {
 'T1EnergyProduction',
 'T1EnergyProduction',
 'T1AirFactory',
+
 'T1EnergyProduction',
 'T1EnergyProduction',
+'T1LandFactory',
 'T1EnergyProduction',
 'T1EnergyProduction',
 'T1EnergyProduction',
@@ -200,7 +331,7 @@ BuilderGroup {
     BuilderGroupName = 'NC Ranzomizer Strategy Starting Build',
     BuildersType = 'EngineerBuilder',
     Builder {
-        BuilderName = 'NC big map RAMBO',
+        BuilderName = 'NC big map t1bomber spam',
         PlatoonAddBehaviors = { 'CommanderBehaviorSorian', },
         PlatoonTemplate = 'CommanderBuilderSorian',
         Priority = 1000,
@@ -245,51 +376,7 @@ BuilderGroup {
             }
         }
     },
-        Builder {
-            BuilderName = 'NC small map rambo',
-            PlatoonAddBehaviors = { 'CommanderBehaviorSorian', },
-            PlatoonTemplate = 'CommanderBuilderSorian',
-            Priority = 1000,
-            BuilderConditions = {
-                { SBC, 'MapLessThan', { 1000, 1000 }},
-                { CF, 'StrategyRandomizer', {1 } },
-                    { IBC, 'NotPreBuilt', {}},
-                },
-            InstantCheck = true,
-            BuilderType = 'Any',
-            PlatoonAddFunctions = { {SAI, 'BuildOnce'}, },
-            BuilderData = {
-                Construction = {
-                    BuildStructures = {
-                        'T1LandFactory',
-                        'T1EnergyProduction',
-                        'T1EnergyProduction',
-                        #'T1Resource',
-                        'T1EnergyProduction',
-                        'T1EnergyProduction',
-                        'T1EnergyProduction',
-                        'T1EnergyProduction',
-                        
     
-    'T1EnergyProduction',
-    'T1LandFactory',
-    'T1AADefense',
-    
-    'T1EnergyProduction',
-    'T1EnergyProduction',
-    
-    'T1EnergyProduction',
-    'T1EnergyProduction',
-    'T1EnergyProduction',
-    'T1EnergyProduction',
-    'T1EnergyProduction',
-    'T1EnergyProduction',
-        
-                        
-                    }
-                }
-            }
-        },
         Builder {
             BuilderName = 'NC big map landexprush',
             PlatoonAddBehaviors = { 'CommanderBehaviorSorian', },
@@ -878,7 +965,7 @@ Builder {
     Priority = 1000,
     BuilderConditions = {
         { SBC, 'MapGreaterThan', { 1000, 1000 }},
-        { CF, 'StrategyRandomizer', {8 } },
+        { CF, 'StrategyRandomizer', {22222 } },
             { IBC, 'NotPreBuilt', {}},
         },
     InstantCheck = true,
@@ -924,7 +1011,7 @@ Builder {
         Priority = 1000,
         BuilderConditions = {
             { SBC, 'MapLessThan', { 1000, 1000 }},
-            { CF, 'StrategyRandomizer', {8 } },
+            { CF, 'StrategyRandomizer', {22222} },
                 { IBC, 'NotPreBuilt', {}},
             },
         InstantCheck = true,

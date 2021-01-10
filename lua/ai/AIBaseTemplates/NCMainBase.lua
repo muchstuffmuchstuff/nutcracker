@@ -14,9 +14,10 @@
 BaseBuilderTemplate {
     BaseTemplateName = 'NutCrackerMainBase',
     Builders = {
-
+       
+        'NC_coinflip_factoryupgrade',
         'NC rambo behavior',        
-
+        'NCt1bomberunitsbehavior',
 --starting acu for coinflip
 'NC Ranzomizer Strategy Starting Build',
 
@@ -67,8 +68,8 @@ BaseBuilderTemplate {
     'NCsubcommander_ras',
         
         # Factory upgrades
-        'NCEmergencyUpgrade_airfactories',
-        'NCUpgradeBuilders_airfactories',
+       
+        
        
 
 
@@ -136,19 +137,22 @@ BaseBuilderTemplate {
 
         
         # ==== LAND UNIT BUILDERS ==== #
-        'NCT1expansionprotect',
-        'NClandbehaviorexpansion',
-        'NCaphibbuilders',
-        'NCUpgradeBuildersLand',
-        'NCT1LandFactoryBuildersemergency',
-        'NCT1LandFactoryBuilders',
-        'NCT2LandFactoryBuilders',
-        'NCT3LandFactoryBuilders',
+        'NCdefense_antiair',
+        'NCdefense_onisland',
+        'NCspammage',
+       
+       
+       
+        
+       
+       
+       
+      
         'NCExtraLandFactory',
      
        
         'NCAntiLandQuickBuild',
-        'NCT3ReactionDF',
+     
         'NCT2Shields',
         'NCT2ShieldsExpansion',
         'NCT3Shields',
@@ -169,7 +173,7 @@ BaseBuilderTemplate {
         'NCTransportFactoryBuilders',
        
         'NCexcessairunitsbehavior',
-        'NCT2AirFactoryBuilders',
+      
      
        
         'NCt3emergencybuilders',
@@ -188,6 +192,8 @@ BaseBuilderTemplate {
         'NCExperimentalArtillery',
         'ncMobileLandExperimentalbehavior',
         'NCMobileLandExperimental',
+        'NC Satelite',
+        'NC Satelite Behavior',
     
 		
       
@@ -213,7 +219,8 @@ BaseBuilderTemplate {
     },
     NonCheatBuilders = {
         'NCAirScoutFactoryBuilders',
-        
+        'NClandscout',
+        'NClandscoutbehavior',
         'NCextrat3scout',
         'NCAirScoutbehavior',
         'NCRadarUpgradeBuildersMain',

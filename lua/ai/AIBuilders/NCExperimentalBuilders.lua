@@ -116,7 +116,7 @@ BuilderGroup {
         Priority = 1500,
         InstanceCount = 50,
         FormRadius = 250,
-        AggressiveMove = true,
+        AggressiveMove = false,
         SearchRadius = 80000,
         BuilderType = 'Any',
         BuilderConditions = {
@@ -124,21 +124,22 @@ BuilderGroup {
             { MIBC, 'GreaterThanGameTime', { 1200} },
             { SBC, 'MapGreaterThan', { 1000, 1000 }},
           
-            { UCBC, 'HaveGreaterThanUnitsWithCategory', { 30, categories.MOBILE * categories.AIR * categories.ANTIAIR - categories.GROUNDATTACK - categories.BOMBER} },
-            { UCBC, 'HaveLessThanUnitsWithCategory', { 2, categories.STRUCTURE * categories.NUKE} },
+           
+            { UCBC, 'HaveLessThanUnitsWithCategory', { 4, categories.STRUCTURE * categories.NUKE} },
             { UCBC, 'PoolGreaterAtLocation', { 'LocationType', 0, 'EXPERIMENTAL AIR' } },
 
 		
 			
-			{ SBC, 'NoRushTimeCheck', { 0 }},
+            { SBC, 'NoRushTimeCheck', { 0 }},
         },
-        BuilderData = {
+            BuilderData = {
 			
-            ThreatWeights = {
-                TargetThreatType = 'Commander',
-            },
-            UseMoveOrder = true,
-            PrioritizedCategories = { 'COMMAND' }, 
+                ThreatWeights = {
+                    TargetThreatType = 'STRUCTURE',
+                },
+                UseMoveOrder = true,
+                PrioritizedCategories = { categories.STRUCTURE},
+           
         },
     },
     Builder {
@@ -155,11 +156,11 @@ BuilderGroup {
         BuilderConditions = {
             { MIBC, 'FactionIndex', { 3 }},
             { MIBC, 'GreaterThanGameTime', { 1200} },
-            { SBC, 'MapGreaterThan', { 1000, 1000 }},
+            { SBC, 'MapGreaterThan', { 500, 500 }},
           
             { UCBC, 'HaveUnitsWithCategoryAndAlliance', { true, 2, categories.STRUCTURE * categories.SHIELD * categories.TECH3, 'Enemy'}},
             { UCBC, 'HaveUnitsWithCategoryAndAlliance', { true, 8, categories.TECH3 * categories.DEFENSE * categories.ANTIAIR, 'Enemy'}},
-            { UCBC, 'HaveGreaterThanUnitsWithCategory', { 30, categories.MOBILE * categories.AIR * categories.ANTIAIR - categories.GROUNDATTACK - categories.BOMBER} },
+          
         
             { UCBC, 'PoolGreaterAtLocation', { 'LocationType', 0, 'EXPERIMENTAL AIR' } },
 
@@ -190,11 +191,11 @@ BuilderGroup {
         BuilderConditions = {
             { MIBC, 'FactionIndex', { 3 }},
             { MIBC, 'GreaterThanGameTime', { 1200} },
-            { SBC, 'MapGreaterThan', { 1000, 1000 }},
+            { SBC, 'MapGreaterThan', { 500, 500 }},
             
          
-            { UCBC, 'HaveGreaterThanUnitsWithCategory', { 30, categories.MOBILE * categories.AIR * categories.ANTIAIR - categories.GROUNDATTACK - categories.BOMBER} },
-            { UCBC, 'HaveLessThanUnitsWithCategory', { 2, categories.STRUCTURE * categories.NUKE} },
+            
+          
             { UCBC, 'PoolGreaterAtLocation', { 'LocationType', 0, 'EXPERIMENTAL AIR' } },
 
 		
@@ -207,7 +208,7 @@ BuilderGroup {
                 TargetThreatType = 'Commander',
             },
             UseMoveOrder = true,
-            PrioritizedCategories = { 'MOBILE LAND' }, 
+            PrioritizedCategories = { categories.MOBILE * categories.LAND  }, 
         },
     },
     
@@ -219,7 +220,7 @@ BuilderGroup {
         Priority = 1500,
         InstanceCount = 50,
         FormRadius = 250,
-        AggressiveMove = true,
+        AggressiveMove = false,
         SearchRadius = 80000,
         BuilderType = 'Any',
         BuilderConditions = {
@@ -255,7 +256,7 @@ BuilderGroup {
             { MIBC, 'GreaterThanGameTime', { 1800} },
             { SBC, 'MapGreaterThan', { 1000, 1000 }},
             { MIBC, 'FactionIndex', {2, 3, 4}},
-            { UCBC, 'HaveGreaterThanUnitsWithCategory', { 30, categories.MOBILE * categories.AIR * categories.ANTIAIR - categories.GROUNDATTACK - categories.BOMBER} },
+    
             { UCBC, 'HaveGreaterThanUnitsWithCategory', { 1, categories.STRUCTURE * categories.NUKE} },
             { UCBC, 'HaveLessThanUnitsWithCategory', { 5, categories.STRUCTURE * categories.NUKE} },
        
@@ -291,7 +292,7 @@ BuilderGroup {
             { MIBC, 'GreaterThanGameTime', { 2400} },
             
            
-            { UCBC, 'HaveGreaterThanUnitsWithCategory', { 30, categories.MOBILE * categories.AIR * categories.ANTIAIR - categories.GROUNDATTACK - categories.BOMBER} },
+      
             { UCBC, 'HaveGreaterThanUnitsWithCategory', { 5, categories.STRUCTURE * categories.NUKE} },
          
         
@@ -324,29 +325,26 @@ BuilderGroup {
         Priority = 995,
         DelayEqualBuildPlattons = {'MobileExperimental', 50},
         BuilderConditions = {
-            { MIBC, 'FactionIndex', {2, 3, 4}},
-            { SBC, 'MapGreaterThan', { 1000, 1000 }},
+            { MIBC, 'FactionIndex', {2,4}},
+            { SBC, 'MapGreaterThan', { 500, 500 }},
             { MIBC, 'GreaterThanGameTime', { 1000} },
           
           
-            { UCBC, 'HaveGreaterThanUnitsWithCategory', { 20, categories.AIR * categories.MOBILE * categories.ANTIAIR  - categories.BOMBER - categories.GROUNDATTACK - categories.SCOUT } },
+         
             
-            { SIBC, 'HaveLessThanUnitsInCategoryBeingBuilt', { 1, categories.STRUCTURE  * (categories.ANTIMISSILE + categories.NUKE + categories.ARTILLERY) * categories.TECH3 }},
           
-            { EBC, 'GreaterThanEconTrend', { 40, 3000 } }, 
+          
+            --- 
+            { EBC, 'GreaterThanEconStorageCurrent', { 1500, 5000 } },
            
             { SIBC, 'HaveLessThanUnitsInCategoryBeingBuilt', { 1, categories.EXPERIMENTAL * categories.AIR }},
             { SIBC, 'HaveGreaterThanUnitsWithCategory', { 1, categories.ENERGYPRODUCTION * categories.TECH3}},
           
-            { SIBC, 'HaveLessThanUnitsInCategoryBeingBuilt', { 1, categories.EXPERIMENTAL * categories.LAND }},
+            
 
+            
 			
-		
-          
-	
-            { IBC, 'BrainNotLowPowerMode', {} },
 			
-			{ SIBC, 'T4BuildingCheck', {} },
 		
         },
         BuilderType = 'Any',
@@ -363,35 +361,31 @@ BuilderGroup {
         }
     },
     Builder {
-        BuilderName = 'nc T3 Air Exp1 Engineer alternate format',
+        BuilderName = 'nc T3 Air Exp1 get r done',
         PlatoonTemplate = 'T3EngineerBuilderSorian',
-        Priority = 995,
+        Priority = 1300,
         DelayEqualBuildPlattons = {'MobileExperimental', 50},
         BuilderConditions = {
-            { MIBC, 'FactionIndex', {2, 3, 4}},
-            { SBC, 'MapGreaterThan', { 1000, 1000 }},
+            { MIBC, 'FactionIndex', {2, 4}},
+            { SBC, 'MapGreaterThan', { 500, 500 }},
             { MIBC, 'GreaterThanGameTime', { 1000} },
-          
-          
-            { UCBC, 'HaveGreaterThanUnitsWithCategory', { 20, categories.AIR * categories.MOBILE * categories.ANTIAIR  - categories.BOMBER - categories.GROUNDATTACK - categories.SCOUT } },
-            
            
+           
+           
+            
           
-            { EBC, 'GreaterThanEconTrend', { 40, 3000 } }, 
-            { EBC, 'GreaterThanEconStorageCurrent', { 3000, 8000 } },
+          
+            --- 
+
            
             { SIBC, 'HaveLessThanUnitsInCategoryBeingBuilt', { 1, categories.EXPERIMENTAL * categories.AIR }},
-            { SIBC, 'HaveGreaterThanUnitsWithCategory', { 1, categories.ENERGYPRODUCTION * categories.TECH3}},
+            { SIBC, 'HaveGreaterThanUnitsWithCategory', { 0, categories.ENERGYPRODUCTION * categories.TECH3}},
           
-            { SIBC, 'HaveLessThanUnitsInCategoryBeingBuilt', { 1, categories.EXPERIMENTAL * categories.LAND }},
+            
 
+            
 			
-		
-          
-	
-            { IBC, 'BrainNotLowPowerMode', {} },
 			
-			{ SIBC, 'T4BuildingCheck', {} },
 		
         },
         BuilderType = 'Any',
@@ -407,6 +401,128 @@ BuilderGroup {
             }
         }
     },
+    Builder {
+        BuilderName = 'nc air exp alternate 1',
+        PlatoonTemplate = 'T3EngineerBuilderSorian',
+        Priority = 995,
+        DelayEqualBuildPlattons = {'MobileExperimental', 50},
+        BuilderConditions = {
+            { MIBC, 'FactionIndex', {2, 4}},
+            { SBC, 'MapGreaterThan', { 1000, 1000 }},
+            { MIBC, 'GreaterThanGameTime', { 1000} },
+          
+          
+            
+            
+         
+          
+    
+            { EBC, 'GreaterThanEconStorageCurrent', { 5000, 10000 } },
+           
+            { SIBC, 'HaveLessThanUnitsInCategoryBeingBuilt', { 1, categories.EXPERIMENTAL * categories.AIR }},
+           
+          
+       
+
+            
+			
+			
+		
+        },
+        BuilderType = 'Any',
+        BuilderData = {
+			MinNumAssistees = 2,
+            Construction = {
+                BuildClose = true,
+			
+                BuildStructures = {
+                    'T4AirExperimental1',
+                },
+                Location = 'LocationType',
+            }
+        }
+    },
+    Builder {
+        BuilderName = 'nc air exp alternate 2',
+        PlatoonTemplate = 'T3EngineerBuilderSorian',
+        Priority = 995,
+        DelayEqualBuildPlattons = {'MobileExperimental', 50},
+        BuilderConditions = {
+            { MIBC, 'FactionIndex', {2, 3, 4}},
+            { SBC, 'MapGreaterThan', { 1000, 1000 }},
+            { MIBC, 'GreaterThanGameTime', { 1000} },
+          
+          
+            
+            
+           
+          
+        
+            { EBC, 'GreaterThanEconStorageCurrent', { 15000, 10000 } },
+            { SIBC, 'HaveLessThanUnitsInCategoryBeingBuilt', { 1, categories.EXPERIMENTAL * categories.AIR }},
+         
+          
+       
+
+            
+			
+			
+		
+        },
+        BuilderType = 'Any',
+        BuilderData = {
+			MinNumAssistees = 2,
+            Construction = {
+                BuildClose = true,
+			
+                BuildStructures = {
+                    'T4AirExperimental1',
+                },
+                Location = 'LocationType',
+            }
+        }
+    },
+    Builder {
+        BuilderName = 'nc air exp alternate 3',
+        PlatoonTemplate = 'T3EngineerBuilderSorian',
+        Priority = 995,
+        DelayEqualBuildPlattons = {'MobileExperimental', 50},
+        BuilderConditions = {
+            { MIBC, 'FactionIndex', {2, 3, 4}},
+            { SBC, 'MapGreaterThan', { 1000, 1000 }},
+            { MIBC, 'GreaterThanGameTime', { 1000} },
+          
+          
+            { UCBC, 'HaveGreaterThanUnitsWithCategory', { 15, categories.AIR * categories.MOBILE * categories.ANTIAIR  - categories.BOMBER - categories.GROUNDATTACK - categories.SCOUT } },
+            
+           
+          
+           
+            { EBC, 'GreaterThanEconStorageCurrent', { 10000, 10000 } },
+            { SIBC, 'HaveLessThanUnitsInCategoryBeingBuilt', { 1, categories.EXPERIMENTAL * categories.AIR }},
+         
+          
+            
+
+            
+			
+			
+		
+        },
+        BuilderType = 'Any',
+        BuilderData = {
+			MinNumAssistees = 2,
+            Construction = {
+                BuildClose = true,
+			
+                BuildStructures = {
+                    'T4AirExperimental1',
+                },
+                Location = 'LocationType',
+            }
+        }
+    },
+    
 
     
     Builder {
@@ -428,7 +544,7 @@ BuilderGroup {
            
             { SIBC, 'HaveLessThanUnitsInCategoryBeingBuilt', { 2, categories.EXPERIMENTAL * categories.AIR }},
             { EBC, 'GreaterThanEconStorageCurrent', { 10000, 8000 } },
-            { SIBC, 'HaveGreaterThanUnitsWithCategory', { 5, categories.ENERGYPRODUCTION * categories.TECH3}},
+            
           
         
 
@@ -436,9 +552,9 @@ BuilderGroup {
 		
           
 	
-            { IBC, 'BrainNotLowPowerMode', {} },
+            
 			
-			{ SIBC, 'T4BuildingCheck', {} },
+			
 		
         },
         BuilderType = 'Any',
@@ -470,7 +586,7 @@ BuilderGroup {
             { SIBC, 'HaveGreaterThanUnitsWithCategory', { 3, categories.STRUCTURE * (categories.NUKE + categories.ARTILLERY) * categories.TECH3 }},
             { SIBC, 'HaveLessThanUnitsInCategoryBeingBuilt', { 3, categories.EXPERIMENTAL * categories.AIR }},
             { EBC, 'GreaterThanEconStorageCurrent', { 25000, 10000 } },
-            { SIBC, 'HaveGreaterThanUnitsWithCategory', { 10, categories.ENERGYPRODUCTION * categories.TECH3}},
+           
           
         
 
@@ -478,9 +594,9 @@ BuilderGroup {
 		
           
 	
-            { IBC, 'BrainNotLowPowerMode', {} },
+            
 			
-			{ SIBC, 'T4BuildingCheck', {} },
+			
 		
         },
         BuilderType = 'Any',
@@ -499,15 +615,15 @@ BuilderGroup {
 
     Builder {
         BuilderName = ' NC T2 Assist Experimental Mobile Air',
-        PlatoonTemplate = 'T2EngineerAssistSorian',
+        PlatoonTemplate = 'T2EngineerAssist',
         Priority = 970,
         InstanceCount = 5,
         BuilderConditions = {
             { MIBC, 'GreaterThanGameTime', { 1000} },
             { UCBC, 'LocationEngineersBuildingGreater', { 'LocationType', 0, categories.EXPERIMENTAL * categories.AIR * categories.MOBILE}},
             { UCBC, 'HaveGreaterThanUnitsWithCategory', { 1, categories.ENERGYPRODUCTION * categories.TECH3}},
-            { IBC, 'BrainNotLowPowerMode', {} },
-            { EBC, 'GreaterThanEconTrend', { 40, 3000 } }, 
+       --
+            --- 
             { EBC, 'GreaterThanEconStorageCurrent', { 2000, 10000 } },
         },
         BuilderType = 'Any',
@@ -523,14 +639,14 @@ BuilderGroup {
     },
     Builder {
         BuilderName = 'NC T3  Assist Experimental Mobile Air',
-        PlatoonTemplate = 'T3EngineerAssistSorian',
+        PlatoonTemplate = 'T3EngineerAssist',
         Priority = 970,
         InstanceCount = 5,
         BuilderConditions = {
             { MIBC, 'GreaterThanGameTime', { 1000} },
             { UCBC, 'LocationEngineersBuildingGreater', { 'LocationType', 0, categories.EXPERIMENTAL * categories.AIR * categories.MOBILE}},
-            { IBC, 'BrainNotLowPowerMode', {} },
-            { EBC, 'GreaterThanEconTrend', { 40, 3000 } }, 
+       --
+            --- 
             { EBC, 'GreaterThanEconStorageCurrent', { 2000, 10000 } },
         },
         BuilderType = 'Any',
@@ -564,18 +680,15 @@ BuilderGroup {
         BuilderConditions = {
             { MIBC, 'LessThanGameTime', { 3000} },
             { UCBC, 'PoolGreaterAtLocation', { 'LocationType', 0, 'EXPERIMENTAL LAND' } },
-			{ MIBC, 'FactionIndex', {2, 3, 4}},
+			{ MIBC, 'FactionIndex', {1,2, 3, 4}},
 			
 			{ SBC, 'NoRushTimeCheck', { 0 }},
         },
-        BuilderData = {
-			
-            ThreatWeights = {
-                TargetThreatType = 'Commander',
-            },
+      
             UseMoveOrder = true,
-            PrioritizedCategories = { 'COMMAND','ENERGYPRODUCTION' }, 
-        },
+            PrioritizedCategories = { categories.STRUCTURE,
+        }, 
+       
     },
     
     Builder {
@@ -659,7 +772,8 @@ BuilderGroup {
          
            
           
-            { EBC, 'GreaterThanEconTrend', { 40, 3000 } }, 
+            --- 
+            { EBC, 'GreaterThanEconStorageCurrent', { 1500, 5000 } },
            
           
             { SIBC, 'HaveGreaterThanUnitsWithCategory', { 1, categories.ENERGYPRODUCTION * categories.TECH3}},
@@ -688,16 +802,17 @@ BuilderGroup {
         InstanceCount = 1,
         BuilderConditions = {
 
-            { MIBC, 'FactionIndex', { 3}},
+            { MIBC, 'FactionIndex', { 1,3}},
             { MIBC, 'GreaterThanGameTime', { 1000} },
            
             { SBC, 'IsIslandMap', { true } },
             
-            { UCBC, 'HaveGreaterThanUnitsWithCategory', { 20, categories.AIR * categories.MOBILE * categories.ANTIAIR  - categories.BOMBER - categories.GROUNDATTACK - categories.SCOUT } },
+            
          
-            { SIBC, 'HaveLessThanUnitsInCategoryBeingBuilt', { 1, categories.STRUCTURE  * (categories.ANTIMISSILE + categories.NUKE + categories.ARTILLERY) * categories.TECH3 }},
+            
           
-            { EBC, 'GreaterThanEconTrend', { 20, 2000 } }, 
+            --- 
+           
             { SIBC, 'HaveGreaterThanUnitsWithCategory', { 0, categories.ENERGYPRODUCTION * categories.TECH3}},
            
           
@@ -735,7 +850,7 @@ BuilderGroup {
          
 
 
-            { EBC, 'GreaterThanEconTrend', { 50, 3000 } }, 
+            --- 
 
             { SIBC, 'HaveLessThanUnitsInCategoryBeingBuilt', { 2, categories.EXPERIMENTAL * categories.LAND }},
             { EBC, 'GreaterThanEconStorageCurrent', { 25000, 10000 } },
@@ -758,14 +873,14 @@ BuilderGroup {
   
     Builder {
         BuilderName = 'NC T2 Engineer Assist Experimental Mobile Land',
-        PlatoonTemplate = 'T2EngineerAssistSorian',
+        PlatoonTemplate = 'T2EngineerAssist',
         Priority = 950,
         InstanceCount = 5,
         BuilderConditions = {
             { MIBC, 'GreaterThanGameTime', { 1000} },
             { UCBC, 'LocationEngineersBuildingGreater', { 'LocationType', 0, categories.EXPERIMENTAL * categories.LAND }},
-            { IBC, 'BrainNotLowPowerMode', {} },
-            { EBC, 'GreaterThanEconTrend', { 40, 3000 } }, 
+       --
+            --- 
             { EBC, 'GreaterThanEconStorageCurrent', { 1500, 10000 } },
         },
         BuilderType = 'Any',
@@ -781,14 +896,14 @@ BuilderGroup {
     },
     Builder {
         BuilderName = 'NC T3 Engineer Assist Experimental Mobile Land',
-        PlatoonTemplate = 'T3EngineerAssistSorian',
+        PlatoonTemplate = 'T3EngineerAssist',
         Priority = 950,
         InstanceCount = 5,
         BuilderConditions = {
             { MIBC, 'GreaterThanGameTime', { 1000} },
             { UCBC, 'LocationEngineersBuildingGreater', { 'LocationType', 0, categories.EXPERIMENTAL * categories.LAND}},
-            { IBC, 'BrainNotLowPowerMode', {} },
-            { EBC, 'GreaterThanEconTrend', { 40, 3000 } }, 
+       --
+            --- 
             { EBC, 'GreaterThanEconStorageCurrent', { 15000, 10000 } },
         },
         BuilderType = 'Any',
@@ -814,7 +929,7 @@ BuilderGroup {
     BuildersType = 'EngineerBuilder',
     Builder {
         BuilderName = 'NC Econ Exper Engineer',
-        PlatoonTemplate = 'AeonT3EngineerBuilder',
+        PlatoonTemplate = 'AeonT3EngineerBuilderSorian',
         Priority = 950,
 		InstanceCount = 1,
         BuilderConditions = {
@@ -826,11 +941,12 @@ BuilderGroup {
             { UCBC, 'HaveLessThanUnitsInCategoryBeingBuilt', { 1, categories.EXPERIMENTAL * categories.ECONOMIC }},
             { UCBC, 'HaveLessThanUnitsWithCategory', { 1, categories.EXPERIMENTAL * categories.ECONOMIC}},
 		
-            { EBC, 'GreaterThanEconTrend', { 50, 3000 } }, 
+            --- 
+            { EBC, 'GreaterThanEconStorageCurrent', { 15000, 15000 } },
             
 		
-			{ IBC, 'BrainNotLowPowerMode', {} },
-			#{ SIBC, 'T4BuildingCheck', {} },
+			
+			
 			
         },
         BuilderType = 'Any',
@@ -849,14 +965,14 @@ BuilderGroup {
     },
     Builder {
         BuilderName = 'NC T2 Engineer Assist Experimental Economic',
-        PlatoonTemplate = 'T2EngineerAssistSorian',
+        PlatoonTemplate = 'T2EngineerAssist',
         Priority = 800,
         InstanceCount = 2,
         BuilderConditions = {
             { MIBC, 'FactionIndex', {2}},
             { MIBC, 'GreaterThanGameTime', { 4800} },
             { UCBC, 'LocationEngineersBuildingGreater', { 'LocationType', 0, categories.EXPERIMENTAL * categories.ECONOMIC}},
-            { EBC, 'GreaterThanEconTrend', { 40, 3000 } }, 
+            --- 
             
         },
         BuilderType = 'Any',
@@ -872,14 +988,14 @@ BuilderGroup {
     },
     Builder {
         BuilderName = 'NC T3 Engineer Assist Experimental Economic',
-        PlatoonTemplate = 'T3EngineerAssistSorian',
+        PlatoonTemplate = 'T3EngineerAssist',
         Priority = 951,
         InstanceCount = 2,
         BuilderConditions = {
             { MIBC, 'FactionIndex', {2}},
             { MIBC, 'GreaterThanGameTime', { 4800} },
             { UCBC, 'LocationEngineersBuildingGreater', { 'LocationType', 0, categories.EXPERIMENTAL * categories.ECONOMIC }},
-            { EBC, 'GreaterThanEconTrend', { 40, 3000 } }, 
+            --- 
             
         },
         BuilderType = 'Any',
@@ -892,5 +1008,176 @@ BuilderGroup {
                 Time = 60,
             },
         }
+    },
+}
+
+BuilderGroup {
+    BuilderGroupName = 'NC Satelite',
+    BuildersType = 'EngineerBuilder',
+    Builder {
+        BuilderName = 'Nc Satelite standard',
+        PlatoonTemplate = 'UEFT3EngineerBuilderSorian',
+        Priority = 950,
+        BuilderConditions = {
+            { MIBC, 'FactionIndex', {1}},
+            { SBC, 'MapGreaterThan', { 500, 500 }},
+            { MIBC, 'GreaterThanGameTime', { 1200} },
+        
+            {CF, 'NoSateliteRush',{}},
+     
+            { UCBC, 'HaveGreaterThanUnitsWithCategory', { 1, categories.ENERGYPRODUCTION * categories.TECH3 } },
+            { SIBC, 'HaveLessThanUnitsInCategoryBeingBuilt', { 1, categories.STRUCTURE  * (categories.ANTIMISSILE + categories.NUKE + categories.ARTILLERY * categories.EXPERIMENTAL) }},
+   
+        },
+        BuilderType = 'Any',
+        BuilderData = {
+            MinNumAssistees = 6,
+            Construction = {
+                BuildClose = true,
+                #T4 = true,
+                AdjacencyCategory = 'SHIELD STRUCTURE',
+                BuildStructures = {
+                    'T4SatelliteExperimental',
+                },
+                Location = 'LocationType',
+            }
+        }
+    },
+    Builder {
+        BuilderName = 'Nc Satelite BIG N JUICY',
+        PlatoonTemplate = 'UEFT3EngineerBuilderSorian',
+        Priority = 1050,
+        BuilderConditions = {
+            { MIBC, 'FactionIndex', {1}},
+            { SBC, 'MapGreaterThan', { 500, 500 }},
+            { MIBC, 'GreaterThanGameTime', { 1200} },
+            { EBC, 'GreaterThanEconStorageCurrent', { 35000, 10000 } },
+     
+            { UCBC, 'HaveGreaterThanUnitsWithCategory', { 2, categories.ENERGYPRODUCTION * categories.TECH3 } },
+            { SIBC, 'HaveLessThanUnitsInCategoryBeingBuilt', { 2, categories.STRUCTURE  * categories.EXPERIMENTAL }},
+   
+        },
+        BuilderType = 'Any',
+        BuilderData = {
+            MinNumAssistees = 6,
+            Construction = {
+                BuildClose = true,
+                #T4 = true,
+                AdjacencyCategory = 'SHIELD STRUCTURE',
+                BuildStructures = {
+                    'T4SatelliteExperimental',
+                },
+                Location = 'LocationType',
+            }
+        }
+    },
+    
+    Builder {
+        BuilderName = 'NC Satelite Assist t2',
+        PlatoonTemplate = 'T2EngineerAssist',
+        Priority = 1000,
+        InstanceCount = 5,
+        BuilderConditions = {
+         
+            { UCBC, 'LocationEngineersBuildingGreater', { 'LocationType', 0, categories.EXPERIMENTAL * categories.ORBITALSYSTEM }},
+            --- 
+            { EBC, 'GreaterThanEconStorageCurrent', { 2500, 100 } },
+        },
+        BuilderType = 'Any',
+        BuilderData = {
+            Assist = {
+                AssistLocation = 'LocationType',
+                AssisteeType = 'Engineer',
+                BeingBuiltCategories = {'EXPERIMENTAL ORBITALSYSTEM'},
+                Time = 60,
+            },
+        }
+    },
+    Builder {
+        BuilderName = 'Nc Satelite Assist t3',
+        PlatoonTemplate = 'T3EngineerAssist',
+        Priority = 1050,
+        InstanceCount = 5,
+        BuilderConditions = {
+           
+            { UCBC, 'LocationEngineersBuildingGreater', { 'LocationType', 0, categories.EXPERIMENTAL * categories.ORBITALSYSTEM }},
+            ---
+            { EBC, 'GreaterThanEconStorageCurrent', { 2500, 100 } }, 
+           
+        },
+        BuilderType = 'Any',
+        BuilderData = {
+            Assist = {
+                AssistLocation = 'LocationType',
+                AssisteeType = 'Engineer',
+                BeingBuiltCategories = {'EXPERIMENTAL ORBITALSYSTEM'},
+                Time = 60,
+            },
+        }
+    },
+    Builder {
+        BuilderName = 'NC Satelite Assist t2 juicy',
+        PlatoonTemplate = 'T2EngineerAssist',
+        Priority = 1200,
+        InstanceCount = 10,
+        BuilderConditions = {
+          
+            { UCBC, 'LocationEngineersBuildingGreater', { 'LocationType', 0, categories.EXPERIMENTAL * categories.ORBITALSYSTEM }},
+       --- 
+       { EBC, 'GreaterThanEconStorageCurrent', { 10000, 7000 } },
+            
+        },
+        BuilderType = 'Any',
+        BuilderData = {
+            Assist = {
+                AssistLocation = 'LocationType',
+                AssisteeType = 'Engineer',
+                BeingBuiltCategories = {'EXPERIMENTAL ORBITALSYSTEM'},
+                Time = 60,
+            },
+        }
+    },
+    Builder {
+        BuilderName = 'Nc Satelite Assist t3 juicy',
+        PlatoonTemplate = 'T3EngineerAssist',
+        Priority = 1200,
+        InstanceCount = 10,
+        BuilderConditions = {
+           
+            { UCBC, 'LocationEngineersBuildingGreater', { 'LocationType', 0, categories.EXPERIMENTAL * categories.ORBITALSYSTEM }},
+            --- 
+            { EBC, 'GreaterThanEconStorageCurrent', { 10000, 7000 } },
+            
+        },
+        BuilderType = 'Any',
+        BuilderData = {
+            Assist = {
+                AssistLocation = 'LocationType',
+                AssisteeType = 'Engineer',
+                BeingBuiltCategories = {'EXPERIMENTAL ORBITALSYSTEM'},
+                Time = 60,
+            },
+        }
+    },
+}
+
+BuilderGroup {
+    BuilderGroupName = 'NC Satelite Behavior',
+    BuildersType = 'PlatoonFormBuilder',
+    Builder {
+        BuilderName = 'NC Orbital behavior',
+        PlatoonTemplate = 'NC Orbital',
+        PlatoonAddPlans = {'NameUnitsSorian'},
+        Priority = 800,
+        BuilderConditions = {
+            { SBC, 'NoRushTimeCheck', { 0 }},
+        },
+        FormRadius = 100,
+        InstanceCount = 50,
+        BuilderType = 'Any',
+        BuilderData = {
+            SearchRadius = 6000,
+            PrioritizedCategories = { categories.MASSEXTRACTION }, # list in order
+        },
     },
 }

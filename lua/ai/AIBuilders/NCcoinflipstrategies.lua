@@ -19,6 +19,90 @@ local CF = '/mods/nutcracker/hook/lua/coinflip.lua'
 local WRC = '/mods/nutcracker/hook/lua/weaponsrangeconditions.lua'
 local EN = '/mods/nutcracker/hook/lua/economicnumbers.lua'
 local SUtils = import('/lua/AI/sorianutilities.lua')
+local categories = categories
+
+
+--- upgrade quick factory
+BuilderGroup {
+    BuilderGroupName = 'NC_coinflip_factoryupgrade',
+    BuildersType = 'PlatoonFormBuilder',
+    Builder {
+        BuilderName = 'NC land factory coinflip upgrade',
+        PlatoonTemplate = 'T1LandFactoryUpgrade',
+        Priority = 1100,
+     
+        BuilderConditions = {
+            { MIBC, 'GreaterThanGameTime', { 400 } },
+            { CF, 'StrategyRandomizer', {9} },
+      
+            { UCBC, 'HaveGreaterThanUnitsWithCategory', { 50, categories.LAND * categories.MOBILE * categories.ENGINEER} },   
+            { UCBC, 'HaveLessThanUnitsInCategoryBeingBuilt', { 2, categories.FACTORY * (categories.TECH2 + categories.TECH3)} },
+                
+              { UCBC, 'HaveGreaterThanUnitsWithCategory', { 2, categories.LAND * categories.FACTORY}},
+           
+           
+           --
+            },
+        BuilderType = 'Any',
+    },
+    Builder {
+        BuilderName = 'NC Land t2 to t3 coinflip',
+        PlatoonTemplate = 'T2LandFactoryUpgrade',
+        Priority = 1100,
+     
+        BuilderConditions = {
+            { MIBC, 'GreaterThanGameTime', { 600 } },
+            { CF, 'StrategyRandomizer', {9} },
+            { UCBC, 'HaveGreaterThanUnitsWithCategory', { 50, categories.LAND * categories.MOBILE * categories.ENGINEER} },
+               
+             
+                { UCBC, 'HaveLessThanUnitsInCategoryBeingBuilt', { 2, categories.FACTORY * (categories.TECH2 + categories.TECH3)} },
+              { UCBC, 'HaveGreaterThanUnitsWithCategory', { 2, categories.LAND * categories.FACTORY}},
+           
+           
+           --
+            },
+        BuilderType = 'Any',
+    },
+    Builder {
+        BuilderName = 'NC Air factory coinflip upgrade',
+        PlatoonTemplate = 'T1AirFactoryUpgrade',
+        Priority = 1100,
+     
+        BuilderConditions = {
+            { MIBC, 'GreaterThanGameTime', { 400 } },
+            { CF, 'StrategyRandomizer', {10} },
+      
+          
+            { UCBC, 'HaveLessThanUnitsInCategoryBeingBuilt', { 2, categories.FACTORY * (categories.TECH2 + categories.TECH3)} },
+                
+              { UCBC, 'HaveGreaterThanUnitsWithCategory', { 2, categories.AIR * categories.FACTORY}},
+           
+           
+           --
+            },
+        BuilderType = 'Any',
+    },
+    Builder {
+        BuilderName = 'NC Air t2 to t3 coinflip',
+        PlatoonTemplate = 'T2AirFactoryUpgrade',
+        Priority = 1100,
+     
+        BuilderConditions = {
+            { MIBC, 'GreaterThanGameTime', { 600 } },
+            { CF, 'StrategyRandomizer', {10} },
+         
+               
+             
+                { UCBC, 'HaveLessThanUnitsInCategoryBeingBuilt', { 2, categories.FACTORY * (categories.TECH2 + categories.TECH3)} },
+              { UCBC, 'HaveGreaterThanUnitsWithCategory', { 2, categories.AIR * categories.FACTORY}},
+           
+           
+           --
+            },
+        BuilderType = 'Any',
+    },
+}
 
 
 -- sub commander teleport rush -- many platoons and builders to fulfil need
@@ -29,19 +113,19 @@ BuilderGroup {
 Builder {
        
     BuilderName = 'NC Gate Engineercoinflip',
-    PlatoonTemplate = 'T3EngineerBuilder',
+    PlatoonTemplate = 'T3EngineerBuilderSorian',
     Priority = 1050,
     DelayEqualBuildPlattons = {'Factories', 5},
     BuilderConditions = {
         { MIBC, 'FactionIndex', { 2, 4 }},
-        { CF, 'StrategyRandomizer', {1} },
+        { CF, 'StrategyRandomizer', {22222} },
         { SIBC, 'HaveLessThanUnitsInCategoryBeingBuilt', { 4, categories.STRUCTURE * (categories.TECH2 + categories.TECH3)  * categories.ENERGYPRODUCTION } },
         { UCBC, 'HaveLessThanUnitsInCategoryBeingBuilt', { 2, 'GATE TECH3 STRUCTURE'}},
         { SIBC, 'GreaterThanEconEfficiencyOverTime', { 1.0, 1.1} },
         { EBC, 'GreaterThanEconStorageCurrent', { 500, 10000 } },
         { UCBC, 'FactoryLessAtLocation', { 'LocationType', 3, 'GATE TECH3 STRUCTURE' }},
      
-        { IBC, 'BrainNotLowPowerMode', {} },
+        
      
         
     },
@@ -59,7 +143,7 @@ Builder {
     Builder {
        
         BuilderName = 'NC Gate Engineercoinflip rambo',
-        PlatoonTemplate = 'T3EngineerBuilder',
+        PlatoonTemplate = 'T3EngineerBuilderSorian',
         Priority = 1050,
         DelayEqualBuildPlattons = {'Factories', 5},
         BuilderConditions = {
@@ -71,7 +155,7 @@ Builder {
             { EBC, 'GreaterThanEconStorageCurrent', { 500, 10000 } },
             { UCBC, 'FactoryLessAtLocation', { 'LocationType', 2, 'GATE TECH3 STRUCTURE' }},
          
-            { IBC, 'BrainNotLowPowerMode', {} },
+            
          
             
         },
@@ -98,7 +182,7 @@ Builder {
     Priority = 825,
     BuilderConditions = {
         { MIBC, 'FactionIndex', { 2, 4 }},
-        { CF, 'StrategyRandomizer', {1} },
+        { CF, 'StrategyRandomizer', {22222} },
         { MIBC, 'GreaterThanGameTime', { 900 } },
         { SIBC, 'HaveLessThanUnitsWithCategory', { 15, 'ENERGYSTORAGE'}},
         { UCBC, 'AdjacencyCheck', { 'LocationType', 'ENERGYPRODUCTION TECH1', 100, 'ueb1105' } },
@@ -123,7 +207,7 @@ Builder {
         BuilderType = 'Any',
         BuilderConditions = {
             { MIBC, 'FactionIndex', { 2, 4 }},
-            { CF, 'StrategyRandomizer', {1} },
+            { CF, 'StrategyRandomizer', {22222} },
             { MIBC, 'GreaterThanGameTime', { 600} },
          -- relative income
             { SIBC, 'HaveLessThanUnitsInCategoryBeingBuilt', { 2, categories.STRUCTURE * categories.TECH3 * categories.ENERGYPRODUCTION } },
@@ -158,7 +242,7 @@ Builder {
     Priority = 980,
     BuilderConditions = {
         { MIBC, 'FactionIndex', { 2, 4 }},
-        { CF, 'StrategyRandomizer', {1} },
+        { CF, 'StrategyRandomizer', {222222} },
         { MIBC, 'GreaterThanGameTime', { 1200 } },
         { EBC, 'GreaterThanEconStorageCurrent', { 500, 10000 } },
         { SIBC, 'GreaterThanEconEfficiencyOverTime', { 1.0, 1.05 }},
@@ -197,37 +281,7 @@ BuilderGroup {
     BuilderGroupName = 'NC rambo behavior',
     BuildersType = 'PlatoonFormBuilder',
 
-    Builder {
-        BuilderName = 'NC ramboattack',
-        PlatoonTemplate = 'NC Rambo',
-            PlatoonAddPlans = {'PlatoonCallForHelpAISorian', 'DistressResponseAISorian'},
-            PlatoonAddBehaviors = { 'AirLandToggleSorian' },
-            Priority = 10000,
-            InstanceCount = 60,
-            BuilderConditions = { 
-                { CF, 'StrategyRandomizer', {111} },
-                            { UCBC, 'PoolGreaterAtLocation', { 'LocationType', 0, categories.SUBCOMMANDER } },
-                { SBC, 'NoRushTimeCheck', { 0 }},
-            },
-            BuilderData = {
-                TargetSearchCategory = categories.MOBILE * categories.LAND - categories.SCOUT,
-                MoveToCategories = {                                               
-                    categories.MOBILE * categories.LAND,
-                },
-              
-                SearchRadius = 6000,           
-                ThreatSupport = 40,
-                PrioritizedCategories = {
-    
-    
-                'EXPERIMENTAL LAND',
-                    'ALLUNITS',
-                },
-            },    
-          
-            BuilderType = 'Any',
-        },
-    }
+}
 
 
     BuilderGroup {
@@ -236,7 +290,7 @@ BuilderGroup {
     
             Builder {
                 BuilderName = 'NC Teleport',
-                PlatoonTemplate = 'NC tele ready',
+                PlatoonTemplate = 'NC subcommander huge teleport',
                 Priority = 2000,
                 InstanceCount = 20,
                 FormRadius = 250,
@@ -257,9 +311,10 @@ BuilderGroup {
                     },
                 },
                 BuilderConditions = {
+                    { CF, 'StrategyRandomizer', {222222} },
                     { MIBC, 'FactionIndex', { 2, 4 }}, -- 1: UEF, 2: Aeon, 3: Cybran, 4: Seraphim, 5: Nomads 
                     -- Have we the eco to build it ?
-                    { EBC, 'GreaterThanEconTrend', { 0, 1000 } }, -- relative income (wee need 10000 energy for a teleport. x3 SACU's
+                    { EBC, 'GreaterThanEconStorageCurrent', { 1, 50000 } },
                     -- When do we want to build this ?
                     { UCBC, 'HaveGreaterThanUnitsWithCategory', { 0, categories.SUBCOMMANDER} },
                  
@@ -284,19 +339,19 @@ BuilderGroup {
 Builder {
     BuilderName = 'NC t1bomber coinflip',
     PlatoonTemplate = 'T1AirBomber',
-    Priority = 100,
+    Priority = 990,
     BuilderType = 'Air',
-    InstanceCount = 30,
+    InstanceCount = 50,
     BuilderConditions = {
-        { CF, 'StrategyRandomizer', {5} },
+        { CF, 'StrategyRandomizer', {1} },
         { SBC, 'MapLessThan', { 2000, 2000 }},
-                    { MIBC, 'LessThanGameTime', { 1500 } },
+        { UCBC, 'HaveGreaterThanUnitsWithCategory', { 15, categories.MOBILE * categories.AIR * categories.ANTIAIR - categories.GROUNDATTACK - categories.BOMBER} },          
         
         
-        { IBC, 'BrainNotLowPowerMode', {} },
+        
         { SBC, 'NoRushTimeCheck', { 600 }},
-        
-       { SIBC, 'GreaterThanEconEfficiencyOverTime', { 0.65, 1.0 }},
+        { SIBC, 'GreaterThanEconEfficiencyOverTime', { 0.5, 0.5} },
+       
        
        
         
@@ -304,6 +359,40 @@ Builder {
     
 },
 }
+
+BuilderGroup {
+    BuilderGroupName = 'NCt1bomberunitsbehavior',
+    BuildersType = 'PlatoonFormBuilder',
+    Builder {
+        BuilderName = 'NC t1bomber coinflip behavior',
+        PlatoonTemplate = 't1bomberspam',
+            PlatoonAddBehaviors = { 'AirUnitRefitSorian' },
+            PlatoonAddPlans = { 'AirIntelToggle', 'DistressResponseAISorian'  },
+            Priority = 10000,
+            FormRadius = 500,
+            InstanceCount = 1000,
+            AggressiveMove = true,
+            BuilderType = 'Any',
+            BuilderConditions = {
+                { CF, 'StrategyRandomizer', {1} },
+                         { UCBC, 'PoolGreaterAtLocation', { 'LocationType', 2, categories.AIR  * (categories.TECH1 + categories.TECH2) * categories.BOMBER   * categories.MOBILE - categories.TRANSPORTFOCUS - categories.ANTINAVY - categories.uea0303 - categories.uaa0303 - categories.ura0303 - categories.xsa0303 - categories.uea0102 - categories.uaa0102 - categories.ura0102 - categories.xsa0102} },
+                { SBC, 'NoRushTimeCheck', { 0 }},
+            },
+            BuilderData = {
+                SearchRadius = 5000,
+                
+                PrioritizedCategories = {    
+    
+                    'EXPERIMENTAL LAND',
+                    'MOBILE LAND',
+                                   
+    
+                    
+                    
+                },
+            },
+        },
+    }  
 
 ----nuke rush
 
@@ -321,7 +410,7 @@ Builder {
         { CF, 'StrategyRandomizer', {3 } },
    
         { EBC, 'GreaterThanEconStorageRatio', { 0.00, 1.0}},
-        { IBC, 'BrainNotLowPowerMode', {} },
+        
     },
     BuilderType = 'Any',
     BuilderData = {
@@ -350,7 +439,7 @@ Builder {
         { SIBC, 'GreaterThanEconEfficiencyOverTime', { 0.95, 1.05}},
        
         
-        { IBC, 'BrainNotLowPowerMode', {} },
+        
     },
     BuilderType = 'Any',
     BuilderData = {
@@ -385,7 +474,7 @@ Builder {
      
 
     
-        { IBC, 'BrainNotLowPowerMode', {} },
+        
       
         
     },
@@ -459,7 +548,7 @@ Builder {
         { CF, 'StrategyRandomizer', {6 } },
         { SIBC, 'HaveLessThanUnitsInCategoryBeingBuilt', { 1, categories.STRUCTURE  * (categories.ANTIMISSILE + categories.NUKE + categories.ARTILLERY) * categories.TECH3 }},
         { UCBC, 'HaveGreaterThanUnitsWithCategory', { 2, categories.TECH2 * categories.ENERGYPRODUCTION} },
-        { IBC, 'BrainNotLowPowerMode', {} },
+        
         { SIBC, 'T4BuildingCheck', {} },
         
     
@@ -536,7 +625,7 @@ BuilderGroup {
             { MIBC, 'GreaterThanGameTime', { 1000} },
             { CF, 'StrategyRandomizer', {2 } },
             { SBC, 'MapLessThan', { 2000, 2000 }},
-            { MIBC, 'FactionIndex', {1,2, 3, 4}},
+          
          
           
            
@@ -581,7 +670,7 @@ BuilderGroup {
             { SIBC, 'HaveLessThanUnitsWithCategory', { 15, categories.FACTORY * categories.LAND}},
             { SIBC, 'HaveLessThanUnitsInCategoryBeingBuilt', { 3, categories.STRUCTURE * categories.TECH1 * categories.FACTORY } },
             { SIBC, 'HaveLessThanUnitsInCategoryBeingBuilt', { 2, categories.STRUCTURE * (categories.TECH2 + categories.TECH3)  * categories.ENERGYPRODUCTION } },
-            { IBC, 'BrainNotLowPowerMode', {} },
+            
            
             { SIBC, 'GreaterThanEconEfficiencyOverTime', { 0.80, 1.1} },
             
@@ -619,12 +708,12 @@ BuilderGroup {
          
             { UCBC, 'HaveLessThanUnitsWithCategory', { 3, categories.FACTORY * categories.TECH3 * categories.LAND }},
            
-			{ UCBC, 'FactoryGreaterAtLocation', { 'LocationType', 0, categories.LAND * categories.FACTORY * categories.TECH1 } },
+			
            
             { SIBC, 'GreaterThanEconEfficiencyOverTime', { 0.65, 1.01 }},
             
 			{ SBC, 'NoRushTimeCheck', { 600 }},
-            { IBC, 'BrainNotLowPowerMode', {} },
+            
         },
         BuilderType = 'Land',
     },
@@ -641,8 +730,8 @@ BuilderGroup {
         
             { UCBC, 'HaveLessThanUnitsWithCategory', { 3, categories.FACTORY * categories.TECH3 * categories.LAND }},
           
-			{ UCBC, 'FactoryGreaterAtLocation', { 'LocationType', 0, categories.LAND * categories.FACTORY - categories.TECH1 } },
-            { IBC, 'BrainNotLowPowerMode', {} },
+			
+            
 			{ SBC, 'NoRushTimeCheck', { 600 }},
 		
             { SIBC, 'GreaterThanEconEfficiencyOverTime', { 0.65, 1.01 }},
@@ -651,4 +740,87 @@ BuilderGroup {
         BuilderType = 'Land',
     },
 }
+
+BuilderGroup {
+    BuilderGroupName = 'NC Satelite coinflip',
+    BuildersType = 'EngineerBuilder',
+    Builder {
+        BuilderName = 'Nc Satelite speedbuild on coinflip',
+        PlatoonTemplate = 'UEFT3EngineerBuilderSorian',
+        Priority = 1100,
+        BuilderConditions = {
+            { CF, 'StrategyRandomizer', {11 } },
+            { MIBC, 'FactionIndex', {1}},
+            { SBC, 'MapGreaterThan', { 500, 500 }},
+            { MIBC, 'GreaterThanGameTime', { 1000} },
+            
+            { EBC, 'GreaterThanEconStorageCurrent', { 2500, 1000 } },
+            { UCBC, 'HaveGreaterThanUnitsWithCategory', { 0, categories.ENERGYPRODUCTION * categories.TECH3 } },
+
+           
+        },
+        BuilderType = 'Any',
+        BuilderData = {
+            MinNumAssistees = 6,
+            Construction = {
+                BuildClose = true,
+                #T4 = true,
+                AdjacencyCategory = 'SHIELD STRUCTURE',
+                BuildStructures = {
+                    'T4SatelliteExperimental',
+                },
+                Location = 'LocationType',
+            }
+        }
+    },
+    Builder {
+        BuilderName = 'NC Satelite Assist t2 coinflip',
+        PlatoonTemplate = 'T2EngineerAssist',
+        Priority = 1200,
+    
+        BuilderConditions = {
+            { CF, 'StrategyRandomizer', {11 } },
+            { MIBC, 'FactionIndex', {1}},
+            { UCBC, 'LocationEngineersBuildingGreater', { 'LocationType', 0, categories.EXPERIMENTAL * categories.ORBITALSYSTEM }},
+       --- 
+       { EBC, 'GreaterThanEconStorageCurrent', { 5000, 7000 } },
+            
+        },
+        BuilderType = 'Any',
+        BuilderData = {
+            Assist = {
+                AssistLocation = 'LocationType',
+                AssisteeType = 'Engineer',
+                BeingBuiltCategories = {'EXPERIMENTAL ORBITALSYSTEM'},
+                Time = 60,
+            },
+        }
+    },
+    Builder {
+        BuilderName = 'Nc Satelite Assist t3 coinflip',
+        PlatoonTemplate = 'T3EngineerAssist',
+        Priority = 1200,
+    
+        BuilderConditions = {
+            { CF, 'StrategyRandomizer', {11 } },
+            { MIBC, 'FactionIndex', {1}},
+            { UCBC, 'LocationEngineersBuildingGreater', { 'LocationType', 0, categories.EXPERIMENTAL * categories.ORBITALSYSTEM }},
+            --- 
+            { EBC, 'GreaterThanEconStorageCurrent', { 5000, 7000 } },
+            
+        },
+        BuilderType = 'Any',
+        BuilderData = {
+            Assist = {
+                AssistLocation = 'LocationType',
+                AssisteeType = 'Engineer',
+                BeingBuiltCategories = {'EXPERIMENTAL ORBITALSYSTEM'},
+                Time = 60,
+            },
+        }
+    },
+    
+}
+
+
   

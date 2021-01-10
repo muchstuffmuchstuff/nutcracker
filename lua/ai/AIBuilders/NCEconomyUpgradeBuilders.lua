@@ -24,9 +24,13 @@ local TBC = '/lua/editor/ThreatBuildConditions.lua'
 local PlatoonFile = '/lua/platoon.lua'
 local SIBC = '/lua/editor/SorianInstantBuildConditions.lua'
 local SBC = '/lua/editor/SorianBuildConditions.lua'
-local Tech2MassExtractortoTech1ExtractorRatio = 0.50
+local Tech2MassExtractortoTech1ExtractorRatio = 0.80
 local CF = '/mods/nutcracker/hook/lua/coinflip.lua'
-
+local CF = '/mods/nutcracker/hook/lua/coinflip.lua'
+local WRC = '/mods/nutcracker/hook/lua/weaponsrangeconditions.lua'
+local EN = '/mods/nutcracker/hook/lua/economicnumbers.lua'
+local AIUtils = import('/lua/ai/aiutilities.lua')
+local T1landspamnearlymaxedoutNC = 0.19
 
 
 
@@ -39,123 +43,97 @@ BuilderGroup {
         InstanceCount = 1,
         Priority = 300,
         BuilderConditions = {
-            { IBC, 'BrainNotLowPowerMode', {} },
-        
-            { SIBC, 'GreaterThanEconEfficiencyOverTime', { 0.85, 1.10 }},
-            
-            { UCBC, 'HaveLessThanUnitsInCategoryBeingBuilt', { 1, 'MASSEXTRACTION TECH2, MASSEXTRACTION TECH3'} },
-            { UCBC, 'HaveGreaterThanUnitsWithCategory', { 10, 'MASSEXTRACTION' }},
-		
-         
-            
-        },
-        FormRadius = 10000,
-        BuilderType = 'Any',
-    },
-    Builder {
-        BuilderName = 'NC mass upgrades tech2 giant map',
-        PlatoonTemplate = 'T1MassExtractorUpgrade',
-        InstanceCount = 1,
-        Priority = 300,
-        BuilderConditions = {
-            { SBC, 'MapGreaterThan', { 2000, 2000 }},
-            { MIBC, 'LessThanGameTime', { 1200 } },
-            { IBC, 'BrainNotLowPowerMode', {} },
-        
-            { SIBC, 'GreaterThanEconEfficiencyOverTime', { 0.95, 1.20 }},
-            
-            { UCBC, 'HaveLessThanUnitsInCategoryBeingBuilt', { 2, 'MASSEXTRACTION TECH2, MASSEXTRACTION TECH3'} },
-            { UCBC, 'HaveGreaterThanUnitsWithCategory', { 10, 'MASSEXTRACTION' }},
-		
-         
-            
-        },
-        FormRadius = 10000,
-        BuilderType = 'Any',
-    },
-    Builder {
-        BuilderName = 'NC mass upgrades tech2_incomesupported',
-        PlatoonTemplate = 'T1MassExtractorUpgrade',
-        InstanceCount = 1,
-        Priority = 300,
-        BuilderConditions = {
-            { EBC, 'GreaterThanEconStorageCurrent', { 10000, 15000 } },
-            { IBC, 'BrainNotLowPowerMode', {} },
-         
-           
-            
-            { UCBC, 'HaveLessThanUnitsInCategoryBeingBuilt', { 3, 'MASSEXTRACTION TECH2, MASSEXTRACTION TECH3'} },
-            { UCBC, 'HaveGreaterThanUnitsWithCategory', { 12, 'MASSEXTRACTION' }},
-		
-         
-            
-        },
-        FormRadius = 10000,
-        BuilderType = 'Any',
-    },
- Builder {
-        BuilderName = 'NC mass upgrades tech2 plenty',
-        PlatoonTemplate = 'T1MassExtractorUpgrade',
-        InstanceCount = 1,
-        Priority = 300,
-        BuilderConditions = {
-            { IBC, 'BrainNotLowPowerMode', {} },
-          { UCBC, 'HaveGreaterThanUnitsWithCategory', { 20, 'MASSEXTRACTION TECH2, MASSEXTRACTION TECH3' }},
-            { SIBC, 'GreaterThanEconEfficiencyOverTime', { 0.95, 1.20 }},
-            
-       { UCBC, 'HaveLessThanUnitsInCategoryBeingBuilt', { 1, 'MASSEXTRACTION TECH2'} },
-        
-		
-         
-            
-        },
-        FormRadius = 10000,
-        BuilderType = 'Any',
-    },
    
-   Builder {
-        BuilderName = 'NC mass upgrades tech3',
-        PlatoonTemplate = 'T2MassExtractorUpgrade',
-        InstanceCount = 1,
-        Priority = 300,
-        BuilderConditions = {
-            { MIBC, 'GreaterThanGameTime', { 800 } },
-            { SIBC, 'HaveLessThanUnitsInCategoryBeingBuilt', { 1, categories.STRUCTURE * (categories.TECH3 + categories.TECH2)  * categories.ENERGYPRODUCTION } },
-            { IBC, 'BrainNotLowPowerMode', {} },
-            { UCBC, 'HaveGreaterThanUnitsWithCategory', { 12, categories.MASSEXTRACTION * (categories.TECH2 + categories.TECH3) }},
-            { SIBC, 'GreaterThanEconEfficiencyOverTime', { 0.95, 1.10 }},
-            { EBC, 'GreaterThanEconStorageCurrent', { 600, 10000 } },
-            { SIBC, 'HaveLessThanUnitsInCategoryBeingBuilt', { 1, categories.STRUCTURE  * categories.ANTIMISSILE * categories.TECH3 }},
+        
+       { MIBC, 'GreaterThanGameTime', { 300 } },
             
-                        { UCBC, 'HaveLessThanUnitsInCategoryBeingBuilt', { 1, 'MASSEXTRACTION TECH3' } },
-	
-       
+            { EN, 'HaveLessThanUnitsInCategoryBeingUpgradeNC', { 2, categories.MASSEXTRACTION * categories.TECH1} },
+           
+		
+         
+            
         },
         FormRadius = 10000,
         BuilderType = 'Any',
     },
     Builder {
-        BuilderName = 'NC mass upgrades tech3 giant map',
-        PlatoonTemplate = 'T2MassExtractorUpgrade',
+        BuilderName = 'NC mass upgrades tech2 incomeupgrade',
+        PlatoonTemplate = 'T1MassExtractorUpgrade',
         InstanceCount = 1,
         Priority = 300,
         BuilderConditions = {
-            { SBC, 'MapGreaterThan', { 2000, 2000 }},
-            { MIBC, 'LessThanGameTime', { 1200 } },
-            { SIBC, 'HaveLessThanUnitsInCategoryBeingBuilt', { 2, categories.STRUCTURE * (categories.TECH3 + categories.TECH2)  * categories.ENERGYPRODUCTION } },
-            { IBC, 'BrainNotLowPowerMode', {} },
-            { UCBC, 'HaveGreaterThanUnitsWithCategory', { 12, categories.MASSEXTRACTION * (categories.TECH2 + categories.TECH3) }},
-            { SIBC, 'GreaterThanEconEfficiencyOverTime', { 0.95, 1.20 }},
-          
-            { SIBC, 'HaveLessThanUnitsInCategoryBeingBuilt', { 1, categories.STRUCTURE  * categories.ANTIMISSILE * categories.TECH3 }},
+       --
+       { EBC, 'GreaterThanEconStorageCurrent', { 1500, 2000 } },
+       { MIBC, 'GreaterThanGameTime', { 600 } },
+       { EN, 'HaveLessThanUnitsInCategoryBeingUpgradeNC', { 3, categories.MASSEXTRACTION * categories.TECH1} },
             
-                        { UCBC, 'HaveLessThanUnitsInCategoryBeingBuilt', { 1, 'MASSEXTRACTION TECH3' } },
-	
-       
+           
+		
+         
+            
         },
         FormRadius = 10000,
         BuilderType = 'Any',
     },
+    Builder {
+        BuilderName = 'NC mass upgrades tech2 incomeupgrade2',
+        PlatoonTemplate = 'T1MassExtractorUpgrade',
+        InstanceCount = 1,
+        Priority = 300,
+        BuilderConditions = {
+       --
+       { EBC, 'GreaterThanEconStorageCurrent', { 2500, 5000 } },
+       { MIBC, 'GreaterThanGameTime', { 750 } },
+    
+       { EN, 'HaveLessThanUnitsInCategoryBeingUpgradeNC', { 4, categories.MASSEXTRACTION * categories.TECH1} },
+           
+		
+         
+            
+        },
+        FormRadius = 10000,
+        BuilderType = 'Any',
+    },
+    Builder {
+        BuilderName = 'NC mass upgrades tech2 incomeupgrade3 many',
+        PlatoonTemplate = 'T1MassExtractorUpgrade',
+        InstanceCount = 1,
+        Priority = 300,
+        BuilderConditions = {
+       --
+       
+       { MIBC, 'GreaterThanGameTime', { 1200 } },
+       { UCBC, 'HaveGreaterThanUnitsWithCategory', { 20, categories.MASSEXTRACTION * categories.TECH1 } },     
+       { EN, 'HaveLessThanUnitsInCategoryBeingUpgradeNC', { 6, categories.MASSEXTRACTION * categories.TECH1} },
+           
+		
+         
+            
+        },
+        FormRadius = 10000,
+        BuilderType = 'Any',
+    },
+    Builder {
+        BuilderName = 'NC mass upgrades tech2 incomeupgrade3 full control',
+        PlatoonTemplate = 'T1MassExtractorUpgrade',
+        InstanceCount = 1,
+        Priority = 300,
+        BuilderConditions = {
+       --
+       { WRC, 'HaveUnitRatioVersusEnemyNC', { 7.0, categories.MOBILE * categories.LAND - categories.ENGINEER, '>=', categories.MOBILE * categories.LAND - categories.ENGINEER } },
+			{ WRC, 'HaveUnitRatioVersusEnemyNC', { 3.0, categories.MOBILE * categories.AIR * categories.ANTIAIR  - categories.GROUNDATTACK - categories.BOMBER, '>=', categories.MOBILE * categories.AIR  - categories.SCOUT - categories.TRANSPORTFOCUS } },
+       { MIBC, 'GreaterThanGameTime', { 1200 } },
+         
+       { EN, 'HaveLessThanUnitsInCategoryBeingUpgradeNC', { 6, categories.MASSEXTRACTION * categories.TECH1} },
+           
+		
+         
+            
+        },
+        FormRadius = 10000,
+        BuilderType = 'Any',
+    },
+    
     Builder {
         BuilderName = 'NC mass upgrades tech3 RATIO',
         PlatoonTemplate = 'T2MassExtractorUpgrade',
@@ -163,14 +141,15 @@ BuilderGroup {
         Priority = 800,
         BuilderConditions = {
             { MIBC, 'GreaterThanGameTime', { 800 } },
-            { IBC, 'BrainNotLowPowerMode', {} },
+       --
             { UCBC, 'HaveUnitRatio', { Tech2MassExtractortoTech1ExtractorRatio, categories.MASSEXTRACTION * categories.TECH2, '>=', categories.MASSEXTRACTION * categories.TECH1 } },
             
           
           
-            { SIBC, 'GreaterThanEconEfficiencyOverTime', { 1.0, 1.10 }},
+           
           
-            { SIBC, 'HaveLessThanUnitsInCategoryBeingBuilt', { 1, categories.STRUCTURE  * categories.ANTIMISSILE * categories.TECH3 }},
+         
+            { EN, 'HaveLessThanUnitsInCategoryBeingUpgradeNC', { 1, categories.MASSEXTRACTION * categories.TECH2}},
             
                    
 	
@@ -180,88 +159,99 @@ BuilderGroup {
         BuilderType = 'Any',
     },
     Builder {
-        BuilderName = 'NC mass upgrades tech3_incomesupported',
+        BuilderName = 'NC mass upgrades tech3 RATIO_income',
         PlatoonTemplate = 'T2MassExtractorUpgrade',
         InstanceCount = 1,
-        Priority = 300,
+        Priority = 800,
         BuilderConditions = {
-            { MIBC, 'GreaterThanGameTime', { 1800 } },
-            { EBC, 'GreaterThanEconStorageCurrent', { 25000, 10000 } },
-            { IBC, 'BrainNotLowPowerMode', {} },
-            { SIBC, 'GreaterThanEconEfficiencyOverTime', { 0.99, 1.20 }},
-      
-         
+            { MIBC, 'GreaterThanGameTime', { 800 } },
+       --
+            { UCBC, 'HaveUnitRatio', { Tech2MassExtractortoTech1ExtractorRatio, categories.MASSEXTRACTION * categories.TECH2, '>=', categories.MASSEXTRACTION * categories.TECH1 } },
+            { EBC, 'GreaterThanEconStorageCurrent', { 10000, 15000 } },
+          
+          
+           
+          
+          
+            { EN, 'HaveLessThanUnitsInCategoryBeingUpgradeNC', { 2, categories.MASSEXTRACTION * categories.TECH2}},
             
-                        { UCBC, 'HaveLessThanUnitsInCategoryBeingBuilt', { 2, 'MASSEXTRACTION TECH3' } },
+                   
 	
        
         },
         FormRadius = 10000,
         BuilderType = 'Any',
     },
-Builder {
-        BuilderName = 'NC mass upgrades tech3 plenty',
+    Builder {
+        BuilderName = 'NC mass upgrades tech3 RATIO_FULL_CONTROL',
         PlatoonTemplate = 'T2MassExtractorUpgrade',
         InstanceCount = 1,
-        Priority = 301,
+        Priority = 800,
         BuilderConditions = {
-            { MIBC, 'GreaterThanGameTime', { 1800 } },
-            { EBC, 'GreaterThanEconStorageCurrent', { 10000, 10000 } },
-            { IBC, 'BrainNotLowPowerMode', {} },
-        { UCBC, 'HaveGreaterThanUnitsWithCategory', { 14, 'MASSEXTRACTION TECH3' }},
-        { UCBC, 'HaveLessThanUnitsInCategoryBeingBuilt', { 1, 'MASSEXTRACTION TECH3' } },
-            { SIBC, 'GreaterThanEconEfficiencyOverTime', { 0.99, 1.20 }},
+            { MIBC, 'GreaterThanGameTime', { 1600 } },
+       --
+            { UCBC, 'HaveUnitRatio', { Tech2MassExtractortoTech1ExtractorRatio, categories.MASSEXTRACTION * categories.TECH2, '>=', categories.MASSEXTRACTION * categories.TECH1 } },
+           
+            { WRC, 'HaveUnitRatioVersusEnemyNC', { 7.0, categories.MOBILE * categories.LAND - categories.ENGINEER, '>=', categories.MOBILE * categories.LAND - categories.ENGINEER } },
+			{ WRC, 'HaveUnitRatioVersusEnemyNC', { 3.0, categories.MOBILE * categories.AIR * categories.ANTIAIR  - categories.GROUNDATTACK - categories.BOMBER, '>=', categories.MOBILE * categories.AIR  - categories.SCOUT - categories.TRANSPORTFOCUS } },
+          
+           
+          
+       
+            { EN, 'HaveLessThanUnitsInCategoryBeingUpgradeNC', { 3, categories.MASSEXTRACTION * categories.TECH2}},
             
-                     
+                   
 	
        
         },
         FormRadius = 10000,
         BuilderType = 'Any',
     },
+    
 }
 
 BuilderGroup {
     BuilderGroupName = 'NCUpgradeBuilders_mainbase',
     BuildersType = 'PlatoonFormBuilder',
     Builder {
-        BuilderName = 'NC Air t1 to t2mainbase allow for landfactory to upgrade',
-        PlatoonTemplate = 'T1AirFactoryUpgrade',
-        Priority = 1000,
-     
-        BuilderConditions = {
-            { MIBC, 'LessThanGameTime', {800 } },
-            { EBC, 'GreaterThanEconStorageRatio', { 0.0, 1.0 } },
-            { UCBC, 'HaveGreaterThanUnitsWithCategory', { 20, categories.AIR * categories.MOBILE * categories.ANTIAIR  - categories.BOMBER - categories.GROUNDATTACK - categories.SCOUT } },
-                { SIBC, 'GreaterThanEconEfficiencyOverTime', { 0.95, 1.05 } },
-             
-                { UCBC, 'HaveLessThanUnitsInCategoryBeingBuilt', { 1, categories.TECH2 * categories.FACTORY } },
-              { UCBC, 'HaveGreaterThanUnitsWithCategory', { 3, 'AIR FACTORY'}},
-           
-           
-                { IBC, 'BrainNotLowPowerMode', {} },
-            },
-        BuilderType = 'Any',
-    },
-    Builder {
         BuilderName = 'NC Air t1 to t2mainbase',
         PlatoonTemplate = 'T1AirFactoryUpgrade',
         Priority = 1000,
      
         BuilderConditions = {
-            { MIBC, 'GreaterThanGameTime', { 800 } },
-            { EBC, 'GreaterThanEconStorageRatio', { 0.0, 1.0 } },
-            { UCBC, 'HaveGreaterThanUnitsWithCategory', { 20, categories.AIR * categories.MOBILE * categories.ANTIAIR  - categories.BOMBER - categories.GROUNDATTACK - categories.SCOUT } },
-                { SIBC, 'GreaterThanEconEfficiencyOverTime', { 0.95, 1.05 } },
-             
-                { UCBC, 'HaveLessThanUnitsInCategoryBeingBuilt', { 1, categories.AIR *(categories.TECH2 + categories.TECH3)*categories.FACTORY } },
-              { UCBC, 'HaveGreaterThanUnitsWithCategory', { 3, 'AIR FACTORY'}},
+            { MIBC, 'GreaterThanGameTime', { 400 } },
+          
+      
+               
+            { EBC, 'GreaterThanEconStorageCurrent', { 50, 100 } },
+                { EN, 'HaveLessThanUnitsInCategoryBeingUpgradeNC', { 1, categories.FACTORY * categories.AIR }},
+              { UCBC, 'HaveGreaterThanUnitsWithCategory', { 2, categories.AIR * categories.FACTORY}},
            
            
-                { IBC, 'BrainNotLowPowerMode', {} },
+           --
             },
         BuilderType = 'Any',
     },
+    Builder {
+        BuilderName = 'NC Air t1 to t2mainbase MANY',
+        PlatoonTemplate = 'T1AirFactoryUpgrade',
+        Priority = 1000,
+     
+        BuilderConditions = {
+            { MIBC, 'GreaterThanGameTime', { 400 } },
+            { EBC, 'GreaterThanEconStorageCurrent', { 100, 100 } },
+           
+               
+             
+                { EN, 'HaveLessThanUnitsInCategoryBeingUpgradeNC', { 2, categories.FACTORY * categories.AIR} },
+              { UCBC, 'HaveGreaterThanUnitsWithCategory', { 8, categories.AIR * categories.FACTORY}},
+           
+           
+           --
+            },
+        BuilderType = 'Any',
+    },
+    
     Builder {
         BuilderName = 'NC Air t1 to t2mainbase ENEMY HAS T3',
         PlatoonTemplate = 'T1AirFactoryUpgrade',
@@ -270,257 +260,245 @@ BuilderGroup {
         BuilderConditions = {
             { MIBC, 'GreaterThanGameTime', { 800 } },
            
-            { UCBC, 'HaveUnitsWithCategoryAndAlliance', { true, 0, categories.TECH3 * categories.AIR * categories.ANTIAIR, 'Enemy'}},
-                { SIBC, 'GreaterThanEconEfficiencyOverTime', { 0.85, 1.05 } },
+            { UCBC, 'HaveUnitsWithCategoryAndAlliance', { true, 0, categories.AIR * categories.MOBILE * (categories.TECH3 + categories.EXPERIMENTAL), 'Enemy'}},
+            --- 
              
-                { UCBC, 'HaveLessThanUnitsInCategoryBeingBuilt', { 2, categories.AIR *(categories.TECH2 + categories.TECH3)*categories.FACTORY } },
+                { EN, 'HaveLessThanUnitsInCategoryBeingUpgradeNC', { 4, categories.AIR * categories.FACTORY } },
          
            
            
-                { IBC, 'BrainNotLowPowerMode', {} },
+           --
             },
         BuilderType = 'Any',
     },
-    Builder {
-        BuilderName = 'NC Air t1 to t2mainbase_incomesupported',
-        PlatoonTemplate = 'T1AirFactoryUpgrade',
-        Priority = 1000,
-     
-        BuilderConditions = {
-            { EBC, 'GreaterThanEconStorageRatio', { 0.05, 1.0 } },
-            { UCBC, 'HaveGreaterThanUnitsWithCategory', { 20, categories.AIR * categories.MOBILE * categories.ANTIAIR  - categories.BOMBER - categories.GROUNDATTACK - categories.SCOUT } },
-            { EBC, 'GreaterThanEconStorageCurrent', { 25000, 15000 } },
-         
-             
-                { UCBC, 'HaveLessThanUnitsInCategoryBeingBuilt', { 2, categories.AIR *(categories.TECH2 + categories.TECH3)*categories.FACTORY } },
-             
-           
-           
-                { IBC, 'BrainNotLowPowerMode', {} },
-            },
-        BuilderType = 'Any',
-    },
-Builder {
-        BuilderName = 'NC Air t2 to t3mainbase ALLOW FOR LANDFACTORY TO UPGRADE',
-        PlatoonTemplate = 'T2AirFactoryUpgrade',
-        Priority = 1001,
-        InstanceCount = 1,
-        BuilderConditions = {
-            { MIBC, 'LessThanGameTime', { 1000 } },
-            { EBC, 'GreaterThanEconStorageRatio', { 0.05, 1.0 } },
-            { UCBC, 'HaveGreaterThanUnitsWithCategory', { 20, categories.AIR * categories.MOBILE * categories.ANTIAIR  - categories.BOMBER - categories.GROUNDATTACK - categories.SCOUT } },
-            { UCBC, 'HaveGreaterThanUnitsWithCategory', { 2, categories.ENGINEER * categories.TECH2}},
-                { SIBC, 'GreaterThanEconEfficiencyOverTime', { 0.95, 1.00 } },
-       
-                { UCBC, 'HaveLessThanUnitsInCategoryBeingBuilt', { 1, categories.TECH3 * categories.FACTORY } },
-                { UCBC, 'HaveGreaterThanUnitsWithCategory', { 4, 'AIR FACTORY'}},
-           
-           
-                { IBC, 'BrainNotLowPowerMode', {} },
-            },
-        BuilderType = 'Any',
-    },
+   
+
     Builder {
         BuilderName = 'NC Air t2 to t3mainbase',
         PlatoonTemplate = 'T2AirFactoryUpgrade',
-        Priority = 1001,
+        Priority = 1000,
         InstanceCount = 1,
         BuilderConditions = {
-            { MIBC, 'GreaterThanGameTime', { 1001 } },
-            { EBC, 'GreaterThanEconStorageRatio', { 0.05, 1.0 } },
-            { UCBC, 'HaveGreaterThanUnitsWithCategory', { 20, categories.AIR * categories.MOBILE * categories.ANTIAIR  - categories.BOMBER - categories.GROUNDATTACK - categories.SCOUT } },
-            { UCBC, 'HaveGreaterThanUnitsWithCategory', { 2, categories.ENGINEER * categories.TECH2}},
-            { EBC, 'GreaterThanEconTrend', { 5, 3000 } }, 
+            
+            
+        
+
+            { UCBC, 'HaveGreaterThanUnitsWithCategory', { 1, categories.ENERGYPRODUCTION * categories.TECH2}},
+            --- 
        
-                { UCBC, 'HaveLessThanUnitsInCategoryBeingBuilt', { 1, categories.AIR * categories.TECH3 * categories.FACTORY } },
-                { UCBC, 'HaveGreaterThanUnitsWithCategory', { 4, 'AIR FACTORY'}},
+                { EN, 'HaveLessThanUnitsInCategoryBeingUpgradeNC', { 1, categories.AIR * categories.FACTORY * categories.TECH2 } },
+                { UCBC, 'HaveGreaterThanUnitsWithCategory', { 3, categories.FACTORY * categories.AIR}},
            
            
-                { IBC, 'BrainNotLowPowerMode', {} },
+           --
             },
         BuilderType = 'Any',
     },
     Builder {
+        BuilderName = 'NC Air t2 to t3mainbase MANY',
+        PlatoonTemplate = 'T2AirFactoryUpgrade',
+        Priority = 1000,
+        InstanceCount = 1,
+        BuilderConditions = {
+            
+            { EBC, 'GreaterThanEconStorageCurrent', { 100, 100 } },
+            
+        
+            { UCBC, 'HaveGreaterThanUnitsWithCategory', { 0, categories.ENERGYPRODUCTION * categories.TECH2}},
+            --- 
+       
+                { EN, 'HaveLessThanUnitsInCategoryBeingUpgradeNC', { 2, categories.AIR * categories.FACTORY } },
+                { UCBC, 'HaveGreaterThanUnitsWithCategory', { 8, categories.FACTORY * categories.AIR}},
+           
+           
+           --
+            },
+        BuilderType = 'Any',
+    },
+
+    Builder {
         BuilderName = 'NC Air t2 to t3mainbase ENEMY HAS T3',
         PlatoonTemplate = 'T2AirFactoryUpgrade',
-        Priority = 1201,
+        Priority = 1200,
         InstanceCount = 1,
         BuilderConditions = {
             { MIBC, 'GreaterThanGameTime', { 1001 } },
         
-            { UCBC, 'HaveUnitsWithCategoryAndAlliance', { true, 0, categories.TECH3 * categories.AIR * categories.MOBILE, 'Enemy'}},
+            { UCBC, 'HaveUnitsWithCategoryAndAlliance', { true, 0, categories.AIR * categories.MOBILE * (categories.TECH3 + categories.EXPERIMENTAL), 'Enemy'}},
             { UCBC, 'HaveGreaterThanUnitsWithCategory', { 2, categories.ENGINEER * categories.TECH2}},
-                { SIBC, 'GreaterThanEconEfficiencyOverTime', { 0.85, 1.00 } },
+            --- 
        
-                { UCBC, 'HaveLessThanUnitsInCategoryBeingBuilt', { 2, categories.AIR * categories.TECH3 * categories.FACTORY } },
+                { EN, 'HaveLessThanUnitsInCategoryBeingUpgradeNC', { 4, categories.AIR * categories.FACTORY } },
               
            
            
-                { IBC, 'BrainNotLowPowerMode', {} },
-            },
-        BuilderType = 'Any',
-    },
-    Builder {
-        BuilderName = 'NC Air t2 to t3mainbase_incomesupported',
-        PlatoonTemplate = 'T2AirFactoryUpgrade',
-        Priority = 1001,
-        InstanceCount = 1,
-        BuilderConditions = {
-            { MIBC, 'GreaterThanGameTime', { 1200 } },
-            { EBC, 'GreaterThanEconStorageRatio', { 0.05, 1.0 } },
-            { UCBC, 'HaveGreaterThanUnitsWithCategory', { 20, categories.AIR * categories.MOBILE * categories.ANTIAIR - categories.BOMBER - categories.GROUNDATTACK - categories.SCOUT } },
-            { EBC, 'GreaterThanEconStorageCurrent', { 25000, 15000 } },
-                { UCBC, 'HaveLessThanUnitsInCategoryBeingBuilt', { 3, categories.AIR * categories.TECH3 * categories.FACTORY } },
-            
-           
-           
-                { IBC, 'BrainNotLowPowerMode', {} },
-            },
-        BuilderType = 'Any',
-    },
- 
-Builder {
-        BuilderName = 'NC land t1 to t2mainbase',
-        PlatoonTemplate = 'T1LandFactoryUpgrade',
-        Priority = 1050,
-        InstanceCount = 1,
-        PlatoonAddFunctions = { {SAI, 'BuildOnce'}, },
-        BuilderConditions = {
-            { MIBC, 'GreaterThanGameTime', { 300 } },
-            { EBC, 'GreaterThanEconStorageRatio', { 0.0, 0.3 } },
-            { UCBC, 'HaveGreaterThanUnitsWithCategory', { 1, categories.LAND * categories.FACTORY } },
-            
-           
-              
-               
-              
-          
-           
-           
-                { IBC, 'BrainNotLowPowerMode', {} },
+           --
             },
         BuilderType = 'Any',
     },
     
-   
-    Builder {
-        BuilderName = 'NC land t1 to t2mainbase_incomesupported',
+ 
+Builder {
+        BuilderName = 'NC land t1 to t2mainbase',
         PlatoonTemplate = 'T1LandFactoryUpgrade',
-        Priority = 999,
+        Priority = 1000,
         InstanceCount = 1,
+ 
         BuilderConditions = {
-            { EBC, 'GreaterThanEconStorageRatio', { 0.05, 1.0 } },
-            { UCBC, 'HaveGreaterThanUnitsWithCategory', { 30, categories.LAND * categories.MOBILE - categories.ENGINEER } },
-            { EBC, 'GreaterThanEconStorageCurrent', { 1000, 15000 } },
-             
+            { MIBC, 'GreaterThanGameTime', { 300 } },
+            { EBC, 'GreaterThanEconStorageCurrent', { 50, 100 } },
+            { UCBC, 'HaveGreaterThanUnitsWithCategory', { 2, categories.LAND * categories.FACTORY } },
+            { UCBC, 'HaveGreaterThanUnitsWithCategory', { 0, categories.AIR * categories.FACTORY * categories.TECH3 } },
+            { EN, 'HaveLessThanUnitsInCategoryBeingUpgradeNC', { 1, categories.FACTORY * categories.LAND } },
+            
+           
+              
                
-                { UCBC, 'HaveLessThanUnitsInCategoryBeingBuilt', { 3, categories.LAND *(categories.TECH2 + categories.TECH3)*categories.FACTORY } },
-         
+              
+          
            
            
-                { IBC, 'BrainNotLowPowerMode', {} },
+           --
             },
         BuilderType = 'Any',
     },
     Builder {
-        BuilderName = 'NC land t1 to t2mainbase_incomesupported2',
+        BuilderName = 'NC land t1 to t2mainbase 2ND OPTION',
         PlatoonTemplate = 'T1LandFactoryUpgrade',
-        Priority = 999,
+        Priority = 1000,
         InstanceCount = 1,
+ 
         BuilderConditions = {
-            { EBC, 'GreaterThanEconStorageRatio', { 0.05, 1.0 } },
-            { UCBC, 'HaveGreaterThanUnitsWithCategory', { 30, categories.LAND * categories.MOBILE - categories.ENGINEER } },
-            { EBC, 'GreaterThanEconTrend', { 150, 3000 } }, 
-             
+            { MIBC, 'GreaterThanGameTime', { 300 } },
+            { EBC, 'GreaterThanEconStorageCurrent', { 50, 100 } },
+            { UCBC, 'HaveGreaterThanUnitsWithCategory', { 5, categories.LAND * categories.FACTORY } },
+            { UCBC, 'HaveGreaterThanUnitsWithCategory', { 0, categories.AIR * categories.FACTORY * categories.TECH2 } },
+            { EN, 'HaveLessThanUnitsInCategoryBeingUpgradeNC', { 1, categories.FACTORY * categories.LAND } },
+            
+           
+              
                
-                { UCBC, 'HaveLessThanUnitsInCategoryBeingBuilt', { 3, categories.LAND *(categories.TECH2 + categories.TECH3)*categories.FACTORY } },
-         
+              
+          
            
            
-                { IBC, 'BrainNotLowPowerMode', {} },
+           --
             },
         BuilderType = 'Any',
     },
+    Builder {
+        BuilderName = 'NC land t1 to t2mainbase maxed out t1 units',
+        PlatoonTemplate = 'T1LandFactoryUpgrade',
+        Priority = 1000,
+        InstanceCount = 10,
+ 
+        BuilderConditions = {
+            { MIBC, 'GreaterThanGameTime', {1000 } },
+            { EBC, 'GreaterThanEconStorageCurrent', { 10000, 20000 } },
+            { UCBC, 'HaveUnitRatioVersusCap', { T1landspamnearlymaxedoutNC , '>', categories.TECH1 * categories.MOBILE * categories.LAND - categories.ENGINEER} }, 
+           
+            { EN, 'HaveLessThanUnitsInCategoryBeingUpgradeNC', { 5, categories.FACTORY * categories.LAND } },
+            
+           
+              
+               
+              
+          
+           
+           
+           --
+            },
+        BuilderType = 'Any',
+    },
+    Builder {
+        BuilderName = 'NC land t1 to t2mainbase island for uef and cyb',
+        PlatoonTemplate = 'T1LandFactoryUpgrade',
+        Priority = 1000,
+        InstanceCount = 1,
+ 
+        BuilderConditions = {
+            { MIBC, 'FactionIndex', {1,3} },
+            { WRC, 'CanPathToCurrentEnemyNC', { 'LocationType', false } },
+            { MIBC, 'GreaterThanGameTime', { 300 } },
+           
+            { UCBC, 'HaveGreaterThanUnitsWithCategory', { 2, categories.LAND * categories.FACTORY } },
+            { UCBC, 'HaveGreaterThanUnitsWithCategory', { 0, categories.AIR * categories.FACTORY * categories.TECH2 } },
+            { EN, 'HaveLessThanUnitsInCategoryBeingUpgradeNC', { 1, categories.FACTORY * categories.LAND * categories.TECH2  } },
+            
+           
+              
+               
+              
+          
+           
+           
+           --
+            },
+        BuilderType = 'Any',
+    },
+    
+ 
+    
 Builder {
         BuilderName = 'NC land t2 to t3mainbase',
         PlatoonTemplate = 'T2LandFactoryUpgrade',
-        Priority = 1050,
-        PlatoonAddFunctions = { {SAI, 'BuildOnce'}, },
+        Priority = 1000,
+ 
         InstanceCount = 1,
         BuilderConditions = {
         
-            { EBC, 'GreaterThanEconStorageRatio', { 0.0, 0.3 } },
-            { UCBC, 'HaveGreaterThanUnitsWithCategory', { 2, categories.ENGINEER * categories.TECH2 } },
+            { EBC, 'GreaterThanEconStorageCurrent', { 50, 100 } },
+        
+            { UCBC, 'HaveGreaterThanUnitsWithCategory', { 0, categories.AIR * categories.FACTORY * categories.TECH3 } },
+            { UCBC, 'HaveGreaterThanUnitsWithCategory', { 2, categories.LAND * categories.FACTORY } },
+            { EN, 'HaveLessThanUnitsInCategoryBeingUpgradeNC', { 1, categories.FACTORY * categories.LAND} },
           
            
            
-                { IBC, 'BrainNotLowPowerMode', {} },
+           --
             },
         BuilderType = 'Any',
     },
-    Builder {
-        BuilderName = 'NC land t2 to t3mainbase_incomesupported',
-        PlatoonTemplate = 'T2LandFactoryUpgrade',
-        Priority = 999,
-        InstanceCount = 1,
-        BuilderConditions = {
-            { MIBC, 'GreaterThanGameTime', { 1200 } },
-            { EBC, 'GreaterThanEconStorageRatio', { 0.05, 1.0 } },
-            { UCBC, 'HaveGreaterThanUnitsWithCategory', { 30, categories.LAND * categories.MOBILE - categories.ENGINEER } },
-            { EBC, 'GreaterThanEconStorageCurrent', { 5000, 15000 } },
-          
-                
-            
-                { UCBC, 'HaveLessThanUnitsInCategoryBeingBuilt', { 3, categories.LAND * categories.TECH3 * categories.FACTORY } },
-                { UCBC, 'HaveGreaterThanUnitsWithCategory', { 4, 'LAND FACTORY'}},
-          
-           
-           
-                { IBC, 'BrainNotLowPowerMode', {} },
-            },
-        BuilderType = 'Any',
-    },
-    Builder {
-        BuilderName = 'NC land t2 to t3mainbase_incomesupported2',
-        PlatoonTemplate = 'T2LandFactoryUpgrade',
-        Priority = 999,
-        InstanceCount = 1,
-        BuilderConditions = {
-            { MIBC, 'GreaterThanGameTime', { 1200 } },
-            { EBC, 'GreaterThanEconStorageRatio', { 0.05, 1.0 } },
-            { UCBC, 'HaveGreaterThanUnitsWithCategory', { 30, categories.LAND * categories.MOBILE - categories.ENGINEER } },
-            { EBC, 'GreaterThanEconTrend', { 70, 3000 } }, 
-          
-                
-            
-                { UCBC, 'HaveLessThanUnitsInCategoryBeingBuilt', { 3, categories.LAND * categories.TECH3 * categories.FACTORY } },
-                { UCBC, 'HaveGreaterThanUnitsWithCategory', { 4, 'LAND FACTORY'}},
-          
-           
-           
-                { IBC, 'BrainNotLowPowerMode', {} },
-            },
-        BuilderType = 'Any',
-    },
+ 
+ 
     Builder {
         BuilderName = 'NC land t2 to t3mainbase ENEMY HAS T3',
         PlatoonTemplate = 'T2LandFactoryUpgrade',
-        Priority = 999,
+        Priority = 1000,
         InstanceCount = 1,
         BuilderConditions = {
             { MIBC, 'GreaterThanGameTime', { 1200 } },
-            { EBC, 'GreaterThanEconStorageRatio', { 0.05, 1.0 } },
+           
           
-            { EBC, 'GreaterThanEconTrend', { 15, 3000 } }, 
+            --- 
             { UCBC, 'HaveUnitsWithCategoryAndAlliance', { true, 0, categories.TECH3 * categories.LAND * categories.MOBILE, 'Enemy'}},
                 
             
-                { UCBC, 'HaveLessThanUnitsInCategoryBeingBuilt', { 3, categories.LAND * categories.TECH3 * categories.FACTORY } },
+                { EN, 'HaveLessThanUnitsInCategoryBeingUpgradeNC', { 1, categories.LAND * categories.TECH2 * categories.FACTORY } },
                
           
            
            
-                { IBC, 'BrainNotLowPowerMode', {} },
+           --
+            },
+        BuilderType = 'Any',
+    },
+    Builder {
+        BuilderName = 'NC land t2 to t3mainbase MAXED OUT SPAM',
+        PlatoonTemplate = 'T2LandFactoryUpgrade',
+        Priority = 1000,
+ 
+        InstanceCount = 10,
+        BuilderConditions = {
+        
+            { EBC, 'GreaterThanEconStorageCurrent', { 50, 100 } },
+            { UCBC, 'HaveUnitRatioVersusCap', { T1landspamnearlymaxedoutNC , '>', categories.TECH1 * categories.MOBILE * categories.LAND - categories.ENGINEER } }, 
+          
+            { EN, 'HaveLessThanUnitsInCategoryBeingUpgradeNC', { 5, categories.FACTORY * categories.LAND} },
+          
+           
+           
+           --
             },
         BuilderType = 'Any',
     },
@@ -534,81 +512,154 @@ BuilderGroup {
     Builder {
         BuilderName = 'NC land t1 to t2',
         PlatoonTemplate = 'T1LandFactoryUpgrade',
-        Priority = 980,
+        Priority = 1000,
         InstanceCount = 1,
         BuilderConditions = {
             { MIBC, 'GreaterThanGameTime', { 600 } },
-            { EBC, 'GreaterThanEconStorageRatio', { 0.05, 1.0 } },
-            { UCBC, 'HaveGreaterThanUnitsWithCategory', { 30, categories.LAND * categories.MOBILE - categories.ENGINEER } },
-                { SIBC, 'GreaterThanEconEfficiencyOverTime', { 0.95, 1.20 } },
+         
+            { EBC, 'GreaterThanEconStorageCurrent', { 50, 100 } },
+            { UCBC, 'HaveGreaterThanUnitsWithCategory', { 0, categories.AIR * categories.FACTORY * categories.TECH2 } },
+            { EN, 'HaveLessThanUnitsInCategoryBeingUpgradeNC', { 1, categories.LAND *  categories.FACTORY } },
+         
+              
              
-                { UCBC, 'HaveLessThanUnitsInCategoryBeingBuilt', { 1, 'FACTORY LAND TECH2' } },
-             { UCBC, 'HaveGreaterThanUnitsWithCategory', { 4, 'FACTORY LAND'}},
            
            
-                { IBC, 'BrainNotLowPowerMode', {} },
+           
+           --
             },
         BuilderType = 'Any',
     },
     Builder {
-        BuilderName = 'NC land t1 to t2 alternate',
+        BuilderName = 'NC land t1 to t2 MAXED OUT SPAM',
         PlatoonTemplate = 'T1LandFactoryUpgrade',
-        Priority = 980,
+        Priority = 1000,
         InstanceCount = 1,
         BuilderConditions = {
             { MIBC, 'GreaterThanGameTime', { 600 } },
-     
-            { UCBC, 'HaveGreaterThanUnitsWithCategory', { 30, categories.LAND * categories.MOBILE - categories.ENGINEER } },
-            { EBC, 'GreaterThanEconTrend', { 30, 3000 } }, 
+          
+            { EBC, 'GreaterThanEconStorageCurrent', { 50, 100 } },
+            { UCBC, 'HaveUnitRatioVersusCap', { T1landspamnearlymaxedoutNC , '>', categories.TECH1 * categories.MOBILE * categories.LAND - categories.ENGINEER }}, 
+            { EN, 'HaveLessThanUnitsInCategoryBeingUpgradeNC', { 5, categories.LAND *  categories.FACTORY } },
+         
+              
              
-                { UCBC, 'HaveLessThanUnitsInCategoryBeingBuilt', { 1, 'FACTORY LAND TECH2' } },
-             { UCBC, 'HaveGreaterThanUnitsWithCategory', { 4, 'FACTORY LAND'}},
            
            
-                { IBC, 'BrainNotLowPowerMode', {} },
+           
+           --
             },
         BuilderType = 'Any',
     },
+    Builder {
+        BuilderName = 'NC land t1 to t2 ISLAND MAP uef  and cyb',
+        PlatoonTemplate = 'T1LandFactoryUpgrade',
+        Priority = 1000,
+        InstanceCount = 1,
+        BuilderConditions = {
+            { MIBC, 'FactionIndex', {1,3} },
+            { MIBC, 'GreaterThanGameTime', { 600 } },
+            { WRC, 'CanPathToCurrentEnemyNC', { 'LocationType', false } },
+           
+            { UCBC, 'HaveGreaterThanUnitsWithCategory', { 0, categories.AIR * categories.FACTORY * categories.TECH2 } },
+            { EN, 'HaveLessThanUnitsInCategoryBeingUpgradeNC', { 1, categories.LAND *  categories.FACTORY } },
+           
+              
+             
+           
+           
+           
+           --
+            },
+        BuilderType = 'Any',
+    },
+    Builder {
+        BuilderName = 'NC land t1 to t2 many',
+        PlatoonTemplate = 'T1LandFactoryUpgrade',
+        Priority = 1000,
+        InstanceCount = 1,
+        BuilderConditions = {
+            { MIBC, 'GreaterThanGameTime', { 600 } },
+            { EBC, 'GreaterThanEconStorageCurrent', { 100, 100 } },
+            { UCBC, 'HaveGreaterThanUnitsWithCategory', { 0, categories.AIR * categories.FACTORY * categories.TECH2 } },
+            { UCBC, 'HaveGreaterThanUnitsWithCategory', { 8, categories.LAND * categories.FACTORY} },
+            { EN, 'HaveLessThanUnitsInCategoryBeingUpgradeNC', { 2, categories.LAND *  categories.FACTORY } },
+         
+              
+             
+           
+           
+           
+           --
+            },
+        BuilderType = 'Any',
+    },
+ 
+   
     Builder {
         BuilderName = 'NC land t2 to t3',
         PlatoonTemplate = 'T2LandFactoryUpgrade',
-        Priority = 980,
+        Priority = 1000,
         InstanceCount = 1,
         BuilderConditions = {
             { MIBC, 'GreaterThanGameTime', { 1000 } },
-            { EBC, 'GreaterThanEconStorageRatio', { 0.05, 1.0 } },
-            { UCBC, 'HaveGreaterThanUnitsWithCategory', { 30, categories.LAND * categories.MOBILE - categories.ENGINEER } },
-            { UCBC, 'HaveGreaterThanUnitsWithCategory', { 2, categories.ENGINEER * categories.TECH2}},
-                { SIBC, 'GreaterThanEconEfficiencyOverTime', { 0.95, 1.20 } },
+            { EBC, 'GreaterThanEconStorageCurrent', { 100, 100 } },
+           
             
-                { UCBC, 'HaveLessThanUnitsInCategoryBeingBuilt', { 1, 'FACTORY TECH3' } },
-                { UCBC, 'FactoryGreaterAtLocation', { 'LocationType', 2, 'FACTORY LAND TECH2' }},
+            { UCBC, 'HaveGreaterThanUnitsWithCategory', { 0, categories.AIR * categories.FACTORY * categories.TECH3 } },
+            { UCBC, 'HaveGreaterThanUnitsWithCategory', { 2, categories.LAND * categories.FACTORY } },
+            { EN, 'HaveLessThanUnitsInCategoryBeingUpgradeNC', { 1, categories.LAND *  categories.FACTORY } },
+            
+              
            
            
-                { IBC, 'BrainNotLowPowerMode', {} },
+           --
             },
         BuilderType = 'Any',
     },
     Builder {
-        BuilderName = 'NC land t2 to t3 alternate',
+        BuilderName = 'NC land t2 to t3 MAXED OUT SPAM',
         PlatoonTemplate = 'T2LandFactoryUpgrade',
-        Priority = 980,
+        Priority = 1000,
         InstanceCount = 1,
         BuilderConditions = {
             { MIBC, 'GreaterThanGameTime', { 1000 } },
-            { EBC, 'GreaterThanEconStorageRatio', { 0.05, 1.0 } },
-            { UCBC, 'HaveGreaterThanUnitsWithCategory', { 30, categories.LAND * categories.MOBILE - categories.ENGINEER } },
-            { UCBC, 'HaveGreaterThanUnitsWithCategory', { 2, categories.ENGINEER * categories.TECH2}},
-            { EBC, 'GreaterThanEconTrend', { 30, 3000 } }, 
+            { EBC, 'GreaterThanEconStorageCurrent', { 100, 100 } },
+           
+            { UCBC, 'HaveUnitRatioVersusCap', { T1landspamnearlymaxedoutNC , '>', categories.TECH1 * categories.MOBILE * categories.LAND - categories.ENGINEER }}, 
+           
+            { EN, 'HaveLessThanUnitsInCategoryBeingUpgradeNC', { 5, categories.LAND *  categories.FACTORY } },
             
-                { UCBC, 'HaveLessThanUnitsInCategoryBeingBuilt', { 1, categories.LAND * categories.FACTORY * categories.TECH3 } },
-               
+              
            
            
-                { IBC, 'BrainNotLowPowerMode', {} },
+           --
             },
         BuilderType = 'Any',
     },
+    Builder {
+        BuilderName = 'NC land t2 to t3 many',
+        PlatoonTemplate = 'T2LandFactoryUpgrade',
+        Priority = 1000,
+        InstanceCount = 1,
+        BuilderConditions = {
+            { MIBC, 'GreaterThanGameTime', { 1000 } },
+            { EBC, 'GreaterThanEconStorageCurrent', { 100, 100 } },
+          
+            { UCBC, 'HaveGreaterThanUnitsWithCategory', { 8, categories.LAND * categories.FACTORY} },
+            { UCBC, 'HaveGreaterThanUnitsWithCategory', { 0, categories.AIR * categories.FACTORY * categories.TECH3 } },
+           
+            { EN, 'HaveLessThanUnitsInCategoryBeingUpgradeNC', { 2, categories.LAND * categories.FACTORY } },
+            
+              
+           
+           
+           --
+            },
+        BuilderType = 'Any',
+    },
+    
+   
 }
 
 
@@ -617,289 +668,161 @@ BuilderGroup {
 BuilderGroup {
     BuilderGroupName = 'NCUpgradeBuilders_airfactories',
     BuildersType = 'PlatoonFormBuilder',
+
     Builder {
         BuilderName = 'NC Air t1 to t2',
         PlatoonTemplate = 'T1AirFactoryUpgrade',
-        Priority = 980,
-        InstanceCount = 1,
+        Priority = 1000,
+     
         BuilderConditions = {
-            { MIBC, 'GreaterThanGameTime', { 600 } },
+            { MIBC, 'GreaterThanGameTime', { 400 } },
+            { EBC, 'GreaterThanEconStorageCurrent', { 50, 100 } },
             
-            { UCBC, 'HaveGreaterThanUnitsWithCategory', { 20, categories.AIR * categories.MOBILE * categories.ANTIAIR - categories.BOMBER - categories.GROUNDATTACK - categories.SCOUT } },
-            { EBC, 'GreaterThanEconTrend', { 30, 3000 } }, 
                
-                { UCBC, 'HaveLessThanUnitsInCategoryBeingBuilt', { 1, categories.AIR * (categories.TECH2 + categories.TECH3)* categories.FACTORY } },
+             
+                { EN, 'HaveLessThanUnitsInCategoryBeingUpgradeNC', { 1, categories.TECH2 * categories.FACTORY } },
               { UCBC, 'HaveGreaterThanUnitsWithCategory', { 4, categories.AIR * categories.FACTORY}},
+              { UCBC, 'HaveGreaterThanUnitsWithCategory', { 0, categories.FACTORY * categories.AIR }},
            
            
-                { IBC, 'BrainNotLowPowerMode', {} },
+           --
             },
         BuilderType = 'Any',
     },
     Builder {
-        BuilderName = 'NC Air t1 to t2 alternate situation',
+        BuilderName = 'NC Air t1 to t2 many',
         PlatoonTemplate = 'T1AirFactoryUpgrade',
-        Priority = 980,
-        InstanceCount = 1,
+        Priority = 1000,
+     
         BuilderConditions = {
-            { MIBC, 'GreaterThanGameTime', { 600 } },
+            { MIBC, 'GreaterThanGameTime', { 400 } },
+            { EBC, 'GreaterThanEconStorageCurrent', { 100, 100 } },
             
-            { UCBC, 'HaveGreaterThanUnitsWithCategory', { 20, categories.AIR * categories.MOBILE * categories.ANTIAIR - categories.BOMBER - categories.GROUNDATTACK - categories.SCOUT } },
-            { EBC, 'GreaterThanEconTrend', { 30, 3000 } }, 
-            { EBC, 'GreaterThanEconStorageCurrent', { 5000, 10000 } },
                
-                { UCBC, 'HaveLessThanUnitsInCategoryBeingBuilt', { 1, categories.AIR * (categories.TECH2 + categories.TECH3)* categories.FACTORY } },
-              { UCBC, 'HaveGreaterThanUnitsWithCategory', { 4, categories.AIR * categories.FACTORY}},
-           
-           
-                { IBC, 'BrainNotLowPowerMode', {} },
-            },
-        BuilderType = 'Any',
-    },
-Builder {
-        BuilderName = 'NC Air t1 to t2 accelerator',
-        PlatoonTemplate = 'T1AirFactoryUpgrade',
-        Priority = 999,
-        InstanceCount = 5,
-        BuilderConditions = {
-            { MIBC, 'GreaterThanGameTime', { 1200 } },
-          
-            { UCBC, 'HaveGreaterThanUnitsWithCategory', { 20, categories.AIR * categories.MOBILE * categories.ANTIAIR - categories.BOMBER - categories.GROUNDATTACK - categories.SCOUT } },
-            { EBC, 'GreaterThanEconTrend', { 75, 3000 } }, 
+             
+                { EN, 'HaveLessThanUnitsInCategoryBeingUpgradeNC', { 2, categories.TECH2 * categories.FACTORY } },
+              { UCBC, 'HaveGreaterThanUnitsWithCategory', { 8, categories.AIR * categories.FACTORY}},
               
-                { UCBC, 'HaveLessThanUnitsInCategoryBeingBuilt', { 5, categories.AIR * (categories.TECH2 + categories.TECH3)* categories.FACTORY } },
-                { UCBC, 'HaveGreaterThanUnitsWithCategory', { 4, categories.AIR * categories.FACTORY}},
            
            
-                { IBC, 'BrainNotLowPowerMode', {} },
+           --
             },
         BuilderType = 'Any',
     },
+   
+    
+    Builder {
+        BuilderName = 'NC Air t1 to t2 ENEMY HAS T3',
+        PlatoonTemplate = 'T1AirFactoryUpgrade',
+        Priority = 1200,
+     
+        BuilderConditions = {
+            { MIBC, 'GreaterThanGameTime', { 800 } },
+           
+            { UCBC, 'HaveUnitsWithCategoryAndAlliance', { true, 0, categories.AIR * categories.MOBILE * (categories.TECH3 + categories.EXPERIMENTAL), 'Enemy'}},
+            --- 
+           
+            { UCBC, 'HaveGreaterThanUnitsWithCategory', { 3, categories.FACTORY * categories.AIR}},
+                { EN, 'HaveLessThanUnitsInCategoryBeingUpgradeNC', { 1, categories.AIR * categories.TECH2 * categories.FACTORY } },
+         
+         
+           
+           
+           --
+            },
+        BuilderType = 'Any',
+    },
+    Builder {
+        BuilderName = 'NC Air t1 to t2 ENEMY HAS T3 many',
+        PlatoonTemplate = 'T1AirFactoryUpgrade',
+        Priority = 1200,
+     
+        BuilderConditions = {
+            { MIBC, 'GreaterThanGameTime', { 800 } },
+            { EBC, 'GreaterThanEconStorageCurrent', { 60, 100 } },
+            { UCBC, 'HaveUnitsWithCategoryAndAlliance', { true, 0, categories.AIR * categories.MOBILE * (categories.TECH3 + categories.EXPERIMENTAL), 'Enemy'}},
+            --- 
+           
+            { UCBC, 'HaveGreaterThanUnitsWithCategory', { 8, categories.FACTORY * categories.AIR}},
+                { EN, 'HaveLessThanUnitsInCategoryBeingUpgradeNC', { 2, categories.AIR * categories.TECH2 * categories.FACTORY } },
+             
+         
+           
+           
+           --
+            },
+        BuilderType = 'Any',
+    },
+   
+
     Builder {
         BuilderName = 'NC Air t2 to t3',
         PlatoonTemplate = 'T2AirFactoryUpgrade',
-        Priority = 999,
+        Priority = 1000,
         InstanceCount = 1,
         BuilderConditions = {
-            { MIBC, 'GreaterThanGameTime', { 1000 } },
-           
-            { UCBC, 'HaveGreaterThanUnitsWithCategory', { 20, categories.AIR * categories.MOBILE * categories.ANTIAIR - categories.BOMBER - categories.GROUNDATTACK - categories.SCOUT } },
+            
+            { EBC, 'GreaterThanEconStorageCurrent', { 50, 100 } },
+            { UCBC, 'HaveGreaterThanUnitsWithCategory', { 15, categories.AIR * categories.MOBILE * categories.ANTIAIR  - categories.BOMBER - categories.GROUNDATTACK - categories.SCOUT } },
             { UCBC, 'HaveGreaterThanUnitsWithCategory', { 2, categories.ENGINEER * categories.TECH2}},
-            { EBC, 'GreaterThanEconTrend', { 20, 3000 } }, 
+            --- 
        
-                { UCBC, 'HaveLessThanUnitsInCategoryBeingBuilt', { 1, categories.AIR * (categories.TECH2 + categories.TECH3)* categories.FACTORY } },
-                { UCBC, 'HaveGreaterThanUnitsWithCategory', { 4, categories.AIR * categories.FACTORY}},
-             
-           
-           
-                { IBC, 'BrainNotLowPowerMode', {} },
-            },
-        BuilderType = 'Any',
-    },
-    Builder {
-        BuilderName = 'NC Air t2 to t3 alternate',
-        PlatoonTemplate = 'T2AirFactoryUpgrade',
-        Priority = 999,
-        InstanceCount = 1,
-        BuilderConditions = {
-            { MIBC, 'GreaterThanGameTime', { 1000 } },
-           
-            { UCBC, 'HaveGreaterThanUnitsWithCategory', { 20, categories.AIR * categories.MOBILE * categories.ANTIAIR - categories.BOMBER - categories.GROUNDATTACK - categories.SCOUT } },
-            { UCBC, 'HaveGreaterThanUnitsWithCategory', { 2, categories.ENGINEER * categories.TECH2}},
-         
-            { EBC, 'GreaterThanEconTrend', { 30, 3000 } }, 
-            { EBC, 'GreaterThanEconStorageCurrent', { 5000, 10000 } },
-             
-           
-             
-           
-           
-                { IBC, 'BrainNotLowPowerMode', {} },
-            },
-        BuilderType = 'Any',
-    },
-   Builder {
-        BuilderName = 'NC Air t2 to t3 accelerator',
-        PlatoonTemplate = 'T2AirFactoryUpgrade',
-        Priority = 999,
-        InstanceCount = 5,
-        BuilderConditions = {
-            { MIBC, 'GreaterThanGameTime', { 1200 } },
-         
-            { UCBC, 'HaveGreaterThanUnitsWithCategory', { 20, categories.AIR * categories.MOBILE * categories.ANTIAIR - categories.BOMBER - categories.GROUNDATTACK - categories.SCOUT } },
-            { UCBC, 'HaveGreaterThanUnitsWithCategory', { 2, categories.ENGINEER * categories.TECH2}},
-            { EBC, 'GreaterThanEconTrend', { 70, 3000 } }, 
-               
-                { UCBC, 'HaveLessThanUnitsInCategoryBeingBuilt', { 5, 'AIR FACTORY TECH2, AIR FACTORY TECH3' } },
-                { UCBC, 'HaveGreaterThanUnitsWithCategory', { 12, 'AIR FACTORY'}},
-           
-           
-                { IBC, 'BrainNotLowPowerMode', {} },
-            },
-        BuilderType = 'Any',
-    },
-Builder {
-        BuilderName = 'NC Balanced T1 Sea Factory Upgrade Expansion',
-        PlatoonTemplate = 'T1SeaFactoryUpgrade',
-        Priority = 999,
-        InstanceCount = 1,
-        BuilderConditions = {
-            { EBC, 'GreaterThanEconStorageRatio', { 0.05, 1.0 } },
-                { UCBC, 'HaveLessThanUnitsInCategoryBeingBuilt', { 2, 'NAVAL FACTORY TECH2' } },
-               
-                { UCBC, 'HaveUnitsWithCategoryAndAlliance', { true, 0, 'NAVAL FACTORY', 'Enemy'}},
-                { UCBC, 'FactoryGreaterAtLocation', { 'LocationType', 1, 'NAVAL FACTORY' } },
-               
-                { IBC, 'BrainNotLowPowerMode', {} },
-                { SIBC, 'GreaterThanEconEfficiencyOverTime', { 0.95, 1.20 } },
-                
-          
-			
-				
-            },
-        BuilderType = 'Any',
-    },
-    Builder {
-        BuilderName = 'NC Air t1 to t2 bigmap',
-        PlatoonTemplate = 'T1AirFactoryUpgrade',
-        Priority = 980,
-        InstanceCount = 1,
-        BuilderConditions = {
-            { SBC, 'MapGreaterThan', { 2000, 2000 }},
-            { MIBC, 'GreaterThanGameTime', { 600 } },
-            { EBC, 'GreaterThanEconStorageRatio', { 0.05, 1.0 } },
-           
-            { UCBC, 'HaveGreaterThanUnitsWithCategory', { 20, categories.AIR * categories.MOBILE * categories.ANTIAIR - categories.BOMBER - categories.GROUNDATTACK - categories.SCOUT } },
-            { EBC, 'GreaterThanEconTrend', { 30, 1000 } }, 
-           
-               
-                { UCBC, 'HaveLessThanUnitsInCategoryBeingBuilt', { 2, 'AIR FACTORY TECH2, AIR FACTORY TECH3' } },
-              { UCBC, 'HaveGreaterThanUnitsWithCategory', { 4, 'AIR FACTORY'}},
-           
-           
-                { IBC, 'BrainNotLowPowerMode', {} },
-            },
-        BuilderType = 'Any',
-    },
-Builder {
-        BuilderName = 'NC Air t1 to t2 accelerator bigmap',
-        PlatoonTemplate = 'T1AirFactoryUpgrade',
-        Priority = 999,
-        InstanceCount = 5,
-        BuilderConditions = {
-            { SBC, 'MapGreaterThan', { 2000, 2000 }},
-            { MIBC, 'GreaterThanGameTime', { 600 } },
-            { EBC, 'GreaterThanEconStorageRatio', { 0.05, 1.0 } },
+                { EN, 'HaveLessThanUnitsInCategoryBeingUpgradeNC', { 1, categories.AIR * categories.TECH2 * categories.FACTORY } },
+                { UCBC, 'HaveGreaterThanUnitsWithCategory', { 3, categories.FACTORY * categories.AIR}},
             
-            { UCBC, 'HaveGreaterThanUnitsWithCategory', { 20, categories.AIR * categories.MOBILE * categories.ANTIAIR - categories.BOMBER - categories.GROUNDATTACK - categories.SCOUT } },
-            { EBC, 'GreaterThanEconTrend', { 30, 3000 } }, 
+           
+           
+           --
+            },
+        BuilderType = 'Any',
+    },
+    Builder {
+        BuilderName = 'NC Air t2 to t3 many',
+        PlatoonTemplate = 'T2AirFactoryUpgrade',
+        Priority = 1000,
+        InstanceCount = 1,
+        BuilderConditions = {
+            
+            { EBC, 'GreaterThanEconStorageCurrent', { 100, 100 } },
+            { UCBC, 'HaveGreaterThanUnitsWithCategory', { 15, categories.AIR * categories.MOBILE * categories.ANTIAIR  - categories.BOMBER - categories.GROUNDATTACK - categories.SCOUT } },
+            { UCBC, 'HaveGreaterThanUnitsWithCategory', { 2, categories.ENGINEER * categories.TECH2}},
+            --- 
+       
+                { EN, 'HaveLessThanUnitsInCategoryBeingUpgradeNC', { 2, categories.AIR * categories.TECH2 * categories.FACTORY } },
+                { UCBC, 'HaveGreaterThanUnitsWithCategory', { 8, categories.FACTORY * categories.AIR}},
+            
+           
+           
+           --
+            },
+        BuilderType = 'Any',
+    },
+
+    Builder {
+        BuilderName = 'NC Air t2 to t3 ENEMY HAS T3',
+        PlatoonTemplate = 'T2AirFactoryUpgrade',
+        Priority = 1200,
+        InstanceCount = 1,
+        BuilderConditions = {
+            { MIBC, 'GreaterThanGameTime', { 1001 } },
+        
+            { UCBC, 'HaveUnitsWithCategoryAndAlliance', { true, 0, categories.AIR * categories.MOBILE * (categories.TECH3 + categories.EXPERIMENTAL), 'Enemy'}},
+            { UCBC, 'HaveGreaterThanUnitsWithCategory', { 2, categories.ENGINEER * categories.TECH2}},
+            --- 
+       
+                { EN, 'HaveLessThanUnitsInCategoryBeingUpgradeNC', { 1, categories.AIR * categories.TECH2 * categories.FACTORY } },
+             
               
-                { UCBC, 'HaveLessThanUnitsInCategoryBeingBuilt', { 3, 'AIR FACTORY TECH2, AIR FACTORY TECH3' } },
-                { UCBC, 'HaveGreaterThanUnitsWithCategory', { 5, 'AIR FACTORY'}},
            
            
-                { IBC, 'BrainNotLowPowerMode', {} },
+           --
             },
         BuilderType = 'Any',
     },
-    Builder {
-        BuilderName = 'NC Air t2 to t3 big map',
-        PlatoonTemplate = 'T2AirFactoryUpgrade',
-        Priority = 999,
-        InstanceCount = 1,
-        BuilderConditions = {
-            { SBC, 'MapGreaterThan', { 2000, 2000 }},
-            { MIBC, 'GreaterThanGameTime', { 1200 } },
-            { EBC, 'GreaterThanEconStorageRatio', { 0.05, 1.0 } },
-           
-            { UCBC, 'HaveGreaterThanUnitsWithCategory', { 20, categories.AIR * categories.MOBILE * categories.ANTIAIR - categories.BOMBER - categories.GROUNDATTACK - categories.SCOUT } },
-            { UCBC, 'HaveGreaterThanUnitsWithCategory', { 2, categories.ENGINEER * categories.TECH2}},
-            { EBC, 'GreaterThanEconTrend', { 30, 3000 } }, 
-                
-                { UCBC, 'HaveLessThanUnitsInCategoryBeingBuilt', { 3, 'AIR FACTORY TECH2, AIR FACTORY TECH3' } },
-                { UCBC, 'FactoryGreaterAtLocation', { 'LocationType', 2, 'FACTORY AIR TECH2' }},
-           
-           
-                { IBC, 'BrainNotLowPowerMode', {} },
-            },
-        BuilderType = 'Any',
-    },
-   Builder {
-        BuilderName = 'NC Air t2 to t3 accelerator bigmap',
-        PlatoonTemplate = 'T2AirFactoryUpgrade',
-        Priority = 999,
-        InstanceCount = 5,
-        BuilderConditions = {
-            { SBC, 'MapGreaterThan', { 2000, 2000 }},
-            { MIBC, 'GreaterThanGameTime', { 1200 } },
-            { EBC, 'GreaterThanEconStorageRatio', { 0.05, 1.0 } },
-            
-            { UCBC, 'HaveGreaterThanUnitsWithCategory', { 20, categories.AIR * categories.MOBILE * categories.ANTIAIR - categories.BOMBER - categories.GROUNDATTACK - categories.SCOUT } },
-            { UCBC, 'HaveGreaterThanUnitsWithCategory', { 2, categories.ENGINEER * categories.TECH2}},
-            { EBC, 'GreaterThanEconTrend', { 30, 3000 } }, 
-               
-                { UCBC, 'HaveLessThanUnitsInCategoryBeingBuilt', { 10, 'AIR FACTORY TECH3' } },
-                { UCBC, 'HaveGreaterThanUnitsWithCategory', { 5, 'AIR FACTORY'}},
-           
-           
-                { IBC, 'BrainNotLowPowerMode', {} },
-            },
-        BuilderType = 'Any',
-    },
+
 }
-
-BuilderGroup {
-    BuilderGroupName = 'NCEmergencyUpgrade_airfactories',
-    BuildersType = 'PlatoonFormBuilder',
-    Builder {
-        BuilderName = 'NC Air t1 to t2 emergency',
-        PlatoonTemplate = 'T1AirFactoryUpgrade',
-        Priority = 1000,
-        InstanceCount = 10,
-        BuilderConditions = {
-            { MIBC, 'GreaterThanGameTime', { 1200 } },
-            { EBC, 'GreaterThanEconStorageRatio', { 0.05, 1.0 } },
-                { SIBC, 'GreaterThanEconEfficiencyOverTime', { 0.95, 1.05 } },
-                
-            { UCBC, 'HaveUnitsWithCategoryAndAlliance', { true, 0, 'EXPERIMENTAL AIR', 'Enemy'}},
-           
-           
-                { IBC, 'BrainNotLowPowerMode', {} },
-            },
-        BuilderType = 'Any',
-    },
-    Builder {
-        BuilderName = 'NC Air t2 to t3 emergency',
-        PlatoonTemplate = 'T2AirFactoryUpgrade',
-        Priority = 1000,
-        InstanceCount = 10,
-        BuilderConditions = {
-            { MIBC, 'GreaterThanGameTime', { 1200 } },
-            { EBC, 'GreaterThanEconStorageRatio', { 0.05, 1.0 } },
-                { SIBC, 'GreaterThanEconEfficiencyOverTime', { 0.95, 1.05 } },
-                
-               { UCBC, 'HaveUnitsWithCategoryAndAlliance', { true, 0, 'EXPERIMENTAL AIR', 'Enemy'}},
-           
-           
-                { IBC, 'BrainNotLowPowerMode', {} },
-            },
-        BuilderType = 'Any',
-    },
-}
-
-
-
-
-			
-		
-           
-
-
-
-
-
-
-
+   
+  
 
 
 BuilderGroup {
@@ -913,12 +836,12 @@ BuilderGroup {
         InstanceCount = 1,
         BuilderConditions = {
             { UCBC, 'HaveUnitsWithCategoryAndAlliance', { true, 0, categories.NAVAL * categories.MOBILE, 'Enemy'}},
-                { UCBC, 'HaveLessThanUnitsInCategoryBeingBuilt', { 2, 'FACTORY TECH3, FACTORY TECH2' } },
+                { EN, 'HaveLessThanUnitsInCategoryBeingUpgradeNC', { 1, categories.FACTORY * categories.NAVAL } },
                 { SIBC, 'HaveGreaterThanUnitsWithCategory', { 4, 'MASSEXTRACTION TECH2, MASSEXTRACTION TECH3'}},
                
               
                 
-                { IBC, 'BrainNotLowPowerMode', {} },
+           --
                 { SIBC, 'GreaterThanEconEfficiencyOverTime', { 0.95, 1.25 } },
                 
             },
@@ -928,17 +851,17 @@ BuilderGroup {
     Builder {
         BuilderName = 'NC Balanced T2 Sea Factory Upgrade',
         PlatoonTemplate = 'T2SeaFactoryUpgrade',
-        Priority = 300,
+        Priority = 800,
         InstanceCount = 1,
         BuilderConditions = {
             { UCBC, 'HaveUnitsWithCategoryAndAlliance', { true, 0, categories.NAVAL * categories.MOBILE, 'Enemy'}},
                 { UCBC, 'FactoryGreaterAtLocation', { 'LocationType', 3, 'FACTORY TECH3, FACTORY TECH2' } },
 				#{ SIBC, 'HaveGreaterThanUnitsWithCategory', { 3, 'FACTORY TECH3, FACTORY TECH2'}},
-                { UCBC, 'HaveLessThanUnitsInCategoryBeingBuilt', { 1, 'FACTORY TECH3' } },
+                { EN, 'HaveLessThanUnitsInCategoryBeingUpgradeNC', { 1, categories.NAVAL * categories.TECH2 * categories.FACTORY } },
                 { SIBC, 'HaveGreaterThanUnitsWithCategory', { 0, 'MASSEXTRACTION TECH3'}},
           
                
-                { IBC, 'BrainNotLowPowerMode', {} },
+           --
                 { SIBC, 'GreaterThanEconEfficiencyOverTime', { 0.95, 1.25 }},
                 
             },

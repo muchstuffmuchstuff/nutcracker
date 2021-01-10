@@ -1,6 +1,12 @@
 local UseHeroPlatoon = true
-
+local PlatoonExists = moho.aibrain_methods.PlatoonExists
 NCAIPlatoon = Platoon
+local AIUtils = import('/lua/ai/aiutilities.lua')
+
+local AIAttackUtils = import('/lua/AI/aiattackutilities.lua')
+local Utils = import('/lua/utilities.lua')
+
+
 Platoon = Class(NCAIPlatoon) {
     
 
@@ -80,65 +86,7 @@ TacticalAINC = function(self)
     end
 end,
 
-AirHuntAIANTINAVY = function(self)
-    self:Stop()
-    local aiBrain = self:GetBrain()
-    local armyIndex = aiBrain:GetArmyIndex()
-    local location = self.PlatoonData.LocationType or 'MAIN'
-local radius = self.PlatoonData.Radius or 400
-    local target
-    local blip
-    local hadtarget = false
-    local atkPri = {'NAVAL', 'ALLUNITS'}
-    while aiBrain:PlatoonExists(self) do
-        if self:IsOpponentAIRunning() then
-            target = self:FindClosestUnit('Attack', 'Enemy', true, categories.ALLUNITS - categories.WALL)
-            local newtarget = false
-            if aiBrain.T4ThreatFound['Land'] or aiBrain.T4ThreatFound['Naval'] or aiBrain.T4ThreatFound['Structure'] then
-                newtarget = self:FindClosestUnit('Attack', 'Enemy', true, categories.EXPERIMENTAL * (categories.LAND + categories.NAVAL + categories.STRUCTURE + categories.ARTILLERY))
-                if newtarget then
-                    target = newtarget
-                end
-            elseif table.getn(aiBrain.AirAttackPoints) > 0 then
-                newtarget = AIUtils.AIFindAirAttackTargetInRangeSorian( aiBrain, self, 'Attack', atkPri, self.AirAttackPoints[1].Position )
-                if newtarget then
-                    target = newtarget
-                end
-            end
-            if target and newtarget then
-                blip = target:GetBlip(armyIndex)
-                self:Stop()
-                self:AttackTarget( target )
-                hadtarget = true
-            elseif target then
-                blip = target:GetBlip(armyIndex)
-                self:Stop()
-                self:AggressiveMoveToLocation( table.copy(target:GetPosition()) )
-                hadtarget = true
-            elseif not target and hadtarget then
-                local x,z = aiBrain:GetArmyStartPos()
-                local position = AIUtils.RandomLocation(x,z)
-                local safePath, reason = AIAttackUtils.PlatoonGenerateSafePathTo(aiBrain, 'Air', self:GetPlatoonPosition(), position, 200)
-                if safePath then
-                    for _,p in safePath do
-                        self:MoveToLocation( p, false )
-                    end
-                else
-                    self:MoveToLocation( position, false )
-                end
-                hadtarget = false
-            end
-        end
-        local waitLoop = 0
-        repeat
-            WaitSeconds(1)
-            waitLoop = waitLoop + 1
-        until waitLoop >= 17 or (target and (target:IsDead() or not target:GetPosition()))
-        if aiBrain:PlatoonExists(self) and AIAttackUtils.GetSurfaceThreatOfUnits(self) <= 0 then
-            return self:FighterHuntAI()
-        end				
-    end
-end,
+
 
 FighterHuntNC = function(self)
     self:Stop()
@@ -151,7 +99,7 @@ FighterHuntNC = function(self)
     local hadtarget = false
     while aiBrain:PlatoonExists(self) do
         if self:IsOpponentAIRunning() then
-            target = self:FindClosestUnit('Attack', 'Enemy', true, categories.AIR - categories.POD)
+            target = self:FindClosestUnit('Attack', 'Enemy', true, categories.AIR - categories.SCOUT - categories.POD)
             local newtarget = false
             if aiBrain.T4ThreatFound['Air'] then
                 newtarget = self:FindClosestUnit('Attack', 'Enemy', true, categories.EXPERIMENTAL * categories.AIR)
@@ -175,8 +123,6 @@ FighterHuntNC = function(self)
                 for k,v in AIUtils.GetBasePatrolPoints(aiBrain, location, radius, 'Air') do
                     self:Patrol(v)
                 end
-                hadtarget = false
-                return self:GuardExperimentalSorian(self.FighterHuntNC)
             end
         end
         local waitLoop = 0
@@ -634,7 +580,7 @@ BuildSACUEnhancementsNC = function(platoon,unit)
     return
 end,
 
-LandAttackNC = function(self)
+LandAttackNC = function(self) ---modified for nutcracker
     
     AIAttackUtils.GetMostRestrictiveLayer(self) -- this will set self.MovementLayer to the platoon
     -- Search all platoon units and activate Stealth and Cloak (mostly Modded units)
@@ -699,7 +645,7 @@ LandAttackNC = function(self)
                 target = UnitWithPath
                 LastTargetPos = table.copy(target:GetPosition())
                 DistanceToTarget = VDist2(PlatoonPos[1] or 0, PlatoonPos[3] or 0, LastTargetPos[1] or 0, LastTargetPos[3] or 0)
-                if DistanceToTarget > 30 then
+                if DistanceToTarget > 70 then
                     -- if we have a path then use the waypoints
                     if self.PlatoonData.IgnorePathing then
                         self:Stop()
@@ -729,22 +675,19 @@ LandAttackNC = function(self)
                     self:AttackTarget(UnitNoPath)
                 end
             else
-                -- we have no target return to main base
+              
                 losttargetnum = losttargetnum + 1
-                if losttargetnum > 2 then
+                if losttargetnum > 4 then
                     if not self.SuicideMode then
                         self.SuicideMode = true
                         self.PlatoonData.AttackEnemyStrength = 1000
                         self.PlatoonData.GetTargetsFromBase = false
-                        self.PlatoonData.MoveToCategories = { categories.LAND * categories.MOBILE }
+                        self.PlatoonData.MoveToCategories = { categories.STRUCTURE }
                         self.PlatoonData.WeaponTargetCategories = { categories.LAND * categories.MOBILE }
                         self:Stop()
                         self:SetPlatoonFormationOverride('NoFormation')
                         self:LandAttackNC()
-                    else
-                        self:Stop()
-                        self:SetPlatoonFormationOverride('NoFormation')
-                        self:ForceReturnToNearestBaseAIUveso()
+                  
                     end
                 end
             end
@@ -765,5 +708,59 @@ LandAttackNC = function(self)
     end
 end,
    
+NCsatelite = function(self)
+    local aiBrain = self:GetBrain()
+    local data = self.PlatoonData
+    local atkPri = {}
+    local atkPriTable = {}
+    if data.PrioritizedCategories then
+        for k,v in data.PrioritizedCategories do
+            table.insert(atkPri, v)
+            table.insert(atkPriTable, v)
+        end
+    end
+    table.insert(atkPri, categories.ALLUNITS)
+    table.insert(atkPriTable, categories.ALLUNITS)
+    self:SetPrioritizedTargetList('Attack', atkPriTable)
+
+    local maxRadius = data.SearchRadius or 50
+    local oldTarget = false
+    local target = false
+   --('Novax AI starting')
+    
+    while PlatoonExists(aiBrain, self) do
+       
+        target = AIUtils.AIFindUndefendedBrainTargetInRangeNC(aiBrain, self, 'Attack', maxRadius, atkPri)
+        local targetRotation = 0
+        if target and target != oldTarget and not target.Dead then
+            -- Pondering over if getting the target position would be useful for calling in air strike on target if shielded.
+            --local targetpos = target:GetPosition()
+            local originalHealth = target:GetHealth()
+            self:Stop()
+            self:AttackTarget(target)
+            while (target and not target.Dead) or targetRotation < 6 do
+                --LOG('Novax Target Rotation is '..targetRotation)
+                targetRotation = targetRotation + 1
+                WaitTicks(100)
+                if target.Dead then
+                    break
+                end
+            end
+            if target and not target.Dead then
+                local currentHealth = target:GetHealth()
+                --LOG('Target is not dead at end of loop with health '..currentHealth)
+                if currentHealth == originalHealth then
+                    --LOG('Enemy Unit Health no change, setting to old target')
+                    oldTarget = target
+                end
+            end
+        end
+        WaitTicks(100)
+        self:Stop()
+        --LOG('End of Satellite loop')
+    end
+end,
+
+
 
 }

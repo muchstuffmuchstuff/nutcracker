@@ -24,8 +24,12 @@ local SAI = '/lua/ScenarioPlatoonAI.lua'
 local PlatoonFile = '/lua/platoon.lua'
 local SBC = '/lua/editor/SorianBuildConditions.lua'
 local SIBC = '/lua/editor/SorianInstantBuildConditions.lua'
-
+local CF = '/mods/nutcracker/hook/lua/coinflip.lua'
+local WRC = '/mods/nutcracker/hook/lua/weaponsrangeconditions.lua'
+local EN = '/mods/nutcracker/hook/lua/economicnumbers.lua'
 local SUtils = import('/lua/AI/sorianutilities.lua')
+
+
 
 function SeaAttackCondition(aiBrain, locationType, targetNumber)
 	local UC = import('/lua/editor/UnitCountBuildConditions.lua')
@@ -110,7 +114,7 @@ BuilderGroup {
         PlatoonTemplate = 'T1SeaSub',
         Priority = 600,
         BuilderConditions = {
-            { IBC, 'BrainNotLowPowerMode', {} },
+       --
 
 			{ SBC, 'NoRushTimeCheck', { 600 }},
 			
@@ -126,12 +130,12 @@ BuilderGroup {
         PlatoonTemplate = 'T1SeaSub',
         Priority = 600,
         BuilderConditions = {
-            { IBC, 'BrainNotLowPowerMode', {} },
+       --
 { UCBC, 'HaveUnitsWithCategoryAndAlliance', { true, 1, categories.NAVAL * categories.MOBILE,  'Enemy' }},
 			{ SBC, 'NoRushTimeCheck', { 600 }},
 			
 			
-            { SIBC, 'GreaterThanEconEfficiencyOverTime', { 0.75, 1.05 }},
+           { EBC, 'GreaterThanEconTrend', { 0, 000 } }, 
             
         },
         BuilderType = 'Sea',
@@ -150,11 +154,11 @@ BuilderGroup {
         BuilderType = 'Sea',
         BuilderConditions = {
             { MIBC, 'GreaterThanGameTime', { 1000} },
-            { IBC, 'BrainNotLowPowerMode', {} },
+            
 			{ SBC, 'NoRushTimeCheck', { 600 }},
 { UCBC, 'HaveUnitsWithCategoryAndAlliance', { true, 1, categories.NAVAL * categories.MOBILE,  'Enemy' }},
-			{ UCBC, 'FactoryGreaterAtLocation', { 'LocationType', 0, categories.NAVAL * categories.FACTORY } },
-            { SIBC, 'GreaterThanEconEfficiencyOverTime', { 0.75, 1.05 }},
+			
+           { EBC, 'GreaterThanEconTrend', { 0, 0 } }, 
             
         },
     },

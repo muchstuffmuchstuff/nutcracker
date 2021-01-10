@@ -42,7 +42,7 @@ BuilderGroup {
              { UCBC, 'HaveGreaterThanUnitsWithCategory', { 1, 'FACTORY LAND'}},
            
            
-                { IBC, 'BrainNotLowPowerMode', {} },
+           --
             },
         BuilderType = 'Any',
     },
@@ -58,11 +58,11 @@ BuilderGroup {
             { UCBC, 'HaveGreaterThanUnitsWithCategory', { 0, categories.ENGINEER * categories.TECH2 }},
          
              
-                { UCBC, 'HaveLessThanUnitsInCategoryBeingBuilt', { 1, 'FACTORY LAND TECH2' } },
+                { UCBC, 'HaveLessThanUnitsInCategoryBeingBuilt', { 1, 'FACTORY LAND TECH3' } },
              { UCBC, 'HaveGreaterThanUnitsWithCategory', { 1, 'FACTORY LAND'}},
            
            
-                { IBC, 'BrainNotLowPowerMode', {} },
+           --
             },
         BuilderType = 'Any',
     },

@@ -4,8 +4,10 @@
 BaseBuilderTemplate {
     BaseTemplateName = 'NutCrackerExpansionBase',
     Builders = {
-
+  
+        'NC_coinflip_factoryupgrade',
         'NC rambo behavior',
+        'NCt1bomberunitsbehavior',
   ----COIN FLIP STRATEGIES
 ----landrush
 'NCTtankandartyspamcoinflip',
@@ -41,7 +43,7 @@ BaseBuilderTemplate {
       
         
         # Factory upgrades
-        'NCEmergencyUpgrade_airfactories',
+       
         'NCUpgradeBuilders_airfactories',
    
 
@@ -90,22 +92,24 @@ BaseBuilderTemplate {
         'NCT2SeaFactoryBuilders',
       
         # ==== LAND UNIT BUILDERS ==== #
-    
-        'NCaphibbuilders',
-        'NCT1expansionprotect',
-        'NClandbehaviorexpansion',
+        'NCdefense_antiair',
+        'NCdefense_onisland',
+        'NCspammage',
+       
+      
+       
      
         'NCUpgradeBuildersLand',
-        'NCT1LandFactoryBuildersemergency',
+        
      
-        'NCT1LandFactoryBuilders',
-        'NCT2LandFactoryBuilders',
-        'NCT3LandFactoryBuilders',
+      
+      
+       
         'NCExtraLandFactory',
       
    
         'NCAntiLandQuickBuild',
-        'NCT3ReactionDF',
+      
         'NCT2Shields',
         'NCShieldUpgrades',
         'NCT3Shields',
@@ -127,7 +131,7 @@ BaseBuilderTemplate {
         'NCTransportFactoryBuilders',
        
         'NCexcessairunitsbehavior',
-        'NCT2AirFactoryBuilders',
+      
         
         
         'NCt3emergencybuilders',
@@ -145,6 +149,8 @@ BaseBuilderTemplate {
         'ncMobileAirExperimentalbehavior',
         'ncMobileLandExperimentalbehavior',
         'NCMobileLandExperimental',
+        'NC Satelite',
+        'NC Satelite Behavior',
       
     
 		
