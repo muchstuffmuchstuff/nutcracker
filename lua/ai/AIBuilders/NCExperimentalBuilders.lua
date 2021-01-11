@@ -328,10 +328,7 @@ BuilderGroup {
             { MIBC, 'FactionIndex', {2,4}},
             { SBC, 'MapGreaterThan', { 500, 500 }},
             { MIBC, 'GreaterThanGameTime', { 1000} },
-          
-          
-         
-            
+            {CF, 'NoDukeNukem',{}},
           
           
             --- 
@@ -369,6 +366,7 @@ BuilderGroup {
             { MIBC, 'FactionIndex', {2, 4}},
             { SBC, 'MapGreaterThan', { 500, 500 }},
             { MIBC, 'GreaterThanGameTime', { 1000} },
+            {CF, 'NoDukeNukem',{}},
            
            
            
@@ -410,6 +408,7 @@ BuilderGroup {
             { MIBC, 'FactionIndex', {2, 4}},
             { SBC, 'MapGreaterThan', { 1000, 1000 }},
             { MIBC, 'GreaterThanGameTime', { 1000} },
+            {CF, 'NoDukeNukem',{}},
           
           
             
@@ -451,6 +450,7 @@ BuilderGroup {
             { MIBC, 'FactionIndex', {2, 3, 4}},
             { SBC, 'MapGreaterThan', { 1000, 1000 }},
             { MIBC, 'GreaterThanGameTime', { 1000} },
+            {CF, 'NoDukeNukem',{}},
           
           
             
@@ -491,6 +491,7 @@ BuilderGroup {
             { MIBC, 'FactionIndex', {2, 3, 4}},
             { SBC, 'MapGreaterThan', { 1000, 1000 }},
             { MIBC, 'GreaterThanGameTime', { 1000} },
+            {CF, 'NoDukeNukem',{}},
           
           
             { UCBC, 'HaveGreaterThanUnitsWithCategory', { 15, categories.AIR * categories.MOBILE * categories.ANTIAIR  - categories.BOMBER - categories.GROUNDATTACK - categories.SCOUT } },
@@ -536,7 +537,7 @@ BuilderGroup {
             { MIBC, 'GreaterThanGameTime', { 1000} },
           
             { UCBC, 'HaveGreaterThanUnitsWithCategory', { 20, categories.AIR * categories.MOBILE * categories.ANTIAIR  - categories.BOMBER - categories.GROUNDATTACK - categories.SCOUT } },
-         
+            {CF, 'NoDukeNukem',{}},
        
             
           
@@ -586,7 +587,7 @@ BuilderGroup {
             { SIBC, 'HaveGreaterThanUnitsWithCategory', { 3, categories.STRUCTURE * (categories.NUKE + categories.ARTILLERY) * categories.TECH3 }},
             { SIBC, 'HaveLessThanUnitsInCategoryBeingBuilt', { 3, categories.EXPERIMENTAL * categories.AIR }},
             { EBC, 'GreaterThanEconStorageCurrent', { 25000, 10000 } },
-           
+            {CF, 'NoDukeNukem',{}},
           
         
 
@@ -768,7 +769,7 @@ BuilderGroup {
             { SBC, 'MapLessThan', { 1000, 1000 }},
             { MIBC, 'GreaterThanGameTime', { 1000} },
             { MIBC, 'FactionIndex', {2, 3, 4}},
-           
+            {CF, 'NoDukeNukem',{}},
          
            
           
@@ -806,7 +807,7 @@ BuilderGroup {
             { MIBC, 'GreaterThanGameTime', { 1000} },
            
             { SBC, 'IsIslandMap', { true } },
-            
+            {CF, 'NoDukeNukem',{}},
             
          
             
@@ -847,7 +848,7 @@ BuilderGroup {
             { MIBC, 'GreaterThanGameTime', { 1800} },
             { SBC, 'MapLessThan', { 1000, 1000 }},
             { UCBC, 'HaveGreaterThanUnitsWithCategory', { 20, categories.AIR * categories.MOBILE * categories.ANTIAIR  - categories.BOMBER - categories.GROUNDATTACK - categories.SCOUT } },
-         
+            {CF, 'NoDukeNukem',{}},
 
 
             --- 
@@ -1022,7 +1023,7 @@ BuilderGroup {
             { MIBC, 'FactionIndex', {1}},
             { SBC, 'MapGreaterThan', { 500, 500 }},
             { MIBC, 'GreaterThanGameTime', { 1200} },
-        
+            {CF, 'NoDukeNukem',{}},
             {CF, 'NoSateliteRush',{}},
      
             { UCBC, 'HaveGreaterThanUnitsWithCategory', { 1, categories.ENERGYPRODUCTION * categories.TECH3 } },
@@ -1052,7 +1053,7 @@ BuilderGroup {
             { SBC, 'MapGreaterThan', { 500, 500 }},
             { MIBC, 'GreaterThanGameTime', { 1200} },
             { EBC, 'GreaterThanEconStorageCurrent', { 35000, 10000 } },
-     
+            {CF, 'NoDukeNukem',{}},
             { UCBC, 'HaveGreaterThanUnitsWithCategory', { 2, categories.ENERGYPRODUCTION * categories.TECH3 } },
             { SIBC, 'HaveLessThanUnitsInCategoryBeingBuilt', { 2, categories.STRUCTURE  * categories.EXPERIMENTAL }},
    

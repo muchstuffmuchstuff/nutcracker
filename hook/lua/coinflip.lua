@@ -28,6 +28,17 @@ else
 end
 end
 
+function NoDukeNukem(aiBrain)
+    
+    if aiBrain.StrategyRandomizer != 12 then
+    
+    return true
+else
+    LOG('!!!!!!there is a Duke Nukem strategy running!!!!') 
+    return false
+end
+end
+
 
 
 

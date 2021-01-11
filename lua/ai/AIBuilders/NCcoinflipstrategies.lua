@@ -822,5 +822,63 @@ BuilderGroup {
     
 }
 
+BuilderGroup {
+    BuilderGroupName = 'ncdukehukemcoinflip',
+    BuildersType = 'EngineerBuilder',
+Builder {
+    BuilderName = 'nc T3 Nuke dukenukem',
+    PlatoonTemplate = 'T3EngineerBuilderSorian',
+    Priority = 1100,
+    InstanceCount = 1,
+    PlatoonAddFunctions = { {SAI, 'BuildOnce'}, },
+    BuilderConditions = {
+        { MIBC, 'GreaterThanGameTime', { 600 } },
+        { CF, 'StrategyRandomizer', {12 } },
+        { EBC, 'GreaterThanEconStorageCurrent', { 1000, 7000 } },
+        { UCBC, 'HaveGreaterThanUnitsWithCategory', { 1, categories.ENERGYPRODUCTION * categories.TECH2 } },
+        
+    },
+    BuilderType = 'Any',
+    BuilderData = {
+        MinNumAssistees = 2,
+        Construction = {
+            BuildClose = true,
+            AdjacencyCategory = 'SHIELD STRUCTURE',
+            BuildStructures = {
+                'T3StrategicMissile',
+            },
+            Location = 'LocationType',
+        }
+    }
+},
+Builder {
+    BuilderName = 'NC Assist Build duke nukem',
+    PlatoonTemplate = 'T3EngineerAssist',
+    Priority = 1301,
+    PlatoonAddFunctions = { {SAI, 'BuildOnce'}, },
+
+    InstanceCount = 1,
+    BuilderConditions = {
+        { CF, 'StrategyRandomizer', {12 } },
+        { MIBC, 'GreaterThanGameTime', { 1000 } },
+        { UCBC, 'LocationEngineersBuildingGreater', { 'LocationType', 0, categories.STRUCTURE * categories.NUKE}},
+        { EBC, 'GreaterThanEconStorageCurrent', { 1000, 7000 } },
+       
+        
+        
+    },
+    BuilderType = 'Any',
+    BuilderData = {
+        Assist = {
+            AssistLocation = 'LocationType',
+            AssisteeType = 'Engineer',
+            AssistRange = 150,
+            BeingBuiltCategories = {'STRUCTURE NUKE'},
+            Time = 320,
+        },
+    }
+},
+}
+
 
   

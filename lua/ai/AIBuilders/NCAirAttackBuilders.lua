@@ -923,42 +923,9 @@ BuilderGroup {
             { UCBC, 'HaveLessThanUnitsWithCategory', { 100, categories.AIR * categories.GROUNDATTACK * categories.TECH3 } },
         },
     },
-     Builder {
-        BuilderName = 'NC T3 torp bomber',
-        PlatoonTemplate = 'T3TorpedoBomber',
-        Priority = 750,
-        BuilderType = 'Air',
-        BuilderConditions = {
-        
-            { MIBC, 'GreaterThanGameTime', { 1200 } },
-            
-			{ SBC, 'NoRushTimeCheck', { 600 }},
-			{ UCBC, 'HaveUnitsWithCategoryAndAlliance', { true, 0, categories.NAVAL * categories.FACTORY,  'Enemy' }},
-          ---
-{ EBC, 'GreaterThanEconStorageCurrent', { 8, 60 } },  
---
-            
-            { UCBC, 'HaveLessThanUnitsWithCategory', { 80, categories.AIR * categories.ANTINAVY * categories.TECH3 } },
-        },
-    },
     
-    Builder {
-        BuilderName = 'NC T2 torp bomber',
-        PlatoonTemplate = 'T2AirTorpedoBomber',
-        Priority = 749,
-        BuilderType = 'Air',
-        BuilderConditions = {
-            { MIBC, 'GreaterThanGameTime', { 700 } },
-            
-			{ SBC, 'NoRushTimeCheck', { 600 }},
-			{ UCBC, 'HaveUnitsWithCategoryAndAlliance', { true, 0, categories.NAVAL * categories.FACTORY,  'Enemy' }},
-          ---
-{ EBC, 'GreaterThanEconStorageCurrent', { 8, 60 } },  
---
-            
-            { UCBC, 'HaveLessThanUnitsWithCategory', { 40, categories.AIR * categories.ANTINAVY * categories.TECH3 } },
-        },
-    },
+    
+   
  
     
    

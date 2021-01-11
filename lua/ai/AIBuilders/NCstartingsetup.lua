@@ -24,12 +24,12 @@ BuilderGroup {
     BuilderGroupName = 'NC Initial ACU Builders',
     BuildersType = 'EngineerBuilder',
     Builder {
-        BuilderName = 'NC No randomizer cannot path T1 enabled uef',
+        BuilderName = 'NC No randomizer cannot path T1 enabled uef and cyb',
         PlatoonAddBehaviors = { 'CommanderBehaviorSorian', },
         PlatoonTemplate = 'CommanderBuilderSorian',
         Priority = 1000,
         BuilderConditions = {
-            { MIBC, 'FactionIndex', {1} },
+            { MIBC, 'FactionIndex', {1,3} },
             { WRC, 'CanPathToCurrentEnemyNC', { 'LocationType', false } }, 
             { SBC, 'MapGreaterThan', { 1000, 1000 }},
             { SBC, 'MapLessThan', { 2000, 2000 }},
@@ -89,7 +89,7 @@ BuilderGroup {
         PlatoonTemplate = 'CommanderBuilderSorian',
         Priority = 1000,
         BuilderConditions = {
-            { MIBC, 'FactionIndex', {2,3,4} },
+            { MIBC, 'FactionIndex', {2,4} },
             { WRC, 'CanPathToCurrentEnemyNC', { 'LocationType', false } }, 
             { SBC, 'MapGreaterThan', { 1000, 1000 }},
             { SBC, 'MapLessThan', { 2000, 2000 }},

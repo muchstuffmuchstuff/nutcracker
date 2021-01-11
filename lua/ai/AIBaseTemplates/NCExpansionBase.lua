@@ -4,7 +4,7 @@
 BaseBuilderTemplate {
     BaseTemplateName = 'NutCrackerExpansionBase',
     Builders = {
-  
+        'ncdukehukemcoinflip',
         'NC_coinflip_factoryupgrade',
         'NC rambo behavior',
         'NCt1bomberunitsbehavior',

@@ -47,7 +47,7 @@ BuilderGroup {
             { SBC, 'MapGreaterThan', { 1000, 1000 }},
             { MIBC, 'FactionIndex', {1} },
             {CF, 'NoSateliteRush',{}},
-      
+            {CF, 'NoDukeNukem',{}},
         
             {WRC, 'CheckUnitRangeNC', { 'LocationType', 'T4Artillery', categories.STRUCTURE} },
             
@@ -82,7 +82,7 @@ BuilderGroup {
             { MIBC, 'GreaterThanGameTime', { 1800 } },
             { SBC, 'MapGreaterThan', { 500, 500 }},
             {CF, 'NoSateliteRush',{}},
-       --
+            {CF, 'NoDukeNukem',{}},
           
             {WRC, 'CheckUnitRangeNC', { 'LocationType', 'T4Artillery', categories.STRUCTURE } },
           
@@ -119,7 +119,7 @@ BuilderGroup {
         BuilderConditions = {
             { MIBC, 'GreaterThanGameTime', { 1800 } },
             { UCBC, 'LocationEngineersBuildingGreater', { 'LocationType', 0, categories.ARTILLERY * categories.TECH3 * categories.STRUCTURE}},
-          
+           
 { EBC, 'GreaterThanEconStorageCurrent', { 15, 100 } },
             
        --
@@ -467,7 +467,7 @@ BuilderGroup {
             { MIBC, 'GreaterThanGameTime', { 1200 } },
             { SBC, 'MapGreaterThan', { 500, 500 }},
             { MIBC, 'FactionIndex', {2,3,4}},
-           
+            {CF, 'NoDukeNukem',{}},
             {WRC, 'CheckUnitRangeNC', { 'LocationType', 'T3Artillery', categories.STRUCTURE } },
            
 			{ SIBC, 'HaveGreaterThanUnitsWithCategory', { 4, categories.ENERGYPRODUCTION * categories.TECH3 } },
@@ -500,7 +500,7 @@ BuilderGroup {
             { SBC, 'MapGreaterThan', { 500, 500 }},
             { MIBC, 'FactionIndex', {1}},
             {CF, 'NoSateliteRush',{}},
-           
+            {CF, 'NoDukeNukem',{}},
             {WRC, 'CheckUnitRangeNC', { 'LocationType', 'T3Artillery', categories.STRUCTURE } },
            
 			{ SIBC, 'HaveGreaterThanUnitsWithCategory', { 4, categories.ENERGYPRODUCTION * categories.TECH3 } },
@@ -539,7 +539,7 @@ BuilderGroup {
             { MIBC, 'GreaterThanGameTime', { 1500 } },
        --
             #{ SIBC, 'T4BuildingCheck', {} },
-          
+            {CF, 'NoDukeNukem',{}},
             { UCBC, 'HaveGreaterThanUnitsWithCategory', { 20, categories.AIR * categories.MOBILE * categories.ANTIAIR  - categories.BOMBER - categories.GROUNDATTACK - categories.SCOUT } },
             { SIBC, 'HaveLessThanUnitsInCategoryBeingBuilt', { 1, categories.TECH3 *  (categories.xab2307 + categories.ARTILLERY ) * categories.STRUCTURE}},
             { WRC,'CheckUnitRangeNC', { 'LocationType', 'T3RapidArtillery', categories.STRUCTURE, 2 } },
@@ -581,7 +581,7 @@ BuilderGroup {
             { MIBC, 'FactionIndex', {2}},
             { SBC, 'MapGreaterThan', { 500, 500 }},
             { MIBC, 'GreaterThanGameTime', { 1500 } },
-       --
+            {CF, 'NoDukeNukem',{}},
             #{ SIBC, 'T4BuildingCheck', {} },
             { UCBC, 'HaveGreaterThanUnitsWithCategory', { 20, categories.AIR * categories.MOBILE * categories.ANTIAIR  - categories.BOMBER - categories.GROUNDATTACK - categories.SCOUT } },
             { SIBC, 'HaveLessThanUnitsInCategoryBeingBuilt', { 3, categories.TECH3 *  (categories.xab2307 + categories.ARTILLERY ) * categories.STRUCTURE}},
@@ -616,7 +616,7 @@ BuilderGroup {
         BuilderConditions = {
             { MIBC, 'GreaterThanGameTime', { 1200 } },
             { UCBC, 'LocationEngineersBuildingGreater', { 'LocationType', 0, categories.ARTILLERY * categories.TECH3 * categories.STRUCTURE}},
-         
+            
        --
             { EBC, 'GreaterThanEconStorageCurrent', { 15000, 15000 } },
         },
