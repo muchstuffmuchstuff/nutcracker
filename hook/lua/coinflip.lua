@@ -20,7 +20,7 @@ end
 function NoSateliteRush(aiBrain)
     
     if aiBrain.StrategyRandomizer != 11 then
-    
+        
     return true
 else
     LOG('!!!!!!there is a satelite strategy running!!!!') 
@@ -31,7 +31,7 @@ end
 function NoDukeNukem(aiBrain)
     
     if aiBrain.StrategyRandomizer != 12 then
-    
+        
     return true
 else
     LOG('!!!!!!there is a Duke Nukem strategy running!!!!') 
