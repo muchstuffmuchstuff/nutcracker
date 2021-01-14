@@ -235,6 +235,30 @@ BuilderGroup {
     BuilderGroupName = 'NCdefense_onisland',
     BuildersType = 'FactoryBuilder',
     Builder {
+        BuilderName = 'NC T1 base defense on island against standard uef',
+        PlatoonTemplate = 'T1spammage',
+        Priority = 700,
+        InstanceCount = 2,
+    
+        BuilderConditions = {
+           
+            { MIBC, 'FactionIndex', {1} },
+            
+            { UCBC, 'UnitsLessAtLocation', { 'LocationType', 15, categories.TECH1 * categories.LAND * categories.MOBILE - categories.ENGINEER }},
+            { WRC, 'CanPathToCurrentEnemyNC', { 'LocationType', false } },  
+            
+		
+            ---
+{ EBC, 'GreaterThanEconStorageCurrent', { 8, 60 } },  
+-- 
+          
+            
+			{ SBC, 'NoRushTimeCheck', { 600 }},
+       --
+        },
+        BuilderType = 'Land',
+    },
+    Builder {
         BuilderName = 'NC T1 base defense on island against t1',
         PlatoonTemplate = 'T1spammage',
         Priority = 700,
@@ -395,6 +419,23 @@ BuilderGroup {
 -- 
           
             
+			{ SBC, 'NoRushTimeCheck', { 600 }},
+       --
+        },
+        BuilderType = 'Land',
+    },
+    Builder {
+        BuilderName = 'NC T3 base defense against t3 air standard',
+        PlatoonTemplate = 'T3antiairland',
+        Priority = 650,
+     
+    
+        BuilderConditions = {
+            { UCBC, 'UnitsLessAtLocation', { 'LocationType', 2, categories.delk002 + categories.dalk003 + categories.drlk001 + categories.dslk004 }},   
+            { UCBC, 'HaveGreaterThanUnitsWithCategory', {100, categories.MOBILE * categories.LAND - categories.ENGINEER } },
+    
+{ EBC, 'GreaterThanEconStorageCurrent', { 8, 60 } },  
+
 			{ SBC, 'NoRushTimeCheck', { 600 }},
        --
         },

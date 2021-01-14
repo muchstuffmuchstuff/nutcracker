@@ -6,7 +6,7 @@ BaseBuilderTemplate {
     Builders = {
         'ncdukehukemcoinflip',
         'NC_coinflip_factoryupgrade',
-        'NC rambo behavior',
+   
         'NCt1bomberunitsbehavior',
   ----COIN FLIP STRATEGIES
 ----landrush
@@ -26,11 +26,10 @@ BaseBuilderTemplate {
 
 
         # ==== ECONOMY ==== #
-       
+        'NCemergencyenergy',
         'NCsubcommander_ras',
         'NCEngineerMassBuildersLowerPri',
-        'NCEngineerEnergyBuildersExpansions',
-        'NCemergencyenergy',
+      
         'NCT1EngineerBuilders',
         'NCT2EngineerBuilders',
         'NCT3EngineerBuilders',
@@ -43,7 +42,8 @@ BaseBuilderTemplate {
       
         
         # Factory upgrades
-       
+        'NCEngineerFactoryConstruction',
+        'NCExpansionExtraFactory',
         'NCUpgradeBuilders_airfactories',
    
 
@@ -52,7 +52,7 @@ BaseBuilderTemplate {
         'NCEngineerFactoryBuilders',
     
     
-        'NCEngineerFactoryConstruction',
+       
 		
 	        
         # Engineer Support buildings
@@ -67,7 +67,7 @@ BaseBuilderTemplate {
                      
        	        
         # ==== DEFENSES ==== #
-       
+        'NCexpansionstandardefense',
 		'NCT1BaseDefenses',
 	
 		'NCT3BaseDefenses',
@@ -105,14 +105,14 @@ BaseBuilderTemplate {
       
       
        
-        'NCExtraLandFactory',
+        
       
    
         'NCAntiLandQuickBuild',
       
-        'NCT2Shields',
-        'NCShieldUpgrades',
-        'NCT3Shields',
+      
+       
+      
       
         'NClandbehavior',
 
@@ -123,7 +123,7 @@ BaseBuilderTemplate {
         'NCT1AntiAirBuilders',
         'NCT3AntiAirBuilders',
         'NCT3AirFactoryBuilders',
-        'NCExtraAirFactory',
+       
         'NCAntiNavyQuickBuild',
        
         'NCfindenemyfightersbehavior',
@@ -145,12 +145,7 @@ BaseBuilderTemplate {
     
 
         # ==== EXPERIMENTALS ==== #
-        'NCMobileAirExperimentalEngineers',
-        'ncMobileAirExperimentalbehavior',
-        'ncMobileLandExperimentalbehavior',
-        'NCMobileLandExperimental',
-        'NC Satelite',
-        'NC Satelite Behavior',
+       
       
     
 		

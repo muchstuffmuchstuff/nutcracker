@@ -4,7 +4,7 @@ function DoGameResult(armyIndex, result)
     local GameOptions = Prefs.GetFromCurrentProfile('LobbyPresets')[1].GameOptions
     
     local AIName = GetArmiesTable().armiesTable[armyIndex].nickname
-    LOG('AiName: '..AIName..' - Result: '..result)
+    WARN('AiName: '..AIName..' - Result: '..result)
 
     if GameOptions.AIEndlessGameLoop == 'on' then
         local condPos = string.find(result, " ")

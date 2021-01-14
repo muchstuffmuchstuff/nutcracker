@@ -1097,10 +1097,10 @@ BuilderGroup {
         PlatoonTemplate = 'T1BuildEngineer',
        
         Priority = 99999,
-        InstanceCount = 8,
+        InstanceCount = 5,
         BuilderConditions = {
           
-            { UCBC, 'HaveLessThanUnitsWithCategory', { 8, categories.MOBILE * categories.ENGINEER * categories.TECH1 }},
+            { UCBC, 'HaveLessThanUnitsWithCategory', { 5, categories.MOBILE * categories.ENGINEER * categories.TECH1 }},
            
           
         },
@@ -1115,6 +1115,8 @@ BuilderGroup {
             { SIBC, 'GreaterThanEconEfficiencyOverTime', { 0.7, 1.2 } },
             { UCBC, 'EngineerLessAtLocation', { 'LocationType', 13, 'ENGINEER TECH1' }},
             { UCBC, 'FactoryLessAtLocation', { 'LocationType', 1, categories.FACTORY * (categories.TECH2 + categories.TECH3) }},
+            { UCBC, 'LocationFactoriesBuildingLess', { 'LocationType', 1, 'ENGINEER'} },
+            { UCBC, 'EngineerCapCheck', { 'LocationType', 'Tech1' } },
 		
             
         
@@ -1130,8 +1132,9 @@ BuilderGroup {
          
 			{ SBC, 'NoRushTimeCheck', { 600 }},
 			{ UCBC, 'FactoryLessAtLocation', { 'LocationType', 1, 'FACTORY TECH3' }},
-			{ UCBC, 'HaveLessThanUnitsWithCategory', { 2, 'FACTORY TECH3' }},
-            { UCBC, 'LocationFactoriesBuildingLess', { 'LocationType', 1, 'ENGINEER TECH1' } },
+            { UCBC, 'HaveLessThanUnitsWithCategory', { 2, 'FACTORY TECH3' }},
+            {EN, 'HaveLessThanArmyPoolWithCategoryNC', {8, categories.ENGINEER * categories.TECH1}},
+            { UCBC, 'LocationFactoriesBuildingLess', { 'LocationType', 1, 'ENGINEER'} },
             { UCBC, 'EngineerCapCheck', { 'LocationType', 'Tech1' } },
           
             { UCBC, 'UnitCapCheckLess', { .8 } },
@@ -1149,7 +1152,7 @@ BuilderGroup {
         BuilderConditions = {
             { UCBC, 'EngineerLessAtLocation', { 'LocationType', 3, 'ENGINEER TECH2' }},
 			{ UCBC, 'FactoryLessAtLocation', { 'LocationType', 4, 'FACTORY TECH3' }},
-            { UCBC, 'LocationFactoriesBuildingLess', { 'LocationType', 1, 'ENGINEER TECH2' } },
+            { UCBC, 'LocationFactoriesBuildingLess', { 'LocationType', 1, 'ENGINEER'} },
             { UCBC, 'EngineerCapCheck', { 'LocationType', 'Tech2' } },
         },
         BuilderType = 'All',
@@ -1163,7 +1166,7 @@ BuilderGroup {
             { EBC, 'GreaterThanEconStorageCurrent', { 1000, 1000 } },
             {EN, 'HaveLessThanArmyPoolWithCategoryNC', {8, categories.ENGINEER * (categories.TECH2 + categories.TECH3 + categories.SUBCOMMANDER)}},
 			{ UCBC, 'HaveGreaterThanUnitsWithCategory', { 15, categories.MOBILE - categories.ENGINEER}},
-            { UCBC, 'LocationFactoriesBuildingLess', { 'LocationType', 1, 'ENGINEER TECH2' } },
+            { UCBC, 'LocationFactoriesBuildingLess', { 'LocationType', 1, 'ENGINEER'} },
             { UCBC, 'EngineerCapCheck', { 'LocationType', 'Tech2' } },
             { UCBC, 'UnitCapCheckLess', { .8 } },
         },
@@ -1183,6 +1186,7 @@ BuilderGroup {
             { UCBC,'EngineerLessAtLocation', { 'LocationType', 3, 'ENGINEER TECH3' }},
             { UCBC, 'LocationFactoriesBuildingLess', { 'LocationType', 1, categories.ENGINEER * categories.TECH3 - categories.SUBCOMMANDER } },
             { UCBC, 'EngineerCapCheck', { 'LocationType', 'Tech3' } },
+            { UCBC, 'LocationFactoriesBuildingLess', { 'LocationType', 1, 'ENGINEER'} },
         },
         BuilderType = 'All',
     },
@@ -1201,6 +1205,7 @@ BuilderGroup {
 			
             { UCBC, 'LocationFactoriesBuildingLess', { 'LocationType', 1, categories.ENGINEER * categories.TECH3 - categories.SUBCOMMANDER } },
             { UCBC, 'EngineerCapCheck', { 'LocationType', 'Tech3' } },
+            { UCBC, 'LocationFactoriesBuildingLess', { 'LocationType', 1, 'ENGINEER'} },
           
             #{ UCBC, 'UnitCapCheckLess', { .8 } },
         },
@@ -1218,6 +1223,7 @@ BuilderGroup {
             { EBC, 'GreaterThanEconStorageCurrent', { 25000, 10000 } },
             { WRC, 'HaveUnitRatioVersusEnemyNC', { 2.0, categories.MOBILE * categories.AIR * categories.ANTIAIR * categories.TECH3 - categories.GROUNDATTACK - categories.BOMBER, '>=', categories.MOBILE * categories.AIR * categories.TECH3  - categories.SCOUT - categories.TRANSPORTFOCUS } },
             {EN, 'HaveLessThanArmyPoolWithCategoryNC', {10, categories.ENGINEER * (categories.TECH3 + categories.SUBCOMMANDER)}},
+            { UCBC, 'LocationFactoriesBuildingLess', { 'LocationType', 1, 'ENGINEER'} },
                           
           
          

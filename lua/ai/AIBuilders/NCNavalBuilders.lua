@@ -43,8 +43,10 @@ BuilderGroup {
             { UCBC, 'NavalBaseCheck', { } },
             { SBC, 'MapGreaterThan', { 1000, 1000 }},
             { SBC, 'MapLessThan', { 2000, 2000 }},
+            { UCBC, 'UnitsLessAtLocation', { 'LocationType', 1, categories.FACTORY * categories.NAVAL}},
             { UCBC, 'NavalAreaNeedsEngineer', { 'LocationType', 600, -1000, 10, 1, 'AntiSurface' } },
             { UCBC, 'FactoryCapCheck', { 'LocationType', 'Sea' } },
+            
             
          
         },
@@ -87,6 +89,7 @@ BuilderGroup {
             { SBC, 'MapGreaterThan', { 1000, 1000 }},
             { SBC, 'MapLessThan', { 2000, 2000 }},
             { UCBC, 'NavalAreaNeedsEngineer', { 'LocationType', 600, -1000, 10, 1, 'AntiSurface' } },
+            { UCBC, 'UnitsLessAtLocation', { 'LocationType', 1, categories.FACTORY * categories.NAVAL}},
 		
             { SIBC, 'GreaterThanEconEfficiencyOverTime', { 0.95, 1.05 }},
             
@@ -131,6 +134,7 @@ BuilderGroup {
             { SBC, 'MapLessThan', { 2000, 2000 }},
            
             { UCBC, 'NavalAreaNeedsEngineer', { 'LocationType', 600, -1000, 10, 1, 'AntiSurface' } },
+            { UCBC, 'UnitsLessAtLocation', { 'LocationType', 1, categories.FACTORY * categories.NAVAL}},
 			
             { SIBC, 'GreaterThanEconEfficiencyOverTime', { 0.95, 1.05 }},
             
@@ -172,6 +176,7 @@ BuilderGroup {
             { SBC, 'MapGreaterThan', { 1000, 1000 }},
             { SBC, 'MapLessThan', { 2000, 2000 }},
             { UCBC, 'HaveUnitsWithCategoryAndAlliance', { true, 0, categories.NAVAL * categories.FACTORY,  'Enemy' }},
+            { UCBC, 'UnitsLessAtLocation', { 'LocationType', 1, categories.FACTORY * categories.NAVAL}},
             { UCBC, 'NavalAreaNeedsEngineer', { 'LocationType', 600, -1000, 10, 1, 'AntiSurface' } },
             { UCBC, 'FactoryCapCheck', { 'LocationType', 'Sea' } },
             
@@ -215,6 +220,7 @@ BuilderGroup {
             { SBC, 'MapGreaterThan', { 1000, 1000 }},
             { SBC, 'MapLessThan', { 2000, 2000 }},
             { UCBC, 'HaveUnitsWithCategoryAndAlliance', { true, 0, categories.NAVAL * categories.FACTORY,  'Enemy' }},
+            { UCBC, 'UnitsLessAtLocation', { 'LocationType', 1, categories.FACTORY * categories.NAVAL}},
             { UCBC, 'FactoryCapCheck', { 'LocationType', 'Sea' } },
         
             { UCBC, 'NavalAreaNeedsEngineer', { 'LocationType', 600, -1000, 10, 1, 'AntiSurface' } },
@@ -258,6 +264,7 @@ BuilderGroup {
             { SBC, 'MapGreaterThan', { 1000, 1000 }},
             { SBC, 'MapLessThan', { 2000, 2000 }},
             { UCBC, 'HaveUnitsWithCategoryAndAlliance', { true, 0, categories.NAVAL * categories.FACTORY,  'Enemy' }},
+            { UCBC, 'UnitsLessAtLocation', { 'LocationType', 1, categories.FACTORY * categories.NAVAL}},
             { UCBC, 'FactoryCapCheck', { 'LocationType', 'Sea' } },
         
            
@@ -303,6 +310,7 @@ BuilderGroup {
             { UCBC, 'NavalBaseCheck', { } },
             { SBC, 'MapGreaterThan', { 2000, 2000 }},
             { MIBC, 'GreaterThanGameTime', { 1000 } },
+            { UCBC, 'UnitsLessAtLocation', { 'LocationType', 1, categories.FACTORY * categories.NAVAL}},
            
 
             { UCBC, 'NavalAreaNeedsEngineer', { 'LocationType', 600, -1000, 10, 1, 'AntiSurface' } },
@@ -346,6 +354,7 @@ BuilderGroup {
             { SBC, 'IsIslandMap', { true } },
             { UCBC, 'NavalBaseCheck', { } },
             { UCBC, 'FactoryCapCheck', { 'LocationType', 'Sea' } },
+            { UCBC, 'UnitsLessAtLocation', { 'LocationType', 1, categories.FACTORY * categories.NAVAL}},
             { SBC, 'MapGreaterThan', { 2000, 2000 }},
             { MIBC, 'GreaterThanGameTime', { 1000 } },
         
@@ -389,6 +398,7 @@ BuilderGroup {
         BuilderConditions = {
             { SBC, 'IsIslandMap', { true } },
             { UCBC, 'NavalBaseCheck', { } },
+            { UCBC, 'UnitsLessAtLocation', { 'LocationType', 1, categories.FACTORY * categories.NAVAL}},
             { UCBC, 'FactoryCapCheck', { 'LocationType', 'Sea' } },
             { SBC, 'MapGreaterThan', { 2000, 2000 }},
             { MIBC, 'GreaterThanGameTime', { 1000 } },

@@ -39,6 +39,18 @@ else
 end
 end
 
+function AlteredAirExpPriority(aiBrain)
+    
+    if aiBrain.StrategyRandomizer <= 40 then
+        
+    return true
+else
+ 
+    return false
+end
+end
+
+
 
 
 

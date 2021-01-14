@@ -115,7 +115,7 @@ Builder {
     BuilderName = 'NC Gate Engineercoinflip',
     PlatoonTemplate = 'T3EngineerBuilderSorian',
     Priority = 1050,
-    DelayEqualBuildPlattons = {'Factories', 5},
+  
     BuilderConditions = {
         { MIBC, 'FactionIndex', { 2, 4 }},
         { CF, 'StrategyRandomizer', {22222} },
@@ -140,36 +140,7 @@ Builder {
         }
     }
 },
-    Builder {
-       
-        BuilderName = 'NC Gate Engineercoinflip rambo',
-        PlatoonTemplate = 'T3EngineerBuilderSorian',
-        Priority = 1050,
-        DelayEqualBuildPlattons = {'Factories', 5},
-        BuilderConditions = {
-            
-            { CF, 'StrategyRandomizer', {111} },
-            { SIBC, 'HaveLessThanUnitsInCategoryBeingBuilt', { 4, categories.STRUCTURE * (categories.TECH2 + categories.TECH3)  * categories.ENERGYPRODUCTION } },
-            { UCBC, 'HaveLessThanUnitsInCategoryBeingBuilt', { 2, 'GATE TECH3 STRUCTURE'}},
-            { SIBC, 'GreaterThanEconEfficiencyOverTime', { 1.0, 1.1} },
-            { EBC, 'GreaterThanEconStorageCurrent', { 500, 10000 } },
-            { UCBC, 'FactoryLessAtLocation', { 'LocationType', 2, 'GATE TECH3 STRUCTURE' }},
-         
-            
-         
-            
-        },
-        BuilderType = 'Any',
-        BuilderData = {
-            Construction = {
-                BuildStructures = {
-                    'T3QuantumGate',
-                },
-                Location = 'LocationType',
-                AdjacencyCategory = 'ENERGYPRODUCTION',
-            }
-        }
-},
+    
 }
 
 
@@ -203,7 +174,7 @@ Builder {
         BuilderName = 'NC T3 energy for tele coinflip',
         PlatoonTemplate = 'T3EngineerBuilderSorian',
         Priority = 1000,
-        DelayEqualBuildPlattons = {'Energy', 3},
+       
         BuilderType = 'Any',
         BuilderConditions = {
             { MIBC, 'FactionIndex', { 2, 4 }},
@@ -255,33 +226,10 @@ Builder {
     },
     BuilderType = 'Gate',
 },
-Builder {
-    BuilderName = 'NC lots of rambo subcommanders',
-    PlatoonTemplate = 'NC rambo preset',
-    
-    Priority = 980,
-    BuilderConditions = {
-      
-        { CF, 'StrategyRandomizer', {111} },
-        { MIBC, 'GreaterThanGameTime', { 1200 } },
-        { EBC, 'GreaterThanEconStorageCurrent', { 500, 10000 } },
-        { SIBC, 'GreaterThanEconEfficiencyOverTime', { 1.0, 1.05 }},
-        
-       
-      
-        { UCBC, 'HaveLessThanUnitsWithCategory', { 60, categories.SUBCOMMANDER } },
-        { UCBC, 'HaveLessThanUnitsInCategoryBeingBuilt', { 4, categories.SUBCOMMANDER }},
-        
-    },
-    BuilderType = 'Gate',
-},
-}
-
-BuilderGroup {
-    BuilderGroupName = 'NC rambo behavior',
-    BuildersType = 'PlatoonFormBuilder',
 
 }
+
+
 
 
     BuilderGroup {
@@ -464,13 +412,13 @@ Builder {
     PlatoonTemplate = 'T3EngineerBuilderSorian',
     Priority = 1500,
     PlatoonAddFunctions = { {SAI, 'BuildOnce'}, },
-    {  DelayEqualBuildPlattons = 'Artillery', 40},
+   
     BuilderConditions = {
         { MIBC, 'GreaterThanGameTime', { 1000 } },
         { CF, 'StrategyRandomizer', {4 } },
         {WRC,'CheckUnitRangeNC', { 'LocationType', 'T3Artillery', categories.STRUCTURE } },
+        { SIBC, 'HaveLessThanUnitsInCategoryBeingBuilt', { 1, categories.TECH3 * categories.ARTILLERY } },
         
-        { EBC, 'GreaterThanEconStorageRatio', { 0.0, 1.0}},
      
 
     
@@ -539,14 +487,14 @@ BuilderGroup {
 Builder {
     BuilderName = 'NCairexpcoinflip',
     PlatoonTemplate = 'T3EngineerBuilderSorian',
-    Priority = 995,
-    DelayEqualBuildPlattons = {'MobileExperimental', 50},
+    Priority = 1500,
+    
     BuilderConditions = {
         { SBC, 'MapGreaterThan', { 500, 500 }},
         { MIBC, 'FactionIndex', {2, 4}},
         { MIBC, 'GreaterThanGameTime', { 1000} },
         { CF, 'StrategyRandomizer', {6 } },
-        { SIBC, 'HaveLessThanUnitsInCategoryBeingBuilt', { 1, categories.STRUCTURE  * (categories.ANTIMISSILE + categories.NUKE + categories.ARTILLERY) * categories.TECH3 }},
+        { SIBC, 'HaveLessThanUnitsInCategoryBeingBuilt', { 1, categories.EXPERIMENTAL * categories.AIR }},
         { UCBC, 'HaveGreaterThanUnitsWithCategory', { 2, categories.TECH2 * categories.ENERGYPRODUCTION} },
         
         { SIBC, 'T4BuildingCheck', {} },
@@ -617,8 +565,8 @@ BuilderGroup {
     Builder {
         BuilderName = 'NC Land Exp1 coinflip',
         PlatoonTemplate = 'T3EngineerBuilderSorian',
-        Priority = 950,
-        DelayEqualBuildPlattons = {'MobileExperimental', 30},
+        Priority = 1500,
+       
         PlatoonAddFunctions = { {SAI, 'BuildOnce'}, },
         InstanceCount = 1,
         BuilderConditions = {

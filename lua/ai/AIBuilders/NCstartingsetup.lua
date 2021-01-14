@@ -23,65 +23,7 @@ local EN = '/mods/nutcracker/hook/lua/economicnumbers.lua'
 BuilderGroup {
     BuilderGroupName = 'NC Initial ACU Builders',
     BuildersType = 'EngineerBuilder',
-    Builder {
-        BuilderName = 'NC No randomizer cannot path T1 enabled uef and cyb',
-        PlatoonAddBehaviors = { 'CommanderBehaviorSorian', },
-        PlatoonTemplate = 'CommanderBuilderSorian',
-        Priority = 1000,
-        BuilderConditions = {
-            { MIBC, 'FactionIndex', {1,3} },
-            { WRC, 'CanPathToCurrentEnemyNC', { 'LocationType', false } }, 
-            { SBC, 'MapGreaterThan', { 1000, 1000 }},
-            { SBC, 'MapLessThan', { 2000, 2000 }},
-        
-                { IBC, 'NotPreBuilt', {}},
-            },
-        InstantCheck = true,
-        BuilderType = 'Any',
-        PlatoonAddFunctions = { {SAI, 'BuildOnce'}, },
-        BuilderData = {
-            Construction = {
-                BuildStructures = {
-                    'T1AirFactory',
-					'T1EnergyProduction',
-                    'T1EnergyProduction',
-					#'T1Resource',
-                    'T1EnergyProduction',
-                    'T1EnergyProduction',
-					'T1EnergyProduction',
-					'T1EnergyProduction',
-                    'T1AirFactory',
-'T1AADefense',
-'T1EnergyProduction',
-'T1LandFactory',
-'T1AADefense',
-'T1EnergyProduction',
-'T1EnergyProduction',
-'T1EnergyProduction',
-'T1EnergyProduction',
-'T1EnergyProduction',
-'T1EnergyProduction',
-'T1EnergyProduction',
-'T1EnergyProduction',
-'T1LandFactory',
-'T1EnergyProduction',
-'T1EnergyProduction',
-'T1EnergyProduction',
-'T1EnergyProduction',
-'T1LandFactory',
-'T1EnergyProduction',
-'T1EnergyProduction',
-'T1EnergyProduction',
-'T1EnergyProduction',
-'T1AirFactory',
-
-
-
-					
-                }
-            }
-        }
-    },
+    
    
     Builder {
         BuilderName = 'NC No randomizer cannot path T1 enabled',
@@ -89,7 +31,7 @@ BuilderGroup {
         PlatoonTemplate = 'CommanderBuilderSorian',
         Priority = 1000,
         BuilderConditions = {
-            { MIBC, 'FactionIndex', {2,4} },
+           
             { WRC, 'CanPathToCurrentEnemyNC', { 'LocationType', false } }, 
             { SBC, 'MapGreaterThan', { 1000, 1000 }},
             { SBC, 'MapLessThan', { 2000, 2000 }},
@@ -102,7 +44,7 @@ BuilderGroup {
         BuilderData = {
             Construction = {
                 BuildStructures = {
-                    'T1LandFactory',
+                    'T1AirFactory',
 					'T1EnergyProduction',
                     'T1EnergyProduction',
 					#'T1Resource',
@@ -149,7 +91,7 @@ BuilderGroup {
         Priority = 1000,
         BuilderConditions = {
             { WRC, 'CanPathToCurrentEnemyNC', { 'LocationType', true } }, 
-            { SBC, 'MapGreaterThan', { 1000, 1000 }},
+          
             { SBC, 'MapLessThan', { 2000, 2000 }},
         
                 { IBC, 'NotPreBuilt', {}},

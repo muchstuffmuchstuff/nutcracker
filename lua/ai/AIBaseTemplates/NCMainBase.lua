@@ -16,7 +16,7 @@ BaseBuilderTemplate {
     Builders = {
         'ncdukehukemcoinflip',
         'NC_coinflip_factoryupgrade',
-        'NC rambo behavior',        
+          
         'NCt1bomberunitsbehavior',
 --starting acu for coinflip
 'NC Ranzomizer Strategy Starting Build',
@@ -140,7 +140,7 @@ BaseBuilderTemplate {
         'NCdefense_antiair',
         'NCdefense_onisland',
         'NCspammage',
-       
+        'NCExpansionExtraFactory',
        
        
         
@@ -148,7 +148,7 @@ BaseBuilderTemplate {
        
        
       
-        'NCExtraLandFactory',
+      
      
        
         'NCAntiLandQuickBuild',
@@ -165,7 +165,7 @@ BaseBuilderTemplate {
         'NCT1AntiAirBuilders',
         'NCT3AntiAirBuilders',
         'NCT3AirFactoryBuilders',
-        'NCExtraAirFactory',
+        
         'NCAntiNavyQuickBuild',
       
         'NCfindenemyfightersbehavior',
@@ -257,14 +257,14 @@ BaseBuilderTemplate {
     end,
     FirstBaseFunction = function(aiBrain)
         local per = ScenarioInfo.ArmySetup[aiBrain.Name].AIPersonality
-        LOG('Personality is '..per)
+        --LOG('Personality is '..per)
         if not per then 
-            LOG('No Per')
+            --LOG('No Per')
             return -1
         end
         
         if per != 'nut_cracker' and per != 'nut_crackercheat' then
-            LOG('Not NutCracker')
+            --LOG('Not NutCracker')
             return -1
         end
 
@@ -274,7 +274,7 @@ BaseBuilderTemplate {
         local isIsland = import('/lua/editor/SorianBuildConditions.lua').IsIslandMap(aiBrain)
         
         if per == 'nut_cracker' or per == 'nut_crackercheat' then
-            LOG('Returning NutCracker')
+            --LOG('Returning NutCracker')
             return 1000, 'nut_cracker'
         end
         

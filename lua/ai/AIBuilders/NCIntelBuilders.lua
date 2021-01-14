@@ -70,8 +70,8 @@ BuilderGroup {
         DelayEqualBuildPlattons = {'Scouts', 30},
         BuilderConditions = {
 
-            { MIBC, 'GreaterThanGameTime', { 360 } },
-			{ SIBC, 'HaveLessThanUnitsForMapSize', { {[256] = 2, [512] = 3, [1024] = 6, [2048] = 8, [4096] = 8}, categories.SCOUT * categories.AIR}},
+            { MIBC, 'GreaterThanGameTime', { 320 } },
+			{ SIBC, 'HaveLessThanUnitsForMapSize', { {[256] = 2, [512] = 3, [1024] = 10, [2048] = 8, [4096] = 8}, categories.SCOUT * categories.AIR}},
       
            
 	
@@ -138,8 +138,9 @@ BuilderGroup {
         BuilderName = 'NC T1 Radar Engineer',
         PlatoonTemplate = 'EngineerBuilderSorian',
         Priority = 980,
+        DelayEqualBuildPlattons = {'Radar', 15},
         BuilderConditions = {
-    
+            { UCBC, 'CheckBuildPlattonDelay', { 'Radar' }},
             { UCBC, 'UnitsLessAtLocation', { 'LocationType', 1, ( categories.RADAR + categories.OMNI ) * categories.STRUCTURE}},
             
        --
@@ -160,8 +161,9 @@ BuilderGroup {
         BuilderName = 'NC T1 Radar Engineer - T2',
         PlatoonTemplate = 'T2EngineerBuilderSorian',
         Priority = 980,
+        DelayEqualBuildPlattons = {'Radar', 15},
         BuilderConditions = {
-       
+            { UCBC, 'CheckBuildPlattonDelay', { 'Radar' }},
 			{ SIBC, 'HaveGreaterThanUnitsWithCategory', { 0, categories.ENERGYPRODUCTION * categories.TECH2 } },
             { UCBC, 'UnitsLessAtLocation', { 'LocationType', 1, ( categories.RADAR + categories.OMNI ) * categories.STRUCTURE}},
          
@@ -183,8 +185,10 @@ BuilderGroup {
         BuilderName = 'NC T1 Radar Engineer - T3',
         PlatoonTemplate = 'T3EngineerBuilderSorian',
         Priority = 960,
+        DelayEqualBuildPlattons = {'Radar', 15},
         BuilderConditions = {
             { MIBC, 'GreaterThanGameTime', { 1000 } },
+            { UCBC, 'CheckBuildPlattonDelay', { 'Radar' }},
 			{ SIBC, 'HaveGreaterThanUnitsWithCategory', { 0, categories.ENERGYPRODUCTION * categories.TECH3 } },
             { UCBC, 'UnitsLessAtLocation', { 'LocationType', 1, ( categories.RADAR + categories.OMNI + categories.TECH2 ) * categories.STRUCTURE}},
         
@@ -206,8 +210,9 @@ BuilderGroup {
         BuilderName = 'NC T2 Radar Engineer',
         PlatoonTemplate = 'T2EngineerBuilderSorian',
         Priority = 950,
+        DelayEqualBuildPlattons = {'Radar', 15},
         BuilderConditions = {
-
+            { UCBC, 'CheckBuildPlattonDelay', { 'Radar' }},
             { UCBC, 'EngineerLessAtLocation', { 'LocationType', 3, categories.ENGINEER - categories.TECH3 } },
 			{ SIBC, 'HaveGreaterThanUnitsWithCategory', { 0, categories.ENERGYPRODUCTION * categories.TECH2 } },
             { UCBC, 'UnitsLessAtLocation', { 'LocationType', 1, ( categories.RADAR + categories.OMNI ) * categories.STRUCTURE}},
@@ -230,8 +235,10 @@ BuilderGroup {
         BuilderName = 'NC T3 Omni Engineer',
         PlatoonTemplate = 'T3EngineerBuilderSorian',
         Priority = 950,
+        DelayEqualBuildPlattons = {'Radar', 15},
         BuilderConditions = {
             { MIBC, 'GreaterThanGameTime', { 1000 } },
+            { UCBC, 'CheckBuildPlattonDelay', { 'Radar' }},
             { UCBC, 'HaveGreaterThanUnitsWithCategory', { 3, categories.TECH3 * categories.ENERGYPRODUCTION } },
             { UCBC, 'HaveLessThanUnitsWithCategory', { 1, categories.OMNI * categories.STRUCTURE } },
 		
@@ -258,8 +265,8 @@ BuilderGroup {
     BuilderGroupName = 'NCAirScoutbehavior',
     BuildersType = 'PlatoonFormBuilder',
     Builder {
-        BuilderName = 'NC T1 Air Scout',
-        PlatoonTemplate = 'T1AirScoutFormSorian',
+        BuilderName = 'NC T1 Air Scout solo',
+        PlatoonTemplate = 'T1AirScoutflyaround',
         Priority = 650,
     
         BuilderConditions = {
@@ -284,8 +291,8 @@ Builder {
     },
 
     Builder {
-        BuilderName = 'NC T3 Air Scout',
-        PlatoonTemplate = 'T3AirScoutFormSorian',
+        BuilderName = 'NC T3 Air Scout solo',
+        PlatoonTemplate = 'T3AirScoutflyaround',
         Priority = 750,
         BuilderConditions = {
             { MIBC, 'GreaterThanGameTime', { 1000 } },

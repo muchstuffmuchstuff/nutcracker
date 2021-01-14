@@ -1063,9 +1063,7 @@ BuilderGroup {
                     'T1GroundDefense',
                     'T1LandFactory',
                     'T1AirFactory',
-                    'T1LandFactory',
                    
-                    'T1AirFactory',
                
 
 					'T1Radar',
@@ -1108,9 +1106,7 @@ BuilderGroup {
                     'T1GroundDefense',
                     'T1LandFactory',
                     'T1AirFactory',
-                    'T1LandFactory',
                   
-                    'T1AirFactory',
                
 
 					'T1Radar',
@@ -1153,9 +1149,8 @@ BuilderGroup {
                     'T1GroundDefense',
                     'T1LandFactory',
                     'T1AirFactory',
-                    'T1LandFactory',
-                    'T1AirFactory',
-                    'T1AirFactory',
+                  
+                    
                
 
 					'T1Radar',
@@ -1199,9 +1194,7 @@ BuilderGroup {
                     'T1GroundDefense',
                     'T1LandFactory',
                     'T1AirFactory',
-                    'T1LandFactory',
-                    'T1AirFactory',
-                    'T1AirFactory',
+                 
                
 
 					'T1Radar',
@@ -1244,9 +1237,7 @@ BuilderGroup {
                     'T1GroundDefense',
                     'T1LandFactory',
                     'T1AirFactory',
-                    'T1LandFactory',
-                    'T1AirFactory',
-                    'T1AirFactory',
+                  
                
 
 					'T1Radar',
@@ -1286,9 +1277,7 @@ BuilderGroup {
                     'T1GroundDefense',
                     'T1LandFactory',
                     'T1AirFactory',
-                    'T1LandFactory',
-                    'T1AirFactory',
-                    'T1AirFactory',
+                 
                
 
 					'T1Radar',
@@ -1331,9 +1320,7 @@ BuilderGroup {
                     'T2GroundDefense',
                     'T1LandFactory',
                     'T1AirFactory',
-                    'T1LandFactory',
-                    'T1AirFactory',
-                    'T1AirFactory',
+                   
                
 
 					'T1Radar',
@@ -1375,7 +1362,8 @@ BuilderGroup {
                 BuildStructures = {
                     'T2GroundDefense',
                     'T1LandFactory',
-                    'T1LandFactory',
+                    'T1AirFactory',
+                 
                     'T3AADefense',
                     'T2Radar',
                 }

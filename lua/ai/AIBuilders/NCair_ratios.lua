@@ -86,7 +86,7 @@ BuilderGroup {
        
         BuilderType = 'Air',
         BuilderConditions = {
-            { MIBC, 'GreaterThanGameTime', { 330 } },
+            { MIBC, 'GreaterThanGameTime', { 280 } },
             { EBC, 'GreaterThanEconStorageCurrent', { 8, 60 } }, 
             { SBC, 'NoRushTimeCheck', { 600 }},
             { SIBC, 'HaveLessThanUnitsInCategoryBeingBuilt', { 1, categories.ANTIAIR * categories.AIR * categories.TECH1 }},

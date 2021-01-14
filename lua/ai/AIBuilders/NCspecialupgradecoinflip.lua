@@ -38,8 +38,8 @@ BuilderGroup {
           
               
             { UCBC, 'HaveGreaterThanUnitsWithCategory', { 8, categories.ENGINEER }},
-                { UCBC, 'HaveLessThanUnitsInCategoryBeingBuilt', { 1, 'FACTORY LAND TECH2' } },
-             { UCBC, 'HaveGreaterThanUnitsWithCategory', { 1, 'FACTORY LAND'}},
+                { UCBC, 'HaveLessThanUnitsInCategoryBeingBuilt', { 1, 'FACTORY LAND' } },
+         
            
            
            --
@@ -55,11 +55,11 @@ BuilderGroup {
             { CF, 'StrategyRandomizer', {3} },
             { MIBC, 'GreaterThanGameTime', { 300 } },
             { EBC, 'GreaterThanEconStorageRatio', { 0.0, 1.0 } },
-            { UCBC, 'HaveGreaterThanUnitsWithCategory', { 0, categories.ENGINEER * categories.TECH2 }},
+           
          
              
-                { UCBC, 'HaveLessThanUnitsInCategoryBeingBuilt', { 1, 'FACTORY LAND TECH3' } },
-             { UCBC, 'HaveGreaterThanUnitsWithCategory', { 1, 'FACTORY LAND'}},
+                { UCBC, 'HaveLessThanUnitsInCategoryBeingBuilt', { 1, categories.TECH2 * categories.FACTORY * categories.LAND} },
+         
            
            
            --

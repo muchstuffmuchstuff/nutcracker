@@ -186,7 +186,7 @@ BuilderGroup {
         InstanceCount = 4,
         BuilderConditions = { 
         
-                        { UCBC, 'PoolGreaterAtLocation', { 'LocationType', 0, categories.MOBILE * categories.LAND * categories.ANTIAIR  } },
+                        { UCBC, 'PoolGreaterAtLocation', { 'LocationType', 0, categories.MOBILE * categories.LAND * categories.ANTIAIR - categories.EXPERIMENTAL  } },
 			{ SBC, 'NoRushTimeCheck', { 0 }},
         },
         BuilderData = {

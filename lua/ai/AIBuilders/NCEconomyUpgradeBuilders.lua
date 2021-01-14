@@ -225,7 +225,7 @@ BuilderGroup {
                
             { EBC, 'GreaterThanEconStorageCurrent', { 50, 100 } },
                 { EN, 'HaveLessThanUnitsInCategoryBeingUpgradeNC', { 1, categories.FACTORY * categories.AIR }},
-              { UCBC, 'HaveGreaterThanUnitsWithCategory', { 2, categories.AIR * categories.FACTORY}},
+              { UCBC, 'HaveGreaterThanUnitsWithCategory', { 3, categories.FACTORY}},
            
            
            --
@@ -276,7 +276,7 @@ BuilderGroup {
     Builder {
         BuilderName = 'NC Air t2 to t3mainbase',
         PlatoonTemplate = 'T2AirFactoryUpgrade',
-        Priority = 1000,
+        Priority = 1050,
         InstanceCount = 1,
         BuilderConditions = {
             
@@ -286,8 +286,8 @@ BuilderGroup {
             { UCBC, 'HaveGreaterThanUnitsWithCategory', { 1, categories.ENERGYPRODUCTION * categories.TECH2}},
             --- 
        
-                { EN, 'HaveLessThanUnitsInCategoryBeingUpgradeNC', { 1, categories.AIR * categories.FACTORY * categories.TECH2 } },
-                { UCBC, 'HaveGreaterThanUnitsWithCategory', { 3, categories.FACTORY * categories.AIR}},
+                { EN, 'HaveLessThanUnitsInCategoryBeingUpgradeNC', { 1, categories.FACTORY  } },
+                { UCBC, 'HaveGreaterThanUnitsWithCategory', { 4, categories.FACTORY * categories.AIR}},
            
            
            --
@@ -347,9 +347,9 @@ Builder {
         BuilderConditions = {
             { MIBC, 'GreaterThanGameTime', { 300 } },
             { EBC, 'GreaterThanEconStorageCurrent', { 50, 100 } },
-            { UCBC, 'HaveGreaterThanUnitsWithCategory', { 2, categories.LAND * categories.FACTORY } },
+            { UCBC, 'HaveGreaterThanUnitsWithCategory', { 3, categories.LAND * categories.FACTORY } },
             { UCBC, 'HaveGreaterThanUnitsWithCategory', { 0, categories.AIR * categories.FACTORY * categories.TECH3 } },
-            { EN, 'HaveLessThanUnitsInCategoryBeingUpgradeNC', { 1, categories.FACTORY * categories.LAND } },
+            { EN, 'HaveLessThanUnitsInCategoryBeingUpgradeNC', { 1, categories.FACTORY } },
             
            
               
@@ -371,7 +371,7 @@ Builder {
         BuilderConditions = {
             { MIBC, 'GreaterThanGameTime', { 300 } },
             { EBC, 'GreaterThanEconStorageCurrent', { 50, 100 } },
-            { UCBC, 'HaveGreaterThanUnitsWithCategory', { 5, categories.LAND * categories.FACTORY } },
+            { UCBC, 'HaveGreaterThanUnitsWithCategory', { 9, categories.LAND * categories.FACTORY } },
             { UCBC, 'HaveGreaterThanUnitsWithCategory', { 0, categories.AIR * categories.FACTORY * categories.TECH2 } },
             { EN, 'HaveLessThanUnitsInCategoryBeingUpgradeNC', { 1, categories.FACTORY * categories.LAND } },
             
@@ -397,7 +397,7 @@ Builder {
             { EBC, 'GreaterThanEconStorageCurrent', { 10000, 20000 } },
             { UCBC, 'HaveUnitRatioVersusCap', { T1landspamnearlymaxedoutNC , '>', categories.TECH1 * categories.MOBILE * categories.LAND - categories.ENGINEER} }, 
            
-            { EN, 'HaveLessThanUnitsInCategoryBeingUpgradeNC', { 5, categories.FACTORY * categories.LAND } },
+            { EN, 'HaveLessThanUnitsInCategoryBeingUpgradeNC', { 5, categories.FACTORY  } },
             
            
               
@@ -451,7 +451,7 @@ Builder {
         
             { UCBC, 'HaveGreaterThanUnitsWithCategory', { 0, categories.AIR * categories.FACTORY * categories.TECH3 } },
             { UCBC, 'HaveGreaterThanUnitsWithCategory', { 2, categories.LAND * categories.FACTORY } },
-            { EN, 'HaveLessThanUnitsInCategoryBeingUpgradeNC', { 1, categories.FACTORY * categories.LAND} },
+            { EN, 'HaveLessThanUnitsInCategoryBeingUpgradeNC', { 1, categories.FACTORY } },
           
            
            
@@ -519,7 +519,7 @@ BuilderGroup {
          
             { EBC, 'GreaterThanEconStorageCurrent', { 50, 100 } },
             { UCBC, 'HaveGreaterThanUnitsWithCategory', { 0, categories.AIR * categories.FACTORY * categories.TECH2 } },
-            { EN, 'HaveLessThanUnitsInCategoryBeingUpgradeNC', { 1, categories.LAND *  categories.FACTORY } },
+            { EN, 'HaveLessThanUnitsInCategoryBeingUpgradeNC', { 1, categories.FACTORY } },
          
               
              
@@ -608,7 +608,7 @@ BuilderGroup {
             
             { UCBC, 'HaveGreaterThanUnitsWithCategory', { 0, categories.AIR * categories.FACTORY * categories.TECH3 } },
             { UCBC, 'HaveGreaterThanUnitsWithCategory', { 2, categories.LAND * categories.FACTORY } },
-            { EN, 'HaveLessThanUnitsInCategoryBeingUpgradeNC', { 1, categories.LAND *  categories.FACTORY } },
+            { EN, 'HaveLessThanUnitsInCategoryBeingUpgradeNC', { 1, categories.FACTORY } },
             
               
            
@@ -680,7 +680,7 @@ BuilderGroup {
             
                
              
-                { EN, 'HaveLessThanUnitsInCategoryBeingUpgradeNC', { 1, categories.TECH2 * categories.FACTORY } },
+                { EN, 'HaveLessThanUnitsInCategoryBeingUpgradeNC', { 1, categories.FACTORY } },
               { UCBC, 'HaveGreaterThanUnitsWithCategory', { 4, categories.AIR * categories.FACTORY}},
               { UCBC, 'HaveGreaterThanUnitsWithCategory', { 0, categories.FACTORY * categories.AIR }},
            
@@ -700,7 +700,7 @@ BuilderGroup {
             
                
              
-                { EN, 'HaveLessThanUnitsInCategoryBeingUpgradeNC', { 2, categories.TECH2 * categories.FACTORY } },
+                { EN, 'HaveLessThanUnitsInCategoryBeingUpgradeNC', { 2, categories.AIR * categories.FACTORY } },
               { UCBC, 'HaveGreaterThanUnitsWithCategory', { 8, categories.AIR * categories.FACTORY}},
               
            
@@ -767,7 +767,7 @@ BuilderGroup {
             { UCBC, 'HaveGreaterThanUnitsWithCategory', { 2, categories.ENGINEER * categories.TECH2}},
             --- 
        
-                { EN, 'HaveLessThanUnitsInCategoryBeingUpgradeNC', { 1, categories.AIR * categories.TECH2 * categories.FACTORY } },
+                { EN, 'HaveLessThanUnitsInCategoryBeingUpgradeNC', { 1, categories.FACTORY } },
                 { UCBC, 'HaveGreaterThanUnitsWithCategory', { 3, categories.FACTORY * categories.AIR}},
             
            

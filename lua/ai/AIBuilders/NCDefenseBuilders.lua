@@ -143,9 +143,9 @@ Builder {
         InstanceCount = 1,
         BuilderConditions = {
             { MIBC, 'GreaterThanGameTime', { 1200 } },
-            { UCBC, 'LocationEngineersBuildingLess', { 'LocationType', 2, categories.DEFENSE * (categories.TECH2 + categories.TECH3) * categories.STRUCTURE - categories.SHIELD - categories.ANTIMISSILE } },
-            { UCBC, 'UnitsLessAtLocation', { 'LocationType', 30, categories.DIRECTFIRE * (categories.TECH2 + categories.TECH3) * categories.DEFENSE }},
-            { UCBC, 'HaveUnitsWithCategoryAndAlliance', { true, 0, 'EXPERIMENTAL LAND', 'Enemy'}},
+            
+            { UCBC, 'UnitsLessAtLocation', { 'LocationType', 7, categories.TACTICALMISSILEPLATFORM}},
+            { UCBC, 'HaveUnitsWithCategoryAndAlliance', { true, 0, categories.uel0401, 'Enemy'}},
          
             { EBC, 'GreaterThanEconEfficiencyOverTime', { 0.9, 1.05 }},
   
@@ -162,9 +162,7 @@ Builder {
                 NearBasePatrolPoints = true,
                 BuildClose = false,
                 BuildStructures = {
-                    'T3GroundDefense',
-                    'T2Artillery',
-                    'T3GroundDefense',
+                    'T2StrategicMissile',
                    
 
                   
@@ -222,14 +220,9 @@ Builder {
             { UCBC, 'LocationEngineersBuildingLess', { 'LocationType', 2, categories.DEFENSE * (categories.TECH2 + categories.TECH3) * categories.STRUCTURE - categories.SHIELD - categories.ANTIMISSILE } },
             { UCBC, 'UnitsLessAtLocation', { 'LocationType', 6, categories.TACTICALMISSILEPLATFORM * categories.STRUCTURE}},
             { UCBC, 'HaveUnitsWithCategoryAndAlliance', { true, 0, categories.uel0401, 'Enemy'}},
-         
-            { EBC, 'GreaterThanEconEfficiencyOverTime', { 0.9, 1.05 }},
-       
-       --
+            { EBC, 'GreaterThanEconStorageCurrent', { 100, 1000 } },  
             { UCBC, 'LocationEngineersBuildingLess', { 'LocationType', 2, 'DEFENSE' } },
-            
-         
-         
+       
         },
         BuilderType = 'Any',
         BuilderData = {
@@ -238,7 +231,7 @@ Builder {
                 NearBasePatrolPoints = true,
                 BuildClose = false,
                 BuildStructures = {
-                    'T2MissileDefense',
+                    'T2StrategicMissile',
                     
                    
 
@@ -1149,6 +1142,39 @@ BuilderGroup {
     },
 }
 
+BuilderGroup {
+    BuilderGroupName = 'NCexpansionstandardefense',
+    BuildersType = 'EngineerBuilder',
+    Builder {
+        BuilderName = 'NC T2 standard',
+        PlatoonTemplate = 'T2T3EngineerBuilderNC',
+        Priority = 930,
+        BuilderConditions = {
+          
+         
+           { UCBC, 'UnitsLessAtLocation',  { 'LocationType', 8, categories.STRUCTURE * categories.TECH2 * (categories.DIRECTFIRE + categories.ANTIAIR) } },
+           { EBC, 'GreaterThanEconStorageCurrent', { 100, 1000 } },    
+       --
+       
+            
+            { UCBC, 'LocationEngineersBuildingLess', { 'LocationType', 1, categories.DEFENSE * (categories.TECH2 + categories.TECH3) * categories.STRUCTURE - categories.SHIELD - categories.ANTIMISSILE } },
+         
+        },
+        BuilderType = 'Any',
+        BuilderData = {
+            NumAssistees = 2,
+            Construction = {
+                BuildClose = false,
+                BuildStructures = {
+                    'T2AADefense',
+                    'T2GroundDefense',
+                  
+                },
+                Location = 'LocationType',
+            }
+        }
+    },
+}
 
 
 
