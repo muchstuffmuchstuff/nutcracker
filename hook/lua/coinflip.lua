@@ -19,7 +19,7 @@ end
 
 function NoSateliteRush(aiBrain)
     
-    if aiBrain.StrategyRandomizer != 11 then
+    if aiBrain.CoinFlip != 11 then
         
     return true
 else
@@ -30,7 +30,7 @@ end
 
 function NoDukeNukem(aiBrain)
     
-    if aiBrain.StrategyRandomizer != 12 then
+    if aiBrain.CoinFlip != 12 then
         
     return true
 else
@@ -41,7 +41,7 @@ end
 
 function AlteredAirExpPriority(aiBrain)
     
-    if aiBrain.StrategyRandomizer <= 40 then
+    if aiBrain.CoinFlip < 25 then
         
     return true
 else
@@ -49,6 +49,8 @@ else
     return false
 end
 end
+
+
 
 
 

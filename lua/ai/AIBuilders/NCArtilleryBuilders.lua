@@ -128,7 +128,7 @@ BuilderGroup {
         BuilderData = {
             Assist = {
                 AssisteeType = 'Engineer',
-                AssistRange = 150,
+                AssistRange = 250,
                 AssistLocation = 'LocationType',
                 BeingBuiltCategories = {'EXPERIMENTAL STRUCTURE'},
                 Time = 500,
@@ -152,7 +152,7 @@ BuilderGroup {
         BuilderData = {
             Assist = {
                 AssisteeType = 'Engineer',
-                AssistRange = 150,
+                AssistRange = 250,
                 AssistLocation = 'LocationType',
                 BeingBuiltCategories = {'EXPERIMENTAL STRUCTURE'},
                 Time = 500,
@@ -169,7 +169,7 @@ BuilderGroup {
      Builder {
         BuilderName = 'nc T3 Nuke',
         PlatoonTemplate = 'T3EngineerBuilderSorian',
-        DelayEqualBuildPlattons = {'Nuke', 240},
+        DelayEqualBuildPlattons = {'Nuke', 180},
         Priority = 990,
         BuilderConditions = {
             { MIBC, 'GreaterThanGameTime', {1000 } },
@@ -179,15 +179,15 @@ BuilderGroup {
             
 
            { UCBC, 'HaveGreaterThanUnitsWithCategory', {0, categories.ENERGYPRODUCTION * categories.TECH3 } },
-            { EBC, 'GreaterThanEconStorageCurrent', { 6000, 10000 } }, 
+            { EBC, 'GreaterThanEconStorageCurrent', { 8000, 10000 } }, 
       
         },
         BuilderType = 'Any',
         BuilderData = {
 			MinNumAssistees = 2,
             Construction = {
-                BuildClose = true,
-				AdjacencyCategory = 'SHIELD STRUCTURE',
+                BuildClose = false,
+				AdjacencyCategory = 'ENERGYPRODUCTION TECH3',
                 BuildStructures = {
                     'T3StrategicMissile',
                 },
@@ -198,7 +198,7 @@ BuilderGroup {
     Builder {
         BuilderName = 'nc T3 Nuke uef',
         PlatoonTemplate = 'T3EngineerBuilderSorian',
-        DelayEqualBuildPlattons = {'Nuke', 240},
+        DelayEqualBuildPlattons = {'Nuke', 180},
         Priority = 990,
         BuilderConditions = {
             { MIBC, 'GreaterThanGameTime', {1000 } },
@@ -217,7 +217,7 @@ BuilderGroup {
 			MinNumAssistees = 2,
             Construction = {
                 BuildClose = true,
-				AdjacencyCategory = 'SHIELD STRUCTURE',
+				AdjacencyCategory = 'ENERGYPRODUCTION',
                 BuildStructures = {
                     'T3StrategicMissile',
                 },
@@ -247,7 +247,7 @@ BuilderGroup {
             Assist = {
                 AssistLocation = 'LocationType',
                 AssisteeType = 'Engineer',
-                AssistRange = 150,
+                AssistRange = 250,
                 BeingBuiltCategories = {'STRUCTURE NUKE'},
                 Time = 300,
             },
@@ -272,7 +272,7 @@ BuilderGroup {
             Assist = {
                 AssistLocation = 'LocationType',
                 AssisteeType = 'Engineer',
-                AssistRange = 150,
+                AssistRange = 250,
                 BeingBuiltCategories = {'STRUCTURE NUKE'},
                 Time = 300,
             },
@@ -288,13 +288,13 @@ BuilderGroup {
 		DelayEqualBuildPlattons = {'MobileExperimental_exp_nuke', 400},
         BuilderConditions = {
             { MIBC, 'FactionIndex', {4}},
-            { MIBC, 'GreaterThanGameTime', { 1800 } },
+            { MIBC, 'GreaterThanGameTime', { 1600 } },
             { SBC, 'MapGreaterThan', { 500, 500 }},
             { UCBC, 'CheckBuildPlattonDelay', { 'MobileExperimental_exp_nuke' }},
             { EBC, 'GreaterThanEconStorageCurrent', { 15000, 20000 } },
           
 			
-			{ SIBC, 'HaveLessThanUnitsInCategoryBeingBuilt', { 1, categories.STRUCTURE  * (categories.ANTIMISSILE + categories.NUKE + categories.ARTILLERY)}},
+			
             { SIBC, 'HaveGreaterThanUnitsWithCategory', { 6, categories.ENERGYPRODUCTION * categories.TECH3 } },
 		
           
@@ -324,7 +324,7 @@ BuilderGroup {
         InstanceCount = 4,
         BuilderConditions = {
             { MIBC, 'FactionIndex', {4}},
-            { MIBC, 'GreaterThanGameTime', { 1800 } },
+            { MIBC, 'GreaterThanGameTime', { 1600 } },
             { UCBC, 'LocationEngineersBuildingGreater', { 'LocationType', 0, categories.STRUCTURE * categories.NUKE}},
           
 
@@ -336,7 +336,7 @@ BuilderGroup {
             Assist = {
                 AssistLocation = 'LocationType',
                 AssisteeType = 'Engineer',
-                AssistRange = 150,
+                AssistRange = 250,
                 BeingBuiltCategories = {'EXPERIMENTAL'},
                 Time = 300,
             },
@@ -369,7 +369,10 @@ BuilderGroup {
         BuilderType = 'Any',
         BuilderData = {
 			MinNumAssistees = 2,
+            
             Construction = {
+                BuildClose = true,
+				AdjacencyCategory = 'ENERGYPRODUCTION TECH3',
             
                 BuildStructures = {
                     'T3Artillery',
@@ -404,6 +407,8 @@ BuilderGroup {
         BuilderData = {
 			MinNumAssistees = 2,
             Construction = {
+                BuildClose = true,
+				AdjacencyCategory = 'ENERGYPRODUCTION TECH3',
             
                 BuildStructures = {
                     'T3Artillery',

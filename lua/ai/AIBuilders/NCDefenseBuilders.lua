@@ -620,38 +620,7 @@ BuilderGroup {
 BuilderGroup {
     BuilderGroupName = 'NCT2Shields',
     BuildersType = 'EngineerBuilder',
-    Builder {
-        BuilderName = 'NC T2 Shield D Engineer Near Energy Production',
-        PlatoonTemplate = 'T2EngineerBuilderSorian',
-        Priority = 930,
-        DelayEqualBuildPlattons = {'Shield', 6},
-        BuilderConditions = {
-            { SBC, 'MapLessThan', { 2000, 2000 }},
-            { SBC, 'GreaterThanGameTime', { 1200 } },
-            { EBC, 'GreaterThanEconStorageRatio', { 0.05, 0.99 } },
-            { SIBC, 'HaveLessThanUnitsInCategoryBeingBuilt', { 1, categories.STRUCTURE * (categories.TECH2 + categories.TECH3)  * categories.ENERGYPRODUCTION } },
-            #{ UCBC, 'HaveLessThanUnitsWithCategory', { 10, categories.SHIELD * categories.TECH2 * categories.STRUCTURE}},
-			{ UCBC, 'UnitsLessAtLocation', { 'LocationType', 6, categories.SHIELD * categories.TECH2 * categories.STRUCTURE }},
-			{ SIBC, 'HaveGreaterThanUnitsWithCategory', { 0, categories.ENERGYPRODUCTION * categories.TECH2 } },
-       --
-       
-            { UCBC, 'LocationEngineersBuildingLess', { 'LocationType', 1, 'SHIELD STRUCTURE' } },
-            { UCBC, 'UnitCapCheckLess', { 0.95 } },
-        },
-        BuilderType = 'Any',
-        BuilderData = {
-            NumAssistees = 2,
-            Construction = {
-                AdjacencyCategory = 'FACTORY, ENERGYPRODUCTION EXPERIMENTAL, ENERGYPRODUCTION TECH3, ENERGYPRODUCTION TECH2',
-                AdjacencyDistance = 100,
-                BuildClose = false,
-                BuildStructures = {
-                    'T2ShieldDefense',
-                },
-                Location = 'LocationType',
-            }
-        }
-    },
+  
 }
 
 BuilderGroup {
@@ -907,41 +876,9 @@ BuilderGroup {
 BuilderGroup {
     BuilderGroupName = 'NCT3NukeDefenses',
     BuildersType = 'EngineerBuilder',
+   
     Builder {
-        BuilderName = 'NC T3 Anti-Nuke Engineer Near Factory - First',
-        PlatoonTemplate = 'T3EngineerBuilderSorian',
-        Priority = 980,
-		InstanceCount = 1,
-        BuilderConditions = {
-            { SBC, 'GreaterThanGameTime', { 1800 } },
-    
-			{ SIBC, 'HaveGreaterThanUnitsWithCategory', { 0, categories.ENERGYPRODUCTION * categories.TECH3 } },
-		
-            { UCBC, 'BuildingLessAtLocation', { 'LocationType', 1, 'ANTIMISSILE TECH3 STRUCTURE' } },
-            { UCBC, 'UnitsLessAtLocation', { 'LocationType', 1, categories.ANTIMISSILE * categories.TECH3 * categories.STRUCTURE}},
-       
-       --
-            { SIBC, 'GreaterThanEconEfficiencyOverTime', { 0.90, 1.2 }},
-            
-			{ SIBC, 'EngineerNeedsAssistance', { false, 'LocationType', {'ANTIMISSILE TECH3 STRUCTURE'} }},
-            { UCBC, 'UnitCapCheckLess', { .95 } },
-        },
-        BuilderType = 'Any',
-        BuilderData = {
-            NumAssistees = 2,
-            Construction = {
-                BuildClose = false,
-                AdjacencyCategory = 'FACTORY -NAVAL',
-                AdjacencyDistance = 100,
-                BuildStructures = {
-                    'T3StrategicMissileDefense',
-                },
-                Location = 'LocationType',
-            }
-        }
-    },
-    Builder {
-        BuilderName = 'NC T3 Anti-Nuke Engineer Near Factory',
+        BuilderName = 'NC T3 Anti-Nuke 1:1',
         PlatoonTemplate = 'T3EngineerBuilderSorian',
         Priority = 0, #945,
 		InstanceCount = 1,
@@ -974,15 +911,49 @@ BuilderGroup {
         }
     },
     Builder {
-        BuilderName = 'NC T3 Anti-Nuke Engineer lots of nukes',
+        BuilderName = 'NC T3 Anti-Nuke 2:2',
         PlatoonTemplate = 'T3EngineerBuilderSorian',
-        Priority = 966,
+        Priority = 0, #945,
 		InstanceCount = 1,
         BuilderConditions = {
-           
             { SBC, 'GreaterThanGameTime', { 1200 } },
+            { UCBC, 'HaveGreaterThanUnitsWithCategory', { 0, categories.ENGINEER * categories.TECH3}},
+			
             { UCBC, 'BuildingLessAtLocation', { 'LocationType', 1, 'ANTIMISSILE TECH3 STRUCTURE' } },
-			{ UCBC, 'UnitsGreaterAtLocation', { 'LocationType', 0, categories.ANTIMISSILE * categories.TECH3 * categories.STRUCTURE}},
+			
+            { UCBC, 'UnitsLessAtLocation', { 'LocationType', 3, categories.ANTIMISSILE * categories.TECH3 * categories.STRUCTURE}},
+        
+       --
+            { SIBC, 'GreaterThanEconEfficiencyOverTime', { 0.95, 1.2 }},
+            { UCBC, 'HaveUnitsWithCategoryAndAlliance', { true, 2, 'NUKE SILO STRUCTURE', 'Enemy'}},
+			{ SIBC, 'EngineerNeedsAssistance', { false, 'LocationType', {'ANTIMISSILE TECH3 STRUCTURE'} }},
+            { UCBC, 'UnitCapCheckLess', { .95 } },
+        },
+        BuilderType = 'Any',
+        BuilderData = {
+            NumAssistees = 2,
+            Construction = {
+                BuildClose = false,
+                AdjacencyCategory = 'FACTORY -NAVAL',
+                AdjacencyDistance = 100,
+                BuildStructures = {
+                    'T3StrategicMissileDefense',
+                },
+                Location = 'LocationType',
+            }
+        }
+    },
+    Builder {
+        BuilderName = 'NC T3 Anti-Nuke 3:3',
+        PlatoonTemplate = 'T3EngineerBuilderSorian',
+        Priority = 0, #945,
+		InstanceCount = 1,
+        BuilderConditions = {
+            { SBC, 'GreaterThanGameTime', { 1200 } },
+            { UCBC, 'HaveGreaterThanUnitsWithCategory', { 0, categories.ENGINEER * categories.TECH3}},
+			
+            { UCBC, 'BuildingLessAtLocation', { 'LocationType', 1, 'ANTIMISSILE TECH3 STRUCTURE' } },
+			
             { UCBC, 'UnitsLessAtLocation', { 'LocationType', 4, categories.ANTIMISSILE * categories.TECH3 * categories.STRUCTURE}},
         
        --
@@ -1005,6 +976,40 @@ BuilderGroup {
             }
         }
     },
+    Builder {
+        BuilderName = 'NC T3 Anti-Nuke 4:4',
+        PlatoonTemplate = 'T3EngineerBuilderSorian',
+        Priority = 0, #945,
+		InstanceCount = 1,
+        BuilderConditions = {
+            { SBC, 'GreaterThanGameTime', { 1200 } },
+            { UCBC, 'HaveGreaterThanUnitsWithCategory', { 0, categories.ENGINEER * categories.TECH3}},
+			
+            { UCBC, 'BuildingLessAtLocation', { 'LocationType', 1, 'ANTIMISSILE TECH3 STRUCTURE' } },
+			
+            { UCBC, 'UnitsLessAtLocation', { 'LocationType', 5, categories.ANTIMISSILE * categories.TECH3 * categories.STRUCTURE}},
+        
+       --
+            { SIBC, 'GreaterThanEconEfficiencyOverTime', { 0.95, 1.2 }},
+            { UCBC, 'HaveUnitsWithCategoryAndAlliance', { true, 4, 'NUKE SILO STRUCTURE', 'Enemy'}},
+			{ SIBC, 'EngineerNeedsAssistance', { false, 'LocationType', {'ANTIMISSILE TECH3 STRUCTURE'} }},
+            { UCBC, 'UnitCapCheckLess', { .95 } },
+        },
+        BuilderType = 'Any',
+        BuilderData = {
+            NumAssistees = 2,
+            Construction = {
+                BuildClose = false,
+                AdjacencyCategory = 'FACTORY -NAVAL',
+                AdjacencyDistance = 100,
+                BuildStructures = {
+                    'T3StrategicMissileDefense',
+                },
+                Location = 'LocationType',
+            }
+        }
+    },
+ 
     Builder {
         BuilderName = 'NC T3 Anti-Nuke Engineer - Emerg',
         PlatoonTemplate = 'T3EngineerBuilderSorian',
@@ -1038,38 +1043,7 @@ BuilderGroup {
             }
         }
     },
-    Builder {
-        BuilderName = 'NC T3 Anti-Nuke Engineer - Emerg 2',
-        PlatoonTemplate = 'T3EngineerBuilderSorian',
-        Priority = 1301,
-		InstanceCount = 1,
-        BuilderConditions = {
-           
-            { SBC, 'GreaterThanGameTime', { 1200 } },
-			{ SIBC, 'HaveGreaterThanUnitsWithCategory', { 0, 'ANTIMISSILE TECH3 STRUCTURE' } },
-            { UCBC, 'BuildingLessAtLocation', { 'LocationType', 1, 'ANTIMISSILE TECH3 STRUCTURE' } },
-			{ SBC, 'HaveComparativeUnitsWithCategoryAndAllianceAtLocation', { 'LocationType', true, categories.ANTIMISSILE * categories.TECH3 * categories.STRUCTURE, categories.STRUCTURE * categories.NUKE * categories.TECH3, 'Enemy'}},
-        
-       --
-            #{ SIBC, 'GreaterThanEconEfficiencyOverTime', { 0.95, 1.2 }},
-            
-			{ SIBC, 'EngineerNeedsAssistance', { false, 'LocationType', {'ANTIMISSILE TECH3 STRUCTURE'} }},
-            { UCBC, 'UnitCapCheckLess', { .95 } },
-        },
-        BuilderType = 'Any',
-        BuilderData = {
-            NumAssistees = 8,
-            Construction = {
-                BuildClose = false,
-                AdjacencyCategory = 'FACTORY -NAVAL',
-                AdjacencyDistance = 100,
-                BuildStructures = {
-                    'T3StrategicMissileDefense',
-                },
-                Location = 'LocationType',
-            }
-        }
-    },
+   
     Builder {
         BuilderName = 'NC T3 Engineer Assist Anti-Nuke Emerg',
         PlatoonTemplate = 'T3EngineerAssist',

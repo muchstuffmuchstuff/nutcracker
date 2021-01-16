@@ -26,6 +26,7 @@ BaseBuilderTemplate {
 
 
         # ==== ECONOMY ==== #
+        'NCT3Engineerassistmex',
         'NCemergencyenergy',
         'NCsubcommander_ras',
         'NCEngineerMassBuildersLowerPri',

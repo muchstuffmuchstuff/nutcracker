@@ -33,6 +33,25 @@ local AIUtils = import('/lua/ai/aiutilities.lua')
 BuilderGroup {
     BuilderGroupName = 'NClandscout',
     BuildersType = 'FactoryBuilder',
+    Builder {
+        BuilderName = 'nc first landscout',
+        PlatoonTemplate = 'T1LandScout',
+        DelayEqualBuildPlattons = {'Scouts', 30},
+        Priority = 775,
+        BuilderConditions = {
+            
+            { SBC, 'LessThanGameTime', { 600 } },
+            { SBC, 'MapLessThan', {2000, 2000} },
+            { SBC, 'IsIslandMap', { false } },
+            { UCBC, 'CheckBuildPlattonDelay', { 'Scouts' }},
+            { UCBC, 'HaveLessThanUnitsWithCategory', { 3, categories.LAND * categories.SCOUT }},
+            { UCBC, 'LocationFactoriesBuildingLess', { 'LocationType', 1, categories.SCOUT * categories.LAND } },
+          
+           
+            { SBC, 'NoRushTimeCheck', { 600 }},
+        },
+        BuilderType = 'Land',
+    },
    
 }
 
@@ -63,19 +82,20 @@ BuilderGroup {
     BuildersType = 'FactoryBuilder',
    
      
+   
     Builder {
         BuilderName = 'NC T1 AirScout',
         PlatoonTemplate = 'T1AirScout',
-        Priority = 400,
-        DelayEqualBuildPlattons = {'Scouts', 30},
+        Priority = 800,
+        DelayEqualBuildPlattons = {'Scouts', 15},
         BuilderConditions = {
-
+            { UCBC, 'CheckBuildPlattonDelay', { 'Scouts' }},
             { MIBC, 'GreaterThanGameTime', { 320 } },
-			{ SIBC, 'HaveLessThanUnitsForMapSize', { {[256] = 2, [512] = 3, [1024] = 10, [2048] = 8, [4096] = 8}, categories.SCOUT * categories.AIR}},
+			{ SIBC, 'HaveLessThanUnitsForMapSize', { {[256] = 2, [512] = 3, [1024] = 6, [2048] = 8, [4096] = 8}, categories.SCOUT * categories.AIR}},
       
            
 	
-            { UCBC, 'LocationFactoriesBuildingLess', { 'LocationType', 1, categories.INTELLIGENCE * categories.AIR * categories.TECH1} },
+            { SIBC, 'HaveLessThanUnitsInCategoryBeingBuilt', {  1, categories.INTELLIGENCE * categories.AIR * categories.TECH1} },
             { EBC, 'GreaterThanEconStorageCurrent', { 8, 60 } }, 
             
 			{ SBC, 'NoRushTimeCheck', { 600 }},
@@ -92,11 +112,11 @@ BuilderGroup {
         DelayEqualBuildPlattons = {'Scouts', 15},
         BuilderConditions = {
             { MIBC, 'GreaterThanGameTime', { 1220 } },
-          
-            { WRC, 'HaveUnitRatioVersusEnemyNC', { 3.0, categories.MOBILE * categories.AIR * categories.ANTIAIR * categories.TECH3 - categories.GROUNDATTACK - categories.BOMBER, '>=', categories.MOBILE * categories.AIR * (categories.TECH2 + categories.TECH3)  - categories.SCOUT - categories.TRANSPORTFOCUS } },
+            { UCBC, 'CheckBuildPlattonDelay', { 'Scouts' }},
+            
 			{ SIBC, 'HaveLessThanUnitsForMapSize', { {[256] = 2, [512] = 4, [1024] = 6, [2048] = 8, [4096] = 8}, categories.INTELLIGENCE * categories.AIR * categories.TECH3}},
 			
-            { UCBC, 'LocationFactoriesBuildingLess', { 'LocationType', 1, categories.INTELLIGENCE * categories.AIR * categories.TECH3 } },
+            { SIBC, 'HaveLessThanUnitsInCategoryBeingBuilt', { 1, categories.INTELLIGENCE * categories.AIR * categories.TECH3 } },
             { EBC, 'GreaterThanEconStorageCurrent', { 8, 60 } }, 
             
 			{ SBC, 'NoRushTimeCheck', { 600 }},
@@ -117,11 +137,11 @@ BuilderGroup {
         DelayEqualBuildPlattons = {'Scouts', 15},
         BuilderConditions = {
             { MIBC, 'GreaterThanGameTime', { 1220 } },
-    
-            { WRC, 'HaveUnitRatioVersusEnemyNC', { 3.0, categories.MOBILE * categories.AIR * categories.ANTIAIR * categories.TECH3 - categories.GROUNDATTACK - categories.BOMBER, '>=', categories.MOBILE * categories.AIR * (categories.TECH2 + categories.TECH3)  - categories.SCOUT - categories.TRANSPORTFOCUS } },
+            { UCBC, 'CheckBuildPlattonDelay', { 'Scouts' }},
+           
 			{ SIBC, 'HaveLessThanUnitsForMapSize', { {[256] = 2, [512] = 4, [1024] = 8, [2048] = 10, [4096] = 12}, categories.INTELLIGENCE * categories.AIR * categories.TECH3}},
 		
-            { UCBC, 'LocationFactoriesBuildingLess', { 'LocationType', 1, categories.INTELLIGENCE * categories.AIR * categories.TECH3 } },
+            { SIBC, 'HaveLessThanUnitsInCategoryBeingBuilt', { 1, categories.INTELLIGENCE * categories.AIR * categories.TECH3 } },
             { EBC, 'GreaterThanEconStorageCurrent', { 8, 60 } }, 
             
 			{ SBC, 'NoRushTimeCheck', { 600 }},

@@ -1,7 +1,7 @@
   
 name = "NutCracker AI"
-uid = "78379e74-e8dd-4151-9bb5-98e0ac5143c4"
-version = 12
+uid = "b400919b-eb9b-4ab8-a1f3-b889bb520a24"
+version = 13
 copyright = "FreeWare"
 description = "Designed to battle against Turtle Human Players on 20x20+ maps. You can find me on https://discord.gg/HGBmunPamc if you wish to chat."
     

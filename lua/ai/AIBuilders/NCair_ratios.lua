@@ -69,7 +69,7 @@ BuilderGroup {
         
         BuilderType = 'Air',
         BuilderConditions = {
-            { MIBC, 'GreaterThanGameTime', { 280 } },
+            { MIBC, 'GreaterThanGameTime', { 240 } },
             { EBC, 'GreaterThanEconStorageCurrent', { 8, 60 } }, 
 			{ SBC, 'NoRushTimeCheck', { 600 }},
          
@@ -86,13 +86,13 @@ BuilderGroup {
        
         BuilderType = 'Air',
         BuilderConditions = {
-            { MIBC, 'GreaterThanGameTime', { 280 } },
+            { MIBC, 'GreaterThanGameTime', { 240 } },
             { EBC, 'GreaterThanEconStorageCurrent', { 8, 60 } }, 
             { SBC, 'NoRushTimeCheck', { 600 }},
             { SIBC, 'HaveLessThanUnitsInCategoryBeingBuilt', { 1, categories.ANTIAIR * categories.AIR * categories.TECH1 }},
             
            
-        { UCBC, 'HaveLessThanUnitsWithCategory', { 10 , categories.AIR * categories.MOBILE * categories.ANTIAIR  - categories.BOMBER - categories.GROUNDATTACK } },
+        { UCBC, 'HaveLessThanUnitsWithCategory', { 8 , categories.AIR * categories.MOBILE * categories.ANTIAIR  - categories.BOMBER - categories.GROUNDATTACK } },
   
 			
         },

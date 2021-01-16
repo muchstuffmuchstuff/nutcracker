@@ -159,31 +159,7 @@ BuilderGroup {
         BuilderType = 'Land',
     },
    
-    Builder {
-        BuilderName = 'NC T1 mass hunter',
-        PlatoonTemplate = 'T1massattack',
-        Priority = 1000,
-        InstanceCount = 200,
-        
     
-        BuilderConditions = {
-            { MIBC, 'LessThanGameTime', { 700} },
-            { SIBC, 'HaveLessThanUnitsInCategoryBeingBuilt', { 2, categories.LAND * categories.BOT * categories.TECH1 * categories.MOBILE }},
-            { WRC, 'CanPathToCurrentEnemyNC', { 'LocationType', true } }, 
-            
-          
-           
-			
-            ---
-{ EBC, 'GreaterThanEconStorageCurrent', { 8, 60 } },  
--- 
-          
-            
-			{ SBC, 'NoRushTimeCheck', { 600 }},
-       --
-        },
-        BuilderType = 'Land',
-    },
     Builder {
         BuilderName = 'NC T2 land attack group',
         PlatoonTemplate = 'T2attackgroup',

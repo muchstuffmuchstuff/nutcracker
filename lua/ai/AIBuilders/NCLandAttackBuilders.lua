@@ -225,8 +225,8 @@ BuilderGroup {
             PrioritizedCategories = {
 
 
-            'STRUCTURE',
-                'ALLUNITS',
+            'COMMAND',
+                
             },
         },    
       
@@ -250,7 +250,7 @@ BuilderGroup {
         },
         BuilderData = {
             RequireTransport = true,
-            AttackEnemyStrength = 80,  
+            AttackEnemyStrength = 92,  
             TargetSearchCategory = categories.STRUCTURE,
             MoveToCategories = {                                               
                 categories.STRUCTURE,
@@ -279,7 +279,7 @@ BuilderGroup {
         },
         BuilderData = {
             RequireTransport = true,
-            AttackEnemyStrength = 80,  
+            AttackEnemyStrength = 92,  
             TargetSearchCategory = categories.STRUCTURE,
             MoveToCategories = {                                               
                 categories.STRUCTURE,
@@ -309,7 +309,7 @@ BuilderGroup {
         },
         BuilderData = {
             RequireTransport = true,
-            AttackEnemyStrength = 80,
+            AttackEnemyStrength = 92,
             TargetSearchCategory = categories.STRUCTURE,
             MoveToCategories = {                                               
                 categories.STRUCTURE,
@@ -338,7 +338,7 @@ BuilderGroup {
         },
         BuilderData = {
             RequireTransport = true,
-            AttackEnemyStrength = 80,  
+            AttackEnemyStrength = 92,  
             TargetSearchCategory = categories.STRUCTURE,
             MoveToCategories = {                                               
                 categories.STRUCTURE,
@@ -369,7 +369,7 @@ BuilderGroup {
         },
         BuilderData = {
             RequireTransport = true,
-            AttackEnemyStrength = 80,
+            AttackEnemyStrength = 92,
             TargetSearchCategory = categories.STRUCTURE,
             MoveToCategories = {                                               
                 categories.STRUCTURE,
@@ -398,7 +398,7 @@ BuilderGroup {
         },
         BuilderData = {
             RequireTransport = true,
-            AttackEnemyStrength = 80,  
+            AttackEnemyStrength = 92,  
             TargetSearchCategory = categories.STRUCTURE,
             MoveToCategories = {                                               
                 categories.STRUCTURE,

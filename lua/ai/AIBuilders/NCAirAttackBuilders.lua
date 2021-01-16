@@ -177,7 +177,7 @@ BuilderGroup {
                 BuilderType = 'Any',
                 BuilderConditions = {
                     { MIBC, 'GreaterThanGameTime', { 1000} },
-                             { UCBC, 'PoolGreaterAtLocation', { 'LocationType', 2, categories.AIR  * (categories.TECH1 + categories.TECH2) * categories.BOMBER   * categories.MOBILE - categories.TRANSPORTFOCUS - categories.ANTINAVY - categories.uea0303 - categories.uaa0303 - categories.ura0303 - categories.xsa0303 - categories.uea0102 - categories.uaa0102 - categories.ura0102 - categories.xsa0102} },
+                             { UCBC, 'PoolGreaterAtLocation', { 'LocationType', 2, categories.uea0103 + categories.uaa0103 + categories.ura0103 + categories.xsa0103} },
                     { SBC, 'NoRushTimeCheck', { 0 }},
                 },
                 BuilderData = {
@@ -663,7 +663,7 @@ BuilderGroup {
         PlatoonTemplate = 'ncguardbasegroundgunship',
 		PlatoonAddBehaviors = { 'AirUnitRefitSorian' },
 		PlatoonAddPlans = { 'AirIntelToggle','DistressResponseAISorian'},
-        Priority = 500,
+        Priority = 10,
         
         InstanceCount = 3,
        
@@ -693,7 +693,7 @@ BuilderGroup {
         PlatoonTemplate = 'ncguardbasegroundbomber',
 		PlatoonAddBehaviors = { 'AirUnitRefitSorian' },
 		PlatoonAddPlans = { 'AirIntelToggle','DistressResponseAISorian'},
-        Priority = 500,
+        Priority = 10,
         
         InstanceCount = 3,
        
@@ -896,6 +896,7 @@ BuilderGroup {
             { SBC, 'MapLessThan', { 3000, 3000 }},
             { UCBC, 'CheckBuildPlattonDelay', { 'Transport' }},
             { MIBC, 'LessThanGameTime', { 499 } },
+            { UCBC, 'HaveLessThanUnitsInCategoryBeingBuilt', { 1, 'TRANSPORTFOCUS' } },
             { UCBC, 'HaveLessThanUnitsWithCategory', { 2, 'TRANSPORTFOCUS' } },
             
         

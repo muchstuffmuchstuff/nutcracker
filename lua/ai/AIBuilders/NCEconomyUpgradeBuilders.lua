@@ -467,19 +467,12 @@ Builder {
         Priority = 1000,
         InstanceCount = 1,
         BuilderConditions = {
-            { MIBC, 'GreaterThanGameTime', { 1200 } },
-           
-          
-            --- 
+            { MIBC, 'GreaterThanGameTime', { 1000 } },
+
             { UCBC, 'HaveUnitsWithCategoryAndAlliance', { true, 0, categories.TECH3 * categories.LAND * categories.MOBILE, 'Enemy'}},
-                
-            
+  
                 { EN, 'HaveLessThanUnitsInCategoryBeingUpgradeNC', { 1, categories.LAND * categories.TECH2 * categories.FACTORY } },
-               
-          
-           
-           
-           --
+    
             },
         BuilderType = 'Any',
     },

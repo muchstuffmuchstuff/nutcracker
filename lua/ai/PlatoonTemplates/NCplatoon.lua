@@ -39,7 +39,7 @@ PlatoonTemplate {
     Name = 'clenseNCt1t2',
     Plan = 'StrikeForceAISorian',
     GlobalSquads = {
-        { categories.MOBILE * (categories.TECH1 + categories.TECH2) * categories.AIR  * categories.BOMBER - categories.TRANSPORTFOCUS - categories.ANTINAVY -categories.GROUNDATTACK - categories.SCOUT - categories.INSIGNIFICANTUNIT - categories.POD - categories.daa0206 , 1, 2, 'Attack', 'GrowthFormation' },
+        { categories.uea0103 + categories.uaa0103 + categories.ura0103 + categories.xsa0103 , 1, 20, 'Attack', 'GrowthFormation' },
         
     },
 }
@@ -506,14 +506,14 @@ PlatoonTemplate {
     Name = 'landbaseguardNC',
     Plan = 'GuardBaseSorian',
     GlobalSquads = {
-        { categories.MOBILE * categories.LAND - categories.SUBCOMMANDER - categories.EXPERIMENTAL - categories.ENGINEER - categories.xsl0402, 1, 8, 'Attack', 'none' }
+        { categories.MOBILE * categories.LAND - categories.SUBCOMMANDER - categories.EXPERIMENTAL - categories.ENGINEER - categories.xsl0402 - categories.SCOUT, 1, 8, 'Attack', 'none' }
     },
 }
 PlatoonTemplate {
     Name = 'landbaseguardNCt3',
     Plan = 'GuardBaseSorian',
     GlobalSquads = {
-        { categories.MOBILE * categories.LAND * categories.TECH3 - categories.SUBCOMMANDER - categories.EXPERIMENTAL - categories.ENGINEER - categories.xsl0402, 1, 8, 'Attack', 'none' }
+        { categories.MOBILE * categories.LAND * categories.TECH3 - categories.SUBCOMMANDER - categories.EXPERIMENTAL - categories.ENGINEER - categories.xsl0402 - categories.SCOUT, 1, 8, 'Attack', 'none' }
     },
 }
 
@@ -557,12 +557,21 @@ PlatoonTemplate {
 
 ---ENGINEER
 PlatoonTemplate {
+    Name = 'AnyEngineerassistNC',
+    Plan = 'SorianManagerEngineerAssistAI',
+    GlobalSquads = {
+        { categories.ENGINEER + categories.SUBCOMMANDER - categories.COMMAND - categories.ENGINEERSTATION , 1, 1, 'support', 'None' }
+    },
+}
+
+PlatoonTemplate {
     Name = 'AnyEngineerBuilderNC',
     Plan = 'EngineerBuildAI',
     GlobalSquads = {
-        { categories.ENGINEER - categories.SUBCOMMANDER - categories.COMMAND - categories.ENGINEERSTATION , 1, 1, 'support', 'None' }
+        { categories.ENGINEER + categories.SUBCOMMANDER - categories.COMMAND - categories.ENGINEERSTATION , 1, 1, 'support', 'None' }
     },
 }
+
 
 PlatoonTemplate {
     Name = 'T2T3EngineerBuilderNC',

@@ -68,3 +68,34 @@ BuilderGroup {
     },
 }
 
+BuilderGroup {
+    BuilderGroupName = 'NC paragon coinflip landupgrades',
+    BuildersType = 'PlatoonFormBuilder',
+    Builder {
+        BuilderName = 'NC paragon coinflip t1 land upgrade',
+        PlatoonTemplate = 'T1LandFactoryUpgrade',
+        Priority = 1300,
+        PlatoonAddFunctions = { {SAI, 'BuildOnce'}, },
+        InstanceCount = 1,
+        BuilderConditions = {
+            { CF, 'StrategyRandomizer', {13} },
+            { MIBC, 'GreaterThanGameTime', { 300 } },
+            { UCBC, 'HaveGreaterThanUnitsWithCategory', { 8, categories.ENGINEER }},
+            },
+        BuilderType = 'Any',
+    },
+    Builder {
+        BuilderName = 'NC paragon coinflip t2 land upgrade',
+        PlatoonTemplate = 'T2LandFactoryUpgrade',
+        Priority = 1300,
+        PlatoonAddFunctions = { {SAI, 'BuildOnce'}, },
+        InstanceCount = 1,
+        BuilderConditions = {
+            { CF, 'StrategyRandomizer', {13} },
+            { MIBC, 'GreaterThanGameTime', { 330 } },
+        
+            },
+        BuilderType = 'Any',
+    },
+}
+

@@ -791,7 +791,7 @@ Builder {
         MinNumAssistees = 2,
         Construction = {
             BuildClose = true,
-            AdjacencyCategory = 'SHIELD STRUCTURE',
+            AdjacencyCategory = 'ENERGYPRODUCTION TECH3',
             BuildStructures = {
                 'T3StrategicMissile',
             },
@@ -828,5 +828,107 @@ Builder {
 },
 }
 
+BuilderGroup {
+    BuilderGroupName = 'NCparagoncoinflip',
+    BuildersType = 'EngineerBuilder',
+    Builder {
+        BuilderName = 'NC Econ coinflip',
+        PlatoonTemplate = 'AeonT3EngineerBuilderSorian',
+        Priority = 1100,
+		InstanceCount = 1,
+        BuilderConditions = {
+            { MIBC, 'FactionIndex', {2}},
+            { CF, 'StrategyRandomizer', {13 } },
+            { MIBC, 'GreaterThanGameTime', { 1000} },
+		    { SIBC, 'HaveGreaterThanUnitsWithCategory', { 0, categories.ENERGYPRODUCTION * categories.TECH3}},
+            { UCBC, 'HaveLessThanUnitsInCategoryBeingBuilt', { 1, categories.EXPERIMENTAL * categories.ECONOMIC }},
+   
+        },
+        BuilderType = 'Any',
+        BuilderData = {
+			MinNumAssistees = 6,
+            Construction = {
+                BuildClose = false,
+				#T4 = true,
+				AdjacencyCategory = 'SHIELD STRUCTURE',
+                BuildStructures = {
+                    'T4EconExperimental',
+                },
+                Location = 'LocationType',
+            }
+        }
+    },
+    Builder {
+        BuilderName = 'NC Econ coinflip backups builds',
+        PlatoonTemplate = 'AeonT3EngineerBuilderSorian',
+        Priority = 850,
+		InstanceCount = 1,
+        BuilderConditions = {
+            { MIBC, 'FactionIndex', {2}},
+            { CF, 'StrategyRandomizer', {13}},
+            { MIBC, 'GreaterThanGameTime', { 1000} },
+		    { SIBC, 'HaveGreaterThanUnitsWithCategory', { 1, categories.EXPERIMENTAL * categories.ECONOMIC}},
+            { UCBC, 'HaveLessThanUnitsInCategoryBeingBuilt', { 1, categories.EXPERIMENTAL * categories.ECONOMIC }},
+            { EBC, 'GreaterThanEconStorageCurrent', { 15000, 15000 } },
+        },
+        BuilderType = 'Any',
+        BuilderData = {
+			MinNumAssistees = 6,
+            Construction = {
+                BuildClose = false,
+				#T4 = true,
+				AdjacencyCategory = 'SHIELD STRUCTURE',
+                BuildStructures = {
+                    'T4EconExperimental',
+                },
+                Location = 'LocationType',
+            }
+        }
+    },
+    Builder {
+        BuilderName = 'NC T2 Engineer coinflip paragon',
+        PlatoonTemplate = 'T2EngineerAssist',
+        Priority = 1100,
+        InstanceCount = 2,
+        BuilderConditions = {
+            { MIBC, 'FactionIndex', {2}},
+            { CF, 'StrategyRandomizer', {13 } },
+            { EBC, 'GreaterThanEconStorageCurrent', { 3000, 15000 } },
+            { UCBC, 'LocationEngineersBuildingGreater', { 'LocationType', 0, categories.EXPERIMENTAL * categories.ECONOMIC}},
+        },
+        BuilderType = 'Any',
+        BuilderData = {
+            Assist = {
+                AssistLocation = 'LocationType',
+                AssisteeType = 'Engineer',
+                AssistRange = 250,
+                BeingBuiltCategories = {'EXPERIMENTAL ECONOMIC'},
+                Time = 60,
+            },
+        }
+    },
+    Builder {
+        BuilderName = 'NC T3 Engineer coinflip paragon',
+        PlatoonTemplate = 'T3EngineerAssist',
+        Priority = 1100,
+        InstanceCount = 2,
+        BuilderConditions = {
+            { MIBC, 'FactionIndex', {2}},
+            { CF, 'StrategyRandomizer', {13 } },
+            { EBC, 'GreaterThanEconStorageCurrent', { 3000, 15000 } },
+            { UCBC, 'LocationEngineersBuildingGreater', { 'LocationType', 0, categories.EXPERIMENTAL * categories.ECONOMIC }},
+        },
+        BuilderType = 'Any',
+        BuilderData = {
+            Assist = {
+                AssistLocation = 'LocationType',
+                AssisteeType = 'Engineer',
+                AssistRange = 250,
+                BeingBuiltCategories = {'EXPERIMENTAL ECONOMIC'},
+                Time = 60,
+            },
+        }
+    },
+}
 
   

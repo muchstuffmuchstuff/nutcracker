@@ -132,13 +132,14 @@ BuilderGroup {
 			
             { SBC, 'NoRushTimeCheck', { 0 }},
         },
-            BuilderData = {
+        BuilderData = {
 			
-                ThreatWeights = {
-                    TargetThreatType = 'STRUCTURE',
-                },
-                UseMoveOrder = true,
-                PrioritizedCategories = { categories.MASSEXTRACTION},
+            ThreatWeights = {
+                TargetThreatType = 'Land',
+            },
+            UseMoveOrder = true,
+            PrioritizedCategories = { categories.MOBILE * categories.LAND  }, 
+     
            
         },
     },
@@ -166,13 +167,14 @@ BuilderGroup {
 			
             { SBC, 'NoRushTimeCheck', { 0 }},
         },
-            BuilderData = {
+        BuilderData = {
 			
-                ThreatWeights = {
-                    TargetThreatType = 'STRUCTURE',
-                },
-                UseMoveOrder = true,
-                PrioritizedCategories = { categories.COMMAND},
+            ThreatWeights = {
+                TargetThreatType = 'Commander',
+            },
+            UseMoveOrder = true,
+            PrioritizedCategories = { categories.COMMAND  }, 
+        
            
         },
     },
@@ -205,7 +207,7 @@ BuilderGroup {
         BuilderData = {
 			
             ThreatWeights = {
-                TargetThreatType = 'Commander',
+                TargetThreatType = 'Land',
             },
             UseMoveOrder = true,
             PrioritizedCategories = { 'MOBILE LAND' }, 
@@ -242,7 +244,7 @@ BuilderGroup {
                 TargetThreatType = 'Commander',
             },
             UseMoveOrder = true,
-            PrioritizedCategories = { categories.MOBILE * categories.LAND  }, 
+            PrioritizedCategories = { categories.COMMAND  }, 
         },
     },
  
@@ -266,7 +268,7 @@ BuilderGroup {
             { MIBC, 'GreaterThanGameTime', { 1000} },
             { UCBC, 'CheckBuildPlattonDelay', { 'MobileExperimental_air' }},
             {CF, 'NoDukeNukem',{}},
-            { SIBC, 'HaveLessThanUnitsInCategoryBeingBuilt', { 1, categories.EXPERIMENTAL * categories.AIR }},
+            { SIBC, 'HaveLessThanUnitsInCategoryBeingBuilt', { 1, categories.EXPERIMENTAL * (categories.AIR + categories.LAND + categories.STRUCTURE) }},
             { SIBC, 'HaveGreaterThanUnitsWithCategory', { 0, categories.ENERGYPRODUCTION * categories.TECH3}},
        
         },
@@ -420,7 +422,7 @@ BuilderGroup {
           
             { SIBC, 'HaveGreaterThanUnitsWithCategory', { 1, categories.ENERGYPRODUCTION * categories.TECH3}},
           
-            { SIBC, 'HaveLessThanUnitsInCategoryBeingBuilt', { 1, categories.EXPERIMENTAL * categories.LAND }},
+            { SIBC, 'HaveLessThanUnitsInCategoryBeingBuilt', { 1, categories.EXPERIMENTAL * (categories.AIR + categories.LAND + categories.STRUCTURE) }},
          
         },
         BuilderType = 'Any',

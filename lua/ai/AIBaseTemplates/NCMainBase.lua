@@ -14,12 +14,14 @@
 BaseBuilderTemplate {
     BaseTemplateName = 'NutCrackerMainBase',
     Builders = {
+        'NCparagoncoinflip',
+        'NC paragon coinflip landupgrades',
         'ncdukehukemcoinflip',
         'NC_coinflip_factoryupgrade',
           
         'NCt1bomberunitsbehavior',
 --starting acu for coinflip
-'NC Ranzomizer Strategy Starting Build',
+
 
         
 ----landrush
@@ -50,6 +52,7 @@ BaseBuilderTemplate {
 
 
         # ==== ECONOMY ==== #
+        'NCT3Engineerassistmex',
         'NCEngineerMassBuildersLowerPri',
         'NCEngineerEnergyBuilders',
         'NCemergencyenergy',
