@@ -39,7 +39,7 @@ BuilderGroup {
     Builder {
         BuilderName = 'NC T1rushVacantStartingAreaEngineer_islandmap ',
         PlatoonTemplate = 'EngineerBuilderSorian',
-        Priority = 985,
+        Priority = 1001,
         InstanceCount = 2,
         
        
@@ -93,7 +93,7 @@ BuilderGroup {
         BuilderName = 'NC T1VacantStartingAreaEngineer_islandmap_TIMED ',
         PlatoonTemplate = 'EngineerBuilderSorian',
         Priority = 985,
-        InstanceCount = 2,
+        InstanceCount = 3,
         
        
         BuilderConditions = {
@@ -145,7 +145,7 @@ BuilderGroup {
         BuilderName = 'NC T1VacantStartingAreaEngineer_islandmap_TIMED2 ',
         PlatoonTemplate = 'EngineerBuilderSorian',
         Priority = 985,
-        InstanceCount = 2,
+        InstanceCount = 3,
         
        
         BuilderConditions = {
@@ -198,7 +198,7 @@ BuilderGroup {
         BuilderName = 'NC T1VacantStartingAreaEngineer_islandmap',
         PlatoonTemplate = 'EngineerBuilderSorian',
         Priority = 980,
-        InstanceCount = 2,
+        InstanceCount = 3,
        
         BuilderConditions = {
             { SBC, 'IsIslandMap', { true } },
@@ -247,7 +247,7 @@ BuilderGroup {
         BuilderName = 'NC T1VacantStartingAreaEngineer_islandmap giant map',
         PlatoonTemplate = 'EngineerBuilderSorian',
         Priority = 999,
-        InstanceCount = 2,
+        InstanceCount = 3,
        
         BuilderConditions = {
             { SBC, 'IsIslandMap', { true } },
@@ -298,7 +298,7 @@ BuilderGroup {
         BuilderName = 'NC T1VacantStartingAreaEngineer_islandmap giant map 270 time',
         PlatoonTemplate = 'EngineerBuilderSorian',
         Priority = 999,
-        InstanceCount = 2,
+        InstanceCount = 3,
        
         BuilderConditions = {
             { SBC, 'IsIslandMap', { true } },
@@ -349,7 +349,7 @@ BuilderGroup {
         BuilderName = 'NC T1VacantStartingAreaEngineer_islandmap giant map 290 time',
         PlatoonTemplate = 'EngineerBuilderSorian',
         Priority = 999,
-        InstanceCount = 2,
+        InstanceCount = 3,
        
         BuilderConditions = {
             { SBC, 'IsIslandMap', { true } },
@@ -400,7 +400,7 @@ BuilderGroup {
         BuilderName = 'NC T1VacantStartingAreaEngineer_islandmap giant map 350 time',
         PlatoonTemplate = 'EngineerBuilderSorian',
         Priority = 999,
-        InstanceCount = 2,
+        InstanceCount = 3,
        
         BuilderConditions = {
             { SBC, 'IsIslandMap', { true } },
@@ -451,7 +451,7 @@ BuilderGroup {
         BuilderName = 'NC T1VacantStartingAreaEngineer_islandmap giant map 390 time',
         PlatoonTemplate = 'EngineerBuilderSorian',
         Priority = 999,
-        InstanceCount = 2,
+        InstanceCount = 3,
        
         BuilderConditions = {
             { SBC, 'IsIslandMap', { true } },
@@ -501,8 +501,8 @@ BuilderGroup {
     Builder {
         BuilderName = 'NC T2VacantStartingAreaEngineer_islandmap',
         PlatoonTemplate = 'T2EngineerBuilderSorian',
-        Priority = 915,
-        InstanceCount = 2,
+        Priority = 950,
+        InstanceCount = 3,
        
         BuilderConditions = {
             { SBC, 'IsIslandMap', { true } },
@@ -548,8 +548,8 @@ BuilderGroup {
     Builder {
         BuilderName = 'NC T3VacantStartingAreaEngineer_islandmap',
         PlatoonTemplate = 'T3EngineerBuilderSorian',
-        Priority = 912,
-        InstanceCount = 2,
+        Priority = 950,
+        InstanceCount = 3,
       
         BuilderConditions = {
             { SBC, 'IsIslandMap', { true } },
@@ -597,7 +597,7 @@ BuilderGroup {
         BuilderName = 'NC T1rushVacantStartingAreaEngineer',
         PlatoonTemplate = 'EngineerBuilderSorian',
         Priority = 985,
-        InstanceCount = 2,
+        InstanceCount = 3,
        
        
         BuilderConditions = {
@@ -647,7 +647,7 @@ BuilderGroup {
         BuilderName = 'NC T1rushVacantStartingAreaEngineer_timed',
         PlatoonTemplate = 'EngineerBuilderSorian',
         Priority = 985,
-        InstanceCount = 2,
+        InstanceCount = 3,
        
        
         BuilderConditions = {
@@ -698,7 +698,7 @@ BuilderGroup {
         BuilderName = 'NC T1VacantStartingAreaEngineer',
         PlatoonTemplate = 'EngineerBuilderSorian',
         Priority = 980,
-        InstanceCount = 2,
+        InstanceCount = 3,
        
         BuilderConditions = {
             { MIBC, 'GreaterThanGameTime', { 255} },
@@ -746,7 +746,7 @@ BuilderGroup {
         BuilderName = 'NC T1VacantStartingAreaEngineer 300',
         PlatoonTemplate = 'EngineerBuilderSorian',
         Priority = 980,
-        InstanceCount = 2,
+        InstanceCount = 3,
        
         BuilderConditions = {
             { MIBC, 'GreaterThanGameTime', { 300} },
@@ -794,7 +794,7 @@ BuilderGroup {
         BuilderName = 'NC T1VacantStartingAreaEngineer 330',
         PlatoonTemplate = 'EngineerBuilderSorian',
         Priority = 980,
-        InstanceCount = 2,
+        InstanceCount = 3,
        
         BuilderConditions = {
             { MIBC, 'GreaterThanGameTime', { 330} },
@@ -842,7 +842,7 @@ BuilderGroup {
         BuilderName = 'NC T1VacantStartingAreaEngineer timed',
         PlatoonTemplate = 'EngineerBuilderSorian',
         Priority = 980,
-        InstanceCount = 2,
+        InstanceCount = 3,
        
         BuilderConditions = {
             { MIBC, 'GreaterThanGameTime', { 275} },
@@ -890,7 +890,7 @@ BuilderGroup {
         BuilderName = 'NC T1VacantStartingAreaEngineer timed2',
         PlatoonTemplate = 'EngineerBuilderSorian',
         Priority = 980,
-        InstanceCount = 2,
+        InstanceCount = 3,
        
         BuilderConditions = {
             { MIBC, 'GreaterThanGameTime', { 225} },
@@ -938,6 +938,7 @@ BuilderGroup {
         BuilderName = 'NC T2VacantStartingAreaEngineer',
         PlatoonTemplate = 'T2EngineerBuilderSorian',
         Priority = 982,
+        InstanceCount = 3, 
       
         BuilderConditions = {
             { UCBC, 'StartLocationNeedsEngineer', { 'LocationType', 1000, -1000, 0, 2, 'StructuresNotMex' } },
@@ -982,6 +983,7 @@ BuilderGroup {
         BuilderName = 'NC T3VacantStartingAreaEngineer',
         PlatoonTemplate = 'T3EngineerBuilderSorian',
         Priority = 982,
+        InstanceCount = 3, 
       
         BuilderConditions = {
             { UCBC, 'StartLocationNeedsEngineer', { 'LocationType', 1000, -1000, 0, 2, 'StructuresNotMex' } },
@@ -1033,6 +1035,7 @@ BuilderGroup {
         BuilderName = 'NC expansion Area Engineer(Full Base)280',
         PlatoonTemplate = 'EngineerBuilderSorian',
         Priority = 950,
+        InstanceCount = 3, 
        
         BuilderConditions = {
             { MIBC, 'GreaterThanGameTime', { 280 } },
@@ -1076,6 +1079,7 @@ BuilderGroup {
         BuilderName = 'NC expansion Area Engineer(Full Base)300',
         PlatoonTemplate = 'EngineerBuilderSorian',
         Priority = 950,
+        InstanceCount = 3,
        
         BuilderConditions = {
             { MIBC, 'GreaterThanGameTime', { 300 } },
@@ -1119,6 +1123,7 @@ BuilderGroup {
         BuilderName = 'NC expansion Area Engineer(Full Base)320',
         PlatoonTemplate = 'EngineerBuilderSorian',
         Priority = 950,
+        InstanceCount = 3, 
        
         BuilderConditions = {
             { MIBC, 'GreaterThanGameTime', { 320 } },
@@ -1163,6 +1168,7 @@ BuilderGroup {
         BuilderName = 'NC expansion Area Engineer(Full Base)340',
         PlatoonTemplate = 'EngineerBuilderSorian',
         Priority = 950,
+        InstanceCount = 3,
        
         BuilderConditions = {
             { MIBC, 'GreaterThanGameTime', { 340 } },
@@ -1207,6 +1213,7 @@ BuilderGroup {
         BuilderName = 'NC expansion Area Engineer(Full Base)360',
         PlatoonTemplate = 'EngineerBuilderSorian',
         Priority = 950,
+        InstanceCount = 3,
        
         BuilderConditions = {
             { MIBC, 'GreaterThanGameTime', { 360 } },
@@ -1250,6 +1257,7 @@ BuilderGroup {
         BuilderName = 'NC T1 Vacant Expansion Area Engineer(Fire base)',
         PlatoonTemplate = 'EngineerBuilderSorian',
         Priority = 950,
+        InstanceCount = 3,
       
         BuilderConditions = {
             { MIBC, 'GreaterThanGameTime', { 290 } },
@@ -1290,6 +1298,7 @@ BuilderGroup {
         BuilderName = 'NC T2VacantExpansiongAreaEngineer',
         PlatoonTemplate = 'T2EngineerBuilderSorian',
         Priority = 950,
+        InstanceCount = 3,
     
         BuilderConditions = {
             { MIBC, 'GreaterThanGameTime', { 500 } },
@@ -1333,6 +1342,7 @@ BuilderGroup {
         BuilderName = 'NC T3VacantExpansionAreaEngineer',
         PlatoonTemplate = 'T3EngineerBuilderSorian',
         Priority = 950,
+        InstanceCount = 3,
       
         BuilderConditions = {
             { MIBC, 'GreaterThanGameTime', { 500 } },

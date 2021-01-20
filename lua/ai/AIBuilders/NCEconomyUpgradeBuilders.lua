@@ -41,11 +41,11 @@ BuilderGroup {
         BuilderName = 'NC mass upgrades tech2',
         PlatoonTemplate = 'T1MassExtractorUpgrade',
         InstanceCount = 1,
-        Priority = 300,
+        Priority = 10000,
         BuilderConditions = {
    
         
-       { MIBC, 'GreaterThanGameTime', { 300 } },
+       { MIBC, 'GreaterThanGameTime', { 200 } },
             
             { EN, 'HaveLessThanUnitsInCategoryBeingUpgradeNC', { 2, categories.MASSEXTRACTION * categories.TECH1} },
            
@@ -60,11 +60,11 @@ BuilderGroup {
         BuilderName = 'NC mass upgrades tech2 incomeupgrade',
         PlatoonTemplate = 'T1MassExtractorUpgrade',
         InstanceCount = 1,
-        Priority = 300,
+        Priority = 10000,
         BuilderConditions = {
        --
        { EBC, 'GreaterThanEconStorageCurrent', { 1500, 2000 } },
-       { MIBC, 'GreaterThanGameTime', { 600 } },
+       { MIBC, 'GreaterThanGameTime', { 400 } },
        { EN, 'HaveLessThanUnitsInCategoryBeingUpgradeNC', { 3, categories.MASSEXTRACTION * categories.TECH1} },
             
            
@@ -79,7 +79,7 @@ BuilderGroup {
         BuilderName = 'NC mass upgrades tech2 incomeupgrade2',
         PlatoonTemplate = 'T1MassExtractorUpgrade',
         InstanceCount = 1,
-        Priority = 300,
+        Priority = 10000,
         BuilderConditions = {
        --
        { EBC, 'GreaterThanEconStorageCurrent', { 2500, 5000 } },
@@ -98,7 +98,7 @@ BuilderGroup {
         BuilderName = 'NC mass upgrades tech2 incomeupgrade3 many',
         PlatoonTemplate = 'T1MassExtractorUpgrade',
         InstanceCount = 1,
-        Priority = 300,
+        Priority = 10000,
         BuilderConditions = {
        --
        
@@ -117,7 +117,7 @@ BuilderGroup {
         BuilderName = 'NC mass upgrades tech2 incomeupgrade3 full control',
         PlatoonTemplate = 'T1MassExtractorUpgrade',
         InstanceCount = 1,
-        Priority = 300,
+        Priority = 10000,
         BuilderConditions = {
        --
        { WRC, 'HaveUnitRatioVersusEnemyNC', { 7.0, categories.MOBILE * categories.LAND - categories.ENGINEER, '>=', categories.MOBILE * categories.LAND - categories.ENGINEER } },
@@ -138,7 +138,7 @@ BuilderGroup {
         BuilderName = 'NC mass upgrades tech3 RATIO',
         PlatoonTemplate = 'T2MassExtractorUpgrade',
         InstanceCount = 1,
-        Priority = 800,
+        Priority = 10000,
         BuilderConditions = {
             { MIBC, 'GreaterThanGameTime', { 800 } },
        --
@@ -162,7 +162,7 @@ BuilderGroup {
         BuilderName = 'NC mass upgrades tech3 RATIO_income',
         PlatoonTemplate = 'T2MassExtractorUpgrade',
         InstanceCount = 1,
-        Priority = 800,
+        Priority = 10000,
         BuilderConditions = {
             { MIBC, 'GreaterThanGameTime', { 800 } },
        --
@@ -186,7 +186,7 @@ BuilderGroup {
         BuilderName = 'NC mass upgrades tech3 RATIO_FULL_CONTROL',
         PlatoonTemplate = 'T2MassExtractorUpgrade',
         InstanceCount = 1,
-        Priority = 800,
+        Priority = 10000,
         BuilderConditions = {
             { MIBC, 'GreaterThanGameTime', { 1600 } },
        --
@@ -223,7 +223,7 @@ BuilderGroup {
           
       
                
-            { EBC, 'GreaterThanEconStorageCurrent', { 50, 100 } },
+            { EBC, 'GreaterThanEconStorageCurrent', { 25, 100 } },
                 { EN, 'HaveLessThanUnitsInCategoryBeingUpgradeNC', { 1, categories.FACTORY * categories.AIR }},
               { UCBC, 'HaveGreaterThanUnitsWithCategory', { 3, categories.FACTORY}},
            
@@ -286,7 +286,7 @@ BuilderGroup {
             { UCBC, 'HaveGreaterThanUnitsWithCategory', { 1, categories.ENERGYPRODUCTION * categories.TECH2}},
             --- 
        
-                { EN, 'HaveLessThanUnitsInCategoryBeingUpgradeNC', { 1, categories.FACTORY  } },
+                { EN, 'HaveLessThanUnitsInCategoryBeingUpgradeNC', { 1, categories.FACTORY * categories.AIR * categories.TECH3 } },
                 { UCBC, 'HaveGreaterThanUnitsWithCategory', { 4, categories.FACTORY * categories.AIR}},
            
            
@@ -346,9 +346,9 @@ Builder {
  
         BuilderConditions = {
             { MIBC, 'GreaterThanGameTime', { 300 } },
-            { EBC, 'GreaterThanEconStorageCurrent', { 50, 100 } },
+            { EBC, 'GreaterThanEconStorageCurrent', { 25, 100 } },
             { UCBC, 'HaveGreaterThanUnitsWithCategory', { 3, categories.LAND * categories.FACTORY } },
-            { UCBC, 'HaveGreaterThanUnitsWithCategory', { 0, categories.AIR * categories.FACTORY * categories.TECH3 } },
+            
             { EN, 'HaveLessThanUnitsInCategoryBeingUpgradeNC', { 1, categories.FACTORY } },
             
            

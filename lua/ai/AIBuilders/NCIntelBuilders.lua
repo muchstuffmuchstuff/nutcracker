@@ -36,13 +36,29 @@ BuilderGroup {
     Builder {
         BuilderName = 'nc first landscout',
         PlatoonTemplate = 'T1LandScout',
+        
+        Priority = 9999999,
+        BuilderConditions = {
+            { MIBC, 'LessThanGameTime', { 300} },
+            { SBC, 'MapLessThan', {1000, 1000} },
+            { UCBC, 'HaveLessThanUnitsWithCategory', { 1, categories.LAND * categories.SCOUT }},
+            { UCBC, 'LocationFactoriesBuildingLess', { 'LocationType', 1, categories.SCOUT * categories.LAND } },
+            { UCBC, 'HaveLessThanUnitsWithCategory', { 3, categories.FACTORY }},
+          
+           
+            { SBC, 'NoRushTimeCheck', { 600 }},
+        },
+        BuilderType = 'Land',
+    },
+    Builder {
+        BuilderName = 'nc ratio land scout spam',
+        PlatoonTemplate = 'T1LandScout',
         DelayEqualBuildPlattons = {'Scouts', 30},
         Priority = 775,
         BuilderConditions = {
             
-            { SBC, 'LessThanGameTime', { 600 } },
-            { SBC, 'MapLessThan', {2000, 2000} },
-            { SBC, 'IsIslandMap', { false } },
+            { SBC, 'MapLessThan', {3000, 3000} },
+            { WRC, 'CanPathToCurrentEnemyNC', { 'LocationType', true } },  
             { UCBC, 'CheckBuildPlattonDelay', { 'Scouts' }},
             { UCBC, 'HaveLessThanUnitsWithCategory', { 3, categories.LAND * categories.SCOUT }},
             { UCBC, 'LocationFactoriesBuildingLess', { 'LocationType', 1, categories.SCOUT * categories.LAND } },
@@ -89,9 +105,11 @@ BuilderGroup {
         Priority = 800,
         DelayEqualBuildPlattons = {'Scouts', 15},
         BuilderConditions = {
+           
             { UCBC, 'CheckBuildPlattonDelay', { 'Scouts' }},
             { MIBC, 'GreaterThanGameTime', { 320 } },
-			{ SIBC, 'HaveLessThanUnitsForMapSize', { {[256] = 2, [512] = 3, [1024] = 6, [2048] = 8, [4096] = 8}, categories.SCOUT * categories.AIR}},
+            { UCBC, 'HaveLessThanUnitsWithCategory', { 5, categories.TECH1 * categories.AIR * categories.INTELLIGENCE } },
+		
       
            
 	
@@ -103,6 +121,7 @@ BuilderGroup {
         BuilderType = 'Air',
     },
    
+   
     
 
     Builder {
@@ -113,8 +132,8 @@ BuilderGroup {
         BuilderConditions = {
             { MIBC, 'GreaterThanGameTime', { 1220 } },
             { UCBC, 'CheckBuildPlattonDelay', { 'Scouts' }},
-            
-			{ SIBC, 'HaveLessThanUnitsForMapSize', { {[256] = 2, [512] = 4, [1024] = 6, [2048] = 8, [4096] = 8}, categories.INTELLIGENCE * categories.AIR * categories.TECH3}},
+            { UCBC, 'HaveLessThanUnitsWithCategory', { 6, categories.TECH3 * categories.AIR * categories.INTELLIGENCE } },
+			
 			
             { SIBC, 'HaveLessThanUnitsInCategoryBeingBuilt', { 1, categories.INTELLIGENCE * categories.AIR * categories.TECH3 } },
             { EBC, 'GreaterThanEconStorageCurrent', { 8, 60 } }, 
@@ -126,30 +145,6 @@ BuilderGroup {
  
 }
 
-
-BuilderGroup {
-    BuilderGroupName = 'NCextrat3scout',
-    BuildersType = 'FactoryBuilder',
-    Builder {
-        BuilderName = 'NC T3 Air Scout extra',
-        PlatoonTemplate = 'T3AirScout',
-        Priority = 844, 
-        DelayEqualBuildPlattons = {'Scouts', 15},
-        BuilderConditions = {
-            { MIBC, 'GreaterThanGameTime', { 1220 } },
-            { UCBC, 'CheckBuildPlattonDelay', { 'Scouts' }},
-           
-			{ SIBC, 'HaveLessThanUnitsForMapSize', { {[256] = 2, [512] = 4, [1024] = 8, [2048] = 10, [4096] = 12}, categories.INTELLIGENCE * categories.AIR * categories.TECH3}},
-		
-            { SIBC, 'HaveLessThanUnitsInCategoryBeingBuilt', { 1, categories.INTELLIGENCE * categories.AIR * categories.TECH3 } },
-            { EBC, 'GreaterThanEconStorageCurrent', { 8, 60 } }, 
-            
-			{ SBC, 'NoRushTimeCheck', { 600 }},
-           
-        },
-        BuilderType = 'Air',
-    },
-}
 
 BuilderGroup {
     BuilderGroupName = 'NCRadarEngineerBuilders',

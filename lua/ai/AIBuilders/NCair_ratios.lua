@@ -18,6 +18,7 @@ local SIBC = '/lua/editor/SorianInstantBuildConditions.lua'
 local CF = '/mods/nutcracker/hook/lua/coinflip.lua'
 local WRC = '/mods/nutcracker/hook/lua/weaponsrangeconditions.lua'
 local EN = '/mods/nutcracker/hook/lua/economicnumbers.lua'
+local Tech3airfactoryrelativetotech2and1 = 0.40
 
 
 
@@ -72,7 +73,7 @@ BuilderGroup {
             { MIBC, 'GreaterThanGameTime', { 240 } },
             { EBC, 'GreaterThanEconStorageCurrent', { 8, 60 } }, 
 			{ SBC, 'NoRushTimeCheck', { 600 }},
-         
+            { UCBC, 'HaveUnitRatio', { Tech3airfactoryrelativetotech2and1, categories.FACTORY * categories.AIR * categories.TECH3, '<=', categories.FACTORY * categories.AIR * (categories.TECH1 + categories.TECH2) } },
             { WRC, 'HaveUnitRatioVersusEnemyNC', { 3.0, categories.MOBILE * categories.AIR * categories.ANTIAIR - categories.GROUNDATTACK - categories.BOMBER, '<=', categories.MOBILE * categories.AIR *(categories.TECH1 + categories.TECH2) - categories.SCOUT - categories.TRANSPORTFOCUS } },
 
         },
@@ -90,8 +91,7 @@ BuilderGroup {
             { EBC, 'GreaterThanEconStorageCurrent', { 8, 60 } }, 
             { SBC, 'NoRushTimeCheck', { 600 }},
             { SIBC, 'HaveLessThanUnitsInCategoryBeingBuilt', { 1, categories.ANTIAIR * categories.AIR * categories.TECH1 }},
-            
-           
+            { UCBC, 'HaveUnitRatio', { Tech3airfactoryrelativetotech2and1, categories.FACTORY * categories.AIR * categories.TECH3, '<=', categories.FACTORY * categories.AIR * (categories.TECH1 + categories.TECH2) } },
         { UCBC, 'HaveLessThanUnitsWithCategory', { 8 , categories.AIR * categories.MOBILE * categories.ANTIAIR  - categories.BOMBER - categories.GROUNDATTACK } },
   
 			
@@ -120,7 +120,7 @@ BuilderGroup {
             { SBC, 'NoRushTimeCheck', { 600 }},
       
             
-            { WRC, 'HaveUnitRatioVersusEnemyNC', { 3.0, categories.MOBILE * categories.AIR * categories.ANTIAIR * categories.TECH3 - categories.GROUNDATTACK - categories.BOMBER, '<=', categories.MOBILE * categories.AIR * (categories.TECH2 + categories.TECH3)  - categories.SCOUT - categories.TRANSPORTFOCUS } },
+            { WRC, 'HaveUnitRatioVersusEnemyNC', { 3.0, categories.MOBILE * categories.AIR * categories.ANTIAIR * categories.TECH3 - categories.GROUNDATTACK - categories.BOMBER, '<=', categories.MOBILE * categories.AIR  - categories.SCOUT - categories.TRANSPORTFOCUS } },
      
         },
      
@@ -232,7 +232,7 @@ BuilderGroup {
             { MIBC, 'GreaterThanGameTime', { 1000} },
             { EBC, 'GreaterThanEconStorageCurrent', { 8, 60 } }, 
             { UCBC, 'HaveUnitsWithCategoryAndAlliance', { true, 50, categories.MOBILE * categories.LAND - categories.ENGINEER, 'Enemy'}},
-            { WRC, 'HaveUnitRatioVersusEnemyNC', { 0.2, categories.MOBILE * categories.AIR * categories.GROUNDATTACK, '<=', categories.LAND * categories.MOBILE - categories.ENGINEER } },
+            { WRC, 'HaveUnitRatioVersusEnemyNC', { 0.2, categories.MOBILE * categories.AIR * categories.GROUNDATTACK - categories.BOMBER, '<=', categories.LAND * categories.MOBILE - categories.ENGINEER } },
 			{ WRC, 'HaveUnitRatioVersusEnemyNC', { 3.0, categories.MOBILE * categories.AIR * categories.ANTIAIR  - categories.GROUNDATTACK - categories.BOMBER, '>=', categories.MOBILE * categories.AIR  - categories.SCOUT - categories.TRANSPORTFOCUS } },
 			
             
@@ -253,8 +253,8 @@ BuilderGroup {
 		
             { MIBC, 'GreaterThanGameTime', { 1000} },
             { EBC, 'GreaterThanEconStorageCurrent', { 8, 60 } }, 
-            { UCBC, 'HaveUnitsWithCategoryAndAlliance', { true, 0, categories.EXPERIMENTAL * categories.LAND * categories.MOBILE, 'Enemy'}},
-            { WRC, 'HaveUnitRatioVersusEnemyNC', { 0.2, categories.MOBILE * categories.AIR * categories.GROUNDATTACK, '<=', categories.LAND * categories.MOBILE - categories.ENGINEER } },
+            { UCBC, 'HaveUnitsWithCategoryAndAlliance', { true, 50, categories.MOBILE * categories.LAND - categories.ENGINEER, 'Enemy'}},
+            { WRC, 'HaveUnitRatioVersusEnemyNC', { 0.2, categories.MOBILE * categories.AIR * categories.GROUNDATTACK - categories.BOMBER, '<=', categories.LAND * categories.MOBILE - categories.ENGINEER } },
 			{ WRC, 'HaveUnitRatioVersusEnemyNC', { 3.0, categories.MOBILE * categories.AIR * categories.ANTIAIR  - categories.GROUNDATTACK - categories.BOMBER, '>=', categories.MOBILE * categories.AIR  - categories.SCOUT - categories.TRANSPORTFOCUS } },
 			
             

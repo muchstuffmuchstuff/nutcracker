@@ -2,10 +2,11 @@ local UseHeroPlatoon = true
 local PlatoonExists = moho.aibrain_methods.PlatoonExists
 NCAIPlatoon = Platoon
 local AIUtils = import('/lua/ai/aiutilities.lua')
+local Behaviors = import('/lua/ai/aibehaviors.lua')
 
 local AIAttackUtils = import('/lua/AI/aiattackutilities.lua')
 local Utils = import('/lua/utilities.lua')
-
+local GetMostRestrictiveLayer = import('/lua/AI/aiattackutilities.lua')
 
 Platoon = Class(NCAIPlatoon) {
     
@@ -325,7 +326,7 @@ NukeNC = function(self)
                 end
             end
 
-            nukePos = import('/lua/ai/aibehaviors.lua').GetHighestThreatClusterLocation(aiBrain, unit)
+            nukePos = import('/lua/ai/aibehaviors.lua').GetHighestThreatClusterLocationNC(aiBrain, unit)
             if nukePos then
                 IssueNuke({unit}, nukePos)
                 WaitSeconds(12)
@@ -337,248 +338,11 @@ NukeNC = function(self)
     self:PlatoonDisband()
 end,
 
-BuildEnhancementNC = function(platoon,cdr,enhancement)
-    --LOG('* AI-Uveso: * ACUAttackAIUveso: BuildEnhancement '..enhancement)
-    local aiBrain = platoon:GetBrain()
 
-    IssueStop({cdr})
-    IssueClearCommands({cdr})
-    
-    if not cdr:HasEnhancement(enhancement) then
-        
-        local tempEnhanceBp = cdr:GetBlueprint().Enhancements[enhancement]
-        local unitEnhancements = import('/lua/enhancementcommon.lua').GetEnhancements(cdr.EntityId)
-        -- Do we have already a enhancment in this slot ?
-        if unitEnhancements[tempEnhanceBp.Slot] and unitEnhancements[tempEnhanceBp.Slot] ~= tempEnhanceBp.Prerequisite then
-            -- remove the enhancement
-            --LOG('* AI-Uveso: * ACUAttackAIUveso: Found enhancement ['..unitEnhancements[tempEnhanceBp.Slot]..'] in Slot ['..tempEnhanceBp.Slot..']. - Removing...')
-            local order = { TaskName = "EnhanceTask", Enhancement = unitEnhancements[tempEnhanceBp.Slot]..'Remove' }
-            IssueScript({cdr}, order)
-            coroutine.yield(10)
-        end
-        --LOG('* AI-Uveso: * ACUAttackAIUveso: BuildEnhancement: '..platoon:GetBrain().Nickname..' IssueScript: '..enhancement)
-        local order = { TaskName = "EnhanceTask", Enhancement = enhancement }
-        IssueScript({cdr}, order)
-    end
-    while not cdr.Dead and not cdr:HasEnhancement(enhancement) do
-        if UUtils.ComHealth(cdr) < 60 then
-            --LOG('* AI-Uveso: * ACUAttackAIUveso: BuildEnhancement: '..platoon:GetBrain().Nickname..' Emergency!!! low health, canceling Enhancement '..enhancement)
-            IssueStop({cdr})
-            IssueClearCommands({cdr})
-            return false
-        end
-        coroutine.yield(10)
-    end
-    --LOG('* AI-Uveso: * ACUAttackAIUveso: BuildEnhancement: '..platoon:GetBrain().Nickname..' Upgrade finished '..enhancement)
-    return true
-end,
 
-EcoGoodForUpgradeNC = function(platoon,cdr,enhancement)
-    local aiBrain = platoon:GetBrain()
-    local BuildRate = cdr:GetBuildRate()
-    if not enhancement.BuildTime then
-        WARN('* AI-Uveso: EcoGoodForUpgrade: Enhancement has no buildtime: '..repr(enhancement))
-    end
-    --LOG('* AI-Uveso: cdr:GetBuildRate() '..BuildRate..'')
-    local drainMass = (BuildRate / enhancement.BuildTime) * enhancement.BuildCostMass
-    local drainEnergy = (BuildRate / enhancement.BuildTime) * enhancement.BuildCostEnergy
-    --LOG('* AI-Uveso: drain: m'..drainMass..'  e'..drainEnergy..'')
-    --LOG('* AI-Uveso: Pump: m'..math.floor(aiBrain:GetEconomyTrend('MASS')*10)..'  e'..math.floor(aiBrain:GetEconomyTrend('ENERGY')*10)..'')
-    if aiBrain.PriorityManager.HasParagon then
-        return true
-    elseif aiBrain:GetEconomyTrend('MASS')*10 >= drainMass and aiBrain:GetEconomyTrend('ENERGY')*10 >= drainEnergy
-    and aiBrain:GetEconomyStoredRatio('MASS') > 0.05 and aiBrain:GetEconomyStoredRatio('ENERGY') > 0.95 then
-        -- only RUSH AI; don't enhance if mass storage is lower than 90%
-        local personality = ScenarioInfo.ArmySetup[aiBrain.Name].AIPersonality
-        if personality == 'nut_cracker' or personality == 'nut_crackercheat' then
-            if aiBrain:GetEconomyStoredRatio('MASS') < 0.90 then
-                return false
-            end
-        end
-        return true
-    end
-    return false
-end,
 
-SACUTeleportAINC = function(self)
-    --LOG('* AI-Uveso: * Teleporting starting!: Start ')
-    -- SACU need to move out of the gate first
-    coroutine.yield(50)
-    local aiBrain = self:GetBrain()
-    local platoonUnits
-    local platoonPosition = self:GetPlatoonPosition()
-    local TargetPosition
-    AIAttackUtils.GetMostRestrictiveLayer(self) -- this will set self.MovementLayer to the platoon
-    -- start upgrading all SubCommanders as teleporter
-    while aiBrain:PlatoonExists(self) do
-        local allEnhanced = true
-        platoonUnits = self:GetPlatoonUnits()
-        for k, unit in platoonUnits do
-            IssueStop({unit})
-            IssueClearCommands({unit})
-            coroutine.yield(1)
-            if not unit.Dead then
-                for k, Assister in platoonUnits do
-                    if not Assister.Dead and Assister ~= unit then
-                        -- only assist if we have the energy for it
-                        if aiBrain:GetEconomyTrend('ENERGY') > 5000 or aiBrain.PriorityManager.HasParagon then
-                            --LOG('* AI-Uveso: * SACUTeleportAI: IssueGuard({Assister}, unit) ')
-                            IssueGuard({Assister}, unit)
-                        end
-                    end
-                end
-                self:BuildSACUEnhancementsNC(unit)
-                coroutine.yield(1)
-                if not unit:HasEnhancement('Teleporter') then
-                    --LOG('* AI-Uveso: * SACUTeleportAI: Not teleporter enhanced')
-                    allEnhanced = false
-                else
-                    --LOG('* AI-Uveso: * SACUTeleportAI: Has teleporter installed')
-                end
-            end
-        end
-        if allEnhanced == true then
-            --LOG('* AI-Uveso: * SACUTeleportAI: allEnhanced == true ')
-            break
-        end
-        coroutine.yield(50)
-    end
-    --
-    local MoveToCategories = {}
-    if self.PlatoonData.MoveToCategories then
-        for k,v in self.PlatoonData.MoveToCategories do
-            table.insert(MoveToCategories, v )
-        end
-    else
-        LOG('* AI-Uveso: * SACUTeleportAI: MoveToCategories missing in platoon '..self.BuilderName)
-    end
-    local WeaponTargetCategories = {}
-    if self.PlatoonData.WeaponTargetCategories then
-        for k,v in self.PlatoonData.WeaponTargetCategories do
-            table.insert(WeaponTargetCategories, v )
-        end
-    elseif self.PlatoonData.MoveToCategories then
-        WeaponTargetCategories = MoveToCategories
-    end
-    self:SetPrioritizedTargetList('Attack', WeaponTargetCategories)
-    local TargetSearchCategory = self.PlatoonData.TargetSearchCategory or 'ALLUNITS'
-    local maxRadius = self.PlatoonData.SearchRadius or 100
-    -- search for a target
-    local Target
-    while not Target do
-        coroutine.yield(50)
-        Target, _, _, _ = import('/mods/nutcracker/hook/lua/weaponsrangeconditions.lua').AIFindNearestCategoryTeleportLocationNC(aiBrain, platoonPosition, maxRadius, MoveToCategories, TargetSearchCategory, false)
-    end
-    platoonUnits = self:GetPlatoonUnits()
-    if Target and not Target.Dead then
-        TargetPosition = Target:GetPosition()
-        for k, unit in platoonUnits do
-            if not unit.Dead then
-                if not unit:HasEnhancement('Teleporter') then
-                    --WARN('* AI-Uveso: * SACUTeleportAI: Unit has no transport enhancement!')
-                    continue
-                end
-                --IssueStop({unit})
-                coroutine.yield(2)
-                IssueTeleport({unit}, import('/mods/nutcracker/hook/lua/weaponsrangeconditions.lua').RandomizePositionNC(TargetPosition))
-            end
-        end
-    else
-        --LOG('* AI-Uveso: SACUTeleportAI: No target, disbanding platoon!')
-        self:PlatoonDisband()
-        return
-    end
-    coroutine.yield(30)
-    -- wait for the teleport of all unit
-    local count = 0
-    local UnitTeleporting = 0
-    while aiBrain:PlatoonExists(self) do
-        platoonUnits = self:GetPlatoonUnits()
-        UnitTeleporting = 0
-        for k, unit in platoonUnits do
-            if not unit.Dead then
-                if unit:IsUnitState('Teleporting') then
-                    UnitTeleporting = UnitTeleporting + 1
-                end
-            end
-        end
-        --LOG('* AI-Uveso: SACUTeleportAI: Units Teleporting :'..UnitTeleporting )
-        if UnitTeleporting == 0 then
-            break
-        end
-        coroutine.yield(10)
-    end        
-    -- Fight
-    coroutine.yield(1)
-    for k, unit in platoonUnits do
-        if not unit.Dead then
-            IssueStop({unit})
-            coroutine.yield(2)
-            IssueMove({unit}, TargetPosition)
-        end
-    end
-    coroutine.yield(50)
-    self:nut_cracker()
-    self:PlatoonDisband()
-end,
 
-BuildSACUEnhancementsNC = function(platoon,unit)
-    local EnhancementsByUnitID = {
-        -- UEF
-        ['uel0301'] = {'xxx', 'xxx', 'xxx'},
-        -- Aeon
-        ['ual0301'] = {'StabilitySuppressant', 'Teleporter'},
-        -- Cybram
-        ['url0301'] = {'xxx', 'xxx', 'xxx'},
-        -- Seraphim
-        ['xsl0301'] = {'DamageStabilization', 'Shield', 'Teleporter'},
-        -- Nomads
-        ['xnl0301'] = {'xxx', 'xxx', 'xxx'},
-    }
-    local CRDBlueprint = unit:GetBlueprint()
-    --LOG('* AI-Uveso: BlueprintId RAW:'..repr(CRDBlueprint.BlueprintId))
-    --LOG('* AI-Uveso: BlueprintId clean: '..repr(string.gsub(CRDBlueprint.BlueprintId, "(%a+)(%d+)_(%a+)", "%1".."%2")))
-    local ACUUpgradeList = EnhancementsByUnitID[string.gsub(CRDBlueprint.BlueprintId, "(%a+)(%d+)_(%a+)", "%1".."%2")]
-    --LOG('* AI-Uveso: ACUUpgradeList '..repr(ACUUpgradeList))
-    local NextEnhancement = false
-    local HaveEcoForEnhancement = false
-    for _,enhancement in ACUUpgradeList or {} do
-        local wantedEnhancementBP = CRDBlueprint.Enhancements[enhancement]
-        --LOG('* AI-Uveso: wantedEnhancementBP '..repr(wantedEnhancementBP))
-        if not wantedEnhancementBP then
-            SPEW('* AI-Uveso: BuildSACUEnhancements: no enhancement found for ('..string.gsub(CRDBlueprint.BlueprintId, "(%a+)(%d+)_(%a+)", "%1".."%2")..') = '..repr(enhancement))
-        elseif unit:HasEnhancement(enhancement) then
-            NextEnhancement = false
-            --LOG('* AI-Uveso: * ACUAttackAIUveso: BuildSACUEnhancements: Enhancement is already installed: '..enhancement)
-        elseif platoon:EcoGoodForUpgradeNC(unit, wantedEnhancementBP) then
-            --LOG('* AI-Uveso: * ACUAttackAIUveso: BuildSACUEnhancements: Eco is good for '..enhancement)
-            if not NextEnhancement then
-                NextEnhancement = enhancement
-                HaveEcoForEnhancement = true
-                --LOG('* AI-Uveso: * ACUAttackAIUveso: *** Set as Enhancememnt: '..NextEnhancement)
-            end
-        else
-            --LOG('* AI-Uveso: * ACUAttackAIUveso: BuildSACUEnhancements: Eco is bad for '..enhancement)
-            if not NextEnhancement then
-                NextEnhancement = enhancement
-                HaveEcoForEnhancement = false
-                -- if we don't have the eco for this ugrade, stop the search
-                --LOG('* AI-Uveso: * ACUAttackAIUveso: canceled search. no eco available')
-            end
-        end
-    end
-    if NextEnhancement and HaveEcoForEnhancement then
-        --LOG('* AI-Uveso: * ACUAttackAIUveso: BuildSACUEnhancements Building '..NextEnhancement)
-        if platoon:BuildEnhancementNC(unit, NextEnhancement) then
-            --LOG('* AI-Uveso: * ACUAttackAIUveso: BuildSACUEnhancements returned true'..NextEnhancement)
-        else
-            --LOG('* AI-Uveso: * ACUAttackAIUveso: BuildSACUEnhancements returned false'..NextEnhancement)
-        end
-        return
-    end
-    --LOG('* AI-Uveso: * ACUAttackAIUveso: BuildSACUEnhancements returned false')
-    return
-end,
+
 
 LandAttackNC = function(self) ---modified for nutcracker
     
@@ -760,6 +524,8 @@ NCsatelite = function(self)
         --LOG('End of Satellite loop')
     end
 end,
+
+
 
 
 

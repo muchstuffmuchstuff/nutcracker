@@ -32,9 +32,9 @@ BuilderGroup {
         InstanceCount = 1,
         BuilderConditions = {
       
-            { CF, 'StrategyRandomizer', {3} },
+            { CF, 'CoinFlip', {47} },
             { MIBC, 'GreaterThanGameTime', { 300 } },
-            { EBC, 'GreaterThanEconStorageRatio', { 0.0, 1.0 } },
+            
           
               
             { UCBC, 'HaveGreaterThanUnitsWithCategory', { 8, categories.ENGINEER }},
@@ -52,9 +52,9 @@ BuilderGroup {
         Priority = 1050,
         InstanceCount = 1,
         BuilderConditions = {
-            { CF, 'StrategyRandomizer', {3} },
+            { CF, 'CoinFlip', {47} },
             { MIBC, 'GreaterThanGameTime', { 300 } },
-            { EBC, 'GreaterThanEconStorageRatio', { 0.0, 1.0 } },
+         
            
          
              
@@ -78,7 +78,8 @@ BuilderGroup {
         PlatoonAddFunctions = { {SAI, 'BuildOnce'}, },
         InstanceCount = 1,
         BuilderConditions = {
-            { CF, 'StrategyRandomizer', {13} },
+            { MIBC, 'FactionIndex', {2}},
+            { CF, 'CoinFlip', {13} },
             { MIBC, 'GreaterThanGameTime', { 300 } },
             { UCBC, 'HaveGreaterThanUnitsWithCategory', { 8, categories.ENGINEER }},
             },
@@ -91,7 +92,8 @@ BuilderGroup {
         PlatoonAddFunctions = { {SAI, 'BuildOnce'}, },
         InstanceCount = 1,
         BuilderConditions = {
-            { CF, 'StrategyRandomizer', {13} },
+            { MIBC, 'FactionIndex', {2}},
+            { CF, 'CoinFlip', {13} },
             { MIBC, 'GreaterThanGameTime', { 330 } },
         
             },

@@ -143,12 +143,12 @@ BuilderGroup {
             PlatoonAddPlans = { 'AirIntelToggle', 'DistressResponseAISorian'  },
             Priority = 10,
             FormRadius = 500,
-            InstanceCount = 25,
+            InstanceCount = 15,
             AggressiveMove = true,
             BuilderType = 'Any',
             BuilderConditions = {
                 { MIBC, 'LessThanGameTime', { 1000} },
-                         { UCBC, 'PoolGreaterAtLocation', { 'LocationType', 2, categories.AIR  * (categories.TECH1 + categories.TECH2) * categories.BOMBER   * categories.MOBILE - categories.TRANSPORTFOCUS - categories.ANTINAVY - categories.uea0303 - categories.uaa0303 - categories.ura0303 - categories.xsa0303 - categories.uea0102 - categories.uaa0102 - categories.ura0102 - categories.xsa0102} },
+                { UCBC, 'PoolGreaterAtLocation', { 'LocationType', 2, categories.uea0103 + categories.uaa0103 + categories.ura0103 + categories.xsa0103} },
                 { SBC, 'NoRushTimeCheck', { 0 }},
             },
             BuilderData = {
@@ -172,7 +172,7 @@ BuilderGroup {
                 PlatoonAddPlans = { 'AirIntelToggle', 'DistressResponseAISorian'  },
                 Priority = 10,
                 FormRadius = 500,
-                InstanceCount = 25,
+                InstanceCount = 15,
                 AggressiveMove = true,
                 BuilderType = 'Any',
                 BuilderConditions = {
@@ -307,14 +307,14 @@ BuilderGroup {
         BuilderConditions = {
             { MIBC, 'GreaterThanGameTime', { 600 } },
             { SBC, 'NoRushTimeCheck', { 600 }},
-            { SBC, 'MapGreaterThan', { 1000, 1000 }},
+            { SBC, 'MapLessThan', { 4000, 4000 }},
            
            ---
 { EBC, 'GreaterThanEconStorageCurrent', { 8, 60 } },  
           
             { UCBC, 'HaveUnitsWithCategoryAndAlliance', { false, 15, categories.ANTIAIR * categories.AIR, 'Enemy'}},
-            { WRC, 'HaveUnitRatioVersusEnemyNC', { 3.0, categories.MOBILE * categories.AIR * categories.ANTIAIR * categories.TECH3 - categories.GROUNDATTACK - categories.BOMBER, '>=', categories.MOBILE * categories.AIR * (categories.TECH2 + categories.TECH3)  - categories.SCOUT - categories.TRANSPORTFOCUS } },
-            { UCBC, 'HaveLessThanUnitsWithCategory', { 100, categories.MOBILE * categories.AIR  * categories.BOMBER * categories.TECH1} },
+            { WRC, 'HaveUnitRatioVersusEnemyNC', { 3.0, categories.MOBILE * categories.AIR * categories.ANTIAIR - categories.GROUNDATTACK - categories.BOMBER, '>=', categories.MOBILE * categories.AIR  - categories.SCOUT - categories.TRANSPORTFOCUS } },
+            
            
                       
 			
@@ -890,7 +890,7 @@ BuilderGroup {
         BuilderName = 'NC T1 Air Transport early game 25km or less',
         PlatoonTemplate = 'T1AirTransport',
         DelayEqualBuildPlattons = {'Transport', 12},
-        Priority = 800,
+        Priority = 950,
         BuilderConditions = {
             { SBC, 'MapGreaterThan', { 1000, 1000 }},
             { SBC, 'MapLessThan', { 3000, 3000 }},

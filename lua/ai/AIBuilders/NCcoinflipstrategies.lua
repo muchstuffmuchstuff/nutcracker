@@ -33,7 +33,7 @@ BuilderGroup {
      
         BuilderConditions = {
             { MIBC, 'GreaterThanGameTime', { 400 } },
-            { CF, 'StrategyRandomizer', {9} },
+            { CF, 'CoinFlip', {9} },
       
             { UCBC, 'HaveGreaterThanUnitsWithCategory', { 50, categories.LAND * categories.MOBILE * categories.ENGINEER} },   
             { UCBC, 'HaveLessThanUnitsInCategoryBeingBuilt', { 2, categories.FACTORY * (categories.TECH2 + categories.TECH3)} },
@@ -52,7 +52,7 @@ BuilderGroup {
      
         BuilderConditions = {
             { MIBC, 'GreaterThanGameTime', { 600 } },
-            { CF, 'StrategyRandomizer', {9} },
+            { CF, 'CoinFlip', {9} },
             { UCBC, 'HaveGreaterThanUnitsWithCategory', { 50, categories.LAND * categories.MOBILE * categories.ENGINEER} },
                
              
@@ -71,7 +71,7 @@ BuilderGroup {
      
         BuilderConditions = {
             { MIBC, 'GreaterThanGameTime', { 400 } },
-            { CF, 'StrategyRandomizer', {10} },
+            { CF, 'CoinFlip', {10} },
       
           
             { UCBC, 'HaveLessThanUnitsInCategoryBeingBuilt', { 2, categories.FACTORY * (categories.TECH2 + categories.TECH3)} },
@@ -90,7 +90,7 @@ BuilderGroup {
      
         BuilderConditions = {
             { MIBC, 'GreaterThanGameTime', { 600 } },
-            { CF, 'StrategyRandomizer', {10} },
+            { CF, 'CoinFlip', {10} },
          
                
              
@@ -118,7 +118,7 @@ Builder {
   
     BuilderConditions = {
         { MIBC, 'FactionIndex', { 2, 4 }},
-        { CF, 'StrategyRandomizer', {22222} },
+        { CF, 'CoinFlip', {111} },
         { SIBC, 'HaveLessThanUnitsInCategoryBeingBuilt', { 4, categories.STRUCTURE * (categories.TECH2 + categories.TECH3)  * categories.ENERGYPRODUCTION } },
         { UCBC, 'HaveLessThanUnitsInCategoryBeingBuilt', { 2, 'GATE TECH3 STRUCTURE'}},
         { SIBC, 'GreaterThanEconEfficiencyOverTime', { 1.0, 1.1} },
@@ -153,7 +153,7 @@ Builder {
     Priority = 825,
     BuilderConditions = {
         { MIBC, 'FactionIndex', { 2, 4 }},
-        { CF, 'StrategyRandomizer', {22222} },
+        { CF, 'CoinFlip', {111} },
         { MIBC, 'GreaterThanGameTime', { 900 } },
         { SIBC, 'HaveLessThanUnitsWithCategory', { 15, 'ENERGYSTORAGE'}},
         { UCBC, 'AdjacencyCheck', { 'LocationType', 'ENERGYPRODUCTION TECH1', 100, 'ueb1105' } },
@@ -178,7 +178,7 @@ Builder {
         BuilderType = 'Any',
         BuilderConditions = {
             { MIBC, 'FactionIndex', { 2, 4 }},
-            { CF, 'StrategyRandomizer', {22222} },
+            { CF, 'CoinFlip', {1111} },
             { MIBC, 'GreaterThanGameTime', { 600} },
          -- relative income
             { SIBC, 'HaveLessThanUnitsInCategoryBeingBuilt', { 2, categories.STRUCTURE * categories.TECH3 * categories.ENERGYPRODUCTION } },
@@ -213,7 +213,7 @@ Builder {
     Priority = 980,
     BuilderConditions = {
         { MIBC, 'FactionIndex', { 2, 4 }},
-        { CF, 'StrategyRandomizer', {222222} },
+        { CF, 'CoinFlip', {1111} },
         { MIBC, 'GreaterThanGameTime', { 1200 } },
         { EBC, 'GreaterThanEconStorageCurrent', { 500, 10000 } },
         { SIBC, 'GreaterThanEconEfficiencyOverTime', { 1.0, 1.05 }},
@@ -236,40 +236,7 @@ Builder {
         BuilderGroupName = 'NC Tele SCU Strategy',
         BuildersType = 'PlatoonFormBuilder',
     
-            Builder {
-                BuilderName = 'NC Teleport',
-                PlatoonTemplate = 'NC subcommander huge teleport',
-                Priority = 2000,
-                InstanceCount = 20,
-                FormRadius = 250,
-                BuilderData = {
-                    SearchRadius = 10000,                                               -- Searchradius for new target.
-                    GetTargetsFromBase = false,                                         -- Get targets from base position (true) or platoon position (false)
-                    AggressiveMove = false,                                             -- If true, the unit will attack everything while moving to the target.
-                    AttackEnemyStrength = 50000,                                        -- Compare platoon to enemy strenght. 100 will attack equal, 50 weaker and 150 stronger enemies.
-                    IgnorePathing = true,                                               -- If true, the platoon will not use AI pathmarkers and move directly to the target
-                    TargetSearchCategory = categories.STRUCTURE - categories.NAVAL,     -- Only find targets matching these categories.
-                    MoveToCategories = {                                                -- Move to targets
-                        categories.STRUCTURE * categories.EXPERIMENTAL * categories.ECONOMIC,
-                        categories.STRUCTURE * categories.EXPERIMENTAL * categories.SHIELD,
-                        categories.STRUCTURE * categories.ENERGYPRODUCTION * categories.TECH3,
-                        categories.STRUCTURE * categories.EXPERIMENTAL,
-                        categories.FACTORY * categories.TECH3,
-                        categories.ALLUNITS - categories.AIR,
-                    },
-                },
-                BuilderConditions = {
-                    { CF, 'StrategyRandomizer', {222222} },
-                    { MIBC, 'FactionIndex', { 2, 4 }}, -- 1: UEF, 2: Aeon, 3: Cybran, 4: Seraphim, 5: Nomads 
-                    -- Have we the eco to build it ?
-                    { EBC, 'GreaterThanEconStorageCurrent', { 1, 50000 } },
-                    -- When do we want to build this ?
-                    { UCBC, 'HaveGreaterThanUnitsWithCategory', { 0, categories.SUBCOMMANDER} },
-                 
-                    -- Respect UnitCap
-                },
-                BuilderType = 'Any',
-            },
+           
         }
    
 
@@ -291,7 +258,7 @@ Builder {
     BuilderType = 'Air',
     InstanceCount = 50,
     BuilderConditions = {
-        { CF, 'StrategyRandomizer', {1} },
+        { CF, 'CoinFlip', {14} },
         { SBC, 'MapLessThan', { 2000, 2000 }},
         { UCBC, 'HaveGreaterThanUnitsWithCategory', { 15, categories.MOBILE * categories.AIR * categories.ANTIAIR - categories.GROUNDATTACK - categories.BOMBER} },          
         
@@ -322,7 +289,7 @@ BuilderGroup {
             AggressiveMove = true,
             BuilderType = 'Any',
             BuilderConditions = {
-                { CF, 'StrategyRandomizer', {1} },
+                { CF, 'CoinFlip', {14} },
                          { UCBC, 'PoolGreaterAtLocation', { 'LocationType', 2, categories.AIR  * (categories.TECH1 + categories.TECH2) * categories.BOMBER   * categories.MOBILE - categories.TRANSPORTFOCUS - categories.ANTINAVY - categories.uea0303 - categories.uaa0303 - categories.ura0303 - categories.xsa0303 - categories.uea0102 - categories.uaa0102 - categories.ura0102 - categories.xsa0102} },
                 { SBC, 'NoRushTimeCheck', { 0 }},
             },
@@ -350,14 +317,14 @@ BuilderGroup {
 Builder {
     BuilderName = 'nc T3 Nuke Engineer coinflip3',
     PlatoonTemplate = 'T3EngineerBuilderSorian',
-    Priority = 999,
+    Priority = 1050,
     InstanceCount = 1,
     PlatoonAddFunctions = { {SAI, 'BuildOnce'}, },
     BuilderConditions = {
         { MIBC, 'GreaterThanGameTime', { 600 } },
-        { CF, 'StrategyRandomizer', {3 } },
+        { CF, 'CoinFlip', {47 } },
    
-        { EBC, 'GreaterThanEconStorageRatio', { 0.00, 1.0}},
+      
         
     },
     BuilderType = 'Any',
@@ -377,11 +344,11 @@ Builder {
     BuilderName = 'NC Assist Build t3 coinflip',
     PlatoonTemplate = 'T3EngineerAssist',
     Priority = 1001,
-    PlatoonAddFunctions = { {SAI, 'BuildOnce'}, },
+    
 
-    InstanceCount = 1,
+    InstanceCount = 8,
     BuilderConditions = {
-        { CF, 'StrategyRandomizer', {3 } },
+        { CF, 'CoinFlip', {47 } },
         { MIBC, 'GreaterThanGameTime', { 1000 } },
         { UCBC, 'LocationEngineersBuildingGreater', { 'LocationType', 0, categories.STRUCTURE * categories.NUKE}},
         { SIBC, 'GreaterThanEconEfficiencyOverTime', { 0.95, 1.05}},
@@ -400,7 +367,82 @@ Builder {
         },
     }
 },
+Builder {
+    BuilderName = 'NC Assist Build Nuke Missile',
+    PlatoonTemplate = 'AnyEngineerassistNC',
+    Priority = 950,
+    InstanceCount = 15,
+    BuilderConditions = {
+        { CF, 'CoinFlip', {47 } },
+        { MIBC, 'GreaterThanGameTime', { 1000 } },
+        { UCBC, 'UnitsGreaterAtLocation', { 'LocationType', 0, 'NUKE STRUCTURE'}},
+        { SIBC, 'GreaterThanEconEfficiencyOverTime', { 0.95, 1.05}},
+        
+    },
+    BuilderType = 'Any',
+    BuilderData = {
+        Assist = {
+            AssistLocation = 'LocationType',
+            AssisteeType = 'NonUnitBuildingStructure',
+            AssistRange = 150,
+            AssisteeCategory = 'STRUCTURE NUKE',
+            Time = 300,
+        },
+    }
+},
+Builder {
+    BuilderName = 'NC cmd Assist Build nuke coinflip',
+    PlatoonTemplate = 'CommanderAssistSorian',
+    Priority = 1001,
+    
+
+   
+    BuilderConditions = {
+        { CF, 'CoinFlip', {47 } },
+        { MIBC, 'GreaterThanGameTime', { 1000 } },
+        { UCBC, 'LocationEngineersBuildingGreater', { 'LocationType', 0, categories.STRUCTURE * categories.NUKE}},
+        { SIBC, 'GreaterThanEconEfficiencyOverTime', { 0.95, 1.05}},
+       
+        
+        
+    },
+    BuilderType = 'Any',
+    BuilderData = {
+        Assist = {
+            AssistLocation = 'LocationType',
+            AssisteeType = 'Engineer',
+            AssistRange = 150,
+            BeingBuiltCategories = {'STRUCTURE NUKE'},
+            Time = 320,
+        },
+    }
+},
+Builder {
+    BuilderName = 'NC cmd Assist Build Nuke Missile',
+    PlatoonTemplate = 'CommanderAssistSorian',
+    Priority = 950,
+
+    BuilderConditions = {
+        { CF, 'CoinFlip', {47 } },
+        { MIBC, 'GreaterThanGameTime', { 1000 } },
+        { UCBC, 'UnitsGreaterAtLocation', { 'LocationType', 0, 'NUKE STRUCTURE'}},
+        { SIBC, 'GreaterThanEconEfficiencyOverTime', { 0.95, 1.05}},
+        
+    },
+    BuilderType = 'Any',
+    BuilderData = {
+        Assist = {
+            AssistLocation = 'LocationType',
+            AssisteeType = 'NonUnitBuildingStructure',
+            AssistRange = 150,
+            AssisteeCategory = 'STRUCTURE NUKE',
+            Time = 300,
+        },
+    }
+},
 }
+
+
 
 ----arty rush
 
@@ -411,11 +453,12 @@ Builder {
     BuilderName = 'NC arty in range coinflip',
     PlatoonTemplate = 'T3EngineerBuilderSorian',
     Priority = 1500,
-    PlatoonAddFunctions = { {SAI, 'BuildOnce'}, },
+    DelayEqualBuildPlattons = {'Artyrush', 400},
    
     BuilderConditions = {
         { MIBC, 'GreaterThanGameTime', { 1000 } },
-        { CF, 'StrategyRandomizer', {4 } },
+        { UCBC, 'CheckBuildPlattonDelay', { 'Artyrush' }},
+        { CF, 'CoinFlip', {4 } },
         {WRC,'CheckUnitRangeNC', { 'LocationType', 'T3Artillery', categories.STRUCTURE } },
         { SIBC, 'HaveLessThanUnitsInCategoryBeingBuilt', { 1, categories.TECH3 * categories.ARTILLERY } },
         
@@ -459,7 +502,7 @@ Builder {
     PlatoonAddFunctions = { {SAI, 'BuildOnce'}, },
     BuilderType = 'Any',
     BuilderConditions = {
-        { CF, 'StrategyRandomizer', {6 } },
+        { CF, 'CoinFlip', {6 } },
         { SBC, 'MapGreaterThan', { 1000, 1000 }},
         { MIBC, 'GreaterThanGameTime', { 1200} },
        
@@ -493,7 +536,7 @@ Builder {
         { SBC, 'MapGreaterThan', { 500, 500 }},
         { MIBC, 'FactionIndex', {2, 4}},
         { MIBC, 'GreaterThanGameTime', { 1000} },
-        { CF, 'StrategyRandomizer', {6 } },
+        { CF, 'CoinFlip', {6 } },
         { SIBC, 'HaveLessThanUnitsInCategoryBeingBuilt', { 1, categories.EXPERIMENTAL * categories.AIR }},
         { UCBC, 'HaveGreaterThanUnitsWithCategory', { 2, categories.TECH2 * categories.ENERGYPRODUCTION} },
         
@@ -541,7 +584,7 @@ BuilderGroup {
         BuilderType = 'Any',
         BuilderConditions = {
             { MIBC, 'GreaterThanGameTime', { 1000} },
-            { CF, 'StrategyRandomizer', {2 } },
+            { CF, 'CoinFlip', {2 } },
             { SBC, 'MapLessThan', { 2000, 2000 }},
             { UCBC, 'PoolGreaterAtLocation', { 'LocationType', 0, 'EXPERIMENTAL LAND' } },
 			
@@ -571,7 +614,7 @@ BuilderGroup {
         InstanceCount = 1,
         BuilderConditions = {
             { MIBC, 'GreaterThanGameTime', { 1000} },
-            { CF, 'StrategyRandomizer', {2 } },
+            { CF, 'CoinFlip', {2 } },
             { SBC, 'MapLessThan', { 2000, 2000 }},
           
          
@@ -611,11 +654,11 @@ BuilderGroup {
     
         BuilderConditions = {
             { MIBC, 'LessThanGameTime', { 1200 } },
-            { CF, 'StrategyRandomizer', {7 } },
+            { CF, 'CoinFlip', {7 } },
             { SBC, 'MapLessThan', { 2000, 2000 }},
             { WRC, 'CanPathToCurrentEnemyNC', { 'LocationType', true } },
            
-            { SIBC, 'HaveLessThanUnitsWithCategory', { 15, categories.FACTORY * categories.LAND}},
+            { SIBC, 'HaveLessThanUnitsWithCategory', { 20, categories.FACTORY * categories.LAND}},
             { SIBC, 'HaveLessThanUnitsInCategoryBeingBuilt', { 3, categories.STRUCTURE * categories.TECH1 * categories.FACTORY } },
             { SIBC, 'HaveLessThanUnitsInCategoryBeingBuilt', { 2, categories.STRUCTURE * (categories.TECH2 + categories.TECH3)  * categories.ENERGYPRODUCTION } },
             
@@ -651,10 +694,10 @@ BuilderGroup {
         BuilderConditions = {
             { MIBC, 'LessThanGameTime', { 1200 } },
             { SBC, 'MapLessThan', { 2000, 2000 }},
-            { CF, 'StrategyRandomizer', {7 } },
+            { CF, 'CoinFlip', {7 } },
             { WRC, 'CanPathToCurrentEnemyNC', { 'LocationType', true } },
          
-            { UCBC, 'HaveLessThanUnitsWithCategory', { 3, categories.FACTORY * categories.TECH3 * categories.LAND }},
+            
            
 			
            
@@ -673,10 +716,10 @@ BuilderGroup {
         BuilderConditions = {
             { MIBC, 'LessThanGameTime', { 1200 } },
             { SBC, 'MapLessThan', { 2000, 2000 }},
-            { CF, 'StrategyRandomizer', {7 } },
+            { CF, 'CoinFlip', {7 } },
             { WRC, 'CanPathToCurrentEnemyNC', { 'LocationType', true } },
         
-            { UCBC, 'HaveLessThanUnitsWithCategory', { 3, categories.FACTORY * categories.TECH3 * categories.LAND }},
+            
           
 			
             
@@ -697,13 +740,13 @@ BuilderGroup {
         PlatoonTemplate = 'UEFT3EngineerBuilderSorian',
         Priority = 1100,
         BuilderConditions = {
-            { CF, 'StrategyRandomizer', {11 } },
+            { CF, 'CoinFlip', {11 } },
             { MIBC, 'FactionIndex', {1}},
             { SBC, 'MapGreaterThan', { 500, 500 }},
             { MIBC, 'GreaterThanGameTime', { 1000} },
             
-            { EBC, 'GreaterThanEconStorageCurrent', { 2500, 1000 } },
-            { UCBC, 'HaveGreaterThanUnitsWithCategory', { 0, categories.ENERGYPRODUCTION * categories.TECH3 } },
+            { EBC, 'GreaterThanEconStorageCurrent', { 500, 1000 } },
+            { UCBC, 'HaveGreaterThanUnitsWithCategory', { 0, categories.ENERGYPRODUCTION * (categories.TECH3 + categories.TECH2) } },
 
            
         },
@@ -727,11 +770,11 @@ BuilderGroup {
         Priority = 1200,
     
         BuilderConditions = {
-            { CF, 'StrategyRandomizer', {11 } },
+            { CF, 'CoinFlip', {11 } },
             { MIBC, 'FactionIndex', {1}},
             { UCBC, 'LocationEngineersBuildingGreater', { 'LocationType', 0, categories.EXPERIMENTAL * categories.ORBITALSYSTEM }},
        --- 
-       { EBC, 'GreaterThanEconStorageCurrent', { 5000, 7000 } },
+       { EBC, 'GreaterThanEconStorageCurrent', { 500, 7000 } },
             
         },
         BuilderType = 'Any',
@@ -750,11 +793,11 @@ BuilderGroup {
         Priority = 1200,
     
         BuilderConditions = {
-            { CF, 'StrategyRandomizer', {11 } },
+            { CF, 'CoinFlip', {11 } },
             { MIBC, 'FactionIndex', {1}},
             { UCBC, 'LocationEngineersBuildingGreater', { 'LocationType', 0, categories.EXPERIMENTAL * categories.ORBITALSYSTEM }},
             --- 
-            { EBC, 'GreaterThanEconStorageCurrent', { 5000, 7000 } },
+            { EBC, 'GreaterThanEconStorageCurrent', { 500, 7000 } },
             
         },
         BuilderType = 'Any',
@@ -777,13 +820,15 @@ Builder {
     BuilderName = 'nc T3 Nuke dukenukem',
     PlatoonTemplate = 'T3EngineerBuilderSorian',
     Priority = 1100,
+    DelayEqualBuildPlattons = {'dukenukem', 120},
     InstanceCount = 1,
-    PlatoonAddFunctions = { {SAI, 'BuildOnce'}, },
+    
     BuilderConditions = {
         { MIBC, 'GreaterThanGameTime', { 600 } },
-        { CF, 'StrategyRandomizer', {12 } },
+        { CF, 'DukeNukemEnabled', {} },
+        { UCBC, 'CheckBuildPlattonDelay', { 'dukenukem' }},
         { EBC, 'GreaterThanEconStorageCurrent', { 1000, 7000 } },
-        { UCBC, 'HaveGreaterThanUnitsWithCategory', { 1, categories.ENERGYPRODUCTION * categories.TECH2 } },
+        { UCBC, 'HaveGreaterThanUnitsWithCategory', { 1, categories.ENERGYPRODUCTION * (categories.TECH2 + categories.TECH3) } },
         
     },
     BuilderType = 'Any',
@@ -803,11 +848,11 @@ Builder {
     BuilderName = 'NC Assist Build duke nukem',
     PlatoonTemplate = 'T3EngineerAssist',
     Priority = 1301,
-    PlatoonAddFunctions = { {SAI, 'BuildOnce'}, },
+    
 
     InstanceCount = 1,
     BuilderConditions = {
-        { CF, 'StrategyRandomizer', {12 } },
+        { CF, 'DukeNukemEnabled', {} },
         { MIBC, 'GreaterThanGameTime', { 1000 } },
         { UCBC, 'LocationEngineersBuildingGreater', { 'LocationType', 0, categories.STRUCTURE * categories.NUKE}},
         { EBC, 'GreaterThanEconStorageCurrent', { 1000, 7000 } },
@@ -838,7 +883,7 @@ BuilderGroup {
 		InstanceCount = 1,
         BuilderConditions = {
             { MIBC, 'FactionIndex', {2}},
-            { CF, 'StrategyRandomizer', {13 } },
+            { CF, 'CoinFlip', {13 } },
             { MIBC, 'GreaterThanGameTime', { 1000} },
 		    { SIBC, 'HaveGreaterThanUnitsWithCategory', { 0, categories.ENERGYPRODUCTION * categories.TECH3}},
             { UCBC, 'HaveLessThanUnitsInCategoryBeingBuilt', { 1, categories.EXPERIMENTAL * categories.ECONOMIC }},
@@ -865,7 +910,7 @@ BuilderGroup {
 		InstanceCount = 1,
         BuilderConditions = {
             { MIBC, 'FactionIndex', {2}},
-            { CF, 'StrategyRandomizer', {13}},
+            { CF, 'CoinFlip', {13}},
             { MIBC, 'GreaterThanGameTime', { 1000} },
 		    { SIBC, 'HaveGreaterThanUnitsWithCategory', { 1, categories.EXPERIMENTAL * categories.ECONOMIC}},
             { UCBC, 'HaveLessThanUnitsInCategoryBeingBuilt', { 1, categories.EXPERIMENTAL * categories.ECONOMIC }},
@@ -885,16 +930,17 @@ BuilderGroup {
             }
         }
     },
+  
     Builder {
         BuilderName = 'NC T2 Engineer coinflip paragon',
         PlatoonTemplate = 'T2EngineerAssist',
         Priority = 1100,
-        InstanceCount = 2,
+        InstanceCount = 6,
         BuilderConditions = {
             { MIBC, 'FactionIndex', {2}},
-            { CF, 'StrategyRandomizer', {13 } },
+            { CF, 'CoinFlip', {13 } },
             { EBC, 'GreaterThanEconStorageCurrent', { 3000, 15000 } },
-            { UCBC, 'LocationEngineersBuildingGreater', { 'LocationType', 0, categories.EXPERIMENTAL * categories.ECONOMIC}},
+            { UCBC, 'LocationEngineersBuildingGreater', { 'LocationType', 0, categories.EXPERIMENTAL * categories.ECONOMIC }},
         },
         BuilderType = 'Any',
         BuilderData = {
@@ -911,10 +957,10 @@ BuilderGroup {
         BuilderName = 'NC T3 Engineer coinflip paragon',
         PlatoonTemplate = 'T3EngineerAssist',
         Priority = 1100,
-        InstanceCount = 2,
+        InstanceCount = 6,
         BuilderConditions = {
             { MIBC, 'FactionIndex', {2}},
-            { CF, 'StrategyRandomizer', {13 } },
+            { CF, 'CoinFlip', {13 } },
             { EBC, 'GreaterThanEconStorageCurrent', { 3000, 15000 } },
             { UCBC, 'LocationEngineersBuildingGreater', { 'LocationType', 0, categories.EXPERIMENTAL * categories.ECONOMIC }},
         },
@@ -931,4 +977,116 @@ BuilderGroup {
     },
 }
 
+
   
+BuilderGroup {
+    BuilderGroupName = 'NCcoinrapidfire',
+    BuildersType = 'EngineerBuilder',
+Builder {
+    BuilderName = 'NC coinflip rapid fire',
+    PlatoonTemplate = 'AeonT3EngineerBuilderSorian',
+    Priority = 1050,
+    DelayEqualBuildPlattons = {'MobileExperimental_rapid', 500},
+    BuilderConditions = {
+        { MIBC, 'FactionIndex', {2}},
+        { SBC, 'MapGreaterThan', { 500, 500 }},
+        { CF, 'CoinFlip', {15} },
+        { MIBC, 'GreaterThanGameTime', { 1500 } },
+        { UCBC, 'CheckBuildPlattonDelay', { 'MobileExperimental_rapid' }},
+  
+        { SIBC, 'HaveLessThanUnitsInCategoryBeingBuilt', { 1, categories.STRUCTURE  * categories.ARTILLERY - categories.TECH2}},
+        { WRC,'CheckUnitRangeNC', { 'LocationType', 'T3RapidArtillery', categories.STRUCTURE, 2 } },
+        { SIBC, 'HaveGreaterThanUnitsWithCategory', { 0, categories.ENERGYPRODUCTION * categories.TECH3 } },
+   
+       
+ 
+
+
+    },
+    BuilderType = 'Any',
+    BuilderData = {
+        MinNumAssistees = 2,
+        Construction = {
+            BuildClose = true,
+            #T4 = true,
+        
+            BuildStructures = {
+                'T3RapidArtillery',
+'T3ShieldDefense',
+
+            },
+            Location = 'LocationType',
+        }
+    }
+},
+Builder {
+    BuilderName = 'NC t3 assist rapid arty - coinflip',
+    PlatoonTemplate = 'T3EngineerAssist',
+    Priority = 1201,
+    InstanceCount = 20,
+    BuilderConditions = {
+        { MIBC, 'GreaterThanGameTime', { 1200 } },
+        { UCBC, 'LocationEngineersBuildingGreater', { 'LocationType', 0, categories.ARTILLERY * categories.TECH3 * categories.STRUCTURE}},
+        { CF, 'CoinFlip', {15} },
+     
+   --
+        { EBC, 'GreaterThanEconStorageCurrent', { 3000, 15000 } },
+    },
+    BuilderType = 'Any',
+    BuilderData = {
+        Assist = {
+            AssistLocation = 'LocationType',
+            AssisteeType = 'Engineer',
+            AssistRange = 250,
+            BeingBuiltCategories = {'ARTILLERY TECH3 STRUCTURE'},
+            Time = 300,
+        },
+    }
+},
+Builder {
+    BuilderName = 'NC t2 assist arty - coinflip',
+    PlatoonTemplate = 'T2EngineerAssist',
+    Priority = 1201,
+    InstanceCount = 20,
+    BuilderConditions = {
+        { MIBC, 'GreaterThanGameTime', { 1200 } },
+        { UCBC, 'LocationEngineersBuildingGreater', { 'LocationType', 0, categories.ARTILLERY * categories.TECH3 * categories.STRUCTURE}},
+     
+   --
+        { EBC, 'GreaterThanEconStorageCurrent', { 3000, 15000 } },
+    },
+    BuilderType = 'Any',
+    BuilderData = {
+        Assist = {
+            AssistLocation = 'LocationType',
+            AssisteeType = 'Engineer',
+            AssistRange = 250,
+            BeingBuiltCategories = {'ARTILLERY TECH3 STRUCTURE'},
+            Time = 300,
+        },
+    }
+},
+Builder {
+    BuilderName = 'NC t1 assist arty - coinflip',
+    PlatoonTemplate = 'EngineerAssist',
+    Priority = 1201,
+    InstanceCount = 10,
+    BuilderConditions = {
+        { MIBC, 'GreaterThanGameTime', { 1200 } },
+        { UCBC, 'LocationEngineersBuildingGreater', { 'LocationType', 0, categories.ARTILLERY * categories.TECH3 * categories.STRUCTURE}},
+     
+   --
+        { EBC, 'GreaterThanEconStorageCurrent', { 3000, 15000 } },
+    },
+    BuilderType = 'Any',
+    BuilderData = {
+        Assist = {
+            AssistLocation = 'LocationType',
+            AssisteeType = 'Engineer',
+            AssistRange = 250,
+            BeingBuiltCategories = {'ARTILLERY TECH3 STRUCTURE'},
+            Time = 300,
+        },
+    }
+},
+}

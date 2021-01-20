@@ -4,6 +4,7 @@
 BaseBuilderTemplate {
     BaseTemplateName = 'NutCrackerExpansionBase',
     Builders = {
+      
         'ncdukehukemcoinflip',
         'NC_coinflip_factoryupgrade',
    
@@ -26,6 +27,8 @@ BaseBuilderTemplate {
 
 
         # ==== ECONOMY ==== #
+        'NCengineertowers',
+        'NC tower upgrades',
         'NCT3Engineerassistmex',
         'NCemergencyenergy',
         'NCsubcommander_ras',

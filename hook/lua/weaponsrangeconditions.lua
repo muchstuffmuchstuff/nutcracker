@@ -135,7 +135,7 @@ function AIFindNearestCategoryTeleportLocationNC(aiBrain, position, maxRange, Mo
     local TargetsInRange, TargetPosition, category, distance, targetRange, AntiteleportUnits
 
     TargetsInRange = aiBrain:GetUnitsAroundPoint(TargetSearchCategory, position, maxRange, 'Enemy')
-    --LOG('* AIFindNearestCategoryTeleportLocation: numTargets '..table.getn(TargetsInRange)..'  ')
+    LOG('* AIFindNearestCategoryTeleportLocation: numTargets '..table.getn(TargetsInRange)..'  ')
     --DrawCircle(position, range, '0000FF')
     for _, v in MoveToCategories do
         category = v
@@ -162,7 +162,7 @@ function AIFindNearestCategoryTeleportLocationNC(aiBrain, position, maxRange, Mo
                     -- Check if the target is protected by antiteleporter
                     if categories.ANTITELEPORT then 
                         AntiteleportUnits = aiBrain:GetUnitsAroundPoint(categories.ANTITELEPORT, TargetPosition, 60, 'Enemy')
-                        --LOG('* AIFindNearestCategoryTeleportLocation: numAntiteleportUnits '..table.getn(AntiteleportUnits)..'  ')
+                        LOG('* AIFindNearestCategoryTeleportLocation: numAntiteleportUnits '..table.getn(AntiteleportUnits)..'  ')
                         local scrambled = false
                         for i, unit in AntiteleportUnits do
                             -- If it's an ally, then we skip.
@@ -172,7 +172,7 @@ function AIFindNearestCategoryTeleportLocationNC(aiBrain, position, maxRange, Mo
                                 local AntiTeleportTowerPosition = unit:GetPosition()
                                 local dist = VDist2(TargetPosition[1], TargetPosition[3], AntiTeleportTowerPosition[1], AntiTeleportTowerPosition[3])
                                 if dist and NoTeleDistance >= dist then
-                                    --LOG('* AIFindNearestCategoryTeleportLocation: Teleport Destination Scrambled 1 '..repr(TargetPosition)..' - '..repr(AntiTeleportTowerPosition))
+                                    LOG('* AIFindNearestCategoryTeleportLocation: Teleport Destination Scrambled 1 '..repr(TargetPosition)..' - '..repr(AntiTeleportTowerPosition))
                                     scrambled = true
                                     break
                                 end
@@ -182,7 +182,7 @@ function AIFindNearestCategoryTeleportLocationNC(aiBrain, position, maxRange, Mo
                             continue
                         end
                     end
-                    --LOG('* AIFindNearestCategoryTeleportLocation: Found a target that is not Teleport Scrambled')
+                    LOG('* AIFindNearestCategoryTeleportLocation: Found a target that is not Teleport Scrambled')
                     TargetUnit = Target
                     distance = targetRange
                 end
@@ -214,50 +214,7 @@ function RandomizePositionNC(position)
     return {X, Y, Z}
 end
 
-function AIFindUndefendedBrainTargetInRangeNC(aiBrain, platoon, squad, maxRange, atkPri)
-    local position = platoon:GetPlatoonPosition()
-    if not aiBrain or not position or not maxRange then
-        return false
-    end
 
-    local numUnits = table.getn(platoon:GetPlatoonUnits())
-    local maxShields = math.ceil(numUnits / 7)
-    local targetUnits = aiBrain:GetUnitsAroundPoint(categories.ALLUNITS, position, maxRange, 'Enemy')
-    for _, v in atkPri do
-        local retUnit = false
-        local distance = false
-        local targetShields = 9999
-        for num, unit in targetUnits do
-            if not unit.Dead and EntityCategoryContains(v, unit) and platoon:CanAttackTarget(squad, unit) then
-                local unitPos = unit:GetPosition()
-                local numShields = aiBrain:GetNumUnitsAroundPoint(categories.DEFENSE * categories.SHIELD * categories.STRUCTURE, unitPos, 46, 'Enemy')
-                if numShields < maxShields and (not retUnit or numShields < targetShields or (numShields == targetShields and Utils.XZDistanceTwoVectors(position, unitPos) < distance)) then
-                    retUnit = unit
-                    distance = Utils.XZDistanceTwoVectors(position, unitPos)
-                    targetShields = numShields
-                end
-            end
-        end
-        if retUnit and targetShields > 0 then
-            local platoonUnits = platoon:GetPlatoonUnits()
-            for _, w in platoonUnits do
-                if not w.Dead then
-                    unit = w
-                    break
-                end
-            end
-            local closestBlockingShield = AIBehaviors.GetClosestShieldProtectingTargetSorian(unit, retUnit)
-            if closestBlockingShield then
-                return closestBlockingShield
-            end
-        end
-        if retUnit then
-            return retUnit
-        end
-    end
-
-    return false
-end
 
 function CompareBodyNC(numOne, numTwo, compareType)
     if compareType == '>' then

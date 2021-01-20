@@ -131,7 +131,7 @@ BuilderGroup {
         Priority = 102,
         InstanceCount = 4,
         BuilderConditions = { 
-        
+            { MIBC, 'GreaterThanGameTime', { 600 } },
                         { UCBC, 'PoolGreaterAtLocation', { 'LocationType', 0, categories.MOBILE * categories.LAND - categories.ENGINEER - categories.EXPERIMENTAL } },
 			{ SBC, 'NoRushTimeCheck', { 0 }},
         },
@@ -204,34 +204,7 @@ BuilderGroup {
         BuilderType = 'Any',
     },
     
-    Builder {
-        BuilderName = 'NC scoutbots attack mass',
-        PlatoonTemplate = 'NC t1massattack', 
-		PlatoonAddPlans = {'PlatoonCallForHelpAISorian', 'DistressResponseAISorian'},
-        PlatoonAddBehaviors = { 'AirLandToggleSorian' },
-        Priority = 10,
-        InstanceCount = 70,
-        BuilderConditions = { 
-            
-            
-                        { UCBC, 'PoolGreaterAtLocation', { 'LocationType', 0, categories.uel0106 + categories.ual0106 + categories.url0106 + categories.xsl0101 } },
-			{ SBC, 'NoRushTimeCheck', { 0 }},
-        },
-        BuilderData = {
-        
-          
-                       
-			ThreatSupport = 40,
-            PrioritizedCategories = {
-
-
-            'COMMAND',
-                
-            },
-        },    
-      
-        BuilderType = 'Any',
-    },
+    
        
     
     Builder {
@@ -244,7 +217,37 @@ BuilderGroup {
         
         BuilderConditions = { 
         
+            { MIBC, 'GreaterThanGameTime', { 1000 } },
+                        { UCBC, 'PoolGreaterAtLocation', { 'LocationType', 0, categories.MOBILE * categories.LAND - categories.ENGINEER } },
+			{ SBC, 'NoRushTimeCheck', { 0 }},
+        },
+        BuilderData = {
+            RequireTransport = true,
+            AttackEnemyStrength = 92,  
+            TargetSearchCategory = categories.STRUCTURE,
+            MoveToCategories = {                                               
+                categories.STRUCTURE,
+                
+            },
+            SearchRadius = 6000,
+			ThreatSupport = 40,
            
+        },    
+       
+        BuilderType = 'Any',
+    },
+    Builder {
+        BuilderName = 'NC t1 spammage all game early',
+        PlatoonTemplate = 'NC t1spammagesmall',
+		PlatoonAddPlans = {'PlatoonCallForHelpAISorian', 'DistressResponseAISorian'},
+		PlatoonAddBehaviors = { 'AirLandToggleSorian' },
+        Priority = 100,
+        InstanceCount = 70,
+        
+        BuilderConditions = { 
+        
+           
+            { MIBC, 'LessThanGameTime', { 1000 } },
                         { UCBC, 'PoolGreaterAtLocation', { 'LocationType', 0, categories.MOBILE * categories.LAND - categories.ENGINEER } },
 			{ SBC, 'NoRushTimeCheck', { 0 }},
         },
