@@ -44,7 +44,7 @@ BuilderGroup {
 	
         BuilderConditions = {
             { MIBC, 'FactionIndex', {1} },
-            { MIBC, 'GreaterThanGameTime', { 1800 } },
+            { MIBC, 'GreaterThanGameTime', { 1200 } },
             { SBC, 'MapGreaterThan', { 1000, 1000 }},
           
             {CF, 'NoSateliteRush',{}},
@@ -60,8 +60,8 @@ BuilderGroup {
         BuilderData = {
 			MinNumAssistees = 2,
             Construction = {
-                BuildClose = true,
-				#T4 = true,
+             
+		
 				AdjacencyCategory = 'SHIELD STRUCTURE',
                 BuildStructures = {
                     'T4Artillery',
@@ -80,7 +80,7 @@ BuilderGroup {
 		InstanceCount = 1,
         BuilderConditions = {
             { MIBC, 'FactionIndex', {1} },
-            { MIBC, 'GreaterThanGameTime', { 1800 } },
+            { MIBC, 'GreaterThanGameTime', { 1200} },
             { SBC, 'MapGreaterThan', { 500, 500 }},
             {CF, 'NoSateliteRush',{}},
             {CF, 'NoDukeNukem',{}},
@@ -111,6 +111,79 @@ BuilderGroup {
         }
     },
 
+    Builder {
+        BuilderName = 'NC T4 Artillery Engineer - Cybran',
+        PlatoonTemplate = 'T3EngineerBuilderSorian',
+        PlatoonAddPlans = {'NameUnitsSorian'},
+        Priority = 999,
+        InstanceCount = 1,
+        BuilderConditions = {
+
+            { MIBC, 'FactionIndex', {3} },
+            { MIBC, 'GreaterThanGameTime', { 1200} },
+            { SBC, 'MapGreaterThan', { 500, 500 }},
+      
+            {CF, 'NoDukeNukem',{}},
+          
+            {WRC, 'CheckUnitRangeNC', { 'LocationType', 'T4Artillery', categories.STRUCTURE } },
+            
+            { SIBC, 'HaveLessThanUnitsInCategoryBeingBuilt', { 1, categories.EXPERIMENTAL * categories.ARTILLERY }},
+
+            { EBC, 'GreaterThanEconStorageCurrent', { 10000, 15000 } },
+         
+        },
+        BuilderType = 'Any',
+        BuilderData = {
+            MinNumAssistees = 2,
+            Construction = {
+            
+           
+            
+             
+                AdjacencyCategory = 'ENERGYPRODUCTION TECH3',
+                BuildStructures = {
+                    'T4LandExperimental2',
+                },
+                Location = 'LocationType',
+            }
+        }
+    },
+
+    Builder {
+        BuilderName = 'NC T4 Artillery Engineer - Cybran escalation',
+        PlatoonTemplate = 'T3EngineerBuilderSorian',
+        PlatoonAddPlans = {'NameUnitsSorian'},
+        Priority = 999,
+        InstanceCount = 1,
+        BuilderConditions = {
+
+            { MIBC, 'FactionIndex', {3} },
+            { MIBC, 'GreaterThanGameTime', { 1200} },
+            { SBC, 'MapGreaterThan', { 500, 500 }},
+      
+            {CF, 'NoDukeNukem',{}},
+          
+            {WRC, 'CheckUnitRangeNC', { 'LocationType', 'T4Artillery', categories.STRUCTURE } },
+            
+            { SIBC, 'HaveLessThanUnitsInCategoryBeingBuilt', { 1, categories.EXPERIMENTAL * categories.ARTILLERY }},
+
+            { EBC, 'GreaterThanEconStorageCurrent', { 35000, 15000 } },
+         
+        },
+        BuilderType = 'Any',
+        BuilderData = {
+            MinNumAssistees = 2,
+            Construction = {
+          
+             
+                AdjacencyCategory = 'ENERGYPRODUCTION TECH3',
+                BuildStructures = {
+                    'T4LandExperimental2',
+                },
+                Location = 'LocationType',
+            }
+        }
+    },
 	
     Builder {
         BuilderName = 'NC T4EngineerAssistBuildHLRA',
@@ -118,8 +191,8 @@ BuilderGroup {
         Priority = 950,
         InstanceCount = 2,
         BuilderConditions = {
-            { MIBC, 'GreaterThanGameTime', { 1800 } },
-            { UCBC, 'LocationEngineersBuildingGreater', { 'LocationType', 0, categories.ARTILLERY * categories.TECH3 * categories.STRUCTURE}},
+            { MIBC, 'GreaterThanGameTime', { 1200} },
+            { UCBC, 'LocationEngineersBuildingGreater', { 'LocationType', 0, categories.ARTILLERY * categories.EXPERIMENTAL}},
            
 { EBC, 'GreaterThanEconStorageCurrent', { 15, 100 } },
             
@@ -142,8 +215,8 @@ BuilderGroup {
         Priority = 1200,
         InstanceCount = 10,
         BuilderConditions = {
-            { MIBC, 'GreaterThanGameTime', { 1800 } },
-            { UCBC, 'LocationEngineersBuildingGreater', { 'LocationType', 0, categories.ARTILLERY * categories.TECH3 * categories.STRUCTURE}},
+            { MIBC, 'GreaterThanGameTime', { 1200} },
+            { UCBC, 'LocationEngineersBuildingGreater', { 'LocationType', 0, categories.ARTILLERY * categories.EXPERIMENTAL}},
            ---  
 { EBC, 'GreaterThanEconStorageCurrent', { 10000, 100 } },
            
@@ -243,7 +316,7 @@ BuilderGroup {
 			MinNumAssistees = 2,
             Construction = {
                 BuildClose = true,
-				AdjacencyCategory = 'ENERGYPRODUCTION',
+				AdjacencyCategory = 'ENERGYPRODUCTION TECH3',
                 BuildStructures = {
                     'T3StrategicMissile',
                 },
@@ -342,7 +415,7 @@ BuilderGroup {
 		DelayEqualBuildPlattons = {'MobileExperimental_exp_nuke', 400},
         BuilderConditions = {
             { MIBC, 'FactionIndex', {4}},
-            { MIBC, 'GreaterThanGameTime', { 1600 } },
+            { MIBC, 'GreaterThanGameTime', { 1200 } },
             { SBC, 'MapGreaterThan', { 500, 500 }},
             { UCBC, 'CheckBuildPlattonDelay', { 'MobileExperimental_exp_nuke' }},
             { EBC, 'GreaterThanEconStorageCurrent', { 15000, 20000 } },
@@ -494,9 +567,7 @@ BuilderGroup {
             { SIBC, 'HaveLessThanUnitsInCategoryBeingBuilt', { 1, categories.STRUCTURE  * categories.ARTILLERY - categories.TECH2}},
             { WRC,'CheckUnitRangeNC', { 'LocationType', 'T3RapidArtillery', categories.STRUCTURE, 2 } },
 			{ SIBC, 'HaveGreaterThanUnitsWithCategory', { 4, categories.ENERGYPRODUCTION * categories.TECH3 } },
-       
-           
-     
+
 { EBC, 'GreaterThanEconStorageCurrent', { 25000, 10000 } }, 
  
         },
@@ -649,20 +720,15 @@ BuilderGroup {
         BuilderName = 'NC T3 Nuke Silo',
         PlatoonTemplate = 'T3NukeNC',
         Priority = 1,
-        InstanceCount = 10,
+        InstanceCount = 100,
         BuilderType = 'Any',
        
     },
-    
-
-
-
-
     Builder {
         BuilderName = 'NC T4 Nuke Silo',
         PlatoonTemplate = 'T4NukeSorian',
         Priority = 1,
-        InstanceCount = 10,
+        InstanceCount = 100,
         BuilderType = 'Any',
     },
 }

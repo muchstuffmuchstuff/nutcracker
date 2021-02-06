@@ -85,7 +85,7 @@ BuilderGroup {
         },
         BuilderConditions = {
 
-            { UCBC, 'PoolGreaterAtLocation', { 'LocationType', 0, categories.MOBILE * categories.NAVAL - categories.EXPERIMENTAL - categories.CARRIER} },
+            { UCBC, 'PoolGreaterAtLocation', { 'LocationType', 0, categories.MOBILE * categories.NAVAL - categories.EXPERIMENTAL - categories.CARRIER } },
             { SeaAttackCondition, { 'LocationType', 20 } },
 			{ SBC, 'NoRushTimeCheck', { 0 }},
         },
@@ -135,7 +135,7 @@ BuilderGroup {
 			{ SBC, 'NoRushTimeCheck', { 600 }},
 			
 			
-           { EBC, 'GreaterThanEconTrend', { 0, 000 } }, 
+            { EBC, 'GreaterThanEconStorageCurrent', { 15, 150 } },
             
         },
         BuilderType = 'Sea',
@@ -158,10 +158,52 @@ BuilderGroup {
 			{ SBC, 'NoRushTimeCheck', { 600 }},
 { UCBC, 'HaveUnitsWithCategoryAndAlliance', { true, 1, categories.NAVAL * categories.MOBILE,  'Enemy' }},
 			
-           { EBC, 'GreaterThanEconTrend', { 0, 0 } }, 
+  { EBC, 'GreaterThanEconStorageCurrent', { 25, 300 } },
             
         },
     },
+}
+
+BuilderGroup {
+    BuilderGroupName = 'NCT3SeaFactoryBuilders',
+    BuildersType = 'FactoryBuilder',
+    Builder {
+        BuilderName = 'NC t3 subkiller',
+        PlatoonTemplate = 'T3SubKiller',
+        Priority = 791,
+        InstanceCount = 1,
+        BuilderType = 'Sea',
+        BuilderConditions = {
+            { MIBC, 'FactionIndex', {4} },
+            { MIBC, 'GreaterThanGameTime', { 1000} },
+            { UCBC, 'HaveLessThanUnitsWithCategory', {5, categories.xss0304 } },
+			{ SBC, 'NoRushTimeCheck', { 600 }},
+{ UCBC, 'HaveUnitsWithCategoryAndAlliance', { true, 1, categories.NAVAL * categories.MOBILE,  'Enemy' }},
+			
+ { EBC, 'GreaterThanEconStorageCurrent', { 40, 400 } },
+            
+        },
+    },
+    Builder {
+        BuilderName = 'NC t3 battleship',
+        PlatoonTemplate = 'T3SeaBattleship',
+        Priority = 792,
+        InstanceCount = 1,
+        BuilderType = 'Sea',
+        BuilderConditions = {
+           
+            { MIBC, 'GreaterThanGameTime', { 1000} },
+            { SIBC, 'HaveLessThanUnitsInCategoryBeingBuilt', { 1, categories.BATTLESHIP }},
+            { UCBC, 'HaveLessThanUnitsWithCategory', {5, categories.BATTLESHIP } },
+            
+			{ SBC, 'NoRushTimeCheck', { 600 }},
+{ UCBC, 'HaveUnitsWithCategoryAndAlliance', { true, 1, categories.NAVAL * categories.MOBILE * categories.TECH2,  'Enemy' }},
+			
+{ EBC, 'GreaterThanEconStorageCurrent', { 150, 1000 } },
+            
+        },
+    },
+    
 }
 
 

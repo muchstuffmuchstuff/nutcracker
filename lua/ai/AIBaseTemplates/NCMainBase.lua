@@ -14,7 +14,13 @@
 BaseBuilderTemplate {
     BaseTemplateName = 'NutCrackerMainBase',
     Builders = {
+        'NCTransportFactorycoinflip',
+        'NC nuke rush landupgrades',
        
+        'NCengineerassistnuke_coinflip',
+      
+        'NCMobileNavalExperimentalcoinflip',
+        'NCMobileNavalExperimentalbehavior',
         'NCcoinrapidfire',
         'NCparagoncoinflip',
         'NC paragon coinflip landupgrades',
@@ -41,7 +47,7 @@ BaseBuilderTemplate {
 'NCt1bombercoinflip',
 --
 'ncNukecoinflip',
-'NC nuke rush landupgrades',
+
 
 --
 'NCairexpcoinflipbehavior',
@@ -114,7 +120,7 @@ BaseBuilderTemplate {
 		
         
         # ==== DEFENSES ==== #
-      
+        'NCdefense_onisland',
 		'NCT1BaseDefenses',
 		
 		'NCT3BaseDefenses',
@@ -129,7 +135,8 @@ BaseBuilderTemplate {
         'NCT3NukeDefenses',
         'NCT3NukeDefenseBehaviors',
 		
-		
+		--offense
+        'NCtacticalattack',
 	
         
         # ==== NAVAL EXPANSION ==== #
@@ -145,7 +152,7 @@ BaseBuilderTemplate {
         
         # ==== LAND UNIT BUILDERS ==== #
         'NCdefense_antiair',
-        'NCdefense_onisland',
+       
         'NCspammage',
         'NCExpansionExtraFactory',
        

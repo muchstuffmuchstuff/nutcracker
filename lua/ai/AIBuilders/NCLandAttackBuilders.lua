@@ -276,7 +276,36 @@ BuilderGroup {
         
         BuilderConditions = { 
         
+            { MIBC, 'GreaterThanGameTime', { 1000 } },
+                        { UCBC, 'PoolGreaterAtLocation', { 'LocationType', 0, categories.MOBILE * categories.LAND * categories.TECH1 * (categories.HOVER + categories.AMPHIBIOUS) - categories.ENGINEER } },
+			{ SBC, 'NoRushTimeCheck', { 0 }},
+        },
+        BuilderData = {
+            RequireTransport = true,
+            AttackEnemyStrength = 92,  
+            TargetSearchCategory = categories.STRUCTURE,
+            MoveToCategories = {                                               
+                categories.STRUCTURE,
+                
+            },
+            SearchRadius = 6000,
+			ThreatSupport = 40,
            
+        },    
+       
+        BuilderType = 'Any',
+    },
+    Builder {
+        BuilderName = 'NC t1 aphib early',
+        PlatoonTemplate = 'NC t1aphibhuntai',
+		PlatoonAddPlans = {'PlatoonCallForHelpAISorian', 'DistressResponseAISorian'},
+		PlatoonAddBehaviors = { 'AirLandToggleSorian' },
+        Priority = 100,
+        InstanceCount = 70,
+        
+        BuilderConditions = { 
+        
+            { MIBC, 'LessThanGameTime', { 1000 } },
                         { UCBC, 'PoolGreaterAtLocation', { 'LocationType', 0, categories.MOBILE * categories.LAND * categories.TECH1 * (categories.HOVER + categories.AMPHIBIOUS) - categories.ENGINEER } },
 			{ SBC, 'NoRushTimeCheck', { 0 }},
         },

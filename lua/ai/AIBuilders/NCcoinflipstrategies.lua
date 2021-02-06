@@ -36,7 +36,7 @@ BuilderGroup {
             { CF, 'CoinFlip', {9} },
       
             { UCBC, 'HaveGreaterThanUnitsWithCategory', { 50, categories.LAND * categories.MOBILE * categories.ENGINEER} },   
-            { UCBC, 'HaveLessThanUnitsInCategoryBeingBuilt', { 2, categories.FACTORY * (categories.TECH2 + categories.TECH3)} },
+            { UCBC, 'HaveLessThanUnitsInCategoryBeingBuilt', { 4, categories.FACTORY * (categories.TECH2 + categories.TECH3)} },
                 
               { UCBC, 'HaveGreaterThanUnitsWithCategory', { 2, categories.LAND * categories.FACTORY}},
            
@@ -56,7 +56,7 @@ BuilderGroup {
             { UCBC, 'HaveGreaterThanUnitsWithCategory', { 50, categories.LAND * categories.MOBILE * categories.ENGINEER} },
                
              
-                { UCBC, 'HaveLessThanUnitsInCategoryBeingBuilt', { 2, categories.FACTORY * (categories.TECH2 + categories.TECH3)} },
+                { UCBC, 'HaveLessThanUnitsInCategoryBeingBuilt', { 4, categories.FACTORY * (categories.TECH2 + categories.TECH3)} },
               { UCBC, 'HaveGreaterThanUnitsWithCategory', { 2, categories.LAND * categories.FACTORY}},
            
            
@@ -74,7 +74,7 @@ BuilderGroup {
             { CF, 'CoinFlip', {10} },
       
           
-            { UCBC, 'HaveLessThanUnitsInCategoryBeingBuilt', { 2, categories.FACTORY * (categories.TECH2 + categories.TECH3)} },
+            { UCBC, 'HaveLessThanUnitsInCategoryBeingBuilt', { 4, categories.FACTORY * (categories.TECH2 + categories.TECH3)} },
                 
               { UCBC, 'HaveGreaterThanUnitsWithCategory', { 2, categories.AIR * categories.FACTORY}},
            
@@ -94,7 +94,7 @@ BuilderGroup {
          
                
              
-                { UCBC, 'HaveLessThanUnitsInCategoryBeingBuilt', { 2, categories.FACTORY * (categories.TECH2 + categories.TECH3)} },
+                { UCBC, 'HaveLessThanUnitsInCategoryBeingBuilt', { 4, categories.FACTORY * (categories.TECH2 + categories.TECH3)} },
               { UCBC, 'HaveGreaterThanUnitsWithCategory', { 2, categories.AIR * categories.FACTORY}},
            
            
@@ -118,7 +118,7 @@ Builder {
   
     BuilderConditions = {
         { MIBC, 'FactionIndex', { 2, 4 }},
-        { CF, 'CoinFlip', {111} },
+        { CF, 'CoinFlip', {11111} },
         { SIBC, 'HaveLessThanUnitsInCategoryBeingBuilt', { 4, categories.STRUCTURE * (categories.TECH2 + categories.TECH3)  * categories.ENERGYPRODUCTION } },
         { UCBC, 'HaveLessThanUnitsInCategoryBeingBuilt', { 2, 'GATE TECH3 STRUCTURE'}},
         { SIBC, 'GreaterThanEconEfficiencyOverTime', { 1.0, 1.1} },
@@ -153,7 +153,7 @@ Builder {
     Priority = 825,
     BuilderConditions = {
         { MIBC, 'FactionIndex', { 2, 4 }},
-        { CF, 'CoinFlip', {111} },
+        { CF, 'CoinFlip', {11111} },
         { MIBC, 'GreaterThanGameTime', { 900 } },
         { SIBC, 'HaveLessThanUnitsWithCategory', { 15, 'ENERGYSTORAGE'}},
         { UCBC, 'AdjacencyCheck', { 'LocationType', 'ENERGYPRODUCTION TECH1', 100, 'ueb1105' } },
@@ -178,7 +178,7 @@ Builder {
         BuilderType = 'Any',
         BuilderConditions = {
             { MIBC, 'FactionIndex', { 2, 4 }},
-            { CF, 'CoinFlip', {1111} },
+            { CF, 'CoinFlip', {11111} },
             { MIBC, 'GreaterThanGameTime', { 600} },
          -- relative income
             { SIBC, 'HaveLessThanUnitsInCategoryBeingBuilt', { 2, categories.STRUCTURE * categories.TECH3 * categories.ENERGYPRODUCTION } },
@@ -213,7 +213,7 @@ Builder {
     Priority = 980,
     BuilderConditions = {
         { MIBC, 'FactionIndex', { 2, 4 }},
-        { CF, 'CoinFlip', {1111} },
+        { CF, 'CoinFlip', {11111} },
         { MIBC, 'GreaterThanGameTime', { 1200 } },
         { EBC, 'GreaterThanEconStorageCurrent', { 500, 10000 } },
         { SIBC, 'GreaterThanEconEfficiencyOverTime', { 1.0, 1.05 }},
@@ -234,10 +234,13 @@ Builder {
 
     BuilderGroup {
         BuilderGroupName = 'NC Tele SCU Strategy',
-        BuildersType = 'PlatoonFormBuilder',
+        BuildersType = 'StrategyBuilder',
     
+        
+        
+    }
            
-        }
+        
    
 
 
@@ -260,12 +263,13 @@ Builder {
     BuilderConditions = {
         { CF, 'CoinFlip', {14} },
         { SBC, 'MapLessThan', { 2000, 2000 }},
+        { MIBC, 'LessThanGameTime', { 1500 } },
         { UCBC, 'HaveGreaterThanUnitsWithCategory', { 15, categories.MOBILE * categories.AIR * categories.ANTIAIR - categories.GROUNDATTACK - categories.BOMBER} },          
         
         
         
         { SBC, 'NoRushTimeCheck', { 600 }},
-        { SIBC, 'GreaterThanEconEfficiencyOverTime', { 0.5, 0.5} },
+      
        
        
        
@@ -290,6 +294,7 @@ BuilderGroup {
             BuilderType = 'Any',
             BuilderConditions = {
                 { CF, 'CoinFlip', {14} },
+                { MIBC, 'LessThanGameTime', { 1500 } },
                          { UCBC, 'PoolGreaterAtLocation', { 'LocationType', 2, categories.AIR  * (categories.TECH1 + categories.TECH2) * categories.BOMBER   * categories.MOBILE - categories.TRANSPORTFOCUS - categories.ANTINAVY - categories.uea0303 - categories.uaa0303 - categories.ura0303 - categories.xsa0303 - categories.uea0102 - categories.uaa0102 - categories.ura0102 - categories.xsa0102} },
                 { SBC, 'NoRushTimeCheck', { 0 }},
             },
@@ -298,8 +303,7 @@ BuilderGroup {
                 
                 PrioritizedCategories = {    
     
-                    'EXPERIMENTAL LAND',
-                    'MOBILE LAND',
+                    'MASSEXTRACTION',
                                    
     
                     
@@ -316,13 +320,16 @@ BuilderGroup {
     BuildersType = 'EngineerBuilder',
 Builder {
     BuilderName = 'nc T3 Nuke Engineer coinflip3',
-    PlatoonTemplate = 'T3EngineerBuilderSorian',
-    Priority = 1050,
+    PlatoonTemplate = 'CommandBuilderNC',
+    Priority = 1500,
     InstanceCount = 1,
-    PlatoonAddFunctions = { {SAI, 'BuildOnce'}, },
+   
     BuilderConditions = {
-        { MIBC, 'GreaterThanGameTime', { 600 } },
+        { UCBC, 'CmdrHasUpgrade', { 'AdvancedEngineering', true }},
+                { UCBC, 'CmdrHasUpgrade', { 'T3Engineering', true }},
         { CF, 'CoinFlip', {47 } },
+        { UCBC, 'HaveLessThanUnitsWithCategory', {1, categories.NUKE * categories.STRUCTURE } },
+        
    
       
         
@@ -331,9 +338,41 @@ Builder {
     BuilderData = {
         MinNumAssistees = 2,
         Construction = {
-            BuildClose = true,
-            AdjacencyCategory = 'SHIELD STRUCTURE',
+            DesiresAssist = true,
+            BuildClose = false,
+          
             BuildStructures = {
+                'T3StrategicMissile',
+            },
+            Location = 'LocationType',
+        }
+    }
+},
+Builder {
+    BuilderName = 'nc T3 Nuke Engineer coinflip3 2nd option',
+    PlatoonTemplate = 'T3EngineerBuilderSorian',
+    Priority = 1500,
+    InstanceCount = 1,
+   
+    BuilderConditions = {
+        
+        { UCBC, 'HaveLessThanUnitsWithCategory', {1, categories.NUKE * categories.STRUCTURE } },
+        { CF, 'CoinFlip', {47 } },
+        
+   
+      
+        
+    },
+    BuilderType = 'Any',
+    BuilderData = {
+        MinNumAssistees = 2,
+        Construction = {
+            DesiresAssist = true,
+            BuildClose = true,
+          
+            BuildStructures = {
+                'T2EngineerSupport',
+                'T2EngineerSupport',
                 'T3StrategicMissile',
             },
             Location = 'LocationType',
@@ -343,15 +382,16 @@ Builder {
 Builder {
     BuilderName = 'NC Assist Build t3 coinflip',
     PlatoonTemplate = 'T3EngineerAssist',
-    Priority = 1001,
+    Priority = 1200,
     
 
     InstanceCount = 8,
     BuilderConditions = {
-        { CF, 'CoinFlip', {47 } },
-        { MIBC, 'GreaterThanGameTime', { 1000 } },
+        { CF, 'CoinFlip', {47} },
+        { MIBC, 'GreaterThanGameTime', { 700 } },
         { UCBC, 'LocationEngineersBuildingGreater', { 'LocationType', 0, categories.STRUCTURE * categories.NUKE}},
-        { SIBC, 'GreaterThanEconEfficiencyOverTime', { 0.95, 1.05}},
+        { EBC, 'GreaterThanEconStorageCurrent', { 50, 1000 } },
+        { UCBC, 'HaveLessThanUnitsWithCategory', {1, categories.NUKE * categories.STRUCTURE } },
        
         
         
@@ -359,34 +399,37 @@ Builder {
     BuilderType = 'Any',
     BuilderData = {
         Assist = {
+            AssistUntilFinished = true,
             AssistLocation = 'LocationType',
             AssisteeType = 'Engineer',
             AssistRange = 150,
             BeingBuiltCategories = {'STRUCTURE NUKE'},
-            Time = 320,
+            
         },
     }
 },
 Builder {
-    BuilderName = 'NC Assist Build Nuke Missile',
+    BuilderName = 'NC Assist Build Nuke Missile coinflip',
     PlatoonTemplate = 'AnyEngineerassistNC',
-    Priority = 950,
+    Priority = 1200,
     InstanceCount = 15,
     BuilderConditions = {
         { CF, 'CoinFlip', {47 } },
-        { MIBC, 'GreaterThanGameTime', { 1000 } },
+        { MIBC, 'GreaterThanGameTime', { 700 } },
         { UCBC, 'UnitsGreaterAtLocation', { 'LocationType', 0, 'NUKE STRUCTURE'}},
-        { SIBC, 'GreaterThanEconEfficiencyOverTime', { 0.95, 1.05}},
+        { EBC, 'GreaterThanEconStorageCurrent', { 50, 1000 } },
+        
         
     },
     BuilderType = 'Any',
     BuilderData = {
         Assist = {
+            AssistUntilFinished = true,
             AssistLocation = 'LocationType',
             AssisteeType = 'NonUnitBuildingStructure',
             AssistRange = 150,
             AssisteeCategory = 'STRUCTURE NUKE',
-            Time = 300,
+            
         },
     }
 },
@@ -399,9 +442,10 @@ Builder {
    
     BuilderConditions = {
         { CF, 'CoinFlip', {47 } },
-        { MIBC, 'GreaterThanGameTime', { 1000 } },
+        { MIBC, 'GreaterThanGameTime', { 700} },
         { UCBC, 'LocationEngineersBuildingGreater', { 'LocationType', 0, categories.STRUCTURE * categories.NUKE}},
-        { SIBC, 'GreaterThanEconEfficiencyOverTime', { 0.95, 1.05}},
+        
+       
        
         
         
@@ -409,11 +453,12 @@ Builder {
     BuilderType = 'Any',
     BuilderData = {
         Assist = {
+            AssistUntilFinished = true,
             AssistLocation = 'LocationType',
             AssisteeType = 'Engineer',
             AssistRange = 150,
             BeingBuiltCategories = {'STRUCTURE NUKE'},
-            Time = 320,
+            
         },
     }
 },
@@ -424,19 +469,21 @@ Builder {
 
     BuilderConditions = {
         { CF, 'CoinFlip', {47 } },
-        { MIBC, 'GreaterThanGameTime', { 1000 } },
+        { MIBC, 'GreaterThanGameTime', { 700 } },
         { UCBC, 'UnitsGreaterAtLocation', { 'LocationType', 0, 'NUKE STRUCTURE'}},
-        { SIBC, 'GreaterThanEconEfficiencyOverTime', { 0.95, 1.05}},
+        { EBC, 'GreaterThanEconStorageCurrent', { 50, 1000 } },
+        
         
     },
     BuilderType = 'Any',
     BuilderData = {
         Assist = {
+            AssistUntilFinished = true,
             AssistLocation = 'LocationType',
             AssisteeType = 'NonUnitBuildingStructure',
             AssistRange = 150,
             AssisteeCategory = 'STRUCTURE NUKE',
-            Time = 300,
+            
         },
     }
 },
@@ -743,9 +790,9 @@ BuilderGroup {
             { CF, 'CoinFlip', {11 } },
             { MIBC, 'FactionIndex', {1}},
             { SBC, 'MapGreaterThan', { 500, 500 }},
-            { MIBC, 'GreaterThanGameTime', { 1000} },
+            { MIBC, 'GreaterThanGameTime', { 800} },
             
-            { EBC, 'GreaterThanEconStorageCurrent', { 500, 1000 } },
+           
             { UCBC, 'HaveGreaterThanUnitsWithCategory', { 0, categories.ENERGYPRODUCTION * (categories.TECH3 + categories.TECH2) } },
 
            
@@ -1025,6 +1072,7 @@ Builder {
     Priority = 1201,
     InstanceCount = 20,
     BuilderConditions = {
+        { MIBC, 'FactionIndex', {2}},
         { MIBC, 'GreaterThanGameTime', { 1200 } },
         { UCBC, 'LocationEngineersBuildingGreater', { 'LocationType', 0, categories.ARTILLERY * categories.TECH3 * categories.STRUCTURE}},
         { CF, 'CoinFlip', {15} },
@@ -1049,6 +1097,7 @@ Builder {
     Priority = 1201,
     InstanceCount = 20,
     BuilderConditions = {
+        { MIBC, 'FactionIndex', {2}},
         { MIBC, 'GreaterThanGameTime', { 1200 } },
         { UCBC, 'LocationEngineersBuildingGreater', { 'LocationType', 0, categories.ARTILLERY * categories.TECH3 * categories.STRUCTURE}},
      
@@ -1072,6 +1121,7 @@ Builder {
     Priority = 1201,
     InstanceCount = 10,
     BuilderConditions = {
+        { MIBC, 'FactionIndex', {2}},
         { MIBC, 'GreaterThanGameTime', { 1200 } },
         { UCBC, 'LocationEngineersBuildingGreater', { 'LocationType', 0, categories.ARTILLERY * categories.TECH3 * categories.STRUCTURE}},
      
@@ -1088,5 +1138,182 @@ Builder {
             Time = 300,
         },
     }
+},
+}
+
+BuilderGroup {
+    BuilderGroupName = 'NCMobileNavalExperimentalcoinflip',
+    BuildersType = 'EngineerBuilder',
+    Builder {
+        BuilderName = 'NC Aeon T4 Sea Exp1 Engineer',
+        PlatoonTemplate = 'T3EngineerBuilder',
+        Priority = 1200,
+        BuilderConditions = {
+     
+            { CF, 'SeaMonsterActivated', {} },
+            {CF, 'NoDukeNukem',{}},
+
+            { MIBC, 'FactionIndex', {2}},
+            { SIBC, 'HaveLessThanUnitsInCategoryBeingBuilt', { 1, categories.EXPERIMENTAL  }},
+            { SIBC, 'HaveLessThanUnitsWithCategory', { 4, categories.EXPERIMENTAL * categories.NAVAL } },
+            { EBC, 'GreaterThanEconStorageCurrent', { 1500, 5000 } },
+  
+        },
+        BuilderType = 'Any',
+        BuilderData = {
+            MinNumAssistees = 2,
+            Construction = {
+                BuildClose = false,
+                #T4 = true,
+                NearMarkerType = 'Naval Area',
+                BuildStructures = {
+                    'T4SeaExperimental1',
+                },
+                Location = 'LocationType',
+            }
+        }
+    },
+    Builder {
+        BuilderName = 'NC uef T4 Sea Exp1 Engineer',
+        PlatoonTemplate = 'T3EngineerBuilder',
+        Priority = 1200,
+        BuilderConditions = {
+            
+            { CF, 'SeaMonsterActivated', {} },
+            {CF, 'NoDukeNukem',{}},
+            { MIBC, 'FactionIndex', {1}},
+            { SIBC, 'HaveLessThanUnitsWithCategory', { 4, categories.EXPERIMENTAL * categories.NAVAL } },
+            { SIBC, 'HaveLessThanUnitsInCategoryBeingBuilt', { 1, categories.EXPERIMENTAL  }},
+           
+            { MIBC, 'FactionIndex', {1}},
+            
+            { EBC, 'GreaterThanEconStorageCurrent', { 1500, 5000 } },
+  
+        },
+        BuilderType = 'Any',
+        BuilderData = {
+            MinNumAssistees = 2,
+            Construction = {
+                BuildClose = false,
+                #T4 = true,
+                NearMarkerType = 'Naval Area',
+                BuildStructures = {
+                    'T4SeaExperimental1',
+                },
+                Location = 'LocationType',
+            }
+        }
+    },
+    Builder {
+        BuilderName = 'NC T2 Engineer Assist Experimental Mobile Naval',
+        PlatoonTemplate = 'T2EngineerAssistSorian',
+        Priority = 1200,
+        InstanceCount = 10,
+        BuilderConditions = {
+            { CF, 'SeaMonsterActivated', {} },
+            { EBC, 'GreaterThanEconStorageCurrent', { 2000, 10000 } },
+            { UCBC, 'LocationEngineersBuildingGreater', { 'LocationType', 0, categories.EXPERIMENTAL * categories.NAVAL * categories.MOBILE}},
+            
+        },
+        BuilderType = 'Any',
+        BuilderData = {
+            Assist = {
+                AssistLocation = 'LocationType',
+                AssisteeType = 'Engineer',
+                AssistRange = 250,
+                BeingBuiltCategories = {'EXPERIMENTAL MOBILE NAVAL'},
+                Time = 300,
+            },
+        }
+    },
+    Builder {
+        BuilderName = 'NC T3 Engineer Assist Experimental Mobile Naval',
+        PlatoonTemplate = 'T3EngineerAssistSorian',
+        Priority = 1200,
+        InstanceCount = 10,
+        BuilderConditions = {
+            { CF, 'SeaMonsterActivated', {} },
+            { EBC, 'GreaterThanEconStorageCurrent', { 2000, 10000 } },
+            { UCBC, 'LocationEngineersBuildingGreater', { 'LocationType', 0, categories.EXPERIMENTAL * categories.NAVAL * categories.MOBILE}},
+            
+        },
+        BuilderType = 'Any',
+        BuilderData = {
+            Assist = {
+                AssistLocation = 'LocationType',
+                AssisteeType = 'Engineer',
+                AssistRange = 250,
+                BeingBuiltCategories = {'EXPERIMENTAL MOBILE NAVAL'},
+                Time = 300,
+            },
+        }
+    },
+}
+
+BuilderGroup {
+    BuilderGroupName = 'NCMobileNavalExperimentalbehavior',
+    BuildersType = 'PlatoonFormBuilder',
+    Builder {
+        BuilderName = 'NC T4 Exp Sea',
+        PlatoonTemplate = 'T4ExperimentalSeaSorian',
+        #PlatoonAddBehaviors = { 'TempestBehaviorSorian' },
+        PlatoonAddPlans = {'NameUnitsSorian', 'DistressResponseAISorian', 'PlatoonCallForHelpAISorian'},
+        #PlatoonAIPlan = 'AttackForceAI',
+        Priority = 1300,
+        BuilderConditions = {
+            { CF, 'SeaMonsterActivated', {} },
+            { MIBC, 'FactionIndex', {1,2}},
+            { SBC, 'NoRushTimeCheck', { 0 }},
+            { UCBC, 'PoolGreaterAtLocation', { 'LocationType', 0, 'EXPERIMENTAL NAVAL' } },
+        },
+        FormRadius = 250,
+        InstanceCount = 50,
+        BuilderType = 'Any',
+        BuilderData = {
+            ThreatSupport = 300,
+          
+            },
+            PrioritizedCategories = { 'STRUCTURE' }, 
+        },
+    
+}
+
+BuilderGroup {
+    BuilderGroupName = 'NCTransportFactorycoinflip',
+    BuildersType = 'FactoryBuilder',
+Builder {
+    BuilderName = 'NC T2 Air Transport coinflip',
+    PlatoonTemplate = 'T2AirTransport',
+    Priority = 1000,
+    BuilderConditions = {
+        { CF, 'CoinFlip', {3} },
+        { MIBC, 'GreaterThanGameTime', { 500 } },
+        { UCBC, 'HaveLessThanUnitsInCategoryBeingBuilt', { 2, 'TRANSPORTFOCUS' } },
+        { WRC, 'HaveUnitRatioVersusEnemyNC', { 3.0, categories.MOBILE * categories.AIR * categories.ANTIAIR * categories.TECH3 - categories.GROUNDATTACK - categories.BOMBER, '>=', categories.MOBILE * categories.AIR * (categories.TECH2 + categories.TECH3)  - categories.SCOUT - categories.TRANSPORTFOCUS } },
+
+        { UCBC, 'HaveLessThanUnitsWithCategory', { 10, 'TRANSPORTFOCUS TECH2, TRANSPORTFOCUS TECH3' } },
+
+        { EBC, 'GreaterThanEconStorageCurrent', { 8, 60 } }, 
+       
+    },
+    BuilderType = 'Air',
+},
+Builder {
+    BuilderName = 'NC T3 Air Transport coinflip',
+    PlatoonTemplate = 'T3AirTransport',
+    Priority = 1000,
+    BuilderConditions = {
+        { MIBC, 'FactionIndex', {1}},
+        { CF, 'CoinFlip', {3} },
+        { MIBC, 'GreaterThanGameTime', { 500 } },
+        { UCBC, 'HaveLessThanUnitsInCategoryBeingBuilt', { 2, 'TRANSPORTFOCUS' } },
+        { WRC, 'HaveUnitRatioVersusEnemyNC', { 3.0, categories.MOBILE * categories.AIR * categories.ANTIAIR * categories.TECH3 - categories.GROUNDATTACK - categories.BOMBER, '>=', categories.MOBILE * categories.AIR * (categories.TECH2 + categories.TECH3)  - categories.SCOUT - categories.TRANSPORTFOCUS } },
+
+        { UCBC, 'HaveLessThanUnitsWithCategory', { 10, 'TRANSPORTFOCUS TECH2, TRANSPORTFOCUS TECH3' } },
+  
+        { EBC, 'GreaterThanEconStorageCurrent', { 8, 60 } }, 
+       
+    },
+    BuilderType = 'Air',
 },
 }

@@ -36,6 +36,7 @@ BuilderGroup {
     BuilderGroupName = 'NCEngineerExpansionBuildersFull',
     BuildersType = 'EngineerBuilder',
     
+    
     Builder {
         BuilderName = 'NC T1rushVacantStartingAreaEngineer_islandmap ',
         PlatoonTemplate = 'EngineerBuilderSorian',
@@ -81,7 +82,7 @@ BuilderGroup {
                     'T1AirFactory',
                     
 
-					'T1Radar',
+				
                                         
 
                 }               
@@ -133,7 +134,7 @@ BuilderGroup {
                     'T1AirFactory',
                     
 
-					'T1Radar',
+					
                                         
 
                 }               
@@ -185,7 +186,7 @@ BuilderGroup {
                     'T1AirFactory',
                     
 
-					'T1Radar',
+					
                                         
 
                 }               
@@ -237,7 +238,7 @@ BuilderGroup {
                     'T1AirFactory',
                    
 
-					'T1Radar',
+					
                 }
             },
             NeedGuard = true,
@@ -288,7 +289,6 @@ BuilderGroup {
                     'T1AirFactory',
                    
 
-					'T1Radar',
                 }
             },
             NeedGuard = true,
@@ -339,7 +339,7 @@ BuilderGroup {
                     'T1AirFactory',
                    
 
-					'T1Radar',
+					
                 }
             },
             NeedGuard = true,
@@ -390,7 +390,7 @@ BuilderGroup {
                     'T1AirFactory',
                    
 
-					'T1Radar',
+					
                 }
             },
             NeedGuard = true,
@@ -441,7 +441,7 @@ BuilderGroup {
                     'T1AirFactory',
                    
 
-					'T1Radar',
+					
                 }
             },
             NeedGuard = true,
@@ -492,7 +492,7 @@ BuilderGroup {
                     'T1AirFactory',
                    
 
-					'T1Radar',
+					
                 }
             },
             NeedGuard = true,
@@ -539,7 +539,7 @@ BuilderGroup {
                     'T1AirFactory',
                
 
-					'T1Radar',
+					
                 }
             },
             NeedGuard = true,
@@ -585,14 +585,14 @@ BuilderGroup {
                     'T1AirFactory',
                   
 
-					'T1Radar',			
+								
                 }
             },
             NeedGuard = true,
         }
     },
       
-
+    
     Builder {
         BuilderName = 'NC T1rushVacantStartingAreaEngineer',
         PlatoonTemplate = 'EngineerBuilderSorian',
@@ -635,7 +635,7 @@ BuilderGroup {
                     'T1GroundDefense',
 					'T1LandFactory',
 					'T1AADefense',
-					'T1Radar',
+					
                                       
 
                 }               
@@ -686,7 +686,7 @@ BuilderGroup {
                     'T1GroundDefense',
 					'T1LandFactory',
 					'T1AADefense',
-					'T1Radar',
+					
                                       
 
                 }               
@@ -736,7 +736,7 @@ BuilderGroup {
                     'T1GroundDefense',
 					'T1LandFactory',
 					'T1AADefense',
-					'T1Radar',
+					
                 }
             },
             NeedGuard = true,
@@ -784,7 +784,7 @@ BuilderGroup {
                     'T1GroundDefense',
 					'T1LandFactory',
 					'T1AADefense',
-					'T1Radar',
+					
                 }
             },
             NeedGuard = true,
@@ -832,7 +832,7 @@ BuilderGroup {
                     'T1GroundDefense',
 					'T1LandFactory',
 					'T1AADefense',
-					'T1Radar',
+					
                 }
             },
             NeedGuard = true,
@@ -880,7 +880,7 @@ BuilderGroup {
                     'T1GroundDefense',
 					'T1LandFactory',
 					'T1AADefense',
-					'T1Radar',
+					
                 }
             },
             NeedGuard = true,
@@ -928,7 +928,7 @@ BuilderGroup {
                     'T1GroundDefense',
 					'T1LandFactory',
 					'T1AADefense',
-					'T1Radar',
+					
                 }
             },
             NeedGuard = true,
@@ -973,7 +973,7 @@ BuilderGroup {
 					'T1AirFactory',
 					'T1LandFactory',
 					'T1AADefense',
-					'T1Radar',
+					
                 }
             },
             NeedGuard = true,
@@ -1017,7 +1017,7 @@ BuilderGroup {
 					'T1AirFactory',
 					'T1LandFactory',
 					'T1AADefense',
-					'T1Radar',		
+						
                 }
             },
             NeedGuard = true,
@@ -1069,7 +1069,7 @@ BuilderGroup {
                    
                
 
-					'T1Radar',
+					
                 }
             },
             NeedGuard = true,
@@ -1113,7 +1113,7 @@ BuilderGroup {
                   
                
 
-					'T1Radar',
+					
                 }
             },
             NeedGuard = true,
@@ -1158,7 +1158,7 @@ BuilderGroup {
                     
                
 
-					'T1Radar',
+					
                 }
             },
             NeedGuard = true,
@@ -1203,7 +1203,7 @@ BuilderGroup {
                  
                
 
-					'T1Radar',
+					
                 }
             },
             NeedGuard = true,
@@ -1247,7 +1247,7 @@ BuilderGroup {
                   
                
 
-					'T1Radar',
+					
                 }
             },
             NeedGuard = true,
@@ -1288,7 +1288,7 @@ BuilderGroup {
                  
                
 
-					'T1Radar',
+					
                 }
             },
             NeedGuard = true,
@@ -1332,7 +1332,7 @@ BuilderGroup {
                    
                
 
-					'T1Radar',
+					
                 }
             },
             NeedGuard = true,
@@ -1375,7 +1375,7 @@ BuilderGroup {
                     'T1AirFactory',
                  
                     'T3AADefense',
-                    'T2Radar',
+                    
                 }
             },
             NeedGuard = true,

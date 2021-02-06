@@ -72,39 +72,17 @@ BuilderGroup {
     BuilderGroupName = 'NCexcessairunitsbehavior',
     BuildersType = 'PlatoonFormBuilder',
     Builder {
-        BuilderName = 'NC kill land exp with torp bombers',
-        PlatoonTemplate = 'navalhunters',
-            PlatoonAddBehaviors = { 'AirUnitRefitSorian' },
-            PlatoonAddPlans = { 'AirIntelToggle', 'DistressResponseAISorian'  },
-            Priority = 10,
-            FormRadius = 500,
-            InstanceCount = 10,
-            AggressiveMove = true,
-            BuilderType = 'Any',
-            BuilderConditions = {
-     
-                { SBC, 'IsIslandMap', { true } },
-                { UCBC, 'HaveUnitsWithCategoryAndAlliance', { true, 0, categories.LAND * categories.EXPERIMENTAL * categories.MOBILE,  'Enemy' }},
-                         { UCBC, 'PoolGreaterAtLocation', { 'LocationType', 1, categories.AIR * categories.ANTINAVY * categories.MOBILE} },
-                { SBC, 'NoRushTimeCheck', { 0 }},
-            },
-            BuilderData = {
-                SearchRadius = 5000,
-                
-                PrioritizedCategories = { 
-
-                    'EXPERIMENTAL LAND MOBILE',
-                    'ALLUNITS',
-    
-                   
-                   
-                                   
-    
-                    
-                    
-                },
-            },
-        },  
+        BuilderName = 'NC Torpedo Bombers',
+        PlatoonTemplate = 'NCt2t3TorpedoBomber',
+        PlatoonAddBehaviors = { 'AirUnitRefitSorian' },
+        Priority = 100,
+        InstanceCount = 5,
+        BuilderConditions = {
+            { UCBC, 'PoolGreaterAtLocation', { 'LocationType', 0, 'ANTINAVY AIR MOBILE' } },
+            { SBC, 'NoRushTimeCheck', { 0 }},
+        },
+        BuilderType = 'Any',
+    },
     Builder {
         BuilderName = 'NC kill navy with air',
         PlatoonTemplate = 'navalhunters',
@@ -367,15 +345,10 @@ BuilderGroup {
             { MIBC, 'GreaterThanGameTime', { 360 } },
             { SBC, 'NoRushTimeCheck', { 600 }},
             { UCBC, 'HaveUnitsWithCategoryAndAlliance', { false, 0, categories.ANTIAIR * categories.AIR * categories.TECH3, 'Enemy'}},
-            
-                       
+
                         { UCBC, 'HaveLessThanUnitsWithCategory', { 20, categories.AIR * categories.GROUNDATTACK * categories.BOMBER * categories.MOBILE - categories.ANTIAIR } },
 			
-			
-            
-			
-			
-         ---
+
 { EBC, 'GreaterThanEconStorageCurrent', { 8, 60 } },  
 --
            
@@ -418,6 +391,23 @@ BuilderGroup {
     BuilderGroupName = 'NCfindenemyfightersbehavior',
     BuildersType = 'PlatoonFormBuilder',
 
+    Builder {
+        BuilderName = 'NC T4Guard',
+        PlatoonTemplate = 'NCGuardT4',
+        PlatoonAddBehaviors = { 'AirUnitRefitSorian' },
+        PlatoonAddPlans = { 'AirIntelToggle' },
+        Priority = 400,
+        InstanceCount = 10,
+        BuilderData = {
+            NeverGuardEngineers = true,
+        },
+        BuilderType = 'Any',
+        BuilderConditions = {
+            { MIBC, 'FactionIndex', {2, 3}},
+            { SIBC, 'HaveGreaterThanUnitsWithCategory', { 0, categories.EXPERIMENTAL * categories.AIR}},
+            { SBC, 'NoRushTimeCheck', { 0 }},
+        },
+    },
     Builder {
         BuilderName = 'NC finding enemy fighters',
         PlatoonTemplate = 'NCfighterhuntert1',
@@ -590,40 +580,7 @@ BuilderGroup {
             },
         },
     },
-    Builder {
-        BuilderName = 'NC finding enemy fighters t3 very late',
-        PlatoonTemplate = 'NCfighterhuntert3_verylate',
-		PlatoonAddBehaviors = { 'AirUnitRefitSorian' },
-		PlatoonAddPlans = { 'AirIntelToggle','DistressResponseAISorian'},
-        Priority = 300,
-        FormRadius = 1000,
-        InstanceCount = 50,
-       
-       
-        BuilderType = 'Any',
-     
-        BuilderConditions = {
-                       
-            { MIBC, 'LessThanGameTime', { 3800} },
-                        { UCBC, 'PoolGreaterAtLocation', { 'LocationType', 0, categories.MOBILE * categories.AIR * categories.ANTIAIR - categories.BOMBER - categories.GROUNDATTACK - categories.EXPERIMENTAL - categories.TRANSPORTFOCUS - categories.SCOUT } },
-			{ SBC, 'NoRushTimeCheck', { 0 }},
-        },
-        BuilderData = {
-            AvoidBases = true,
-            AvoidBasesRadius = 100,
-            SearchRadius = 6000,
-            PrioritizedCategories = { categories.EXPERIMENTAL * categories.AIR,
-            categories.TRANSPORTFOCUS,
-            categories.BOMBER,
-            categories.GROUNDATTACK,
-            categories.ANTIAIR * categories.AIR,
-            categories.AIR - categories.SCOUT - categories.INSIGNIFICANTUNIT - categories.POD,
-                
-       
-		
-            },
-        },
-    },
+   
    
 
    
@@ -665,7 +622,7 @@ BuilderGroup {
 		PlatoonAddPlans = { 'AirIntelToggle','DistressResponseAISorian'},
         Priority = 10,
         
-        InstanceCount = 3,
+        InstanceCount = 2,
        
         BuilderType = 'Any',
         BuilderConditions = {
@@ -695,7 +652,7 @@ BuilderGroup {
 		PlatoonAddPlans = { 'AirIntelToggle','DistressResponseAISorian'},
         Priority = 10,
         
-        InstanceCount = 3,
+        InstanceCount = 2,
        
         BuilderType = 'Any',
         BuilderConditions = {
@@ -771,8 +728,8 @@ BuilderGroup {
         
             BuilderType = 'Air',
             BuilderConditions = {
-                { SBC, 'MapGreaterThan', { 1000, 1000 }},
-                { MIBC, 'GreaterThanGameTime', { 1800 } },
+                { SBC, 'MapGreaterThan', { 500, 500 }},
+                { MIBC, 'GreaterThanGameTime', { 1000 } },
            --
                 { SBC, 'NoRushTimeCheck', { 600 }},
                 { WRC, 'HaveUnitRatioVersusEnemyNC', { 3.0, categories.MOBILE * categories.AIR * categories.ANTIAIR * categories.TECH3 - categories.GROUNDATTACK - categories.BOMBER, '>=', categories.MOBILE * categories.AIR * (categories.TECH2 + categories.TECH3)  - categories.SCOUT - categories.TRANSPORTFOCUS } },
@@ -818,7 +775,7 @@ BuilderGroup {
            
             BuilderType = 'Air',
             BuilderConditions = {
-                { SBC, 'MapGreaterThan', { 1000, 1000 }},
+                { SBC, 'MapGreaterThan', { 500, 500 }},
            --
                 { SBC, 'NoRushTimeCheck', { 600 }},
                 { WRC, 'HaveUnitRatioVersusEnemyNC', { 3.0, categories.MOBILE * categories.AIR * categories.ANTIAIR * categories.TECH3 - categories.GROUNDATTACK - categories.BOMBER, '>=', categories.MOBILE * categories.AIR * (categories.TECH2 + categories.TECH3)  - categories.SCOUT - categories.TRANSPORTFOCUS } },
@@ -963,7 +920,7 @@ BuilderGroup {
     Builder {
         BuilderName = 'NC T2 Air Transport',
         PlatoonTemplate = 'T2AirTransport',
-        Priority = 708,
+        Priority = 788,
         BuilderConditions = {
             { MIBC, 'GreaterThanGameTime', { 500 } },
             { UCBC, 'HaveLessThanUnitsInCategoryBeingBuilt', { 1, 'TRANSPORTFOCUS' } },
@@ -989,7 +946,7 @@ BuilderGroup {
     Builder {
         BuilderName = 'NC T3 Air Transport Default',
         PlatoonTemplate = 'T3AirTransport',
-        Priority = 700,
+        Priority = 790,
         BuilderConditions = {
             { MIBC, 'GreaterThanGameTime', { 1200} },
             { WRC, 'HaveUnitRatioVersusEnemyNC', { 3.0, categories.MOBILE * categories.AIR * categories.ANTIAIR * categories.TECH3 - categories.GROUNDATTACK - categories.BOMBER, '>=', categories.MOBILE * categories.AIR * (categories.TECH2 + categories.TECH3)  - categories.SCOUT - categories.TRANSPORTFOCUS } },
@@ -1016,7 +973,7 @@ BuilderGroup {
             { MIBC, 'GreaterThanGameTime', { 1000 } },
             { UCBC, 'HaveGreaterThanUnitsWithCategory', { 20 , categories.AIR * categories.MOBILE * categories.ANTIAIR  - categories.BOMBER - categories.GROUNDATTACK } },
 			{ SBC, 'NoRushTimeCheck', { 600 }},
-			{ UCBC, 'HaveUnitsWithCategoryAndAlliance', { true, 0, categories.NAVAL * categories.FACTORY,  'Enemy' }},
+			{ UCBC, 'HaveUnitsWithCategoryAndAlliance', { true, 0, categories.NAVAL * categories.MOBILE,  'Enemy' }},
           ---
 { EBC, 'GreaterThanEconStorageCurrent', { 8, 60 } },  
 --
@@ -1025,11 +982,20 @@ BuilderGroup {
         },
     },
     
-    
-   
- 
-    
-   
+    Builder {
+        BuilderName = 'NC Torp Bomber',
+        PlatoonTemplate = 'NCtorpbomber',
+        Priority = 754,
+        BuilderType = 'Air',
+        BuilderConditions = {
+           
+            { SBC, 'NoRushTimeCheck', { 600 }},
+            { EBC, 'GreaterThanEconStorageCurrent', { 8, 60 } },  
+            { WRC, 'HaveUnitRatioVersusEnemyNC', { 0.35, categories.MOBILE * categories.AIR * categories.ANTINAVY, '<=', categories.MOBILE * categories.NAVAL } },
+            
+        },
+    }
+  
 }
 
 
@@ -1054,7 +1020,7 @@ BuilderGroup {
         Priority = 705,
         BuilderType = 'Air',
         BuilderConditions = {
-            { MIBC, 'GreaterThanGameTime', { 1500 } },
+            { MIBC, 'GreaterThanGameTime', { 1200 } },
             { WRC, 'HaveUnitRatioVersusEnemyNC', { 3.0, categories.MOBILE * categories.AIR * categories.ANTIAIR * categories.TECH3 - categories.GROUNDATTACK - categories.BOMBER, '>=', categories.MOBILE * categories.AIR * (categories.TECH2 + categories.TECH3)  - categories.SCOUT - categories.TRANSPORTFOCUS } },
 			{ SBC, 'NoRushTimeCheck', { 600 }},
 			

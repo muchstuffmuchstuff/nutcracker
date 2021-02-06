@@ -525,6 +525,138 @@ NCsatelite = function(self)
     end
 end,
 
+Huntmex = function(self)
+    self:Stop()
+    local aiBrain = self:GetBrain()
+    local armyIndex = aiBrain:GetArmyIndex()
+    local target
+    local blip
+    while aiBrain:PlatoonExists(self) do
+        target = self:FindClosestUnit('Attack', 'Enemy', true, categories.MASSEXTRACTION)
+        if target then
+            blip = target:GetBlip(armyIndex)
+            self:Stop()
+            self:AggressiveMoveToLocation(table.copy(target:GetPosition()))
+            --DUNCAN - added to try and stop AI getting stuck.
+            local position = AIUtils.RandomLocation(target:GetPosition()[1],target:GetPosition()[3])
+            self:MoveToLocation(position, false)
+        end
+        WaitSeconds(17)
+    end
+end,
+
+Huntenergy = function(self)
+    self:Stop()
+    local aiBrain = self:GetBrain()
+    local armyIndex = aiBrain:GetArmyIndex()
+    local target
+    local blip
+    while aiBrain:PlatoonExists(self) do
+        target = self:FindClosestUnit('Attack', 'Enemy', true, categories.ENERGYPRODUCTION * categories.TECH3)
+        if target then
+            blip = target:GetBlip(armyIndex)
+            self:Stop()
+            self:AggressiveMoveToLocation(table.copy(target:GetPosition()))
+            --DUNCAN - added to try and stop AI getting stuck.
+            local position = AIUtils.RandomLocation(target:GetPosition()[1],target:GetPosition()[3])
+            self:MoveToLocation(position, false)
+        end
+        WaitSeconds(17)
+    end
+end,
+
+HuntAll = function(self)
+    self:Stop()
+    local aiBrain = self:GetBrain()
+    local armyIndex = aiBrain:GetArmyIndex()
+    local target
+    local blip
+    while aiBrain:PlatoonExists(self) do
+        target = self:FindClosestUnit('Attack', 'Enemy', true, categories.ALLUNITS - categories.INSIGNIFICANTUNIT)
+        if target then
+            blip = target:GetBlip(armyIndex)
+            self:Stop()
+            self:AggressiveMoveToLocation(table.copy(target:GetPosition()))
+            --DUNCAN - added to try and stop AI getting stuck.
+            local position = AIUtils.RandomLocation(target:GetPosition()[1],target:GetPosition()[3])
+            self:MoveToLocation(position, false)
+        end
+        WaitSeconds(17)
+    end
+end,
+
+HuntLand = function(self)
+    self:Stop()
+    local aiBrain = self:GetBrain()
+    local armyIndex = aiBrain:GetArmyIndex()
+    local target
+    local blip
+    while aiBrain:PlatoonExists(self) do
+        target = self:FindClosestUnit('Attack', 'Enemy', true, categories.LAND * categories.MOBILE - categories.INSIGNIFICANTUNIT)
+        if target then
+            blip = target:GetBlip(armyIndex)
+            self:Stop()
+            self:AggressiveMoveToLocation(table.copy(target:GetPosition()))
+            --DUNCAN - added to try and stop AI getting stuck.
+            local position = AIUtils.RandomLocation(target:GetPosition()[1],target:GetPosition()[3])
+            self:MoveToLocation(position, false)
+        end
+        WaitSeconds(17)
+    end
+end,
+
+GuardExperimentalNC = function(self, nextAIFunc)
+    local aiBrain = self:GetBrain()
+
+    if not aiBrain:PlatoonExists(self) or not self:GetPlatoonPosition() then
+        return
+    end
+
+    AIAttackUtils.GetMostRestrictiveLayer(self)
+
+    local unitToGuard = false
+    local units = aiBrain:GetListOfUnits(categories.MOBILE * categories.EXPERIMENTAL - categories.url0401, false)
+    for k,v in units do
+        if v:GetFractionComplete() == 1 and ((self.MovementLayer == 'Air' and SUtils.GetGuardCount(aiBrain, v, categories.AIR) < 40) or ((self.MovementLayer == 'Land' or self.MovementLayer == 'Amphibious') and EntityCategoryContains(categories.LAND, v) and SUtils.GetGuardCount(aiBrain, v, categories.LAND) < 40)) then --not v.BeingGuarded then
+            unitToGuard = v
+            --v.BeingGuarded = true
+        end
+    end
+
+    local guardTime = 0
+    if unitToGuard and not unitToGuard.Dead then
+        IssueGuard(self:GetPlatoonUnits(), unitToGuard)
+
+        while aiBrain:PlatoonExists(self) and not unitToGuard.Dead do
+            guardTime = guardTime + 5
+            WaitSeconds(5)
+
+            if aiBrain.T4ThreatFound['Air'] and self.MovementLayer == 'Air' then
+                local target = self:FindClosestUnit('Attack', 'Enemy', true, categories.EXPERIMENTAL * categories.AIR)
+                if target and target:GetFractionComplete() == 1 then
+                    return self:FighterHuntAI()
+                end
+            end
+
+            if self.PlatoonData.T4GuardTimeLimit and guardTime >= self.PlatoonData.T4GuardTimeLimit
+            or (not unitToGuard.Dead and unitToGuard:GetCurrentLayer() == 'Seabed' and self.MovementLayer == 'Land') then
+                break
+            end
+        end
+    end
+
+    ----Tail call into the next ai function
+    WaitSeconds(1)
+    if type(nextAIFunc) == 'function' then
+        return nextAIFunc(self)
+    end
+
+    if not unitToGuard then
+        return self:ReturnToBaseAISorian()
+    end
+
+    return self:GuardExperimentalNC(nextAIFunc)
+end,
 
 
 

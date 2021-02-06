@@ -108,49 +108,20 @@ end
 BuilderGroup {
     BuilderGroupName = 'ncMobileAirExperimentalbehavior',
     BuildersType = 'PlatoonFormBuilder',
-    
     Builder {
-        BuilderName = 'nc T4 Exp Air attack command snipe',
+        BuilderName = 'nc T4 Exp Air attack command focus',
         PlatoonAddPlans = {'PlatoonCallForHelpAISorian'},
-        PlatoonTemplate = 'NCairexperimentalattack_regular',
+        PlatoonTemplate = 'NCairexperimentalattack_commandfocus',
     
         Priority = 1500,
         InstanceCount = 50,
-        FormRadius = 250,
+        FormRadius = 500,
         AggressiveMove = false,
         SearchRadius = 80000,
         BuilderType = 'Any',
         BuilderConditions = {
-            {CF,'AirExperimentalRandomizer',{1}},
-            { MIBC, 'FactionIndex', {2,3, 4}},
-            { MIBC, 'GreaterThanGameTime', { 1200} },
-         
-            { UCBC, 'PoolGreaterAtLocation', { 'LocationType', 0, 'EXPERIMENTAL AIR' } },
-            { SBC, 'NoRushTimeCheck', { 0 }},
-        },
- 
-            UseMoveOrder = true,
-            PrioritizedCategories = { 
-
-                'COMMAND',
-    },
-
-    },
-
-    Builder {
-        BuilderName = 'nc T4 Exp Air attack mex focus',
-        PlatoonAddPlans = {'PlatoonCallForHelpAISorian'},
-        PlatoonTemplate = 'NCairexperimentalattack',
-    
-        Priority = 1500,
-        InstanceCount = 50,
-        FormRadius = 250,
-        AggressiveMove = false,
-        SearchRadius = 80000,
-        BuilderType = 'Any',
-        BuilderConditions = {
-            {CF,'AirExperimentalRandomizer',{2}},
-            { MIBC, 'FactionIndex', {2,3, 4}},
+            {CF,'AirExpRandomizer',{1}},
+            { MIBC, 'FactionIndex', {2,3}},
             { MIBC, 'GreaterThanGameTime', { 1200} },
      
          
@@ -161,96 +132,203 @@ BuilderGroup {
       
             
             UseMoveOrder = true,
-            PrioritizedCategories = { 'MASSEXTRACTION',
+            PrioritizedCategories = { 'LAND MOBILE',
     
     },
 },
-
     Builder {
         BuilderName = 'nc T4 Exp Air attack land focus',
         PlatoonAddPlans = {'PlatoonCallForHelpAISorian'},
-        PlatoonTemplate = 'NCairexperimentalattack',
+        PlatoonTemplate = 'NCairexperimentalattack_landfocus',
     
         Priority = 1500,
         InstanceCount = 50,
-        FormRadius = 250,
+        FormRadius = 500,
         AggressiveMove = false,
         SearchRadius = 80000,
         BuilderType = 'Any',
         BuilderConditions = {
-            {CF,'AirExperimentalRandomizer',{3}},
-            { MIBC, 'FactionIndex', {2,3, 4}},
+            {CF,'AirExpRandomizer',{2}},
+            { MIBC, 'FactionIndex', {2,3}},
             { MIBC, 'GreaterThanGameTime', { 1200} },
-      
-           
+     
+         
             { UCBC, 'PoolGreaterAtLocation', { 'LocationType', 0, 'EXPERIMENTAL AIR' } },
 
             { SBC, 'NoRushTimeCheck', { 0 }},
         },
-        
+      
+            
             UseMoveOrder = true,
             PrioritizedCategories = { 'LAND MOBILE',
-  
-        },
+    
     },
+},
+Builder {
+    BuilderName = 'nc T4 Exp Air attack energy focus',
+    PlatoonAddPlans = {'PlatoonCallForHelpAISorian'},
+    PlatoonTemplate = 'NCairexperimentalattack_energyfocus',
+
+    Priority = 1500,
+    InstanceCount = 50,
+    FormRadius = 500,
+    AggressiveMove = false,
+    SearchRadius = 80000,
+    BuilderType = 'Any',
+    BuilderConditions = {
+        {CF,'AirExpRandomizer',{3}},
+        { MIBC, 'FactionIndex', {2,3}},
+        { MIBC, 'GreaterThanGameTime', { 1200} },
+ 
+     
+        { UCBC, 'PoolGreaterAtLocation', { 'LocationType', 0, 'EXPERIMENTAL AIR' } },
+
+        { SBC, 'NoRushTimeCheck', { 0 }},
+    },
+  
         
-            Builder {
-                BuilderName = 'nc T4 Exp Air attack target energy',
-                PlatoonAddPlans = {'PlatoonCallForHelpAISorian'},
-                PlatoonTemplate = 'NCairexperimentalattack',
-            
-                Priority = 1500,
-                InstanceCount = 50,
-                FormRadius = 250,
-                AggressiveMove = false,
-                SearchRadius = 80000,
-                BuilderType = 'Any',
-                BuilderConditions = {
-                    {CF,'AirExperimentalRandomizer',{4}},
-                    { MIBC, 'FactionIndex', {2,3, 4}},
-                    { MIBC, 'GreaterThanGameTime', { 1200} },
-              
-                   
-                    { UCBC, 'PoolGreaterAtLocation', { 'LocationType', 0, 'EXPERIMENTAL AIR' } },
+        UseMoveOrder = true,
+        PrioritizedCategories = { 'ENERGYPRODUCTION',
+
+},
+},
+Builder {
+    BuilderName = 'nc T4 Exp Air attack mex focus',
+    PlatoonAddPlans = {'PlatoonCallForHelpAISorian'},
+    PlatoonTemplate = 'NCairexperimentalattack_mexfocus',
+
+    Priority = 1500,
+    InstanceCount = 50,
+    FormRadius = 500,
+    AggressiveMove = false,
+    SearchRadius = 80000,
+    BuilderType = 'Any',
+    BuilderConditions = {
+        {CF,'AirExpRandomizer',{4}},
+        { MIBC, 'FactionIndex', {2,3}},
+        { MIBC, 'GreaterThanGameTime', { 1200} },
+
+        { UCBC, 'PoolGreaterAtLocation', { 'LocationType', 0, 'EXPERIMENTAL AIR' } },
+        { SBC, 'NoRushTimeCheck', { 0 }},
+    },
+  
         
-                    { SBC, 'NoRushTimeCheck', { 0 }},
-                },
-                
-                    UseMoveOrder = true,
-                    PrioritizedCategories = { 'ENERGYPRODUCTION TECH3',
-          
-                },
-            },
-                Builder {
-                    BuilderName = 'nc T4 Exp Air attack target anti nuke',
-                    PlatoonAddPlans = {'PlatoonCallForHelpAISorian'},
-                    PlatoonTemplate = 'NCairexperimentalattack',
-                
-                    Priority = 1500,
-                    InstanceCount = 50,
-                    FormRadius = 250,
-                    AggressiveMove = false,
-                    SearchRadius = 80000,
-                    BuilderType = 'Any',
-                    BuilderConditions = {
-                        {CF,'AirExperimentalRandomizer',{5}},
-                        { MIBC, 'FactionIndex', {2,3, 4}},
-                        { MIBC, 'GreaterThanGameTime', { 1200} },
-                  
-                      
-                        { UCBC, 'PoolGreaterAtLocation', { 'LocationType', 0, 'EXPERIMENTAL AIR' } },
-            
-                        { SBC, 'NoRushTimeCheck', { 0 }},
-                    },
-                    
-                        UseMoveOrder = true,
-                        PrioritizedCategories = { 'STRUCTURE ANTIMISSILE TECH3',
-                    
-              
-                    },
-                },
-                
-                
+        UseMoveOrder = true,
+        PrioritizedCategories = { 'MASSEXTRACTION',
+
+},
+},
+Builder {
+    BuilderName = 'nc T4 Exp Air attack command focus sera',
+    PlatoonAddPlans = {'PlatoonCallForHelpAISorian'},
+    PlatoonTemplate = 'NCairexperimentalattacksera_commandfocus',
+
+    Priority = 1500,
+    InstanceCount = 50,
+    FormRadius = 500,
+    AggressiveMove = false,
+    SearchRadius = 80000,
+    BuilderType = 'Any',
+    BuilderConditions = {
+        {CF,'AirExpRandomizer',{1}},
+        { MIBC, 'FactionIndex', {4}},
+        { MIBC, 'GreaterThanGameTime', { 1200} },
+ 
+     
+        { UCBC, 'PoolGreaterAtLocation', { 'LocationType', 0, 'EXPERIMENTAL AIR' } },
+
+        { SBC, 'NoRushTimeCheck', { 0 }},
+    },
+  
+        
+        UseMoveOrder = true,
+        PrioritizedCategories = { 'LAND MOBILE',
+
+},
+},
+Builder {
+    BuilderName = 'nc T4 Exp Air attack land focus sera',
+    PlatoonAddPlans = {'PlatoonCallForHelpAISorian'},
+    PlatoonTemplate = 'NCairexperimentalattacksera_landfocus',
+
+    Priority = 1500,
+    InstanceCount = 50,
+    FormRadius = 500,
+    AggressiveMove = false,
+    SearchRadius = 80000,
+    BuilderType = 'Any',
+    BuilderConditions = {
+        {CF,'AirExpRandomizer',{2}},
+        { MIBC, 'FactionIndex', {4}},
+        { MIBC, 'GreaterThanGameTime', { 1200} },
+ 
+     
+        { UCBC, 'PoolGreaterAtLocation', { 'LocationType', 0, 'EXPERIMENTAL AIR' } },
+
+        { SBC, 'NoRushTimeCheck', { 0 }},
+    },
+  
+        
+        UseMoveOrder = true,
+        PrioritizedCategories = { 'LAND MOBILE',
+
+},
+},
+Builder {
+    BuilderName = 'nc T4 Exp Air attack energy focus sera',
+    PlatoonAddPlans = {'PlatoonCallForHelpAISorian'},
+    PlatoonTemplate = 'NCairexperimentalattacksera_energyfocus',
+
+    Priority = 1500,
+    InstanceCount = 50,
+    FormRadius = 500,
+    AggressiveMove = false,
+    SearchRadius = 80000,
+    BuilderType = 'Any',
+    BuilderConditions = { 
+        {CF,'AirExpRandomizer',{3}},
+        { MIBC, 'FactionIndex', {4}},
+        { MIBC, 'GreaterThanGameTime', { 1200} },
+
+        { UCBC, 'PoolGreaterAtLocation', { 'LocationType', 0, 'EXPERIMENTAL AIR' } },
+
+        { SBC, 'NoRushTimeCheck', { 0 }},
+    },
+  
+        
+        UseMoveOrder = true,
+        PrioritizedCategories = { 'ENERGYPRODUCTION',
+
+},
+},
+Builder {
+    BuilderName = 'nc T4 Exp Air attack mex focus sera',
+    PlatoonAddPlans = {'PlatoonCallForHelpAISorian'},
+    PlatoonTemplate = 'NCairexperimentalattacksera_mexfocus',
+
+    Priority = 1500,
+    InstanceCount = 50,
+    FormRadius = 500,
+    AggressiveMove = false,
+    SearchRadius = 80000,
+    BuilderType = 'Any',
+    BuilderConditions = {
+        {CF,'AirExpRandomizer',{4}},
+        { MIBC, 'FactionIndex', {4}},
+        { MIBC, 'GreaterThanGameTime', { 1200} },
+ 
+     
+        { UCBC, 'PoolGreaterAtLocation', { 'LocationType', 0, 'EXPERIMENTAL AIR' } },
+
+        { SBC, 'NoRushTimeCheck', { 0 }},
+    },
+  
+        
+        UseMoveOrder = true,
+        PrioritizedCategories = { 'MASSEXTRACTION',
+
+},
+},
 
 }
 
@@ -275,7 +353,8 @@ BuilderGroup {
             {CF, 'NoNukeRush',{}},
            
             { SIBC, 'HaveLessThanUnitsInCategoryBeingBuilt', { 1, categories.EXPERIMENTAL * (categories.AIR + categories.LAND + categories.STRUCTURE) }},
-            { SIBC, 'HaveGreaterThanUnitsWithCategory', { 0, categories.ENERGYPRODUCTION * categories.TECH3}},
+            
+            { WRC, 'HaveUnitRatioVersusEnemyNC', { 3.0, categories.MOBILE * categories.AIR * categories.ANTIAIR - categories.GROUNDATTACK - categories.BOMBER, '>=', categories.MOBILE * categories.AIR  - categories.SCOUT - categories.TRANSPORTFOCUS } },
        
         },
         BuilderType = 'Any',
@@ -305,8 +384,12 @@ BuilderGroup {
             {CF, 'Noparagonrush',{}},
             {CF, 'NoRapidFireRush',{}},
             {CF, 'NoNukeRush',{}},
+           
             { SIBC, 'HaveLessThanUnitsInCategoryBeingBuilt', { 1, categories.EXPERIMENTAL * (categories.AIR + categories.LAND + categories.STRUCTURE) }},
-            { SIBC, 'HaveGreaterThanUnitsWithCategory', { 0, categories.ENERGYPRODUCTION * categories.TECH3}},
+            { WRC, 'HaveUnitRatioVersusEnemyNC', { 3.0, categories.MOBILE * categories.AIR * categories.ANTIAIR - categories.GROUNDATTACK - categories.BOMBER, '>=', categories.MOBILE * categories.AIR  - categories.SCOUT - categories.TRANSPORTFOCUS } },
+   
+   
+          
        
         },
         BuilderType = 'Any',
@@ -423,13 +506,14 @@ BuilderGroup {
         BuilderConditions = {
             
             { UCBC, 'PoolGreaterAtLocation', { 'LocationType', 0, 'EXPERIMENTAL LAND' } },
-			{ MIBC, 'FactionIndex', {1,2, 3, 4}},
+			
 			
 			{ SBC, 'NoRushTimeCheck', { 0 }},
         },
-      
-            UseMoveOrder = true,
-            PrioritizedCategories = { categories.STRUCTURE,
+        UseMoveOrder = true,
+        PrioritizedCategories = { 
+
+            'COMMAND',
         }, 
        
     },

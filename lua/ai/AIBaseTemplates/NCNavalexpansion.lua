@@ -10,6 +10,7 @@ BaseBuilderTemplate {
         'NCSeaFactoryUpgrades',
         'ncSeaHunterFormBuilders',
         'NCT2SeaFactoryBuilders',
+        'NCT3SeaFactoryBuilders',
 
         # ==== ECONOMY ==== #
         # Factory upgrades

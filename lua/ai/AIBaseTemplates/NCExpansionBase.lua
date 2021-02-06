@@ -4,7 +4,9 @@
 BaseBuilderTemplate {
     BaseTemplateName = 'NutCrackerExpansionBase',
     Builders = {
-      
+        'NCTransportFactorycoinflip',
+        'NCMobileNavalExperimentalcoinflip',
+        'NCMobileNavalExperimentalbehavior',
         'ncdukehukemcoinflip',
         'NC_coinflip_factoryupgrade',
    
@@ -27,6 +29,7 @@ BaseBuilderTemplate {
 
 
         # ==== ECONOMY ==== #
+        'NCSCUUpgrades',
         'NCengineertowers',
         'NC tower upgrades',
         'NCT3Engineerassistmex',
@@ -71,6 +74,7 @@ BaseBuilderTemplate {
                      
        	        
         # ==== DEFENSES ==== #
+        'NCdefense_onisland',
         'NCexpansionstandardefense',
 		'NCT1BaseDefenses',
 	
@@ -86,7 +90,8 @@ BaseBuilderTemplate {
         'NCT3NukeDefenses',
         'NCT3NukeDefenseBehaviors',
 		
-	      
+	    ---offense
+        'NCtacticalattack',  
         ---navy
         'NCT2NavalDefenses',
         'NCNaval Factories',
@@ -97,7 +102,7 @@ BaseBuilderTemplate {
       
         # ==== LAND UNIT BUILDERS ==== #
         'NCdefense_antiair',
-        'NCdefense_onisland',
+       
         'NCspammage',
        
       
@@ -150,7 +155,7 @@ BaseBuilderTemplate {
 
         # ==== EXPERIMENTALS ==== #
        
-      
+        'ncMobileLandExperimentalbehavior',
     
 		
       

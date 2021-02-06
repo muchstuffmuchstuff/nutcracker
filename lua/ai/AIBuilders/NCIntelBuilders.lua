@@ -108,12 +108,12 @@ BuilderGroup {
            
             { UCBC, 'CheckBuildPlattonDelay', { 'Scouts' }},
             { MIBC, 'GreaterThanGameTime', { 320 } },
-            { UCBC, 'HaveLessThanUnitsWithCategory', { 5, categories.TECH1 * categories.AIR * categories.INTELLIGENCE } },
+            { UCBC, 'HaveLessThanUnitsWithCategory', { 10, categories.TECH1 * categories.AIR * categories.INTELLIGENCE } },
 		
       
            
 	
-            { SIBC, 'HaveLessThanUnitsInCategoryBeingBuilt', {  1, categories.INTELLIGENCE * categories.AIR * categories.TECH1} },
+            { SIBC, 'HaveLessThanUnitsInCategoryBeingBuilt', {  2, categories.INTELLIGENCE * categories.AIR * categories.TECH1} },
             { EBC, 'GreaterThanEconStorageCurrent', { 8, 60 } }, 
             
 			{ SBC, 'NoRushTimeCheck', { 600 }},
@@ -128,14 +128,15 @@ BuilderGroup {
         BuilderName = 'NC T3 airscout',
         PlatoonTemplate = 'T3AirScout',
         Priority = 900, 
-        DelayEqualBuildPlattons = {'Scouts', 15},
+
+        DelayEqualBuildPlattons = {'Scouts', 3},
         BuilderConditions = {
-            { MIBC, 'GreaterThanGameTime', { 1220 } },
+            { MIBC, 'GreaterThanGameTime', { 1000 } },
             { UCBC, 'CheckBuildPlattonDelay', { 'Scouts' }},
-            { UCBC, 'HaveLessThanUnitsWithCategory', { 6, categories.TECH3 * categories.AIR * categories.INTELLIGENCE } },
+            { UCBC, 'HaveLessThanUnitsWithCategory', { 10, categories.TECH3 * categories.AIR * categories.INTELLIGENCE } },
 			
 			
-            { SIBC, 'HaveLessThanUnitsInCategoryBeingBuilt', { 1, categories.INTELLIGENCE * categories.AIR * categories.TECH3 } },
+            { SIBC, 'HaveLessThanUnitsInCategoryBeingBuilt', { 2, categories.INTELLIGENCE * categories.AIR * categories.TECH3 } },
             { EBC, 'GreaterThanEconStorageCurrent', { 8, 60 } }, 
             
 			{ SBC, 'NoRushTimeCheck', { 600 }},
@@ -286,7 +287,7 @@ BuilderGroup {
     
         BuilderConditions = {
             { SBC, 'NoRushTimeCheck', { 0 }},
-            { UCBC, 'PoolGreaterAtLocation', { 'LocationType', 1, categories.AIR * categories.MOBILE * categories.SCOUT * categories.TECH1 } },
+            { UCBC, 'PoolGreaterAtLocation', { 'LocationType', 0, categories.AIR * categories.MOBILE * categories.SCOUT * categories.TECH1 } },
         },
 		PlatoonAddBehaviors = { 'AirUnitRefitSorian' },
         InstanceCount = 20,
@@ -297,7 +298,7 @@ Builder {
         PlatoonTemplate = 'T1AirScoutFormswarm',
         Priority = 650,
         BuilderConditions = {
-            { UCBC, 'PoolGreaterAtLocation', { 'LocationType', 1, categories.AIR * categories.MOBILE * categories.SCOUT * categories.TECH1 } },
+            { UCBC, 'PoolGreaterAtLocation', { 'LocationType', 0, categories.AIR * categories.MOBILE * categories.SCOUT * categories.TECH1 } },
 			{ SBC, 'NoRushTimeCheck', { 0 }},
         },
 		PlatoonAddBehaviors = { 'AirUnitRefitSorian' },
@@ -311,7 +312,7 @@ Builder {
         Priority = 750,
         BuilderConditions = {
             { MIBC, 'GreaterThanGameTime', { 1000 } },
-            { UCBC, 'PoolGreaterAtLocation', { 'LocationType', 1, categories.AIR * categories.MOBILE * categories.SCOUT * categories.TECH3 } },
+            { UCBC, 'PoolGreaterAtLocation', { 'LocationType', 0, categories.AIR * categories.MOBILE * categories.SCOUT * categories.TECH3 } },
 			{ SBC, 'NoRushTimeCheck', { 0 }},
         },
         PlatoonAddPlans = { 'AirIntelToggle' },
@@ -325,7 +326,7 @@ Builder {
         Priority = 751,
         BuilderConditions = {
             { MIBC, 'GreaterThanGameTime', { 1000 } },
-            { UCBC, 'PoolGreaterAtLocation', { 'LocationType', 1, categories.AIR * categories.MOBILE * categories.SCOUT * categories.TECH3 } },
+            { UCBC, 'PoolGreaterAtLocation', { 'LocationType', 0, categories.AIR * categories.MOBILE * categories.SCOUT * categories.TECH3 } },
 			{ SBC, 'NoRushTimeCheck', { 0 }},
         },
         PlatoonAddPlans = { 'AirIntelToggle' },

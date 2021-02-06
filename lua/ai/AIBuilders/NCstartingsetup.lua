@@ -222,7 +222,7 @@ BuilderGroup {
                     'T1LandFactory',
 					'T1EnergyProduction',
                     'T1EnergyProduction',
-                    'T1LandFactory',
+               
                     #'T1Resource',
                     'T1EnergyProduction',
                     'T1EnergyProduction',

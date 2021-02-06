@@ -116,7 +116,7 @@ BuilderGroup {
         BuilderConditions = {
            
        {CF,'Standardlandpushstartlate2',{}},
-       { MIBC, 'GreaterThanGameTime', { 1800 } },   
+       { MIBC, 'GreaterThanGameTime', { 1200} },   
             { SIBC, 'HaveLessThanUnitsInCategoryBeingBuilt', { 3, categories.LAND * categories.TECH1 * categories.MOBILE }},
             { WRC, 'CanPathToCurrentEnemyNC', { 'LocationType', false } },  
             { UCBC, 'HaveUnitRatioVersusCap', { T1landspamNC , '<', categories.TECH1 * categories.MOBILE * categories.LAND } }, 
@@ -216,7 +216,7 @@ BuilderGroup {
    
         BuilderConditions = {
             {CF,'Standardlandpushstartlate2',{}},
-            { MIBC, 'GreaterThanGameTime', { 1800 } },
+            { MIBC, 'GreaterThanGameTime', { 1200} },
             { WRC, 'CanPathToCurrentEnemyNC', { 'LocationType', false } },  
 			
             ---
@@ -307,7 +307,7 @@ BuilderGroup {
       
         BuilderConditions = {
             {CF,'Standardlandpushstartlate2',{}},
-            { MIBC, 'GreaterThanGameTime', { 1800 } },
+            { MIBC, 'GreaterThanGameTime', { 1200} },
             { WRC, 'CanPathToCurrentEnemyNC', { 'LocationType', false } },  
 { EBC, 'GreaterThanEconStorageCurrent', { 8, 60 } },  
 
@@ -414,7 +414,7 @@ BuilderGroup {
     
         BuilderConditions = {
             {CF,'Standardlandpushstartlate2',{}},
-            { MIBC, 'GreaterThanGameTime', { 1800 } },  
+            { MIBC, 'GreaterThanGameTime', { 1200} },  
             { WRC, 'CanPathToCurrentEnemyNC', { 'LocationType', true } },  
             { UCBC, 'HaveUnitRatioVersusCap', { T1landspamNC , '<=', categories.TECH1 * categories.MOBILE * categories.LAND } }, 
 
@@ -511,7 +511,7 @@ BuilderGroup {
         BuilderConditions = {
             
             {CF,'Standardlandpushstartlate2',{}},
-            { MIBC, 'GreaterThanGameTime', { 1800 } },
+            { MIBC, 'GreaterThanGameTime', { 1200} },
             { WRC, 'CanPathToCurrentEnemyNC', { 'LocationType', true } }, 
 
 { EBC, 'GreaterThanEconStorageCurrent', { 8, 60 } },  
@@ -599,7 +599,7 @@ BuilderGroup {
       
         BuilderConditions = {
             {CF,'Standardlandpushstartlate2',{}},
-            { MIBC, 'GreaterThanGameTime', { 1800 } },
+            { MIBC, 'GreaterThanGameTime', { 1200} },
             { WRC, 'CanPathToCurrentEnemyNC', { 'LocationType', true } }, 
 { EBC, 'GreaterThanEconStorageCurrent', { 8, 60 } },  
 
@@ -646,30 +646,7 @@ BuilderGroup {
 BuilderGroup {
     BuilderGroupName = 'NCdefense_onisland',
     BuildersType = 'FactoryBuilder',
-    Builder {
-        BuilderName = 'NC T1 base defense on island against standard uef',
-        PlatoonTemplate = 'T1spammage',
-        Priority = 700,
-        InstanceCount = 2,
-    
-        BuilderConditions = {
-           
-            { MIBC, 'FactionIndex', {1} },
-            
-            { UCBC, 'UnitsLessAtLocation', { 'LocationType', 15, categories.TECH1 * categories.LAND * categories.MOBILE - categories.ENGINEER }},
-            { WRC, 'CanPathToCurrentEnemyNC', { 'LocationType', false } },  
-            
-		
-            ---
-{ EBC, 'GreaterThanEconStorageCurrent', { 8, 60 } },  
--- 
-          
-            
-			{ SBC, 'NoRushTimeCheck', { 600 }},
-       --
-        },
-        BuilderType = 'Land',
-    },
+
     Builder {
         BuilderName = 'NC T1 base defense on island against t1',
         PlatoonTemplate = 'T1spammage',
@@ -679,7 +656,7 @@ BuilderGroup {
         BuilderConditions = {
            
        
-            { SBC, 'GreaterThanEnemyUnitsAroundBase', { 'LocationType', 5, categories.LAND * categories.MOBILE * categories.TECH1 - categories.ENGINEER, 270 } },
+            { SBC, 'GreaterThanEnemyUnitsAroundBase', { 'LocationType', 10, categories.LAND * categories.MOBILE * categories.TECH1 - categories.ENGINEER, 270 } },
             { WRC, 'CanPathToCurrentEnemyNC', { 'LocationType', false } },  
             
 		
@@ -702,7 +679,7 @@ BuilderGroup {
         BuilderConditions = {
            
        
-            { SBC, 'GreaterThanEnemyUnitsAroundBase', { 'LocationType', 5, categories.LAND * categories.MOBILE * (categories.TECH1 + categories.TECH2) - categories.ENGINEER, 270 } },
+            { SBC, 'GreaterThanEnemyUnitsAroundBase', { 'LocationType', 6, categories.LAND * categories.MOBILE * (categories.TECH1 + categories.TECH2) - categories.ENGINEER, 270 } },
             { WRC, 'CanPathToCurrentEnemyNC', { 'LocationType', false } },  
             
 		
@@ -746,17 +723,12 @@ BuilderGroup {
         InstanceCount = 2,
     
         BuilderConditions = {
-           
-       
+
             { SBC, 'GreaterThanEnemyUnitsAroundBase', { 'LocationType', 0, categories.LAND * categories.MOBILE * categories.EXPERIMENTAL, 300 } },
             { WRC, 'CanPathToCurrentEnemyNC', { 'LocationType', false } },  
-            
-		
-            ---
+
 { EBC, 'GreaterThanEconStorageCurrent', { 8, 60 } },  
--- 
-          
-            
+
 			{ SBC, 'NoRushTimeCheck', { 600 }},
        --
         },
@@ -775,7 +747,7 @@ BuilderGroup {
     
         BuilderConditions = {
            
-       
+            { UCBC, 'HaveLessThanUnitsWithCategory', {4, categories.MOBILE * categories.ANTIAIR * categories.LAND } },
             { SBC, 'GreaterThanEnemyUnitsAroundBase', { 'LocationType', 5, categories.AIR * categories.MOBILE * categories.TECH1 - categories.SCOUT - categories.TRANSPORTFOCUS, 100 } },
            
             
@@ -797,17 +769,11 @@ BuilderGroup {
         InstanceCount = 2,
     
         BuilderConditions = {
-           
-       
-            { SBC, 'GreaterThanEnemyUnitsAroundBase', { 'LocationType', 5, categories.AIR * categories.MOBILE * (categories.TECH1 + categories.TECH2) - categories.SCOUT - categories.TRANSPORTFOCUS, 100 } },
-         
-            
-		
-            ---
+            { UCBC, 'HaveLessThanUnitsWithCategory', {4, categories.MOBILE * categories.ANTIAIR * categories.LAND * (categories.TECH2 + categories.TECH3) } },
+            { WRC, 'HaveUnitRatioVersusEnemyNC', { 3.0, categories.MOBILE * categories.AIR * categories.ANTIAIR - categories.GROUNDATTACK - categories.BOMBER, '<=', categories.MOBILE * categories.AIR - categories.SCOUT - categories.TRANSPORTFOCUS } },
+
 { EBC, 'GreaterThanEconStorageCurrent', { 8, 60 } },  
--- 
-          
-            
+
 			{ SBC, 'NoRushTimeCheck', { 600 }},
        --
         },
@@ -820,17 +786,11 @@ BuilderGroup {
         InstanceCount = 2,
     
         BuilderConditions = {
-           
-       
-            { SBC, 'GreaterThanEnemyUnitsAroundBase', { 'LocationType', 5, categories.AIR * categories.MOBILE * (categories.TECH2 + categories.TECH3) - categories.SCOUT - categories.TRANSPORTFOCUS, 100 } },
-             
-            
-		
-            ---
+
+            { UCBC, 'HaveLessThanUnitsWithCategory', {4, categories.MOBILE * categories.ANTIAIR * categories.LAND * categories.TECH3 } },
+            { WRC, 'HaveUnitRatioVersusEnemyNC', { 3.0, categories.MOBILE * categories.AIR * categories.ANTIAIR - categories.GROUNDATTACK - categories.BOMBER, '<=', categories.MOBILE * categories.AIR - categories.SCOUT - categories.TRANSPORTFOCUS } },
 { EBC, 'GreaterThanEconStorageCurrent', { 8, 60 } },  
--- 
-          
-            
+
 			{ SBC, 'NoRushTimeCheck', { 600 }},
        --
         },
@@ -843,6 +803,7 @@ BuilderGroup {
      
     
         BuilderConditions = {
+            { UCBC, 'HaveLessThanUnitsWithCategory', {4, categories.MOBILE * categories.ANTIAIR * categories.LAND * categories.TECH3 } },
             { UCBC, 'UnitsLessAtLocation', { 'LocationType', 2, categories.delk002 + categories.dalk003 + categories.drlk001 + categories.dslk004 }},   
             { UCBC, 'HaveGreaterThanUnitsWithCategory', {100, categories.MOBILE * categories.LAND - categories.ENGINEER } },
     

@@ -10,8 +10,6 @@ local Utils = import('/lua/utilities.lua')
 
 function CheckUnitRangeNC(aiBrain, locationType, unitType, category, factionIndex)
 
-
-   
     local template = import('/lua/BuildingTemplates.lua').BuildingTemplates[factionIndex or aiBrain:GetFactionIndex()]
     local buildingId = false
     for k,v in template do
@@ -53,63 +51,60 @@ function CheckUnitRangeNC(aiBrain, locationType, unitType, category, factionInde
     return false
 end
 
-function CanPathToCurrentEnemyNC(aiBrain, locationType, bool) -- Uveso's function modified to work with expansions
+function CanPathToCurrentEnemyNC(aiBrain, locationType, bool) 
     local AIAttackUtils = import('/lua/AI/aiattackutilities.lua')
-    --We are getting the current base position rather than the start position so we can use this for expansions.
+
     local locPos = aiBrain.BuilderManagers[locationType].Position 
-    -- added this incase the position came back nil
+    
     if not locPos then
         locPos = aiBrain.BuilderManagers['MAIN'].Position
     end
     local enemyX, enemyZ
     if aiBrain:GetCurrentEnemy() then
         enemyX, enemyZ = aiBrain:GetCurrentEnemy():GetArmyStartPos()
-        -- if we don't have an enemy position then we can't search for a path. Return until we have an enemy position
+    
         if not enemyX then
             return false
         end
     else
-        -- if we don't have a current enemy then return false
+       
         return false
     end
 
-    -- Get the armyindex from the enemy
+ 
     local EnemyIndex = ArmyBrains[aiBrain:GetCurrentEnemy():GetArmyIndex()].Nickname
     local OwnIndex = ArmyBrains[aiBrain:GetArmyIndex()].Nickname
 
-    -- create a table for the enemy index in case it's nil
+   
     CanPathToEnemyNC[OwnIndex] = CanPathToEnemyNC[OwnIndex] or {}
     CanPathToEnemyNC[OwnIndex][EnemyIndex] = CanPathToEnemyNC[OwnIndex][EnemyIndex] or {}
-    -- Check if we have already done a path search to the current enemy
+  
     if CanPathToEnemyNC[OwnIndex][EnemyIndex][locationType] == 'LAND' then
         return true == bool
     elseif CanPathToEnemyNC[OwnIndex][EnemyIndex][locationType] == 'WATER' then
         return false == bool
     end
-    -- path wit AI markers from our base to the enemy base
-    --LOG('Validation GenerateSafePath inputs locPos :'..repr(locPos)..'Enemy Pos: '..repr({enemyX,0,enemyZ}))
+    
+    
     local path, reason = AIAttackUtils.PlatoonGenerateSafePathTo(aiBrain, 'Land', locPos, {enemyX,0,enemyZ}, 1000)
-    -- if we have a path generated with AI path markers then....
+  
     if path then
-        --LOG('* RNG CanPathToCurrentEnemyRNG: Land path to the enemy found! LAND map! - '..OwnIndex..' vs '..EnemyIndex..''..' Location '..locationType)
+      
         CanPathToEnemyNC[OwnIndex][EnemyIndex][locationType] = 'LAND'
-    -- if we not have a path
+ 
     else
-        -- "NoPath" means we have AI markers but can't find a path to the enemy - There is no path!
+
         if reason == 'NoPath' then
-            --LOG('* RNG CanPathToCurrentEnemyRNG: No land path to the enemy found! WATER map! - '..OwnIndex..' vs '..EnemyIndex..''..' Location '..locationType)
+ 
             CanPathToEnemyNC[OwnIndex][EnemyIndex][locationType] = 'WATER'
-        -- "NoGraph" means we have no AI markers and cant graph to the enemy. We can't search for a path - No markers
+ 
         elseif reason == 'NoGraph' then
-            --LOG('* RNG CanPathToCurrentEnemyRNG: No AI markers found! Using land/water ratio instead')
-            -- Check if we have less then 50% water on the map
+    
             if aiBrain:GetMapWaterRatio() < 0.60 then
-                --lets asume we can move on land to the enemy
-                --LOG(string.format('* RNG CanPathToCurrentEnemy: Water on map: %0.2f%%. Assuming LAND map! - '..OwnIndex..' vs '..EnemyIndex..''..' Location '..locationType ,aiBrain:GetMapWaterRatio()*100 ))
+             
                 CanPathToEnemyNC[OwnIndex][EnemyIndex][locationType] = 'LAND'
             else
-                -- we have more then 60% water on this map. Ity maybe a water map..
-                --LOG(string.format('* RNG CanPathToCurrentEnemy: Water on map: %0.2f%%. Assuming WATER map! - '..OwnIndex..' vs '..EnemyIndex..''..' Location '..locationType ,aiBrain:GetMapWaterRatio()*100 ))
+        
                 CanPathToEnemyNC[OwnIndex][EnemyIndex][locationType] = 'WATER'
             end
         end
@@ -246,4 +241,36 @@ function HaveUnitRatioVersusEnemyNC(aiBrain, ratio, categoryOwn, compareType, ca
     ---LOG(aiBrain:GetArmyIndex()..' CompareBody {World} ( '..numOwnUnits..' '..compareType..' '..numEnemyUnits..' ) -- ['..ratio..'] -- return '..repr(CompareBodyNC(numOwnUnits / numEnemyUnits, ratio, compareType)))
     return CompareBodyNC(numOwnUnits / numEnemyUnits, ratio, compareType)
     
+end
+
+function EnemyInTMLRangeNC(aiBrain, locationtype, inrange)
+    local engineerManager = aiBrain.BuilderManagers[locationtype].EngineerManager
+    if not engineerManager then
+        return false
+    end
+
+    local start = engineerManager:GetLocationCoords()
+    local factionIndex = aiBrain:GetFactionIndex()
+    local radius = 0
+    local offset = 0
+    if factionIndex == 1 then
+        radius = 250 + offset
+    elseif factionIndex == 2 then
+        radius = 250 + offset
+    elseif factionIndex == 3 then
+        radius = 250 + offset
+    elseif factionIndex == 4 then
+        radius = 250 + offset
+    end
+    for k,v in ArmyBrains do
+        if not v.Result == "defeat" and not ArmyIsCivilian(v:GetArmyIndex()) and IsEnemy(v:GetArmyIndex(), aiBrain:GetArmyIndex()) then
+            local estartX, estartZ = v:GetArmyStartPos()
+            if (VDist2Sq(start[1], start[3], estartX, estartZ) <= radius * radius) and inrange then
+                return true
+            elseif (VDist2Sq(start[1], start[3], estartX, estartZ) > radius * radius) and not inrange then
+                return true
+            end
+        end
+    end
+    return false
 end

@@ -17,6 +17,31 @@ function CoinFlip(aiBrain, numReq)
     end
 end
 
+function SeaMonsterActivated(aiBrain)
+    
+    if aiBrain.CoinFlip >= 22 and aiBrain.CoinFlip <=24 then
+    --LOG('Sea Monster Activated!!!!')
+    return true
+else
+    
+    return false
+end
+end
+
+
+
+
+
+function NoTeleportActivated(aiBrain)
+    
+    if aiBrain.CoinFlip >= 2 then
+    --LOG('No teleport Activated!!!!')
+    return true
+else
+    
+    return false
+end
+end
 
 
 
@@ -91,16 +116,6 @@ else
 end
 end
 
-function AlteredAirExpPriority(aiBrain)
-    
-    if aiBrain.CoinFlip < 25 then
-        
-    return true
-else
- 
-    return false
-end
-end
 
 function Standardlandpush(aiBrain)
     if aiBrain.CoinFlip >= 0 and aiBrain.CoinFlip <= 10 then
@@ -139,13 +154,13 @@ else
 end
 end
 
-function AirExperimentalRandomizer(aiBrain, numReq)
-    if not aiBrain.AirExperimentalRandomizer then
-        local ran = math.random(5)
-        aiBrain.AirExperimentalRandomizer = ran
-        LOG('airexperimentalrandomizer random number generated, number is '..aiBrain.AirExperimentalRandomizer)
+function AirExpRandomizer(aiBrain, numReq)
+    if not aiBrain.AirExpRandomizer then
+        local ran = math.random(4)
+        aiBrain.AirExpRandomizer = ran
+        LOG('AirExpRandomizer random number generated, number is '..aiBrain.AirExpRandomizer)
     end
-    if aiBrain.AirExperimentalRandomizer == numReq then
+    if aiBrain.AirExpRandomizer == numReq then
  
         return true
 
@@ -155,50 +170,9 @@ function AirExperimentalRandomizer(aiBrain, numReq)
     end
 end
 
-function AirExpRegular(aiBrain) 
-    if aiBrain.CoinFlip >= 2 and aiBrain.CoinFlip <= 11 then
-        LOG('AIR exp attacking commander!!!!')    
-    return true
-else
-    return false
-end
-end
 
-function AirExpLandMobileFocus(aiBrain) 
-    if aiBrain.AirExperimentalRandomizer >= 2 and aiBrain.AirExperimentalRandomizer < 3  then
-        LOG('AIR exp attacking mobile land!!!')
-    return true
-else
-    return false
-end
-end
 
-function AirExpMexFocus(aiBrain)
-    if aiBrain.AirExperimentalRandomizer >= 3 and aiBrain.AirExperimentalRandomizer < 4 then
-        LOG('AIR exp attacking mex!!!')
-    return true
-else
-    return false
-end
-end
 
-function AirExpEnergyFocus(aiBrain)
-    if aiBrain.AirExperimentalRandomizer >= 4 and aiBrain.AirExperimentalRandomizer < 5 then
-        LOG('AIR exp attacking energy!!!')
-    return true
-else
-    return false
-end
-end
-
-function AirExpAntiNukeFocus(aiBrain)
-    if aiBrain.AirExperimentalRandomizer >= 5 and aiBrain.AirExperimentalRandomizer < 6 then
-        LOG('AIR exp attacking antinuke!!!')
-    return true
-else
-    return false
-end
-end
 
 
 
