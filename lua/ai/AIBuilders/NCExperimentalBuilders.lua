@@ -132,7 +132,7 @@ BuilderGroup {
       
             
             UseMoveOrder = true,
-            PrioritizedCategories = { 'LAND MOBILE',
+            PrioritizedCategories = { 'COMMAND',
     
     },
 },
@@ -242,7 +242,7 @@ Builder {
   
         
         UseMoveOrder = true,
-        PrioritizedCategories = { 'LAND MOBILE',
+        PrioritizedCategories = { 'COMMAND',
 
 },
 },
@@ -347,7 +347,7 @@ BuilderGroup {
         BuilderConditions = {
             { MIBC, 'FactionIndex', {3,4}},
             { SBC, 'MapGreaterThan', { 500, 500 }},
-            { MIBC, 'GreaterThanGameTime', { 1000} },
+            { MIBC, 'GreaterThanGameTime', { 800} },
             { UCBC, 'CheckBuildPlattonDelay', { 'MobileExperimental_air' }},
             {CF, 'NoDukeNukem',{}},
             {CF, 'NoNukeRush',{}},
@@ -378,7 +378,7 @@ BuilderGroup {
         BuilderConditions = {
             { MIBC, 'FactionIndex', {2}},
             { SBC, 'MapGreaterThan', { 500, 500 }},
-            { MIBC, 'GreaterThanGameTime', { 1000} },
+            { MIBC, 'GreaterThanGameTime', { 800} },
             { UCBC, 'CheckBuildPlattonDelay', { 'MobileExperimental_air' }},
             {CF, 'NoDukeNukem',{}},
             {CF, 'Noparagonrush',{}},
@@ -445,7 +445,7 @@ BuilderGroup {
         Priority = 970,
         InstanceCount = 5,
         BuilderConditions = {
-            { MIBC, 'GreaterThanGameTime', { 1000} },
+            { MIBC, 'GreaterThanGameTime', { 800} },
             { UCBC, 'LocationEngineersBuildingGreater', { 'LocationType', 0, categories.EXPERIMENTAL * categories.AIR * categories.MOBILE}},
             { UCBC, 'HaveGreaterThanUnitsWithCategory', { 1, categories.ENERGYPRODUCTION * categories.TECH3}},
        --
@@ -469,7 +469,7 @@ BuilderGroup {
         Priority = 970,
         InstanceCount = 5,
         BuilderConditions = {
-            { MIBC, 'GreaterThanGameTime', { 1000} },
+            { MIBC, 'GreaterThanGameTime', { 800} },
             { UCBC, 'LocationEngineersBuildingGreater', { 'LocationType', 0, categories.EXPERIMENTAL * categories.AIR * categories.MOBILE}},
        --
             --- 

@@ -105,9 +105,20 @@ else
 end
 end
 
+function NukeRush(aiBrain)
+    
+    if aiBrain.CoinFlip >= 47 and aiBrain.CoinFlip <= 48 then
+        
+    return true
+else
+   
+    return false
+end
+end
+
 function NoNukeRush(aiBrain)
     
-    if aiBrain.CoinFlip != 47 then
+    if aiBrain.CoinFlip < 47 or aiBrain.CoinFlip > 48 then
         
     return true
 else

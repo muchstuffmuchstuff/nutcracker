@@ -30,7 +30,7 @@ BuilderGroup {
         Priority = 1050,
         InstanceCount = 5,
         BuilderConditions = {
-            { CF, 'CoinFlip', {47} },
+            {CF,'NukeRush',{}},
             { UCBC, 'LocationFactoriesBuildingGreater', { 'LocationType', 0, 'FACTORY' }},
             { SIBC, 'HaveLessThanUnitsWithCategory', { 1, categories.FACTORY * categories.TECH3 * categories.LAND } },
       
@@ -56,7 +56,7 @@ Builder {
     Priority = 1050,
     InstanceCount = 5,
     BuilderConditions = {
-        { CF, 'CoinFlip', {47} },
+        {CF,'NukeRush',{}},
         { UCBC, 'LocationFactoriesBuildingGreater', { 'LocationType', 0, 'FACTORY' }},
         { SIBC, 'HaveLessThanUnitsWithCategory', { 1, categories.FACTORY * categories.TECH3 * categories.LAND } },
       
@@ -188,17 +188,11 @@ BuilderGroup {
         InstanceCount = 1,
         BuilderConditions = {
       
-            { CF, 'CoinFlip', {47} },
-         
-            
-          
-              
+            {CF,'NukeRush',{}},
+ 
             { UCBC, 'HaveGreaterThanUnitsWithCategory', { 5, categories.ENGINEER }},
                 { UCBC, 'HaveLessThanUnitsInCategoryBeingBuilt', { 1, 'FACTORY LAND' } },
-         
-           
-           
-           --
+ 
             },
         BuilderType = 'Any',
     },
@@ -208,7 +202,7 @@ BuilderGroup {
         Priority = 1200,
         InstanceCount = 1,
         BuilderConditions = {
-            { CF, 'CoinFlip', {47} },
+            {CF,'NukeRush',{}},
            
          
            

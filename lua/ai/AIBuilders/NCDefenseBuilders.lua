@@ -617,50 +617,9 @@ BuilderGroup {
 
 
 
-# Shields
-BuilderGroup {
-    BuilderGroupName = 'NCT2Shields',
-    BuildersType = 'EngineerBuilder',
-  
-}
 
-BuilderGroup {
-    BuilderGroupName = 'NCT2ShieldsExpansion',
-    BuildersType = 'EngineerBuilder',
-    Builder {
-        BuilderName = 'NC T2 Shield D Engineer Near Factory Expansion',
-        PlatoonTemplate = 'T2EngineerBuilderSorian',
-        Priority = 925,
-        DelayEqualBuildPlattons = {'Shield', 6},
-        BuilderConditions = {
-            { SBC, 'MapLessThan', { 2000, 2000 }},
-            { SBC, 'GreaterThanGameTime', { 1200 } },
-            { EBC, 'GreaterThanEconStorageRatio', { 0.05, 0.99 } },
-           
-            { SIBC, 'HaveLessThanUnitsInCategoryBeingBuilt', { 1, categories.STRUCTURE * (categories.TECH2 + categories.TECH3)  * categories.ENERGYPRODUCTION } },
-            #{ UCBC, 'HaveLessThanUnitsWithCategory', { 2, categories.SHIELD * categories.TECH2 * categories.STRUCTURE}},
-			{ UCBC, 'UnitsLessAtLocation', { 'LocationType', 3, categories.SHIELD * categories.TECH2 * categories.STRUCTURE }},
-			{ SIBC, 'HaveGreaterThanUnitsWithCategory', { 0, categories.ENERGYPRODUCTION * categories.TECH2 } },
-       --
-       
-            { UCBC, 'LocationEngineersBuildingLess', { 'LocationType', 1, 'SHIELD STRUCTURE' } },
-            { UCBC, 'UnitCapCheckLess', { 0.95 } },
-        },
-        BuilderType = 'Any',
-        BuilderData = {
-            NumAssistees = 2,
-            Construction = {
-                AdjacencyCategory = 'FACTORY, ENERGYPRODUCTION EXPERIMENTAL, ENERGYPRODUCTION TECH3, ENERGYPRODUCTION TECH2',
-                AdjacencyDistance = 100,
-                BuildClose = false,
-                BuildStructures = {
-                    'T2ShieldDefense',
-                },
-                Location = 'LocationType',
-            }
-        }
-    },
-}
+
+
 
 BuilderGroup {
     BuilderGroupName = 'NCShieldUpgrades',
@@ -673,7 +632,7 @@ BuilderGroup {
         BuilderConditions = {
             { MIBC, 'FactionIndex', {3, 3}},
             { SBC, 'GreaterThanGameTime', { 1200 } },
-            { EBC, 'GreaterThanEconStorageRatio', { 0.05, 0.99 } },
+            { UCBC, 'HaveUnitsWithCategoryAndAlliance', { true, 0, categories.EXPERIMENTAL * categories.MOBILE, 'Enemy'}},
             { SIBC, 'HaveLessThanUnitsInCategoryBeingBuilt', { 1, categories.STRUCTURE * (categories.TECH2 + categories.TECH3)  * categories.ENERGYPRODUCTION } },
          
            
@@ -692,6 +651,7 @@ BuilderGroup {
         BuilderConditions = {
             { MIBC, 'FactionIndex', {3, 3}},
             { SBC, 'GreaterThanGameTime', { 1200 } },
+            { UCBC, 'HaveUnitsWithCategoryAndAlliance', { true, 0, categories.EXPERIMENTAL * categories.MOBILE, 'Enemy'}},
             { SIBC, 'HaveLessThanUnitsInCategoryBeingBuilt', { 1, categories.STRUCTURE * (categories.TECH2 + categories.TECH3)  * categories.ENERGYPRODUCTION } },
           
           
@@ -710,6 +670,7 @@ BuilderGroup {
         BuilderConditions = {
             { MIBC, 'FactionIndex', {3, 3}},
             { SBC, 'GreaterThanGameTime', { 1200 } },
+            { UCBC, 'HaveUnitsWithCategoryAndAlliance', { true, 0, categories.EXPERIMENTAL * categories.MOBILE, 'Enemy'}},
             { SIBC, 'HaveLessThanUnitsInCategoryBeingBuilt', { 1, categories.STRUCTURE * (categories.TECH2 + categories.TECH3)  * categories.ENERGYPRODUCTION } },
            
       
@@ -728,6 +689,7 @@ BuilderGroup {
         BuilderConditions = {
             { MIBC, 'FactionIndex', {3, 3}},
             { SBC, 'GreaterThanGameTime', { 1200 } },
+            { UCBC, 'HaveUnitsWithCategoryAndAlliance', { true, 0, categories.EXPERIMENTAL * categories.MOBILE, 'Enemy'}},
             { SIBC, 'HaveLessThanUnitsInCategoryBeingBuilt', { 1, categories.STRUCTURE * (categories.TECH2 + categories.TECH3)  * categories.ENERGYPRODUCTION } },
           
            
@@ -748,6 +710,7 @@ BuilderGroup {
             { MIBC, 'FactionIndex', {1, 4}},
             { SBC, 'MapLessThan', { 2000, 2000 }},
             { SBC, 'GreaterThanGameTime', { 1200 } },
+            { UCBC, 'HaveUnitsWithCategoryAndAlliance', { true, 0, categories.EXPERIMENTAL * categories.MOBILE, 'Enemy'}},
             { SIBC, 'HaveLessThanUnitsInCategoryBeingBuilt', { 1, categories.STRUCTURE * (categories.TECH2 + categories.TECH3)  * categories.ENERGYPRODUCTION } },
    
            

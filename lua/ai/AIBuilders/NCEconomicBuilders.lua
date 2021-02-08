@@ -956,7 +956,7 @@ BuilderGroup {
     },
 
     Builder {
-        BuilderName = 'NC T3 emergency t3 energy build emergency',
+        BuilderName = 'NC T3 emergency t3 energy build',
         PlatoonTemplate = 'T3EngineerBuilderSorian',
         Priority = 5000,
         
@@ -2168,12 +2168,12 @@ BuilderGroup {
         BuilderName = 'NC Engineering Support UEF phase1',
         PlatoonTemplate = 'T2T3EngineerBuilderNC',
         Priority = 1200,
-        DelayEqualBuildPlattons = {'Engineer_tower60', 60},
+        DelayEqualBuildPlattons = {'Engineer_tower60', 45},
         BuilderConditions = {
             { MIBC, 'FactionIndex', {1} },
             { UCBC, 'CheckBuildPlattonDelay', { 'Engineer_tower60' }},
           
-            { EBC, 'GreaterThanEconStorageCurrent', { 10000, 20000 } },  
+            { EBC, 'GreaterThanEconStorageCurrent', { 3000, 3000 } },  
             
         },
         BuilderType = 'Any',
@@ -2198,7 +2198,7 @@ BuilderGroup {
             { MIBC, 'FactionIndex', {1} },
             { UCBC, 'CheckBuildPlattonDelay', { 'Engineer_tower30' }},
            
-            { EBC, 'GreaterThanEconStorageCurrent', { 20000, 30000 } },  
+            { EBC, 'GreaterThanEconStorageCurrent', { 8000, 3000 } },  
             
         },
         BuilderType = 'Any',
@@ -2223,7 +2223,7 @@ BuilderGroup {
             { MIBC, 'FactionIndex', {1} },
             { UCBC, 'CheckBuildPlattonDelay', { 'Engineer_tower15' }},
           
-            { EBC, 'GreaterThanEconStorageCurrent', { 30000, 30000 } },  
+            { EBC, 'GreaterThanEconStorageCurrent', { 10000, 3000} },  
             
         },
         BuilderType = 'Any',
@@ -2248,7 +2248,7 @@ BuilderGroup {
             { MIBC, 'FactionIndex', {1} },
             { UCBC, 'CheckBuildPlattonDelay', { 'Engineer_tower10' }},
             { EBC, 'GreaterThanEconStorageRatio', { 1.0, 1.0 } },
-            { EBC, 'GreaterThanEconStorageCurrent', { 40000, 30000 } },  
+            { EBC, 'GreaterThanEconStorageCurrent', { 20000, 3000 } },  
             
         },
         BuilderType = 'Any',
@@ -2272,12 +2272,12 @@ BuilderGroup {
         BuilderName = 'NC Engineering Support Cybran phase1',
         PlatoonTemplate = 'T2T3EngineerBuilderNC',
         Priority = 1200,
-        DelayEqualBuildPlattons = {'Engineer_tower60', 60},
+        DelayEqualBuildPlattons = {'Engineer_tower60', 45},
         BuilderConditions = {
             { MIBC, 'FactionIndex', {3} },
             { UCBC, 'CheckBuildPlattonDelay', { 'Engineer_tower60' }},
         
-            { EBC, 'GreaterThanEconStorageCurrent', { 10000, 20000 } },  
+            { EBC, 'GreaterThanEconStorageCurrent', { 3000, 3000 } },  
             
         },
         BuilderType = 'Any',
@@ -2302,7 +2302,7 @@ BuilderGroup {
             { MIBC, 'FactionIndex', {3} },
             { UCBC, 'CheckBuildPlattonDelay', { 'Engineer_tower30' }},
             
-            { EBC, 'GreaterThanEconStorageCurrent', { 30000, 30000 } },  
+            { EBC, 'GreaterThanEconStorageCurrent', { 8000, 3000 } },  
             
         },
         BuilderType = 'Any',
@@ -2327,7 +2327,7 @@ BuilderGroup {
             { MIBC, 'FactionIndex', {3} },
             { UCBC, 'CheckBuildPlattonDelay', { 'Engineer_tower15' }},
            
-            { EBC, 'GreaterThanEconStorageCurrent', { 40000, 30000 } },  
+            { EBC, 'GreaterThanEconStorageCurrent', { 10000, 3000 } },  
             
         },
         BuilderType = 'Any',
@@ -2352,7 +2352,7 @@ BuilderGroup {
             { MIBC, 'FactionIndex', {3} },
             { UCBC, 'CheckBuildPlattonDelay', { 'Engineer_tower10' }},
             { EBC, 'GreaterThanEconStorageRatio', { 1.0, 1.0 } },
-            { EBC, 'GreaterThanEconStorageCurrent', { 40000, 30000 } },  
+            { EBC, 'GreaterThanEconStorageCurrent', { 20000, 3000 } },  
             
         },
         BuilderType = 'Any',
@@ -2386,7 +2386,7 @@ BuilderGroup {
         BuilderConditions = {
            
             
-            { EBC, 'GreaterThanEconStorageCurrent', { 1000, 20000 } },  
+            { EBC, 'GreaterThanEconStorageCurrent', { 1000, 2000 } },  
             
         },
         BuilderType = 'Any',
@@ -2397,7 +2397,7 @@ BuilderGroup {
         Priority = 5000,
         InstanceCount = 10,
         BuilderConditions = {
-            { EBC, 'GreaterThanEconStorageCurrent', { 1000, 20000 } },  
+            { EBC, 'GreaterThanEconStorageCurrent', { 1000, 2000 } },  
         },
         BuilderType = 'Any',
     },
@@ -2407,7 +2407,7 @@ BuilderGroup {
         Priority = 5000,
         InstanceCount = 10,
         BuilderConditions = {
-            { EBC, 'GreaterThanEconStorageCurrent', { 1000, 20000 } },  
+            { EBC, 'GreaterThanEconStorageCurrent', { 1000, 2000 } },  
         },
         BuilderType = 'Any',
     },

@@ -357,8 +357,8 @@ Builder {
     BuilderConditions = {
         
         { UCBC, 'HaveLessThanUnitsWithCategory', {1, categories.NUKE * categories.STRUCTURE } },
-        { CF, 'CoinFlip', {47 } },
-        
+  
+        {CF,'NukeRush',{}},
    
       
         
@@ -387,7 +387,7 @@ Builder {
 
     InstanceCount = 8,
     BuilderConditions = {
-        { CF, 'CoinFlip', {47} },
+        {CF,'NukeRush',{}},
         { MIBC, 'GreaterThanGameTime', { 700 } },
         { UCBC, 'LocationEngineersBuildingGreater', { 'LocationType', 0, categories.STRUCTURE * categories.NUKE}},
         { EBC, 'GreaterThanEconStorageCurrent', { 50, 1000 } },
@@ -414,7 +414,7 @@ Builder {
     Priority = 1200,
     InstanceCount = 15,
     BuilderConditions = {
-        { CF, 'CoinFlip', {47 } },
+        {CF,'NukeRush',{}},
         { MIBC, 'GreaterThanGameTime', { 700 } },
         { UCBC, 'UnitsGreaterAtLocation', { 'LocationType', 0, 'NUKE STRUCTURE'}},
         { EBC, 'GreaterThanEconStorageCurrent', { 50, 1000 } },
@@ -441,7 +441,7 @@ Builder {
 
    
     BuilderConditions = {
-        { CF, 'CoinFlip', {47 } },
+        {CF,'NukeRush',{}},
         { MIBC, 'GreaterThanGameTime', { 700} },
         { UCBC, 'LocationEngineersBuildingGreater', { 'LocationType', 0, categories.STRUCTURE * categories.NUKE}},
         
@@ -468,7 +468,7 @@ Builder {
     Priority = 950,
 
     BuilderConditions = {
-        { CF, 'CoinFlip', {47 } },
+        {CF,'NukeRush',{}},
         { MIBC, 'GreaterThanGameTime', { 700 } },
         { UCBC, 'UnitsGreaterAtLocation', { 'LocationType', 0, 'NUKE STRUCTURE'}},
         { EBC, 'GreaterThanEconStorageCurrent', { 50, 1000 } },

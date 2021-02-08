@@ -167,8 +167,7 @@ BaseBuilderTemplate {
        
         'NCAntiLandQuickBuild',
      
-        'NCT2Shields',
-        'NCT2ShieldsExpansion',
+       
         'NCT3Shields',
     
         'NClandbehavior',

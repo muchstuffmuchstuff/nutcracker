@@ -134,6 +134,8 @@ BuilderGroup {
                 
                 PrioritizedCategories = {    
     
+                    'EXPERIMENTAL LAND',
+                    'EXPERIMENTAL STRUCTURE',
                     'MASSEXTRACTION',
                    
                                    
@@ -164,7 +166,8 @@ BuilderGroup {
                     PrioritizedCategories = {    
         
                         'EXPERIMENTAL LAND',
-                        'MOBILE LAND',
+                        'EXPERIMENTAL STRUCTURE',
+                        'MASSEXTRACTION',
                                        
         
                         
@@ -193,11 +196,9 @@ BuilderGroup {
                     PrioritizedCategories = {    
         
                                      
-                                        'EXPERIMENTAL LAND',
-                                        'MASSEXTRACTION TECH3',
-                                        'MASSEXTRACTION TECH2',
-                                        'MASSEXTRACTION TECH1',
-                                        'COMMAND',
+                        'EXPERIMENTAL LAND',
+                        'EXPERIMENTAL STRUCTURE',
+                        'MASSEXTRACTION',
                                        
         
                         
@@ -224,8 +225,9 @@ BuilderGroup {
                     
                     PrioritizedCategories = {    
         
-                                        'EXPERIMENTAL LAND',
-                                        'MOBILE LAND',
+                        'EXPERIMENTAL LAND',
+                        'EXPERIMENTAL STRUCTURE',
+                        'MASSEXTRACTION',
                                      
                                        
         
@@ -255,14 +257,9 @@ BuilderGroup {
                         PrioritizedCategories = {    
             
                             'EXPERIMENTAL LAND',
-                            'MASSEXTRACTION TECH3',
-                            'MASSEXTRACTION TECH2',
-                            'MASSEXTRACTION TECH1',
-                            'COMMAND',
-                                           
-            
-                            
-                            
+                            'EXPERIMENTAL STRUCTURE',
+                            'MASSEXTRACTION',
+             
                         },
                     },
                 },
@@ -292,18 +289,7 @@ BuilderGroup {
           
             { UCBC, 'HaveUnitsWithCategoryAndAlliance', { false, 15, categories.ANTIAIR * categories.AIR, 'Enemy'}},
             { WRC, 'HaveUnitRatioVersusEnemyNC', { 3.0, categories.MOBILE * categories.AIR * categories.ANTIAIR - categories.GROUNDATTACK - categories.BOMBER, '>=', categories.MOBILE * categories.AIR  - categories.SCOUT - categories.TRANSPORTFOCUS } },
-            
-           
-                      
-			
-			
-            
-			
-			
-           
-           
-           
-			
+	
         },
         
     },
@@ -321,66 +307,12 @@ BuilderGroup {
                         { MIBC, 'GreaterThanGameTime', { 1800} },
                         { SBC, 'NoRushTimeCheck', { 600 }},
                         { WRC, 'HaveUnitRatioVersusEnemyNC', { 3.0, categories.MOBILE * categories.AIR * categories.ANTIAIR * categories.TECH3 - categories.GROUNDATTACK - categories.BOMBER, '>=', categories.MOBILE * categories.AIR * (categories.TECH2 + categories.TECH3)  - categories.SCOUT - categories.TRANSPORTFOCUS } },
-			
-			
-            
-			
-			
-         ---
-{ EBC, 'GreaterThanEconStorageCurrent', { 8, 60 } },  
---
-           
-           
-			
-        },
-        
-    },
-    Builder {
-        BuilderName = 'NC t1bomber early game for defense',
-        PlatoonTemplate = 'T1AirBomber',
-        Priority = 500,
-        BuilderType = 'Air',
-      
-        BuilderConditions = {
-            { MIBC, 'GreaterThanGameTime', { 360 } },
-            { SBC, 'NoRushTimeCheck', { 600 }},
-            { UCBC, 'HaveUnitsWithCategoryAndAlliance', { false, 0, categories.ANTIAIR * categories.AIR * categories.TECH3, 'Enemy'}},
-
-                        { UCBC, 'HaveLessThanUnitsWithCategory', { 20, categories.AIR * categories.GROUNDATTACK * categories.BOMBER * categories.MOBILE - categories.ANTIAIR } },
-			
 
 { EBC, 'GreaterThanEconStorageCurrent', { 8, 60 } },  
---
-           
-           
-			
+
         },
-        
-    },
-    Builder {
-        BuilderName = 'NC t1bomber protect expansion',
-        PlatoonTemplate = 'T1AirBomber',
-        Priority = 700,
-        BuilderType = 'Air',
-    
-        BuilderConditions = {
-            { UCBC, 'HaveUnitsWithCategoryAndAlliance', { false, 0, categories.ANTIAIR * categories.AIR * categories.TECH3, 'Enemy'}},
-            { SBC, 'GreaterThanEnemyUnitsAroundBase', { 'LocationType', 0, categories.ENGINEER, 40 } },
-                        { UCBC, 'HaveLessThanUnitsWithCategory', { 10, categories.AIR * categories.GROUNDATTACK * categories.BOMBER * categories.MOBILE - categories.ANTIAIR } },
-			
-			
-            
-			{ SBC, 'NoRushTimeCheck', { 600 }},
-			
-         ---
-{ EBC, 'GreaterThanEconStorageCurrent', { 8, 60 } },  
---
-           
-           
-			
-        },
-        
-    },
+ 
+},
 }
 
 
@@ -735,10 +667,7 @@ BuilderGroup {
                 { WRC, 'HaveUnitRatioVersusEnemyNC', { 3.0, categories.MOBILE * categories.AIR * categories.ANTIAIR * categories.TECH3 - categories.GROUNDATTACK - categories.BOMBER, '>=', categories.MOBILE * categories.AIR * (categories.TECH2 + categories.TECH3)  - categories.SCOUT - categories.TRANSPORTFOCUS } },
               ---
 { EBC, 'GreaterThanEconStorageCurrent', { 8, 60 } },  
---
-                
-                
-               
+
             },
         },
  

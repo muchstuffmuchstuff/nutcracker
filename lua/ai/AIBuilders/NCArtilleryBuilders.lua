@@ -49,12 +49,12 @@ BuilderGroup {
           
             {CF, 'NoSateliteRush',{}},
             {CF, 'NoDukeNukem',{}},
-        
+            { UCBC, 'HaveLessThanUnitsWithCategory', {1, categories.EXPERIMENTAL * categories.ARTILLERY } },
             {WRC, 'CheckUnitRangeNC', { 'LocationType', 'T4Artillery', categories.STRUCTURE} },
             
             { SIBC, 'HaveLessThanUnitsInCategoryBeingBuilt', { 1, categories.STRUCTURE  * (categories.ARTILLERY + categories.EXPERIMENTAL) }},
 		
-            { EBC, 'GreaterThanEconStorageCurrent', { 10000, 15000 } },           
+            { EBC, 'GreaterThanEconStorageCurrent', { 30000, 15000 } },           
         },
         BuilderType = 'Any',
         BuilderData = {
@@ -87,7 +87,7 @@ BuilderGroup {
           
             {WRC, 'CheckUnitRangeNC', { 'LocationType', 'T4Artillery', categories.STRUCTURE } },
           
-      
+            { UCBC, 'HaveLessThanUnitsWithCategory', {1, categories.EXPERIMENTAL * categories.ARTILLERY } },
             { SIBC, 'HaveLessThanUnitsInCategoryBeingBuilt', { 1, categories.EXPERIMENTAL * categories.ARTILLERY }},
             
            ---  
@@ -126,10 +126,10 @@ BuilderGroup {
             {CF, 'NoDukeNukem',{}},
           
             {WRC, 'CheckUnitRangeNC', { 'LocationType', 'T4Artillery', categories.STRUCTURE } },
-            
-            { SIBC, 'HaveLessThanUnitsInCategoryBeingBuilt', { 1, categories.EXPERIMENTAL * categories.ARTILLERY }},
+            { UCBC, 'HaveLessThanUnitsWithCategory', {1, categories.EXPERIMENTAL * categories.ARTILLERY } },
+            { SIBC, 'HaveLessThanUnitsInCategoryBeingBuilt', { 1, categories.ARTILLERY *(categories.EXPERIMENTAL + categories.TECH3) }},
 
-            { EBC, 'GreaterThanEconStorageCurrent', { 10000, 15000 } },
+            { EBC, 'GreaterThanEconStorageCurrent', { 20000, 15000 } },
          
         },
         BuilderType = 'Any',
@@ -164,7 +164,7 @@ BuilderGroup {
             {CF, 'NoDukeNukem',{}},
           
             {WRC, 'CheckUnitRangeNC', { 'LocationType', 'T4Artillery', categories.STRUCTURE } },
-            
+            { UCBC, 'HaveLessThanUnitsWithCategory', {1, categories.EXPERIMENTAL * categories.ARTILLERY } },
             { SIBC, 'HaveLessThanUnitsInCategoryBeingBuilt', { 1, categories.EXPERIMENTAL * categories.ARTILLERY }},
 
             { EBC, 'GreaterThanEconStorageCurrent', { 35000, 15000 } },
@@ -477,7 +477,7 @@ BuilderGroup {
     Builder {
         BuilderName = 'NC arty',
         PlatoonTemplate = 'T3EngineerBuilderSorian',
-        Priority = 1001,
+        Priority = 950,
         DelayEqualBuildPlattons = {'Artillery_regular', 280},
         BuilderConditions = {
             { MIBC, 'GreaterThanGameTime', { 1200 } },
@@ -514,7 +514,7 @@ BuilderGroup {
     Builder {
         BuilderName = 'NC arty NO RANDOMIZER or SATELITE',
         PlatoonTemplate = 'T3EngineerBuilderSorian',
-        Priority = 1001,
+        Priority = 950,
         DelayEqualBuildPlattons = {'Artillery_regular', 280},
         BuilderConditions = {
             { MIBC, 'GreaterThanGameTime', { 1200 } },
@@ -554,7 +554,7 @@ BuilderGroup {
     Builder {
         BuilderName = 'NC Rapid T3 Artillery in range',
         PlatoonTemplate = 'AeonT3EngineerBuilderSorian',
-        Priority = 1050,
+        Priority = 950,
         DelayEqualBuildPlattons = {'MobileExperimental_rapid', 280},
         BuilderConditions = {
             { MIBC, 'FactionIndex', {2}},
