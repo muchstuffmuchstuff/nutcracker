@@ -222,8 +222,8 @@ BuilderGroup {
 			{ SBC, 'NoRushTimeCheck', { 0 }},
         },
         BuilderData = {
-            RequireTransport = true,
-            AttackEnemyStrength = 92,  
+            RequireTransport = false,
+            AttackEnemyStrength = 100,  
             TargetSearchCategory = categories.STRUCTURE,
             MoveToCategories = {                                               
                 categories.STRUCTURE,
@@ -252,8 +252,8 @@ BuilderGroup {
 			{ SBC, 'NoRushTimeCheck', { 0 }},
         },
         BuilderData = {
-            RequireTransport = true,
-            AttackEnemyStrength = 92,  
+            RequireTransport = false,
+            AttackEnemyStrength = 100,  
             TargetSearchCategory = categories.STRUCTURE,
             MoveToCategories = {                                               
                 categories.STRUCTURE,
@@ -281,8 +281,8 @@ BuilderGroup {
 			{ SBC, 'NoRushTimeCheck', { 0 }},
         },
         BuilderData = {
-            RequireTransport = true,
-            AttackEnemyStrength = 92,  
+            RequireTransport = false,
+            AttackEnemyStrength = 100,  
             TargetSearchCategory = categories.STRUCTURE,
             MoveToCategories = {                                               
                 categories.STRUCTURE,
@@ -310,8 +310,8 @@ BuilderGroup {
 			{ SBC, 'NoRushTimeCheck', { 0 }},
         },
         BuilderData = {
-            RequireTransport = true,
-            AttackEnemyStrength = 92,  
+            RequireTransport = false,
+            AttackEnemyStrength = 100,  
             TargetSearchCategory = categories.STRUCTURE,
             MoveToCategories = {                                               
                 categories.STRUCTURE,
@@ -340,8 +340,8 @@ BuilderGroup {
 			{ SBC, 'NoRushTimeCheck', { 0 }},
         },
         BuilderData = {
-            RequireTransport = true,
-            AttackEnemyStrength = 92,
+            RequireTransport = false,
+            AttackEnemyStrength = 100,
             TargetSearchCategory = categories.STRUCTURE,
             MoveToCategories = {                                               
                 categories.STRUCTURE,
@@ -369,8 +369,8 @@ BuilderGroup {
 			{ SBC, 'NoRushTimeCheck', { 0 }},
         },
         BuilderData = {
-            RequireTransport = true,
-            AttackEnemyStrength = 92,  
+            RequireTransport = false,
+            AttackEnemyStrength = 100,  
             TargetSearchCategory = categories.STRUCTURE,
             MoveToCategories = {                                               
                 categories.STRUCTURE,
@@ -400,8 +400,8 @@ BuilderGroup {
 			{ SBC, 'NoRushTimeCheck', { 0 }},
         },
         BuilderData = {
-            RequireTransport = true,
-            AttackEnemyStrength = 92,
+            RequireTransport = false,
+            AttackEnemyStrength = 100,
             TargetSearchCategory = categories.STRUCTURE,
             MoveToCategories = {                                               
                 categories.STRUCTURE,
@@ -429,8 +429,8 @@ BuilderGroup {
 			{ SBC, 'NoRushTimeCheck', { 0 }},
         },
         BuilderData = {
-            RequireTransport = true,
-            AttackEnemyStrength = 92,  
+            RequireTransport = false,
+            AttackEnemyStrength = 100,  
             TargetSearchCategory = categories.STRUCTURE,
             MoveToCategories = {                                               
                 categories.STRUCTURE,

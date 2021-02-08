@@ -349,16 +349,17 @@ Builder {
     }
 },
 Builder {
-    BuilderName = 'nc T3 Nuke Engineer coinflip3 2nd option',
+    BuilderName = 'nc T3 Nuke Engineer coinflip3 2nd option uefcyb',
     PlatoonTemplate = 'T3EngineerBuilderSorian',
     Priority = 1500,
     InstanceCount = 1,
    
     BuilderConditions = {
-        
+        {CF,'NukeRush',{}},
+        { MIBC, 'FactionIndex', {1, 3}},
         { UCBC, 'HaveLessThanUnitsWithCategory', {1, categories.NUKE * categories.STRUCTURE } },
   
-        {CF,'NukeRush',{}},
+        
    
       
         
@@ -373,6 +374,37 @@ Builder {
             BuildStructures = {
                 'T2EngineerSupport',
                 'T2EngineerSupport',
+                'T3StrategicMissile',
+            },
+            Location = 'LocationType',
+        }
+    }
+},
+Builder {
+    BuilderName = 'nc T3 Nuke Engineer coinflip3 2nd option aeonsera',
+    PlatoonTemplate = 'T3EngineerBuilderSorian',
+    Priority = 1500,
+    InstanceCount = 1,
+   
+    BuilderConditions = {
+        {CF,'NukeRush',{}},
+        { MIBC, 'FactionIndex', {2, 4}},
+        { UCBC, 'HaveLessThanUnitsWithCategory', {1, categories.NUKE * categories.STRUCTURE } },
+  
+        
+   
+      
+        
+    },
+    BuilderType = 'Any',
+    BuilderData = {
+        MinNumAssistees = 2,
+        Construction = {
+            DesiresAssist = true,
+            BuildClose = false,
+          
+            BuildStructures = {
+              
                 'T3StrategicMissile',
             },
             Location = 'LocationType',
