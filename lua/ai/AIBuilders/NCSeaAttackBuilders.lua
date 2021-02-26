@@ -1,3 +1,7 @@
+---muchstuff
+
+---nutcracker
+
 #***************************************************************************
 #*
 #**  File     :  /lua/ai/AISeaAttackBuilders.lua
@@ -78,7 +82,7 @@ BuilderGroup {
 		#PlatoonAddPlans = {'DistressResponseAISorian', 'PlatoonCallForHelpAISorian'},
 		PlatoonAddPlans = {'AirLandToggleSorian'},
         Priority = 1000,
-        InstanceCount = 50,
+        InstanceCount = 5,
         BuilderType = 'Any',
         BuilderData = {
 		UseFormation = 'AttackFormation',
@@ -119,7 +123,7 @@ BuilderGroup {
 			{ SBC, 'NoRushTimeCheck', { 600 }},
 			
 			{ UCBC, 'HaveLessThanUnitsWithCategory', { 3, categories.NAVAL * categories.MOBILE } },
-            { SIBC, 'GreaterThanEconEfficiencyOverTime', { 0.95, 1.05 }},
+            { EBC, 'GreaterThanEconStorageCurrent', { 25,125 } },
             
         },
         BuilderType = 'Sea',
@@ -135,7 +139,7 @@ BuilderGroup {
 			{ SBC, 'NoRushTimeCheck', { 600 }},
 			
 			
-            { EBC, 'GreaterThanEconStorageCurrent', { 15, 150 } },
+            { EBC, 'GreaterThanEconStorageCurrent', { 25, 125 } },
             
         },
         BuilderType = 'Sea',
@@ -150,7 +154,7 @@ BuilderGroup {
         BuilderName = 'NC T2 Naval Destroyer',
         PlatoonTemplate = 'T2SeaDestroyer',
         Priority = 790,
-        InstanceCount = 50,
+        InstanceCount = 5,
         BuilderType = 'Sea',
         BuilderConditions = {
             { MIBC, 'GreaterThanGameTime', { 1000} },
@@ -158,7 +162,23 @@ BuilderGroup {
 			{ SBC, 'NoRushTimeCheck', { 600 }},
 { UCBC, 'HaveUnitsWithCategoryAndAlliance', { true, 1, categories.NAVAL * categories.MOBILE,  'Enemy' }},
 			
-  { EBC, 'GreaterThanEconStorageCurrent', { 25, 300 } },
+  { EBC, 'GreaterThanEconStorageCurrent', { 25, 125 } },
+            
+        },
+    },
+    Builder {
+        BuilderName = 'NC T2 Naval cruiser adaptive',
+        PlatoonTemplate = 'T2SeaCruiser',
+        Priority = 790,
+        InstanceCount = 5,
+        BuilderType = 'Sea',
+        BuilderConditions = {
+            { MIBC, 'GreaterThanGameTime', { 600} },            
+			{ SBC, 'NoRushTimeCheck', { 0}},
+            { EBC, 'GreaterThanEconStorageCurrent', { 25, 125 } },
+            { UCBC, 'HaveUnitsWithCategoryAndAlliance', { true, 0, categories.NAVAL * categories.DESTROYER,  'Enemy' }},
+            { WRC, 'HaveUnitRatioVersusEnemyNC', { 5.0, categories.MASSEXTRACTION, '>=', categories.MASSEXTRACTION } },
+            { UCBC, 'HaveLessThanUnitsWithCategory', { 10, categories.NAVAL * categories.MOBILE } },
             
         },
     },
@@ -180,7 +200,7 @@ BuilderGroup {
 			{ SBC, 'NoRushTimeCheck', { 600 }},
 { UCBC, 'HaveUnitsWithCategoryAndAlliance', { true, 1, categories.NAVAL * categories.MOBILE,  'Enemy' }},
 			
- { EBC, 'GreaterThanEconStorageCurrent', { 40, 400 } },
+{ EBC, 'GreaterThanEconStorageCurrent', { 150, 4000 } },
             
         },
     },
@@ -199,7 +219,7 @@ BuilderGroup {
 			{ SBC, 'NoRushTimeCheck', { 600 }},
 { UCBC, 'HaveUnitsWithCategoryAndAlliance', { true, 1, categories.NAVAL * categories.MOBILE * categories.TECH2,  'Enemy' }},
 			
-{ EBC, 'GreaterThanEconStorageCurrent', { 150, 1000 } },
+{ EBC, 'GreaterThanEconStorageCurrent', { 150, 4000 } },
             
         },
     },

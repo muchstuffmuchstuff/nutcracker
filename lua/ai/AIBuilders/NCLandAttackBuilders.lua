@@ -1,11 +1,6 @@
-#***************************************************************************
-#*
-#**  File     :  /lua/ai/SorianLandAttackBuilders.lua
-#**
-#**  Summary  : Default economic builders for skirmish
-#**
-#**  Copyright � 2005 Gas Powered Games, Inc.  All rights reserved.
-#****************************************************************************
+---muchstuff
+
+---nutcracker
 
 local BBTmplFile = '/lua/basetemplates.lua'
 local BuildingTmpl = 'BuildingTemplates'
@@ -29,90 +24,14 @@ local WRC = '/mods/nutcracker/hook/lua/weaponsrangeconditions.lua'
 local EN = '/mods/nutcracker/hook/lua/economicnumbers.lua'
 local SUtils = import('/lua/AI/sorianutilities.lua')
 local T1landspamNC = 0.20
-function LandAttackCondition(aiBrain, locationType, targetNumber)
-	local UC = import('/lua/editor/UnitCountBuildConditions.lua')
-    local pool = aiBrain:GetPlatoonUniquelyNamed('ArmyPool')
-    local engineerManager = aiBrain.BuilderManagers[locationType].EngineerManager
-	if not engineerManager then
-        return true
-    end
-	if aiBrain:GetCurrentEnemy() then
-		local estartX, estartZ = aiBrain:GetCurrentEnemy():GetArmyStartPos()
-		local enemyIndex = aiBrain:GetCurrentEnemy():GetArmyIndex()
-		--targetNumber = aiBrain:GetThreatAtPosition( {estartX, 0, estartZ}, 1, true, 'AntiSurface' )
-		targetNumber = SUtils.GetThreatAtPosition( aiBrain, {estartX, 0, estartZ}, 1, 'AntiSurface', {'Commander', 'Air', 'Experimental'}, enemyIndex )
-	end
-
-    local position = engineerManager:GetLocationCoords()
-    local radius = engineerManager:GetLocationRadius()
-    
-    --local surThreat = pool:GetPlatoonThreat( 'AntiSurface', categories.MOBILE * categories.LAND - categories.EXPERIMENTAL - categories.SCOUT - categories.ENGINEER, position, radius )
-	local surThreat = pool:GetPlatoonThreat( 'AntiSurface', categories.MOBILE * categories.LAND - categories.EXPERIMENTAL - categories.SCOUT - categories.ENGINEER)
-	local airThreat = 0 #pool:GetPlatoonThreat( 'AntiAir', categories.MOBILE * categories.LAND - categories.EXPERIMENTAL - categories.SCOUT - categories.ENGINEER, position, radius )
-	local adjustForTime = 1 + (math.floor(GetGameTimeSeconds()/60) * .01)
-	--LOG("*AI DEBUG: Pool Threat: "..surThreat.." adjustment: "..adjustForTime.." Enemy Threat: "..targetNumber)
-    if (surThreat + airThreat) >= targetNumber and targetNumber > 0 then
-        return true
-	elseif targetNumber == 0 then
-		return true
-	elseif UC.UnitCapCheckGreater(aiBrain, .95) then
-		return true
-	elseif SUtils.ThreatBugcheck(aiBrain) then -- added to combat buggy inflated threat
-		return true
-	elseif UC.PoolGreaterAtLocation(aiBrain, locationType, 9, categories.MOBILE * categories.LAND * categories.TECH3 - categories.ENGINEER) and surThreat > (500 * adjustForTime) then #25 Units x 20
-		return true
-	elseif UC.PoolGreaterAtLocation(aiBrain, locationType, 9, categories.MOBILE * categories.LAND * categories.TECH2 - categories.ENGINEER)
-	and UC.PoolLessAtLocation(aiBrain, locationType, 10, categories.MOBILE * categories.LAND * categories.TECH3 - categories.ENGINEER) and surThreat > (175 * adjustForTime) then #25 Units x 7
-		return true
-	elseif UC.PoolLessAtLocation(aiBrain, locationType, 10, categories.MOBILE * categories.LAND - categories.TECH1 - categories.ENGINEER) and surThreat > (25 * adjustForTime) then #25 Units x 1
-		return true
-    end
-    return false
-end
 
 
 
 
 
-BuilderGroup {
-    BuilderGroupName = 'NCsubcommander_ras',
-    BuildersType = 'FactoryBuilder',
-Builder {
-    BuilderName = 'NC lots of RAS',
-    PlatoonTemplate = 'NC RAS',
-    Priority = 950,
-    BuilderConditions = {
-    
-        { MIBC, 'GreaterThanGameTime', { 1200 } },
-        { EBC, 'GreaterThanEconStorageCurrent', { 500, 10000 } },
-       
-        --- 
-       
-      
-        { UCBC, 'HaveLessThanUnitsWithCategory', { 60, categories.SUBCOMMANDER } },
-        { UCBC, 'HaveLessThanUnitsInCategoryBeingBuilt', { 1, categories.SUBCOMMANDER }},
-        
-    },
-    BuilderType = 'Gate',
-},
-Builder {
-    BuilderName = 'NC lots of RAS lots of juice',
-    PlatoonTemplate = 'NC RAS',
-    Priority = 951,
-    BuilderConditions = {
-    
-        { MIBC, 'GreaterThanGameTime', { 1500 } },
-        { EBC, 'GreaterThanEconStorageCurrent', { 5000, 10000 } },
-        --- 
-       
-      
-        { UCBC, 'HaveLessThanUnitsWithCategory', { 60, categories.SUBCOMMANDER } },
-        { UCBC, 'HaveLessThanUnitsInCategoryBeingBuilt', { 3, categories.SUBCOMMANDER }},
-        
-    },
-    BuilderType = 'Gate',
-},
-}
+
+
+
 
 
 
@@ -123,6 +42,95 @@ BuilderGroup {
     BuilderGroupName = 'NClandbehavior',
     BuildersType = 'PlatoonFormBuilder',
 
+
+    
+    Builder {
+        BuilderName = 'NCtransportattackforce',
+        PlatoonTemplate = 'NC all in',
+		PlatoonAddPlans = {'PlatoonCallForHelpAISorian',},
+        PlatoonAddBehaviors = { 'AirLandToggleSorian' },
+        Priority = 1,
+        InstanceCount = 50,
+        BuilderConditions = { 
+            
+                        { UCBC, 'PoolGreaterAtLocation', { 'LocationType', 6,  categories.LAND * categories.MOBILE - categories.ENGINEER - categories.SCOUT} },
+			{ SBC, 'NoRushTimeCheck', { 0 }},
+        },
+        BuilderData = {
+            RequireTransport = false,
+            AggressiveMove = false,
+            AttackEnemyStrength = 1000,  
+            TargetSearchCategory = categories.ALLUNITS,
+            MoveToCategories = {                                               
+                categories.STRUCTURE,
+                
+            },
+            SearchRadius = 6000,
+			ThreatSupport = 40,
+           
+        },    
+       
+        BuilderType = 'Any',
+    },
+
+    Builder {
+        BuilderName = 'NCt3mobilearty',
+        PlatoonTemplate = 'NC arty attack mobile',
+		PlatoonAddPlans = {'PlatoonCallForHelpAISorian',},
+        PlatoonAddBehaviors = { 'AirLandToggleSorian' },
+        Priority = 1,
+        InstanceCount = 50,
+        BuilderConditions = { 
+            
+                        { UCBC, 'PoolGreaterAtLocation', { 'LocationType', 5,  categories.LAND * categories.MOBILE - categories.ENGINEER - categories.SCOUT} },
+			{ SBC, 'NoRushTimeCheck', { 0 }},
+        },
+        BuilderData = {
+            RequireTransport = true,
+            AggressiveMove = false,
+            AttackEnemyStrength = 1000,  
+            TargetSearchCategory = categories.ALLUNITS - categories.ENGINEER,
+            MoveToCategories = {                                               
+                categories.STRUCTURE,
+                
+            },
+            SearchRadius = 6000,
+			ThreatSupport = 40,
+           
+        },    
+       
+        BuilderType = 'Any',
+    },
+   
+
+    Builder {
+        BuilderName = 'NClandaa',
+        PlatoonTemplate = 'nc land anti air',
+		PlatoonAddPlans = {'PlatoonCallForHelpAISorian', 'DistressResponseAISorian'},
+        PlatoonAddBehaviors = { 'AirLandToggleSorian' },
+        Priority = 1,
+        InstanceCount = 50,
+        BuilderConditions = { 
+            { MIBC, 'GreaterThanGameTime', { 600 } },
+                        { UCBC, 'PoolGreaterAtLocation', { 'LocationType', 3,  categories.LAND * categories.MOBILE * categories.ANTIAIR -categories.TECH1 - categories.INSIGNIFICANTUNIT} },
+			{ SBC, 'NoRushTimeCheck', { 0 }},
+        },
+        BuilderData = {
+            RequireTransport = false,
+            AttackEnemyStrength = 1000,  
+            TargetSearchCategory = categories.STRUCTURE,
+            MoveToCategories = {                                               
+                categories.STRUCTURE,
+                
+            },
+            SearchRadius = 6000,
+			ThreatSupport = 40,
+           
+        },    
+       
+        BuilderType = 'Any',
+    },
+
     Builder {
         BuilderName = 'NClandbaseguard',
         PlatoonTemplate = 'landbaseguardNC',
@@ -132,6 +140,7 @@ BuilderGroup {
         InstanceCount = 4,
         BuilderConditions = { 
             { MIBC, 'GreaterThanGameTime', { 600 } },
+            { UCBC, 'UnitsLessAtLocation', { 'LocationType', 5, categories.LAND * categories.MOBILE - categories.EXPERIMENTAL - categories.ENGINEER - categories.SUBCOMMANDER - categories.COMMAND }},
                         { UCBC, 'PoolGreaterAtLocation', { 'LocationType', 0, categories.MOBILE * categories.LAND - categories.ENGINEER - categories.EXPERIMENTAL } },
 			{ SBC, 'NoRushTimeCheck', { 0 }},
         },
@@ -158,7 +167,7 @@ BuilderGroup {
         Priority = 102,
         InstanceCount = 4,
         BuilderConditions = { 
-        
+            { UCBC, 'UnitsLessAtLocation', { 'LocationType', 5, categories.LAND * categories.MOBILE - categories.EXPERIMENTAL - categories.ENGINEER - categories.SUBCOMMANDER - categories.COMMAND }},
                         { UCBC, 'PoolGreaterAtLocation', { 'LocationType', 0, categories.MOBILE * categories.LAND * categories.TECH3 - categories.ENGINEER - categories.EXPERIMENTAL } },
 			{ SBC, 'NoRushTimeCheck', { 0 }},
         },
@@ -213,7 +222,7 @@ BuilderGroup {
 		PlatoonAddPlans = {'PlatoonCallForHelpAISorian', 'DistressResponseAISorian'},
 		PlatoonAddBehaviors = { 'AirLandToggleSorian' },
         Priority = 100,
-        InstanceCount = 70,
+        InstanceCount = 50,
         
         BuilderConditions = { 
         
@@ -242,7 +251,7 @@ BuilderGroup {
 		PlatoonAddPlans = {'PlatoonCallForHelpAISorian', 'DistressResponseAISorian'},
 		PlatoonAddBehaviors = { 'AirLandToggleSorian' },
         Priority = 100,
-        InstanceCount = 70,
+        InstanceCount = 50,
         
         BuilderConditions = { 
         
@@ -272,7 +281,7 @@ BuilderGroup {
 		PlatoonAddPlans = {'PlatoonCallForHelpAISorian', 'DistressResponseAISorian'},
 		PlatoonAddBehaviors = { 'AirLandToggleSorian' },
         Priority = 100,
-        InstanceCount = 70,
+        InstanceCount = 50,
         
         BuilderConditions = { 
         
@@ -301,7 +310,7 @@ BuilderGroup {
 		PlatoonAddPlans = {'PlatoonCallForHelpAISorian', 'DistressResponseAISorian'},
 		PlatoonAddBehaviors = { 'AirLandToggleSorian' },
         Priority = 100,
-        InstanceCount = 70,
+        InstanceCount = 50,
         
         BuilderConditions = { 
         
@@ -330,7 +339,7 @@ BuilderGroup {
 		PlatoonAddPlans = {'PlatoonCallForHelpAISorian', 'DistressResponseAISorian'},
 		PlatoonAddBehaviors = { 'AirLandToggleSorian' },
         Priority = 100,
-        InstanceCount = 30,
+        InstanceCount = 50,
         FormRadius = 300,
         
         BuilderConditions = { 
@@ -360,7 +369,7 @@ BuilderGroup {
 		PlatoonAddPlans = {'PlatoonCallForHelpAISorian', 'DistressResponseAISorian'},
 		PlatoonAddBehaviors = { 'AirLandToggleSorian' },
         Priority = 100,
-        InstanceCount = 70,
+        InstanceCount = 50,
         
         BuilderConditions = { 
         
@@ -390,7 +399,7 @@ BuilderGroup {
 		PlatoonAddPlans = {'PlatoonCallForHelpAISorian', 'DistressResponseAISorian'},
 		PlatoonAddBehaviors = { 'AirLandToggleSorian' },
         Priority = 100,
-        InstanceCount = 30,
+        InstanceCount = 50,
         FormRadius = 300,
         
         BuilderConditions = { 
@@ -420,7 +429,7 @@ BuilderGroup {
 		PlatoonAddPlans = {'PlatoonCallForHelpAISorian', 'DistressResponseAISorian'},
 		PlatoonAddBehaviors = { 'AirLandToggleSorian' },
         Priority = 100,
-        InstanceCount = 70,
+        InstanceCount = 50,
         
         BuilderConditions = { 
         

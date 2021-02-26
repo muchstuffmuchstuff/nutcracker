@@ -40,7 +40,10 @@ function CheckUnitRangeNC(aiBrain, locationType, unitType, category, factionInde
         return false
     end
 
-    local basePosition = aiBrain:GetLocationPosition(locationType)
+    local basePosition
+    if aiBrain.BuilderManagers[locationType] then
+    basePosition = aiBrain:GetLocationPosition(locationType)
+    end
 
     # Check around basePosition for StructureThreat
     local unit = AIUtils.AIFindBrainTargetAroundPoint(aiBrain, basePosition, range, category)
@@ -118,78 +121,7 @@ function CanPathToCurrentEnemyNC(aiBrain, locationType, bool)
     return false == bool
 end
 
-function AIFindNearestCategoryTeleportLocationNC(aiBrain, position, maxRange, MoveToCategories, TargetSearchCategory, enemyBrain)
-    if type(TargetSearchCategory) == 'string' then
-        TargetSearchCategory = ParseEntityCategory(TargetSearchCategory)
-    end
-    local enemyIndex = false
-    if enemyBrain then
-        enemyIndex = enemyBrain:GetArmyIndex()
-    end
-    local TargetUnit = false
-    local TargetsInRange, TargetPosition, category, distance, targetRange, AntiteleportUnits
 
-    TargetsInRange = aiBrain:GetUnitsAroundPoint(TargetSearchCategory, position, maxRange, 'Enemy')
-    LOG('* AIFindNearestCategoryTeleportLocation: numTargets '..table.getn(TargetsInRange)..'  ')
-    --DrawCircle(position, range, '0000FF')
-    for _, v in MoveToCategories do
-        category = v
-        if type(category) == 'string' then
-            category = ParseEntityCategory(category)
-        end
-        distance = maxRange
-        for num, Target in TargetsInRange do
-            if Target.Dead or Target:BeenDestroyed() then
-                continue
-            end
-            TargetPosition = Target:GetPosition()
-            -- check if the target is inside a nuke blast radius
-            if IsNukeBlastArea(aiBrain, TargetPosition) then continue end
-            -- check if we have a special player as enemy
-            if enemyBrain and enemyIndex and enemyBrain ~= enemyIndex then continue end
-            -- check if the Target is still alive, matches our target priority and can be attacked from our platoon
-            if not Target.Dead and EntityCategoryContains(category, Target) then
-                -- yes... we need to check if we got friendly units with GetUnitsAroundPoint(_, _, _, 'Enemy')
-                if not IsEnemy( aiBrain:GetArmyIndex(), Target:GetAIBrain():GetArmyIndex() ) then continue end
-                targetRange = VDist2(position[1],position[3],TargetPosition[1],TargetPosition[3])
-                -- check if the target is in range of the ACU and in range of the base
-                if targetRange < distance then
-                    -- Check if the target is protected by antiteleporter
-                    if categories.ANTITELEPORT then 
-                        AntiteleportUnits = aiBrain:GetUnitsAroundPoint(categories.ANTITELEPORT, TargetPosition, 60, 'Enemy')
-                        LOG('* AIFindNearestCategoryTeleportLocation: numAntiteleportUnits '..table.getn(AntiteleportUnits)..'  ')
-                        local scrambled = false
-                        for i, unit in AntiteleportUnits do
-                            -- If it's an ally, then we skip.
-                            if not IsEnemy( aiBrain:GetArmyIndex(), unit:GetAIBrain():GetArmyIndex() ) then continue end
-                            local NoTeleDistance = unit:GetBlueprint().Defense.NoTeleDistance
-                            if NoTeleDistance then
-                                local AntiTeleportTowerPosition = unit:GetPosition()
-                                local dist = VDist2(TargetPosition[1], TargetPosition[3], AntiTeleportTowerPosition[1], AntiTeleportTowerPosition[3])
-                                if dist and NoTeleDistance >= dist then
-                                    LOG('* AIFindNearestCategoryTeleportLocation: Teleport Destination Scrambled 1 '..repr(TargetPosition)..' - '..repr(AntiTeleportTowerPosition))
-                                    scrambled = true
-                                    break
-                                end
-                            end
-                        end
-                        if scrambled then
-                            continue
-                        end
-                    end
-                    LOG('* AIFindNearestCategoryTeleportLocation: Found a target that is not Teleport Scrambled')
-                    TargetUnit = Target
-                    distance = targetRange
-                end
-            end
-        end
-        if TargetUnit then
-            return TargetUnit
-        end
-       coroutine.yield(10)
-    end
-    return TargetUnit
-end
 
 function RandomizePositionNC(position)
     local Posx = position[1]
@@ -238,7 +170,6 @@ end
 function HaveUnitRatioVersusEnemyNC(aiBrain, ratio, categoryOwn, compareType, categoryEnemy)
     local numOwnUnits = aiBrain:GetCurrentUnits(categoryOwn)
     local numEnemyUnits = aiBrain:GetNumUnitsAroundPoint(categoryEnemy, Vector(mapSizeX/2,0,mapSizeZ/2), mapSizeX+mapSizeZ , 'Enemy')
-    ---LOG(aiBrain:GetArmyIndex()..' CompareBody {World} ( '..numOwnUnits..' '..compareType..' '..numEnemyUnits..' ) -- ['..ratio..'] -- return '..repr(CompareBodyNC(numOwnUnits / numEnemyUnits, ratio, compareType)))
     return CompareBodyNC(numOwnUnits / numEnemyUnits, ratio, compareType)
     
 end
@@ -274,3 +205,20 @@ function EnemyInTMLRangeNC(aiBrain, locationtype, inrange)
     end
     return false
 end
+
+function SubCmdrHasUpgradeNC(aiBrain, upgrade, has)
+    local units = aiBrain:GetListOfUnits(categories.SUBCOMMANDER, false)
+    for k,v in units do
+        if v:HasEnhancement(upgrade) and has then
+            return true
+        elseif not v:HasEnhancement(upgrade) and not has then
+            return true
+        end
+    end
+    return false
+end
+
+
+
+
+

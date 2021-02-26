@@ -49,7 +49,7 @@ PlatoonTemplate {
 
 PlatoonTemplate {
     Name = 'clenseNCt1t2',
-    Plan = 'HuntAI',
+    Plan = 'StrikeForceAISorian',
     GlobalSquads = {
         { categories.uea0103 + categories.uaa0103 + categories.ura0103 + categories.xsa0103 , 1, 20, 'Attack', 'GrowthFormation' },
         
@@ -58,16 +58,16 @@ PlatoonTemplate {
 
 PlatoonTemplate {
     Name = 'clenseNCt3',
-    Plan = 'HuntAI',
+    Plan = 'StrikeForceAISorian',
     GlobalSquads = {
-        { categories.MOBILE * categories.TECH3 * categories.AIR  * categories.BOMBER - categories.TRANSPORTFOCUS - categories.ANTINAVY -categories.GROUNDATTACK - categories.SCOUT - categories.INSIGNIFICANTUNIT - categories.POD - categories.daa0206 , 1, 10, 'Attack', 'GrowthFormation' },
+        { categories.MOBILE * categories.TECH3 * categories.AIR  * categories.BOMBER - categories.TRANSPORTFOCUS - categories.ANTINAVY -categories.GROUNDATTACK - categories.SCOUT - categories.INSIGNIFICANTUNIT - categories.POD - categories.daa0206 , 1, 1, 'Attack', 'GrowthFormation' },
         
     },
 }
 
 PlatoonTemplate {
     Name = 'clensegunshipsNCt1t2',
-    Plan = 'HuntAI',
+    Plan = 'StrikeForceAISorian',
     GlobalSquads = {
         { categories.MOBILE * categories.AIR * (categories.TECH1 + categories.TECH2)  * categories.GROUNDATTACK  - categories.ANTINAVY - categories.BOMBER - categories.SCOUT - categories.INSIGNIFICANTUNIT - categories.POD - categories.daa0206, 4, 30, 'Attack', 'GrowthFormation' },
         
@@ -76,54 +76,10 @@ PlatoonTemplate {
 
 PlatoonTemplate {
     Name = 'clensegunshipsNCt3',
-    Plan = 'HuntAI',
+    Plan = 'StrikeForceAISorian',
     GlobalSquads = {
         { categories.MOBILE * categories.AIR * categories.TECH3  * categories.GROUNDATTACK - categories.TRANSPORTFOCUS - categories.ANTINAVY - categories.BOMBER - categories.SCOUT - categories.INSIGNIFICANTUNIT - categories.POD - categories.daa0206, 4, 30, 'Attack', 'GrowthFormation' },
         
-    },
-}
-
-
-
-
-
-
-PlatoonTemplate {
-    Name = 'NCfactorystomp',
-    Plan = 'GuardBaseSorian2',
-    GlobalSquads = {
-        { categories.AIR * categories.MOBILE * categories.BOMBER - categories.EXPERIMENTAL - categories.SCOUT - categories.INSIGNIFICANTUNIT - categories.POD, 1, 2, 'attack', 'none' },
-    },
-}
-
-PlatoonTemplate {
-    Name = 'NCfighterhunter',
-    Plan = 'FighterHuntNC', 
-    GlobalSquads = {
-         { categories.AIR * categories.MOBILE * categories.ANTIAIR - categories.BOMBER - categories.GROUNDATTACK - categories.EXPERIMENTAL - categories.TRANSPORTFOCUS - categories.SCOUT, 5, 10, 'attack', 'none' },
-    },
-}
-
-PlatoonTemplate {
-    Name = 'NCfighterhunterlate',
-    Plan = 'FighterHuntNC', 
-    GlobalSquads = {
-         { categories.AIR * categories.MOBILE * categories.ANTIAIR - categories.BOMBER - categories.GROUNDATTACK - categories.EXPERIMENTAL - categories.TRANSPORTFOCUS - categories.SCOUT, 10, 10, 'attack', 'none' },
-    },
-}
-
-PlatoonTemplate {
-    Name = 'NCfighterhunterverylate',
-    Plan = 'FighterHuntNC', 
-    GlobalSquads = {
-         { categories.AIR * categories.MOBILE * categories.ANTIAIR * categories.TECH3 - categories.BOMBER - categories.GROUNDATTACK - categories.EXPERIMENTAL - categories.TRANSPORTFOCUS - categories.SCOUT, 30, 100, 'attack', 'none' },
-    },
-}
-PlatoonTemplate {
-    Name = 'NCfighterhunterGIANT',
-    Plan = 'FighterHuntNC', 
-    GlobalSquads = {
-         { categories.AIR * categories.MOBILE * categories.ANTIAIR * categories.TECH3 - categories.BOMBER - categories.GROUNDATTACK - categories.EXPERIMENTAL - categories.TRANSPORTFOCUS - categories.SCOUT, 50, 50, 'attack', 'none' },
     },
 }
 
@@ -133,19 +89,10 @@ PlatoonTemplate {
     Plan = 'FighterHuntNC',
     GlobalSquads = {
   
-        { categories.AIR * categories.MOBILE * categories.ANTIAIR*(categories.TECH2 + categories.TECH3) - categories.BOMBER - categories.GROUNDATTACK - categories.SCOUT - categories.INSIGNIFICANTUNIT , 10, 15, 'Attack', 'GrowthFormation' },
+        { categories.AIR * categories.MOBILE * categories.ANTIAIR*(categories.TECH2 + categories.TECH3) - categories.BOMBER - categories.GROUNDATTACK - categories.SCOUT - categories.INSIGNIFICANTUNIT , 15, 15, 'Attack', 'GrowthFormation' },
     },
 }
 
-
-PlatoonTemplate {
-    Name = 'NCCommanderSnipe',
-    Plan = 'StrikeForceAISorian',
-    GlobalSquads = {
-  
-        { categories.AIR * categories.MOBILE * categories.BOMBER * ( categories.TECH2 + categories.TECH3) * categories.GROUNDATTACK - categories.ANTINAVY, 1, 5, 'Attack', 'GrowthFormation' },
-    },
-}
 
 
 
@@ -181,7 +128,7 @@ PlatoonTemplate {
     Plan = 'ExperimentalAIHubSorian', 
     GlobalSquads = {
         { categories.LAND * categories.EXPERIMENTAL * categories.MOBILE, 1, 10, 'attack', 'AttackFormation' },
-        { categories.uea0102 + categories.uaa0102 + categories.ura0102 + categories.xsa0102,  0, 30, 'attack', 'AttackFormation' },
+        { categories.uea0102 + categories.uaa0102 + categories.ura0102 + categories.xsa0102,  0, 30, 'guard', 'AttackFormation' },
         { categories.GROUNDATTACK * categories.AIR * (categories.TECH2 + categories.TECH3),  0, 30, 'attack', 'AttackFormation' },
         { categories.SCOUT * categories.AIR * categories.TECH3,  0, 1, 'attack', 'AttackFormation' },
       
@@ -189,137 +136,59 @@ PlatoonTemplate {
 }
 
 
-PlatoonTemplate {
-    Name = 'NCairexperimentalattack',
-    Plan = 'ExperimentalAIHubSorian', 
-    GlobalSquads = {
-        { categories.AIR * categories.EXPERIMENTAL, 1, 10, 'attack', 'AttackFormation' },
-        { categories.uea0102 + categories.uaa0102 + categories.ura0102 + categories.xsa0102,  0, 30, 'attack', 'AttackFormation' },
-        { categories.GROUNDATTACK * categories.AIR * (categories.TECH2 + categories.TECH3),  0, 30, 'attack', 'AttackFormation' },
-        { categories.SCOUT * categories.AIR * categories.TECH3,  0, 1, 'attack', 'AttackFormation' },
-      
-    }
-}
 
 
---cyb and aeon exp
+---sera air exp
+
 PlatoonTemplate {
     Name = 'NCairexperimentalattack_commandfocus',
     Plan = 'ExperimentalAIHubSorian', 
     GlobalSquads = {
         { categories.AIR * categories.EXPERIMENTAL, 1, 10, 'attack', 'AttackFormation' },
-        { categories.uea0102 + categories.uaa0102 + categories.ura0102 + categories.xsa0102,  0, 30, 'attack', 'AttackFormation' },
-        { categories.GROUNDATTACK * categories.AIR * (categories.TECH2 + categories.TECH3),  0, 30, 'attack', 'AttackFormation' },
         { categories.SCOUT * categories.AIR * categories.TECH3,  0, 1, 'attack', 'AttackFormation' },
-      
     }
 }
+
 PlatoonTemplate {
     Name = 'NCairexperimentalattack_landfocus',
-    Plan = 'HuntLand', 
+    Plan = 'StrikeForceAISorian', 
     GlobalSquads = {
         { categories.AIR * categories.EXPERIMENTAL, 1, 10, 'attack', 'AttackFormation' },
-        { categories.uea0102 + categories.uaa0102 + categories.ura0102 + categories.xsa0102,  0, 30, 'attack', 'AttackFormation' },
-        { categories.GROUNDATTACK * categories.AIR * (categories.TECH2 + categories.TECH3),  0, 30, 'attack', 'AttackFormation' },
         { categories.SCOUT * categories.AIR * categories.TECH3,  0, 1, 'attack', 'AttackFormation' },
-      
     }
 }
 
 PlatoonTemplate {
     Name = 'NCairexperimentalattack_energyfocus',
-    Plan = 'Huntenergy', 
+    Plan = 'StrikeForceAISorian', 
     GlobalSquads = {
         { categories.AIR * categories.EXPERIMENTAL, 1, 10, 'attack', 'AttackFormation' },
-        { categories.uea0102 + categories.uaa0102 + categories.ura0102 + categories.xsa0102,  0, 30, 'attack', 'AttackFormation' },
-        { categories.GROUNDATTACK * categories.AIR * (categories.TECH2 + categories.TECH3),  0, 30, 'attack', 'AttackFormation' },
         { categories.SCOUT * categories.AIR * categories.TECH3,  0, 1, 'attack', 'AttackFormation' },
-      
     }
 }
 
 PlatoonTemplate {
     Name = 'NCairexperimentalattack_mexfocus',
-    Plan = 'Huntmex', 
-    GlobalSquads = {
-        { categories.AIR * categories.EXPERIMENTAL, 1, 10, 'attack', 'AttackFormation' },
-        { categories.uea0102 + categories.uaa0102 + categories.ura0102 + categories.xsa0102,  0, 30, 'attack', 'AttackFormation' },
-        { categories.GROUNDATTACK * categories.AIR * (categories.TECH2 + categories.TECH3),  0, 30, 'attack', 'AttackFormation' },
-        { categories.SCOUT * categories.AIR * categories.TECH3,  0, 1, 'attack', 'AttackFormation' },
-      
-    }
-}
-
----sera air exp
-
-PlatoonTemplate {
-    Name = 'NCairexperimentalattacksera_commandfocus',
-    Plan = 'ExperimentalAIHubSorian', 
+    Plan = 'StrikeForceAISorian', 
     GlobalSquads = {
         { categories.AIR * categories.EXPERIMENTAL, 1, 10, 'attack', 'AttackFormation' },
         { categories.SCOUT * categories.AIR * categories.TECH3,  0, 1, 'attack', 'AttackFormation' },
     }
 }
-
-PlatoonTemplate {
-    Name = 'NCairexperimentalattacksera_landfocus',
-    Plan = 'HuntLand', 
-    GlobalSquads = {
-        { categories.AIR * categories.EXPERIMENTAL, 1, 10, 'attack', 'AttackFormation' },
-        { categories.SCOUT * categories.AIR * categories.TECH3,  0, 1, 'attack', 'AttackFormation' },
-    }
-}
-
-PlatoonTemplate {
-    Name = 'NCairexperimentalattacksera_energyfocus',
-    Plan = 'Huntenergy', 
-    GlobalSquads = {
-        { categories.AIR * categories.EXPERIMENTAL, 1, 10, 'attack', 'AttackFormation' },
-        { categories.SCOUT * categories.AIR * categories.TECH3,  0, 1, 'attack', 'AttackFormation' },
-    }
-}
-
-PlatoonTemplate {
-    Name = 'NCairexperimentalattacksera_mexfocus',
-    Plan = 'Huntmex', 
-    GlobalSquads = {
-        { categories.AIR * categories.EXPERIMENTAL, 1, 10, 'attack', 'AttackFormation' },
-        { categories.SCOUT * categories.AIR * categories.TECH3,  0, 1, 'attack', 'AttackFormation' },
-    }
-}
-
-
-
-
-
-
-
-
-
-PlatoonTemplate {
-    Name = 'ncairengihunt',
-    Plan = 'StrikeForceAISorian',
-    GlobalSquads = {
-        { categories.MOBILE * categories.AIR * (categories.GROUNDATTACK + categories.BOMBER) - categories.TRANSPORTFOCUS - categories.ANTINAVY - categories.EXPERIMENTAL - categories.INSIGNIFICANTUNIT - categories.POD, 1, 4, 'Attack', 'GrowthFormation' },
-        
-    },
-}
-
-
 
 PlatoonTemplate {
     Name = 'T1AirScoutflyaround',
-    Plan = 'ScoutingAISorian',
+    Plan = 'ScoutingAI',
     GlobalSquads = {
-        { categories.AIR * categories.INTELLIGENCE * categories.TECH1, 1, 5, 'scout', 'None' },
+        { categories.AIR * categories.SCOUT * categories.TECH1, 1, 5, 'scout', 'None' },
     }
 }
 
 PlatoonTemplate {
     Name = 'T3AirScoutflyaround',
-    Plan = 'ScoutingAISorian',
+    Plan = 'ScoutingAI',
     GlobalSquads = {
-        { categories.AIR * categories.INTELLIGENCE * categories.TECH3, 1, 5, 'scout', 'None' },
+        { categories.AIR * categories.SCOUT * categories.TECH3, 1, 5, 'scout', 'None' },
     }
 }
 
@@ -327,17 +196,17 @@ PlatoonTemplate {
 
 PlatoonTemplate {
     Name = 'T1AirScoutFormswarm',
-    Plan = 'ScoutingAISorian',
+    Plan = 'ScoutingAI',
     GlobalSquads = {
-        { categories.AIR * categories.INTELLIGENCE * categories.TECH1, 2, 2, 'scout', 'None' },
+        { categories.AIR * categories.SCOUT * categories.TECH1, 3, 10, 'scout', 'None' },
     }
 }
 
 PlatoonTemplate {
     Name = 'T3AirScoutFormswarm',
-    Plan = 'ScoutingAISorian',
+    Plan = 'ScoutingAI',
     GlobalSquads = {
-        { categories.AIR * categories.INTELLIGENCE * categories.TECH3, 3, 4, 'scout', 'None' },
+        { categories.AIR * categories.SCOUT * categories.TECH3, 4, 10, 'scout', 'None' },
     }
 }
 
@@ -381,10 +250,6 @@ PlatoonTemplate {
 }
 
 
-
-
-
-
 PlatoonTemplate {
     Name = 'NCfighterhuntert1',
     Plan = 'FighterHuntNC',
@@ -397,7 +262,7 @@ PlatoonTemplate {
     Name = 'NCfighterhuntert1_late',
     Plan = 'FighterHuntNC',
     GlobalSquads = {
-        { categories.uea0102 + categories.uaa0102 + categories.ura0102 + categories.xsa0102,  10, 10, 'attack', 'none' },
+        { categories.uea0102 + categories.uaa0102 + categories.ura0102 + categories.xsa0102,  10, 40, 'attack', 'none' },
         
     }
 }
@@ -416,21 +281,21 @@ PlatoonTemplate {
     Name = 'NCt1fighter_ratio_response',
     FactionSquads = {
         UEF = {
-            { 'uea0102', 1, 4, 'Attack', 'GrowthFormation' },-- T1 Fighter
+            { 'uea0102', 1, 3, 'Attack', 'GrowthFormation' },-- T1 Fighter
          
             
            
          
         },
         Aeon = {
-            { 'uaa0102', 1, 4, 'Attack', 'GrowthFormation' },-- T1 Fighter
+            { 'uaa0102', 1, 3, 'Attack', 'GrowthFormation' },-- T1 Fighter
            
            
             
            
         },
         Cybran = {
-            { 'ura0102', 1, 4, 'Attack', 'GrowthFormation' },-- T1 Fighter
+            { 'ura0102', 1, 3, 'Attack', 'GrowthFormation' },-- T1 Fighter
           
           
            
@@ -438,7 +303,7 @@ PlatoonTemplate {
             
         },
         Seraphim = {
-            { 'xsa0102', 1, 4, 'Attack', 'GrowthFormation' },-- T1 Fighter
+            { 'xsa0102', 1, 3, 'Attack', 'GrowthFormation' },-- T1 Fighter
       
             
             
@@ -451,9 +316,9 @@ PlatoonTemplate {
 
 PlatoonTemplate {
     Name = 'NCGuardT4',
-    Plan = 'GuardExperimentalNC',
+    Plan = 'GuardExperimentalSorian',
     GlobalSquads = {
-        { categories.uea0303 + categories.uaa0303 + categories.ura0303 + categories.xsa0303,  1, 60, 'attack', 'none' },
+        { categories.uea0303 + categories.uaa0303 + categories.ura0303 + categories.xsa0303,  1, 10, 'attack', 'none' },
     
        
     }
@@ -475,14 +340,9 @@ PlatoonTemplate {
         
     }
 }
-PlatoonTemplate {
-    Name = 'NCfighterhuntert3_verylate',
-    Plan = 'FighterHuntNC',
-    GlobalSquads = {
-        { categories.uea0303 + categories.uaa0303 + categories.ura0303 + categories.xsa0303,  30, 40, 'attack', 'none' },
-        
-    }
-}
+
+
+
 
 PlatoonTemplate { Name = 'NCt3fighter_ratio_response',
     FactionSquads = {
@@ -507,25 +367,22 @@ PlatoonTemplate { Name = 'NCt3fighter_ratio_response',
 PlatoonTemplate { Name = 'NCt3fighter_ratio_response_exp',
     FactionSquads = {
         UEF = {
-            { 'uea0303', 1, 3, 'Attack', 'GrowthFormation' },      -- Air Superiority Fighter
-            { 'uea0302', 1, 1, 'scout', 'none' },    -- Scout
-            { 'uea0303', 1, 2, 'Attack', 'GrowthFormation' },    
+            { 'uea0303', 1, 5, 'Attack', 'GrowthFormation' },      -- Air Superiority Fighter
+           
          },
         Aeon = {
-            { 'uaa0303', 1, 3, 'Attack', 'GrowthFormation' },      -- Air Superiority Fighter
-            { 'uaa0302', 1, 1, 'scout', 'none' },   -- Scout
-            { 'uaa0303', 1, 2, 'Attack', 'GrowthFormation' },    
+            { 'uaa0303', 1, 5, 'Attack', 'GrowthFormation' },      -- Air Superiority Fighter
+          
         },
         Cybran = {
-            { 'ura0303', 1, 3, 'Attack', 'GrowthFormation' },      -- Air Superiority Fighter
-            { 'ura0302', 1, 1, 'scout', 'none' },    -- Scout
-            { 'ura0303', 1, 2, 'Attack', 'GrowthFormation' },  
+            { 'ura0303', 1, 5, 'Attack', 'GrowthFormation' },      -- Air Superiority Fighter
+          
         },
         Seraphim = {
-            { 'xsa0303', 1, 3, 'Attack', 'GrowthFormation' },      -- Air Superiority Fighter
-            { 'xsa0302', 1, 1, 'scout', 'none' },    -- Scout
-            { 'xsa0303', 1, 2, 'Attack', 'GrowthFormation' },   
+            { 'xsa0303', 1, 5, 'Attack', 'GrowthFormation' },      -- Air Superiority Fighter
+         
         },
+     
     }
 }
 
@@ -609,14 +466,14 @@ PlatoonTemplate {
     Name = 'landbaseguardNC',
     Plan = 'GuardBaseSorian',
     GlobalSquads = {
-        { categories.MOBILE * categories.LAND - categories.SUBCOMMANDER - categories.EXPERIMENTAL - categories.ENGINEER - categories.xsl0402 - categories.SCOUT, 1, 8, 'Attack', 'none' }
+        { categories.MOBILE * categories.LAND - categories.ANTIAIR - categories.SUBCOMMANDER - categories.EXPERIMENTAL - categories.ENGINEER - categories.xsl0402 - categories.SCOUT, 1, 8, 'Attack', 'none' }
     },
 }
 PlatoonTemplate {
     Name = 'landbaseguardNCt3',
     Plan = 'GuardBaseSorian',
     GlobalSquads = {
-        { categories.MOBILE * categories.LAND * categories.TECH3 - categories.SUBCOMMANDER - categories.EXPERIMENTAL - categories.ENGINEER - categories.xsl0402 - categories.SCOUT, 1, 8, 'Attack', 'none' }
+        { categories.MOBILE * categories.LAND * categories.TECH3 - categories.ANTIAIR - categories.SUBCOMMANDER - categories.EXPERIMENTAL - categories.ENGINEER - categories.xsl0402 - categories.SCOUT, 1, 8, 'Attack', 'none' }
     },
 }
 
@@ -634,17 +491,80 @@ PlatoonTemplate {
 
 
 
+PlatoonTemplate {
+    Name = 'T2SeaCruiser',
+    FactionSquads = {
+        UEF = {
+            { 'ues0202', 1, 1, 'support', 'None' }
+        },
+        Aeon = {
+            { 'uas0202', 1, 1, 'support', 'None' }
+        },
+        Cybran = {
+            { 'urs0202', 1, 1, 'support', 'None' }
+        },
+        Seraphim = {
+            { 'xss0202', 1, 1, 'support', 'none' }
+        },
+      
+    }
+}
+
 
 
 ---ENGINEER
+
+PlatoonTemplate {
+    Name = 'PresetAssistNC',
+    Plan = 'SorianManagerEngineerAssistAI',
+    GlobalSquads = {
+        { categories.ENGINEERPRESET + categories.RASPRESET , 1, 1, 'support', 'None' }
+    },
+}
+
+PlatoonTemplate {
+    Name = 'T3EngineerAssistNC',
+    Plan = 'SorianManagerEngineerAssistAI',
+    GlobalSquads = {
+        { categories.ENGINEER * categories.TECH3 + categories.RASPRESET - categories.SUBCOMMANDER - categories.RAMBOPRESET, 1, 1, 'support', 'None' }
+    },
+}
+
+PlatoonTemplate {
+    Name = 'T3EngineerBuilderNC',
+    Plan = 'EngineerBuildAISorian',
+    GlobalSquads = {
+        { categories.ENGINEER * categories.TECH3 + categories.RASPRESET - categories.SUBCOMMANDER - categories.RAMBOPRESET, 1, 1, 'support', 'None' }
+    },
+}
+
+
+
 PlatoonTemplate {
     Name = 'AnyEngineerassistNC',
     Plan = 'SorianManagerEngineerAssistAI',
     GlobalSquads = {
-        { categories.ENGINEER + categories.SUBCOMMANDER - categories.COMMAND - categories.ENGINEERSTATION , 1, 1, 'support', 'None' }
+        { categories.ENGINEER + categories.RASPRESET - categories.SUBCOMMANDER - categories.COMMAND - categories.ENGINEERSTATION - categories.RAMBOPRESET , 1, 1, 'support', 'None' }
     },
 }
 
+
+
+PlatoonTemplate {
+    Name = 'NCT3Engineertagteam',
+    Plan = 'EngineerBuildAI',
+    GlobalSquads = {
+        { categories.ENGINEER * categories.TECH3 + categories.RASPRESET - categories.SUBCOMMANDER - categories.COMMAND - categories.ENGINEERSTATION - categories.RAMBOPRESET , 1, 2, 'support', 'None' }
+    },
+}
+
+PlatoonTemplate {
+    Name = 'NCT2T3Engineertagteam',
+    Plan = 'EngineerBuildAI',
+    GlobalSquads = {
+        { categories.ENGINEER * (categories.TECH2 + categories.TECH3) + categories.RASPRESET - categories.SUBCOMMANDER - categories.COMMAND - categories.ENGINEERSTATION - categories.RAMBOPRESET, 1, 2, 'support', 'None' }
+    },
+}
 
 
 PlatoonTemplate {
@@ -659,7 +579,7 @@ PlatoonTemplate {
     Name = 'AnyEngineerBuilderNC',
     Plan = 'EngineerBuildAI',
     GlobalSquads = {
-        { categories.ENGINEER + categories.SUBCOMMANDER - categories.COMMAND - categories.ENGINEERSTATION , 1, 1, 'support', 'None' }
+        { categories.ENGINEER  + categories.RASPRESET - categories.SUBCOMMANDER - categories.COMMAND - categories.ENGINEERSTATION - categories.RAMBOPRESET , 1, 1, 'support', 'None' }
     },
 }
 
@@ -668,7 +588,7 @@ PlatoonTemplate {
     Name = 'T2T3EngineerBuilderNC',
     Plan = 'EngineerBuildAI',
     GlobalSquads = {
-        { categories.ENGINEER * (categories.TECH2 + categories.TECH3) - categories.ENGINEERSTATION , 1, 1, 'support', 'None' }
+        { categories.ENGINEER * (categories.TECH2 + categories.TECH3) - categories.ENGINEERSTATION - categories.RAMBOPRESET , 1, 1, 'support', 'None' }
     },
 }
 
@@ -676,7 +596,7 @@ PlatoonTemplate {
     Name = 'T2T3EngineerBuilderNC_FIREBASE',
     Plan = 'EngineerBuildAI',
     GlobalSquads = {
-        { categories.ENGINEER * (categories.TECH2 + categories.TECH3) - categories.ENGINEERSTATION - categories.SUBCOMMANDER - categories.COMMAND , 1, 1, 'support', 'None' }
+        { categories.ENGINEER * (categories.TECH2 + categories.TECH3) + categories.RASPRESET - categories.ENGINEERSTATION - categories.SUBCOMMANDER - categories.COMMAND - categories.RAMBOPRESET , 1, 1, 'support', 'None' }
     },
 }
 
@@ -684,13 +604,94 @@ PlatoonTemplate {
     Name = 'T3_plus_EngineerBuilderNC',
     Plan = 'EngineerBuildAI',
     GlobalSquads = {
-        { categories.ENGINEER * categories.TECH3 * categories.SUBCOMMANDER * categories.COMMAND - categories.ENGINEERSTATION , 1, 1, 'support', 'None' }
+        { categories.ENGINEER * categories.TECH3 + categories.RASPRESET - categories.SUBCOMMANDER + categories.COMMAND - categories.ENGINEERSTATION - categories.RAMBOPRESET , 1, 1, 'support', 'None' }
     },
 }
 
 
+PlatoonTemplate {
+    Name = 'UpgradeNC',
+    Plan = 'EnhanceAISorian',
+    GlobalSquads = {
+        { categories.SUBCOMMANDER, 1, 1, 'support', 'None' }
+    },
+}
 
+PlatoonTemplate {
+    Name = 'NCengineer_startup',
+    FactionSquads = {
+        UEF = {
+            { 'uel0105', 1, 5, 'support', 'None' }
+        },
+        Aeon = {
+            { 'ual0105', 1, 5, 'support', 'None' }
+        },
+        Cybran = {
+            { 'url0105', 1, 5, 'support', 'None' }
+        },
+        Seraphim = {
+            { 'xsl0105', 1, 5, 'support', 'none' }
+        },
+      
+    }
+}
 
+PlatoonTemplate {
+    Name = 'NCengineer_secondbatch',
+    FactionSquads = {
+        UEF = {
+            { 'uel0105', 1, 7, 'support', 'None' }
+        },
+        Aeon = {
+            { 'ual0105', 1, 7, 'support', 'None' }
+        },
+        Cybran = {
+            { 'url0105', 1, 7, 'support', 'None' }
+        },
+        Seraphim = {
+            { 'xsl0105', 1, 7, 'support', 'none' }
+        },
+      
+    }
+}
+
+PlatoonTemplate {
+    Name = 'NCengineer2_startup',
+    FactionSquads = {
+        UEF = {
+            { 'uel0208', 1, 5, 'support', 'None' }
+        },
+        Aeon = {
+            { 'ual0208', 1, 5, 'support', 'None' }
+        },
+        Cybran = {
+            { 'url0208', 1, 5, 'support', 'None' }
+        },
+        Seraphim = {
+            { 'xsl0208', 1, 5, 'support', 'none' }
+        },
+      
+    }
+}
+
+PlatoonTemplate {
+    Name = 'NCengineer3_startup',
+    FactionSquads = {
+        UEF = {
+            { 'uel0309', 1, 5, 'support', 'None' }
+        },
+        Aeon = {
+            { 'ual0309', 1, 5, 'support', 'None' }
+        },
+        Cybran = {
+            { 'url0309', 1, 5, 'support', 'None' }
+        },
+        Seraphim = {
+            { 'xsl0309', 1, 5, 'support', 'none' }
+        },
+      
+    }
+}
 
 PlatoonTemplate {
     Name = 'T1startonetimeonly',
@@ -719,7 +720,7 @@ PlatoonTemplate {
         Name = 'NC subcommander huge teleport',
         Plan = 'SACUTeleportAINC',
         GlobalSquads = {
-            { categories.ual0301 + categories.xsl0301, 1, 1, 'Attack', 'None' }
+            { categories.SUBCOMMANDER, 3, 3, 'Attack', 'None' }
         },        
     }
     PlatoonTemplate {
@@ -753,6 +754,31 @@ PlatoonTemplate {
         }
     }
 
+    PlatoonTemplate {
+        Name = 'NC RAMBO',
+        Plan = 'LandAttackAINC',
+        GlobalSquads = {
+            { categories.RAMBOPRESET , 1, 1, 'Attack', 'none' }
+        },
+    }
+    PlatoonTemplate {
+        Name = 'NC Rambo builder',
+        FactionSquads = {
+            UEF = {
+                { 'uel0301_RAMBO', 1, 1, 'Attack', 'None' }
+            },
+            Aeon = {
+                { 'ual0301_RAMBO', 1, 1, 'Attack', 'None' }
+            },
+            Cybran = {
+                { 'url0301_RAMBO', 1, 1, 'Attack', 'None' }
+            },
+            Seraphim = {
+                { 'xsl0301_RAMBO', 1, 1, 'Attack', 'none' }
+            },
+          
+        }
+    }
 
 
 
@@ -766,7 +792,7 @@ PlatoonTemplate {
 
 PlatoonTemplate {
     Name = 'NC t1aphib',
-    Plan = 'LandAttackNC', 
+    Plan = 'HuntAISorian', 
     GlobalSquads = {
         { categories.ual0201 + categories.xsl0103, 1, 5,'attack', 'AttackFormation' }, 
          
@@ -801,7 +827,7 @@ PlatoonTemplate {
 
 PlatoonTemplate {
     Name = 'NC t2aphib',
-    Plan = 'LandAttackNC', 
+    Plan = 'HuntAISorian', 
     GlobalSquads = {
         { categories.uel0203 + categories.xal0203 + categories.url0203 + categories.xsl0203, 1, 5,'attack', 'AttackFormation' }, 
          
@@ -829,7 +855,7 @@ PlatoonTemplate {
 
 PlatoonTemplate {
     Name = 'NC t3aphib',
-    Plan = 'LandAttackNC', 
+    Plan = 'HuntAISorian', 
     GlobalSquads = {
         { categories.xel0305 + categories.xrl0305 + categories.xsl0303, 1, 10,'attack', 'AttackFormation' }, 
          
@@ -889,10 +915,10 @@ PlatoonTemplate {
 
 PlatoonTemplate {
     Name = 'NC t1spammage',
-    Plan = 'LandAttackNC',    
+    Plan = 'HuntAISorian',    
     GlobalSquads = {
-        { categories.uel0201 + categories.ual0201 + categories.url0107 + categories.xsl0201 , 1, 4, 'attack', 'AttackFormation' },
-        { categories.uel0103 + categories.ual0103 + categories.url0103 + categories.xsl0103 , 1, 3, 'Artillery', 'AttackFormation' },
+        { categories.uel0201 + categories.ual0201 + categories.url0107 + categories.xsl0201 , 5, 5, 'attack', 'AttackFormation' },
+        { categories.uel0103 + categories.ual0103 + categories.url0103 + categories.xsl0103 , 4, 4, 'Artillery', 'AttackFormation' },
         { categories.ANTIAIR * categories.MOBILE * categories.LAND - categories.EXPERIMENTAL,0,4, 'guard','AttackFormation'},
     }
 }
@@ -900,8 +926,8 @@ PlatoonTemplate {
     Name = 'NC t1spammagesmall',
     Plan = 'HuntAI',    
     GlobalSquads = {
-        { categories.uel0201 + categories.ual0201 + categories.url0107 + categories.xsl0201 , 1, 2, 'attack', 'AttackFormation' },
-        { categories.uel0103 + categories.ual0103 + categories.url0103 + categories.xsl0103 , 1, 1, 'Artillery', 'AttackFormation' },
+        { categories.uel0201 + categories.ual0201 + categories.url0107 + categories.xsl0201 , 3, 3, 'attack', 'AttackFormation' },
+        { categories.uel0103 + categories.ual0103 + categories.url0103 + categories.xsl0103 , 2, 2, 'Artillery', 'AttackFormation' },
         { categories.ANTIAIR * categories.MOBILE * categories.LAND - categories.EXPERIMENTAL,0,4, 'guard','AttackFormation'},
     }
 }
@@ -944,7 +970,7 @@ PlatoonTemplate {
 
 PlatoonTemplate {
     Name = 'NC antiairland',
-    Plan = 'GuardBaseSorian',    
+    Plan = 'HuntAISorian',    
     GlobalSquads = {
         { categories.MOBILE * categories.LAND * categories.ANTIAIR - categories.EXPERIMENTAL , 1, 4, 'guard', 'none' },
         
@@ -985,11 +1011,11 @@ PlatoonTemplate {
 
 PlatoonTemplate {
     Name = 'NC t2 ground attack',
-    Plan = 'LandAttackNC',    
+    Plan = 'HuntAISorian',    
     GlobalSquads = {
-        { categories.uel0202 + categories.ual0202 + categories.url0202 + categories.xsl0202 , 1, 4, 'attack', 'AttackFormation' },
+        { categories.uel0202 + categories.ual0202 + categories.url0202 + categories.xsl0202 , 5, 5, 'attack', 'AttackFormation' },
         { categories.uel0307 + categories.ual0307 , 0, 1, 'support', 'AttackFormation' },
-        { categories.uel0111 + categories.ual0111 + categories.url0111 + categories.xsl0111 + categories.drl0204 , 1, 3, 'Artillery', 'AttackFormation' },
+        { categories.uel0111 + categories.ual0111 + categories.url0111 + categories.xsl0111 + categories.drl0204 , 0, 6, 'Artillery', 'AttackFormation' },
         { categories.ANTIAIR * categories.MOBILE * categories.LAND - categories.EXPERIMENTAL,0,4, 'guard','AttackFormation'},
        
     },
@@ -1002,32 +1028,52 @@ PlatoonTemplate {
         UEF = {
             { 'uel0202', 1, 2, 'attack', 'none' }, --t2 tank
             { 'uel0307', 1, 1, 'attack', 'none' }, --t2 mobile shield
-            { 'uel0202', 1, 1, 'attack', 'none' }, --t2 tank
-            { 'uel0111', 1, 2, 'attack', 'none' }, --t2 mobile missle 
+            { 'uel0202', 1, 3, 'attack', 'none' }, --t2 tank
             { 'uel0202', 1, 2, 'attack', 'none' }, --t2 tank
         },
         Aeon = {
-            { 'ual0202', 1, 2, 'attack', 'none' }, --t2 heavy tank
+            { 'ual0202', 1, 4, 'attack', 'none' }, --t2 heavy tank
             { 'ual0307', 1, 1, 'attack', 'none' }, --t2 mobile shield
-            { 'ual0111', 1, 2, 'attack', 'none' }, --t2 mobile missile launcher
+           
             { 'ual0202', 1, 3, 'attack', 'none' }, --t2 heavy tank
         },
         Cybran = {
             { 'url0202', 1, 2, 'attack', 'none' }, --t2 tank
-            { 'drl0204', 1, 2, 'attack', 'none' }, --t2 rocketbot
-            { 'url0111', 1, 1, 'attack', 'none' }, --t2 mobile missle launcher
+            { 'drl0204', 1, 3, 'attack', 'none' }, --t2 rocketbot
+           
             { 'url0202', 1, 2, 'attack', 'none' }, --t2 tank
 
         },
         Seraphim = {
-            { 'xsl0202', 1, 2, 'attack', 'none' }, --t2 assault bot
-            { 'xsl0111', 1, 2, 'attack', 'none' }, --t2 mobile missile
+            { 'xsl0202', 1, 4, 'attack', 'none' }, --t2 assault bot
+           
             { 'xsl0202', 1, 3, 'attack', 'none' }, --t2 assault bot
         },
     }
 }
 
+PlatoonTemplate {
+    Name = 'T2mobileturtlecracker',
+    FactionSquads = {
+        UEF = {
+            { 'uel0111', 1, 3, 'attack', 'none' }, 
+        
+        },
+        Aeon = {
+            { 'ual0111', 1, 3, 'attack', 'none' }, 
+        
+        },
+        Cybran = {
+            { 'url0111', 1, 3, 'attack', 'none' }, 
+     
 
+        },
+        Seraphim = {
+            { 'xsl0111', 1, 3, 'attack', 'none' },
+        
+        },
+    }
+}
 
 
 PlatoonTemplate {
@@ -1054,10 +1100,10 @@ PlatoonTemplate {
 }
 PlatoonTemplate {
     Name = 'NC t3 ground attack',
-    Plan = 'LandAttackNC',    
+    Plan = 'HuntAISorian',    
     GlobalSquads = {
-        { categories.uel0303 + categories.xel0305 + categories.ual0303 + categories.xal0305 + categories.xrl0305 + categories.xsl0303 + categories.xsl0305 , 1, 5, 'attack', 'AttackFormation' },
-        { categories.xel0306 + categories.uel0304 + categories.ual0304 + categories.url0304 + categories.xsl0304 , 1, 2, 'artillery', 'AttackFormation' },
+        { categories.uel0303 + categories.xel0305 + categories.ual0303 + categories.xal0305 + categories.xrl0305 + categories.xsl0303 + categories.xsl0305 , 6, 6, 'attack', 'AttackFormation' },
+        { categories.xel0306 + categories.uel0304 + categories.ual0304 + categories.url0304 + categories.xsl0304 , 3, 6, 'artillery', 'AttackFormation' },
         { categories.xsl0307 , 0, 1, 'support', 'AttackFormation' },
         { categories.ANTIAIR * categories.MOBILE * categories.LAND - categories.EXPERIMENTAL,0,4, 'guard','AttackFormation'},
     }
@@ -1067,18 +1113,18 @@ PlatoonTemplate {
     Name = 'T3attackgroup',
     FactionSquads = {
         UEF = {
-            { 'uel0303', 1, 2, 'attack', 'none' }, --t3 heavy assault bot
-            { 'xel0306', 1, 1, 'attack', 'none' }, --t3 mobile missile
+            { 'uel0303', 1, 3, 'attack', 'none' }, --t3 heavy assault bot
+          
             { 'xel0305', 1, 2, 'attack', 'none' }, --t3 armored assault bot
-            { 'uel0304', 1, 1, 'attack', 'none' }, --t3 mobile arty
+            { 'uel0304', 1, 2, 'attack', 'none' }, --t3 mobile arty
             { 'xel0305', 1, 2, 'attack', 'none' }, --t3 armored assault bot
         },
         Aeon = {
-            { 'ual0303', 1, 2, 'attack', 'none' }, --t3 heavy bot
-            { 'xal0305', 1, 1, 'attack', 'none' }, --t3 sniper bot
+            { 'ual0303', 1, 1, 'attack', 'none' }, --t3 heavy bot
+            { 'xal0305', 1, 2, 'attack', 'none' }, --t3 sniper bot
             { 'ual0304', 1, 1, 'attack', 'none' }, --t3 mobile arty
-            { 'ual0303', 1, 3, 'attack', 'none' }, --t3 heavy bot
-            { 'xal0305', 1, 1, 'attack', 'none' }, --t3 sniper bot
+            { 'ual0303', 1, 1, 'attack', 'none' }, --t3 heavy bot
+            { 'xal0305', 1, 2, 'attack', 'none' }, --t3 sniper bot
            
         },
       
@@ -1088,11 +1134,11 @@ PlatoonTemplate {
             { 'xrl0305', 1, 3, 'attack', 'none' }, ---t3 brick
         },
         Seraphim = {
-            { 'xsl0303', 1, 3, 'attack', 'none' }, --t3 siege tank
-            { 'xsl0304', 1, 1, 'attack', 'none' }, --t3 mobile arty
-            { 'xsl0307', 1, 1, 'attack', 'none' }, --t3 mobile shield
-            { 'xsl0305', 1, 1, 'attack', 'none' }, --t3 sniper bot
             { 'xsl0303', 1, 2, 'attack', 'none' }, --t3 siege tank
+            { 'xsl0304', 1, 2, 'attack', 'none' }, --t3 mobile arty
+            { 'xsl0307', 1, 1, 'attack', 'none' }, --t3 mobile shield
+            { 'xsl0305', 1, 3, 'attack', 'none' }, --t3 sniper bot
+            { 'xsl0303', 1, 1, 'attack', 'none' }, --t3 siege tank
              
         },
     }
@@ -1150,9 +1196,87 @@ PlatoonTemplate {
 
 
 PlatoonTemplate {
+    Name = 'T3mobileturtlecracker',
+    FactionSquads = {
+        UEF = {
+            { 'xel0306', 1, 2, 'attack', 'none' }, 
+            { 'uel0304', 1, 2, 'attack', 'none' }, 
+        
+        },
+        Aeon = {
+            { 'xal0305', 1, 4, 'attack', 'none' }, 
+            { 'dal0310', 1, 4, 'attack', 'none' }, 
+              
+        },
+        Cybran = {
+            { 'url0304', 1, 4, 'attack', 'none' }, 
+            
+        
+        },
+        Seraphim = {
+            { 'xsl0304', 1, 4, 'attack', 'none' }, 
+            
+        
+        },
+    } 
+}
+
+
+
+PlatoonTemplate {
     Name = 'NC Orbital',
-    Plan = 'NCsatelite',
+    Plan = 'SatelliteAISorian',
     GlobalSquads = {
         { categories.SATELLITE, 1, 1, 'attack', 'none' },
+    }
+}
+
+PlatoonTemplate {
+    Name = 'nc land anti air',
+    Plan = 'HuntAISorian',    
+    GlobalSquads = {
+        { categories.LAND * categories.MOBILE * categories.ANTIAIR - categories.TECH1 - categories.INSIGNIFICANTUNIT - categories.EXPERIMENTAL , 1, 5, 'attack', 'AttackFormation' },
+      
+    }
+}
+
+
+
+PlatoonTemplate {
+    Name = 'NC all in',
+    Plan = 'HuntAISorian',    
+    GlobalSquads = {
+        { categories.LAND * categories.MOBILE - categories.uel0304 - categories.url0304 - categories.xsl0304 - categories.INSIGNIFICANTUNIT - categories.EXPERIMENTAL - categories.ENGINEER - categories.COMMAND - categories.SCOUT, 6, 6, 'attack', 'AttackFormation' },
+      
+    }
+}
+
+PlatoonTemplate {
+    Name = 'NC arty attack mobile',
+    Plan = 'HuntAISorian',    
+    GlobalSquads = {
+        { categories.uel0304 + categories.url0304 + categories.xsl0304 , 5, 5, 'attack', 'none' },
+      
+    }
+}
+
+PlatoonTemplate { Name = 'T3AirScoutNC',
+    FactionSquads = {
+        UEF = {
+            { 'uea0302', 1, 2, 'Attack', 'GrowthFormation' },      -- t3air scout
+           
+         },
+        Aeon = {
+            { 'uaa0302', 1, 2, 'Attack', 'GrowthFormation' },       -- t3air scout
+          
+        },
+        Cybran = {
+            { 'ura0302', 1, 2, 'Attack', 'GrowthFormation' },       -- t3air scout
+          
+        },
+        Seraphim = {
+            { 'xsa0302', 1, 2, 'Attack', 'GrowthFormation' },       -- t3air scout
+         
+        },
     }
 }

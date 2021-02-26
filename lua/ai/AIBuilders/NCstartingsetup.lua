@@ -1,3 +1,7 @@
+---muchstuff
+
+---nutcracker
+
 local BBTmplFile = '/lua/basetemplates.lua'
 local BuildingTmpl = 'BuildingTemplates'
 local BaseTmpl = 'BaseTemplates'
@@ -57,7 +61,7 @@ BuilderGroup {
                     'T1AirFactory',
 					'T1EnergyProduction',
 					'T1EnergyProduction',
-                    'T1AirFactory',
+                    
 'T1AADefense',
 'T1EnergyProduction',
 'T1LandFactory',
@@ -118,11 +122,12 @@ BuilderGroup {
                     'T1EnergyProduction',
 					'T1EnergyProduction',
                     'T1EnergyProduction',
-                    'T1LandFactory',
                     'T1AirFactory',
+                    'T1LandFactory',
+                    
 'T1AADefense',
 'T1EnergyProduction',
-'T1LandFactory',
+'T1AirFactory',
 'T1AADefense',
 'T1EnergyProduction',
 'T1EnergyProduction',

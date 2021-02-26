@@ -1,11 +1,6 @@
-#***************************************************************************
-#*
-#**  File     :  /lua/ai/SorianNavalBuilders.lua
-#**
-#**  Summary  : Default Naval structure builders for skirmish
-#**
-#**  Copyright � 2005 Gas Powered Games, Inc.  All rights reserved.
-#****************************************************************************
+---muchstuff
+
+---nutcracker
 
 local BBTmplFile = '/lua/basetemplates.lua'
 local BuildingTmpl = 'BuildingTemplates'
@@ -44,7 +39,7 @@ BuilderGroup {
             { SBC, 'MapGreaterThan', { 1000, 1000 }},
             { SBC, 'MapLessThan', { 2000, 2000 }},
             { UCBC, 'UnitsLessAtLocation', { 'LocationType', 1, categories.FACTORY * categories.NAVAL}},
-            { UCBC, 'NavalAreaNeedsEngineer', { 'LocationType', 600, -1000, 10, 1, 'AntiSurface' } },
+            { UCBC, 'NavalAreaNeedsEngineer', { 'LocationType', 250, -1000, 10, 1, 'AntiSurface' } },
             { UCBC, 'FactoryCapCheck', { 'LocationType', 'Sea' } },
             
             
@@ -54,7 +49,7 @@ BuilderGroup {
         BuilderData = {
             Construction = {
                 NearMarkerType = 'Naval Area',
-                LocationRadius = 600,
+                LocationRadius = 250,
                 LocationType = 'LocationType',
                 ThreatMin = -1000,
                 ThreatMax = 10,
@@ -88,10 +83,10 @@ BuilderGroup {
             { UCBC, 'FactoryCapCheck', { 'LocationType', 'Sea' } },
             { SBC, 'MapGreaterThan', { 1000, 1000 }},
             { SBC, 'MapLessThan', { 2000, 2000 }},
-            { UCBC, 'NavalAreaNeedsEngineer', { 'LocationType', 600, -1000, 10, 1, 'AntiSurface' } },
+            { UCBC, 'NavalAreaNeedsEngineer', { 'LocationType', 250, -1000, 10, 1, 'AntiSurface' } },
             { UCBC, 'UnitsLessAtLocation', { 'LocationType', 1, categories.FACTORY * categories.NAVAL}},
 		
-            { SIBC, 'GreaterThanEconEfficiencyOverTime', { 0.95, 1.05 }},
+            { EBC, 'GreaterThanEconStorageCurrent', { 100,150 } },
             
          
 		
@@ -101,7 +96,7 @@ BuilderGroup {
         BuilderData = {
             Construction = {
                 NearMarkerType = 'Naval Area',
-                LocationRadius = 600,
+                LocationRadius = 250,
                 LocationType = 'LocationType',
                 ThreatMin = -1000,
                 ThreatMax = 10,
@@ -123,7 +118,7 @@ BuilderGroup {
     },
     Builder {
         BuilderName = 'NC T3 Naval factory island map',
-        PlatoonTemplate = 'T3EngineerBuilderSorian',
+        PlatoonTemplate = 'T3EngineerBuilderNC',
         Priority = 922,
         InstanceCount = 1,
         BuilderConditions = {
@@ -133,10 +128,10 @@ BuilderGroup {
             { SBC, 'MapGreaterThan', { 1000, 1000 }},
             { SBC, 'MapLessThan', { 2000, 2000 }},
            
-            { UCBC, 'NavalAreaNeedsEngineer', { 'LocationType', 600, -1000, 10, 1, 'AntiSurface' } },
+            { UCBC, 'NavalAreaNeedsEngineer', { 'LocationType', 250, -1000, 10, 1, 'AntiSurface' } },
             { UCBC, 'UnitsLessAtLocation', { 'LocationType', 1, categories.FACTORY * categories.NAVAL}},
 			
-            { SIBC, 'GreaterThanEconEfficiencyOverTime', { 0.95, 1.05 }},
+            { EBC, 'GreaterThanEconStorageCurrent', { 100,150 } },
             
            
 		
@@ -146,7 +141,7 @@ BuilderGroup {
         BuilderData = {
             Construction = {
                 NearMarkerType = 'Naval Area',
-                LocationRadius = 600,
+                LocationRadius = 250,
                 LocationType = 'LocationType',
                 ThreatMin = -1000,
                 ThreatMax = 10,
@@ -177,7 +172,7 @@ BuilderGroup {
             { SBC, 'MapLessThan', { 2000, 2000 }},
             { UCBC, 'HaveUnitsWithCategoryAndAlliance', { true, 0, categories.NAVAL * categories.FACTORY,  'Enemy' }},
             { UCBC, 'UnitsLessAtLocation', { 'LocationType', 1, categories.FACTORY * categories.NAVAL}},
-            { UCBC, 'NavalAreaNeedsEngineer', { 'LocationType', 600, -1000, 10, 1, 'AntiSurface' } },
+            { UCBC, 'NavalAreaNeedsEngineer', { 'LocationType', 250, -1000, 10, 1, 'AntiSurface' } },
             { UCBC, 'FactoryCapCheck', { 'LocationType', 'Sea' } },
             
          
@@ -188,7 +183,7 @@ BuilderGroup {
         BuilderData = {
             Construction = {
                 NearMarkerType = 'Naval Area',
-                LocationRadius = 600,
+                LocationRadius = 250,
                 LocationType = 'LocationType',
                 ThreatMin = -1000,
                 ThreatMax = 10,
@@ -223,9 +218,9 @@ BuilderGroup {
             { UCBC, 'UnitsLessAtLocation', { 'LocationType', 1, categories.FACTORY * categories.NAVAL}},
             { UCBC, 'FactoryCapCheck', { 'LocationType', 'Sea' } },
         
-            { UCBC, 'NavalAreaNeedsEngineer', { 'LocationType', 600, -1000, 10, 1, 'AntiSurface' } },
+            { UCBC, 'NavalAreaNeedsEngineer', { 'LocationType', 250, -1000, 10, 1, 'AntiSurface' } },
 		
-            { SIBC, 'GreaterThanEconEfficiencyOverTime', { 0.95, 1.05 }},
+            { EBC, 'GreaterThanEconStorageCurrent', { 100,150 } },
             
      
 			
@@ -234,7 +229,7 @@ BuilderGroup {
         BuilderData = {
             Construction = {
                 NearMarkerType = 'Naval Area',
-                LocationRadius = 600,
+                LocationRadius = 250,
                 LocationType = 'LocationType',
                 ThreatMin = -1000,
                 ThreatMax = 10,
@@ -256,7 +251,7 @@ BuilderGroup {
     },
     Builder {
         BuilderName = 'NC T3 Naval factory non island map',
-        PlatoonTemplate = 'T3EngineerBuilderSorian',
+        PlatoonTemplate = 'T3EngineerBuilderNC',
         Priority = 922,
         InstanceCount = 1,
         BuilderConditions = {
@@ -268,9 +263,9 @@ BuilderGroup {
             { UCBC, 'FactoryCapCheck', { 'LocationType', 'Sea' } },
         
            
-            { UCBC, 'NavalAreaNeedsEngineer', { 'LocationType', 600, -1000, 10, 1, 'AntiSurface' } },
+            { UCBC, 'NavalAreaNeedsEngineer', { 'LocationType', 250, -1000, 10, 1, 'AntiSurface' } },
 			
-            { SIBC, 'GreaterThanEconEfficiencyOverTime', { 0.95, 1.05 }},
+            { EBC, 'GreaterThanEconStorageCurrent', { 100,150 } },
             
            
 		
@@ -280,7 +275,7 @@ BuilderGroup {
         BuilderData = {
             Construction = {
                 NearMarkerType = 'Naval Area',
-                LocationRadius = 600,
+                LocationRadius = 250,
                 LocationType = 'LocationType',
                 ThreatMin = -1000,
                 ThreatMax = 10,
@@ -313,7 +308,7 @@ BuilderGroup {
             { UCBC, 'UnitsLessAtLocation', { 'LocationType', 1, categories.FACTORY * categories.NAVAL}},
            
 
-            { UCBC, 'NavalAreaNeedsEngineer', { 'LocationType', 600, -1000, 10, 1, 'AntiSurface' } },
+            { UCBC, 'NavalAreaNeedsEngineer', { 'LocationType', 250, -1000, 10, 1, 'AntiSurface' } },
             { UCBC, 'FactoryCapCheck', { 'LocationType', 'Sea' } },
             
          
@@ -322,7 +317,7 @@ BuilderGroup {
         BuilderData = {
             Construction = {
                 NearMarkerType = 'Naval Area',
-                LocationRadius = 600,
+                LocationRadius = 250,
                 LocationType = 'LocationType',
                 ThreatMin = -1000,
                 ThreatMax = 10,
@@ -358,9 +353,9 @@ BuilderGroup {
             { SBC, 'MapGreaterThan', { 2000, 2000 }},
             { MIBC, 'GreaterThanGameTime', { 1000 } },
         
-            { UCBC, 'NavalAreaNeedsEngineer', { 'LocationType', 600, -1000, 10, 1, 'AntiSurface' } },
+            { UCBC, 'NavalAreaNeedsEngineer', { 'LocationType', 250, -1000, 10, 1, 'AntiSurface' } },
 		
-            { SIBC, 'GreaterThanEconEfficiencyOverTime', { 0.95, 1.05 }},
+            { EBC, 'GreaterThanEconStorageCurrent', { 100,150 } },
             
          
 		
@@ -370,7 +365,7 @@ BuilderGroup {
         BuilderData = {
             Construction = {
                 NearMarkerType = 'Naval Area',
-                LocationRadius = 600,
+                LocationRadius = 250,
                 LocationType = 'LocationType',
                 ThreatMin = -1000,
                 ThreatMax = 10,
@@ -392,7 +387,7 @@ BuilderGroup {
     },
     Builder {
         BuilderName = 'NC T3 Naval factory island map giant',
-        PlatoonTemplate = 'T3EngineerBuilderSorian',
+        PlatoonTemplate = 'T3EngineerBuilderNC',
         Priority = 922,
         InstanceCount = 1,
         BuilderConditions = {
@@ -404,9 +399,9 @@ BuilderGroup {
             { MIBC, 'GreaterThanGameTime', { 1000 } },
         
            
-            { UCBC, 'NavalAreaNeedsEngineer', { 'LocationType', 600, -1000, 10, 1, 'AntiSurface' } },
+            { UCBC, 'NavalAreaNeedsEngineer', { 'LocationType', 250, -1000, 10, 1, 'AntiSurface' } },
 			
-            { SIBC, 'GreaterThanEconEfficiencyOverTime', { 0.95, 1.05 }},
+            { EBC, 'GreaterThanEconStorageCurrent', { 100,150 } },
             
            
 		
@@ -416,7 +411,7 @@ BuilderGroup {
         BuilderData = {
             Construction = {
                 NearMarkerType = 'Naval Area',
-                LocationRadius = 600,
+                LocationRadius = 250,
                 LocationType = 'LocationType',
                 ThreatMin = -1000,
                 ThreatMax = 10,
@@ -444,7 +439,7 @@ BuilderGroup {
         BuilderConditions = {
             { UCBC, 'NavalBaseCheck', { } },
             { UCBC, 'HaveUnitsWithCategoryAndAlliance', { true, 0, categories.NAVAL * categories.FACTORY,  'Enemy' }},
-            { UCBC, 'NavalAreaNeedsEngineer', { 'LocationType', 600, -1000, 10, 1, 'AntiSurface' } },
+            { UCBC, 'NavalAreaNeedsEngineer', { 'LocationType', 250, -1000, 10, 1, 'AntiSurface' } },
             { UCBC, 'FactoryCapCheck', { 'LocationType', 'Sea' } },
             { SBC, 'MapGreaterThan', { 2000, 2000 }},
             { MIBC, 'GreaterThanGameTime', { 1000 } },
@@ -457,7 +452,7 @@ BuilderGroup {
         BuilderData = {
             Construction = {
                 NearMarkerType = 'Naval Area',
-                LocationRadius = 600,
+                LocationRadius = 250,
                 LocationType = 'LocationType',
                 ThreatMin = -1000,
                 ThreatMax = 10,
@@ -491,9 +486,9 @@ BuilderGroup {
             { SBC, 'MapGreaterThan', { 2000, 2000 }},
             { MIBC, 'GreaterThanGameTime', { 1000 } },
         
-            { UCBC, 'NavalAreaNeedsEngineer', { 'LocationType', 600, -1000, 10, 1, 'AntiSurface' } },
+            { UCBC, 'NavalAreaNeedsEngineer', { 'LocationType', 250, -1000, 10, 1, 'AntiSurface' } },
 		
-            { SIBC, 'GreaterThanEconEfficiencyOverTime', { 0.95, 1.05 }},
+            { EBC, 'GreaterThanEconStorageCurrent', { 100,150 } },
             
      
 			
@@ -502,7 +497,7 @@ BuilderGroup {
         BuilderData = {
             Construction = {
                 NearMarkerType = 'Naval Area',
-                LocationRadius = 600,
+                LocationRadius = 250,
                 LocationType = 'LocationType',
                 ThreatMin = -1000,
                 ThreatMax = 10,
@@ -524,7 +519,7 @@ BuilderGroup {
     },
     Builder {
         BuilderName = 'NC T3 Naval factory non island map giant',
-        PlatoonTemplate = 'T3EngineerBuilderSorian',
+        PlatoonTemplate = 'T3EngineerBuilderNC',
         Priority = 922,
         InstanceCount = 1,
         BuilderConditions = {
@@ -537,9 +532,9 @@ BuilderGroup {
             { MIBC, 'GreaterThanGameTime', { 1000 } },
         
            
-            { UCBC, 'NavalAreaNeedsEngineer', { 'LocationType', 600, -1000, 10, 1, 'AntiSurface' } },
+            { UCBC, 'NavalAreaNeedsEngineer', { 'LocationType', 250, -1000, 10, 1, 'AntiSurface' } },
 			
-            { SIBC, 'GreaterThanEconEfficiencyOverTime', { 0.95, 1.05 }},
+            { EBC, 'GreaterThanEconStorageCurrent', { 100,150 } },
             
            
 		
@@ -549,7 +544,7 @@ BuilderGroup {
         BuilderData = {
             Construction = {
                 NearMarkerType = 'Naval Area',
-                LocationRadius = 600,
+                LocationRadius = 250,
                 LocationType = 'LocationType',
                 ThreatMin = -1000,
                 ThreatMax = 10,

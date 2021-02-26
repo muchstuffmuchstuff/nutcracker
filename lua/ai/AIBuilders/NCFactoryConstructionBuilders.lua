@@ -1,11 +1,6 @@
-#***************************************************************************
-#*
-#**  File     :  /lua/ai/SorianFactoryConstructionBuilders.lua
-#**
-#**  Summary  : Default economic builders for skirmish
-#**
-#**  Copyright � 2005 Gas Powered Games, Inc.  All rights reserved.
-#****************************************************************************
+---muchstuff
+
+---nutcracker
 
 local BBTmplFile = '/lua/basetemplates.lua'
 local BuildingTmpl = 'BuildingTemplates'
@@ -28,10 +23,9 @@ local CF = '/mods/nutcracker/hook/lua/coinflip.lua'
 local WRC = '/mods/nutcracker/hook/lua/weaponsrangeconditions.lua'
 local EN = '/mods/nutcracker/hook/lua/economicnumbers.lua'
 local AIUtils = import('/lua/ai/aiutilities.lua')
-local airtolandfactoryratio = 1.0
-local landtoairfactoryratio = 1.70
-local ExtractorToFactoryRatio = 3.2
-local MaxCapFactoryNC = 0.013
+local factoryratio = 1.3
+local MaxCapFactoryNC = 0.018
+
 
 
 
@@ -40,23 +34,25 @@ BuilderGroup {
     BuildersType = 'EngineerBuilder',
 Builder {        
         BuilderName = 'NC T1 Land Factory Builder extra',
-        PlatoonTemplate = 'EngineerBuilderSorian',
+        PlatoonTemplate = 'AnyEngineerBuilderNC',
         Priority = 901,
         DelayEqualBuildPlattons = {'Factories', 10},
         BuilderConditions = {
-            { SBC, 'MapLessThan', { 1000, 1000 }},
             { UCBC, 'CheckBuildPlattonDelay', { 'Factories' }},
-            { SIBC, 'HaveLessThanUnitsInCategoryBeingBuilt', { 1, categories.STRUCTURE * categories.TECH1 * categories.FACTORY } },
-            { UCBC, 'HaveUnitRatio', {landtoairfactoryratio , categories.LAND * categories.FACTORY, '<=', categories.AIR * categories.FACTORY } },
+            { SBC, 'MapLessThan', { 1000, 1000 }},
+            { SIBC, 'HaveLessThanUnitsInCategoryBeingBuilt', { 1, categories.TECH1 * categories.FACTORY * categories.LAND } },
+            { UCBC, 'HaveUnitRatio', {factoryratio , categories.LAND * categories.FACTORY, '<=', categories.AIR * categories.FACTORY } },
             { UCBC, 'HaveUnitRatioVersusCap', { MaxCapFactoryNC , '<', categories.STRUCTURE * categories.FACTORY * categories.LAND } },
-            { WRC, 'HaveUnitRatioVersusEnemyNC', { 7.0, categories.MOBILE * categories.LAND - categories.ENGINEER, '>=', categories.MOBILE * categories.LAND - categories.ENGINEER } }, 
             { EBC, 'GreaterThanEconStorageCurrent', { 350,1000 } },
+            { UCBC, 'UnitCapCheckLess', { 0.95 } },
    	
         },
         BuilderType = 'Any',
         BuilderData = {
             Construction = {
+                BuildClose = true,
                 BuildStructures = {
+                    'T1LandFactory',
                     'T1LandFactory',
                 },
                 Location = 'LocationType',
@@ -66,23 +62,24 @@ Builder {
     },
     Builder {        
         BuilderName = 'NC T1 Air Factory Builder',
-        PlatoonTemplate = 'EngineerBuilderSorian',
+        PlatoonTemplate = 'AnyEngineerBuilderNC',
         Priority = 901,
         DelayEqualBuildPlattons = {'Factories', 10},
         BuilderConditions = {
             { UCBC, 'CheckBuildPlattonDelay', { 'Factories' }},
-            { SIBC, 'HaveLessThanUnitsInCategoryBeingBuilt', { 1, categories.STRUCTURE * categories.TECH1 * categories.FACTORY } },
-            { UCBC, 'HaveUnitRatio', {airtolandfactoryratio , categories.AIR * categories.FACTORY, '<=', categories.LAND * categories.FACTORY } },
-            { UCBC, 'HaveUnitRatioVersusCap', { MaxCapFactoryNC , '<', categories.STRUCTURE * categories.FACTORY * categories.LAND } },  
-            { WRC, 'HaveUnitRatioVersusEnemyNC', { 3.0, categories.MOBILE * categories.AIR * categories.ANTIAIR  - categories.GROUNDATTACK - categories.BOMBER, '>=', categories.MOBILE * categories.AIR  - categories.SCOUT - categories.TRANSPORTFOCUS } },
-   
-{ EBC, 'GreaterThanEconStorageCurrent', { 350,1000 } },
+            { SIBC, 'HaveLessThanUnitsInCategoryBeingBuilt', { 1,  categories.TECH1 * categories.FACTORY * categories.AIR} },
+            { UCBC, 'HaveUnitRatio', {factoryratio , categories.AIR * categories.FACTORY, '<=', categories.LAND * categories.FACTORY } },
+            { UCBC, 'HaveUnitRatioVersusCap', { MaxCapFactoryNC , '<', categories.STRUCTURE * categories.FACTORY * categories.AIR } },  
+            { EBC, 'GreaterThanEconStorageCurrent', { 350,1000 } },
+            { UCBC, 'UnitCapCheckLess', { 0.95 } },
   	
         },
         BuilderType = 'Any',
         BuilderData = {
             Construction = {
+                BuildClose = true,
                 BuildStructures = {
+                    'T1AirFactory',
                     'T1AirFactory',
                 },
                 Location = 'LocationType',
@@ -104,49 +101,17 @@ BuilderGroup {
     # =============================
     Builder {        
         BuilderName = 'NC T1 Land Factory Builder',
-        PlatoonTemplate = 'EngineerBuilderSorian',
+        PlatoonTemplate = 'AnyEngineerBuilderNC',
         Priority = 900,
         DelayEqualBuildPlattons = {'Factories', 10},
         BuilderConditions = {
-            { SIBC, 'HaveLessThanUnitsInCategoryBeingBuilt', { 1, categories.STRUCTURE * categories.TECH1 * categories.FACTORY } },
             { UCBC, 'CheckBuildPlattonDelay', { 'Factories' }}, 
-{ EBC, 'GreaterThanEconStorageCurrent', { 100,150 } },
-            
-           
-{ UCBC, 'HaveUnitRatio', {landtoairfactoryratio , categories.LAND * categories.FACTORY, '<=', categories.AIR * categories.FACTORY } },
-{ UCBC, 'HaveUnitRatioVersusCap', { MaxCapFactoryNC , '<', categories.STRUCTURE * categories.FACTORY * categories.LAND } },  
- 
-            
-        },
-        BuilderType = 'Any',
-        BuilderData = {
-            Construction = {
-                BuildStructures = {
-                    'T1LandFactory',
-                },
-                Location = 'LocationType',
-                #AdjacencyCategory = 'ENERGYPRODUCTION',
-            }
-        },
-    },
-    Builder {
-        BuilderName = 'NC CDR T1 Land Factory',
-        PlatoonTemplate = 'CommanderBuilderSorian',
-        Priority = 900,
-        DelayEqualBuildPlattons = {'Factories', 10},
-        BuilderConditions = {
-            { UCBC, 'CheckBuildPlattonDelay', { 'Factories' }},
-            { SIBC, 'HaveLessThanUnitsInCategoryBeingBuilt', { 1, categories.STRUCTURE * categories.TECH1 * categories.FACTORY } },
-            { UCBC, 'HaveUnitRatio', {landtoairfactoryratio , categories.LAND * categories.FACTORY, '<=', categories.AIR * categories.FACTORY } },
+            { SIBC, 'HaveLessThanUnitsInCategoryBeingBuilt', { 1, categories.STRUCTURE * categories.TECH1 * categories.FACTORY * categories.LAND } },
+            { EBC, 'GreaterThanEconStorageCurrent', { 100,150 } },
+            { UCBC, 'HaveUnitRatio', {factoryratio , categories.LAND * categories.FACTORY, '<=', categories.AIR * categories.FACTORY } },
             { UCBC, 'HaveUnitRatioVersusCap', { MaxCapFactoryNC , '<', categories.STRUCTURE * categories.FACTORY * categories.LAND } },  
-           
-{ EBC, 'GreaterThanEconStorageCurrent', { 100,150 } },
-            
-        
             { UCBC, 'UnitCapCheckLess', { 0.95 } },
             
-         
-         
         },
         BuilderType = 'Any',
         BuilderData = {
@@ -154,22 +119,21 @@ BuilderGroup {
                 BuildClose = true,
                 BuildStructures = {
                     'T1LandFactory',
+                    'T1LandFactory',
                 },
+                Location = 'LocationType',
+                #AdjacencyCategory = 'ENERGYPRODUCTION',
             }
-        }
+        },
     },
+  
     Builder {        
         BuilderName = 'NC T1 Land Factory Builder - Dead ACU',
         PlatoonTemplate = 'AnyEngineerBuilderNC',
         Priority = 10000,
 
         BuilderConditions = {
-         
-       --
-        
-            
-       
- 
+
 			{ UCBC, 'HaveLessThanUnitsInCategoryBeingBuilt', { 1, 'LAND FACTORY', 'LocationType', }},
 			{ UCBC, 'HaveLessThanUnitsWithCategory', { 1, 'COMMAND', }},
         },
@@ -190,86 +154,23 @@ BuilderGroup {
     # ============================
     Builder {        
         BuilderName = 'NC T1 Air Factory Builder regular',
-        PlatoonTemplate = 'EngineerBuilderSorian',
-        Priority = 900,
-        DelayEqualBuildPlattons = {'Factories', 10},
-        BuilderConditions = {
-            { UCBC, 'CheckBuildPlattonDelay', { 'Factories' }},
-            { SIBC, 'HaveLessThanUnitsInCategoryBeingBuilt', { 1, categories.STRUCTURE * categories.TECH1 * categories.FACTORY } },
-            { UCBC, 'HaveUnitRatio', {airtolandfactoryratio , categories.AIR * categories.FACTORY, '<=', categories.LAND * categories.FACTORY } },
-            { UCBC, 'HaveUnitRatioVersusCap', { MaxCapFactoryNC , '<', categories.STRUCTURE * categories.FACTORY * categories.LAND } },  
-       --
-           
-           
-{ EBC, 'GreaterThanEconStorageCurrent', { 100,150 } },
-            
-            { UCBC, 'UnitCapCheckLess', { 0.95 } },
-     
-       
-            
-        },
-        BuilderType = 'Any',
-        BuilderData = {
-            Construction = {
-                BuildStructures = {
-                    'T1AirFactory',
-                },
-                Location = 'LocationType',
-                #AdjacencyCategory = 'ENERGYPRODUCTION',
-            }
-        }
-    },
-    Builder {
-        BuilderName = 'NC CDR T1 Air Factory',
-        PlatoonTemplate = 'CommanderBuilderSorian',
-        Priority = 900,
-        DelayEqualBuildPlattons = {'Factories', 10},
-        BuilderConditions = {
-            { UCBC, 'CheckBuildPlattonDelay', { 'Factories' }},
-            { SIBC, 'HaveLessThanUnitsInCategoryBeingBuilt', { 1, categories.STRUCTURE * categories.TECH1 * categories.FACTORY } },
-            { UCBC, 'HaveUnitRatio', {airtolandfactoryratio , categories.AIR * categories.FACTORY, '<=', categories.LAND * categories.FACTORY } },
-            { UCBC, 'HaveUnitRatioVersusCap', { MaxCapFactoryNC , '<', categories.STRUCTURE * categories.FACTORY * categories.LAND } },  
-        
-{ EBC, 'GreaterThanEconStorageCurrent', { 100,150 } },
-            
-      
-            { UCBC, 'UnitCapCheckLess', { 0.95 } },
-         
-         
-            
-        },
-        BuilderType = 'Any',
-        BuilderData = {
-            Construction = {
-                BuildClose = true,
-                BuildStructures = {
-                    'T1AirFactory',
-                },
-            }
-        }
-    },
-    Builder {        
-        BuilderName = 'NC T1 Air Factory Builder - Dead ACU',
         PlatoonTemplate = 'AnyEngineerBuilderNC',
         Priority = 900,
         DelayEqualBuildPlattons = {'Factories', 10},
         BuilderConditions = {
             { UCBC, 'CheckBuildPlattonDelay', { 'Factories' }},
-            { SIBC, 'HaveLessThanUnitsInCategoryBeingBuilt', { 1, categories.STRUCTURE * categories.TECH1 * categories.FACTORY } },
-         
-       --
-          
-       
-            
+            { SIBC, 'HaveLessThanUnitsInCategoryBeingBuilt', { 1, categories.TECH1 * categories.FACTORY * categories.AIR } },
+            { UCBC, 'HaveUnitRatio', {factoryratio , categories.AIR * categories.FACTORY, '<=', categories.LAND * categories.FACTORY } },
+            { UCBC, 'HaveUnitRatioVersusCap', { MaxCapFactoryNC , '<', categories.STRUCTURE * categories.FACTORY * categories.AIR } },  
+            { EBC, 'GreaterThanEconStorageCurrent', { 100,150 } },
             { UCBC, 'UnitCapCheckLess', { 0.95 } },
-          
-			
-			{ UCBC, 'HaveLessThanUnitsWithCategory', { 1, 'COMMAND', }},
+     
         },
         BuilderType = 'Any',
         BuilderData = {
             Construction = {
                 BuildStructures = {
+                    'T1AirFactory',
                     'T1AirFactory',
                 },
                 Location = 'LocationType',
@@ -278,27 +179,19 @@ BuilderGroup {
         }
     },
 
-   
-   
     Builder {
        
         BuilderName = 'NC Gate Engineer first',
-        PlatoonTemplate = 'T3EngineerBuilderSorian',
+        PlatoonTemplate = 'AnyEngineerBuilderNC',
         Priority = 950,
-        DelayEqualBuildPlattons = {'Factories', 10},
+        DelayEqualBuildPlattons = {'Gate', 40},
         BuilderConditions = {
-            { UCBC, 'CheckBuildPlattonDelay', { 'Factories' }},
+            { UCBC, 'CheckBuildPlattonDelay', { 'Gate' }},
             { MIBC, 'FactionIndex', {1, 2, 3}},
             { SIBC, 'HaveLessThanUnitsInCategoryBeingBuilt', { 1, categories.STRUCTURE * (categories.TECH2 + categories.TECH3)  * categories.ENERGYPRODUCTION } },
             { UCBC, 'HaveLessThanUnitsInCategoryBeingBuilt', { 1, 'GATE TECH3 STRUCTURE'}},
-        
-
-            { EBC, 'GreaterThanEconStorageCurrent', { 1000, 15000 } },
-            { UCBC, 'HaveLessThanUnitsWithCategory', { 1, categories.GATE * categories.TECH3 * categories.STRUCTURE}},
-         
-       --
-         
-            
+            { EBC, 'GreaterThanEconStorageCurrent', { 4000, 15000 } },
+            { UCBC, 'HaveLessThanUnitsWithCategory', { 6, categories.GATE * categories.TECH3 * categories.STRUCTURE}},       
         },
         BuilderType = 'Any',
         BuilderData = {
@@ -311,70 +204,6 @@ BuilderGroup {
             }
         }
     },
-    Builder {
-       
-        BuilderName = 'NC Gate Engineer more',
-        PlatoonTemplate = 'T3EngineerBuilderSorian',
-        Priority = 950,
-        DelayEqualBuildPlattons = {'Factories', 10},
-        BuilderConditions = {
-            { UCBC, 'CheckBuildPlattonDelay', { 'Factories' }},
-            { MIBC, 'FactionIndex', {1, 2, 3}},
-         
-            { UCBC, 'HaveLessThanUnitsInCategoryBeingBuilt', { 1, 'GATE TECH3 STRUCTURE'}},
-            { EBC, 'GreaterThanEconTrend', { 0, 0 } },  
-
-            { EBC, 'GreaterThanEconStorageCurrent', { 1000, 15000 } },
-            { UCBC, 'HaveGreaterThanUnitsWithCategory', { 0, categories.SUBCOMMANDER}},
-            { UCBC, 'FactoryLessAtLocation', { 'LocationType', 3, 'GATE TECH3 STRUCTURE' }},
-         
-       --
-         
-            
-        },
-        BuilderType = 'Any',
-        BuilderData = {
-            Construction = {
-                BuildStructures = {
-                    'T3QuantumGate',
-                },
-                Location = 'LocationType',
-                AdjacencyCategory = 'ENERGYPRODUCTION',
-            }
-        }
-    },
-    Builder {
-       
-        BuilderName = 'NC Gate lots of juice',
-        PlatoonTemplate = 'T3EngineerBuilderSorian',
-        Priority = 950,
-        DelayEqualBuildPlattons = {'Factories', 10},
-        BuilderConditions = {
-            { UCBC, 'CheckBuildPlattonDelay', { 'Factories' }},
-            { MIBC, 'FactionIndex', {1, 2, 3}},
-            
-            { UCBC, 'HaveLessThanUnitsInCategoryBeingBuilt', { 1, 'GATE TECH3 STRUCTURE'}},
-            { EBC, 'GreaterThanEconTrend', { 0, 0 } },  
-
-            { EBC, 'GreaterThanEconStorageCurrent', { 5000, 10000 } },
-            { UCBC, 'FactoryLessAtLocation', { 'LocationType', 3, 'GATE TECH3 STRUCTURE' }},
-         
-       --
-         
-            
-        },
-        BuilderType = 'Any',
-        BuilderData = {
-            Construction = {
-                BuildStructures = {
-                    'T3QuantumGate',
-                },
-                Location = 'LocationType',
-                AdjacencyCategory = 'ENERGYPRODUCTION',
-            }
-        }
-    },
-
 }
 
 

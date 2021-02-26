@@ -1,3 +1,7 @@
+---muchstuff
+
+---nutcracker
+
 local BBTmplFile = '/lua/basetemplates.lua'
 local BuildingTmpl = 'BuildingTemplates'
 local BaseTmpl = 'BaseTemplates'
@@ -22,19 +26,20 @@ local AIUtils = import('/lua/ai/aiutilities.lua')
 
 
 BuilderGroup {
-    BuilderGroupName = 'NCtacticalattack',
+    BuilderGroupName = 'NCadaptiveoffense',
     BuildersType = 'EngineerBuilder',
 Builder {
     BuilderName = 'NC tml upclose',
     PlatoonTemplate = 'T2T3EngineerBuilderNC',
     Priority = 1100,
-    InstanceCount = 10,
+   
     BuilderConditions = {
 
     
-        {WRC, 'CheckUnitRangeNC', { 'LocationType', 'T2StrategicMissile', categories.STRUCTURE - categories.MASSEXTRACTION} },
+        { WRC, 'EnemyInTMLRangeNC', { 'LocationType', true } },
         { MIBC, 'GreaterThanGameTime', { 600 } },
-        { EBC, 'GreaterThanEconStorageCurrent', { 8, 3000 } },  
+        { WRC, 'HaveUnitRatioVersusEnemyNC', { 5.0, categories.MASSEXTRACTION, '>=', categories.MASSEXTRACTION } },
+        { EBC, 'GreaterThanEconStorageCurrent', { 8, 100 } },  
         { UCBC, 'UnitsLessAtLocation', { 'LocationType', 3, categories.TACTICALMISSILEPLATFORM}},
 
     },
@@ -47,102 +52,118 @@ Builder {
             BuildClose = false,
             BuildStructures = {
                 'T2StrategicMissile',
-               
-               
 
-              
             },
             Location = 'LocationType',
         }
     }
 },
 Builder {
-    BuilderName = 'NC starting location tml ',
-    PlatoonTemplate = 'EngineerBuilderSorian',
-    Priority = 1350,
-    InstanceCount = 2,
-    
-   
+    BuilderName = 'nc T3 Nuke adaptive offense',
+    PlatoonTemplate = 'T3EngineerBuilderNC',
+    DelayEqualBuildPlattons = {'Nuke', 180},
+    Priority = 1400,
     BuilderConditions = {
-      
-        {WRC, 'CheckUnitRangeNC', { 'LocationType', 'T2StrategicMissile', categories.STRUCTURE - categories.MASSEXTRACTION} },
-        { UCBC, 'UnitsLessAtLocation', { 'LocationType', 3, categories.TACTICALMISSILEPLATFORM}},
-        { MIBC, 'GreaterThanGameTime', { 240} },
+        { UCBC, 'CheckBuildPlattonDelay', { 'Nuke' }},
+        { MIBC, 'GreaterThanGameTime', {600 } },
+        { SBC, 'MapGreaterThan', { 500, 500 }},
+        {CF,'EarlyAttackAuthorized',{}},
+        { WRC, 'HaveUnitRatioVersusEnemyNC', { 5.0, categories.MASSEXTRACTION, '>=', categories.MASSEXTRACTION } },
+        { UCBC, 'HaveLessThanUnitsWithCategory', {1, categories.NUKE * categories.STRUCTURE } },
+        { UCBC, 'HaveUnitsWithCategoryAndAlliance', { false, 1, categories.ANTIMISSILE * categories.STRUCTURE * categories.TECH3, 'Enemy'}},
+        { SIBC, 'HaveLessThanUnitsInCategoryBeingBuilt', { 1, categories.ARTILLERY * categories.TECH3 + categories.EXPERIMENTAL + categories.NUKE * categories.STRUCTURE }},
        
-
-       
-    
-        { SBC, 'NoRushTimeCheck', { 0 }},
- 
-    },
-    BuilderType = 'Any',
-    BuilderData = {
-        RequireTransport = true,
-        Construction = {
-            BuildClose = false,
-            BaseTemplate = ExBaseTmpl,
-            ExpansionBase = true,
-            NearMarkerType = 'Start Location',
-            LocationRadius = 1000,
-            LocationType = 'LocationType',
-            ThreatMin = -1000,
-            ThreatMax = 30,
-            ThreatRings = 0,
-            ThreatType = 'StructuresNotMex',
-            BuildStructures = {                    
-                'T2StrategicMissile',
-                'T2StrategicMissile',
-                'T2StrategicMissile',
-                'T2StrategicMissile',
-                'T2StrategicMissile',
-
-            }               
-        },
-        NeedGuard = true,
-    }
-}, 
-Builder {
-    BuilderName = 'NC offensive expansion tml',
-    PlatoonTemplate = 'T2T3EngineerBuilderNC',
-    Priority = 1350,
-    InstanceCount = 3,
   
-    BuilderConditions = {
-        { MIBC, 'GreaterThanGameTime', { 500 } },
-        { UCBC, 'ExpansionAreaNeedsEngineer', { 'LocationType', 1000, -1000, 0, 2, 'StructuresNotMex' } },
-        
-
-        { SBC, 'NoRushTimeCheck', { 0 }},
-        { UCBC, 'UnitsLessAtLocation', { 'LocationType', 3, categories.TACTICALMISSILEPLATFORM}},
-        {WRC, 'CheckUnitRangeNC', { 'LocationType', 'T2StrategicMissile', categories.STRUCTURE - categories.MASSEXTRACTION} },
-     
-        
     },
     BuilderType = 'Any',
+    PlatoonAddFunctions = { {SAI, 'BuildOnce'}, },
     BuilderData = {
-        RequireTransport = true,
+        MinNumAssistees = 6,
         Construction = {
             BuildClose = false,
-            BaseTemplate = ExBaseTmpl,
-            ExpansionBase = true,
-            NearMarkerType = 'Expansion Area',
-            LocationRadius = 1000,
-            LocationType = 'LocationType',
-            ThreatMin = -1000,
-            ThreatMax = 0,
-            ThreatRings = 2,
-            ThreatType = 'StructuresNotMex',
+            AdjacencyCategory = 'ENERGYPRODUCTION TECH3',
             BuildStructures = {
-                'T2StrategicMissile',
-                'T2StrategicMissile',
-                'T2StrategicMissile',
-                'T2StrategicMissile',
-                'T2StrategicMissile',
-                
-            }
-        },
-        NeedGuard = true,
+                'T2EngineerSupport',
+                'T2EngineerSupport',
+                'T3StrategicMissile',
+            },
+            Location = 'LocationType',
+        }
     }
 },
 
+Builder {
+    BuilderName = 'nc Air Exp1 adaptive offense',
+    PlatoonTemplate = 'T3EngineerBuilderNC',
+    Priority = 1300,
+    DelayEqualBuildPlattons = {'MobileExperimental_air', 120},
+    BuilderConditions = {
+        { UCBC, 'CheckBuildPlattonDelay', { 'MobileExperimental_air' }},
+        { MIBC, 'FactionIndex', {2,3,4}},
+        { SBC, 'MapGreaterThan', { 500, 500 }},
+        { MIBC, 'GreaterThanGameTime', { 600} },
+        {CF,'EarlyAttackAuthorized',{}},
+        { UCBC, 'HaveLessThanUnitsWithCategory', {1, categories.NUKE * categories.STRUCTURE } },
+        { WRC, 'HaveUnitRatioVersusEnemyNC', { 5.0, categories.MASSEXTRACTION, '>=', categories.MASSEXTRACTION } },
+        { SIBC, 'HaveLessThanUnitsInCategoryBeingBuilt', { 1, categories.ARTILLERY * categories.TECH3 + categories.EXPERIMENTAL + categories.NUKE * categories.STRUCTURE }},
+    },
+    BuilderType = 'Any',
+    PlatoonAddFunctions = { {SAI, 'BuildOnce'}, },
+    BuilderData = {
+        MinNumAssistees = 2,
+        Construction = {
+            BuildClose = true,
+        
+            BuildStructures = {
+                'T2EngineerSupport',
+                'T2EngineerSupport',
+                'T4AirExperimental1',
+            },
+            Location = 'LocationType',
+        }
+    }
+},
+
+
+Builder {
+    BuilderName = 'Nc Satelite adaptive',
+    PlatoonTemplate = 'UEFT3EngineerBuilderSorian',
+    Priority = 1050,
+    DelayEqualBuildPlattons = {'MobileExperimental_satelite_continuation', 180},
+    BuilderConditions = {
+        { UCBC, 'CheckBuildPlattonDelay', { 'MobileExperimental_satelite_continuation' }},
+        { MIBC, 'FactionIndex', {1}},
+        { SBC, 'MapGreaterThan', { 500, 500 }},
+        { MIBC, 'GreaterThanGameTime', { 600} },
+        {CF,'EarlyAttackAuthorized',{}},
+        { WRC, 'HaveUnitRatioVersusEnemyNC', { 5.0, categories.MASSEXTRACTION, '>=', categories.MASSEXTRACTION } },
+        { UCBC, 'HaveUnitsWithCategoryAndAlliance', { true, 0, categories.ANTIMISSILE * categories.STRUCTURE * categories.TECH3, 'Enemy'}},
+        { SIBC, 'HaveLessThanUnitsInCategoryBeingBuilt', { 1, categories.ARTILLERY * categories.TECH3 + categories.EXPERIMENTAL + categories.NUKE * categories.STRUCTURE }},
+    },
+    BuilderType = 'Any',
+    PlatoonAddFunctions = { {SAI, 'BuildOnce'}, },
+    BuilderData = {
+        MinNumAssistees = 6,
+        Construction = {
+            BuildClose = true,
+            #T4 = true,
+         
+            BuildStructures = {
+                'T2EngineerSupport',
+                'T2EngineerSupport',
+                'T4SatelliteExperimental',
+            },
+            Location = 'LocationType',
+        }
+    }
+},
 }
+
+
+    
+
+
+
+    
+    
+    

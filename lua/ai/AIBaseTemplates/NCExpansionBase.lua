@@ -4,13 +4,13 @@
 BaseBuilderTemplate {
     BaseTemplateName = 'NutCrackerExpansionBase',
     Builders = {
-        'NCTransportFactorycoinflip',
+      
         'NCMobileNavalExperimentalcoinflip',
         'NCMobileNavalExperimentalbehavior',
         'ncdukehukemcoinflip',
         'NC_coinflip_factoryupgrade',
    
-        'NCt1bomberunitsbehavior',
+       
   ----COIN FLIP STRATEGIES
 ----landrush
 'NCTtankandartyspamcoinflip',
@@ -29,30 +29,32 @@ BaseBuilderTemplate {
 
 
         # ==== ECONOMY ==== #
+        'NCmapcontrolupgrades',
         'NCSCUUpgrades',
         'NCengineertowers',
         'NC tower upgrades',
         'NCT3Engineerassistmex',
         'NCemergencyenergy',
-        'NCsubcommander_ras',
-        'NCEngineerMassBuildersLowerPri',
+     
+       
       
         'NCT1EngineerBuilders',
         'NCT2EngineerBuilders',
         'NCT3EngineerBuilders',
     
-        'NCMassFabPause',
+       
         'NCmassupgrade',
-        'NCt1masscontinuation',
+      
         
        
-      
+       
         
         # Factory upgrades
         'NCEngineerFactoryConstruction',
         'NCExpansionExtraFactory',
         'NCUpgradeBuilders_airfactories',
    
+
 
 
         # Engineer Builders
@@ -91,7 +93,8 @@ BaseBuilderTemplate {
         'NCT3NukeDefenseBehaviors',
 		
 	    ---offense
-        'NCtacticalattack',  
+        'NCadaptiveoffense',
+        
         ---navy
         'NCT2NavalDefenses',
         'NCNaval Factories',
@@ -156,7 +159,8 @@ BaseBuilderTemplate {
         # ==== EXPERIMENTALS ==== #
        
         'ncMobileLandExperimentalbehavior',
-    
+        'NC Satelite Behavior',
+        'ncMobileAirExperimentalbehavior',
 		
       
 		
@@ -180,8 +184,10 @@ BaseBuilderTemplate {
     },
     NonCheatBuilders = {
      
-        'NCRadarUpgradeBuildersMain',
+        'NCAirScoutbehavior',
+        
         'NCRadarEngineerBuilders',
+        'NCRadarUpgradeBuildersexpansion',
     
         
         

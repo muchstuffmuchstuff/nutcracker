@@ -1,3 +1,7 @@
+---muchstuff
+
+---nutcracker
+
 local BBTmplFile = '/lua/basetemplates.lua'
 local BuildingTmpl = 'BuildingTemplates'
 local BaseTmpl = 'BaseTemplates'
@@ -19,67 +23,44 @@ local CF = '/mods/nutcracker/hook/lua/coinflip.lua'
 local WRC = '/mods/nutcracker/hook/lua/weaponsrangeconditions.lua'
 local EN = '/mods/nutcracker/hook/lua/economicnumbers.lua'
 local SUtils = import('/lua/AI/sorianutilities.lua')
-local T1landspamNC = 0.20
-local T1masshunterNC = 0.05
-function LandAttackCondition(aiBrain, locationType, targetNumber)
-	local UC = import('/lua/editor/UnitCountBuildConditions.lua')
-    local pool = aiBrain:GetPlatoonUniquelyNamed('ArmyPool')
-    local engineerManager = aiBrain.BuilderManagers[locationType].EngineerManager
-	if not engineerManager then
-        return true
-    end
-	if aiBrain:GetCurrentEnemy() then
-		local estartX, estartZ = aiBrain:GetCurrentEnemy():GetArmyStartPos()
-		local enemyIndex = aiBrain:GetCurrentEnemy():GetArmyIndex()
-		--targetNumber = aiBrain:GetThreatAtPosition( {estartX, 0, estartZ}, 1, true, 'AntiSurface' )
-		targetNumber = SUtils.GetThreatAtPosition( aiBrain, {estartX, 0, estartZ}, 1, 'AntiSurface', {'Commander', 'Air', 'Experimental'}, enemyIndex )
-	end
 
-    local position = engineerManager:GetLocationCoords()
-    local radius = engineerManager:GetLocationRadius()
-    
-    --local surThreat = pool:GetPlatoonThreat( 'AntiSurface', categories.MOBILE * categories.LAND - categories.EXPERIMENTAL - categories.SCOUT - categories.ENGINEER, position, radius )
-	local surThreat = pool:GetPlatoonThreat( 'AntiSurface', categories.MOBILE * categories.LAND - categories.EXPERIMENTAL - categories.SCOUT - categories.ENGINEER)
-	local airThreat = 0 #pool:GetPlatoonThreat( 'AntiAir', categories.MOBILE * categories.LAND - categories.EXPERIMENTAL - categories.SCOUT - categories.ENGINEER, position, radius )
-	local adjustForTime = 1 + (math.floor(GetGameTimeSeconds()/60) * .01)
-	--LOG("*AI DEBUG: Pool Threat: "..surThreat.." adjustment: "..adjustForTime.." Enemy Threat: "..targetNumber)
-    if (surThreat + airThreat) >= targetNumber and targetNumber > 0 then
-        return true
-	elseif targetNumber == 0 then
-		return true
-	elseif UC.UnitCapCheckGreater(aiBrain, .95) then
-		return true
-	elseif SUtils.ThreatBugcheck(aiBrain) then -- added to combat buggy inflated threat
-		return true
-	elseif UC.PoolGreaterAtLocation(aiBrain, locationType, 9, categories.MOBILE * categories.LAND * categories.TECH3 - categories.ENGINEER) and surThreat > (500 * adjustForTime) then #25 Units x 20
-		return true
-	elseif UC.PoolGreaterAtLocation(aiBrain, locationType, 9, categories.MOBILE * categories.LAND * categories.TECH2 - categories.ENGINEER)
-	and UC.PoolLessAtLocation(aiBrain, locationType, 10, categories.MOBILE * categories.LAND * categories.TECH3 - categories.ENGINEER) and surThreat > (175 * adjustForTime) then #25 Units x 7
-		return true
-	elseif UC.PoolLessAtLocation(aiBrain, locationType, 10, categories.MOBILE * categories.LAND - categories.TECH1 - categories.ENGINEER) and surThreat > (25 * adjustForTime) then #25 Units x 1
-		return true
-    end
-    return false
-end
+local T1masshunterNC = 0.05
+
 
 --spam amphib
 BuilderGroup {
     BuilderGroupName = 'NCspammage',
     BuildersType = 'FactoryBuilder',
+
+    Builder {
+        BuilderName = 'NC fake builder for coinflip',
+        PlatoonTemplate = 'T1aphib',
+        Priority = 1,
+    
+    
+        BuilderConditions = {
+           
+     {CF,'CoinFlip2',{100}},
+     
+        },
+        BuilderType = 'Land',
+    },
+
     Builder {
         BuilderName = 'NC T1 land aphib standard',
         PlatoonTemplate = 'T1aphib',
         Priority = 700,
-        InstanceCount = 100,
+        --
     
         BuilderConditions = {
            
        {CF,'Standardlandpush',{}},
             { SIBC, 'HaveLessThanUnitsInCategoryBeingBuilt', { 3, categories.LAND * categories.TECH1 * categories.MOBILE }},
             { WRC, 'CanPathToCurrentEnemyNC', { 'LocationType', false } },  
-            { UCBC, 'HaveUnitRatioVersusCap', { T1landspamNC , '<', categories.TECH1 * categories.MOBILE * categories.LAND } }, 
+            { UCBC, 'UnitsLessAtLocation', { 'LocationType', 2, categories.FACTORY * categories.LAND * (categories.TECH2 + categories.TECH3) }},
+            
    ---
-{ EBC, 'GreaterThanEconStorageCurrent', { 8, 60 } },  
+{ EBC, 'GreaterThanEconStorageCurrent', { 8, 100 } },  
   
 			{ SBC, 'NoRushTimeCheck', { 600 }},
        --
@@ -90,17 +71,18 @@ BuilderGroup {
         BuilderName = 'NC T1 land aphib late 1',
         PlatoonTemplate = 'T1aphib',
         Priority = 700,
-        InstanceCount = 100,
+        --
     
         BuilderConditions = {
          
        {CF,'Standardlandpushstartlate1',{}},
        { MIBC, 'GreaterThanGameTime', { 1200 } }, 
             { SIBC, 'HaveLessThanUnitsInCategoryBeingBuilt', { 3, categories.LAND * categories.TECH1 * categories.MOBILE }},
-            { WRC, 'CanPathToCurrentEnemyNC', { 'LocationType', false } },  
-            { UCBC, 'HaveUnitRatioVersusCap', { T1landspamNC , '<', categories.TECH1 * categories.MOBILE * categories.LAND } }, 
+            { WRC, 'CanPathToCurrentEnemyNC', { 'LocationType', false } },
+            { UCBC, 'UnitsLessAtLocation', { 'LocationType', 2, categories.FACTORY * categories.LAND * (categories.TECH2 + categories.TECH3) }},
+           
    ---
-{ EBC, 'GreaterThanEconStorageCurrent', { 8, 60 } },  
+{ EBC, 'GreaterThanEconStorageCurrent', { 8, 100 } },  
   
 			{ SBC, 'NoRushTimeCheck', { 600 }},
        --
@@ -111,17 +93,18 @@ BuilderGroup {
         BuilderName = 'NC T1 land aphib late 2',
         PlatoonTemplate = 'T1aphib',
         Priority = 700,
-        InstanceCount = 100,
+        --
     
         BuilderConditions = {
            
        {CF,'Standardlandpushstartlate2',{}},
-       { MIBC, 'GreaterThanGameTime', { 1200} },   
+       { MIBC, 'GreaterThanGameTime', { 1800} },   
             { SIBC, 'HaveLessThanUnitsInCategoryBeingBuilt', { 3, categories.LAND * categories.TECH1 * categories.MOBILE }},
-            { WRC, 'CanPathToCurrentEnemyNC', { 'LocationType', false } },  
-            { UCBC, 'HaveUnitRatioVersusCap', { T1landspamNC , '<', categories.TECH1 * categories.MOBILE * categories.LAND } }, 
+            { WRC, 'CanPathToCurrentEnemyNC', { 'LocationType', false } }, 
+            { UCBC, 'UnitsLessAtLocation', { 'LocationType', 2, categories.FACTORY * categories.LAND * (categories.TECH2 + categories.TECH3) }},
+            
    ---
-{ EBC, 'GreaterThanEconStorageCurrent', { 8, 60 } },  
+{ EBC, 'GreaterThanEconStorageCurrent', { 8, 100 } },  
   
 			{ SBC, 'NoRushTimeCheck', { 600 }},
        --
@@ -132,7 +115,7 @@ BuilderGroup {
         BuilderName = 'NC T1 land aphib late 3',
         PlatoonTemplate = 'T1aphib',
         Priority = 700,
-        InstanceCount = 100,
+        --
     
         BuilderConditions = {
            
@@ -140,30 +123,59 @@ BuilderGroup {
        { MIBC, 'GreaterThanGameTime', { 2800 } },  
             { SIBC, 'HaveLessThanUnitsInCategoryBeingBuilt', { 3, categories.LAND * categories.TECH1 * categories.MOBILE }},
             { WRC, 'CanPathToCurrentEnemyNC', { 'LocationType', false } },  
-            { UCBC, 'HaveUnitRatioVersusCap', { T1landspamNC , '<', categories.TECH1 * categories.MOBILE * categories.LAND } }, 
+            { UCBC, 'UnitsLessAtLocation', { 'LocationType', 2, categories.FACTORY * categories.LAND * (categories.TECH2 + categories.TECH3) }},
+           
    ---
-{ EBC, 'GreaterThanEconStorageCurrent', { 8, 60 } },  
+{ EBC, 'GreaterThanEconStorageCurrent', { 8, 100 } },  
   
 			{ SBC, 'NoRushTimeCheck', { 600 }},
        --
         },
         BuilderType = 'Land',
     },
+
+    Builder {
+        BuilderName = 'NC T1 land aphib limited',
+        PlatoonTemplate = 'T1aphib',
+        Priority = 700,
+        --
+    
+        BuilderConditions = {
+           
+       {CF,'Standardlandpushlimittime',{}},
+       { MIBC, 'LessThanGameTime', { 1600 } },  
+            { SIBC, 'HaveLessThanUnitsInCategoryBeingBuilt', { 3, categories.LAND * categories.TECH1 * categories.MOBILE }},
+            { WRC, 'CanPathToCurrentEnemyNC', { 'LocationType', false } },  
+            { UCBC, 'UnitsLessAtLocation', { 'LocationType', 2, categories.FACTORY * categories.LAND * (categories.TECH2 + categories.TECH3) }},
+           
+   ---
+{ EBC, 'GreaterThanEconStorageCurrent', { 8, 100 } },  
+  
+			{ SBC, 'NoRushTimeCheck', { 600 }},
+       --
+        },
+        BuilderType = 'Land',
+    },
+
+
+    
+
     Builder {
         BuilderName = 'NC T1 land aphib ratio',
         PlatoonTemplate = 'T1aphib',
         Priority = 700,
-        InstanceCount = 100,
+        --
     
         BuilderConditions = {
            
         
             { SIBC, 'HaveLessThanUnitsInCategoryBeingBuilt', { 3, categories.LAND * categories.TECH1 * categories.MOBILE }},
             { WRC, 'CanPathToCurrentEnemyNC', { 'LocationType', false } },  
-            { UCBC, 'HaveUnitRatioVersusCap', { T1landspamNC , '<', categories.TECH1 * categories.MOBILE * categories.LAND } }, 
+            { UCBC, 'UnitsLessAtLocation', { 'LocationType', 2, categories.FACTORY * categories.LAND * (categories.TECH2 + categories.TECH3) }},
+           
             { WRC, 'HaveUnitRatioVersusEnemyNC', { 4.0, categories.MOBILE * categories.LAND - categories.ENGINEER, '<=', categories.MOBILE * categories.LAND - categories.ENGINEER} },
    ---
-{ EBC, 'GreaterThanEconStorageCurrent', { 8, 60 } },  
+{ EBC, 'GreaterThanEconStorageCurrent', { 8, 100 } },  
   
 			{ SBC, 'NoRushTimeCheck', { 600 }},
        --
@@ -174,7 +186,7 @@ BuilderGroup {
         BuilderName = 'NC T2 land aphib standard',
         PlatoonTemplate = 'T2aphib',
         Priority = 720,
-        InstanceCount = 100,
+        --
    
         BuilderConditions = {
             {CF,'Standardlandpush',{}},
@@ -182,7 +194,7 @@ BuilderGroup {
             { WRC, 'CanPathToCurrentEnemyNC', { 'LocationType', false } },  
 			
             ---
-{ EBC, 'GreaterThanEconStorageCurrent', { 8, 60 } },  
+{ EBC, 'GreaterThanEconStorageCurrent', { 8, 100 } },  
 
 			{ SBC, 'NoRushTimeCheck', { 600 }},
        --
@@ -193,7 +205,7 @@ BuilderGroup {
         BuilderName = 'NC T2 land aphib  late 1',
         PlatoonTemplate = 'T2aphib',
         Priority = 720,
-        InstanceCount = 100,
+        --
    
         BuilderConditions = {
             {CF,'Standardlandpushstartlate1',{}},
@@ -201,7 +213,7 @@ BuilderGroup {
             { WRC, 'CanPathToCurrentEnemyNC', { 'LocationType', false } },  
 			
             ---
-{ EBC, 'GreaterThanEconStorageCurrent', { 8, 60 } },  
+{ EBC, 'GreaterThanEconStorageCurrent', { 8, 100 } },  
 
 			{ SBC, 'NoRushTimeCheck', { 600 }},
        --
@@ -212,15 +224,15 @@ BuilderGroup {
         BuilderName = 'NC T2 land aphib late 2',
         PlatoonTemplate = 'T2aphib',
         Priority = 720,
-        InstanceCount = 100,
+        --
    
         BuilderConditions = {
             {CF,'Standardlandpushstartlate2',{}},
-            { MIBC, 'GreaterThanGameTime', { 1200} },
+            { MIBC, 'GreaterThanGameTime', { 1800} },
             { WRC, 'CanPathToCurrentEnemyNC', { 'LocationType', false } },  
 			
             ---
-{ EBC, 'GreaterThanEconStorageCurrent', { 8, 60 } },  
+{ EBC, 'GreaterThanEconStorageCurrent', { 8, 100 } },  
 
 			{ SBC, 'NoRushTimeCheck', { 600 }},
        --
@@ -231,7 +243,7 @@ BuilderGroup {
         BuilderName = 'NC T2 land aphib late 3',
         PlatoonTemplate = 'T2aphib',
         Priority = 720,
-        InstanceCount = 100,
+        --
    
         BuilderConditions = {
             {CF,'Standardlandpushstartlate3',{}},
@@ -239,7 +251,7 @@ BuilderGroup {
             { WRC, 'CanPathToCurrentEnemyNC', { 'LocationType', false } },  
 			
             ---
-{ EBC, 'GreaterThanEconStorageCurrent', { 8, 60 } },  
+{ EBC, 'GreaterThanEconStorageCurrent', { 8, 100 } },  
 
 			{ SBC, 'NoRushTimeCheck', { 600 }},
        --
@@ -247,10 +259,31 @@ BuilderGroup {
         BuilderType = 'Land',
     },
     Builder {
+        BuilderName = 'NC T2 land aphib limited',
+        PlatoonTemplate = 'T2aphib',
+        Priority = 720,
+        --
+   
+        BuilderConditions = {
+            {CF,'Standardlandpushlimittime',{}},
+            { MIBC, 'LessThanGameTime', { 1600 } }, 
+            { WRC, 'CanPathToCurrentEnemyNC', { 'LocationType', false } },  
+			
+            ---
+{ EBC, 'GreaterThanEconStorageCurrent', { 8, 100 } },  
+
+			{ SBC, 'NoRushTimeCheck', { 600 }},
+       --
+        },
+        BuilderType = 'Land',
+    },
+     
+
+    Builder {
         BuilderName = 'NC T2 land aphib ratio',
         PlatoonTemplate = 'T2aphib',
         Priority = 720,
-        InstanceCount = 100,
+        --
    
         BuilderConditions = {
            
@@ -258,7 +291,7 @@ BuilderGroup {
             { WRC, 'CanPathToCurrentEnemyNC', { 'LocationType', false } },  
 			{ WRC, 'HaveUnitRatioVersusEnemyNC', { 4.0, categories.MOBILE * categories.LAND - categories.ENGINEER, '<=', categories.MOBILE * categories.LAND - categories.ENGINEER} },
             ---
-{ EBC, 'GreaterThanEconStorageCurrent', { 8, 60 } },  
+{ EBC, 'GreaterThanEconStorageCurrent', { 8, 100 } },  
 
 			{ SBC, 'NoRushTimeCheck', { 600 }},
        --
@@ -269,13 +302,13 @@ BuilderGroup {
         BuilderName = 'NC T3 land aphib standard',
         PlatoonTemplate = 'T3aphib',
         Priority = 750,
-        InstanceCount = 100,
+        --
       
         BuilderConditions = {
             {CF,'Standardlandpush',{}},
             { MIBC, 'GreaterThanGameTime', { 1000 } },
             { WRC, 'CanPathToCurrentEnemyNC', { 'LocationType', false } },  
-{ EBC, 'GreaterThanEconStorageCurrent', { 8, 60 } },  
+{ EBC, 'GreaterThanEconStorageCurrent', { 8, 100 } },  
 
 			{ SBC, 'NoRushTimeCheck', { 600 }},
        --
@@ -286,13 +319,13 @@ BuilderGroup {
         BuilderName = 'NC T3 land aphib late 1',
         PlatoonTemplate = 'T3aphib',
         Priority = 750,
-        InstanceCount = 100,
+        --
       
         BuilderConditions = {
             {CF,'Standardlandpushstartlate1',{}},
             { MIBC, 'GreaterThanGameTime', { 1200 } },
             { WRC, 'CanPathToCurrentEnemyNC', { 'LocationType', false } },  
-{ EBC, 'GreaterThanEconStorageCurrent', { 8, 60 } },  
+{ EBC, 'GreaterThanEconStorageCurrent', { 8, 100 } },  
 
 			{ SBC, 'NoRushTimeCheck', { 600 }},
        --
@@ -303,13 +336,13 @@ BuilderGroup {
         BuilderName = 'NC T3 land aphib late 2',
         PlatoonTemplate = 'T3aphib',
         Priority = 750,
-        InstanceCount = 100,
+        --
       
         BuilderConditions = {
             {CF,'Standardlandpushstartlate2',{}},
-            { MIBC, 'GreaterThanGameTime', { 1200} },
+            { MIBC, 'GreaterThanGameTime', { 1800} },
             { WRC, 'CanPathToCurrentEnemyNC', { 'LocationType', false } },  
-{ EBC, 'GreaterThanEconStorageCurrent', { 8, 60 } },  
+{ EBC, 'GreaterThanEconStorageCurrent', { 8, 100 } },  
 
 			{ SBC, 'NoRushTimeCheck', { 600 }},
        --
@@ -320,13 +353,30 @@ BuilderGroup {
         BuilderName = 'NC T3 land aphib late 3',
         PlatoonTemplate = 'T3aphib',
         Priority = 750,
-        InstanceCount = 100,
+        --
       
         BuilderConditions = {
             {CF,'Standardlandpushstartlate3',{}},
             { MIBC, 'GreaterThanGameTime', { 2800 } },
             { WRC, 'CanPathToCurrentEnemyNC', { 'LocationType', false } },  
-{ EBC, 'GreaterThanEconStorageCurrent', { 8, 60 } },  
+{ EBC, 'GreaterThanEconStorageCurrent', { 8, 100 } },  
+
+			{ SBC, 'NoRushTimeCheck', { 600 }},
+       --
+        },
+        BuilderType = 'Land',
+    },
+    Builder {
+        BuilderName = 'NC T3 land aphib limited',
+        PlatoonTemplate = 'T3aphib',
+        Priority = 750,
+        --
+      
+        BuilderConditions = {
+            {CF,'Standardlandpushlimittime',{}},
+            { MIBC, 'LessThanGameTime', { 1600 } },
+            { WRC, 'CanPathToCurrentEnemyNC', { 'LocationType', false } },  
+{ EBC, 'GreaterThanEconStorageCurrent', { 8, 100 } },  
 
 			{ SBC, 'NoRushTimeCheck', { 600 }},
        --
@@ -337,13 +387,13 @@ BuilderGroup {
         BuilderName = 'NC T3 land aphib ratio',
         PlatoonTemplate = 'T3aphib',
         Priority = 750,
-        InstanceCount = 100,
+        --
       
         BuilderConditions = {
          
             { MIBC, 'GreaterThanGameTime', { 1000 } },
             { WRC, 'CanPathToCurrentEnemyNC', { 'LocationType', false } },  
-{ EBC, 'GreaterThanEconStorageCurrent', { 8, 60 } },  
+{ EBC, 'GreaterThanEconStorageCurrent', { 8, 100 } },  
 { WRC, 'HaveUnitRatioVersusEnemyNC', { 4.0, categories.MOBILE * categories.LAND  - categories.ENGINEER, '<=', categories.MOBILE * categories.LAND - categories.ENGINEER} },
 			{ SBC, 'NoRushTimeCheck', { 600 }},
        --
@@ -354,14 +404,15 @@ BuilderGroup {
         BuilderName = 'NC T1 land spammage standard',
         PlatoonTemplate = 'T1spammage',
         Priority = 700,
-        InstanceCount = 100,
+        --
     
         BuilderConditions = {
             {CF,'Standardlandpush',{}},
-            { WRC, 'CanPathToCurrentEnemyNC', { 'LocationType', true } },  
-            { UCBC, 'HaveUnitRatioVersusCap', { T1landspamNC , '<=', categories.TECH1 * categories.MOBILE * categories.LAND } }, 
+            { WRC, 'CanPathToCurrentEnemyNC', { 'LocationType', true } }, 
+            { UCBC, 'UnitsLessAtLocation', { 'LocationType', 2, categories.FACTORY * categories.LAND * (categories.TECH2 + categories.TECH3) }},
+          
 
-{ EBC, 'GreaterThanEconStorageCurrent', { 8, 60 } },  
+{ EBC, 'GreaterThanEconStorageCurrent', { 8, 100 } },  
 -- 
 			{ SBC, 'NoRushTimeCheck', { 600 }},
        --
@@ -372,17 +423,16 @@ BuilderGroup {
         BuilderName = 'NC T1 land spammage REGARDLESS',
         PlatoonTemplate = 'T1spammage',
         Priority = 700,
-        InstanceCount = 100,
-    
         BuilderConditions = {
             { MIBC, 'LessThanGameTime', { 600 } }, 
             { SBC, 'MapLessThan', { 1000, 1000 }},
+            { UCBC, 'UnitsGreaterAtLocation', { 'LocationType', 0, categories.FACTORY * categories.LAND * categories.TECH1 }},
             { WRC, 'CanPathToCurrentEnemyNC', { 'LocationType', true } },  
-            { UCBC, 'HaveUnitRatioVersusCap', { T1landspamNC , '<=', categories.TECH1 * categories.MOBILE * categories.LAND } }, 
+         
 
             { EBC, 'GreaterThanEconStorageCurrent', { 2, 30 } }, 
 -- 
-			{ SBC, 'NoRushTimeCheck', { 600 }},
+			{ SBC, 'NoRushTimeCheck', { 0 }},
        --
         },
         BuilderType = 'Land',
@@ -391,15 +441,16 @@ BuilderGroup {
         BuilderName = 'NC T1 land spammage late 1',
         PlatoonTemplate = 'T1spammage',
         Priority = 700,
-        InstanceCount = 100,
+        --
     
         BuilderConditions = {
             {CF,'Standardlandpushstartlate1',{}},
             { MIBC, 'GreaterThanGameTime', { 1200 } },  
+            { UCBC, 'UnitsLessAtLocation', { 'LocationType', 2, categories.FACTORY * categories.LAND * (categories.TECH2 + categories.TECH3) }},
             { WRC, 'CanPathToCurrentEnemyNC', { 'LocationType', true } },  
-            { UCBC, 'HaveUnitRatioVersusCap', { T1landspamNC , '<=', categories.TECH1 * categories.MOBILE * categories.LAND } }, 
+            
 
-{ EBC, 'GreaterThanEconStorageCurrent', { 8, 60 } },  
+{ EBC, 'GreaterThanEconStorageCurrent', { 8, 100 } },  
 -- 
 			{ SBC, 'NoRushTimeCheck', { 600 }},
        --
@@ -410,15 +461,16 @@ BuilderGroup {
         BuilderName = 'NC T1 land spammage late 2',
         PlatoonTemplate = 'T1spammage',
         Priority = 700,
-        InstanceCount = 100,
+        --
     
         BuilderConditions = {
             {CF,'Standardlandpushstartlate2',{}},
-            { MIBC, 'GreaterThanGameTime', { 1200} },  
+            { MIBC, 'GreaterThanGameTime', { 1800} }, 
+            { UCBC, 'UnitsLessAtLocation', { 'LocationType', 2, categories.FACTORY * categories.LAND * (categories.TECH2 + categories.TECH3) }},
             { WRC, 'CanPathToCurrentEnemyNC', { 'LocationType', true } },  
-            { UCBC, 'HaveUnitRatioVersusCap', { T1landspamNC , '<=', categories.TECH1 * categories.MOBILE * categories.LAND } }, 
+            
 
-{ EBC, 'GreaterThanEconStorageCurrent', { 8, 60 } },  
+{ EBC, 'GreaterThanEconStorageCurrent', { 8, 100 } },  
 -- 
 			{ SBC, 'NoRushTimeCheck', { 600 }},
        --
@@ -426,36 +478,39 @@ BuilderGroup {
         BuilderType = 'Land',
     },
     Builder {
-        BuilderName = 'NC T1 land spammage late 3',
+        BuilderName = 'NC T1 land spammage limited',
         PlatoonTemplate = 'T1spammage',
         Priority = 700,
-        InstanceCount = 100,
+        --
     
         BuilderConditions = {
-            {CF,'Standardlandpushstartlate3',{}},
-            { MIBC, 'GreaterThanGameTime', { 2800 } },  
+            {CF,'Standardlandpushlimittime',{}},
+            { MIBC, 'LessThanGameTime', { 1600 } },
+            { UCBC, 'UnitsLessAtLocation', { 'LocationType', 2, categories.FACTORY * categories.LAND * (categories.TECH2 + categories.TECH3) }},
             { WRC, 'CanPathToCurrentEnemyNC', { 'LocationType', true } },  
-            { UCBC, 'HaveUnitRatioVersusCap', { T1landspamNC , '<=', categories.TECH1 * categories.MOBILE * categories.LAND } }, 
+            
 
-{ EBC, 'GreaterThanEconStorageCurrent', { 8, 60 } },  
+{ EBC, 'GreaterThanEconStorageCurrent', { 8, 100 } },  
 -- 
 			{ SBC, 'NoRushTimeCheck', { 600 }},
        --
         },
         BuilderType = 'Land',
     },
+ 
     Builder {
         BuilderName = 'NC T1 land spammage ratio',
         PlatoonTemplate = 'T1spammage',
         Priority = 700,
-        InstanceCount = 100,
+        --
     
         BuilderConditions = {
            
             { WRC, 'CanPathToCurrentEnemyNC', { 'LocationType', true } },  
-            { UCBC, 'HaveUnitRatioVersusCap', { T1landspamNC , '<=', categories.TECH1 * categories.MOBILE * categories.LAND } }, 
+            { UCBC, 'UnitsLessAtLocation', { 'LocationType', 2, categories.FACTORY * categories.LAND * (categories.TECH2 + categories.TECH3) }},
+            
             { WRC, 'HaveUnitRatioVersusEnemyNC', { 4.0, categories.MOBILE * categories.LAND - categories.ENGINEER, '<=', categories.MOBILE * categories.LAND - categories.ENGINEER} },
-{ EBC, 'GreaterThanEconStorageCurrent', { 8, 60 } },  
+{ EBC, 'GreaterThanEconStorageCurrent', { 8, 100 } },  
 -- 
 			{ SBC, 'NoRushTimeCheck', { 600 }},
        --
@@ -468,7 +523,7 @@ BuilderGroup {
         BuilderName = 'NC T2 land attack  standard',
         PlatoonTemplate = 'T2attackgroup',
         Priority = 749,
-        InstanceCount = 100,
+        --
    
         BuilderConditions = {
             
@@ -476,7 +531,7 @@ BuilderGroup {
             { MIBC, 'GreaterThanGameTime', { 600 } },
             { WRC, 'CanPathToCurrentEnemyNC', { 'LocationType', true } }, 
 
-{ EBC, 'GreaterThanEconStorageCurrent', { 8, 60 } },  
+{ EBC, 'GreaterThanEconStorageCurrent', { 8, 100 } },  
 
 			{ SBC, 'NoRushTimeCheck', { 600 }},
        --
@@ -487,7 +542,7 @@ BuilderGroup {
         BuilderName = 'NC T2 land attack late 1',
         PlatoonTemplate = 'T2attackgroup',
         Priority = 749,
-        InstanceCount = 100,
+        --
    
         BuilderConditions = {
             
@@ -495,7 +550,7 @@ BuilderGroup {
             { MIBC, 'GreaterThanGameTime', { 1200 } },
             { WRC, 'CanPathToCurrentEnemyNC', { 'LocationType', true } }, 
 
-{ EBC, 'GreaterThanEconStorageCurrent', { 8, 60 } },  
+{ EBC, 'GreaterThanEconStorageCurrent', { 8, 100 } },  
 
 			{ SBC, 'NoRushTimeCheck', { 600 }},
        --
@@ -506,15 +561,15 @@ BuilderGroup {
         BuilderName = 'NC T2 land attack late 2',
         PlatoonTemplate = 'T2attackgroup',
         Priority = 749,
-        InstanceCount = 100,
+        --
    
         BuilderConditions = {
             
             {CF,'Standardlandpushstartlate2',{}},
-            { MIBC, 'GreaterThanGameTime', { 1200} },
+            { MIBC, 'GreaterThanGameTime', { 1800} },
             { WRC, 'CanPathToCurrentEnemyNC', { 'LocationType', true } }, 
 
-{ EBC, 'GreaterThanEconStorageCurrent', { 8, 60 } },  
+{ EBC, 'GreaterThanEconStorageCurrent', { 8, 100 } },  
 
 			{ SBC, 'NoRushTimeCheck', { 600 }},
        --
@@ -525,7 +580,7 @@ BuilderGroup {
         BuilderName = 'NC T2 land attack late 3',
         PlatoonTemplate = 'T2attackgroup',
         Priority = 749,
-        InstanceCount = 100,
+        --
    
         BuilderConditions = {
             
@@ -533,7 +588,26 @@ BuilderGroup {
             { MIBC, 'GreaterThanGameTime', { 2800 } },
             { WRC, 'CanPathToCurrentEnemyNC', { 'LocationType', true } }, 
 
-{ EBC, 'GreaterThanEconStorageCurrent', { 8, 60 } },  
+{ EBC, 'GreaterThanEconStorageCurrent', { 8, 100 } },  
+
+			{ SBC, 'NoRushTimeCheck', { 600 }},
+       --
+        },
+        BuilderType = 'Land',
+    },
+    Builder {
+        BuilderName = 'NC T2 land attack limited',
+        PlatoonTemplate = 'T2attackgroup',
+        Priority = 749,
+        --
+   
+        BuilderConditions = {
+            
+            {CF,'Standardlandpushlimittime',{}},
+            { MIBC, 'LessThanGameTime', { 1600 } },
+            { WRC, 'CanPathToCurrentEnemyNC', { 'LocationType', true } }, 
+
+{ EBC, 'GreaterThanEconStorageCurrent', { 8, 100 } },  
 
 			{ SBC, 'NoRushTimeCheck', { 600 }},
        --
@@ -544,7 +618,7 @@ BuilderGroup {
         BuilderName = 'NC T2 land attack ratio',
         PlatoonTemplate = 'T2attackgroup',
         Priority = 749,
-        InstanceCount = 100,
+        --
    
         BuilderConditions = {
             
@@ -552,7 +626,7 @@ BuilderGroup {
             { MIBC, 'GreaterThanGameTime', { 600 } },
             { WRC, 'CanPathToCurrentEnemyNC', { 'LocationType', true } }, 
             { WRC, 'HaveUnitRatioVersusEnemyNC', { 4.0, categories.MOBILE * categories.LAND - categories.ENGINEER, '<=', categories.MOBILE * categories.LAND - categories.ENGINEER} },
-{ EBC, 'GreaterThanEconStorageCurrent', { 8, 60 } },  
+{ EBC, 'GreaterThanEconStorageCurrent', { 8, 100 } },  
 
 			{ SBC, 'NoRushTimeCheck', { 600 }},
        --
@@ -569,7 +643,7 @@ BuilderGroup {
             {CF,'Standardlandpush',{}},
             { MIBC, 'GreaterThanGameTime', { 1000 } },
             { WRC, 'CanPathToCurrentEnemyNC', { 'LocationType', true } }, 
-{ EBC, 'GreaterThanEconStorageCurrent', { 8, 60 } },  
+{ EBC, 'GreaterThanEconStorageCurrent', { 8, 100 } },  
 
 			{ SBC, 'NoRushTimeCheck', { 600 }},
        --
@@ -585,7 +659,7 @@ BuilderGroup {
             {CF,'Standardlandpushstartlate1',{}},
             { MIBC, 'GreaterThanGameTime', { 1200 } },
             { WRC, 'CanPathToCurrentEnemyNC', { 'LocationType', true } }, 
-{ EBC, 'GreaterThanEconStorageCurrent', { 8, 60 } },  
+{ EBC, 'GreaterThanEconStorageCurrent', { 8, 100 } },  
 
 			{ SBC, 'NoRushTimeCheck', { 600 }},
        --
@@ -599,9 +673,9 @@ BuilderGroup {
       
         BuilderConditions = {
             {CF,'Standardlandpushstartlate2',{}},
-            { MIBC, 'GreaterThanGameTime', { 1200} },
+            { MIBC, 'GreaterThanGameTime', { 1800} },
             { WRC, 'CanPathToCurrentEnemyNC', { 'LocationType', true } }, 
-{ EBC, 'GreaterThanEconStorageCurrent', { 8, 60 } },  
+{ EBC, 'GreaterThanEconStorageCurrent', { 8, 100 } },  
 
 			{ SBC, 'NoRushTimeCheck', { 600 }},
        --
@@ -617,7 +691,23 @@ BuilderGroup {
             {CF,'Standardlandpushstartlate3',{}},
             { MIBC, 'GreaterThanGameTime', { 2800 } },
             { WRC, 'CanPathToCurrentEnemyNC', { 'LocationType', true } }, 
-{ EBC, 'GreaterThanEconStorageCurrent', { 8, 60 } },  
+{ EBC, 'GreaterThanEconStorageCurrent', { 8, 100 } },  
+
+			{ SBC, 'NoRushTimeCheck', { 600 }},
+       --
+        },
+        BuilderType = 'Land',
+    },
+    Builder {
+        BuilderName = 'NC T3 land attack limited',
+        PlatoonTemplate = 'T3attackgroup',
+        Priority = 750,
+      
+        BuilderConditions = {
+            {CF,'Standardlandpushstartlate3',{}},
+            { MIBC, 'GreaterThanGameTime', { 2800 } },
+            { WRC, 'CanPathToCurrentEnemyNC', { 'LocationType', true } }, 
+{ EBC, 'GreaterThanEconStorageCurrent', { 8, 100 } },  
 
 			{ SBC, 'NoRushTimeCheck', { 600 }},
        --
@@ -631,9 +721,10 @@ BuilderGroup {
       
         BuilderConditions = {
          
-            { MIBC, 'GreaterThanGameTime', { 1000 } },
+            {CF,'Standardlandpushlimittime',{}},
+            { MIBC, 'LessThanGameTime', { 1600 } },
             { WRC, 'CanPathToCurrentEnemyNC', { 'LocationType', true } }, 
-{ EBC, 'GreaterThanEconStorageCurrent', { 8, 60 } },  
+{ EBC, 'GreaterThanEconStorageCurrent', { 8, 100 } },  
 { WRC, 'HaveUnitRatioVersusEnemyNC', { 4.0, categories.MOBILE * categories.LAND - categories.ENGINEER, '<=', categories.MOBILE * categories.LAND - categories.ENGINEER} },
 			{ SBC, 'NoRushTimeCheck', { 600 }},
        --
@@ -661,7 +752,7 @@ BuilderGroup {
             
 		
             ---
-{ EBC, 'GreaterThanEconStorageCurrent', { 8, 60 } },  
+{ EBC, 'GreaterThanEconStorageCurrent', { 8, 100 } },  
 -- 
           
             
@@ -684,7 +775,7 @@ BuilderGroup {
             
 		
             ---
-{ EBC, 'GreaterThanEconStorageCurrent', { 8, 60 } },  
+{ EBC, 'GreaterThanEconStorageCurrent', { 8, 100 } },  
 -- 
           
             
@@ -707,7 +798,7 @@ BuilderGroup {
             
 		
             ---
-{ EBC, 'GreaterThanEconStorageCurrent', { 8, 60 } },  
+{ EBC, 'GreaterThanEconStorageCurrent', { 8, 100 } },  
 -- 
           
             
@@ -727,7 +818,7 @@ BuilderGroup {
             { SBC, 'GreaterThanEnemyUnitsAroundBase', { 'LocationType', 0, categories.LAND * categories.MOBILE * categories.EXPERIMENTAL, 300 } },
             { WRC, 'CanPathToCurrentEnemyNC', { 'LocationType', false } },  
 
-{ EBC, 'GreaterThanEconStorageCurrent', { 8, 60 } },  
+{ EBC, 'GreaterThanEconStorageCurrent', { 8, 100 } },  
 
 			{ SBC, 'NoRushTimeCheck', { 600 }},
        --
@@ -747,13 +838,13 @@ BuilderGroup {
     
         BuilderConditions = {
            
-            { UCBC, 'HaveLessThanUnitsWithCategory', {4, categories.MOBILE * categories.ANTIAIR * categories.LAND } },
+            { UCBC, 'HaveLessThanUnitsWithCategory', {5, categories.MOBILE * categories.ANTIAIR * categories.LAND } },
             { SBC, 'GreaterThanEnemyUnitsAroundBase', { 'LocationType', 5, categories.AIR * categories.MOBILE * categories.TECH1 - categories.SCOUT - categories.TRANSPORTFOCUS, 100 } },
            
             
 		
             ---
-{ EBC, 'GreaterThanEconStorageCurrent', { 8, 60 } },  
+{ EBC, 'GreaterThanEconStorageCurrent', { 8, 100 } },  
 -- 
           
             
@@ -763,16 +854,18 @@ BuilderGroup {
         BuilderType = 'Land',
     },
     Builder {
-        BuilderName = 'NC T2 base defense against t2 air',
+        BuilderName = 'NC T2 defense against t2 air',
         PlatoonTemplate = 'T2antiairland',
         Priority = 840,
         InstanceCount = 2,
     
         BuilderConditions = {
-            { UCBC, 'HaveLessThanUnitsWithCategory', {4, categories.MOBILE * categories.ANTIAIR * categories.LAND * (categories.TECH2 + categories.TECH3) } },
+            { WRC, 'CanPathToCurrentEnemyNC', { 'LocationType', true } }, 
+            { UCBC, 'HaveLessThanUnitsWithCategory', {40, categories.MOBILE * categories.ANTIAIR * categories.LAND * (categories.TECH2 + categories.TECH3) } },
+            { WRC, 'HaveUnitRatioVersusEnemyNC', { 4.0, categories.MOBILE * categories.LAND - categories.ENGINEER, '>=', categories.MOBILE * categories.LAND - categories.ENGINEER} },
             { WRC, 'HaveUnitRatioVersusEnemyNC', { 3.0, categories.MOBILE * categories.AIR * categories.ANTIAIR - categories.GROUNDATTACK - categories.BOMBER, '<=', categories.MOBILE * categories.AIR - categories.SCOUT - categories.TRANSPORTFOCUS } },
 
-{ EBC, 'GreaterThanEconStorageCurrent', { 8, 60 } },  
+{ EBC, 'GreaterThanEconStorageCurrent', { 8, 100 } },  
 
 			{ SBC, 'NoRushTimeCheck', { 600 }},
        --
@@ -780,40 +873,24 @@ BuilderGroup {
         BuilderType = 'Land',
     },
     Builder {
-        BuilderName = 'NC T3 base defense against t3 air',
+        BuilderName = 'NC T3 defense against t3 air',
         PlatoonTemplate = 'T3antiairland',
         Priority = 850,
         InstanceCount = 2,
     
         BuilderConditions = {
-
-            { UCBC, 'HaveLessThanUnitsWithCategory', {4, categories.MOBILE * categories.ANTIAIR * categories.LAND * categories.TECH3 } },
+            { WRC, 'CanPathToCurrentEnemyNC', { 'LocationType', true } }, 
+            { UCBC, 'HaveLessThanUnitsWithCategory', {40, categories.MOBILE * categories.ANTIAIR * categories.LAND * categories.TECH3 } },
+            { WRC, 'HaveUnitRatioVersusEnemyNC', { 4.0, categories.MOBILE * categories.LAND - categories.ENGINEER, '>=', categories.MOBILE * categories.LAND - categories.ENGINEER} },
             { WRC, 'HaveUnitRatioVersusEnemyNC', { 3.0, categories.MOBILE * categories.AIR * categories.ANTIAIR - categories.GROUNDATTACK - categories.BOMBER, '<=', categories.MOBILE * categories.AIR - categories.SCOUT - categories.TRANSPORTFOCUS } },
-{ EBC, 'GreaterThanEconStorageCurrent', { 8, 60 } },  
+{ EBC, 'GreaterThanEconStorageCurrent', { 8, 100 } },  
 
 			{ SBC, 'NoRushTimeCheck', { 600 }},
        --
         },
         BuilderType = 'Land',
     },
-    Builder {
-        BuilderName = 'NC T3 base defense against t3 air standard',
-        PlatoonTemplate = 'T3antiairland',
-        Priority = 650,
-     
-    
-        BuilderConditions = {
-            { UCBC, 'HaveLessThanUnitsWithCategory', {4, categories.MOBILE * categories.ANTIAIR * categories.LAND * categories.TECH3 } },
-            { UCBC, 'UnitsLessAtLocation', { 'LocationType', 2, categories.delk002 + categories.dalk003 + categories.drlk001 + categories.dslk004 }},   
-            { UCBC, 'HaveGreaterThanUnitsWithCategory', {100, categories.MOBILE * categories.LAND - categories.ENGINEER } },
-    
-{ EBC, 'GreaterThanEconStorageCurrent', { 8, 60 } },  
-
-			{ SBC, 'NoRushTimeCheck', { 600 }},
-       --
-        },
-        BuilderType = 'Land',
-    },
+   
     Builder {
         BuilderName = 'NC T3 base defense against enemy buildings',
         PlatoonTemplate = 'T1spammage',
@@ -822,16 +899,60 @@ BuilderGroup {
     
         BuilderConditions = {
             { SBC, 'GreaterThanEnemyUnitsAroundBase', { 'LocationType', 5, categories.MOBILE * categories.LAND, 100 } },
-           
-          
-    
-{ EBC, 'GreaterThanEconStorageCurrent', { 8, 60 } },  
+
+{ EBC, 'GreaterThanEconStorageCurrent', { 8, 100 } },  
 
 			{ SBC, 'NoRushTimeCheck', { 600 }},
-       --
+
         },
         BuilderType = 'Land',
     },
+    Builder {
+        BuilderName = 'NC T2 mobile missle',
+        PlatoonTemplate = 'T2mobileturtlecracker',
+        Priority = 650,
+        BuilderConditions = {
+            { WRC, 'CanPathToCurrentEnemyNC', { 'LocationType', true } },  
+            { UCBC, 'HaveUnitsWithCategoryAndAlliance', { true, 8, categories.STRUCTURE * (categories.TECH2 + categories.TECH3) * (categories.ARTILLERY + categories.DIRECTFIRE), 'Enemy'}},
+            { WRC, 'HaveUnitRatioVersusEnemyNC', { 3.0, categories.MOBILE * categories.AIR * categories.ANTIAIR  - categories.GROUNDATTACK - categories.BOMBER, '>=', categories.MOBILE * categories.AIR - categories.SCOUT - categories.TRANSPORTFOCUS } },
+            { WRC, 'HaveUnitRatioVersusEnemyNC', { 4.0, categories.MOBILE * categories.LAND - categories.ENGINEER, '>=', categories.MOBILE * categories.LAND - categories.ENGINEER} },
+{ EBC, 'GreaterThanEconStorageCurrent', { 8, 100 } },  
+			{ SBC, 'NoRushTimeCheck', { 600 }},
+        },
+        BuilderType = 'Land',
+    },
+    Builder {
+        BuilderName = 'NC T3 mobile missle',
+        PlatoonTemplate = 'T3mobileturtlecracker',
+        Priority = 651,
+        BuilderConditions = {
+            { WRC, 'CanPathToCurrentEnemyNC', { 'LocationType', true } },  
+            { UCBC, 'HaveUnitsWithCategoryAndAlliance', { true, 8, categories.STRUCTURE * (categories.TECH2 + categories.TECH3) * (categories.ARTILLERY + categories.DIRECTFIRE), 'Enemy'}},
+            { WRC, 'HaveUnitRatioVersusEnemyNC', { 3.0, categories.MOBILE * categories.AIR * categories.ANTIAIR  - categories.GROUNDATTACK - categories.BOMBER, '>=', categories.MOBILE * categories.AIR - categories.SCOUT - categories.TRANSPORTFOCUS } },
+            { WRC, 'HaveUnitRatioVersusEnemyNC', { 4.0, categories.MOBILE * categories.LAND - categories.ENGINEER, '>=', categories.MOBILE * categories.LAND - categories.ENGINEER} },
+            { EBC, 'GreaterThanEconStorageCurrent', { 8, 100 } },  
+			{ SBC, 'NoRushTimeCheck', { 600 }},
+        },
+        BuilderType = 'Land',
+    },
+    Builder {
+        BuilderName = 'NC lots of RAS',
+        PlatoonTemplate = 'NC RAS',
+        Priority = 950,
+        DelayEqualBuildPlattons = {'Ras', 10},
+        BuilderConditions = {
+            { UCBC, 'CheckBuildPlattonDelay', { 'Ras' }},
+            { MIBC, 'GreaterThanGameTime', { 1000 } },
+            {CF,'TeleportStrategyActivatedNotRunning',{}},
+            { EBC, 'GreaterThanEconStorageCurrent', { 1500, 4000 } },
+            { UCBC, 'HaveLessThanUnitsWithCategory', { 60, categories.SUBCOMMANDER } },
+            
+            
+        },
+        BuilderType = 'Gate',
+    },
+    
+
   
 }
 

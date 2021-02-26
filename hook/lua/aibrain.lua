@@ -12,3 +12,4 @@ AIBrain = Class(NutCrackerAIBrainClass) {
     end,
 
 }
+

@@ -1,3 +1,7 @@
+---muchstuff
+
+---nutcracker
+
 local AIUtils = import('/lua/ai/aiutilities.lua')
 local ScenarioFramework = import('/lua/scenarioframework.lua')
 local ScenarioUtils = import('/lua/sim/ScenarioUtilities.lua')
@@ -12,48 +16,9 @@ local HaveGreaterThanUnitsWithCategory = import('/lua/editor/UnitCountBuildCondi
 local GetEconomyTrend = moho.aibrain_methods.GetEconomyTrend
 local GetListOfUnits = moho.aibrain_methods.GetListOfUnits
 
-function IncomeBeyondSpendingNC(aiBrain, numReq, numReq2)
-    local econ = AIUtils.AIGetEconomyNumbers(aiBrain)
-    local MassSpreadRealTime = econ.MassIncome - econ.MassUsage
-    local EnergySpreadRealTime = econ.EnergyIncome - econ.EnergyUsage
-    if HaveGreaterThanUnitsWithCategoryNC(aiBrain, 0, 'ENERGYPRODUCTION EXPERIMENTAL STRUCTURE') then
-        #LOG('*AI DEBUG: Found Paragon')
-        return false
-    end
-   
-    if (numReq > MassSpreadRealTime and numReq2 > EnergySpreadRealTime) then
-        #LOG('!!!!!!!!air stage facility building!!!!!!!!!!!')
-        return true
-    end
-    
-    return false
-    
-end
 
-function HaveGreaterThanUnitsWithCategoryNC(aiBrain, numReq, category, idleReq)
-    local numUnits
-    local total = 0
-    if type(category) == 'string' then
-        category = ParseEntityCategory(category)
-    end
-    if not idleReq then
-        numUnits = aiBrain:GetListOfUnits(category, false)
-    else
-        numUnits = aiBrain:GetListOfUnits(category, true)
-    end
-    for k,v in numUnits do
-        if v:GetFractionComplete() == 1 then
-            total = total + 1
-            if total > numReq then
-                return true
-            end
-        end
-    end
-    if total > numReq then
-        return true
-    end
-    return false
-end
+
+
 
 function CompareBodyNC(numOne, numTwo, compareType)
     if compareType == '>' then
@@ -86,18 +51,7 @@ function HaveUnitRatioVersusCapNC(aiBrain, ratio, compareType, categoryOwn)
     return CompareBodyNC(numOwnUnits / cap, ratio, compareType)
 end
 
-function GreaterThanEconTrendNC(aiBrain, MassTrend, EnergyTrend)
-    local econ = {}
-    econ.MassTrend = GetEconomyTrend(aiBrain, 'MASS')
-    econ.EnergyTrend = GetEconomyTrend(aiBrain, 'ENERGY')
-  
-    if aiBrain.HasParagon and econ.MassTrend >= 0 and econ.EnergyTrend >= 0 then
-        return true
-    elseif econ.MassTrend >= MassTrend and econ.EnergyTrend >= EnergyTrend then
-        return true
-    end
-    return false
-end
+
 
 
 
@@ -152,14 +106,16 @@ function HaveGreaterThanUnitsInCategoryBeingUpgradeNC(aiBrain, numunits, categor
     return HaveUnitsInCategoryBeingUpgradeNC(aiBrain, numunits, category, '>')
 end
 
-
-
-function GreaterThanEconIncomeNC(aiBrain, MassIncome, EnergyIncome)
-   
-    local econ = AIUtils.AIGetEconomyNumbers(aiBrain)
-    if (econ.MassIncome*10 >= MassIncome and econ.EnergyIncome >= EnergyIncome) then
-        LOG('ECONOMIC INCOME IS NOW GREATER THAN '..aiBrain.GreaterThanEconIncomeNC )
-        return true
+function CheckBuildPlattonDelayNC(aiBrain, PlatoonName)
+    if aiBrain.DelayEqualBuildPlattons[PlatoonName] then
+        LOG('Delay Platoon Name exist' ..aiBrain.DelayEqualBuildPlattons[PlatoonName])
     end
-    return false
+    if aiBrain.DelayEqualBuildPlattons[PlatoonName] and aiBrain.DelayEqualBuildPlattons[PlatoonName] > GetGameTimeSeconds() then
+        LOG('Builder Delay false')
+        return false
+    end
+   LOG('Builder delay true')
+    return true
 end
+
+

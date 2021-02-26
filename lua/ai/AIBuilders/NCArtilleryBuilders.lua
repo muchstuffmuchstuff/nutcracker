@@ -1,11 +1,6 @@
-#***************************************************************************
-#*
-#**  File     :  /lua/ai/AIArtilleryBuilders.lua
-#**
-#**  Summary  : Default artillery/nuke/etc builders for skirmish
-#**
-#**  Copyright � 2005 Gas Powered Games, Inc.  All rights reserved.
-#****************************************************************************
+---muchstuff
+
+---nutcracker
 
 local BBTmplFile = '/lua/basetemplates.lua'
 local BuildingTmpl = 'BuildingTemplates'
@@ -37,7 +32,7 @@ BuilderGroup {
     BuildersType = 'EngineerBuilder',
     Builder {
         BuilderName = 'NC T4 Artillery Engineer',
-        PlatoonTemplate = 'T3EngineerBuilderSorian',
+        PlatoonTemplate = 'T3EngineerBuilderNC',
 		PlatoonAddPlans = {'NameUnitsSorian'},
         Priority = 999,
       
@@ -49,12 +44,14 @@ BuilderGroup {
           
             {CF, 'NoSateliteRush',{}},
             {CF, 'NoDukeNukem',{}},
+            {CF,'TeleportStrategyActivatedNotRunning',{}},
             { UCBC, 'HaveLessThanUnitsWithCategory', {1, categories.EXPERIMENTAL * categories.ARTILLERY } },
+            { UCBC, 'HaveGreaterThanUnitsWithCategory', {0, categories.ARTILLERY * (categories.TECH3 + categories.EXPERIMENTAL) } },
             {WRC, 'CheckUnitRangeNC', { 'LocationType', 'T4Artillery', categories.STRUCTURE} },
             
-            { SIBC, 'HaveLessThanUnitsInCategoryBeingBuilt', { 1, categories.STRUCTURE  * (categories.ARTILLERY + categories.EXPERIMENTAL) }},
+            { SIBC, 'HaveLessThanUnitsInCategoryBeingBuilt', { 1, categories.ARTILLERY * categories.TECH3 + categories.EXPERIMENTAL + categories.NUKE * categories.STRUCTURE }},
 		
-            { EBC, 'GreaterThanEconStorageCurrent', { 30000, 15000 } },           
+            { EBC, 'GreaterThanEconStorageCurrent', { 10000, 15000 } },           
         },
         BuilderType = 'Any',
         BuilderData = {
@@ -73,7 +70,7 @@ BuilderGroup {
     },
     Builder {
         BuilderName = 'NC T4 Artillery escalation',
-        PlatoonTemplate = 'T3EngineerBuilderSorian',
+        PlatoonTemplate = 'T3EngineerBuilderNC',
 		PlatoonAddPlans = {'NameUnitsSorian'},
         Priority = 1050,
       
@@ -83,12 +80,13 @@ BuilderGroup {
             { MIBC, 'GreaterThanGameTime', { 1200} },
             { SBC, 'MapGreaterThan', { 500, 500 }},
             {CF, 'NoSateliteRush',{}},
+            {CF,'TeleportStrategyActivatedNotRunning',{}},
             {CF, 'NoDukeNukem',{}},
           
             {WRC, 'CheckUnitRangeNC', { 'LocationType', 'T4Artillery', categories.STRUCTURE } },
           
             { UCBC, 'HaveLessThanUnitsWithCategory', {1, categories.EXPERIMENTAL * categories.ARTILLERY } },
-            { SIBC, 'HaveLessThanUnitsInCategoryBeingBuilt', { 1, categories.EXPERIMENTAL * categories.ARTILLERY }},
+            { SIBC, 'HaveLessThanUnitsInCategoryBeingBuilt', { 1, categories.ARTILLERY * categories.TECH3 + categories.EXPERIMENTAL + categories.NUKE * categories.STRUCTURE }},
             
            ---  
 
@@ -113,7 +111,7 @@ BuilderGroup {
 
     Builder {
         BuilderName = 'NC T4 Artillery Engineer - Cybran',
-        PlatoonTemplate = 'T3EngineerBuilderSorian',
+        PlatoonTemplate = 'T3EngineerBuilderNC',
         PlatoonAddPlans = {'NameUnitsSorian'},
         Priority = 999,
         InstanceCount = 1,
@@ -124,12 +122,12 @@ BuilderGroup {
             { SBC, 'MapGreaterThan', { 500, 500 }},
       
             {CF, 'NoDukeNukem',{}},
-          
+            {CF,'TeleportStrategyActivatedNotRunning',{}},
             {WRC, 'CheckUnitRangeNC', { 'LocationType', 'T4Artillery', categories.STRUCTURE } },
             { UCBC, 'HaveLessThanUnitsWithCategory', {1, categories.EXPERIMENTAL * categories.ARTILLERY } },
-            { SIBC, 'HaveLessThanUnitsInCategoryBeingBuilt', { 1, categories.ARTILLERY *(categories.EXPERIMENTAL + categories.TECH3) }},
+            { SIBC, 'HaveLessThanUnitsInCategoryBeingBuilt', { 1, categories.ARTILLERY * categories.TECH3 + categories.EXPERIMENTAL + categories.NUKE * categories.STRUCTURE }},
 
-            { EBC, 'GreaterThanEconStorageCurrent', { 20000, 15000 } },
+            { EBC, 'GreaterThanEconStorageCurrent', { 10000, 15000 } },
          
         },
         BuilderType = 'Any',
@@ -150,8 +148,8 @@ BuilderGroup {
     },
 
     Builder {
-        BuilderName = 'NC T4 Artillery Engineer - Cybran escalation',
-        PlatoonTemplate = 'T3EngineerBuilderSorian',
+        BuilderName = 'NC T4 Artillery escalation cybran',
+        PlatoonTemplate = 'T3EngineerBuilderNC',
         PlatoonAddPlans = {'NameUnitsSorian'},
         Priority = 999,
         InstanceCount = 1,
@@ -185,54 +183,8 @@ BuilderGroup {
         }
     },
 	
-    Builder {
-        BuilderName = 'NC T4EngineerAssistBuildHLRA',
-        PlatoonTemplate = 'T3EngineerAssist',
-        Priority = 950,
-        InstanceCount = 2,
-        BuilderConditions = {
-            { MIBC, 'GreaterThanGameTime', { 1200} },
-            { UCBC, 'LocationEngineersBuildingGreater', { 'LocationType', 0, categories.ARTILLERY * categories.EXPERIMENTAL}},
-           
-{ EBC, 'GreaterThanEconStorageCurrent', { 15, 100 } },
-            
-       --
-        },
-        BuilderType = 'Any',
-        BuilderData = {
-            Assist = {
-                AssisteeType = 'Engineer',
-                AssistRange = 250,
-                AssistLocation = 'LocationType',
-                BeingBuiltCategories = {'EXPERIMENTAL STRUCTURE'},
-                Time = 500,
-            },
-        }
-    },
-    Builder {
-        BuilderName = 'NC T4EngineerAssistBuildHLRA escalation',
-        PlatoonTemplate = 'T3EngineerAssist',
-        Priority = 1200,
-        InstanceCount = 10,
-        BuilderConditions = {
-            { MIBC, 'GreaterThanGameTime', { 1200} },
-            { UCBC, 'LocationEngineersBuildingGreater', { 'LocationType', 0, categories.ARTILLERY * categories.EXPERIMENTAL}},
-           ---  
-{ EBC, 'GreaterThanEconStorageCurrent', { 10000, 100 } },
-           
-       --
-        },
-        BuilderType = 'Any',
-        BuilderData = {
-            Assist = {
-                AssisteeType = 'Engineer',
-                AssistRange = 250,
-                AssistLocation = 'LocationType',
-                BeingBuiltCategories = {'EXPERIMENTAL STRUCTURE'},
-                Time = 500,
-            },
-        }
-    },
+    
+   
 }
 
 
@@ -242,15 +194,18 @@ BuilderGroup {
     BuildersType = 'EngineerBuilder',
      Builder {
         BuilderName = 'nc T3 Nuke cybran',
-        PlatoonTemplate = 'T3EngineerBuilderSorian',
+        PlatoonTemplate = 'T3EngineerBuilderNC',
         DelayEqualBuildPlattons = {'Nuke', 180},
         Priority = 990,
         BuilderConditions = {
+            { UCBC, 'CheckBuildPlattonDelay', { 'Nuke' }},
             { MIBC, 'GreaterThanGameTime', {1000 } },
             { MIBC, 'FactionIndex', {3}},
             { SBC, 'MapGreaterThan', { 500, 500 }},
-            { UCBC, 'CheckBuildPlattonDelay', { 'Nuke' }},
-           { UCBC, 'HaveGreaterThanUnitsWithCategory', {0, categories.ENERGYPRODUCTION * categories.TECH3 } },
+            {CF,'NukeClearedtoBuild',{}},
+            {CF,'EarlyAttackAuthorized',{}},
+            {CF,'NukeandExperimentalClearedtoBuild',{}},
+            { SIBC, 'HaveLessThanUnitsInCategoryBeingBuilt', { 1, categories.ARTILLERY * categories.TECH3 + categories.EXPERIMENTAL + categories.NUKE * categories.STRUCTURE }},
             { EBC, 'GreaterThanEconStorageCurrent', { 8000, 10000 } }, 
       
         },
@@ -269,17 +224,21 @@ BuilderGroup {
     },
     Builder {
         BuilderName = 'nc T3 Nuke aeon',
-        PlatoonTemplate = 'T3EngineerBuilderSorian',
+        PlatoonTemplate = 'T3EngineerBuilderNC',
         DelayEqualBuildPlattons = {'Nuke', 180},
         Priority = 990,
         BuilderConditions = {
+            { UCBC, 'CheckBuildPlattonDelay', { 'Nuke' }},
             { MIBC, 'GreaterThanGameTime', {1000 } },
             { MIBC, 'FactionIndex', {2}},
             { SBC, 'MapGreaterThan', { 500, 500 }},
-            { UCBC, 'CheckBuildPlattonDelay', { 'Nuke' }},
             {CF, 'NoRapidFireRush',{}},
+            {CF,'NukeClearedtoBuild',{}},
+            {CF,'TeleportStrategyActivatedNotRunning',{}},
+            {CF,'NukeandExperimentalClearedtoBuild',{}},
             {CF, 'Noparagonrush',{}},
-           { UCBC, 'HaveGreaterThanUnitsWithCategory', {0, categories.ENERGYPRODUCTION * categories.TECH3 } },
+            {CF,'EarlyAttackAuthorized',{}},
+            { SIBC, 'HaveLessThanUnitsInCategoryBeingBuilt', { 1, categories.ARTILLERY * categories.TECH3 + categories.EXPERIMENTAL + categories.NUKE * categories.STRUCTURE }},
             { EBC, 'GreaterThanEconStorageCurrent', { 8000, 10000 } }, 
       
         },
@@ -298,16 +257,20 @@ BuilderGroup {
     },
     Builder {
         BuilderName = 'nc T3 Nuke uef',
-        PlatoonTemplate = 'T3EngineerBuilderSorian',
+        PlatoonTemplate = 'T3EngineerBuilderNC',
         DelayEqualBuildPlattons = {'Nuke', 180},
         Priority = 990,
         BuilderConditions = {
-            { MIBC, 'GreaterThanGameTime', {1000 } },
+            { UCBC, 'CheckBuildPlattonDelay', { 'Nuke' }},
+            { MIBC, 'GreaterThanGameTime', {800 } },
             { MIBC, 'FactionIndex', {1}},
             {CF, 'NoSateliteRush',{}},
+            {CF,'EarlyAttackAuthorized',{}},
+            {CF,'NukeClearedtoBuild',{}},
+            {CF,'NukeandExperimentalClearedtoBuild',{}},
             { SBC, 'MapGreaterThan', { 500, 500 }},
-            { UCBC, 'CheckBuildPlattonDelay', { 'Nuke' }},
             { UCBC, 'HaveLessThanUnitsWithCategory', {1, categories.NUKE * categories.STRUCTURE } },
+            { SIBC, 'HaveLessThanUnitsInCategoryBeingBuilt', { 1, categories.ARTILLERY * categories.TECH3 + categories.EXPERIMENTAL + categories.NUKE * categories.STRUCTURE }},
             { EBC, 'GreaterThanEconStorageCurrent', { 1000, 10000 } }, 
     
         },
@@ -327,14 +290,17 @@ BuilderGroup {
  
     Builder {
         BuilderName = 'nc T3 Nuke continuation',
-        PlatoonTemplate = 'T3EngineerBuilderSorian',
+        PlatoonTemplate = 'T3EngineerBuilderNC',
         DelayEqualBuildPlattons = {'Nuke', 180},
         Priority = 990,
         BuilderConditions = {
-            { MIBC, 'GreaterThanGameTime', {1000 } },
-            { MIBC, 'FactionIndex', {1,2, 3}},
-            { SBC, 'MapGreaterThan', { 500, 500 }},
             { UCBC, 'CheckBuildPlattonDelay', { 'Nuke' }},
+            { MIBC, 'GreaterThanGameTime', {800 } },
+            { MIBC, 'FactionIndex', {1,2, 3}},
+            {CF,'NukeClearedtoBuild',{}},
+            {CF,'NukeandExperimentalClearedtoBuild',{}},
+            { SBC, 'MapGreaterThan', { 500, 500 }},
+          
         
 
            { UCBC, 'HaveGreaterThanUnitsWithCategory', {0, categories.ENERGYPRODUCTION * categories.TECH3 } },
@@ -354,57 +320,11 @@ BuilderGroup {
             }
         }
     },
+
+   
   
-    Builder {
-        BuilderName = 'NC Assist Build t3',
-        PlatoonTemplate = 'T3EngineerAssist',
-        Priority = 950,
-        InstanceCount = 1,
-        BuilderConditions = {
-            { MIBC, 'GreaterThanGameTime', { 1000 } },
-            { UCBC, 'LocationEngineersBuildingGreater', { 'LocationType', 0, categories.STRUCTURE * categories.NUKE}},
-           ---  
-
-            { EBC, 'GreaterThanEconStorageCurrent', { 5000, 15000 } },
-            
-       --
-        },
-        BuilderType = 'Any',
-        BuilderData = {
-            Assist = {
-                AssistLocation = 'LocationType',
-                AssisteeType = 'Engineer',
-                AssistRange = 250,
-                BeingBuiltCategories = {'STRUCTURE NUKE'},
-                Time = 300,
-            },
-        }
-    },
-    Builder {
-        BuilderName = 'NC Assist Build t3 juice',
-        PlatoonTemplate = 'T3EngineerAssist',
-        Priority = 1150,
-        InstanceCount = 10,
-        BuilderConditions = {
-            { MIBC, 'GreaterThanGameTime', { 1000 } },
-            { UCBC, 'LocationEngineersBuildingGreater', { 'LocationType', 0, categories.STRUCTURE * categories.NUKE}},
-           ---  
-
-            { EBC, 'GreaterThanEconStorageCurrent', { 15000, 15000 } },
-            
-       --
-        },
-        BuilderType = 'Any',
-        BuilderData = {
-            Assist = {
-                AssistLocation = 'LocationType',
-                AssisteeType = 'Engineer',
-                AssistRange = 250,
-                BeingBuiltCategories = {'STRUCTURE NUKE'},
-                Time = 300,
-            },
-        }
-    },
+    
+    
     
     
 
@@ -414,15 +334,16 @@ BuilderGroup {
         Priority = 959,
 		DelayEqualBuildPlattons = {'MobileExperimental_exp_nuke', 400},
         BuilderConditions = {
+            { UCBC, 'CheckBuildPlattonDelay', { 'MobileExperimental_exp_nuke' }},
             { MIBC, 'FactionIndex', {4}},
             { MIBC, 'GreaterThanGameTime', { 1200 } },
             { SBC, 'MapGreaterThan', { 500, 500 }},
-            { UCBC, 'CheckBuildPlattonDelay', { 'MobileExperimental_exp_nuke' }},
+            
             { EBC, 'GreaterThanEconStorageCurrent', { 15000, 20000 } },
           
 			
 			
-            { SIBC, 'HaveGreaterThanUnitsWithCategory', { 6, categories.ENERGYPRODUCTION * categories.TECH3 } },
+            { SIBC, 'HaveLessThanUnitsInCategoryBeingBuilt', { 1, categories.ARTILLERY * categories.TECH3 + categories.EXPERIMENTAL + categories.NUKE * categories.STRUCTURE }},
 		
           
         },
@@ -444,31 +365,7 @@ BuilderGroup {
   
     
   
-      Builder {
-        BuilderName = 'NC Assist Build t4',
-        PlatoonTemplate = 'T3EngineerAssist',
-        Priority = 999,
-        InstanceCount = 4,
-        BuilderConditions = {
-            { MIBC, 'FactionIndex', {4}},
-            { MIBC, 'GreaterThanGameTime', { 1600 } },
-            { UCBC, 'LocationEngineersBuildingGreater', { 'LocationType', 0, categories.STRUCTURE * categories.NUKE}},
-          
-
-            { EBC, 'GreaterThanEconStorageCurrent', { 5000, 15000 } },
-       --
-        },
-        BuilderType = 'Any',
-        BuilderData = {
-            Assist = {
-                AssistLocation = 'LocationType',
-                AssisteeType = 'Engineer',
-                AssistRange = 250,
-                BeingBuiltCategories = {'EXPERIMENTAL'},
-                Time = 300,
-            },
-        }
-    },
+      
 }
 
 BuilderGroup {
@@ -476,20 +373,22 @@ BuilderGroup {
     BuildersType = 'EngineerBuilder',
     Builder {
         BuilderName = 'NC arty',
-        PlatoonTemplate = 'T3EngineerBuilderSorian',
+        PlatoonTemplate = 'T3EngineerBuilderNC',
         Priority = 950,
         DelayEqualBuildPlattons = {'Artillery_regular', 280},
         BuilderConditions = {
-            { MIBC, 'GreaterThanGameTime', { 1200 } },
+            { UCBC, 'CheckBuildPlattonDelay', { 'Artillery_regular' }},
+            { MIBC, 'GreaterThanGameTime', { 1000 } },
             { SBC, 'MapGreaterThan', { 500, 500 }},
             { MIBC, 'FactionIndex', {2,3,4}},
-          
+            {CF,'TeleportStrategyActivatedNotRunning',{}},
+            
             {CF, 'NoDukeNukem',{}},
             {CF, 'NoRapidFireRush',{}},
             {WRC, 'CheckUnitRangeNC', { 'LocationType', 'T3Artillery', categories.STRUCTURE } },
-            { UCBC, 'CheckBuildPlattonDelay', { 'Artillery_regular' }},
+            
 			{ SIBC, 'HaveGreaterThanUnitsWithCategory', { 4, categories.ENERGYPRODUCTION * categories.TECH3 } },
-            { SIBC, 'HaveLessThanUnitsInCategoryBeingBuilt', { 1, categories.STRUCTURE  * categories.ARTILLERY - categories.TECH2}},
+            { SIBC, 'HaveLessThanUnitsInCategoryBeingBuilt', { 1, categories.ARTILLERY * categories.TECH3 + categories.EXPERIMENTAL + categories.NUKE * categories.STRUCTURE }},
 
             { EBC, 'GreaterThanEconStorageCurrent', { 10500, 10000 } }, 
            
@@ -513,21 +412,22 @@ BuilderGroup {
     },
     Builder {
         BuilderName = 'NC arty NO RANDOMIZER or SATELITE',
-        PlatoonTemplate = 'T3EngineerBuilderSorian',
+        PlatoonTemplate = 'T3EngineerBuilderNC',
         Priority = 950,
         DelayEqualBuildPlattons = {'Artillery_regular', 280},
         BuilderConditions = {
+            { UCBC, 'CheckBuildPlattonDelay', { 'Artillery_regular' }},
             { MIBC, 'GreaterThanGameTime', { 1200 } },
             { SBC, 'MapGreaterThan', { 500, 500 }},
             { MIBC, 'FactionIndex', {1}},
-            { UCBC, 'CheckBuildPlattonDelay', { 'Artillery_regular' }},
+            
             {CF, 'NoSateliteRush',{}},
          
             {CF, 'NoDukeNukem',{}},
             {WRC, 'CheckUnitRangeNC', { 'LocationType', 'T3Artillery', categories.STRUCTURE } },
            
 			{ SIBC, 'HaveGreaterThanUnitsWithCategory', { 4, categories.ENERGYPRODUCTION * categories.TECH3 } },
-            { SIBC, 'HaveLessThanUnitsInCategoryBeingBuilt', { 1, categories.STRUCTURE  * categories.ARTILLERY - categories.TECH2}},
+            { SIBC, 'HaveLessThanUnitsInCategoryBeingBuilt', { 1, categories.ARTILLERY * categories.TECH3 + categories.EXPERIMENTAL + categories.NUKE * categories.STRUCTURE }},
 
             { EBC, 'GreaterThanEconStorageCurrent', { 10500, 10000 } }, 
            
@@ -557,18 +457,19 @@ BuilderGroup {
         Priority = 950,
         DelayEqualBuildPlattons = {'MobileExperimental_rapid', 280},
         BuilderConditions = {
+            { UCBC, 'CheckBuildPlattonDelay', { 'MobileExperimental_rapid' }},
             { MIBC, 'FactionIndex', {2}},
             { SBC, 'MapGreaterThan', { 500, 500 }},
             { MIBC, 'GreaterThanGameTime', { 1500 } },
-            { UCBC, 'CheckBuildPlattonDelay', { 'MobileExperimental_rapid' }},
+            
             {CF, 'NoRapidFireRush',{}},
+            {CF,'TeleportStrategyActivatedNotRunning',{}},
             {CF, 'NoDukeNukem',{}},
            
-            { SIBC, 'HaveLessThanUnitsInCategoryBeingBuilt', { 1, categories.STRUCTURE  * categories.ARTILLERY - categories.TECH2}},
+            { SIBC, 'HaveLessThanUnitsInCategoryBeingBuilt', { 1, categories.ARTILLERY * categories.TECH3 + categories.EXPERIMENTAL + categories.NUKE * categories.STRUCTURE }},
             { WRC,'CheckUnitRangeNC', { 'LocationType', 'T3RapidArtillery', categories.STRUCTURE, 2 } },
 			{ SIBC, 'HaveGreaterThanUnitsWithCategory', { 4, categories.ENERGYPRODUCTION * categories.TECH3 } },
-
-{ EBC, 'GreaterThanEconStorageCurrent', { 25000, 10000 } }, 
+            { EBC, 'GreaterThanEconStorageCurrent', { 35000, 15000 } },
  
         },
         BuilderType = 'Any',
@@ -588,98 +489,8 @@ BuilderGroup {
         }
     },
     
-    Builder {
-        BuilderName = 'NC T3EngineerAssistBuildHLRA',
-        PlatoonTemplate = 'T3EngineerAssist',
-        Priority = 1001,
-        InstanceCount = 4,
-        BuilderConditions = {
-            { MIBC, 'GreaterThanGameTime', { 1200 } },
-            { UCBC, 'LocationEngineersBuildingGreater', { 'LocationType', 0, categories.ARTILLERY * categories.TECH3 * categories.STRUCTURE}},
-            
-       --
-            { EBC, 'GreaterThanEconStorageCurrent', { 15000, 15000 } },
-        },
-        BuilderType = 'Any',
-        BuilderData = {
-            Assist = {
-                AssistLocation = 'LocationType',
-                AssisteeType = 'Engineer',
-                AssistRange = 250,
-                BeingBuiltCategories = {'ARTILLERY TECH3 STRUCTURE'},
-                Time = 220,
-            },
-        }
-    },
-    Builder {
-        BuilderName = 'NC t3 assist arty - big and juicy eco',
-        PlatoonTemplate = 'T3EngineerAssist',
-        Priority = 1201,
-        InstanceCount = 20,
-        BuilderConditions = {
-            { MIBC, 'GreaterThanGameTime', { 1200 } },
-            { UCBC, 'LocationEngineersBuildingGreater', { 'LocationType', 0, categories.ARTILLERY * categories.TECH3 * categories.STRUCTURE}},
-         
-       --
-            { EBC, 'GreaterThanEconStorageCurrent', { 45000, 15000 } },
-        },
-        BuilderType = 'Any',
-        BuilderData = {
-            Assist = {
-                AssistLocation = 'LocationType',
-                AssisteeType = 'Engineer',
-                AssistRange = 250,
-                BeingBuiltCategories = {'ARTILLERY TECH3 STRUCTURE'},
-                Time = 300,
-            },
-        }
-    },
-    Builder {
-        BuilderName = 'NC t2 assist arty - big and juicy eco',
-        PlatoonTemplate = 'T2EngineerAssist',
-        Priority = 1201,
-        InstanceCount = 20,
-        BuilderConditions = {
-            { MIBC, 'GreaterThanGameTime', { 1200 } },
-            { UCBC, 'LocationEngineersBuildingGreater', { 'LocationType', 0, categories.ARTILLERY * categories.TECH3 * categories.STRUCTURE}},
-         
-       --
-            { EBC, 'GreaterThanEconStorageCurrent', { 45000, 15000 } },
-        },
-        BuilderType = 'Any',
-        BuilderData = {
-            Assist = {
-                AssistLocation = 'LocationType',
-                AssisteeType = 'Engineer',
-                AssistRange = 250,
-                BeingBuiltCategories = {'ARTILLERY TECH3 STRUCTURE'},
-                Time = 300,
-            },
-        }
-    },
-    Builder {
-        BuilderName = 'NC t1 assist arty - big and juicy eco',
-        PlatoonTemplate = 'EngineerAssist',
-        Priority = 1201,
-        InstanceCount = 10,
-        BuilderConditions = {
-            { MIBC, 'GreaterThanGameTime', { 1200 } },
-            { UCBC, 'LocationEngineersBuildingGreater', { 'LocationType', 0, categories.ARTILLERY * categories.TECH3 * categories.STRUCTURE}},
-         
-       --
-            { EBC, 'GreaterThanEconStorageCurrent', { 45000, 15000 } },
-        },
-        BuilderType = 'Any',
-        BuilderData = {
-            Assist = {
-                AssistLocation = 'LocationType',
-                AssisteeType = 'Engineer',
-                AssistRange = 250,
-                BeingBuiltCategories = {'ARTILLERY TECH3 STRUCTURE'},
-                Time = 300,
-            },
-        }
-    },
+    
+   
 }
     
 
@@ -690,7 +501,11 @@ BuilderGroup {
         BuilderName = 'NC T3 Artillery',
         PlatoonTemplate = 'T3ArtilleryStructureSorian',
         Priority = 1,
-        InstanceCount = 1000,
+        InstanceCount = 15,
+        BuilderConditions = { 
+
+            { UCBC, 'HaveGreaterThanUnitsWithCategory', {0, categories.STRUCTURE * categories.ARTILLERY * categories.TECH3 } },
+        },
         FormRadius = 10000,
         BuilderType = 'Any',
     },
@@ -704,7 +519,11 @@ BuilderGroup {
         PlatoonTemplate = 'T4ArtilleryStructureSorian',
 		PlatoonAddPlans = {'NameUnitsSorian'},
         Priority = 1,
-        InstanceCount = 1000,
+        InstanceCount = 15,
+        BuilderConditions = { 
+
+            { UCBC, 'HaveGreaterThanUnitsWithCategory', {0, categories.EXPERIMENTAL * categories.ARTILLERY } },
+        },
         FormRadius = 10000,
         BuilderType = 'Any',
     },
@@ -720,7 +539,11 @@ BuilderGroup {
         BuilderName = 'NC T3 Nuke Silo',
         PlatoonTemplate = 'T3NukeNC',
         Priority = 1,
-        InstanceCount = 100,
+        InstanceCount = 50,
+        BuilderConditions = { 
+
+            { UCBC, 'HaveGreaterThanUnitsWithCategory', {0, categories.NUKE * categories.TECH3} },
+        },
         BuilderType = 'Any',
        
     },
@@ -728,7 +551,11 @@ BuilderGroup {
         BuilderName = 'NC T4 Nuke Silo',
         PlatoonTemplate = 'T4NukeSorian',
         Priority = 1,
-        InstanceCount = 100,
+        InstanceCount = 10,
+        BuilderConditions = { 
+
+            { UCBC, 'HaveGreaterThanUnitsWithCategory', {0, categories.NUKE * categories.EXPERIMENTAL} },
+        },
         BuilderType = 'Any',
     },
 }

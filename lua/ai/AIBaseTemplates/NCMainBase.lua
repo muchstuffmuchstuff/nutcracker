@@ -1,21 +1,14 @@
 #### Nut Cracker Main Base
 ---muchstuff
 
- --randomizer numbers
- --1 teleport
- --2 land experimental
- --3 nuke
- --4 arty
- --5 t1 bomber spam
- --6 air experimental
- --7 landrush
+ 
 
 
 BaseBuilderTemplate {
     BaseTemplateName = 'NutCrackerMainBase',
     Builders = {
-        'NCTransportFactorycoinflip',
-        'NC nuke rush landupgrades',
+      
+        'NC nuke or tele rush landupgrades',
        
         'NCengineerassistnuke_coinflip',
       
@@ -27,7 +20,7 @@ BaseBuilderTemplate {
         'ncdukehukemcoinflip',
         'NC_coinflip_factoryupgrade',
           
-        'NCt1bomberunitsbehavior',
+        
 --starting acu for coinflip
 
 
@@ -43,27 +36,28 @@ BaseBuilderTemplate {
 'NC Tele SCU Strategy',
 
 
-
+'NC Satelite coinflip',
 'NCt1bombercoinflip',
 --
 'ncNukecoinflip',
 
 
 --
-'NCairexpcoinflipbehavior',
+
 'NCairexpcoinflip',
 --
-'NClandexpcoinflipbehavior',
+
 'NClandexpcoinflip',
 
 
 
 
         # ==== ECONOMY ==== #
+        'NCmapcontrolupgrades',
         'NCengineertowers',
         'NC tower upgrades',
         'NCT3Engineerassistmex',
-        'NCEngineerMassBuildersLowerPri',
+       
         'NCEngineerEnergyBuilders',
         'NCemergencyenergy',
       
@@ -71,16 +65,17 @@ BaseBuilderTemplate {
         'NCT1EngineerBuilders',
         'NCT2EngineerBuilders',
         'NCT3EngineerBuilders',
-      
+        'NCemergencyenergymain',
         
-        'NCMassFabPause',
+    
         'NCmassupgrade',
-        'NCt1masscontinuation',
+       
        'NCUpgradeBuilders_mainbase',
     
-    'NCsubcommander_ras',
+    
         
-        # Factory upgrades
+        # Factory 
+      
        
         
        
@@ -122,6 +117,7 @@ BaseBuilderTemplate {
         # ==== DEFENSES ==== #
         'NCdefense_onisland',
 		'NCT1BaseDefenses',
+        'NCt4airemergencyreactionmainbase',
 		
 		'NCT3BaseDefenses',
         'NCt4airemergencyreaction',
@@ -136,7 +132,7 @@ BaseBuilderTemplate {
         'NCT3NukeDefenseBehaviors',
 		
 		--offense
-        'NCtacticalattack',
+        'NCadaptiveoffense',
 	
         
         # ==== NAVAL EXPANSION ==== #
@@ -238,6 +234,7 @@ BaseBuilderTemplate {
         'NCAirScoutbehavior',
         'NCRadarUpgradeBuildersMain',
         'NCRadarEngineerBuilders',
+       
       
       
         
