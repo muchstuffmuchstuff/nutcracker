@@ -703,7 +703,7 @@ BuilderGroup {
     },
 
     Builder {
-        BuilderName = 'NC Air t2 to t3 mapcontrol regardless',
+        BuilderName = 'NC Air t2 to t3  regardless',
         PlatoonTemplate = 'T2AirFactoryUpgrade',
         Priority = 1001,
         DelayEqualBuildPlattons = {'FactoryUpgrademc_regardless', 25},

@@ -23,8 +23,8 @@ local CF = '/mods/nutcracker/hook/lua/coinflip.lua'
 local WRC = '/mods/nutcracker/hook/lua/weaponsrangeconditions.lua'
 local EN = '/mods/nutcracker/hook/lua/economicnumbers.lua'
 local AIUtils = import('/lua/ai/aiutilities.lua')
-local factoryratio = 1.3
-local MaxCapFactoryNC = 0.018
+local factoryratio = 1.4
+local MaxCapFactoryNC = 0.02
 
 
 
@@ -54,6 +54,8 @@ Builder {
                 BuildStructures = {
                     'T1LandFactory',
                     'T1LandFactory',
+                    'T1LandFactory',
+                    
                 },
                 Location = 'LocationType',
                 #AdjacencyCategory = 'ENERGYPRODUCTION',
@@ -79,6 +81,7 @@ Builder {
             Construction = {
                 BuildClose = true,
                 BuildStructures = {
+                    'T1AirFactory',
                     'T1AirFactory',
                     'T1AirFactory',
                 },
