@@ -66,6 +66,15 @@ PlatoonTemplate {
 }
 
 PlatoonTemplate {
+    Name = 'clenseNCt3_cmdsnipe',
+    Plan = 'StrikeForceAISorian',
+    GlobalSquads = {
+        { categories.MOBILE * categories.TECH3 * categories.AIR  * categories.BOMBER - categories.TRANSPORTFOCUS - categories.ANTINAVY -categories.GROUNDATTACK - categories.SCOUT - categories.INSIGNIFICANTUNIT - categories.POD - categories.daa0206 , 4, 4, 'Attack', 'none' },
+        
+    },
+}
+
+PlatoonTemplate {
     Name = 'clensegunshipsNCt1t2',
     Plan = 'StrikeForceAISorian',
     GlobalSquads = {

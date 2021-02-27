@@ -198,6 +198,7 @@ BuilderGroup {
                 BuilderConditions = {
                     {CF,'bomberallowed',{}},
                     { MIBC, 'GreaterThanGameTime', { 900} },
+                    { UCBC, 'HaveUnitsWithCategoryAndAlliance', { true, 0, categories.SHIELD, 'Enemy'}},
                     { UCBC, 'HaveGreaterThanUnitsWithCategory', {0, categories.NUKE * categories.STRUCTURE } },
                     { WRC, 'HaveUnitRatioVersusEnemyNC', { 0.99, categories.STRUCTURE * categories.NUKE, '<=', categories.STRUCTURE * categories.TECH3 * categories.ANTIMISSILE } },
                              { UCBC, 'PoolGreaterAtLocation', { 'LocationType', 2, categories.AIR  * categories.TECH3 * categories.BOMBER  * categories.MOBILE - categories.TRANSPORTFOCUS -  categories.GROUNDATTACK - categories.ANTINAVY - categories.SCOUT - categories.uea0303 - categories.uaa0303 - categories.ura0303 - categories.xsa0303 - categories.uea0102 - categories.uaa0102 - categories.ura0102 - categories.xsa0102 } },
@@ -213,15 +214,43 @@ BuilderGroup {
                         'EXPERIMENTAL STRUCTURE',
                         'MASSEXTRACTION TECH3',
                         'MASSEXTRACTION TECH2',
-                      
-                        
-                                       
-        
-                        
-                        
+   
                     },
                 },
             },
+            
+            Builder {
+                BuilderName = 'NC clenseexcess bombersT3 anti cmd',
+                PlatoonTemplate = 'clenseNCt3_cmdsnipe',
+                    PlatoonAddBehaviors = { 'AirUnitRefitSorian' },
+                    PlatoonAddPlans = { 'AirIntelToggle', 'DistressResponseAISorian'  },
+                    Priority = 10,
+                    FormRadius = 500,
+                    InstanceCount = 100,
+                    AggressiveMove = true,
+                    BuilderType = 'Any',
+                    BuilderConditions = {
+                        {CF,'bomberallowed',{}},
+                        { MIBC, 'GreaterThanGameTime', { 900} },
+                        { UCBC, 'HaveUnitsWithCategoryAndAlliance', { false, 1, categories.SHIELD, 'Enemy'}},
+                                 { UCBC, 'PoolGreaterAtLocation', { 'LocationType', 2, categories.AIR  * categories.TECH3 * categories.BOMBER  * categories.MOBILE - categories.TRANSPORTFOCUS -  categories.GROUNDATTACK - categories.ANTINAVY - categories.SCOUT - categories.uea0303 - categories.uaa0303 - categories.ura0303 - categories.xsa0303 - categories.uea0102 - categories.uaa0102 - categories.ura0102 - categories.xsa0102 } },
+                        { SBC, 'NoRushTimeCheck', { 0 }},
+                    },
+                    BuilderData = {
+                        SearchRadius = 5000,
+                        
+                        PrioritizedCategories = {    
+            
+                            'COMMAND,'    
+                           
+                            
+                                           
+            
+                            
+                            
+                        },
+                    },
+                },
             Builder {
                 BuilderName = 'NC clenseexcess bombersT3 anti nuke',
                 PlatoonTemplate = 'clenseNCt3',
@@ -235,6 +264,7 @@ BuilderGroup {
                     BuilderConditions = {
                         {CF,'bomberallowed',{}},
                         { MIBC, 'GreaterThanGameTime', { 900} },
+                        { UCBC, 'HaveUnitsWithCategoryAndAlliance', { true, 0, categories.SHIELD, 'Enemy'}},
                         { UCBC, 'HaveGreaterThanUnitsWithCategory', {0, categories.NUKE * categories.STRUCTURE } },
                         { WRC, 'HaveUnitRatioVersusEnemyNC', { 1, categories.STRUCTURE * categories.NUKE, '>=', categories.STRUCTURE * categories.TECH3 * categories.ANTIMISSILE } },
                                  { UCBC, 'PoolGreaterAtLocation', { 'LocationType', 2, categories.AIR  * categories.TECH3 * categories.BOMBER  * categories.MOBILE - categories.TRANSPORTFOCUS -  categories.GROUNDATTACK - categories.ANTINAVY - categories.SCOUT - categories.uea0303 - categories.uaa0303 - categories.ura0303 - categories.xsa0303 - categories.uea0102 - categories.uaa0102 - categories.ura0102 - categories.xsa0102 } },

@@ -705,7 +705,7 @@ BuilderGroup {
       
         BuilderConditions = {
             {CF,'Standardlandpushstartlate3',{}},
-            { MIBC, 'GreaterThanGameTime', { 2800 } },
+            { MIBC, 'LessThanGameTime', { 1600 } },
             { WRC, 'CanPathToCurrentEnemyNC', { 'LocationType', true } }, 
 { EBC, 'GreaterThanEconStorageCurrent', { 8, 100 } },  
 
@@ -722,7 +722,7 @@ BuilderGroup {
         BuilderConditions = {
          
             {CF,'Standardlandpushlimittime',{}},
-            { MIBC, 'LessThanGameTime', { 1600 } },
+            { MIBC, 'GreaterThanGameTime', { 600 } },
             { WRC, 'CanPathToCurrentEnemyNC', { 'LocationType', true } }, 
 { EBC, 'GreaterThanEconStorageCurrent', { 8, 100 } },  
 { WRC, 'HaveUnitRatioVersusEnemyNC', { 4.0, categories.MOBILE * categories.LAND - categories.ENGINEER, '<=', categories.MOBILE * categories.LAND - categories.ENGINEER} },
@@ -910,7 +910,7 @@ BuilderGroup {
     Builder {
         BuilderName = 'NC T2 mobile missle',
         PlatoonTemplate = 'T2mobileturtlecracker',
-        Priority = 650,
+        Priority = 660,
         BuilderConditions = {
             { WRC, 'CanPathToCurrentEnemyNC', { 'LocationType', true } },  
             { UCBC, 'HaveUnitsWithCategoryAndAlliance', { true, 8, categories.STRUCTURE * (categories.TECH2 + categories.TECH3) * (categories.ARTILLERY + categories.DIRECTFIRE), 'Enemy'}},
@@ -924,7 +924,7 @@ BuilderGroup {
     Builder {
         BuilderName = 'NC T3 mobile missle',
         PlatoonTemplate = 'T3mobileturtlecracker',
-        Priority = 651,
+        Priority = 761,
         BuilderConditions = {
             { WRC, 'CanPathToCurrentEnemyNC', { 'LocationType', true } },  
             { UCBC, 'HaveUnitsWithCategoryAndAlliance', { true, 8, categories.STRUCTURE * (categories.TECH2 + categories.TECH3) * (categories.ARTILLERY + categories.DIRECTFIRE), 'Enemy'}},
