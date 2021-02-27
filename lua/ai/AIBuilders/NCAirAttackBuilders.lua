@@ -956,7 +956,7 @@ BuilderGroup {
             { MIBC, 'GreaterThanGameTime', { 600 } },
             {CF,'gunshipallowed',{}},
             { WRC, 'HaveUnitRatioVersusEnemyNC', { 3.0, categories.MOBILE * categories.AIR * categories.ANTIAIR * categories.TECH3 - categories.GROUNDATTACK - categories.BOMBER, '>=', categories.MOBILE * categories.AIR * (categories.TECH2 + categories.TECH3)  - categories.SCOUT - categories.TRANSPORTFOCUS } },
-            { WRC, 'HaveUnitRatioVersusEnemyNC', { 4.0, categories.MOBILE * categories.LAND - categories.ENGINEER, '<=', categories.MOBILE * categories.LAND - categories.ENGINEER} },
+            { WRC, 'HaveUnitRatioVersusEnemyNC', { 5.0, categories.MOBILE * categories.LAND - categories.ENGINEER, '<=', categories.MOBILE * categories.LAND - categories.ENGINEER} },
 			{ SBC, 'NoRushTimeCheck', { 600 }},
 			
           ---

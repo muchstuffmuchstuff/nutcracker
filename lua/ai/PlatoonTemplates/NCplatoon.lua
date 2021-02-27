@@ -665,19 +665,40 @@ PlatoonTemplate {
 }
 
 PlatoonTemplate {
+    Name = 'NCengineer_thirdbatch',
+    FactionSquads = {
+        UEF = {
+            { 'uel0105', 1, 10, 'support', 'None' }
+        },
+        Aeon = {
+            { 'ual0105', 1, 10, 'support', 'None' }
+        },
+        Cybran = {
+            { 'url0105', 1, 10, 'support', 'None' }
+        },
+        Seraphim = {
+            { 'xsl0105', 1, 10, 'support', 'none' }
+        },
+      
+    }
+}
+
+
+
+PlatoonTemplate {
     Name = 'NCengineer2_startup',
     FactionSquads = {
         UEF = {
-            { 'uel0208', 1, 5, 'support', 'None' }
+            { 'uel0208', 1, 8, 'support', 'None' }
         },
         Aeon = {
-            { 'ual0208', 1, 5, 'support', 'None' }
+            { 'ual0208', 1, 8, 'support', 'None' }
         },
         Cybran = {
-            { 'url0208', 1, 5, 'support', 'None' }
+            { 'url0208', 1, 8, 'support', 'None' }
         },
         Seraphim = {
-            { 'xsl0208', 1, 5, 'support', 'none' }
+            { 'xsl0208', 1, 8, 'support', 'none' }
         },
       
     }
@@ -687,16 +708,16 @@ PlatoonTemplate {
     Name = 'NCengineer3_startup',
     FactionSquads = {
         UEF = {
-            { 'uel0309', 1, 5, 'support', 'None' }
+            { 'uel0309', 1, 8, 'support', 'None' }
         },
         Aeon = {
-            { 'ual0309', 1, 5, 'support', 'None' }
+            { 'ual0309', 1, 8, 'support', 'None' }
         },
         Cybran = {
-            { 'url0309', 1, 5, 'support', 'None' }
+            { 'url0309', 1, 8, 'support', 'None' }
         },
         Seraphim = {
-            { 'xsl0309', 1, 5, 'support', 'none' }
+            { 'xsl0309', 1, 8, 'support', 'none' }
         },
       
     }

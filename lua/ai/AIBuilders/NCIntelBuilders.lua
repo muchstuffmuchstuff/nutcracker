@@ -104,7 +104,7 @@ BuilderGroup {
         BuilderConditions = {
            
             { UCBC, 'CheckBuildPlattonDelay', { 'Scouts' }},
-            { MIBC, 'GreaterThanGameTime', { 500 } },
+            { MIBC, 'GreaterThanGameTime', { 400 } },
             { UCBC, 'HaveLessThanUnitsWithCategory', { 10, categories.TECH1 * categories.AIR * categories.INTELLIGENCE } },
 		
       

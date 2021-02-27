@@ -881,7 +881,7 @@ BuilderGroup {
     Builder {
         BuilderName = 'NC T1 Engineer Disband one time small ',
         PlatoonTemplate = 'NCengineer_startup',
-        
+        PlatoonAddFunctions = { {SAI, 'BuildOnce'}, },
         Priority = 99999,
         BuilderConditions = {
            
@@ -896,10 +896,24 @@ BuilderGroup {
         BuilderName = 'NC T1 Engineer Disband second batch ',
         PlatoonTemplate = 'NCengineer_secondbatch',
         Priority = 99999,
-        
+        PlatoonAddFunctions = { {SAI, 'BuildOnce'}, },
         BuilderConditions = {
             { UCBC, 'HaveLessThanUnitsWithCategory', { 10, categories.MOBILE * categories.ENGINEER }},
             { UCBC, 'HaveGreaterThanUnitsWithCategory', { 8, categories.MOBILE * categories.TECH1 - categories.ENGINEER }},
+           
+          
+        },
+        BuilderType = 'All',
+    },
+
+    Builder {
+        BuilderName = 'NC T1 Engineer Disband third batch ',
+        PlatoonTemplate = 'NCengineer_thirdbatch',
+        Priority = 99999,
+        PlatoonAddFunctions = { {SAI, 'BuildOnce'}, },
+        BuilderConditions = {
+            { UCBC, 'HaveLessThanUnitsWithCategory', { 20, categories.MOBILE * categories.ENGINEER }},
+            { UCBC, 'HaveGreaterThanUnitsWithCategory', { 15, categories.MOBILE - categories.ENGINEER - categories.TRANSPORTFOCUS - categories.SCOUT}},
            
           
         },
@@ -950,7 +964,7 @@ BuilderGroup {
         BuilderConditions = {
             { UCBC, 'UnitsLessAtLocation', { 'LocationType', 2, categories.FACTORY * categories.TECH3 }},
             { EBC, 'GreaterThanEconStorageCurrent', { 50, 1000 } },
-            {EN, 'HaveLessThanArmyPoolWithCategoryNC', {4, categories.ENGINEER * (categories.TECH2 + categories.TECH3 + categories.SUBCOMMANDER)}},
+            {EN, 'HaveLessThanArmyPoolWithCategoryNC', {6, categories.ENGINEER * (categories.TECH2 + categories.TECH3 + categories.SUBCOMMANDER)}},
 			
             { UCBC, 'LocationFactoriesBuildingLess', { 'LocationType', 1, 'ENGINEER TECH2'} },
             { UCBC, 'EngineerCapCheck', { 'LocationType', 'Tech2' } },
@@ -984,7 +998,7 @@ BuilderGroup {
         BuilderConditions = {
             { MIBC, 'GreaterThanGameTime', { 300} },
             {EN, 'HaveLessThanArmyPoolWithCategoryNC', {10, categories.ENGINEER * categories.TECH3 - categories.SUBCOMMANDER}},
-            { EBC, 'GreaterThanEconStorageCurrent', {3000, 15000 } },
+            { EBC, 'GreaterThanEconStorageCurrent', {300, 15000 } },
             { UCBC, 'LocationFactoriesBuildingLess', { 'LocationType', 1, categories.ENGINEER * categories.TECH3 - categories.SUBCOMMANDER  } },
             { UCBC, 'EngineerCapCheck', { 'LocationType', 'Tech3' } },
             
