@@ -1213,8 +1213,8 @@ PlatoonTemplate {
         
         },
         Aeon = {
-            { 'xal0305', 1, 4, 'attack', 'none' }, 
-            { 'dal0310', 1, 4, 'attack', 'none' }, 
+            { 'xal0305', 1, 6, 'attack', 'none' }, 
+            { 'dal0310', 1, 2, 'attack', 'none' }, 
               
         },
         Cybran = {
