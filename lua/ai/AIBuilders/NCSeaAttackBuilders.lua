@@ -176,7 +176,7 @@ BuilderGroup {
             { MIBC, 'GreaterThanGameTime', { 600} },            
 			{ SBC, 'NoRushTimeCheck', { 0}},
             { EBC, 'GreaterThanEconStorageCurrent', { 25, 125 } },
-            { UCBC, 'HaveUnitsWithCategoryAndAlliance', { true, 0, categories.NAVAL * categories.DESTROYER,  'Enemy' }},
+            { UCBC, 'HaveUnitsWithCategoryAndAlliance', { false, 1, categories.NAVAL * (categories.DESTROYER + categories.SUBMERSIBLE),  'Enemy' }},
             { WRC, 'HaveUnitRatioVersusEnemyNC', { 5.0, categories.MASSEXTRACTION, '>=', categories.MASSEXTRACTION } },
             { UCBC, 'HaveLessThanUnitsWithCategory', { 10, categories.NAVAL * categories.MOBILE } },
             
