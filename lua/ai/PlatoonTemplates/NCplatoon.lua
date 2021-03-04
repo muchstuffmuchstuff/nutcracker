@@ -651,33 +651,33 @@ PlatoonTemplate {
     FactionSquads = {
         UEF = {
             { 'uel0105', 1, 7, 'support', 'None' }, -- t1engineer
-            { 'uea0107', 1, 1, 'support', 'None' },
-            { 'uel0105', 1, 2, 'support', 'None' }, --engineer
             { 'uea0101', 1, 1, 'scout', 'None' }, --t1 scout
+            { 'uel0105', 1, 2, 'support', 'None' }, --engineer
+            { 'uea0107', 1, 1, 'support', 'None' },
             { 'uel0105', 1, 10, 'support', 'None' }, 
              
         },
         Aeon = {
             { 'ual0105', 1, 7, 'support', 'None' }, ---engineer
-            { 'uaa0107', 1, 1, 'support', 'none' },
-            { 'ual0105', 1, 2, 'support', 'none' }, --engineer
             { 'uaa0101', 1, 1, 'scout', 'GrowthFormation' }, ---scout
+            { 'ual0105', 1, 2, 'support', 'none' }, --engineer
+            { 'uaa0107', 1, 1, 'support', 'none' },
             { 'ual0105', 1, 10, 'support', 'none' }, 
             
         },
         Cybran = {
             { 'url0105', 1, 7, 'support', 'None' },
-            { 'ura0107', 1, 1, 'support', 'None' }, --transport
-            { 'url0105', 1, 2, 'support', 'None' },
             { 'ura0101', 1, 1, 'Attack', 'GrowthFormation' },-- T1 scout
+            { 'url0105', 1, 2, 'support', 'None' },
+            { 'ura0107', 1, 1, 'support', 'None' }, --transport
             { 'url0105', 1, 10, 'support', 'None' },
            
         },
         Seraphim = {
             { 'xsl0105', 1, 7, 'support', 'None' },
-            { 'xsa0107', 1, 1, 'Attack', 'GrowthFormation' },
-            { 'xsl0105', 1, 2, 'Attack', 'GrowthFormation' },
             { 'xsa0101', 1, 1, 'Attack', 'GrowthFormation' },
+            { 'xsl0105', 1, 2, 'Attack', 'GrowthFormation' },
+            { 'xsa0107', 1, 1, 'Attack', 'GrowthFormation' },
             { 'xsl0105', 1, 10, 'Attack', 'GrowthFormation' },
            -- scout
 
