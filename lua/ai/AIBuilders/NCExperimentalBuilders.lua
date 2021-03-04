@@ -160,9 +160,10 @@ BuilderGroup {
         BuilderName = 'nc Air Exp1 sera and cyb get r done',
         PlatoonTemplate = 'T3EngineerBuilderNC',
         Priority = 1300,
-        DelayEqualBuildPlattons = {'MobileExperimental_air', 120},
+      
+        DelayEqualBuildPlattons = {'biglyspendly', 60},
         BuilderConditions = {
-            { UCBC, 'CheckBuildPlattonDelay', { 'MobileExperimental_air' }},
+            { UCBC, 'CheckBuildPlattonDelay', { 'biglyspendly' }},
             { MIBC, 'FactionIndex', {3,4}},
             { SBC, 'MapGreaterThan', { 500, 500 }},
             {CF,'NukeandExperimentalClearedtoBuild',{}},
@@ -195,11 +196,13 @@ BuilderGroup {
         BuilderName = 'nc Air exp aeon get r done',
         PlatoonTemplate = 'T3EngineerBuilderNC',
         Priority = 1300,
-        DelayEqualBuildPlattons = {'MobileExperimental_air', 120},
+     
+        DelayEqualBuildPlattons = {'biglyspendly', 60},
         BuilderConditions = {
+            { UCBC, 'CheckBuildPlattonDelay', { 'biglyspendly' }},
 
             { MIBC, 'FactionIndex', {2}},
-            { UCBC, 'CheckBuildPlattonDelay', { 'MobileExperimental_air' }},
+           
             { SBC, 'MapGreaterThan', { 500, 500 }},
             { MIBC, 'GreaterThanGameTime', { 800} },
             {CF,'NukeandExperimentalClearedtoBuild',{}},
@@ -282,11 +285,13 @@ BuilderGroup {
         BuilderName = 'NC Land Exp1 Engineer 1',
         PlatoonTemplate = 'T3EngineerBuilderNC',
         Priority = 950,
-        DelayEqualBuildPlattons = {'MobileExperimental_land', 30},
+        
 
         InstanceCount = 1,
+        DelayEqualBuildPlattons = {'biglyspendly', 60},
         BuilderConditions = {
-            { UCBC, 'CheckBuildPlattonDelay', { 'MobileExperimental_land' }},
+            { UCBC, 'CheckBuildPlattonDelay', { 'biglyspendly' }},
+          
             { SBC, 'MapLessThan', { 1000, 1000 }},
             { MIBC, 'GreaterThanGameTime', { 1000} },
             { MIBC, 'FactionIndex', {2, 3, 4}},
@@ -325,11 +330,13 @@ BuilderGroup {
         BuilderName = 'NC Land Exp1 water map',
         PlatoonTemplate = 'T3EngineerBuilderNC',
         Priority = 990,
-        DelayEqualBuildPlattons = {'MobileExperimental_land', 30},
+       
 
         InstanceCount = 1,
+        DelayEqualBuildPlattons = {'biglyspendly', 60},
         BuilderConditions = {
-            { UCBC, 'CheckBuildPlattonDelay', { 'MobileExperimental_land' }},
+            { UCBC, 'CheckBuildPlattonDelay', { 'biglyspendly' }},
+          
             { MIBC, 'FactionIndex', { 1,3}},
             { MIBC, 'GreaterThanGameTime', { 1000} },
             
@@ -372,7 +379,9 @@ BuilderGroup {
         PlatoonTemplate = 'AeonT3EngineerBuilderSorian',
         Priority = 950,
 		InstanceCount = 1,
+        DelayEqualBuildPlattons = {'biglyspendly', 60},
         BuilderConditions = {
+            { UCBC, 'CheckBuildPlattonDelay', { 'biglyspendly' }},
             { MIBC, 'FactionIndex', {2}},
             { MIBC, 'GreaterThanGameTime', { 1200} },
             {CF,'NukeandExperimentalClearedtoBuild',{}},
@@ -416,9 +425,9 @@ BuilderGroup {
         BuilderName = 'Nc Satelite standard',
         PlatoonTemplate = 'UEFT3EngineerBuilderSorian',
         Priority = 951,
-        DelayEqualBuildPlattons = {'MobileExperimental_satelite', 30},
+        DelayEqualBuildPlattons = {'biglyspendly', 60},
         BuilderConditions = {
-            { UCBC, 'CheckBuildPlattonDelay', { 'MobileExperimental_satelite' }},
+            { UCBC, 'CheckBuildPlattonDelay', { 'biglyspendly' }},
             { MIBC, 'FactionIndex', {1}},
             { SBC, 'MapGreaterThan', { 500, 500 }},
             { MIBC, 'GreaterThanGameTime', { 800} },

@@ -405,9 +405,9 @@ BuilderGroup {
         PlatoonAIPlan = 'ReclaimAI',
         Priority = 1,
         InstanceCount = 20,
-        DelayEqualBuildPlattons = {'reclaim', 7},
+        DelayEqualBuildPlattons = {'reclaim_asneeded', 7},
         BuilderConditions = {
-            { UCBC, 'CheckBuildPlattonDelay', { 'reclaim' }},
+            { UCBC, 'CheckBuildPlattonDelay', { 'reclaim_asneeded' }},
                 { SBC, 'ReclaimablesInArea', { 'LocationType', 0, 'AntiSurface', 0 }},
             },
         BuilderData = {
@@ -533,9 +533,9 @@ BuilderGroup {
         PlatoonTemplate = 'AnyEngineerassistNC',
         Priority = 975,
         InstanceCount = 5,
-        DelayEqualBuildPlattons = {'Help', 7},
+        DelayEqualBuildPlattons = {'Help_upgrade', 7},
         BuilderConditions = {
-            { UCBC, 'CheckBuildPlattonDelay', { 'Help' }},
+            { UCBC, 'CheckBuildPlattonDelay', { 'Help_upgrade' }},
             { UCBC, 'LocationFactoriesBuildingGreater', { 'LocationType', 0, 'FACTORY TECH3' }},
             { EBC, 'GreaterThanEconStorageCurrent', { 500, 1000 } },
            
@@ -617,11 +617,11 @@ BuilderGroup {
         BuilderName = 'NC Engineer Assist Factory good income',
         PlatoonTemplate = 'AnyEngineerassistNC',
         Priority = 500,
-        InstanceCount = 15,
+        InstanceCount = 100,
         BuilderType = 'Any',
-        DelayEqualBuildPlattons = {'Help', 7},
+        DelayEqualBuildPlattons = {'Help_mobileair', 7},
         BuilderConditions = {
-            { UCBC, 'CheckBuildPlattonDelay', { 'Help' }},
+            { UCBC, 'CheckBuildPlattonDelay', { 'Help_mobileair' }},
             { UCBC, 'LocationFactoriesBuildingGreater', { 'LocationType', 0, 'MOBILE' } },
          
             { EBC, 'GreaterThanEconStorageCurrent', { 1500, 4000 } },
@@ -631,9 +631,33 @@ BuilderGroup {
             Assist = {
                 AssistLocation = 'LocationType',
                 PermanentAssist = false,
-                BeingBuiltCategories = { 'AIR'},
+                BeingBuiltCategories = { 'MOBILE AIR'},
                 AssisteeType = 'Factory',
-                time = 120,
+                time = 200,
+            },
+        }
+    },
+    Builder {
+        BuilderName = 'NC Engineer Assist Factory good income',
+        PlatoonTemplate = 'AnyEngineerassistNC',
+        Priority = 500,
+        InstanceCount = 100,
+        BuilderType = 'Any',
+        DelayEqualBuildPlattons = {'Help_mobileair2', 7},
+        BuilderConditions = {
+            { UCBC, 'CheckBuildPlattonDelay', { 'Help_mobileair2' }},
+            { UCBC, 'LocationFactoriesBuildingGreater', { 'LocationType', 0, 'MOBILE' } },
+         
+            { EBC, 'GreaterThanEconStorageCurrent', { 15000, 40000 } },
+           
+        },
+        BuilderData = {
+            Assist = {
+                AssistLocation = 'LocationType',
+                PermanentAssist = false,
+                BeingBuiltCategories = { 'MOBILE AIR'},
+                AssisteeType = 'Factory',
+                time = 200,
             },
         }
     },
@@ -676,10 +700,10 @@ BuilderGroup {
         PlatoonAIPlan = 'ManagerEngineerFindUnfinished',
         Priority = 1100,
         InstanceCount = 35,
-        DelayEqualBuildPlattons = {'Help', 20},
+        DelayEqualBuildPlattons = {'Help_preset', 20},
         BuilderType = 'Any',
         BuilderConditions = {
-            { UCBC, 'CheckBuildPlattonDelay', { 'Help' }},
+            { UCBC, 'CheckBuildPlattonDelay', { 'Help_preset' }},
             { MIBC, 'GreaterThanGameTime', { 600} },
             
             { EBC, 'GreaterThanEconStorageCurrent', { 10000, 15000 } },
@@ -1771,10 +1795,10 @@ BuilderGroup {
         PlatoonAIPlan = 'ManagerEngineerFindUnfinished',
         Priority = 1000,
         InstanceCount = 10,
-        DelayEqualBuildPlattons = {'Help', 7},
+        DelayEqualBuildPlattons = {'Help_unfinished', 7},
        
         BuilderConditions = {
-            { UCBC, 'CheckBuildPlattonDelay', { 'Help' }},
+            { UCBC, 'CheckBuildPlattonDelay', { 'Help_unfinished' }},
             { MIBC, 'GreaterThanGameTime', { 600} },
            
             { EBC, 'GreaterThanEconStorageCurrent', { 1500, 10000 } },
@@ -1796,10 +1820,10 @@ BuilderGroup {
         PlatoonTemplate = 'AnyEngineerassistNC',
         Priority = 1200,
         InstanceCount = 100,
-        DelayEqualBuildPlattons = {'Help', 7},
+        DelayEqualBuildPlattons = {'Help_stratassist', 7},
        
         BuilderConditions = {
-            { UCBC, 'CheckBuildPlattonDelay', { 'Help' }},
+            { UCBC, 'CheckBuildPlattonDelay', { 'Help_stratassist' }},
             { MIBC, 'GreaterThanGameTime', { 600} },
            
             { EBC, 'GreaterThanEconStorageCurrent', { 1500, 10000 } },
@@ -1821,10 +1845,10 @@ BuilderGroup {
         PlatoonTemplate = 'AnyEngineerassistNC',
         Priority = 1200,
         InstanceCount = 100,
-        DelayEqualBuildPlattons = {'Help2', 7},
+        DelayEqualBuildPlattons = {'Help_stratassist2', 7},
        
         BuilderConditions = {
-            { UCBC, 'CheckBuildPlattonDelay', { 'Help2' }},
+            { UCBC, 'CheckBuildPlattonDelay', { 'Help_stratassist2' }},
             { MIBC, 'GreaterThanGameTime', { 600} },
            
             { EBC, 'GreaterThanEconStorageCurrent', { 15000, 35000 } },

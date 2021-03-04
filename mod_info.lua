@@ -1,7 +1,7 @@
   
 name = "NutCracker AI"
-uid = "e0b95d6a-6818-4f6f-8e46-eb8c88130e41"
-version = 23
+uid = "8dbbc588-567c-4082-a661-94bccb40e6e5"
+version = 24
 copyright = "FreeWare"
 description = "Designed to battle against Turtle Human Players on 20x20+ maps with lots of mass points. Best in 1v1 environment.  You MUST use Uveso v91 with this, and turn Al Map Marker Generator to 'Autogenerate Always'. You can find me on https://discord.gg/HGBmunPamc if you wish to chat."
     

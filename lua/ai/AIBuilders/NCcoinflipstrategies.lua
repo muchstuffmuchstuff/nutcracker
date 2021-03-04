@@ -41,7 +41,9 @@ Builder {
     PlatoonTemplate = 'T3EngineerBuilderNC',
     Priority = 9999,
   
+    DelayEqualBuildPlattons = {'biglyspendly', 60},
     BuilderConditions = {
+        { UCBC, 'CheckBuildPlattonDelay', { 'biglyspendly' }},
         { MIBC, 'FactionIndex', { 2, 4 }},
         {CF,'TeleportStrategyActivated',{}},
         { UCBC, 'HaveLessThanUnitsInCategoryBeingBuilt', { 1, 'GATE TECH3 STRUCTURE'}},
@@ -65,7 +67,9 @@ Builder {
     PlatoonTemplate = 'T3EngineerBuilderNC',
     Priority = 9999,
   
+    DelayEqualBuildPlattons = {'biglyspendly', 60},
     BuilderConditions = {
+        { UCBC, 'CheckBuildPlattonDelay', { 'biglyspendly' }},
         
         {CF,'RamboStrategyActivated',{}},
         { UCBC, 'HaveLessThanUnitsInCategoryBeingBuilt', { 1, 'GATE TECH3 STRUCTURE'}},
@@ -88,9 +92,11 @@ Builder {
     BuilderName = 'NC Gate Engineercoinflip rambo more',
     PlatoonTemplate = 'T3EngineerBuilderNC',
     Priority = 950,
-    DelayEqualBuildPlattons = {'Rambo', 25},
+    
+    DelayEqualBuildPlattons = {'biglyspendly', 60},
     BuilderConditions = {
-        { UCBC, 'CheckBuildPlattonDelay', { 'Rambo' }},
+        { UCBC, 'CheckBuildPlattonDelay', { 'biglyspendly' }},
+        
        
         {CF,'RamboStrategyActivated',{}},
         { EBC, 'GreaterThanEconStorageCurrent', { 125, 4000 } },
@@ -351,7 +357,9 @@ Builder {
     Priority = 1500,
     InstanceCount = 1,
    
+    DelayEqualBuildPlattons = {'biglyspendly', 60},
     BuilderConditions = {
+        { UCBC, 'CheckBuildPlattonDelay', { 'biglyspendly' }},
         {CF,'NukeRush',{}},
         
         { UCBC, 'HaveLessThanUnitsWithCategory', {1, categories.NUKE * categories.STRUCTURE } },
@@ -472,10 +480,11 @@ Builder {
     BuilderName = 'NC arty in range coinflip',
     PlatoonTemplate = 'T3EngineerBuilderNC',
     Priority = 1500,
-    DelayEqualBuildPlattons = {'Artyrush', 400},
+    
    
+    DelayEqualBuildPlattons = {'biglyspendly', 60},
     BuilderConditions = {
-        { UCBC, 'CheckBuildPlattonDelay', { 'Artyrush' }},
+        { UCBC, 'CheckBuildPlattonDelay', { 'biglyspendly' }},
         { MIBC, 'GreaterThanGameTime', { 600 } },
         
         { CF, 'CoinFlip', {4 } },
@@ -558,7 +567,9 @@ BuilderGroup {
        
         PlatoonAddFunctions = { {SAI, 'BuildOnce'}, },
         InstanceCount = 1,
+        DelayEqualBuildPlattons = {'biglyspendly', 60},
         BuilderConditions = {
+            { UCBC, 'CheckBuildPlattonDelay', { 'biglyspendly' }},
             { MIBC, 'GreaterThanGameTime', { 600} },
             { CF, 'CoinFlip', {2 } },
             { SBC, 'MapLessThan', { 2000, 2000 }},
@@ -685,7 +696,9 @@ BuilderGroup {
         BuilderName = 'Nc Satelite speedbuild on coinflip',
         PlatoonTemplate = 'UEFT3EngineerBuilderSorian',
         Priority = 1100,
+        DelayEqualBuildPlattons = {'biglyspendly', 60},
         BuilderConditions = {
+            { UCBC, 'CheckBuildPlattonDelay', { 'biglyspendly' }},
             { CF, 'CoinFlip', {11 } },
             { MIBC, 'FactionIndex', {1}},
             { SBC, 'MapGreaterThan', { 500, 500 }},
@@ -721,16 +734,18 @@ Builder {
     BuilderName = 'nc T3 Nuke dukenukem',
     PlatoonTemplate = 'T3EngineerBuilderNC',
     Priority = 1100,
-    DelayEqualBuildPlattons = {'dukenukem', 120},
+    
     InstanceCount = 1,
     
+    DelayEqualBuildPlattons = {'biglyspendly', 60},
     BuilderConditions = {
-        { UCBC, 'CheckBuildPlattonDelay', { 'dukenukem' }},
+        { UCBC, 'CheckBuildPlattonDelay', { 'biglyspendly' }},
+  
         { MIBC, 'GreaterThanGameTime', { 600 } },
         { CF, 'DukeNukemEnabled', {} },
         
         { EBC, 'GreaterThanEconStorageCurrent', { 1000, 7000 } },
-        { UCBC, 'HaveGreaterThanUnitsWithCategory', { 1, categories.ENERGYPRODUCTION * (categories.TECH2 + categories.TECH3) } },
+        { SIBC, 'HaveLessThanUnitsInCategoryBeingBuilt', { 1, categories.ARTILLERY * categories.TECH3 + categories.EXPERIMENTAL + categories.NUKE * categories.STRUCTURE }},
         
     },
     BuilderType = 'Any',
@@ -740,6 +755,15 @@ Builder {
             BuildClose = true,
             AdjacencyCategory = 'ENERGYPRODUCTION TECH3',
             BuildStructures = {
+                'T3StrategicMissile',
+                'T3StrategicMissile',
+                'T3StrategicMissile',
+                'T3StrategicMissile',
+                'T3StrategicMissile',
+                'T3StrategicMissile',
+                'T3StrategicMissile',
+                'T3StrategicMissile',
+                'T3StrategicMissile',
                 'T3StrategicMissile',
             },
             Location = 'LocationType',
@@ -757,7 +781,9 @@ BuilderGroup {
         PlatoonTemplate = 'AeonT3EngineerBuilderSorian',
         Priority = 1100,
 		InstanceCount = 1,
+        DelayEqualBuildPlattons = {'biglyspendly', 60},
         BuilderConditions = {
+            { UCBC, 'CheckBuildPlattonDelay', { 'biglyspendly' }},
             { MIBC, 'FactionIndex', {2}},
             { CF, 'CoinFlip', {13 } },
             { MIBC, 'GreaterThanGameTime', { 600} },
@@ -784,7 +810,9 @@ BuilderGroup {
         PlatoonTemplate = 'AeonT3EngineerBuilderSorian',
         Priority = 1,
 		InstanceCount = 1,
+        DelayEqualBuildPlattons = {'biglyspendly', 60},
         BuilderConditions = {
+            { UCBC, 'CheckBuildPlattonDelay', { 'biglyspendly' }},
             { MIBC, 'FactionIndex', {2}},
             { CF, 'CoinFlip', {13}},
             { MIBC, 'GreaterThanGameTime', { 600} },
@@ -819,9 +847,9 @@ Builder {
     BuilderName = 'NC coinflip rapid fire',
     PlatoonTemplate = 'AeonT3EngineerBuilderSorian',
     Priority = 1050,
-    DelayEqualBuildPlattons = {'MobileExperimental_rapid', 500},
+    DelayEqualBuildPlattons = {'biglyspendly', 60},
     BuilderConditions = {
-        { UCBC, 'CheckBuildPlattonDelay', { 'MobileExperimental_rapid' }},
+        { UCBC, 'CheckBuildPlattonDelay', { 'biglyspendly' }},
         { MIBC, 'FactionIndex', {2}},
         { SBC, 'MapGreaterThan', { 500, 500 }},
         { CF, 'CoinFlip', {15} },
@@ -863,7 +891,9 @@ BuilderGroup {
         BuilderName = 'NC Aeon T4 Sea Exp1 Engineer',
         PlatoonTemplate = 'T3EngineerBuilder',
         Priority = 1200,
+        DelayEqualBuildPlattons = {'biglyspendly', 60},
         BuilderConditions = {
+            { UCBC, 'CheckBuildPlattonDelay', { 'biglyspendly' }},
      
             { CF, 'SeaMonsterActivated', {} },
             {CF, 'NoDukeNukem',{}},
@@ -933,7 +963,9 @@ BuilderGroup {
         PlatoonAddPlans = {'NameUnitsSorian', 'DistressResponseAISorian', 'PlatoonCallForHelpAISorian'},
         #PlatoonAIPlan = 'AttackForceAI',
         Priority = 1300,
+        DelayEqualBuildPlattons = {'biglyspendly', 60},
         BuilderConditions = {
+            { UCBC, 'CheckBuildPlattonDelay', { 'biglyspendly' }},
             { CF, 'SeaMonsterActivated', {} },
             { MIBC, 'FactionIndex', {1,2}},
             { SBC, 'NoRushTimeCheck', { 0 }},

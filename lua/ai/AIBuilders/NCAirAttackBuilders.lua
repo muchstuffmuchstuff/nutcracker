@@ -671,7 +671,7 @@ BuilderGroup {
         Builder {
             BuilderName = 'NC T3 Air bomber air control',
             PlatoonTemplate = 'T3AirBomber',
-            Priority = 750,
+            Priority = 798,
         
             BuilderType = 'Air',
             BuilderConditions = {
@@ -679,30 +679,14 @@ BuilderGroup {
                 { MIBC, 'GreaterThanGameTime', { 800 } },
                 {CF,'bomberallowed',{}}, 
                 
-                { SBC, 'LessThanThreatAtEnemyBase', { 'AntiAir', 100 }},
+                { WRC, 'HaveUnitRatioVersusEnemyNC', { 3.0, categories.MOBILE * categories.LAND - categories.ENGINEER, '>=', categories.MOBILE * categories.LAND - categories.ENGINEER} },
                 { WRC, 'HaveUnitRatioVersusEnemyNC', { 3.0, categories.MOBILE * categories.AIR * categories.ANTIAIR * categories.TECH3 - categories.GROUNDATTACK - categories.BOMBER, '>=', categories.MOBILE * categories.AIR - categories.SCOUT - categories.TRANSPORTFOCUS } },
                 
 { EBC, 'GreaterThanEconStorageCurrent', { 24, 750 } },  
 
             },
         },
-        Builder {
-            BuilderName = 'NC T3 Air bomber adaptive',
-            PlatoonTemplate = 'T3AirBomber',
-            Priority = 1000,
-        
-            BuilderType = 'Air',
-            BuilderConditions = {
-                { SBC, 'MapGreaterThan', { 500, 500 }},
-                { MIBC, 'GreaterThanGameTime', { 800 } },
-                { EBC, 'GreaterThanEconStorageCurrent', { 24, 750 } },  
-              
-                { WRC, 'HaveUnitRatioVersusEnemyNC', { 5.0, categories.MASSEXTRACTION, '>=', categories.MASSEXTRACTION } },
-                
-                { WRC, 'HaveUnitRatioVersusEnemyNC', { 3.0, categories.MOBILE * categories.AIR * categories.ANTIAIR * categories.TECH3  - categories.GROUNDATTACK - categories.BOMBER, '>=', categories.MOBILE * categories.AIR  - categories.SCOUT - categories.TRANSPORTFOCUS - categories.INSIGNIFICANTUNIT } },
-           
-            },
-        },
+       
 
     }
 

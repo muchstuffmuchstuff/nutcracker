@@ -98,7 +98,7 @@ BuilderGroup {
     Builder {
         BuilderName = 'NC T3AntiAirPlanes below 3:1 ratio',
         PlatoonTemplate = 'NCt3fighter_ratio_response',
-        Priority = 791,
+        Priority = 800,
       
         BuilderType = 'Air',
 
@@ -222,8 +222,8 @@ BuilderGroup {
             { MIBC, 'GreaterThanGameTime', { 1000} },
             { EBC, 'GreaterThanEconStorageCurrent', { 16, 450 } }, 
             ---
-            { UCBC, 'HaveUnitsWithCategoryAndAlliance', { true, 50, categories.MOBILE * categories.LAND - categories.ENGINEER, 'Enemy'}},
-            { WRC, 'HaveUnitRatioVersusEnemyNC', { 5.0, categories.MOBILE * categories.LAND - categories.ENGINEER, '<=', categories.MOBILE * categories.LAND - categories.ENGINEER} },
+            { UCBC, 'HaveUnitsWithCategoryAndAlliance', { true, 25, categories.MOBILE * categories.LAND - categories.ENGINEER, 'Enemy'}},
+            { WRC, 'HaveUnitRatioVersusEnemyNC', { 3.0, categories.MOBILE * categories.LAND - categories.ENGINEER, '<=', categories.MOBILE * categories.LAND - categories.ENGINEER} },
 			{ WRC, 'HaveUnitRatioVersusEnemyNC', { 3.0, categories.MOBILE * categories.AIR * categories.ANTIAIR  - categories.GROUNDATTACK - categories.BOMBER, '>=', categories.MOBILE * categories.AIR  - categories.SCOUT - categories.TRANSPORTFOCUS - categories.INSIGNIFICANTUNIT } },
 			
             
@@ -244,8 +244,8 @@ BuilderGroup {
             {CF,'gunshipallowed',{}},
             { MIBC, 'GreaterThanGameTime', { 1000} },
             { EBC, 'GreaterThanEconStorageCurrent', { 24, 750 } },
-            { UCBC, 'HaveUnitsWithCategoryAndAlliance', { true, 50, categories.MOBILE * categories.LAND - categories.ENGINEER, 'Enemy'}},
-            { WRC, 'HaveUnitRatioVersusEnemyNC', { 5.0, categories.MOBILE * categories.LAND - categories.ENGINEER, '<=', categories.MOBILE * categories.LAND - categories.ENGINEER} },
+            { UCBC, 'HaveUnitsWithCategoryAndAlliance', { true, 25, categories.MOBILE * categories.LAND - categories.ENGINEER, 'Enemy'}},
+            { WRC, 'HaveUnitRatioVersusEnemyNC', { 3.0, categories.MOBILE * categories.LAND - categories.ENGINEER, '<=', categories.MOBILE * categories.LAND - categories.ENGINEER} },
 			{ WRC, 'HaveUnitRatioVersusEnemyNC', { 3.0, categories.MOBILE * categories.AIR * categories.ANTIAIR  - categories.GROUNDATTACK - categories.BOMBER, '>=', categories.MOBILE * categories.AIR  - categories.SCOUT - categories.TRANSPORTFOCUS - categories.INSIGNIFICANTUNIT } },
 			
             

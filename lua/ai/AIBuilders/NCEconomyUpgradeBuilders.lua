@@ -55,7 +55,7 @@ BuilderGroup {
         BuilderConditions = {
        { UCBC, 'CheckBuildPlattonDelay', { 'Mexupgrade2' }},
        { MIBC, 'GreaterThanGameTime', { 220 } },
-       { EBC, 'GreaterThanEconStorageCurrent', { 150, 1000 } },
+       { EBC, 'GreaterThanEconStorageCurrent', { 150, 2000 } },
         },
         FormRadius = 10000,
         BuilderType = 'Any',
@@ -85,7 +85,7 @@ BuilderGroup {
         BuilderConditions = {
        { UCBC, 'CheckBuildPlattonDelay', { 'Mexupgrade4' }},
        { MIBC, 'GreaterThanGameTime', {200 } },
-       { EBC, 'GreaterThanEconStorageCurrent', { 2500, 4000 } },
+       { EBC, 'GreaterThanEconStorageCurrent', { 2500, 10000 } },
         },
         FormRadius = 10000,
         BuilderType = 'Any',

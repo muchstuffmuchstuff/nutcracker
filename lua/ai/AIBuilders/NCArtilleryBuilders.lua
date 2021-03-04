@@ -37,8 +37,9 @@ BuilderGroup {
         Priority = 999,
       
 	
+        DelayEqualBuildPlattons = {'biglyspendly', 60},
         BuilderConditions = {
-            { MIBC, 'FactionIndex', {1} },
+            { UCBC, 'CheckBuildPlattonDelay', { 'biglyspendly' }},
             { MIBC, 'GreaterThanGameTime', { 1200 } },
             { SBC, 'MapGreaterThan', { 1000, 1000 }},
           
@@ -68,46 +69,7 @@ BuilderGroup {
             }
         }
     },
-    Builder {
-        BuilderName = 'NC T4 Artillery escalation',
-        PlatoonTemplate = 'T3EngineerBuilderNC',
-		PlatoonAddPlans = {'NameUnitsSorian'},
-        Priority = 1050,
-      
-		InstanceCount = 1,
-        BuilderConditions = {
-            { MIBC, 'FactionIndex', {1} },
-            { MIBC, 'GreaterThanGameTime', { 1200} },
-            { SBC, 'MapGreaterThan', { 500, 500 }},
-            {CF, 'NoSateliteRush',{}},
-            {CF,'TeleportStrategyNotRunning',{}},
-            {CF, 'NoDukeNukem',{}},
-          
-            {WRC, 'CheckUnitRangeNC', { 'LocationType', 'T4Artillery', categories.STRUCTURE } },
-          
-            { UCBC, 'HaveLessThanUnitsWithCategory', {1, categories.EXPERIMENTAL * categories.ARTILLERY } },
-            { SIBC, 'HaveLessThanUnitsInCategoryBeingBuilt', { 1, categories.ARTILLERY * categories.TECH3 + categories.EXPERIMENTAL + categories.NUKE * categories.STRUCTURE }},
-            
-           ---  
-
-            { EBC, 'GreaterThanEconStorageCurrent', { 35000, 15000 } },
-                    
-        },
-        BuilderType = 'Any',
-        BuilderData = {
-			MinNumAssistees = 2,
-            Construction = {
-                BuildClose = true,
-				#T4 = true,
-				AdjacencyCategory = 'SHIELD STRUCTURE',
-                BuildStructures = {
-                    'T4Artillery',
-                 
-                },
-                Location = 'LocationType',
-            }
-        }
-    },
+   
 
     Builder {
         BuilderName = 'NC T4 Artillery Engineer - Cybran',
@@ -115,7 +77,9 @@ BuilderGroup {
         PlatoonAddPlans = {'NameUnitsSorian'},
         Priority = 999,
         InstanceCount = 1,
+        DelayEqualBuildPlattons = {'biglyspendly', 60},
         BuilderConditions = {
+            { UCBC, 'CheckBuildPlattonDelay', { 'biglyspendly' }},
 
             { MIBC, 'FactionIndex', {3} },
             { MIBC, 'GreaterThanGameTime', { 1200} },
@@ -147,41 +111,7 @@ BuilderGroup {
         }
     },
 
-    Builder {
-        BuilderName = 'NC T4 Artillery escalation cybran',
-        PlatoonTemplate = 'T3EngineerBuilderNC',
-        PlatoonAddPlans = {'NameUnitsSorian'},
-        Priority = 999,
-        InstanceCount = 1,
-        BuilderConditions = {
-
-            { MIBC, 'FactionIndex', {3} },
-            { MIBC, 'GreaterThanGameTime', { 1200} },
-            { SBC, 'MapGreaterThan', { 500, 500 }},
-      
-            {CF, 'NoDukeNukem',{}},
-          
-            {WRC, 'CheckUnitRangeNC', { 'LocationType', 'T4Artillery', categories.STRUCTURE } },
-            { UCBC, 'HaveLessThanUnitsWithCategory', {1, categories.EXPERIMENTAL * categories.ARTILLERY } },
-            { SIBC, 'HaveLessThanUnitsInCategoryBeingBuilt', { 1, categories.EXPERIMENTAL * categories.ARTILLERY }},
-
-            { EBC, 'GreaterThanEconStorageCurrent', { 35000, 15000 } },
-         
-        },
-        BuilderType = 'Any',
-        BuilderData = {
-            MinNumAssistees = 2,
-            Construction = {
-          
-             
-                AdjacencyCategory = 'ENERGYPRODUCTION TECH3',
-                BuildStructures = {
-                    'T4LandExperimental2',
-                },
-                Location = 'LocationType',
-            }
-        }
-    },
+    
 	
     
    
@@ -195,10 +125,11 @@ BuilderGroup {
      Builder {
         BuilderName = 'nc T3 Nuke cybran',
         PlatoonTemplate = 'T3EngineerBuilderNC',
-        DelayEqualBuildPlattons = {'Nuke', 180},
+        
         Priority = 990,
+        DelayEqualBuildPlattons = {'biglyspendly', 60},
         BuilderConditions = {
-            { UCBC, 'CheckBuildPlattonDelay', { 'Nuke' }},
+            { UCBC, 'CheckBuildPlattonDelay', { 'biglyspendly' }},
             { MIBC, 'GreaterThanGameTime', {1000 } },
             { MIBC, 'FactionIndex', {3}},
             { SBC, 'MapGreaterThan', { 500, 500 }},
@@ -225,10 +156,12 @@ BuilderGroup {
     Builder {
         BuilderName = 'nc T3 Nuke aeon',
         PlatoonTemplate = 'T3EngineerBuilderNC',
-        DelayEqualBuildPlattons = {'Nuke', 180},
+     
         Priority = 990,
+       
+        DelayEqualBuildPlattons = {'biglyspendly', 60},
         BuilderConditions = {
-            { UCBC, 'CheckBuildPlattonDelay', { 'Nuke' }},
+            { UCBC, 'CheckBuildPlattonDelay', { 'biglyspendly' }},
             { MIBC, 'GreaterThanGameTime', {1000 } },
             { MIBC, 'FactionIndex', {2}},
             { SBC, 'MapGreaterThan', { 500, 500 }},
@@ -258,10 +191,12 @@ BuilderGroup {
     Builder {
         BuilderName = 'nc T3 Nuke uef',
         PlatoonTemplate = 'T3EngineerBuilderNC',
-        DelayEqualBuildPlattons = {'Nuke', 180},
+       
         Priority = 990,
+        DelayEqualBuildPlattons = {'biglyspendly', 60},
         BuilderConditions = {
-            { UCBC, 'CheckBuildPlattonDelay', { 'Nuke' }},
+            { UCBC, 'CheckBuildPlattonDelay', { 'biglyspendly' }},
+           
             { MIBC, 'GreaterThanGameTime', {800 } },
             { MIBC, 'FactionIndex', {1}},
             {CF, 'NoSateliteRush',{}},
@@ -292,9 +227,11 @@ BuilderGroup {
         BuilderName = 'NC Seraphim Exp Nuke Engineer',
         PlatoonTemplate = 'SeraphimT3EngineerBuilderSorian',
         Priority = 959,
-		DelayEqualBuildPlattons = {'MobileExperimental_exp_nuke', 400},
+		
+     
+        DelayEqualBuildPlattons = {'biglyspendly', 60},
         BuilderConditions = {
-            { UCBC, 'CheckBuildPlattonDelay', { 'MobileExperimental_exp_nuke' }},
+            { UCBC, 'CheckBuildPlattonDelay', { 'biglyspendly' }},
             { MIBC, 'FactionIndex', {4}},
             { MIBC, 'GreaterThanGameTime', { 1200 } },
             { SBC, 'MapGreaterThan', { 500, 500 }},
@@ -337,9 +274,11 @@ BuilderGroup {
         BuilderName = 'NC arty',
         PlatoonTemplate = 'T3EngineerBuilderNC',
         Priority = 950,
-        DelayEqualBuildPlattons = {'Artillery_regular', 280},
+        DelayEqualBuildPlattons = {'biglyspendly', 60},
         BuilderConditions = {
-            { UCBC, 'CheckBuildPlattonDelay', { 'Artillery_regular' }},
+            { UCBC, 'CheckBuildPlattonDelay', { 'biglyspendly' }},
+       
+           
             { MIBC, 'GreaterThanGameTime', { 1000 } },
             { SBC, 'MapGreaterThan', { 500, 500 }},
             { MIBC, 'FactionIndex', {2,3,4}},
@@ -376,9 +315,9 @@ BuilderGroup {
         BuilderName = 'NC arty NO RANDOMIZER or SATELITE',
         PlatoonTemplate = 'T3EngineerBuilderNC',
         Priority = 950,
-        DelayEqualBuildPlattons = {'Artillery_regular', 280},
+        DelayEqualBuildPlattons = {'biglyspendly', 60},
         BuilderConditions = {
-            { UCBC, 'CheckBuildPlattonDelay', { 'Artillery_regular' }},
+            { UCBC, 'CheckBuildPlattonDelay', { 'biglyspendly' }},
             { MIBC, 'GreaterThanGameTime', { 1200 } },
             { SBC, 'MapGreaterThan', { 500, 500 }},
             { MIBC, 'FactionIndex', {1}},
@@ -417,9 +356,9 @@ BuilderGroup {
         BuilderName = 'NC Rapid T3 Artillery in range',
         PlatoonTemplate = 'AeonT3EngineerBuilderSorian',
         Priority = 950,
-        DelayEqualBuildPlattons = {'MobileExperimental_rapid', 280},
+        DelayEqualBuildPlattons = {'biglyspendly', 60},
         BuilderConditions = {
-            { UCBC, 'CheckBuildPlattonDelay', { 'MobileExperimental_rapid' }},
+            { UCBC, 'CheckBuildPlattonDelay', { 'biglyspendly' }},
             { MIBC, 'FactionIndex', {2}},
             { SBC, 'MapGreaterThan', { 500, 500 }},
             { MIBC, 'GreaterThanGameTime', { 1500 } },

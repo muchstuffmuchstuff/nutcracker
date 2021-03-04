@@ -49,7 +49,7 @@ PlatoonTemplate {
 
 PlatoonTemplate {
     Name = 'clenseNCt1t2',
-    Plan = 'StrikeForceAISorian',
+    Plan = 'AirAttackNC',
     GlobalSquads = {
         { categories.uea0103 + categories.uaa0103 + categories.ura0103 + categories.xsa0103 , 1, 20, 'Attack', 'none' },
         
@@ -58,9 +58,9 @@ PlatoonTemplate {
 
 PlatoonTemplate {
     Name = 'clenseNCt3',
-    Plan = 'StrikeForceAISorian',
+    Plan = 'AirAttackNC',
     GlobalSquads = {
-        { categories.MOBILE * categories.TECH3 * categories.AIR  * categories.BOMBER - categories.TRANSPORTFOCUS - categories.ANTINAVY -categories.GROUNDATTACK - categories.SCOUT - categories.INSIGNIFICANTUNIT - categories.POD - categories.daa0206 , 2, 2, 'Attack', 'none' },
+        { categories.MOBILE * categories.TECH3 * categories.AIR  * categories.BOMBER - categories.TRANSPORTFOCUS - categories.ANTINAVY -categories.GROUNDATTACK - categories.SCOUT - categories.INSIGNIFICANTUNIT - categories.POD - categories.daa0206 , 3, 3, 'Attack', 'none' },
         
     },
 }

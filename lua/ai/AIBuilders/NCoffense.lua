@@ -61,10 +61,11 @@ Builder {
 Builder {
     BuilderName = 'nc T3 Nuke adaptive offense',
     PlatoonTemplate = 'T3EngineerBuilderNC',
-    DelayEqualBuildPlattons = {'adaptive_o', 60},
+    
     Priority = 1400,
+    DelayEqualBuildPlattons = {'biglyspendly', 60},
     BuilderConditions = {
-        { UCBC, 'CheckBuildPlattonDelay', { 'adaptive_o' }},
+        { UCBC, 'CheckBuildPlattonDelay', { 'biglyspendly' }},
         { MIBC, 'GreaterThanGameTime', {600 } },
         { SBC, 'MapGreaterThan', { 500, 500 }},
         {CF,'EarlyAttackAuthorized',{}},
@@ -96,9 +97,9 @@ Builder {
     BuilderName = 'nc Air Exp1 adaptive offense',
     PlatoonTemplate = 'T3EngineerBuilderNC',
     Priority = 1300,
-    DelayEqualBuildPlattons = {'adaptive_o', 60},
-    BuilderConditions = {
-        { UCBC, 'CheckBuildPlattonDelay', { 'adaptive_o' }},
+    DelayEqualBuildPlattons = {'biglyspendly', 60},
+        BuilderConditions = {
+        { UCBC, 'CheckBuildPlattonDelay', { 'biglyspendly' }},
         { MIBC, 'FactionIndex', {2,3,4}},
         { SBC, 'MapGreaterThan', { 500, 500 }},
         { MIBC, 'GreaterThanGameTime', { 600} },
@@ -130,9 +131,9 @@ Builder {
     BuilderName = 'Nc Satelite adaptive',
     PlatoonTemplate = 'UEFT3EngineerBuilderSorian',
     Priority = 1050,
-    DelayEqualBuildPlattons = {'adaptive_o', 60},
-    BuilderConditions = {
-        { UCBC, 'CheckBuildPlattonDelay', { 'adaptive_o' }},
+    DelayEqualBuildPlattons = {'biglyspendly', 60},
+        BuilderConditions = {
+        { UCBC, 'CheckBuildPlattonDelay', { 'biglyspendly' }},
         { MIBC, 'FactionIndex', {1}},
         { SBC, 'MapGreaterThan', { 500, 500 }},
         { MIBC, 'GreaterThanGameTime', { 600} },

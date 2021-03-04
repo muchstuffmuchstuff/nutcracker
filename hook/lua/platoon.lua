@@ -739,4 +739,128 @@ EnhanceAINC = function(self)
     self:PlatoonDisband()
 end,
 
+AirAttackNC = function(self)
+    local aiBrain = self:GetBrain()
+    local armyIndex = aiBrain:GetArmyIndex()
+    local data = self.PlatoonData
+    local categoryList = {}
+    local atkPri = {}
+    if data.PrioritizedCategories then
+        for k,v in data.PrioritizedCategories do
+            table.insert(atkPri, v)
+            table.insert(categoryList, ParseEntityCategory(v))
+        end
+    end
+    table.insert(atkPri, 'ALLUNITS')
+    table.insert(categoryList, categories.ALLUNITS - categories.AIRSTAGINGPLATFORM)
+    self:SetPrioritizedTargetList('Attack', categoryList)
+    local target = false
+    local oldTarget = false
+    local blip = false
+    local maxRadius = data.SearchRadius or 50
+    local movingToScout = false
+    AIAttackUtils.GetMostRestrictiveLayer(self)
+    while aiBrain:PlatoonExists(self) do
+        if target then
+            local targetCheck = true
+            for k,v in atkPri do
+                local category = ParseEntityCategory(v)
+                if EntityCategoryContains(category, target) and v != 'ALLUNITS' then
+                    targetCheck = false
+                    break
+                end
+            end
+            if targetCheck then
+                target = false
+                oldTarget = false
+            end
+        end
+        if not target or target.Dead or not target:GetPosition() then
+            if aiBrain:GetCurrentEnemy() and aiBrain:GetCurrentEnemy().Result == "defeat" then
+                aiBrain:PickEnemyLogicSorian()
+            end
+            --local mult = { 1,10,25 }
+            --for _,i in mult do
+                target = AIUtils.AIFindBrainTargetInRange(aiBrain, self, 'Attack', maxRadius * 25, atkPri, aiBrain:GetCurrentEnemy())
+            --    if target then
+            --        break
+            --    end
+            --    WaitSeconds(3)
+            --    if not aiBrain:PlatoonExists(self) then
+            --        return
+            --    end
+            --end
+            local newtarget = false
+            if AIAttackUtils.GetSurfaceThreatOfUnits(self) > 0 and (aiBrain.T4ThreatFound['Land'] or aiBrain.T4ThreatFound['Naval'] or aiBrain.T4ThreatFound['Structure']) then
+                newtarget = self:FindClosestUnit('Attack', 'Enemy', true, categories.EXPERIMENTAL * (categories.LAND + categories.NAVAL + categories.STRUCTURE + categories.ARTILLERY))
+           
+            end
+            if newtarget then
+                target = newtarget
+            end
+            if target and (target != oldTarget or movingToScout) then
+                oldTarget = target
+                local path, reason = AIAttackUtils.PlatoonGenerateSafePathTo(aiBrain, self.MovementLayer, self:GetPlatoonPosition(), target:GetPosition(), 10)
+                self:Stop()
+                if not path then
+                    if reason == 'NoStartNode' or reason == 'NoEndNode' then
+                        if not data.UseMoveOrder then
+                            self:AttackTarget(target)
+                        else
+                            self:MoveToLocation(table.copy(target:GetPosition()), false)
+                        end
+                    end
+                else
+                    local pathSize = table.getn(path)
+                    for wpidx,waypointPath in path do
+                        if wpidx == pathSize and not data.UseMoveOrder then
+                            self:AttackTarget(target)
+                        else
+                            self:MoveToLocation(waypointPath, false)
+                        end
+                    end
+                end
+                movingToScout = false
+            elseif not movingToScout and not target and self.MovementLayer != 'Water' then
+                movingToScout = true
+                self:Stop()
+                local MassSpots = AIUtils.AIGetSortedMassLocations(aiBrain, 10, nil, nil, nil, nil, self:GetPlatoonPosition())
+                if table.getn(MassSpots) > 0 then
+                    for k,v in MassSpots do
+                        self:MoveToLocation(v, false)
+                    end
+                else
+                    local x,z = aiBrain:GetArmyStartPos()
+                    local position = AIUtils.RandomLocation(x,z)
+                    local safePath, reason = AIAttackUtils.PlatoonGenerateSafePathTo(aiBrain, 'Air', self:GetPlatoonPosition(), position, 200)
+                    if safePath then
+                        for _,p in safePath do
+                            self:MoveToLocation(p, false)
+                        end
+                    else
+                        self:MoveToLocation(position, false)
+                    end
+                end
+            elseif not movingToScout and not target and self.MovementLayer == 'Water' then
+                movingToScout = true
+                self:Stop()
+                local scoutPath = {}
+                scoutPath = AIUtils.AIGetSortedNavalLocations(self:GetBrain())
+                for k, v in scoutPath do
+                    self:Patrol(v)
+                end
+            end
+        end
+        if self.MovementLayer == 'Air' then
+            local waitLoop = 0
+            repeat
+                WaitSeconds(1)
+                waitLoop = waitLoop + 1
+            until waitLoop >= 7 or (target and (target.Dead or not target:GetPosition()))
+        else
+            WaitSeconds(7)
+        end
+    end
+end,
+
 }
