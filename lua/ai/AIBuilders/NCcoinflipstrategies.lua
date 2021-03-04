@@ -27,86 +27,7 @@ local categories = categories
 
 
 --- upgrade quick factory
-BuilderGroup {
-    BuilderGroupName = 'NC_coinflip_factoryupgrade',
-    BuildersType = 'PlatoonFormBuilder',
-    Builder {
-        BuilderName = 'NC land factory coinflip upgrade',
-        PlatoonTemplate = 'T1LandFactoryUpgrade',
-        Priority = 1100,
-     
-        BuilderConditions = {
-            { MIBC, 'GreaterThanGameTime', { 400 } },
-            { CF, 'CoinFlip', {9} },
-      
-            { UCBC, 'HaveGreaterThanUnitsWithCategory', { 10, categories.LAND * categories.MOBILE * categories.ENGINEER} },   
-            { UCBC, 'HaveLessThanUnitsInCategoryBeingBuilt', { 4, categories.FACTORY * (categories.TECH2 + categories.TECH3)} },
-                
-              { UCBC, 'HaveGreaterThanUnitsWithCategory', { 2, categories.FACTORY * categories.LAND}},
-           
-           
-           --
-            },
-        BuilderType = 'Any',
-    },
-    Builder {
-        BuilderName = 'NC Land t2 to t3 coinflip',
-        PlatoonTemplate = 'T2LandFactoryUpgrade',
-        Priority = 1100,
-     
-        BuilderConditions = {
-            { MIBC, 'GreaterThanGameTime', { 600 } },
-            { CF, 'CoinFlip', {9} },
-            { UCBC, 'HaveGreaterThanUnitsWithCategory', { 10, categories.LAND * categories.MOBILE * categories.ENGINEER} },
-               
-             
-                { UCBC, 'HaveLessThanUnitsInCategoryBeingBuilt', { 4, categories.FACTORY * (categories.TECH2 + categories.TECH3)} },
-              { UCBC, 'HaveGreaterThanUnitsWithCategory', { 2, categories.FACTORY * categories.LAND}},
-           
-           
-           --
-            },
-        BuilderType = 'Any',
-    },
-    Builder {
-        BuilderName = 'NC Air factory coinflip upgrade',
-        PlatoonTemplate = 'T1AirFactoryUpgrade',
-        Priority = 1100,
-     
-        BuilderConditions = {
-            { MIBC, 'GreaterThanGameTime', { 400 } },
-            { CF, 'CoinFlip', {10} },
-      
-          
-            { UCBC, 'HaveLessThanUnitsInCategoryBeingBuilt', { 4, categories.FACTORY * (categories.TECH2 + categories.TECH3)} },
-                
-              { UCBC, 'HaveGreaterThanUnitsWithCategory', { 2, categories.FACTORY * categories.AIR }},
-           
-           
-           --
-            },
-        BuilderType = 'Any',
-    },
-    Builder {
-        BuilderName = 'NC Air t2 to t3 coinflip',
-        PlatoonTemplate = 'T2AirFactoryUpgrade',
-        Priority = 1100,
-     
-        BuilderConditions = {
-            { MIBC, 'GreaterThanGameTime', { 600 } },
-            { CF, 'CoinFlip', {10} },
-         
-               
-             
-                { UCBC, 'HaveLessThanUnitsInCategoryBeingBuilt', { 4, categories.FACTORY * (categories.TECH2 + categories.TECH3)} },
-              { UCBC, 'HaveGreaterThanUnitsWithCategory', { 2, categories.FACTORY * categories.AIR}},
-           
-           
-           --
-            },
-        BuilderType = 'Any',
-    },
-}
+
 
 
 -- sub commander teleport rush -- many platoons and builders to fulfil need
@@ -124,8 +45,8 @@ Builder {
         { MIBC, 'FactionIndex', { 2, 4 }},
         {CF,'TeleportStrategyActivated',{}},
         { UCBC, 'HaveLessThanUnitsInCategoryBeingBuilt', { 1, 'GATE TECH3 STRUCTURE'}},
-        
-        { UCBC, 'HaveLessThanUnitsWithCategory', { 6, categories.GATE}},
+        { UCBC, 'HaveGreaterThanUnitsWithCategory', { 0, categories.ENERGYPRODUCTION * categories.TECH3 } },
+        { UCBC, 'HaveLessThanUnitsWithCategory', { 3, categories.GATE}},
     },
     BuilderType = 'Any',
     BuilderData = {
@@ -148,7 +69,7 @@ Builder {
         
         {CF,'RamboStrategyActivated',{}},
         { UCBC, 'HaveLessThanUnitsInCategoryBeingBuilt', { 1, 'GATE TECH3 STRUCTURE'}},
-        
+        { UCBC, 'HaveGreaterThanUnitsWithCategory', { 0, categories.ENERGYPRODUCTION * categories.TECH3 } },
         { UCBC, 'HaveLessThanUnitsWithCategory', { 5, categories.GATE}},
     },
     BuilderType = 'Any',
@@ -233,8 +154,8 @@ Builder {
         { MIBC, 'FactionIndex', { 2, 4 }},
         {CF,'TeleportStrategyActivated',{}},
         { MIBC, 'GreaterThanGameTime', { 600 } },
-        { UCBC, 'HaveLessThanUnitsWithCategory', { 6, categories.SUBCOMMANDER } },
-        { UCBC, 'HaveLessThanUnitsInCategoryBeingBuilt', { 6, categories.SUBCOMMANDER }},
+        { UCBC, 'HaveLessThanUnitsWithCategory', { 3, categories.SUBCOMMANDER } },
+        { UCBC, 'HaveLessThanUnitsInCategoryBeingBuilt', { 5, categories.SUBCOMMANDER }},
         
     },
     BuilderType = 'Gate',
@@ -400,6 +321,7 @@ Builder {
         { CF, 'CoinFlip', {14} },
         { SBC, 'MapLessThan', { 2000, 2000 }},
         { MIBC, 'LessThanGameTime', { 1500 } },
+        { SBC, 'LessThanThreatAtEnemyBase', { 'AntiAir', 85 }},
         { UCBC, 'HaveGreaterThanUnitsWithCategory', { 15, categories.MOBILE * categories.AIR * categories.ANTIAIR - categories.GROUNDATTACK - categories.BOMBER} },          
         
         
@@ -687,7 +609,7 @@ BuilderGroup {
             { SIBC, 'HaveLessThanUnitsInCategoryBeingBuilt', { 2, categories.STRUCTURE * (categories.TECH2 + categories.TECH3)  * categories.ENERGYPRODUCTION } },
             
            
-            { EBC, 'GreaterThanEconStorageCurrent', { 8, 100 } }, 
+            { EBC, 'GreaterThanEconStorageCurrent', {125, 4000 } }, 
             
            
            
@@ -725,7 +647,7 @@ BuilderGroup {
            
 			
            
-            { EBC, 'GreaterThanEconStorageCurrent', { 8, 100 } }, 
+            { EBC, 'GreaterThanEconStorageCurrent', { 8, 150 } }, 
             
 			{ SBC, 'NoRushTimeCheck', { 600 }},
             
@@ -749,7 +671,7 @@ BuilderGroup {
             
 			{ SBC, 'NoRushTimeCheck', { 600 }},
 		
-            { EBC, 'GreaterThanEconStorageCurrent', { 8, 100 } }, 
+            { EBC, 'GreaterThanEconStorageCurrent', { 8, 150 } }, 
             
         },
         BuilderType = 'Land',

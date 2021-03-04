@@ -55,34 +55,7 @@ BuilderGroup {
             },
         }
     },
-    Builder {
-        BuilderName = 'NC T1 Engineer Assist Factory Upgrade teleport',
-        PlatoonTemplate = 'EngineerAssist',
-        Priority = 1050,
-        InstanceCount = 5,
-        BuilderConditions = {
-            {CF,'TeleportStrategyActivated',{}},
-            { MIBC, 'FactionIndex', { 2, 4 }},
-            { SIBC, 'HaveLessThanUnitsWithCategory', { 1, categories.FACTORY * categories.TECH3 * categories.LAND } },
-            { UCBC, 'LocationFactoriesBuildingGreater', { 'LocationType', 0, categories.FACTORY * categories.LAND }},
-           
-      
-           
-           
-       --
-        },
-        InstanceCount = 5,
-        BuilderType = 'Any',
-        BuilderData = {
-            Assist = {
-                AssistLocation = 'LocationType',
-                PermanentAssist = false,
-                BeingBuiltCategories = {'FACTORY LAND'},
-                AssisteeType = 'Factory',
-                time = 60,
-            },
-        }
-    },
+ 
 Builder {
     BuilderName = 'NC T2 Engineer Assist Factory Upgrade',
     PlatoonTemplate = 'T2EngineerAssist',
@@ -109,34 +82,7 @@ Builder {
         },
     }
 },
-Builder {
-    BuilderName = 'NC T2 Engineer Assist Factory Upgrade teleport',
-    PlatoonTemplate = 'T2EngineerAssist',
-    Priority = 1050,
-    InstanceCount = 5,
-    BuilderConditions = {
-        {CF,'TeleportStrategyActivated',{}},
-        { MIBC, 'FactionIndex', { 2, 4 }},
-        { SIBC, 'HaveLessThanUnitsWithCategory', { 1, categories.FACTORY * categories.TECH3 * categories.LAND } },
-        { UCBC, 'LocationFactoriesBuildingGreater', { 'LocationType', 0, categories.FACTORY * categories.LAND }},
-        
-      
-       
-       
-   --
-    },
-    InstanceCount = 5,
-    BuilderType = 'Any',
-    BuilderData = {
-        Assist = {
-            AssistLocation = 'LocationType',
-            PermanentAssist = false,
-            BeingBuiltCategories = {'FACTORY LAND'},
-            AssisteeType = 'Factory',
-            time = 60,
-        },
-    }
-},
+
 }
 
 
@@ -160,22 +106,7 @@ BuilderGroup {
             },
         BuilderType = 'Any',
     },
-    Builder {
-        BuilderName = 'NC tele rush t1 land upgrade',
-        PlatoonTemplate = 'T1LandFactoryUpgrade',
-        Priority = 1200,
-        InstanceCount = 1,
-        PlatoonAddFunctions = { {SAI, 'BuildOnce'}, },
-        BuilderConditions = {
-            {CF,'TeleportStrategyActivated',{}},
-            { MIBC, 'FactionIndex', { 2, 4 }},
-            { EN, 'HaveLessThanUnitsInCategoryBeingUpgradeNC', { 1, categories.FACTORY * categories.LAND} },
-            { UCBC, 'HaveGreaterThanUnitsWithCategory', { 5, categories.ENGINEER }},
-               
- 
-            },
-        BuilderType = 'Any',
-    },
+  
     Builder {
         BuilderName = 'NC nuke rush t2 land upgrade',
         PlatoonTemplate = 'T2LandFactoryUpgrade',
@@ -197,19 +128,7 @@ BuilderGroup {
             },
         BuilderType = 'Any',
     },
-    Builder {
-        BuilderName = 'NC tele rush t2 land upgrade',
-        PlatoonTemplate = 'T2LandFactoryUpgrade',
-        Priority = 1200,
-        InstanceCount = 1,
-        PlatoonAddFunctions = { {SAI, 'BuildOnce'}, },
-        BuilderConditions = {
-                {CF,'TeleportStrategyActivated',{}},
-                { MIBC, 'FactionIndex', { 2, 4 }},
-                { UCBC, 'HaveLessThanUnitsInCategoryBeingBuilt', { 1, categories.TECH2 * categories.FACTORY * categories.LAND} },
-            },
-        BuilderType = 'Any',
-    },
+  
 }
 
 BuilderGroup {

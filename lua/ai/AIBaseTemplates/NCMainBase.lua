@@ -18,7 +18,7 @@ BaseBuilderTemplate {
         'NCparagoncoinflip',
         'NC paragon coinflip landupgrades',
         'ncdukehukemcoinflip',
-        'NC_coinflip_factoryupgrade',
+    
           
         
 --starting acu for coinflip
@@ -54,7 +54,7 @@ BaseBuilderTemplate {
 
         # ==== ECONOMY ==== #
         'NCmapcontrolupgrades',
-        'NCengineertowers',
+      
         'NC tower upgrades',
         'NCT3Engineerassistmex',
        
@@ -173,7 +173,7 @@ BaseBuilderTemplate {
         'NCairstaging',
         'NCT1AntiAirBuilders',
         'NCT3AntiAirBuilders',
-        'NCT3AirFactoryBuilders',
+       
         
         'NCAntiNavyQuickBuild',
       

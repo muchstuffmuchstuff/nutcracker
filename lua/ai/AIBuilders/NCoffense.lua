@@ -39,7 +39,7 @@ Builder {
         { WRC, 'EnemyInTMLRangeNC', { 'LocationType', true } },
         { MIBC, 'GreaterThanGameTime', { 600 } },
         { WRC, 'HaveUnitRatioVersusEnemyNC', { 5.0, categories.MASSEXTRACTION, '>=', categories.MASSEXTRACTION } },
-        { EBC, 'GreaterThanEconStorageCurrent', { 8, 100 } },  
+        { EBC, 'GreaterThanEconStorageCurrent', { 8, 150 } },  
         { UCBC, 'UnitsLessAtLocation', { 'LocationType', 3, categories.TACTICALMISSILEPLATFORM}},
 
     },
@@ -61,19 +61,19 @@ Builder {
 Builder {
     BuilderName = 'nc T3 Nuke adaptive offense',
     PlatoonTemplate = 'T3EngineerBuilderNC',
-    DelayEqualBuildPlattons = {'Nuke', 180},
+    DelayEqualBuildPlattons = {'adaptive_o', 60},
     Priority = 1400,
     BuilderConditions = {
-        { UCBC, 'CheckBuildPlattonDelay', { 'Nuke' }},
+        { UCBC, 'CheckBuildPlattonDelay', { 'adaptive_o' }},
         { MIBC, 'GreaterThanGameTime', {600 } },
         { SBC, 'MapGreaterThan', { 500, 500 }},
         {CF,'EarlyAttackAuthorized',{}},
         { WRC, 'HaveUnitRatioVersusEnemyNC', { 5.0, categories.MASSEXTRACTION, '>=', categories.MASSEXTRACTION } },
         { UCBC, 'HaveLessThanUnitsWithCategory', {1, categories.NUKE * categories.STRUCTURE } },
         { UCBC, 'HaveUnitsWithCategoryAndAlliance', { false, 1, categories.ANTIMISSILE * categories.STRUCTURE * categories.TECH3, 'Enemy'}},
+        { UCBC, 'HaveUnitsWithCategoryAndAlliance', { true, 0, categories.ENERGYPRODUCTION * categories.TECH3,  'Enemy' }},
         { SIBC, 'HaveLessThanUnitsInCategoryBeingBuilt', { 1, categories.ARTILLERY * categories.TECH3 + categories.EXPERIMENTAL + categories.NUKE * categories.STRUCTURE }},
-       
-  
+
     },
     BuilderType = 'Any',
     PlatoonAddFunctions = { {SAI, 'BuildOnce'}, },
@@ -96,15 +96,16 @@ Builder {
     BuilderName = 'nc Air Exp1 adaptive offense',
     PlatoonTemplate = 'T3EngineerBuilderNC',
     Priority = 1300,
-    DelayEqualBuildPlattons = {'MobileExperimental_air', 120},
+    DelayEqualBuildPlattons = {'adaptive_o', 60},
     BuilderConditions = {
-        { UCBC, 'CheckBuildPlattonDelay', { 'MobileExperimental_air' }},
+        { UCBC, 'CheckBuildPlattonDelay', { 'adaptive_o' }},
         { MIBC, 'FactionIndex', {2,3,4}},
         { SBC, 'MapGreaterThan', { 500, 500 }},
         { MIBC, 'GreaterThanGameTime', { 600} },
         {CF,'EarlyAttackAuthorized',{}},
         { UCBC, 'HaveLessThanUnitsWithCategory', {1, categories.NUKE * categories.STRUCTURE } },
         { WRC, 'HaveUnitRatioVersusEnemyNC', { 5.0, categories.MASSEXTRACTION, '>=', categories.MASSEXTRACTION } },
+        { UCBC, 'HaveUnitsWithCategoryAndAlliance', { true, 0, categories.ENERGYPRODUCTION * categories.TECH3,  'Enemy' }},
         { SIBC, 'HaveLessThanUnitsInCategoryBeingBuilt', { 1, categories.ARTILLERY * categories.TECH3 + categories.EXPERIMENTAL + categories.NUKE * categories.STRUCTURE }},
     },
     BuilderType = 'Any',
@@ -129,9 +130,9 @@ Builder {
     BuilderName = 'Nc Satelite adaptive',
     PlatoonTemplate = 'UEFT3EngineerBuilderSorian',
     Priority = 1050,
-    DelayEqualBuildPlattons = {'MobileExperimental_satelite_continuation', 180},
+    DelayEqualBuildPlattons = {'adaptive_o', 60},
     BuilderConditions = {
-        { UCBC, 'CheckBuildPlattonDelay', { 'MobileExperimental_satelite_continuation' }},
+        { UCBC, 'CheckBuildPlattonDelay', { 'adaptive_o' }},
         { MIBC, 'FactionIndex', {1}},
         { SBC, 'MapGreaterThan', { 500, 500 }},
         { MIBC, 'GreaterThanGameTime', { 600} },
@@ -139,6 +140,7 @@ Builder {
         { WRC, 'HaveUnitRatioVersusEnemyNC', { 5.0, categories.MASSEXTRACTION, '>=', categories.MASSEXTRACTION } },
         { UCBC, 'HaveUnitsWithCategoryAndAlliance', { true, 0, categories.ANTIMISSILE * categories.STRUCTURE * categories.TECH3, 'Enemy'}},
         { SIBC, 'HaveLessThanUnitsInCategoryBeingBuilt', { 1, categories.ARTILLERY * categories.TECH3 + categories.EXPERIMENTAL + categories.NUKE * categories.STRUCTURE }},
+        { UCBC, 'HaveUnitsWithCategoryAndAlliance', { true, 0, categories.ENERGYPRODUCTION * categories.TECH3,  'Enemy' }},
     },
     BuilderType = 'Any',
     PlatoonAddFunctions = { {SAI, 'BuildOnce'}, },
@@ -157,6 +159,69 @@ Builder {
         }
     }
 },
+
+Builder {
+    BuilderName = 'NC T1 being factory rushed - building TML',
+    PlatoonTemplate = 'T2T3EngineerBuilderNC',
+    Priority = 950,
+    BuilderConditions = {
+        { UCBC, 'LocationEngineersBuildingLess', { 'LocationType', 1, categories.DEFENSE * (categories.TECH2 + categories.TECH3) * categories.STRUCTURE - categories.SHIELD - categories.ANTIMISSILE } },
+        { SBC, 'GreaterThanEnemyUnitsAroundBase', { 'LocationType', 0, categories.STRUCTURE - categories.MASSEXTRACTION, 250 } },
+        { UCBC, 'UnitsLessAtLocation', { 'LocationType', 5, categories.TACTICALMISSILEPLATFORM * categories.STRUCTURE}},
+        { EBC, 'GreaterThanEconStorageCurrent', { 250, 10000 } }, 
+  
+    },
+    BuilderType = 'Any',
+    BuilderData = {
+        NumAssistees = 2,
+        Construction = {
+            BuildClose = false,
+            BuildStructures = {
+                'T2StrategicMissile',
+                'T2StrategicMissile',
+              
+            },
+            Location = 'LocationType',
+        }
+    }
+},
+
+Builder {
+    BuilderName = 'NC arty t2',
+    PlatoonTemplate = 'T2T3EngineerBuilderNC',
+    Priority = 950,
+    DelayEqualBuildPlattons = {'Artillery_t2', 5},
+    BuilderConditions = {
+        { UCBC, 'CheckBuildPlattonDelay', { 'Artillery_t2' }},
+        { MIBC, 'GreaterThanGameTime', { 1000 } },
+        { SBC, 'MapGreaterThan', { 500, 500 }},
+
+        { SIBC, 'HaveGreaterThanUnitsWithCategory', { 4, categories.ENERGYPRODUCTION * (categories.TECH2 + categories.TECH3) } },
+        { SIBC, 'HaveLessThanUnitsInCategoryBeingBuilt', { 2, categories.ARTILLERY * categories.TECH2}},
+        { UCBC, 'UnitsLessAtLocation', { 'LocationType', 5, categories.ARTILLERY * categories.TECH2}},
+        { SBC, 'GreaterThanEnemyUnitsAroundBase', { 'LocationType', 0, categories.STRUCTURE - categories.MASSEXTRACTION, 110 } },
+        { EBC, 'GreaterThanEconStorageCurrent', { 250, 10000 } },  
+    
+    },
+
+BuilderType = 'Any',
+BuilderData = {
+
+    
+    Construction = {
+        BuildClose = true,
+        AdjacencyCategory = 'ENERGYPRODUCTION TECH3',
+    
+        BuildStructures = {
+            'T2Artillery',
+            'T2Artillery',
+
+        },
+        Location = 'LocationType',
+    }
+}
+},
+
 }
 
 

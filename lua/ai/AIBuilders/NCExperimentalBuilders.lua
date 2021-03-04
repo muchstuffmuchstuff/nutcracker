@@ -168,14 +168,14 @@ BuilderGroup {
             {CF,'NukeandExperimentalClearedtoBuild',{}},
             { MIBC, 'GreaterThanGameTime', { 800} },
             {CF, 'NoDukeNukem',{}},
-            {CF,'TeleportStrategyActivatedNotRunning',{}},
+            {CF,'TeleportStrategyNotRunning',{}},
             {CF,'ExpClearedtoBuild',{}},
             {CF, 'NoNukeRush',{}},
             {CF,'EarlyAttackAuthorized',{}},
-           
+            { EBC, 'GreaterThanEconStorageCurrent', { 0, 10000 } },
             { SIBC, 'HaveLessThanUnitsInCategoryBeingBuilt', { 1, categories.ARTILLERY * categories.TECH3 + categories.EXPERIMENTAL + categories.NUKE * categories.STRUCTURE }},
             
-            { WRC, 'HaveUnitRatioVersusEnemyNC', { 3.0, categories.MOBILE * categories.AIR * categories.ANTIAIR - categories.GROUNDATTACK - categories.BOMBER, '>=', categories.MOBILE * categories.AIR  - categories.SCOUT - categories.TRANSPORTFOCUS } },
+            { WRC, 'HaveUnitRatioVersusEnemyNC', { 3.0, categories.MOBILE * categories.AIR * categories.ANTIAIR - categories.GROUNDATTACK - categories.BOMBER, '>=', categories.MOBILE * categories.AIR  - categories.SCOUT - categories.TRANSPORTFOCUS - categories.INSIGNIFICANTUNIT } },
        
         },
         BuilderType = 'Any',
@@ -204,15 +204,15 @@ BuilderGroup {
             { MIBC, 'GreaterThanGameTime', { 800} },
             {CF,'NukeandExperimentalClearedtoBuild',{}},
             {CF, 'NoDukeNukem',{}},
-            {CF,'TeleportStrategyActivatedNotRunning',{}},
+            {CF,'TeleportStrategyNotRunning',{}},
             {CF,'ExpClearedtoBuild',{}},
             {CF, 'Noparagonrush',{}},
             {CF, 'NoRapidFireRush',{}},
             {CF, 'NoNukeRush',{}},
             {CF,'EarlyAttackAuthorized',{}},
-           
+            { EBC, 'GreaterThanEconStorageCurrent', { 0, 10000 } },
             { SIBC, 'HaveLessThanUnitsInCategoryBeingBuilt', { 1, categories.ARTILLERY * categories.TECH3 + categories.EXPERIMENTAL + categories.NUKE * categories.STRUCTURE }},
-            { WRC, 'HaveUnitRatioVersusEnemyNC', { 3.0, categories.MOBILE * categories.AIR * categories.ANTIAIR - categories.GROUNDATTACK - categories.BOMBER, '>=', categories.MOBILE * categories.AIR  - categories.SCOUT - categories.TRANSPORTFOCUS } },
+            { WRC, 'HaveUnitRatioVersusEnemyNC', { 3.0, categories.MOBILE * categories.AIR * categories.ANTIAIR - categories.GROUNDATTACK - categories.BOMBER, '>=', categories.MOBILE * categories.AIR  - categories.SCOUT - categories.TRANSPORTFOCUS - categories.INSIGNIFICANTUNIT } },
    
    
           
@@ -235,37 +235,7 @@ BuilderGroup {
     
 
 
-    Builder {
-        BuilderName = 'nc air Exp continuation of builds',
-        PlatoonTemplate = 'T3EngineerBuilderNC',
-        Priority = 1300,
-        DelayEqualBuildPlattons = {'MobileExperimental_air_continuation', 180},
-        BuilderConditions = {
-            { UCBC, 'CheckBuildPlattonDelay', { 'MobileExperimental_air_continuation' }},
-            { MIBC, 'FactionIndex', {2,3, 4}},
-            { SBC, 'MapGreaterThan', { 500, 500 }},
-            { MIBC, 'GreaterThanGameTime', { 1200} },
-            {CF,'NukeandExperimentalClearedtoBuild',{}},
-            {CF,'ExpClearedtoBuild',{}},
-            
-            
-            { EBC, 'GreaterThanEconStorageCurrent', { 20000, 10000 } },
-           
-       
-        },
-        BuilderType = 'Any',
-        BuilderData = {
-			MinNumAssistees = 2,
-            Construction = {
-                BuildClose = true,
-			
-                BuildStructures = {
-                    'T4AirExperimental1',
-                },
-                Location = 'LocationType',
-            }
-        }
-    },
+    
     
  
 }
@@ -323,7 +293,7 @@ BuilderGroup {
             {CF, 'NoDukeNukem',{}},
             {CF,'NukeandExperimentalClearedtoBuild',{}},
             {CF, 'NoRapidFireRush',{}},
-            {CF,'TeleportStrategyActivatedNotRunning',{}},
+            {CF,'TeleportStrategyNotRunning',{}},
             {CF,'ExpClearedtoBuild',{}},
             {CF, 'NoNukeRush',{}},
             {CF,'EarlyAttackAuthorized',{}},
@@ -372,39 +342,6 @@ BuilderGroup {
             {CF,'EarlyAttackAuthorized',{}},
             { SIBC, 'HaveGreaterThanUnitsWithCategory', { 0, categories.ENERGYPRODUCTION * categories.TECH3}},
             { SIBC, 'HaveLessThanUnitsInCategoryBeingBuilt', { 1, categories.ARTILLERY * categories.TECH3 + categories.EXPERIMENTAL + categories.NUKE * categories.STRUCTURE }},
-         
-        },
-        BuilderType = 'Any',
-        BuilderData = {
-            Construction = {
-                BuildClose = true,
-            
-                BuildStructures = {
-                    'T4LandExperimental1',
-                },
-                Location = 'LocationType',
-            }
-        }
-    },
-    
-
-    Builder {
-        BuilderName = 'NC Land Exp1 continuation',
-        PlatoonTemplate = 'T3EngineerBuilderNC',
-        Priority = 975,
-        InstanceCount = 1,
-        DelayEqualBuildPlattons = {'MobileExperimental_land_continuation', 180},
-
-        BuilderConditions = {
-            { UCBC, 'CheckBuildPlattonDelay', { 'MobileExperimental_land' }},
-            { MIBC, 'FactionIndex', {1,2, 3, 4}},
-            { MIBC, 'GreaterThanGameTime', { 1800} },
-            { SBC, 'MapLessThan', { 1000, 1000 }},
-            {CF,'ExpClearedtoBuild',{}},
-            {CF,'NukeandExperimentalClearedtoBuild',{}},
-            { SIBC, 'HaveLessThanUnitsInCategoryBeingBuilt', { 2, categories.EXPERIMENTAL * categories.LAND }},
-            { EBC, 'GreaterThanEconStorageCurrent', { 10000, 15000 } },
-            { SIBC, 'HaveGreaterThanUnitsWithCategory', { 10, categories.ENERGYPRODUCTION * categories.TECH3}},
          
         },
         BuilderType = 'Any',
@@ -510,38 +447,7 @@ BuilderGroup {
             }
         }
     },
-    Builder {
-        BuilderName = 'Nc Satelite BIG N JUICY',
-        PlatoonTemplate = 'UEFT3EngineerBuilderSorian',
-        Priority = 1050,
-        DelayEqualBuildPlattons = {'MobileExperimental_satelite_continuation', 180},
-        BuilderConditions = {
-            { UCBC, 'CheckBuildPlattonDelay', { 'MobileExperimental_satelite_continuation' }},
-            { MIBC, 'FactionIndex', {1}},
-            { SBC, 'MapGreaterThan', { 500, 500 }},
-            { MIBC, 'GreaterThanGameTime', { 1200} },
-            {CF,'NukeandExperimentalClearedtoBuild',{}},
-            {CF,'ExpClearedtoBuild',{}},
-            { EBC, 'GreaterThanEconStorageCurrent', { 20000, 10000 } },
-            {CF, 'NoDukeNukem',{}},
-           
-            
-   
-        },
-        BuilderType = 'Any',
-        BuilderData = {
-            MinNumAssistees = 6,
-            Construction = {
-                BuildClose = true,
-                #T4 = true,
-                AdjacencyCategory = 'SHIELD STRUCTURE',
-                BuildStructures = {
-                    'T4SatelliteExperimental',
-                },
-                Location = 'LocationType',
-            }
-        }
-    },
+    
     
     
    

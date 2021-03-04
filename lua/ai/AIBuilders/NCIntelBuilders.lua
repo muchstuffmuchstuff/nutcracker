@@ -111,7 +111,7 @@ BuilderGroup {
            
 	
             { SIBC, 'HaveLessThanUnitsInCategoryBeingBuilt', {  2, categories.INTELLIGENCE * categories.AIR * categories.TECH1} },
-            { EBC, 'GreaterThanEconStorageCurrent', { 8, 100 } }, 
+            { EBC, 'GreaterThanEconStorageCurrent', { 8, 150 } }, 
             
 			{ SBC, 'NoRushTimeCheck', { 0 }},
         },
@@ -126,15 +126,16 @@ BuilderGroup {
         PlatoonTemplate = 'T3AirScoutNC',
         Priority = 900, 
 
-        DelayEqualBuildPlattons = {'Scouts', 3},
+        DelayEqualBuildPlattons = {'Scouts2', 15},
         BuilderConditions = {
+            { UCBC, 'CheckBuildPlattonDelay', { 'Scouts2' }},
             { MIBC, 'GreaterThanGameTime', { 600} },
-            { UCBC, 'CheckBuildPlattonDelay', { 'Scouts' }},
+            
             { UCBC, 'HaveLessThanUnitsWithCategory', { 10, categories.TECH3 * categories.AIR * categories.INTELLIGENCE } },
 			
 			
             { SIBC, 'HaveLessThanUnitsInCategoryBeingBuilt', { 2, categories.INTELLIGENCE * categories.AIR * categories.TECH3 } },
-            { EBC, 'GreaterThanEconStorageCurrent', { 8, 100 } }, 
+            { EBC, 'GreaterThanEconStorageCurrent', { 8, 150 } }, 
             
 			{ SBC, 'NoRushTimeCheck', { 0 }},
         },
@@ -157,7 +158,7 @@ BuilderGroup {
             { UCBC, 'UnitsLessAtLocation', { 'LocationType', 1, ( categories.RADAR + categories.OMNI ) * categories.STRUCTURE}},
             
        --
-       { EBC, 'GreaterThanEconStorageCurrent', { 8, 100 } }, 
+       { EBC, 'GreaterThanEconStorageCurrent', { 8, 150 } }, 
             
         },
         BuilderType = 'Any',
@@ -279,20 +280,7 @@ Builder {
         BuilderType = 'Any',
     },
 
-    Builder {
-        BuilderName = 'NC T3 Air Scout solo',
-        PlatoonTemplate = 'T3AirScoutflyaround',
-        Priority = 750,
-        BuilderConditions = {
-            { MIBC, 'GreaterThanGameTime', { 600 } },
-            { UCBC, 'PoolGreaterAtLocation', { 'LocationType', 0, categories.AIR * categories.MOBILE * categories.SCOUT * categories.TECH3 } },
-			{ SBC, 'NoRushTimeCheck', { 0 }},
-        },
-        PlatoonAddPlans = { 'AirIntelToggle' },
-		PlatoonAddBehaviors = { 'AirUnitRefitSorian' },
-        InstanceCount = 15,
-        BuilderType = 'Any',
-    },
+   
     Builder {
         BuilderName = 'NC T3 Air Scout together',
         PlatoonTemplate = 'T3AirScoutFormswarm',
@@ -368,6 +356,20 @@ BuilderGroup {
         FormDebugFunction = function()
             local test = false
         end,
+    },
+    Builder {
+        BuilderName = 'NC T2 Radar Upgrade close up',
+        PlatoonTemplate = 'T2RadarUpgrade',
+        Priority = 1100,
+        BuilderConditions = {
+            
+            { SBC, 'GreaterThanEnemyUnitsAroundBase', { 'LocationType', 0, categories.ENERGYPRODUCTION * categories.TECH3, 500 } },
+			{ UCBC, 'HaveLessThanUnitsWithCategory', { 2, categories.OMNI * categories.STRUCTURE } },
+            { EBC, 'GreaterThanEconStorageCurrent', { 0, 40000 } }, 
+			{ UCBC, 'UnitsLessAtLocation', { 'LocationType', 1, categories.OMNI * categories.STRUCTURE } },
+            { UCBC, 'HaveLessThanUnitsInCategoryBeingBuilt', { 1, categories.OMNI * categories.STRUCTURE, 'RADAR STRUCTURE' } },
+        },
+        BuilderType = 'Any',
     },
     
 }

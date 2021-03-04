@@ -118,4 +118,11 @@ function CheckBuildPlattonDelayNC(aiBrain, PlatoonName)
     return true
 end
 
+function LessThanEconStorageCurrentNC(aiBrain, mStorage, eStorage)
+    local econ = AIUtils.AIGetEconomyNumbers(aiBrain)
+    if (econ.MassStorage < mStorage and econ.EnergyStorage < eStorage) then
+        return true
+    end
+    return false
+end
 

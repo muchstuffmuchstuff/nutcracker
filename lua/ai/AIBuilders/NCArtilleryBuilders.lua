@@ -44,7 +44,7 @@ BuilderGroup {
           
             {CF, 'NoSateliteRush',{}},
             {CF, 'NoDukeNukem',{}},
-            {CF,'TeleportStrategyActivatedNotRunning',{}},
+            {CF,'TeleportStrategyNotRunning',{}},
             { UCBC, 'HaveLessThanUnitsWithCategory', {1, categories.EXPERIMENTAL * categories.ARTILLERY } },
             { UCBC, 'HaveGreaterThanUnitsWithCategory', {0, categories.ARTILLERY * (categories.TECH3 + categories.EXPERIMENTAL) } },
             {WRC, 'CheckUnitRangeNC', { 'LocationType', 'T4Artillery', categories.STRUCTURE} },
@@ -80,7 +80,7 @@ BuilderGroup {
             { MIBC, 'GreaterThanGameTime', { 1200} },
             { SBC, 'MapGreaterThan', { 500, 500 }},
             {CF, 'NoSateliteRush',{}},
-            {CF,'TeleportStrategyActivatedNotRunning',{}},
+            {CF,'TeleportStrategyNotRunning',{}},
             {CF, 'NoDukeNukem',{}},
           
             {WRC, 'CheckUnitRangeNC', { 'LocationType', 'T4Artillery', categories.STRUCTURE } },
@@ -122,7 +122,7 @@ BuilderGroup {
             { SBC, 'MapGreaterThan', { 500, 500 }},
       
             {CF, 'NoDukeNukem',{}},
-            {CF,'TeleportStrategyActivatedNotRunning',{}},
+            {CF,'TeleportStrategyNotRunning',{}},
             {WRC, 'CheckUnitRangeNC', { 'LocationType', 'T4Artillery', categories.STRUCTURE } },
             { UCBC, 'HaveLessThanUnitsWithCategory', {1, categories.EXPERIMENTAL * categories.ARTILLERY } },
             { SIBC, 'HaveLessThanUnitsInCategoryBeingBuilt', { 1, categories.ARTILLERY * categories.TECH3 + categories.EXPERIMENTAL + categories.NUKE * categories.STRUCTURE }},
@@ -234,7 +234,7 @@ BuilderGroup {
             { SBC, 'MapGreaterThan', { 500, 500 }},
             {CF, 'NoRapidFireRush',{}},
             {CF,'NukeClearedtoBuild',{}},
-            {CF,'TeleportStrategyActivatedNotRunning',{}},
+            {CF,'TeleportStrategyNotRunning',{}},
             {CF,'NukeandExperimentalClearedtoBuild',{}},
             {CF, 'Noparagonrush',{}},
             {CF,'EarlyAttackAuthorized',{}},
@@ -287,46 +287,6 @@ BuilderGroup {
             }
         }
     },
- 
-    Builder {
-        BuilderName = 'nc T3 Nuke continuation',
-        PlatoonTemplate = 'T3EngineerBuilderNC',
-        DelayEqualBuildPlattons = {'Nuke', 180},
-        Priority = 990,
-        BuilderConditions = {
-            { UCBC, 'CheckBuildPlattonDelay', { 'Nuke' }},
-            { MIBC, 'GreaterThanGameTime', {800 } },
-            { MIBC, 'FactionIndex', {1,2, 3}},
-            {CF,'NukeClearedtoBuild',{}},
-            {CF,'NukeandExperimentalClearedtoBuild',{}},
-            { SBC, 'MapGreaterThan', { 500, 500 }},
-          
-        
-
-           { UCBC, 'HaveGreaterThanUnitsWithCategory', {0, categories.ENERGYPRODUCTION * categories.TECH3 } },
-            { EBC, 'GreaterThanEconStorageCurrent', { 40000, 10000 } }, 
-      
-        },
-        BuilderType = 'Any',
-        BuilderData = {
-			MinNumAssistees = 2,
-            Construction = {
-                BuildClose = false,
-				AdjacencyCategory = 'ENERGYPRODUCTION TECH3',
-                BuildStructures = {
-                    'T3StrategicMissile',
-                },
-                Location = 'LocationType',
-            }
-        }
-    },
-
-   
-  
-    
-    
-    
-    
 
       Builder {
         BuilderName = 'NC Seraphim Exp Nuke Engineer',
@@ -371,6 +331,8 @@ BuilderGroup {
 BuilderGroup {
     BuilderGroupName = 'NCartyinrange',
     BuildersType = 'EngineerBuilder',
+    
+
     Builder {
         BuilderName = 'NC arty',
         PlatoonTemplate = 'T3EngineerBuilderNC',
@@ -381,7 +343,7 @@ BuilderGroup {
             { MIBC, 'GreaterThanGameTime', { 1000 } },
             { SBC, 'MapGreaterThan', { 500, 500 }},
             { MIBC, 'FactionIndex', {2,3,4}},
-            {CF,'TeleportStrategyActivatedNotRunning',{}},
+            {CF,'TeleportStrategyNotRunning',{}},
             
             {CF, 'NoDukeNukem',{}},
             {CF, 'NoRapidFireRush',{}},
@@ -463,7 +425,7 @@ BuilderGroup {
             { MIBC, 'GreaterThanGameTime', { 1500 } },
             
             {CF, 'NoRapidFireRush',{}},
-            {CF,'TeleportStrategyActivatedNotRunning',{}},
+            {CF,'TeleportStrategyNotRunning',{}},
             {CF, 'NoDukeNukem',{}},
            
             { SIBC, 'HaveLessThanUnitsInCategoryBeingBuilt', { 1, categories.ARTILLERY * categories.TECH3 + categories.EXPERIMENTAL + categories.NUKE * categories.STRUCTURE }},

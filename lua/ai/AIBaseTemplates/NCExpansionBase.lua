@@ -8,7 +8,7 @@ BaseBuilderTemplate {
         'NCMobileNavalExperimentalcoinflip',
         'NCMobileNavalExperimentalbehavior',
         'ncdukehukemcoinflip',
-        'NC_coinflip_factoryupgrade',
+    
    
        
   ----COIN FLIP STRATEGIES
@@ -31,7 +31,7 @@ BaseBuilderTemplate {
         # ==== ECONOMY ==== #
         'NCmapcontrolupgrades',
         'NCSCUUpgrades',
-        'NCengineertowers',
+     
         'NC tower upgrades',
         'NCT3Engineerassistmex',
         'NCemergencyenergy',
@@ -134,7 +134,7 @@ BaseBuilderTemplate {
         'NCairstaging',
         'NCT1AntiAirBuilders',
         'NCT3AntiAirBuilders',
-        'NCT3AirFactoryBuilders',
+       
        
         'NCAntiNavyQuickBuild',
        

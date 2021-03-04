@@ -33,7 +33,7 @@ BuilderGroup {
         BuilderName = 'NC No randomizer cannot path T1 enabled',
         PlatoonAddBehaviors = { 'CommanderBehaviorSorian', },
         PlatoonTemplate = 'CommanderBuilderSorian',
-        Priority = 1000,
+        Priority = 999999,
         BuilderConditions = {
            
             { WRC, 'CanPathToCurrentEnemyNC', { 'LocationType', false } }, 
@@ -47,40 +47,20 @@ BuilderGroup {
         PlatoonAddFunctions = { {SAI, 'BuildOnce'}, },
         BuilderData = {
             Construction = {
+                BuildClose = true,
                 BuildStructures = {
+           
                     'T1AirFactory',
 					'T1EnergyProduction',
                     'T1EnergyProduction',
-					#'T1Resource',
                     'T1EnergyProduction',
                     'T1EnergyProduction',
-                    'T1EnergyProduction',
-                    'T1EnergyProduction',
-                    'T1EnergyProduction',
-                    'T1EnergyProduction',
-                    'T1AirFactory',
 					'T1EnergyProduction',
-					'T1EnergyProduction',
-                    
+                    'T1EnergyProduction',                 
 'T1AADefense',
 'T1EnergyProduction',
-'T1LandFactory',
 'T1AADefense',
 'T1EnergyProduction',
-'T1EnergyProduction',
-'T1EnergyProduction',
-'T1EnergyProduction',
-'T1AirFactory',
-'T1EnergyProduction',
-'T1EnergyProduction',
-'T1EnergyProduction',
-'T1EnergyProduction',
-'T1LandFactory',
-'T1EnergyProduction',
-'T1EnergyProduction',
-'T1EnergyProduction',
-'T1EnergyProduction',
-'T1LandFactory',
 'T1EnergyProduction',
 'T1EnergyProduction',
 'T1EnergyProduction',
@@ -98,7 +78,7 @@ BuilderGroup {
         BuilderName = 'NC No randomizer can path',
         PlatoonAddBehaviors = { 'CommanderBehaviorSorian', },
         PlatoonTemplate = 'CommanderBuilderSorian',
-        Priority = 1000,
+        Priority = 999999,
         BuilderConditions = {
             { WRC, 'CanPathToCurrentEnemyNC', { 'LocationType', true } }, 
           
@@ -112,28 +92,15 @@ BuilderGroup {
         PlatoonAddFunctions = { {SAI, 'BuildOnce'}, },
         BuilderData = {
             Construction = {
+                BuildClose = true,
                 BuildStructures = {
                     'T1AirFactory',
 					'T1EnergyProduction',
                     'T1EnergyProduction',
-					#'T1Resource',
                     'T1EnergyProduction',
-                    #'T1Resource',
                     'T1EnergyProduction',
 					'T1EnergyProduction',
-                    'T1EnergyProduction',
-                    'T1AirFactory',
-                    'T1LandFactory',
-                    
-'T1AADefense',
-'T1EnergyProduction',
-'T1AirFactory',
-'T1AADefense',
-'T1EnergyProduction',
-'T1EnergyProduction',
-'T1EnergyProduction',
-'T1EnergyProduction',
-'T1AirFactory',
+                    'T1EnergyProduction',                 
 'T1EnergyProduction',
 'T1EnergyProduction',
 'T1EnergyProduction',
@@ -143,12 +110,11 @@ BuilderGroup {
 'T1EnergyProduction',
 'T1EnergyProduction',
 'T1EnergyProduction',
-'T1LandFactory',
 'T1EnergyProduction',
+'T1AADefense',
 'T1EnergyProduction',
-'T1EnergyProduction',
-'T1EnergyProduction',
-'T1AirFactory',
+
+
 
 
 
@@ -163,7 +129,7 @@ BuilderGroup {
         BuilderName = 'NC CDR Initial Giant map',
         PlatoonAddBehaviors = { 'CommanderBehaviorSorian', },
         PlatoonTemplate = 'CommanderBuilderSorian',
-        Priority = 1000,
+        Priority = 999999,
         BuilderConditions = {
        
             { SBC, 'MapGreaterThan', { 2000, 2000 }},
@@ -174,33 +140,27 @@ BuilderGroup {
         PlatoonAddFunctions = { {SAI, 'BuildOnce'}, },
         BuilderData = {
             Construction = {
+                BuildClose = true,
                 BuildStructures = {
                     'T1AirFactory',
-                  
 					'T1EnergyProduction',
                     'T1EnergyProduction',
-					#'T1Resource',
                     'T1EnergyProduction',
                     'T1EnergyProduction',
 					'T1EnergyProduction',
-					'T1EnergyProduction',
-                   
-
+                    'T1EnergyProduction',                 
+'T1AADefense',
 'T1EnergyProduction',
-
-
-
+'T1AADefense',
+'T1EnergyProduction',
+'T1EnergyProduction',
+'T1EnergyProduction',
 'T1EnergyProduction',
 'T1EnergyProduction',
 'T1AirFactory',
+'T1EnergyProduction',
+'T1EnergyProduction',
 
-'T1EnergyProduction',
-'T1EnergyProduction',
-'T1LandFactory',
-'T1EnergyProduction',
-'T1EnergyProduction',
-'T1EnergyProduction',
-'T1EnergyProduction',
 
 
 					
@@ -212,7 +172,7 @@ BuilderGroup {
         BuilderName = 'NC CDR Initial small',
         PlatoonAddBehaviors = { 'CommanderBehaviorSorian', },
         PlatoonTemplate = 'CommanderBuilderSorian',
-        Priority = 1000,
+        Priority = 99999,
         BuilderConditions = {
           
             { SBC, 'MapLessThan', { 1000, 1000 }},
@@ -223,31 +183,27 @@ BuilderGroup {
         PlatoonAddFunctions = { {SAI, 'BuildOnce'}, },
         BuilderData = {
             Construction = {
+                BuildClose = true,
                 BuildStructures = {
+                    
                     'T1LandFactory',
 					'T1EnergyProduction',
                     'T1EnergyProduction',
-               
-                    #'T1Resource',
                     'T1EnergyProduction',
                     'T1EnergyProduction',
-                    'T1EnergyProduction',
-                    'T1EnergyProduction',
-                    'T1EnergyProduction',
-                    'T1EnergyProduction',
-                    'T1EnergyProduction',
-                    'T1EnergyProduction',
-                    'T1LandFactory',
-                    'T1AirFactory',
-                    'T1LandFactory',
-                    'T1LandFactory',
-                    'T1EnergyProduction',
-                    'T1EnergyProduction',
-                    'T1EnergyProduction',
-                    'T1EnergyProduction',
-                    'T1LandFactory',
-                    'T1AirFactory',
-                    'T1LandFactory'
+					'T1EnergyProduction',
+                    'T1EnergyProduction',                 
+
+'T1EnergyProduction',
+'T1EnergyProduction',
+'T1EnergyProduction',
+'T1EnergyProduction',
+'T1EnergyProduction',
+'T1EnergyProduction',
+'T1EnergyProduction',
+'T1LandFactory',
+'T1EnergyProduction',
+
                 
 
 
@@ -261,7 +217,7 @@ BuilderGroup {
         BuilderName = 'NC CDR Initial PreBuilt Balanced',
         PlatoonAddBehaviors = { 'CommanderBehaviorSorian', },
 		PlatoonTemplate = 'CommanderBuilderSorian',
-        Priority = 1000,
+        Priority = 99999,
         BuilderConditions = {
                 { IBC, 'PreBuiltBase', {}},
             },
@@ -284,6 +240,7 @@ BuilderGroup {
             }
         }
     },
+  
 }
 
 

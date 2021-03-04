@@ -37,15 +37,15 @@ BuilderGroup {
         PlatoonTemplate = 'EngineerBuilderSorian',
         Priority = 1001,
         InstanceCount = 4,
-        DelayEqualBuildPlattons = {'Expansion', 10},
+       
      
         
        
         BuilderConditions = {
           
             { SBC, 'IsIslandMap', { true } },
-            { UCBC, 'CheckBuildPlattonDelay', { 'Expansion' }},
-            { UCBC, 'HaveGreaterThanUnitsWithCategory', {1, categories.TRANSPORTFOCUS } },
+           
+            { UCBC, 'HaveGreaterThanUnitsWithCategory', {0, categories.TRANSPORTFOCUS } },
             { UCBC, 'StartLocationNeedsEngineer', { 'LocationType', 1000, -1000, 5, 0, 'StructuresNotMex' } },
         
            
@@ -75,9 +75,12 @@ BuilderGroup {
                     'T1LandFactory',
                     'T1AirFactory',
                     'T1GroundDefense',
-                    
-                    'T1AirFactory',
-                    'T1AirFactory',
+					'T1AADefense',
+                    'T1Resource',
+                    'T1Resource',
+                    'T1Resource',
+                    'T1Resource',
+                    'T1Resource',
                     
 
 				
@@ -94,11 +97,11 @@ BuilderGroup {
         PlatoonTemplate = 'EngineerBuilderSorian',
         Priority = 1002,
         InstanceCount = 4,
-        DelayEqualBuildPlattons = {'Expansion', 10},
+        DelayEqualBuildPlattons = {'Expansion2', 10},
         
        
         BuilderConditions = {
-            { UCBC, 'CheckBuildPlattonDelay', { 'Expansion' }},
+            { UCBC, 'CheckBuildPlattonDelay', { 'Expansion2' }},
             { SBC, 'IsIslandMap', { true } },
            
             { UCBC, 'HaveGreaterThanUnitsWithCategory', {0, categories.TRANSPORTFOCUS } },
@@ -131,9 +134,12 @@ BuilderGroup {
                     'T1LandFactory',
                     'T1AirFactory',
                     'T1GroundDefense',
-                    
-                    'T1AirFactory',
-                    'T1AirFactory',
+					'T1AADefense',
+                    'T1Resource',
+                    'T1Resource',
+                    'T1Resource',
+                    'T1Resource',
+                    'T1Resource',
                     
 
 				
@@ -187,9 +193,12 @@ BuilderGroup {
                     'T1LandFactory',
                     'T1AirFactory',
                     'T1GroundDefense',
-           
-                    'T1AirFactory',
-                    'T1AirFactory',
+					'T1AADefense',
+                    'T1Resource',
+                    'T1Resource',
+                    'T1Resource',
+                    'T1Resource',
+                    'T1Resource',
                    
 
                 }
@@ -236,9 +245,12 @@ BuilderGroup {
                     'T1LandFactory',
                     'T1AirFactory',
                     'T1GroundDefense',
-                    'T1LandFactory',
-                    'T1AirFactory',
-                    'T1AirFactory',
+					'T1AADefense',
+                    'T1Resource',
+                    'T1Resource',
+                    'T1Resource',
+                    'T1Resource',
+                    'T1Resource',
                
 
 					
@@ -301,10 +313,10 @@ BuilderGroup {
         PlatoonTemplate = 'EngineerBuilderSorian',
         Priority = 1100,
         InstanceCount = 4,
-        DelayEqualBuildPlattons = {'Expansion', 10},
+       
        
         BuilderConditions = {
-            { UCBC, 'CheckBuildPlattonDelay', { 'Expansion' }},
+           
             { SBC, 'IsIslandMap', { false } },
             { UCBC, 'HaveGreaterThanUnitsWithCategory', {0, categories.TRANSPORTFOCUS } },
             { UCBC, 'StartLocationNeedsEngineer', { 'LocationType', 500, -1000, 5, 0, 'StructuresNotMex' } },
@@ -335,15 +347,60 @@ BuilderGroup {
                 BuildStructures = {                    
                     'T1GroundDefense',
                     'T1LandFactory',
-               
-                
                     'T1AirFactory',
                     'T1GroundDefense',
-					'T1LandFactory',
 					'T1AADefense',
+                    'T1Resource',
+                    'T1Resource',
+                    'T1Resource',
+                    'T1Resource',
+                    'T1Resource',
 					
                                       
 
+                }               
+            },
+            NeedGuard = true,
+        }
+    },
+
+    Builder {
+        BuilderName = 'NC T1rushVacantStartingAreaEngineer 500 small',
+        PlatoonTemplate = 'EngineerBuilderSorian',
+        Priority = 1000,
+       
+       
+       
+        BuilderConditions = {
+          
+            { SBC, 'IsIslandMap', { false } },
+            { SBC, 'MapLessThan', { 1000, 1000 }},   
+            { UCBC, 'HaveGreaterThanUnitsWithCategory', {10, categories.MASSEXTRACTION } },
+            { UCBC, 'StartLocationNeedsEngineer', { 'LocationType', 500, -1000, 5, 0, 'StructuresNotMex' } },
+			{ SBC, 'NoRushTimeCheck', { 0 }},   
+        },
+        BuilderType = 'Any',
+        BuilderData = {
+			RequireTransport = true,
+            Construction = {
+                BuildClose = false,
+                BaseTemplate = ExBaseTmpl,
+                ExpansionBase = true,
+                NearMarkerType = 'Start Location',
+                LocationRadius = 500,
+                LocationType = 'LocationType',
+                ThreatMin = -1000,
+                ThreatMax = 25,
+                ExpansionRadius = 100,
+                ThreatRings = 0,
+                ThreatType = 'StructuresNotMex',
+                BuildStructures = {                    
+              
+                    'T1LandFactory',
+              
+              
+				
+					
                 }               
             },
             NeedGuard = true,
@@ -359,7 +416,7 @@ BuilderGroup {
        
         BuilderConditions = {
             { SBC, 'IsIslandMap', { false } },
-            { UCBC, 'HaveGreaterThanUnitsWithCategory', {1, categories.TRANSPORTFOCUS } },
+            { UCBC, 'HaveGreaterThanUnitsWithCategory', {0, categories.TRANSPORTFOCUS } },
             { UCBC, 'StartLocationNeedsEngineer', { 'LocationType', 900, -1000, 5, 0, 'StructuresNotMex' } },
            
        
@@ -388,12 +445,15 @@ BuilderGroup {
                 BuildStructures = {                    
                     'T1GroundDefense',
                     'T1LandFactory',
-               
-                
                     'T1AirFactory',
                     'T1GroundDefense',
-					'T1LandFactory',
 					'T1AADefense',
+                    'T1Resource',
+                    'T1Resource',
+                    'T1Resource',
+                    'T1Resource',
+                    'T1Resource',
+
 					
                                       
 
@@ -438,12 +498,14 @@ BuilderGroup {
                 BuildStructures = {                    
                     'T1GroundDefense',
                     'T1LandFactory',
-                 
-               
-                
-					'T1AirFactory',
-					'T1LandFactory',
+                    'T1AirFactory',
+                    'T1GroundDefense',
 					'T1AADefense',
+                    'T1Resource',
+                    'T1Resource',
+                    'T1Resource',
+                    'T1Resource',
+                    'T1Resource',
 					
                 }
             },
@@ -540,10 +602,15 @@ BuilderGroup {
                 ThreatType = 'StructuresNotMex',
                 BuildStructures = {
                     'T1GroundDefense',
+                    'T1LandFactory',
                     'T1AirFactory',
-                    'T1AirFactory',
-                   
-               
+                    'T1GroundDefense',
+					'T1AADefense',
+                    'T1Resource',
+                    'T1Resource',
+                    'T1Resource',
+                    'T1Resource',
+                    'T1Resource',
 
 					
                 }
@@ -587,12 +654,16 @@ BuilderGroup {
                 ThreatRings = 2,
                 ThreatType = 'StructuresNotMex',
                 BuildStructures = {
-                    'T2GroundDefense',
+                    'T1GroundDefense',
+                    'T1LandFactory',
                     'T1AirFactory',
-                    'T1AirFactory',
-                   
-               
-
+                    'T1GroundDefense',
+					'T1AADefense',
+                    'T1Resource',
+                    'T1Resource',
+                    'T1Resource',
+                    'T1Resource',
+                    'T1Resource',
 					
                 }
             },

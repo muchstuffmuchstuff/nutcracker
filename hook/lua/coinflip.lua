@@ -48,7 +48,7 @@ end
 
 function EarlyAttackAuthorized(aiBrain)
     
-    if aiBrain.CoinFlip !=21 and aiBrain.CoinFlip !=22 and aiBrain.CoinFlip != 19 then
+    if aiBrain.CoinFlip != 1 and aiBrain.CoinFlip != 22 and aiBrain.CoinFlip != 19 then
 
     --LOG('early attack authorized!!!!')
     return true
@@ -70,9 +70,9 @@ else
 end
 end
 
-function TeleportStrategyActivatedNotRunning(aiBrain)
+function TeleportStrategyNotRunning(aiBrain)
     
-    if aiBrain.CoinFlip != 21 or aiBrain.CoinFlip != 22 then
+    if aiBrain.CoinFlip != 21 or not aiBrain.CoinFlip != 22  then
     --LOG('mass teleport not running!!!!')
     return true
 else

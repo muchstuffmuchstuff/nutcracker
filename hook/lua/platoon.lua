@@ -152,7 +152,7 @@ FighterHuntNC = function(self)
     local hadtarget = false
     while aiBrain:PlatoonExists(self) do
         if self:IsOpponentAIRunning() then
-            target = self:FindClosestUnit('Attack', 'Enemy', true, categories.AIR - categories.SCOUT - categories.POD)
+            target = self:FindClosestUnit('Attack', 'Enemy', true, categories.AIR - categories.SCOUT - categories.POD - categories.CONSTRUCTION - categories.SHIELD)
             local newtarget = false
             if aiBrain.T4ThreatFound['Air'] then
                 newtarget = self:FindClosestUnit('Attack', 'Enemy', true, categories.EXPERIMENTAL * categories.AIR)

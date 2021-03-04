@@ -122,7 +122,7 @@ BuilderGroup {
 
 			{ SBC, 'NoRushTimeCheck', { 600 }},
 			
-			{ UCBC, 'HaveLessThanUnitsWithCategory', { 3, categories.NAVAL * categories.MOBILE } },
+			{ UCBC, 'HaveLessThanUnitsWithCategory', { 12, categories.NAVAL * categories.MOBILE } },
             { EBC, 'GreaterThanEconStorageCurrent', { 25,125 } },
             
         },
@@ -135,7 +135,7 @@ BuilderGroup {
         Priority = 600,
         BuilderConditions = {
        --
-{ UCBC, 'HaveUnitsWithCategoryAndAlliance', { true, 1, categories.NAVAL * categories.MOBILE,  'Enemy' }},
+       { UCBC, 'HaveUnitsWithCategoryAndAlliance', { true, 0, categories.FACTORY * categories.NAVAL,  'Enemy' }},
 			{ SBC, 'NoRushTimeCheck', { 600 }},
 			
 			
@@ -160,7 +160,7 @@ BuilderGroup {
             { MIBC, 'GreaterThanGameTime', { 1000} },
             
 			{ SBC, 'NoRushTimeCheck', { 600 }},
-{ UCBC, 'HaveUnitsWithCategoryAndAlliance', { true, 1, categories.NAVAL * categories.MOBILE,  'Enemy' }},
+{ UCBC, 'HaveUnitsWithCategoryAndAlliance', { true, 0, categories.FACTORY * categories.NAVAL,  'Enemy' }},
 			
   { EBC, 'GreaterThanEconStorageCurrent', { 25, 125 } },
             
@@ -198,7 +198,7 @@ BuilderGroup {
             { MIBC, 'GreaterThanGameTime', { 1000} },
             { UCBC, 'HaveLessThanUnitsWithCategory', {5, categories.xss0304 } },
 			{ SBC, 'NoRushTimeCheck', { 600 }},
-{ UCBC, 'HaveUnitsWithCategoryAndAlliance', { true, 1, categories.NAVAL * categories.MOBILE,  'Enemy' }},
+            { UCBC, 'HaveUnitsWithCategoryAndAlliance', { true, 0, categories.FACTORY * categories.NAVAL,  'Enemy' }},
 			
 { EBC, 'GreaterThanEconStorageCurrent', { 150, 4000 } },
             
@@ -217,7 +217,7 @@ BuilderGroup {
             { UCBC, 'HaveLessThanUnitsWithCategory', {5, categories.BATTLESHIP } },
             
 			{ SBC, 'NoRushTimeCheck', { 600 }},
-{ UCBC, 'HaveUnitsWithCategoryAndAlliance', { true, 1, categories.NAVAL * categories.MOBILE * categories.TECH2,  'Enemy' }},
+            { UCBC, 'HaveUnitsWithCategoryAndAlliance', { true, 0, categories.FACTORY * categories.NAVAL,  'Enemy' }},
 			
 { EBC, 'GreaterThanEconStorageCurrent', { 150, 4000 } },
             
