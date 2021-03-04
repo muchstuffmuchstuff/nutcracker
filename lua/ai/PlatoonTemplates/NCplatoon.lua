@@ -38,14 +38,7 @@ PlatoonTemplate {
     }
 }
 
-PlatoonTemplate {
-    Name = 't1bomberspam',
-    Plan = 'HuntAI',
-    GlobalSquads = {
-        { categories.MOBILE * (categories.TECH1 + categories.TECH2) * categories.AIR  * categories.BOMBER - categories.TRANSPORTFOCUS - categories.ANTINAVY -categories.GROUNDATTACK - categories.SCOUT - categories.INSIGNIFICANTUNIT - categories.POD , 1, 2, 'Attack', 'none' },
-        
-    },
-}
+
 
 PlatoonTemplate {
     Name = 'clenseNCt1t2',

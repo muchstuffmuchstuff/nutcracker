@@ -220,7 +220,7 @@ Builder {
                 AggressiveMove = false,                                            
                 AttackEnemyStrength = 50000,                                      
                 IgnorePathing = true,                                              
-                TargetSearchCategory = categories.STRUCTURE - categories.NAVAL,    
+                TargetSearchCategory = categories.STRUCTURE - categories.WALL - categories.NAVAL,    
                 TargetHug = true,                                                  
                 MoveToCategories = {                                               
                     categories.STRUCTURE * categories.EXPERIMENTAL,

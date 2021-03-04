@@ -118,7 +118,7 @@ BuilderGroup {
         BuilderData = {
             RequireTransport = false,
             AttackEnemyStrength = 1000,  
-            TargetSearchCategory = categories.STRUCTURE,
+            TargetSearchCategory = categories.STRUCTURE - categories.WALL,
             MoveToCategories = {                                               
                 categories.STRUCTURE,
                 
@@ -233,7 +233,7 @@ BuilderGroup {
         BuilderData = {
             RequireTransport = false,
             AttackEnemyStrength = 100,  
-            TargetSearchCategory = categories.STRUCTURE,
+            TargetSearchCategory = categories.STRUCTURE - categories.WALL,
             MoveToCategories = {                                               
                 categories.STRUCTURE,
                 
@@ -263,7 +263,7 @@ BuilderGroup {
         BuilderData = {
             RequireTransport = false,
             AttackEnemyStrength = 100,  
-            TargetSearchCategory = categories.STRUCTURE,
+            TargetSearchCategory = categories.STRUCTURE - categories.WALL,
             MoveToCategories = {                                               
                 categories.STRUCTURE,
                 
@@ -292,7 +292,7 @@ BuilderGroup {
         BuilderData = {
             RequireTransport = false,
             AttackEnemyStrength = 100,  
-            TargetSearchCategory = categories.STRUCTURE,
+            TargetSearchCategory = categories.STRUCTURE - categories.WALL,
             MoveToCategories = {                                               
                 categories.STRUCTURE,
                 
@@ -321,7 +321,7 @@ BuilderGroup {
         BuilderData = {
             RequireTransport = false,
             AttackEnemyStrength = 100,  
-            TargetSearchCategory = categories.STRUCTURE,
+            TargetSearchCategory = categories.STRUCTURE - categories.WALL,
             MoveToCategories = {                                               
                 categories.STRUCTURE,
                 
@@ -351,7 +351,7 @@ BuilderGroup {
         BuilderData = {
             RequireTransport = false,
             AttackEnemyStrength = 100,
-            TargetSearchCategory = categories.STRUCTURE,
+            TargetSearchCategory = categories.STRUCTURE - categories.WALL,
             MoveToCategories = {                                               
                 categories.STRUCTURE,
                 
@@ -380,7 +380,7 @@ BuilderGroup {
         BuilderData = {
             RequireTransport = false,
             AttackEnemyStrength = 100,  
-            TargetSearchCategory = categories.STRUCTURE,
+            TargetSearchCategory = categories.STRUCTURE - categories.WALL,
             MoveToCategories = {                                               
                 categories.STRUCTURE,
                 
@@ -411,7 +411,7 @@ BuilderGroup {
         BuilderData = {
             RequireTransport = false,
             AttackEnemyStrength = 100,
-            TargetSearchCategory = categories.STRUCTURE,
+            TargetSearchCategory = categories.STRUCTURE - categories.WALL,
             MoveToCategories = {                                               
                 categories.STRUCTURE,
                 
@@ -440,7 +440,7 @@ BuilderGroup {
         BuilderData = {
             RequireTransport = false,
             AttackEnemyStrength = 100,  
-            TargetSearchCategory = categories.STRUCTURE,
+            TargetSearchCategory = categories.STRUCTURE - categories.WALL,
             MoveToCategories = {                                               
                 categories.STRUCTURE,
                 

@@ -89,7 +89,7 @@ BuilderGroup {
             BuilderType = 'Any',
             BuilderConditions = {
              
-                { MIBC, 'LessThanGameTime', { 1000} },
+          
                 { UCBC, 'PoolGreaterAtLocation', { 'LocationType', 2, categories.uea0103 + categories.uaa0103 + categories.ura0103 + categories.xsa0103} },
                 { SBC, 'NoRushTimeCheck', { 0 }},
             },
@@ -108,37 +108,7 @@ BuilderGroup {
                 },
             },
         },
-        Builder {
-            BuilderName = 'NC clenseexcess bombersT1T2',
-            PlatoonTemplate = 'clenseNCt1t2',
-                PlatoonAddBehaviors = { 'AirUnitRefitSorian' },
-                PlatoonAddPlans = { 'AirIntelToggle', 'DistressResponseAISorian'  },
-                Priority = 10,
-                FormRadius = 500,
-                InstanceCount = 50,
-                AggressiveMove = true,
-                BuilderType = 'Any',
-                BuilderConditions = {
-                 
-                    { MIBC, 'GreaterThanGameTime', { 600} },
-                             { UCBC, 'PoolGreaterAtLocation', { 'LocationType', 2, categories.uea0103 + categories.uaa0103 + categories.ura0103 + categories.xsa0103} },
-                    { SBC, 'NoRushTimeCheck', { 0 }},
-                },
-                BuilderData = {
-                    AvoidBases = true,
-                    AvoidBasesRadius = 100,
-                    SearchRadius = 5000,
-                    
-                    PrioritizedCategories = {    
-        
-                        'EXPERIMENTAL LAND',
-                        'EXPERIMENTAL STRUCTURE',
-                        'STRATEGIC STRUCTURE',
-                        'MASSEXTRACTION',
-   
-                    },
-                },
-            },
+       
 
         Builder {
             BuilderName = 'NC clenseexcess bombersT3',
@@ -148,28 +118,24 @@ BuilderGroup {
                 Priority = 10,
                 FormRadius = 500,
                 InstanceCount = 100,
-                AggressiveMove = true,
+                AggressiveMove = false,
                 BuilderType = 'Any',
-                BuilderConditions = {
-                    
+                BuilderConditions = {        
                     { MIBC, 'GreaterThanGameTime', { 900} },
-                 
-                
-                   
-                             { UCBC, 'PoolGreaterAtLocation', { 'LocationType', 2, categories.AIR  * categories.TECH3 * categories.BOMBER  * categories.MOBILE - categories.TRANSPORTFOCUS -  categories.GROUNDATTACK - categories.ANTINAVY - categories.SCOUT - categories.uea0303 - categories.uaa0303 - categories.ura0303 - categories.xsa0303 - categories.uea0102 - categories.uaa0102 - categories.ura0102 - categories.xsa0102 } },
+                    { UCBC, 'PoolGreaterAtLocation', { 'LocationType', 2, categories.AIR  * categories.TECH3 * categories.BOMBER  * categories.MOBILE - categories.TRANSPORTFOCUS -  categories.GROUNDATTACK - categories.ANTINAVY - categories.SCOUT - categories.uea0303 - categories.uaa0303 - categories.ura0303 - categories.xsa0303 - categories.uea0102 - categories.uaa0102 - categories.ura0102 - categories.xsa0102 } },
                     { SBC, 'NoRushTimeCheck', { 0 }},
                 },
                 BuilderData = {
                     SearchRadius = 5000,
                     
-                    PrioritizedCategories = {    
-        
-                                     
+                    PrioritizedCategories = {   
+                         
                         'EXPERIMENTAL LAND',
                         'EXPERIMENTAL STRUCTURE',
                         'STRATEGIC STRUCTURE',
                         'MASSEXTRACTION TECH3',
                         'MASSEXTRACTION TECH2',
+                        
    
                     },
                 },
@@ -183,7 +149,7 @@ BuilderGroup {
                     Priority = 1000,
                     FormRadius = 500,
                     InstanceCount = 100,
-                    AggressiveMove = true,
+                    AggressiveMove = false,
                     BuilderType = 'Any',
                     BuilderConditions = {
                     
@@ -196,8 +162,9 @@ BuilderGroup {
                         SearchRadius = 5000,
                         
                         PrioritizedCategories = {    
-            
+                            
                             'COMMAND',    
+                           
               
                         },
                     },
@@ -210,7 +177,7 @@ BuilderGroup {
                     Priority = 11,
                     FormRadius = 500,
                     InstanceCount = 100,
-                    AggressiveMove = true,
+                    AggressiveMove = false,
                     BuilderType = 'Any',
                     BuilderConditions = {
                         
@@ -225,13 +192,14 @@ BuilderGroup {
                         SearchRadius = 5000,
                         
                         PrioritizedCategories = {    
-            
+                            
                             'ANTIMISSILE TECH3',
                             'EXPERIMENTAL LAND',
                             'EXPERIMENTAL STRUCTURE',
                             'STRATEGIC STRUCTURE',
                             'MASSEXTRACTION TECH3',
                             'MASSEXTRACTION TECH2',      
+                            
                   
                         },
                     },
@@ -730,7 +698,7 @@ BuilderGroup {
 Builder {
         BuilderName = 'NC T2 Air Staging get r done',
         PlatoonTemplate = 'T2EngineerBuilderSorian',
-        Priority = 800,
+        Priority = 600,
         BuilderConditions = {
          
           
@@ -842,10 +810,10 @@ BuilderGroup {
 			{ SBC, 'NoRushTimeCheck', { 600 }},
 			{ UCBC, 'HaveUnitsWithCategoryAndAlliance', { true, 0, categories.NAVAL * categories.MOBILE,  'Enemy' }},
           ---
-{ EBC, 'GreaterThanEconStorageCurrent', { 8, 150 } },  
+{ EBC, 'GreaterThanEconStorageCurrent', { 24, 750 } },  
 --
             
-            { UCBC, 'HaveLessThanUnitsWithCategory', { 100, categories.AIR * categories.GROUNDATTACK * categories.TECH3 } },
+            
         },
     },
     
