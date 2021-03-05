@@ -734,19 +734,14 @@ Builder {
     BuilderName = 'nc T3 Nuke dukenukem',
     PlatoonTemplate = 'T3EngineerBuilderNC',
     Priority = 1100,
-    
     InstanceCount = 1,
-    
     DelayEqualBuildPlattons = {'biglyspendly', 60},
     BuilderConditions = {
         { UCBC, 'CheckBuildPlattonDelay', { 'biglyspendly' }},
-  
         { MIBC, 'GreaterThanGameTime', { 600 } },
         { CF, 'DukeNukemEnabled', {} },
-        
         { EBC, 'GreaterThanEconStorageCurrent', { 1000, 7000 } },
         { SIBC, 'HaveLessThanUnitsInCategoryBeingBuilt', { 1, categories.ARTILLERY * categories.TECH3 + categories.EXPERIMENTAL + categories.NUKE * categories.STRUCTURE }},
-        
     },
     BuilderType = 'Any',
     BuilderData = {
