@@ -59,7 +59,9 @@ function CanPathToCurrentEnemyNC(aiBrain, locationType, bool)
 
     local locPos = aiBrain.BuilderManagers[locationType].Position 
     
-    
+    if not locPos then
+        locPos = aiBrain.BuilderManagers['MAIN'].Position
+    end
     local enemyX, enemyZ
     if aiBrain:GetCurrentEnemy() then
         enemyX, enemyZ = aiBrain:GetCurrentEnemy():GetArmyStartPos()

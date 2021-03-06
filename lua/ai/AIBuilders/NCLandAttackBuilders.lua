@@ -60,9 +60,9 @@ BuilderGroup {
             RequireTransport = false,
             AggressiveMove = false,
             AttackEnemyStrength = 1000,  
-            TargetSearchCategory = categories.ALLUNITS - categories.WALL,
+            TargetSearchCategory = categories.ALLUNITS,
             MoveToCategories = {                                               
-                categories.STRUCTURE - categories.WALL,
+                categories.STRUCTURE,
                 
             },
             SearchRadius = 6000,
@@ -89,9 +89,9 @@ BuilderGroup {
             RequireTransport = true,
             AggressiveMove = false,
             AttackEnemyStrength = 1000,  
-            TargetSearchCategory = categories.ALLUNITS - categories.ENGINEER - categories.WALL,
+            TargetSearchCategory = categories.ALLUNITS - categories.ENGINEER,
             MoveToCategories = {                                               
-                categories.STRUCTURE - categories.WALL,
+                categories.STRUCTURE,
                 
             },
             SearchRadius = 6000,
@@ -118,9 +118,9 @@ BuilderGroup {
         BuilderData = {
             RequireTransport = false,
             AttackEnemyStrength = 1000,  
-            TargetSearchCategory = categories.STRUCTURE - categories.WALL,
+            TargetSearchCategory = categories.STRUCTURE,
             MoveToCategories = {                                               
-                categories.STRUCTURE - categories.WALL,
+                categories.STRUCTURE,
                 
             },
             SearchRadius = 6000,
@@ -233,9 +233,9 @@ BuilderGroup {
         BuilderData = {
             RequireTransport = false,
             AttackEnemyStrength = 100,  
-            TargetSearchCategory = categories.STRUCTURE - categories.WALL,
+            TargetSearchCategory = categories.STRUCTURE,
             MoveToCategories = {                                               
-                categories.STRUCTURE - categories.WALL,
+                categories.STRUCTURE,
                 
             },
             SearchRadius = 6000,
@@ -263,9 +263,9 @@ BuilderGroup {
         BuilderData = {
             RequireTransport = false,
             AttackEnemyStrength = 100,  
-            TargetSearchCategory = categories.STRUCTURE - categories.WALL,
+            TargetSearchCategory = categories.STRUCTURE,
             MoveToCategories = {                                               
-                categories.STRUCTURE - categories.WALL,
+                categories.STRUCTURE,
                 
             },
             SearchRadius = 6000,
@@ -292,9 +292,9 @@ BuilderGroup {
         BuilderData = {
             RequireTransport = false,
             AttackEnemyStrength = 100,  
-            TargetSearchCategory = categories.STRUCTURE - categories.WALL,
+            TargetSearchCategory = categories.STRUCTURE,
             MoveToCategories = {                                               
-                categories.STRUCTURE - categories.WALL,
+                categories.STRUCTURE,
                 
             },
             SearchRadius = 6000,
@@ -321,9 +321,9 @@ BuilderGroup {
         BuilderData = {
             RequireTransport = false,
             AttackEnemyStrength = 100,  
-            TargetSearchCategory = categories.STRUCTURE - categories.WALL,
+            TargetSearchCategory = categories.STRUCTURE,
             MoveToCategories = {                                               
-                categories.STRUCTURE - categories.WALL,
+                categories.STRUCTURE,
                 
             },
             SearchRadius = 6000,
@@ -351,9 +351,9 @@ BuilderGroup {
         BuilderData = {
             RequireTransport = false,
             AttackEnemyStrength = 100,
-            TargetSearchCategory = categories.STRUCTURE - categories.WALL,
+            TargetSearchCategory = categories.STRUCTURE,
             MoveToCategories = {                                               
-                categories.STRUCTURE - categories.WALL,
+                categories.STRUCTURE,
                 
             },
             SearchRadius = 6000,
@@ -380,9 +380,9 @@ BuilderGroup {
         BuilderData = {
             RequireTransport = false,
             AttackEnemyStrength = 100,  
-            TargetSearchCategory = categories.STRUCTURE - categories.WALL,
+            TargetSearchCategory = categories.STRUCTURE,
             MoveToCategories = {                                               
-                categories.STRUCTURE - categories.WALL,
+                categories.STRUCTURE,
                 
             },
             SearchRadius = 6000,
@@ -411,9 +411,9 @@ BuilderGroup {
         BuilderData = {
             RequireTransport = false,
             AttackEnemyStrength = 100,
-            TargetSearchCategory = categories.STRUCTURE - categories.WALL,
+            TargetSearchCategory = categories.STRUCTURE,
             MoveToCategories = {                                               
-                categories.STRUCTURE - categories.WALL,
+                categories.STRUCTURE,
                 
             },
             SearchRadius = 6000,
@@ -440,9 +440,9 @@ BuilderGroup {
         BuilderData = {
             RequireTransport = false,
             AttackEnemyStrength = 100,  
-            TargetSearchCategory = categories.STRUCTURE - categories.WALL,
+            TargetSearchCategory = categories.STRUCTURE,
             MoveToCategories = {                                               
-                categories.STRUCTURE - categories.WALL,
+                categories.STRUCTURE,
                 
             },
             SearchRadius = 6000,

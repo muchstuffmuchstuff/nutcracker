@@ -143,7 +143,6 @@ Builder {
         BuilderName = 'NC T1 being tml rushed - building TMD',
         PlatoonTemplate = 'T2EngineerBuilderSorian',
         Priority = 950,
-        InstanceCount = 3,
         BuilderConditions = {
            
             

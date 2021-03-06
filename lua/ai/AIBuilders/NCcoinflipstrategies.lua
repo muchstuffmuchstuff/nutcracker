@@ -220,7 +220,7 @@ Builder {
                 AggressiveMove = false,                                            
                 AttackEnemyStrength = 50000,                                      
                 IgnorePathing = true,                                              
-                TargetSearchCategory = categories.STRUCTURE - categories.WALL - categories.NAVAL,    
+                TargetSearchCategory = categories.STRUCTURE - categories.NAVAL,    
                 TargetHug = true,                                                  
                 MoveToCategories = {                                               
                     categories.STRUCTURE * categories.EXPERIMENTAL,
@@ -291,9 +291,9 @@ Builder {
                 {CF,'TeleportStrategyActivated',{}},
                 { MIBC, 'FactionIndex', { 2, 4 }},
                 {WRC,'SubCmdrHasUpgradeNC', {'Teleporter', true}},
-                { EBC, 'GreaterThanEconStorageCurrent', { 5000, 20000} },
+                { EBC, 'GreaterThanEconStorageCurrent', { 500, 20000} },
               
-                { UCBC, 'HaveGreaterThanArmyPoolWithCategory', { 0, categories.SUBCOMMANDER} },
+                { UCBC, 'HaveGreaterThanArmyPoolWithCategory', { 0, categories.SUBCOMMANDER } },
                
                 
             },
@@ -734,14 +734,19 @@ Builder {
     BuilderName = 'nc T3 Nuke dukenukem',
     PlatoonTemplate = 'T3EngineerBuilderNC',
     Priority = 1100,
+    
     InstanceCount = 1,
+    
     DelayEqualBuildPlattons = {'biglyspendly', 60},
     BuilderConditions = {
         { UCBC, 'CheckBuildPlattonDelay', { 'biglyspendly' }},
+  
         { MIBC, 'GreaterThanGameTime', { 600 } },
         { CF, 'DukeNukemEnabled', {} },
+        
         { EBC, 'GreaterThanEconStorageCurrent', { 1000, 7000 } },
         { SIBC, 'HaveLessThanUnitsInCategoryBeingBuilt', { 1, categories.ARTILLERY * categories.TECH3 + categories.EXPERIMENTAL + categories.NUKE * categories.STRUCTURE }},
+        
     },
     BuilderType = 'Any',
     BuilderData = {

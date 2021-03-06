@@ -751,8 +751,8 @@ AirAttackNC = function(self)
             table.insert(categoryList, ParseEntityCategory(v))
         end
     end
-   
-    
+    table.insert(atkPri, 'ALLUNITS')
+    table.insert(categoryList, categories.ALLUNITS - categories.AIRSTAGINGPLATFORM)
     self:SetPrioritizedTargetList('Attack', categoryList)
     local target = false
     local oldTarget = false

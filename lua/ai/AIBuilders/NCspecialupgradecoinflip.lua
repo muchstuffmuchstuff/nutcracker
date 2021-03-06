@@ -31,16 +31,19 @@ BuilderGroup {
     BuildersType = 'EngineerBuilder',
     Builder {
         BuilderName = 'NC T1 Engineer Assist Factory Upgrade',
-        PlatoonTemplate = 'AnyEngineerassistNC',
+        PlatoonTemplate = 'EngineerAssist',
         Priority = 1050,
         InstanceCount = 5,
         BuilderConditions = {
             {CF,'NukeRush',{}},
             { UCBC, 'LocationFactoriesBuildingGreater', { 'LocationType', 0, 'FACTORY' }},
-            { SIBC, 'HaveLessThanUnitsWithCategory', { 1, categories.FACTORY * categories.LAND * categories.TECH3 } },
-
+            { SIBC, 'HaveLessThanUnitsWithCategory', { 1, categories.FACTORY * categories.TECH3 * categories.LAND } },
+      
+           
+           
+       --
         },
-        InstanceCount = 8,
+        InstanceCount = 5,
         BuilderType = 'Any',
         BuilderData = {
             Assist = {
@@ -52,6 +55,34 @@ BuilderGroup {
             },
         }
     },
+ 
+Builder {
+    BuilderName = 'NC T2 Engineer Assist Factory Upgrade',
+    PlatoonTemplate = 'T2EngineerAssist',
+    Priority = 1050,
+    InstanceCount = 5,
+    BuilderConditions = {
+        {CF,'NukeRush',{}},
+        { UCBC, 'LocationFactoriesBuildingGreater', { 'LocationType', 0, 'FACTORY' }},
+        { SIBC, 'HaveLessThanUnitsWithCategory', { 1, categories.FACTORY * categories.TECH3 * categories.LAND } },
+      
+       
+       
+   --
+    },
+    InstanceCount = 5,
+    BuilderType = 'Any',
+    BuilderData = {
+        Assist = {
+            AssistLocation = 'LocationType',
+            PermanentAssist = false,
+            BeingBuiltCategories = {'FACTORY LAND'},
+            AssisteeType = 'Factory',
+            time = 60,
+        },
+    }
+},
+
 }
 
 

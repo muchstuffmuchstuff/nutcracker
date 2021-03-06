@@ -1038,7 +1038,7 @@ BuilderGroup {
             { WRC, 'CanPathToCurrentEnemyNC', { 'LocationType', true } }, 
             { UCBC, 'HaveLessThanUnitsWithCategory', {40, categories.MOBILE * categories.ANTIAIR * categories.LAND * (categories.TECH2 + categories.TECH3) } },
             { WRC, 'HaveUnitRatioVersusEnemyNC', { 5.0, categories.MOBILE * categories.LAND - categories.ENGINEER, '>=', categories.MOBILE * categories.LAND - categories.ENGINEER} },
-            { WRC, 'HaveUnitRatioVersusEnemyNC', { 1.5, categories.MOBILE * categories.AIR * categories.ANTIAIR - categories.GROUNDATTACK - categories.BOMBER, '<=', categories.MOBILE * categories.AIR - categories.SCOUT - categories.TRANSPORTFOCUS } },
+            { WRC, 'HaveUnitRatioVersusEnemyNC', { 3.0, categories.MOBILE * categories.AIR * categories.ANTIAIR - categories.GROUNDATTACK - categories.BOMBER, '<=', categories.MOBILE * categories.AIR - categories.SCOUT - categories.TRANSPORTFOCUS } },
 
 { EBC, 'GreaterThanEconStorageCurrent', { 16, 450 } },  
 
@@ -1057,7 +1057,7 @@ BuilderGroup {
             { WRC, 'CanPathToCurrentEnemyNC', { 'LocationType', true } }, 
             { UCBC, 'HaveLessThanUnitsWithCategory', {40, categories.MOBILE * categories.ANTIAIR * categories.LAND * categories.TECH3 } },
             { WRC, 'HaveUnitRatioVersusEnemyNC', { 5.0, categories.MOBILE * categories.LAND - categories.ENGINEER, '>=', categories.MOBILE * categories.LAND - categories.ENGINEER} },
-            { WRC, 'HaveUnitRatioVersusEnemyNC', { 1.5, categories.MOBILE * categories.AIR * categories.ANTIAIR - categories.GROUNDATTACK - categories.BOMBER, '<=', categories.MOBILE * categories.AIR - categories.SCOUT - categories.TRANSPORTFOCUS } },
+            { WRC, 'HaveUnitRatioVersusEnemyNC', { 3.0, categories.MOBILE * categories.AIR * categories.ANTIAIR - categories.GROUNDATTACK - categories.BOMBER, '<=', categories.MOBILE * categories.AIR - categories.SCOUT - categories.TRANSPORTFOCUS } },
 { EBC, 'GreaterThanEconStorageCurrent', { 24, 750 } },  
 
 			{ SBC, 'NoRushTimeCheck', { 600 }},
